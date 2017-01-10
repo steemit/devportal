@@ -34,10 +34,10 @@ html {
 }
 
 body {
-	font-size: 1.8em;
+	font-size: 13px;
 	line-height: 1.6;
 	font-weight: 400;
-	font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+	font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue",  Arial, sans-serif;
 	background: #fbfbfb;
 
 	&.nav-open {
@@ -292,13 +292,14 @@ hr {
 	-webkit-border-image: -webkit-linear-gradient(left,	#eee 0%,#eee 60%,#333333 60%);
 	border-image-slice: 1;
 	padding: 30px 0;
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(left,	#ffffff 0%, #ffffff 60%, #232323 60%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(60%,#ffffff), color-stop(60%,#232323)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,	#ffffff 0%,#ffffff 60%,#232323 60%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,	#ffffff 0%,#ffffff 60%,#232323 60%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,	#ffffff 0%,#ffffff 60%,#232323 60%); /* IE10+ */
-	background: linear-gradient(to right,	#ffffff 0%,#ffffff 60%,#232323 60%); /* W3C */
+	background: -webkit-linear-gradient(left,#ffffff 0%,#ffffff 60%, #27313E 60%); /* Chrome10+,Safari5.1+ */
+	//background: #ffffff; /* Old browsers */
+	//background: -moz-linear-gradient(left,	#ffffff 0%, #ffffff 60%, #232323 60%); /* FF3.6+ */
+	//background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(60%,#ffffff), color-stop(60%,#232323)); /* Chrome,Safari4+ */
+	//background: -webkit-linear-gradient(left,#ffffff 0%,green 60%,green 60%); /* Chrome10+,Safari5.1+ */
+	//background: -o-linear-gradient(left,	#ffffff 0%,#ffffff 60%,#232323 60%); /* Opera 11.10+ */
+	//background: -ms-linear-gradient(left,	#ffffff 0%,#ffffff 60%,#232323 60%); /* IE10+ */
+	//background: linear-gradient(to right,	#ffffff 0%,#ffffff 60%,#232323 60%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#232323',GradientType=1 ); /* IE6-9 */
 }
 
@@ -343,7 +344,7 @@ hr {
 	}
 
 	pre {
-		background: black;
+		background: #3E4956;
 		padding: 10px;
 		border-radius: 5px;
 	}
@@ -398,7 +399,7 @@ hr {
 }
 
 .code-viewer a.active, .code-viewer a.active:hover, .right-code .code-viewer a.active:hover {
-	color: #1EAEDB;
+	color: #4BA2EE;
 }
 
 
@@ -444,7 +445,7 @@ header {
 		height: $nav-header-height;
 		box-sizing: border-box;
 		background-color: none;
-		color: #fff;
+		color: none;
 		margin: 0;
 		font-size: 1.7rem;
 		line-height: 0.8;
