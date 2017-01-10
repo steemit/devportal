@@ -1,0 +1,38 @@
+# ----
+# Site
+
+title: Steemit Docs
+description: Steemit API Documentation.
+url: https://docs.steemit.com
+google_analytics_key:
+permalink: pretty
+
+collections:
+  documentation:
+    title: Documentation
+    position: 1
+    pages:
+      permalink: /:page/
+  api:
+    title: APIs
+    position: 2
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - readme.md
+  - LICENCE
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+types:
+  - get
+  - put
+  - delete
+  - post

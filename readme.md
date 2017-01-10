@@ -1,0 +1,29 @@
+# Steemit API Portal
+
+Steemit is the social media platform where everyone gets paid for creating and curating content.
+
+The following API documents provide details on how to interact with the Steem blockchain database API which can get information on accounts, content, blocks and much more!
+
+The developer portal will also serve as a toolbox for steem clients, libraries, and language wrappers.
+
+## Develop
+
+Steemit Portal was built with [Jekyll](http://jekyllrb.com/) version 3.1.6, but should support newer versions as well.
+
+Install the dependencies with [Bundler](http://bundler.io/):
+
+~~~bash
+$ bundle install
+~~~
+
+Run `jekyll` commands through Bundler to ensure you're using the right versions:
+
+~~~bash
+$ bundle exec jekyll serve
+~~~
+
+You can now test locally at
+~~~bash
+http://localhost:4000
+~~~
+
