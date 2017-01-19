@@ -1,9 +1,9 @@
 # ----
 # Site
 
-title: Steemit Docs
-description: Steemit API Documentation.
-url: https://docs.steemit.com
+title: Steem Developer
+description: Steem Developer Documentation.
+url: https://developer.steem.io
 google_analytics_key:
 permalink: pretty
 
@@ -23,6 +23,8 @@ gems:
 exclude:
   - readme.md
   - LICENCE
+  - vendor
+  - Makefile
 
 defaults:
   -
