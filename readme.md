@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/steemit/devportal/master/source/images/steemdev.png" alt="Steemit API Portal" width="226">
+  <br>
+  <br>
+  
+</p>
+
 # Steemit API Portal
 
 Steemit is the social media platform where everyone gets paid for creating and curating content.
