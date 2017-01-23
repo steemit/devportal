@@ -34,11 +34,11 @@ html {
 }
 
 body {
-	font-size: 13px;
+	font-size: 16px;
 	line-height: 1.6;
 	font-weight: 400;
-	font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue",  Arial, sans-serif;
-	background: #fbfbfb;
+	font-family: 'Inconsolata', monospace;
+	background: #fcfcfc;
 
 	&.nav-open {
 		overflow: hidden;
@@ -551,4 +551,12 @@ header {
 	text-align: center;
 	font-size: .6em;
 	margin: 30px 0 0 0;
+}
+
+.logo-link {
+	color: #1a5099;
+	font-weight: 600;
+	font-family: 'Roboto Mono', monospace;
+	pointer-events: none;
+	cursor: default;
 }
