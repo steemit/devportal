@@ -16,6 +16,9 @@ collections:
   api:
     title: APIs
     position: 2
+  piston:
+    title: Piston
+    position: 3
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag
