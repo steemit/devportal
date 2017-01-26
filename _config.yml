@@ -11,8 +11,8 @@ collections:
   introduction:
     title: Introduction
     position: 1
-  piston:
-    title: Piston
+  pysteem:
+    title: Pysteem
     position: 2
 gems:
   - jekyll-sitemap
