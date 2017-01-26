@@ -36,9 +36,9 @@ permalink: /search/
 	};
 </script>
 {% if jekyll.environment == 'production' %}
-	<script src="/js/lunr.min.js"></script>
-	<script src="/js/search.js"></script>
-{% else %}
 	<script src="js/lunr.min.js"></script>
 	<script src="js/search.js"></script>
+{% else %}
+	<script src="/js/lunr.min.js"></script>
+	<script src="/js/search.js"></script>
 {% endif %}
