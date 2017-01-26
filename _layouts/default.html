@@ -42,12 +42,12 @@
 			</h1>
 
 			{% if jekyll.environment == 'production' %}
-				<form action="/devportal/search/" method="get">
+				<form action="/devportal/search" method="get">
 					<input type="text" name="q" id="search-input" placeholder="Search">
 					<input type="submit" value="Search" style="display: none;">
 				</form>
 			{% else %}
-				<form action="/search/" method="get">
+				<form action="/search" method="get">
 					<input type="text" name="q" id="search-input" placeholder="Search">
 					<input type="submit" value="Search" style="display: none;">
 				</form>
