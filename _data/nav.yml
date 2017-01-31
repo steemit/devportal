@@ -1,0 +1,22 @@
+- title: "Introduction"
+  href: "/"
+  categories:
+    - title: "Getting Started"
+    - href: "/"
+    - title: "welcome2"
+    - href: "/"
+  subcategories:
+    - subtitle: "Endpoints"
+    - subcategory:
+      - title: "Getting Started"
+      - href: "yahoo.com"
+
+- title: "Python"
+  href: "/news/"
+  subcategories:
+    - subtitle: "Endpoints"
+
+- title: "Javascript"
+  subcategories:
+    - subtitle: "Endpoints"
+      subhref: "#"
