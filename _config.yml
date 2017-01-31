@@ -11,9 +11,12 @@ collections:
   introduction:
     title: Introduction
     position: 1
-  pysteem:
-    title: Pysteem
+  python:
+    title: Python
     position: 2
+  javascript:
+    title: Javascript
+    position: 3
 
 gems:
   - jekyll-sitemap

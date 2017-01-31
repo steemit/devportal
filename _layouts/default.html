@@ -3,18 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
-		{% if jekyll.environment == 'production' %}
-			<link rel="stylesheet" href="css/style.css">
-		    <script src="js/main.js"></script>
-		{% else %}
-		    <link rel="stylesheet" href="/css/style.css">
-		    <script src="/js/main.js"></script>
-		{% endif %}
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
 		<link rel="shortcut icon" type="image/png" href="favicon.png">
+
+		{% if jekyll.environment == 'production' %}
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/main.js"></script>
+		{% else %}
+		<link rel="stylesheet" href="/css/style.css">
+		<script src="/js/main.js"></script>
+		{% endif %}
 
 		{% seo %}
 
