@@ -157,11 +157,13 @@ Steemit.com offers a few endpoints for getting common data. User profile and pos
 to your request. 
 
 Getting a particular user profile JSON:
-```bash
+
+```
 https://steemit.com/@curie.json
 ```
 
 Getting a particular post JSON:
-```bash
+
+```
 https://steemit.com/curation/@curie/the-daily-curie-12-13-feb-2017.json
 ```
