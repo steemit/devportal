@@ -1,5 +1,5 @@
 ---
-title: Steemit
+title: Steemit.com
 position: 1
 right_code: |
     ~~~json
@@ -105,13 +105,9 @@ right_code: |
           
 ---
 
-#### steemd endpoints
-
-#### sbds enpoints
-
 #### steemit.com endpoints
 
-Getting User profile and post JSON data is very convenient and simple by appending .json
+Steemit.com offers a few endpoints for getting common data. User profile and post JSON data is very convenient and simple by appending .json
 to your request. 
 
 Getting a particular user profile JSON:
