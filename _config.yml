@@ -11,11 +11,11 @@ collections:
   introduction:
     title: Introduction
     position: 1
-  python:
-    title: Python
+  quickstart:
+    title: Quickstart
     position: 2
-  javascript:
-    title: Javascript
+  services:
+    title: Services
     position: 3
 
 gems:
