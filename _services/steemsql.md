@@ -1,4 +1,4 @@
 ---
-title: Steemdata
+title: SteemSQL
 position: 2
 ---

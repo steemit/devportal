@@ -15,8 +15,15 @@ collections:
     title: Quickstart
     position: 2
   services:
+    title: Javascript
+    position: 4
+  services:
+    title: Python
+    position: 5
+  services:
     title: Services
-    position: 3
+    position: 6
+
 
 gems:
   - jekyll-sitemap
