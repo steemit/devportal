@@ -1,4 +1,4 @@
 ---
 title: Community
-position: 2
+position: 3
 ---
