@@ -102,7 +102,53 @@ right_code: |
     }  
     ~~~
     {: title="User profile"} 
-          
+    
+    ~~~json
+    {
+    "post": {
+    "id": 1720643,
+    "author": "curie",
+    "permlink": "the-daily-curie-08-09-jan-2017",
+    "category": "curation",
+    "parent_author": "",
+    "parent_permlink": "curation",
+    "title": "The Daily Curie (08-09 Jan 2017)",
+    "body": "https://www.steemimg.com/images/2016/09/26/transporency5631977a38.png)</center>
+    \n IntroductionCurie](https://steemit.com/steemit/@donkeypong/announcing-project-curie-bringing-rewards-and-recognition-to-steemit-s-undiscovered-and-emerg
+    ing-authors) is a community project",
+    "last_update": "2017-01-09T12:20:15",
+    "created": "2017-01-09T12:20:15",
+    "active": "2017-01-11T22:44:57",
+    "last_payout": "2017-02-09T14:40:54",
+    "depth": 0,
+    "children": 36,
+    "children_rshares2": "0",
+    "net_rshares": 0,
+    "abs_rshares": 0,
+    "vote_rshares": 0,
+    "children_abs_rshares": 0,
+    "cashout_time": "1969-12-31T23:59:59",
+    "max_cashout_time": "1969-12-31T23:59:59",
+    "total_vote_weight": 0,
+    "reward_weight": 10000,
+    "total_payout_value": "0.000 SBD",
+    "curator_payout_value": "0.000 SBD",
+    "author_rewards": 0,
+    "net_votes": 519,
+    "root_comment": 1720643,
+    "mode": "archived",
+    "max_accepted_payout": "0.000 SBD",
+    "percent_steem_dollars": 10000,
+    "allow_replies": true,
+    "allow_votes": true,
+    "allow_curation_rewards": true,
+    "url": "/curation/@curie/the-daily-curie-08-09-jan-2017",
+    "root_title": "The Daily Curie (08-09 Jan 2017)",
+    "pending_payout_value": "0.000 SBD",
+    "total_pending_payout_value": "0.000 SBD"
+    }
+    ~~~  
+    {: title="Post"}   
 ---
 
 #### steemit.com endpoints
