@@ -57,7 +57,7 @@ right_code: |
 ---
 
 
-#### steem-py examples
+##### __steem-py examples__
 Install steem-py:
 ~~~
 $ sudo apt-get install libffi-dev libssl-dev python-dev python3-pip
