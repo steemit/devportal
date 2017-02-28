@@ -17,11 +17,11 @@ collections:
   javascript:
     title: Javascript
     position: 3
-  python:
-    title: Python
-    position: 4
   services:
     title: Services
+    position: 4
+  community:
+    title: Community
     position: 5
 
 

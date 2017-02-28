@@ -1,5 +1,5 @@
 ---
-title: Example code
+title: Examples
 position: 2
 right_code: |
     ~~~ javascript
