@@ -1,5 +1,5 @@
 ---
-title: Example code
+title: Database API
 position: 2
 right_code: |
     ~~~ javascript
