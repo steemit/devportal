@@ -1,34 +1,45 @@
 ---
 title: Examples
-position: 2
+position: 3
 right_code: |
     ~~~ javascript
-    steem.api.setSubscribeCallback(callback, clearFilter, function(err, result) {
-      console.log(err, result);
+    steem.api.getAccounts(['ned', 'dan'], function(err, result) {
+        console.log(err, result);
     });
     ~~~
-    {: title="Set Subscribe Callback"} 
+    {: title="Get Accounts"} 
     
     ~~~ javascript
-    steem.api.setPendingTransactionCallback(cb, function(err, result) {
-      console.log(err, result);
+    steem.api.getState('/trends/funny', function(err, result) {
+        console.log(err, result);
     });
     ~~~
-    {: title="Set Pending Transaction Callback"} 
+    {: title="Get State"} 
     
     ~~~ javascript
-    steem.api.setBlockAppliedCallback(cb, function(err, result) {
-      console.log(err, result);
+    var steem = require('steem');
+    
+    var wif = steem.auth.toWif(username, password, 'posting');
+    steem.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
+        console.log(err, result);
     });
     ~~~
-    {: title="Set Block Applied Callback"} 
+    {: title="Broadcast Vote"} 
     
     ~~~ javascript
-    steem.api.cancelAllSubscriptions(function(err, result) {
-      console.log(err, result);
-    });
+    var reputation = steem.formatter.reputation(user.reputation);
+    console.log(reputation);
     ~~~
-    {: title="Cancel All Subscriptions"}         
+    {: title="Reputation Formatter"} 
+   
+        
+            
 ---
 
-Subscription examples
+**Get Accounts** Easily fetch account data on the following users. 
+
+**Get State** Easily fetch state. 
+
+**Broadcast Vote** Easily cast a vote for a user. 
+
+**Reputation Formatter** Easily handle reputation parsing. 
