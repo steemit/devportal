@@ -14,13 +14,13 @@ right_code: |
 
 Getting started with the steem blockchain couldn't be easier.  
 
-#### Javascript developers
+##### **Javascript Developers**
 
 Our official JS toolkit is located at : [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js)
 
 Documentation to get going is located in the [Javascript Section](#javascriptgetting_started).
 
-#### Steemd
+##### **steemd**
 
 The simplest way to get started is by deploying a prebuilt dockerized container. 
  
