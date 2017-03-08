@@ -11,3 +11,12 @@ right_code: |
     ~~~
     {: title="Accounts"}
 ---
+
+Getting started with the steem blockchain couldn't be easier.  
+
+#### Javascript developers
+
+Our official JS toolkit is located at : [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js)
+
+Documentation to get going is located in the [Javascript Section](#javascriptgetting_started).
+
