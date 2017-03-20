@@ -1,9 +1,10 @@
 ---
-title: SteemMongo
+title: MongoDB
 position: 3
 ---
 
-Steem Data/Mongo provides searchable data from the steem blockchain. This project
-is a document-based MongoDB service. 
+SteemData helps developers and researchers build better STEEM applications. We parse the STEEM blockchain for you, and provide the data as a fast and convenient MongoDB service.
+
+SteemData provides public MongoDB database, as well as HTTP API endpoints.
 
 **Homepage** - [https://steemdata.com/](https://steemdata.com/)

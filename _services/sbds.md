@@ -1,9 +1,9 @@
 ---
-title: Steem Data
+title: SBDS
 position: 2
 ---
 
-**sbds** is a tool for easily querying the data of the Steem Blockchain. 
+**sbds** is a tool for easily querying the data of the Steem Blockchain.
 
 While providing direct interfaces to several pluggable storage architectures that may be used for querying the blockchain, sbds may also be used as a lower level API upon which other applications can be built.
 
@@ -38,4 +38,4 @@ sbds checkpoints get-blocks /home/ubuntu/checkpoints/gzipped
 
 **Routes**
 
-Coming soon. 
+Coming soon.
