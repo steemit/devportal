@@ -1,5 +1,5 @@
 ---
-title: SteemSQL
+title: Examples
 position: 2
 ---
 

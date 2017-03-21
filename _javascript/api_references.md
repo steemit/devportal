@@ -132,25 +132,25 @@ steem.api.getState(path, function(err, result) {
   console.log(err, result);
 });
 ```
-##### Get Trending Categories
+#### Get Trending Categories
 ```
 steem.api.getTrendingCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
-##### Get Best Categories
+#### Get Best Categories
 ```
 steem.api.getBestCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
-##### Get Active Categories
+#### Get Active Categories
 ```
 steem.api.getActiveCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
-##### Get Recent Categories
+#### Get Recent Categories
 ```
 steem.api.getRecentCategories(after, limit, function(err, result) {
   console.log(err, result);
