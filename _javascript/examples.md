@@ -3,7 +3,7 @@ title: Examples
 position: 3
 right_code: |
     ~~~ javascript
-    steem.api.getAccounts(['ned', 'dan'], function(err, result) {
+    steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
     ~~~
@@ -39,7 +39,7 @@ right_code: |
 **Get Accounts** Easily fetch account data on the following users. 
 
 ~~~ javascript
-steem.api.getAccounts(['ned', 'dan'], function(err, result) {
+steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
     console.log(err, result);
 });
 ~~~
