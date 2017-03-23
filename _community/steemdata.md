@@ -1,5 +1,5 @@
 ---
-title: MongoDB
+title: MongoDB 
 position: 3
 ---
 
@@ -7,4 +7,4 @@ SteemData helps developers and researchers build better STEEM applications. We p
 
 SteemData provides public MongoDB database, as well as HTTP API endpoints.
 
-**Homepage** - [https://steemdata.com/](https://steemdata.com/)
+**Steem Data** - [https://steemdata.com/](https://steemdata.com/)
