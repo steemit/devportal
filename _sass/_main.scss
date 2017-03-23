@@ -454,8 +454,7 @@ header {
 	h1 {
 		height: $nav-header-height;
 		box-sizing: border-box;
-		background-color: none;
-		color: none;
+		background-color: #3E4956;
 		margin: 0;
 		font-size: 1.7rem;
 		line-height: 0.8;
@@ -564,7 +563,7 @@ header {
 }
 
 .logo-link {
-	color: #1a5099;
+	color: #ffffff;
 	font-weight: 600;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	pointer-events: none;
