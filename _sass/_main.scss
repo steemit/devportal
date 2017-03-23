@@ -450,6 +450,7 @@ header {
 	overflow-x: hidden;
 	z-index: 1;
 	background-color: $nav-background-color;
+	border-top: 4px solid #2196F3;
 
 	h1 {
 		height: $nav-header-height;
