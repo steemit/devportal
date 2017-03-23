@@ -5,7 +5,7 @@ position: 1
 
 Welcome to our API.
 
-This API document is designed for those interested in developing with **steem**. 
+This API document is designed for those interested in developing with **[steem](http://steem.io){:target="_blank"}**. 
 
 Our API docs are still under development and constantly evolving. Please visit the quickstart section
 which includes helpful tutorials to get going quickly. More detailed endpoint and advanced features are available in services
