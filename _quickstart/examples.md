@@ -1,6 +1,6 @@
 ---
 title: Examples
-position: 2
+position: 4
 right_code: |
     ~~~ javascript
     var results = steem.api.getState('/trending/photography', function(err, result) {
