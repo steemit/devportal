@@ -2,14 +2,13 @@
 title: Examples
 position: 4
 right_code: |
-    ~~~ javascript
+    ~~~javascript
     var results = steem.api.getState('/trending/photography', function(err, result) {
     	console.log(err, result);
     });
     ~~~
-    {: title="Get State Photo Posts"}
     
-    ~~~ json
+    ~~~json
     {
      "ats-david/nature-in-black-and-white-volume-iii": {
      "id": 2202087,
@@ -54,15 +53,13 @@ right_code: |
       }
      }
     ~~~
-    {: title="Example content"}
     
-    ~~~ javascript
+    ~~~javascript
     for (var results in content) {
         // log each payout amount 
         console.log(pending_payout_value)   
     }
     ~~~
-    {: title="Loop payout results"}
 ---
 
 Utilizing the Javascript library with a few lines of code, display the latest
@@ -73,7 +70,7 @@ You can easily create the next instagram on the steem platform.
 Example site: [snapsteem.com](http://www.snapsteem.com/){:target="_blank"}
 
 ##### Let's get started:
-<br/>
+
 Use the get state method to return trending photography posts. 
 
 Displayed is example output of an individual content object returned. 

@@ -296,6 +296,7 @@ hr {
 	border: 0;
 	border-bottom: 1px solid #eee;
 	border-bottom: 1px solid transparent;
+	border-left: none;
 	border-image: linear-gradient(to right,	#eee 0%,#eee 50%,#eee 50%);
 	-moz-border-image: -moz-linear-gradient(left, #eee 0%, #eee 50%, #333333 50%);
 	-webkit-border-image: -webkit-linear-gradient(left,	#eee 0%,#eee 50%,#333333 50%);
@@ -416,7 +417,7 @@ hr {
 @media (max-width: 1000px) {
 	.right-code {
 		float: none;
-		width: 50%;
+		width: 100%;
 		background: white;
 		background: #232323;
 		padding-top: 20px;
