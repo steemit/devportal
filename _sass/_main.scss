@@ -297,11 +297,11 @@ hr {
 	border-bottom: 1px solid #eee;
 	border-bottom: 1px solid transparent;
 	border-image: linear-gradient(to right,	#eee 0%,#eee 50%,#eee 50%);
-	-moz-border-image: -moz-linear-gradient(left,	#eee 0%, #eee 50%, #333333 50%);
+	-moz-border-image: -moz-linear-gradient(left, #eee 0%, #eee 50%, #333333 50%);
 	-webkit-border-image: -webkit-linear-gradient(left,	#eee 0%,#eee 50%,#333333 50%);
 	border-image-slice: 1;
 	padding: 30px 0;
-	background: -webkit-linear-gradient(left,#ffffff 0%,#ffffff 50%, #27313E 50%); /* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(left,#ffffff 0%, #ffffff 50%, #27313E 50%); /* Chrome10+,Safari5.1+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#232323',GradientType=1 ); /* IE6-9 */
 }
 
@@ -354,6 +354,9 @@ hr {
 
 	.code-viewer .languages li a:hover {
 		border-color: #555;
+	}
+	p {
+		color: white;
 	}
 }
 
