@@ -2,6 +2,7 @@
 title: Steemit.com
 position: 1
 right_code: |
+    User object
     ~~~json
     {
     "user": {
@@ -101,8 +102,7 @@ right_code: |
     "status": "200"
     }  
     ~~~
-    {: title="User profile"} 
-    
+    Post object
     ~~~json
     {
     "post": {
@@ -148,7 +148,6 @@ right_code: |
     "total_pending_payout_value": "0.000 SBD"
     }
     ~~~  
-    {: title="Post"}   
 ---
 
 #### steemit.com endpoints
