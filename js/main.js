@@ -20,7 +20,6 @@ jQuery(function() {
 		listLanguages($all, $languages);
 
 		$this.css('display', 'block');
-		$notFirst.css('display', 'none');
 
 		$languages.find('a').first().addClass('active');
 
