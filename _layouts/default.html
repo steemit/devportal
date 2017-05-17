@@ -73,3 +73,9 @@
 		</script>
 	</body>
 </html>
+
+{% if jekyll.environment == 'production' %}
+<script src="js/adjust.js"></script>
+{% else %}
+<script src="/js/adjust.js"></script>
+{% endif %}
