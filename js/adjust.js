@@ -14,9 +14,9 @@ $("section.left-docs h3:contains('Votes')").css( "margin-top", "360px" );
 $("section.left-docs h3:contains('Content')").css( "margin-top", "120px" );
 $("section.left-docs h3:contains('Witnesses')").css( "margin-top", "190px" );
 
-$("section.left-docs p:contains('Get State')").css( "margin-top", "100px" );
-$("section.left-docs p:contains('Broadcast Vote')").css( "margin-top", "130px" );
-$("section.left-docs p:contains('Reputation Formatter')").css( "margin-top", "170px" );
+// $("section.left-docs p:contains('Get State')").css( "margin-top", "100px" );
+// $("section.left-docs p:contains('Broadcast Vote')").css( "margin-top", "130px" );
+// $("section.left-docs p:contains('Reputation Formatter')").css( "margin-top", "170px" );
 
 
 
