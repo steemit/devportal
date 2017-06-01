@@ -25,3 +25,28 @@ $mobile-break: 700px;
 pre {
   color: white;
 }
+
+.row {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.right-code {
+  margin-top: 110px;
+}
+
+.left-docs {
+  border-top: 1px solid #eeeeee;
+  h3:first-child {
+    padding-top: 40px;
+  }
+}
+
+section.doc-content.introductionwelcome > .left-docs {
+  border-top: none!important;
+}
+
+
+

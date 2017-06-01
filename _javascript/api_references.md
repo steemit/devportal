@@ -94,7 +94,7 @@ right_code: |
       console.log(err, result);
     });
     ```
-    Blocks and transactions
+    Blocks
     ```javascript
     steem.api.getBlockHeader(blockNum, function(err, result) {
       console.log(err, result);
@@ -235,7 +235,7 @@ right_code: |
     });
     ```
     
-    Authority/Validation
+    Authority
     
     ```javascript
     steem.api.getTransactionHex(trx, function(err, result) {
@@ -373,7 +373,7 @@ Get Discussions By Blog
 Get Discussions By Comments
 
 
-### Blocks and transactions
+### Blocks
 
 Get Block Header
 
@@ -439,7 +439,7 @@ Get Open Orders
 Get Liquidity Queue
 
 
-### Authority / Validation
+### Authority 
 
 Get Transaction Hex
 
@@ -468,7 +468,7 @@ Get Discussions By Author Before Date
 Get Replies By Last Update
 
 
-### Witnesses
+### Witness
 
 
 Get Witnesses

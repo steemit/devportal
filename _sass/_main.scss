@@ -294,10 +294,10 @@ hr {
 .doc-content {
 	width: 100%;
 	border: 0;
-	border-bottom: 1px solid #eee;
-	border-bottom: 1px solid transparent;
-	border-left: none;
-	border-image: linear-gradient(to right,	#eee 0%,#eee 50%,#eee 50%);
+	//border-bottom: 1px solid #eee;
+	//border-bottom: 1px solid transparent;
+	//border-left: none;
+	//border-image: linear-gradient(to right,	#eee 0%,#eee 50%,#eee 50%);
 	-moz-border-image: -moz-linear-gradient(left, #eee 0%, #eee 50%, #333333 50%);
 	-webkit-border-image: -webkit-linear-gradient(left,	#eee 0%,#eee 50%,#333333 50%);
 	border-image-slice: 1;
