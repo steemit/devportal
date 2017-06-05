@@ -2,19 +2,19 @@
 title: Examples
 position: 3
 right_code: |
-    Get Accounts
+    Accounts
     ``` javascript
     steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
     ```
-    Get State
+    State
     ``` javascript
     steem.api.getState('/trends/funny', function(err, result) {
         console.log(err, result);
     });
     ```
-    Broadcast Vote
+    Broadcast
     ``` javascript
     var steem = require('steem');
     
@@ -23,7 +23,7 @@ right_code: |
         console.log(err, result);
     });
     ```
-    Reputation Formatter
+    Reputation
     ``` javascript
     var reputation = steem.formatter.reputation(user.reputation);
     console.log(reputation);
@@ -33,10 +33,18 @@ right_code: |
             
 ---
 
-**Get Accounts** Easily fetch account data on the following users. 
+### Accounts
 
-**Get State** Easily fetch state. 
+Easily fetch account data on the following users. 
 
-**Broadcast Vote** Easily cast a vote for a user. 
+### State
 
-**Reputation Formatter** Easily handle reputation parsing. 
+Easily fetch state. 
+
+### Broadcast
+
+Easily cast a vote for a user. 
+
+### Reputation
+
+Easily handle reputation parsing. 
