@@ -5,7 +5,7 @@ sitemap: false
 
 $brand-colour: #4BA2F2;
 
-$nav-header-height: 60px;
+$nav-header-height: 100px;
 $nav-background-color: #f5f5f5;
 $nav-width: 210px;
 
@@ -50,6 +50,77 @@ section.doc-content.introductionwelcome > .left-docs {
 
 
 
-.doc-content:focus {
+.main:focus, .doc-content:focus {
   outline: none;
+}
+
+/*.hero {
+    text-align: left;
+    padding: 0 50px;
+    height: 110px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__img {
+
+    }
+    &__h1 {
+      margin-bottom: 0;
+    }
+}*/
+
+
+header h1 {
+  height: 60px;
+}
+
+.hero {
+  padding: 50px 24px 40px;
+  border-bottom: 1px solid #eee;
+  &__img {
+    display: block;
+  }
+  &__h1 {
+    font-size: 2em;
+  }
+}
+
+
+@media (min-width: 700px) {
+  .hero {
+    padding: 0px 50px;
+    height: 63px;
+    display: flex;
+    align-items: center;    
+    &__img {
+      display: none;
+    }
+    &__h1 {
+      margin-bottom: 0;
+    }    
+  }
+}
+
+
+@media (min-width: 1000px) {
+
+  .hero {
+    text-align: left;
+    padding: 0 50px;
+    height: 111px;
+    
+    position: relative;
+
+    justify-content: space-between;
+    &__img {
+      display: block;
+      max-width: 100%;
+    }
+}
+  header h1 {
+    height: 107px;
+  }
+
 }

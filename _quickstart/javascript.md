@@ -5,7 +5,7 @@ position: 2
 
 ##### **Javascript Developers**
 
-Our official JS toolkit is located at : [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js)
+Our official JS toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js)
 
 The Javascript library let's your app easily access steem blockchain data and also perform
 user actions. 

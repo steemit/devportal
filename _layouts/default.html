@@ -34,11 +34,11 @@
 		<header>
 			<h1>
 				{% if jekyll.environment == 'production' %}
-					<a href="/"><img src="images/logo_white.svg" height="40" alt="{{ site.title }} logo"></a>
+					<a href="#top"><img src="images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
 				{% else %}
-					<a href="/"><img src="/images/logo_white.svg" height="40" alt="{{ site.title }} logo"></a>
+					<a href="#top"><img src="/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
 				{% endif %}
-				<a href="/" class="logo-link">Developer</a>
+				<a href="#top" class="logo-link"></a>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -63,7 +63,11 @@
 			<!--</p>-->
 			<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		</header>
-		<div class="main">
+		<div class="main" id="top">
+			<div class="hero">
+				<h1 class="hero__h1">Steem Developer Portal</h1>
+				<img class="hero__img" src="images/hero.png">
+			</div>
 			{{ content }}
 		</div>
 		<script>
