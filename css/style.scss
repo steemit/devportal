@@ -81,6 +81,7 @@ header h1 {
   border-bottom: 1px solid #eee;
   &__img {
     display: block;
+    max-width: 100%;
   }
   &__h1 {
     font-size: 2em;
