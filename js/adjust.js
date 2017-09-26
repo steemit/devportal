@@ -3,7 +3,7 @@ function DynamicAlign() {
     var $window = $(window);
     var windowsize = $window.width();
     if (windowsize > 1000) {
-        $('section.right-code > p').each(function () {
+        $('section.right-code > p.right-section-title').each(function () {
             // compute right side
             var $text = $(this)[0].innerHTML.toLowerCase();
             var $section_id_name = $(this).parent().parent()[0].id;
