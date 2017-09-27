@@ -7,8 +7,6 @@ Our official JS toolkit Steem.js makes is easy to access the steem blockchain fo
 
 The toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js). 
 
-Documentation to get going is located in the [Javascript Section](#javascriptgetting_started).
- 
 Get running with Steem.js with a few simple options. 
 
 NPM install for Javascript projects. 
