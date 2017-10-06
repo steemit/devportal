@@ -7,7 +7,7 @@ This API document is designed for those interested in developing with **[steem](
 
 Our API docs are still under development and constantly evolving.
 The source code for the Dev Portal is open source, and pull requests to update the portal are accepted and encouraged.
-Developers who would like to make additional improvements to the Dev Portal may submit pull requests to the GitHub repository: https://github.com/steemit/devportal.
+Developers who would like to make additional improvements to the Dev Portal may submit pull requests to the GitHub repository: [https://github.com/steemit/devportal](https://github.com/steemit/devportal).
 
 
 Please visit the quickstart section which includes helpful tutorials to get going quickly.
