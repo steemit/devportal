@@ -9,4 +9,4 @@ position: 1
  
  Currently steem-python documentation is generated in the standard pydoc format. 
  
- Documentation is available at: [steem-python docs](http://steem.readthedocs.io/en/latest/){:target="_blank"}.
+ Documentation is available at: [Official steem-python Docs](http://steem.readthedocs.io/en/latest/){:target="_blank"}.
