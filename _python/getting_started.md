@@ -3,4 +3,10 @@ title: Getting Started
 position: 1
 ---
 
-`python-steem` documentation is available [here](http://steem.readthedocs.io/en/latest/){:target="_blank"}.
+ steem-python is the official STEEM library for Python. It comes with a BIP38 encrypted wallet and a practical CLI utility called steempy. 
+ 
+ The library was designed to allow Python developers to easily access the network and build utilities & applications. 
+ 
+ Currently the documentation is in the python standard pydoc format. 
+ 
+ Documentation is available at: [steem-python docs](http://steem.readthedocs.io/en/latest/){:target="_blank"}.
