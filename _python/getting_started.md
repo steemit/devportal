@@ -7,6 +7,6 @@ position: 1
  
  The library was designed to allow Python developers to easily access the network and build utilities & applications. 
  
- Currently the documentation is in the python standard pydoc format. 
+ Currently steem-python documentation is generated in the standard pydoc format. 
  
  Documentation is available at: [steem-python docs](http://steem.readthedocs.io/en/latest/){:target="_blank"}.
