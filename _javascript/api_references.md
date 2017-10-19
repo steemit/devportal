@@ -8,12 +8,7 @@ right_code: |
     ``` javascript
     steem.api.setWebSocket(url);
     ```
-    <p class="right-section-title">Subscriptions</p>
-    `Set Subscribe Callback`
-    ``` javascript
-    steem.api.setSubscribeCallback(callback, clearFilter, function(err, result) {
-      console.log(err, result);
-    });
+    
     ```
     `Set Pending Transaction Callback`
     ```javascript
@@ -385,7 +380,7 @@ right_code: |
 
 ### WebSocket
 
-### Subscriptions
+Access the Steem websocket API enabling RPC communication with steemd.
 
 ### Tags
 
