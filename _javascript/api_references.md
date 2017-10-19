@@ -115,6 +115,7 @@ right_code: |
       console.log(err, result);
     });
     ```
+    <p class="right-section-title">Categories</p>
     `Get Trending Categories`
     ```javascript
     steem.api.getTrendingCategories(after, limit, function(err, result) {
@@ -384,7 +385,15 @@ Access the Steem websocket API enabling RPC communication with steemd.
 
 ### Tags
 
+Access tags, filter by type. 
+
 ### Blocks
+
+Access blocks by number. 
+
+### Categories
+
+Access Categories. 
 
 ### Globals
 
