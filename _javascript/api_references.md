@@ -9,7 +9,6 @@ right_code: |
     steem.api.setWebSocket(url);
     ```
     
-    ```
     `Set Pending Transaction Callback`
     ```javascript
     steem.api.setPendingTransactionCallback(cb, function(err, result) {
