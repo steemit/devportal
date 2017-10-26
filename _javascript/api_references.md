@@ -196,12 +196,6 @@ right_code: |
       console.log(err, result);
     });
     ```
-    `Get Account References`
-    ```javascript
-    steem.api.getAccountReferences(accountId, function(err, result) {
-      console.log(err, result);
-    });
-    ```
     `Lookup Account Names`
     ```javascript
     steem.api.lookupAccountNames(accountNames, function(err, result) {
@@ -257,13 +251,7 @@ right_code: |
       console.log(err, result);
     });
     ```
-    `Get Liquidity Queue`
-    ```javascript
-    steem.api.getLiquidityQueue(startAccount, limit, function(err, result) {
-      console.log(err, result);
-    });
-    ```
-    
+
     <p class="right-section-title">Authority</p>
     `Get Transaction Hex`
     ```javascript
@@ -367,12 +355,6 @@ right_code: |
     `Get Active Witnesses`
     ```javascript
     steem.api.getActiveWitnesses(function(err, result) {
-      console.log(err, result);
-    });
-    ```
-    `Get Miner Queue`
-    ```javascript
-    steem.api.getMinerQueue(function(err, result) {
       console.log(err, result);
     });
     ```
