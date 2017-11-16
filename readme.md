@@ -34,5 +34,12 @@ You can now test locally at
 http://localhost:4000
 ~~~
 
+Optionally, when running `jekyll` commands through Bundler, append `--host x.x.x.x` with the external IP address of the server to be able to connect remotely:
+~~~bash
+$ bundle exec jekyll serve --host x.x.x.x
+~~~
+~~~bash
+http://x.x.x.x:4000
+~~~
 
 
