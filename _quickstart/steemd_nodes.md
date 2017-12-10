@@ -28,8 +28,10 @@ Applications that interface directly with the Steem blockchain will need to conn
 |gtg.steem.house:8090|@gtg|
 |steemd.minnowsupportproject.org|@followbtcnews|
 |steemd.privex.io|@privex|
+|steemd.steemgigs.org|@steemgigs|
 |steemd.steemit.com|@steemit|
 |rpc.steemliberator.com|@netuoso|
+|rpc.steemviz.com|@ausbitbank|
 
 ### Private Nodes
 
