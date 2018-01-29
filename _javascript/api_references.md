@@ -359,6 +359,9 @@ right_code: |
     });
     ```
 ---
+### Hint
+
+You can open your browser's developer console and access `steem` global object reference in order to play with javascript API.
 
 ### WebSocket
 
