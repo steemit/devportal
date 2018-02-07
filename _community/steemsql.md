@@ -1,6 +1,6 @@
 ---
-title: steemSQL
-position: 2
+title: SteemSQL
+position: 3
 ---
 
 A public Microsoft SQL server database with steem blockchain data. 

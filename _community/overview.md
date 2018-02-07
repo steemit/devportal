@@ -1,6 +1,6 @@
 ---
 title: Overview
-position: 2
+position: 1
 ---
 
 The steem community is thriving with developer activity and projects to support
