@@ -1,11 +1,11 @@
 ---
 title: Utopian.io 
-position: 6
+position: 7
 ---
 
-Utopian Platform rewards everyone who contributes to open-source projects. The community includes free software enthusiast, moderators and supervisors who look after quality of contributions being posted by developers. 
+Utopian Platform rewards everyone who contributes to open-source projects. The community includes free software enthusiast, moderators and supervisors who look after quality of contributions being posted by developers.
 
-If you are interested in building STEEM projects on the top of Utopian Platform, feel free to use official API wrapper for nodeJS.
+If you are interested in building STEEM projects on the top of Utopian Platform, feel free to use the official NPM module.
 
 **Official webpage** - [https://utopian.io/](https://utopian.io/)
 
