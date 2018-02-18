@@ -23,9 +23,12 @@ collections:
   services:
     title: Services
     position: 5
+  resources:
+    title: Resources
+    position: 6
   community:
     title: Community
-    position: 6
+    position: 7
 
 
 gems:

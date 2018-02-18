@@ -1,6 +1,6 @@
 ---
 title: Developer Advocate
-position: 6
+position: 4
 ---
 
 The members of the Steemit Inc. development team are currently the main contributors to the Steem blockchain software. They oversee the open source [Steem](https://github.com/steemit/steem) GitHub repository, and maintain many of the open source [libraries](https://github.com/steemit) that developers use.
