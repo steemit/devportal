@@ -1,6 +1,6 @@
 ---
 title: Steemit.com
-position: 1
+position: 2
 right_code: |
     User object
     ~~~json
