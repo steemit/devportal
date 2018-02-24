@@ -30,6 +30,7 @@ Applications that interface directly with the Steem blockchain will need to conn
 |steemd.privex.io|@privex|
 |steemd.steemgigs.org|@steemgigs|
 |steemd.steemit.com|@steemit|
+|rpc.curiesteem.com|@curie|
 |rpc.steemliberator.com|@netuoso|
 |rpc.steemviz.com|@ausbitbank|
 
