@@ -117,3 +117,23 @@ right_code: |
 ---
 
 Access tags, filter by type.
+
+Many of these functions take a `query` parameter; the structure of this parameter is an object with several keys that indicate what is to be searched for:
+
+~~~javascript
+var query = {
+  tag: 'photography',
+  limit: 20,
+  truncate_body: 0
+};
+~~~
+
+|Property|Value|
+|---|---|
+|`tag`|String value to search for|
+|`limit`|How many results to return (max of 100). Allows paginating results, combined with the different `start_` properties|
+|`select_authors`|List of authors to include, posts not by this author are filtered|
+|`select_tags`|List of tags to include, posts without these tags are filtered|
+|`truncate_body`|The number of bytes of the post body to return, 0 for all|
+|`start_author`|Optional. Start the result set at the given author's content|
+|`start_permlink`|Optional. Unique ID of the content item to start the results at|
