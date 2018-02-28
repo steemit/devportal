@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/steemit/devportal/master/images/steemdev.png" alt="Steemit API Portal" width="226">
   <br>
   <br>
-  
+
 </p>
 
 # Steemit API Portal
@@ -43,3 +43,18 @@ http://x.x.x.x:4000
 ~~~
 
 
+## Docker
+To run a containerized version of Jekyll for development, a Docker Compose configuration file is already set, defining a `site` container for working with Jekyll:
+
+~~~bash
+docker-compose run --rm site bundle install
+docker-compose up -d site
+~~~
+
+The site will then be accessible via port 4000 on your Docker host (either `localhost` or the IP of your VM if using `boot2docker`).
+
+You can rebuild the site while it's running by calling:
+
+~~~bash
+docker-compose run --rm site jekyll build
+~~~
