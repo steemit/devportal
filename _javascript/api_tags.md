@@ -3,116 +3,116 @@ title: Tags and Categories
 position: 4
 right_code: |
     <p class="right-section-title">Get Trending Tags</p>
-    ```javascript
+    ~~~javascript
     steem.api.getTrendingTags(afterTag, limit, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Trending</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByTrending(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Created</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByCreated(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Active</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByActive(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Cashout</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByCashout(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Payout</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByPayout(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Votes</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByVotes(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Children</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByChildren(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Hot</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByHot(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Feed</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByFeed(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Blog</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByBlog(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Discussions By Comments</p>
-    ```javascript
+    ~~~javascript
     steem.api.getDiscussionsByComments(query, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Trending Categories</p>
-    ```javascript
+    ~~~javascript
     steem.api.getTrendingCategories(after, limit, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Best Categories</p>
-    ```javascript
+    ~~~javascript
     steem.api.getBestCategories(after, limit, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Active Categories</p>
-    ```javascript
+    ~~~javascript
     steem.api.getActiveCategories(after, limit, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
     <p class="right-section-title">Get Recent Categories</p>
-    ```javascript
+    ~~~javascript
     steem.api.getRecentCategories(after, limit, function(err, result) {
       console.log(err, result);
     });
-    ```
+    ~~~
 
 ---
 

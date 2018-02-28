@@ -62,31 +62,31 @@ right_code: |
     }
     ~~~
     <p class="right-section-title">Accounts</p>
-    ``` javascript
+    ~~~javascript
     steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">State</p>
-    ``` javascript
+    ~~~javascript
     steem.api.getState('/trends/funny', function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">Broadcast</p>
-    ``` javascript
+    ~~~javascript
     var steem = require('steem');
 
     var wif = steem.auth.toWif(username, password, 'posting');
     steem.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">Reputation</p>
-    ``` javascript
+    ~~~javascript
     var reputation = steem.formatter.reputation(user.reputation);
     console.log(reputation);
-    ```
+    ~~~
 ---
 
 ### Photography

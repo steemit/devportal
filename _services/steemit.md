@@ -143,15 +143,15 @@ to your request.
 
 Getting a particular user profile JSON:
 
-```
+~~~
 https://steemit.com/@curie.json
-```
+~~~
 
 
 Getting a particular post JSON:
 
-```
+~~~
 https://steemit.com/curation/@curie/the-daily-curie-12-13-feb-2017.json
-```
+~~~
 
 Example outputs.

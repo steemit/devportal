@@ -3,7 +3,7 @@ title: Example
 position: 3
 right_code: |
     Skeleton
-    ``` html
+    ~~~html
     <html>
     <head><title>steem-js posting example</title></head>
     <body>
@@ -16,13 +16,13 @@ right_code: |
     <input id="postIt" type="button" value="Post it!" onClick=postArticle()>
     </body>
     </html>
-    ```
+    ~~~
     Script Line
-    ``` html
+    ~~~html
     <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-    ```
+    ~~~
     Post Function
-    ``` html
+    ~~~html
     <script language="JavaScript">
     function postArticle()
     {
@@ -45,7 +45,7 @@ right_code: |
       );
     }
     </script>
-    ```
+    ~~~
 ---
 
 This is a simple example of how to post an article to the STEEM blockchain using the steem-js library. For the purpose of the example, it's done with inline javascript in an HTML file.
