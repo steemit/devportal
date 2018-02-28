@@ -1,6 +1,6 @@
 ---
 title: Examples
-position: 3
+position: 14
 right_code: |
     <p class="right-section-title">Photography</p>
     ~~~javascript
@@ -8,7 +8,7 @@ right_code: |
     	console.log(err, result);
     });
     ~~~
-    
+
     ~~~json
     {
      "ats-david/nature-in-black-and-white-volume-iii": {
@@ -54,11 +54,11 @@ right_code: |
       }
      }
     ~~~
-    
+
     ~~~javascript
     for (var results in content) {
-        // log each payout amount 
-        console.log(pending_payout_value)   
+        // log each payout amount
+        console.log(pending_payout_value)
     }
     ~~~
     <p class="right-section-title">Accounts</p>
@@ -92,20 +92,20 @@ right_code: |
 ### Photography
 
 Utilizing the Javascript library with a few lines of code, display the latest
-photography posts, along with payout data. 
+photography posts, along with payout data.
 
-You can easily create the next instagram on the steem platform. 
+You can easily create the next instagram on the steem platform.
 
 Example site: [snapsteem.com](http://www.snapsteem.com/){:target="_blank"}
 
 ##### Let's get started:
 
-Use the get state method to return trending photography posts. 
+Use the get state method to return trending photography posts.
 
-Displayed is example output of an individual content object returned. 
+Displayed is example output of an individual content object returned.
 
 Last, let's loop over your results and return each payout amount. Using our example above we will have
-an object with "content". 
+an object with "content".
 
 ### Accounts
 
