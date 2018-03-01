@@ -26,6 +26,9 @@ collections:
   community:
     title: Community
     position: 6
+  tutorials:
+    title: Tutorials
+    position: 7
 
 
 gems:
