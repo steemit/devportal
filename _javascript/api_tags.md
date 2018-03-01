@@ -137,3 +137,33 @@ var query = {
 |`truncate_body`|The number of bytes of the post body to return, 0 for all|
 |`start_author`|Optional. Start the result set at the given author's content|
 |`start_permlink`|Optional. Unique ID of the content item to start the results at|
+
+### Get Trending Tags
+Get a list of tags that have the most upvoted content currently. Takes two arguments to control pagination.
+
+|Property|Value|
+|---|---|
+|`afterTag`|The name of the tag to start the result set at. Pass in the last item of the last page fetched to get the next page|
+|`limit`|How many results to return.|
+
+### Get Discussions By Trending
+
+### Get Discussions By Created
+
+### Get Discussions By Active
+
+### Get Discussions By Cashout
+
+### Get Discussions By Payout
+
+### Get Discussions By Votes
+
+### Get Discussions By Children
+
+### Get Discussions By Hot
+
+### Get Discussions By Feed
+
+### Get Discussions By Blog
+
+### Get Discussions By Comments
