@@ -29,7 +29,9 @@ collections:
   community:
     title: Community
     position: 7
-
+  glossary:
+    title: Glossary
+    position: 8
 
 gems:
   - jekyll-sitemap
