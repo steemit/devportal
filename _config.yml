@@ -29,7 +29,9 @@ collections:
   tutorials:
     title: Tutorials
     position: 7
-
+  glossary:
+    title: Glossary
+    position: 8
 
 gems:
   - jekyll-sitemap
