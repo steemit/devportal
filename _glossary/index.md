@@ -1,5 +1,6 @@
 ---
 position: 1
+exclude: true
 ---
 
 <dl class="dl-horizontal glossary">
