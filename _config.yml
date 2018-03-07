@@ -26,7 +26,10 @@ collections:
   community:
     title: Community
     position: 6
-
+  glossary:
+    title: Glossary
+    url: /glossary
+    position: 7
 
 gems:
   - jekyll-sitemap
