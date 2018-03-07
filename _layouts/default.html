@@ -65,7 +65,7 @@
 		</header>
 		<div class="main" id="top">
 			<div class="hero">
-				<h1 class="hero__h1">Steem Developer Portal</h1>
+				<h1 class="hero__h1">Steem Developer Portal {% if page.section %} - {{ page.section }}{% endif %}</h1>
 				<img class="hero__img" src="images/hero.png">
 			</div>
 			{{ content }}
