@@ -1,0 +1,109 @@
+- name: Chain Basics
+  items:
+    - term: Blockchain
+      def: Decentralized ledger and consensus protocol
+    - term: Steem
+      def: Name of the blockchain and platform
+    - term: Bandwidth
+      def: is the limit of data each account can send/use
+    - term: VESTS
+      def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
+    - term: STEEM
+      def: Currency of the blockchain, liquid version of Steem Power
+    - term: SBD
+      def: Steem Backed Dollar, $1 worth of STEEM
+    - term: Steem Power
+      def: Locked version of STEEM which gives account influence on the platform
+    - term: Transaction
+      def: Operations/Activity/Write requests to the blockchain
+    - term: Block
+      def: Bundle of transactions to be included in blockchain
+    - term: Block Header
+      def: Information about block, root and witness who signed, etc.
+    - term: Price feed 
+      def: Feed that is maintained by witnesses to ensure SBD/STEEM price stability
+    - term: Account 
+      def: User account on Steem blockchain
+    - term: Authority
+      def: Each Account has multiple authority and keys to manager different permissions on the platform
+    - term: Owner
+      def: Owner authority/permission of account
+    - term: Public Key
+      def: Public key of account's certain authority
+    - term: Private Key
+      def: Private key to sign a transaction with account's authority, should be kept secret because it grants access to account
+    - term: Wif
+      def: Wallet Import Format/Private key, should be kept secret because it grants access to account
+    - term: Vote
+      def: Voting a content
+    - term: Reputation
+      def: Account's reputation on platform
+- name: Governance
+  items:
+    - term: DPOS
+      def: Delegated Proof of Stake
+    - term: Node
+      def: Servers running blockchain software
+    - term: Witness
+      def: Witness is a position/role for the people who are chosen by community (delegate trust) to support platform and run consensus protocol to ensure security and validity of transactions/blocks on the blockchain
+    - term: Node
+      def: Servers running blockchain software
+    - term: Hardfork
+      def: Process to release protocol/blockchain consensus upgrades
+    - term: Softfork
+      def: Process to release protocol/blockchain software improvements
+    - term: Witness Vote
+      def: Voting/electing witnesses with account's stake
+
+- name: Transactions
+  items:
+    - term: Transaction
+      def: Operations submitted to the blockchain
+    - term: Pending Transaction
+      def: Transaction that is pending and to be included to the blockchain
+    - term: Transaction Hex
+      def: Hash of the transaction
+    - term: Signatures
+      def: Transaction signature signed by account with private key
+    - term: Broadcast Transaction
+      def: Event where signed transaction is broadcasted to the network, so that witnesses could validate and include in block
+
+- name: API 
+  items:
+    - term: Trending
+      def: Posts/Discussions that are highly valued by community with bigger time interval update
+    - term: Hot
+      def: Posts/Disccussions that are highly valued with shorter time interval update
+    - term: Feed
+      def: Posts/Disccussions from followers of particular account
+    - term: Active
+      def: Posts/Disscussions that are still actively being engaged
+    - term: New
+      def: Newly created posts
+    - term: Cashout
+      def: Posts which was paid out recently
+    - term: Promoted
+      def: Posts which was promoted by burning SBD to get more visibility
+    - term: Pending Payout
+      def: Estimated pending payout for blog posts/comments
+    - term: Tags
+      def: Tags, categories, hashtags each post is assigned to.
+    - term: Trending Tags
+      def: Mostly used tags
+    - term: Following
+      def: Account that is being followed
+    - term: State
+      def: State of blockchain for path - accounts/tags/filters/posts
+    - term: Dynamic Global Properties
+      def: Current blockchain global properties which is being in each block
+    - term: Median Price
+      def: Median Price feed provided by all witnesses
+
+- name: Market
+  items:
+    - term: Conversion Requests
+      def: Request submitted for Converting SBD to STEEM
+    - term: Order Book
+      def: Internal market order book to exchange SBD<->STEEM
+    - term: SMT
+      def: Smart Media Tokens
