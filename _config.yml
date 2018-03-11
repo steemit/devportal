@@ -20,16 +20,20 @@ collections:
   python:
     title: Python
     position: 4
+  apidefinitions:
+    title: API Definitions
+    url: /apidefinitions
+    position: 5
   services:
     title: Services
-    position: 5
+    position: 6
   community:
     title: Community
-    position: 6
+    position: 7
   glossary:
     title: Glossary
     url: /glossary
-    position: 7
+    position: 8
 
 gems:
   - jekyll-sitemap

@@ -1,0 +1,12 @@
+- name: Witness API
+  description: Used to query values related to the witness plugin.
+  methods:
+    - api_method: get_account_bandwidth
+      purpose: Returns the available bandwidth of an account.
+      parameter_json: {"account":"","type":"post"}
+      expected_response_json: {}
+    - api_method: get_reserve_ratio
+      purpose: Returns the current reserve ratio.
+      parameter_json: {}
+      expected_response_json: {"id":0,"average_block_size":0,"current_reserve_ratio":1,"max_virtual_bandwidth":"0"}
+
