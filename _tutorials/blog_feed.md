@@ -39,6 +39,7 @@ right_code: |
     }
     </script>
     ```
+
 ---
 
 In this tutorials we will build simple webapp or blog for particular user on Steem blockchain using simple HTML and Javascript.
@@ -49,12 +50,40 @@ By default the steem-js library connects to steemit.com's public Steem nodes. To
 
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even notepad).
 
-Make a basic **skeleton** of a webpage in HTML to use as your 'interface'. In our example we using simple bootstrap to style content, but you can choose any styling options you want. 
+#### Skeleton
 
-Script line - includes basic bootstrap stylesheet and libraries, note we have included inline steem-js library from public available CDN. We are calling `fetchBlog()` function when body of the page is onload. 
+> Make a basic **skeleton** of a webpage in HTML to use as your 'interface'. In our example we using simple bootstrap to style content, but you can choose any styling options you want. 
 
-fetchBlog - function creates simple query object where tag is set to account name on Steem and limit is set to number of posts being pulled from that account. By using `steem.api.getDiscussionsByBlog` steem-js function we are able to query user's blog posts and reformat them into list of posts.
-Each blog post has `json_metadata` which holds meta information in post, using that we are able to extract first image from post and use it as thumbnail, post author and created information is also formated and displayed.
+#### Script line
 
+> **Script line** includes basic bootstrap stylesheet and libraries, note we have included inline steem-js library from public available CDN. We are calling `fetchBlog()` function when body of the page is onload. 
+
+#### fetchBlock
+
+> **fetchBlog** function creates simple query object where tag is set to account name on Steem and limit is set to number of posts being pulled from that account. By using `steem.api.getDiscussionsByBlog` steem-js function we are able to query user's blog posts and reformat them into list of posts.
+> Each blog post has `json_metadata` which holds meta information in post, using that we are able to extract first image from post and use it as thumbnail, post author and created information is also formated and displayed.
+
+``` javascript
+var query = {
+  tag: 'steemitblog', // This tag is used to filter the results by a specific post tag
+  limit: 5 // This limit allows us to limit the overall results returned to 5
+};
+```
+
+[Tag](/glossary/#Tags) - this tag is used to limit the types of posts that are returned. Each post is assigned multiple tags appon creation and by doing this allows you to filter what results are returned.
+
+`limit` - this limit allows us to limit the amount of records that are returned on a query. By not having a limit you could returned a large amount of data which might cause performance issues. By limiting the amount of results you return a smaller subset of data that you can work with.
 
 Place **script line** and **fetchBlog** function into `<head>` and save the file as `user-blog.html` and load it in your web browser. That's it, congratulations on your first app!
+
+#### JSON Result
+
+> A sample of the JSON returned by the `fetchBlog()` function is set out below. Key items to note are the following
+
+* url - This allows you to link back to the original article on Steem
+* json_metadata - This contains custom specific information for the post. It is a JSON object which must be parsed using `JSON.parse` to access. For posts this contains the image URL that is stored online
+
+``` json
+{% include_relative blog_feed.json %}
+```
+
