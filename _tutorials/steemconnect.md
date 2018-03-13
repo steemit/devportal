@@ -82,7 +82,7 @@ Setting up Steemconnect in your app is straight-forward process and never been t
 
 ### Step I
 
-1. Visit https://steemconnect.com/dashboard and login with your Steem credentials
+1. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
 2. You will see Applications and Developers section, in Developers section click on `My Apps`
 3. Create New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose. Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation.
 4. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
