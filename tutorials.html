@@ -1,12 +1,11 @@
 ---
-title: API Docs
+title: API Docs - Tutorials
+section: Tutorials
 ---
-{% assign sorted_collections = site.collections | sort: "position" %}
+{% assign sorted_collections = site.collections | where:'title', "Tutorials" %}
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
-
 	{% for doc in sorted_docs %}
-		{% unless doc.exclude %}    
 		<section id="{{doc.id | replace: '/', '' | replace: '.', ''}}"class="doc-content {{ doc.id | replace: '/', '' | replace: '.', '' }}">
 			<section class="left-docs">
 				<h3>
@@ -30,7 +29,5 @@ title: API Docs
 				</section>
 			{% endif %}
 		</section>
-	{% endunless %}	
 	{% endfor %}
-	
 {% endfor %}
