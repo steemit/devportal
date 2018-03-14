@@ -19,6 +19,7 @@ collections:
     position: 3
   tutorials:
     title: Tutorials
+    url: /tutorials.html
     position: 4
   python:
     title: Python
