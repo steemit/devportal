@@ -10,30 +10,49 @@ permalink: /:categories/:title.html
 collections:
   introduction:
     title: Introduction
+    id: introduction
     position: 1
+    output: true
   quickstart:
     title: Quickstart
+    id: quickstart
     position: 2
+    output: true
   javascript:
     title: Javascript
+    id: javascript
     position: 3
+    output: true
   tutorials:
     title: Tutorials
-    url: /tutorials.html
+    id: tutorials
     position: 4
+    output: true
   python:
     title: Python
+    id: python
     position: 5
+    output: true
   services:
     title: Services
+    id: services
     position: 6
+    output: true
   community:
     title: Community
+    id: community
     position: 7
+    output: true
   glossary:
     title: Glossary
-    url: /glossary
+    id: glossary
     position: 8
+    output: true
+  tutorials-javascript:
+    title: Javascript Tutorials
+    id: tutorials-javascript
+    position: 9
+    output: true
 
 gems:
   - jekyll-sitemap
@@ -57,3 +76,7 @@ types:
   - put
   - delete
   - post
+
+kramdown:
+  auto_ids: true
+  

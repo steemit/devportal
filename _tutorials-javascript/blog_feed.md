@@ -1,6 +1,8 @@
 ---
-title: User blog
-position: 3
+title: Blog Feed
+position: 1
+permalink: /tutorials/javascript/blog_feed.html
+exclude: true
 right_code: |
     Skeleton
     ``` html
