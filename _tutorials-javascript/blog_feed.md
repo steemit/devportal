@@ -1,8 +1,8 @@
 ---
 title: Blog Feed
 position: 1
-permalink: /tutorials/javascript/blog_feed.html
 exclude: true
+layout: full
 right_code: |
     Skeleton
     ``` html
@@ -86,6 +86,6 @@ Place **script line** and **fetchBlog** function into `<head>` and save the file
 * json_metadata - This contains custom specific information for the post. It is a JSON object which must be parsed using `JSON.parse` to access. For posts this contains the image URL that is stored online
 
 ``` json
-{% include_relative blog_feed.json %}
+{% include tutorials-javascript/blog_feed.json %}
 ```
 
