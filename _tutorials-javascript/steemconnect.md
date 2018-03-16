@@ -2,6 +2,7 @@
 title: SteemConnect
 position: 2
 description: Tutorial is about Authorization on Steem and usage of SteemConnect
+layout: full
 right_code: |
 
     Install
@@ -139,3 +140,4 @@ Now that `sc2-sdk` is initialized we can start authentication and perform simple
 > In order to logout, you can use `revokeToken` function from sc2-sdk.
 
 Learn more about [Steemconnect operations here](https://github.com/steemit/steemconnect-sdk)
+

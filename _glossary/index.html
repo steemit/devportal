@@ -1,0 +1,22 @@
+---
+section: Glossary
+position: 1
+exclude: true
+exclude_nav: true
+---
+<section class="doc-content">
+	<section class="left-docs">
+		<dl class="dl-horizontal glossary">
+			{% for sections in site.data.glossary.index %}
+			   	<h3 id="{{ sections.id }}">{{sections.name}}</h3>
+			   	{% for entry in sections.items %}
+			   		<section id="{{entry.term | slugify}}">
+					   	<dt>{{entry.term}}</dt>
+					    <dd>{{entry.def}}</dd>
+				    </section>
+			    {% endfor %}
+				<hr/>
+			{% endfor %}
+		</dl>
+	</section>
+</section>

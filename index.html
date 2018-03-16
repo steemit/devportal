@@ -1,36 +1,40 @@
 ---
 title: API Docs
 ---
-{% assign sorted_collections = site.collections | sort: "position" %}
-{% for collection in sorted_collections %}
-	{% assign sorted_docs = collection.docs | sort: "position" %}
+{% assign sorted_nav = site.data.nav.toc | sort: "position" %}
+{% for nav in sorted_nav %}
+	{% unless nav.exclude %}
+		{% assign col = site.collections | where:"id", nav.collection  | first %}
+		{% if col %}
+			{% assign sorted_docs = col.docs | sort: "position" %}
+			{% for doc in sorted_docs %}
+				{% unless doc.exclude %}    
+					<section id="{{doc.id | slugify}}"class="doc-content {{ doc.id | slugify }}">
+						<section class="left-docs">
+							<h3>
+								<a id="{{ doc.id | slugify }}">
+									{{ doc.title }}
+									{% if doc.type %}
+										<span class="endpoint {{ doc.type }}"></span>
+									{% endif %}
+								</a>
+							</h3>
+							{% if doc.description %}
+								<p class="description">{{doc.description}}</p>
+							{% endif %}
 
-	{% for doc in sorted_docs %}
-		{% unless doc.exclude %}    
-		<section id="{{doc.id | replace: '/', '' | replace: '.', ''}}"class="doc-content {{ doc.id | replace: '/', '' | replace: '.', '' }}">
-			<section class="left-docs">
-				<h3>
-					<a id="{{ doc.id | replace: '/', '' | replace: '.', '' }}">
-						{{ doc.title }}
-						{% if doc.type %}
-							<span class="endpoint {{ doc.type }}"></span>
+							{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
+						</section>
+
+						{% if doc.right_code %}
+							<section class="right-code">
+								{{ doc.right_code | markdownify }}
+							</section>
 						{% endif %}
-					</a>
-				</h3>
-				{% if doc.description %}
-					<p class="description">{{doc.description}}</p>
-				{% endif %}
-
-				{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
-			</section>
-
-			{% if doc.right_code %}
-				<section class="right-code">
-					{{ doc.right_code | markdownify }}
-				</section>
-			{% endif %}
-		</section>
+					</section>
+				{% endunless %}	
+			{% endfor %}
+		{% endif %}
 	{% endunless %}	
-	{% endfor %}
 	
 {% endfor %}

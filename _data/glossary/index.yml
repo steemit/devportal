@@ -1,4 +1,5 @@
 - name: Chain Basics
+  id: glossary-chain-basics
   items:
     - term: Blockchain
       def: Decentralized ledger and consensus protocol
@@ -39,6 +40,7 @@
     - term: Reputation
       def: Account's reputation on platform
 - name: Governance
+  id: glossary-governance
   items:
     - term: DPOS
       def: Delegated Proof of Stake
@@ -56,6 +58,7 @@
       def: Voting/electing witnesses with account's stake
 
 - name: Transactions
+  id: glossary-transactions
   items:
     - term: Transaction
       def: Operations submitted to the blockchain
@@ -69,6 +72,7 @@
       def: Event where signed transaction is broadcasted to the network, so that witnesses could validate and include in block
 
 - name: API 
+  id: glossary-api
   items:
     - term: Trending
       def: Posts/Discussions that are highly valued by community with bigger time interval update
@@ -100,6 +104,7 @@
       def: Median Price feed provided by all witnesses
 
 - name: Market
+  id: glossary-market
   items:
     - term: Conversion Requests
       def: Request submitted for Converting SBD to STEEM
