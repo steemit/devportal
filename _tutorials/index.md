@@ -5,8 +5,8 @@ exclude: true
 ---
 {% assign nav = site.data.nav.toc | where: "collection", "tutorials" | first %}
 <section id="{{ doc.id | slugify }}" class="doc-content {{ doc.id | slugify }}">
-	By following these tutorials you will master developing applications on top of **Steem**.
 	<section class="left-docs">
+		<p>By following these tutorials you will master developing applications on top of **Steem**.</p>
 		{% if nav.docs %}
 			{% assign sorted_nav_docs = nav.docs | sort: "position" %}
 			{% for nav_doc in sorted_nav_docs %}
@@ -17,6 +17,7 @@ exclude: true
 						{% for doc in collection.docs %}
 						<li>
 							<a href="{{ doc.id }}">{{ doc.title }}</a>
+							<p class="overview">{{ doc.description }}</p>
 						</li>
 						{% endfor %}
 					</ul>

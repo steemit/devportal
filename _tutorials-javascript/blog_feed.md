@@ -3,6 +3,7 @@ title: Blog Feed
 position: 1
 exclude: true
 layout: full
+description: A simple blog feed tutorial using javascript
 right_code: |
     Skeleton
     ``` html
