@@ -4,9 +4,7 @@ exclude: true
 ---
 {% assign nav = site.data.nav.toc | where: "collection", "tutorials" | first %}
 <section id="{{ doc.id | slugify }}" class="doc-content {{ doc.id | slugify }}">
-	```
 	By following these tutorials you will master developing applications on top of **Steem**.
-	```
 	<section class="left-docs">
 		<ul>
 			{% if nav.docs %}

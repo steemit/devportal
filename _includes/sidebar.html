@@ -14,7 +14,9 @@
 						{% if col %}
 							{% assign sorted_docs = col.docs | sort: "position" %}
 							{% for doc in sorted_docs %}
+								{% unless doc.exclude_nav %}
 								<li><a href="{{ nav.url }}#{{ doc.id | slugify }}">{{ doc.title }}</a></li>
+								{% endunless %}
 							{% endfor %}
 						{% endif %}
 					{% endif %}
