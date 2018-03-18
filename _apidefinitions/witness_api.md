@@ -5,7 +5,7 @@ exclude: true
 
 <dl class="dl-horizontal apidefinitions">
 	{% for sections in site.data.apidefinitions.witness_api %}
-                        {{section.description}}
+                        {{sections.description}}
 		{% for method in sections.methods %}
 			<section id="{{method.api_method}}">
 				<H3>{{method.api_method}}</H3>
