@@ -13,11 +13,11 @@ exclude: true
                                 <BR>
                                 <B>Query Parameters JSON:</B>
                                 <BR>
-                                `{{method.parameter_json}}`
+                                {{method.parameter_json | jsonify}}
                                 <BR>
                                 <B>Expected Response JSON:</B>
                                 <BR>
-                                {{method.expected_response_json}}
+                                {{method.expected_response_json | jsonify}}
 			</section>
                 <hr/>
 	    {% endfor %}
