@@ -1,0 +1,11 @@
+- name: JSON RPC
+  description: Used to lookup information about the JSON RPC API. These AppBase API methods are still under development and subject to change.
+  methods:
+    - api_method: jsonrpc.get_methods
+      purpose: Returns a list of methods supported by the JSON RPC API.
+      parameter_json: {}
+      expected_response_json: {}
+    - api_method: jsonrpc.get_signature
+      purpose: Returns the signature information for a JSON RPC method including the arguments and expected response JSON.
+      parameter_json: {"method":""}
+      expected_response_json: {"args":null,"ret":null}

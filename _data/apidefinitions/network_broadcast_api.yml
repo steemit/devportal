@@ -1,0 +1,15 @@
+- name: Network Broadcast API
+  description: Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change.
+  methods:
+    - api_method: network_broadcast_api.broadcast_block
+      purpose: Used to broadcast a block.
+      parameter_json: {"block":{"previous":"0000000000000000000000000000000000000000","timestamp":"1970-01-01T00:00:00","witness":"","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[],"witness_signature":"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","transactions":[]}}
+      expected_response_json: {}
+    - api_method: network_broadcast_api.broadcast_transaction
+      purpose: Used to broadcast a transaction.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},"max_block_age":-1}
+      expected_response_json: {}
+    - api_method: network_broadcast_api.broadcast_transaction_synchronous
+      purpose: Used to broadcast a transaction and waits for it to be processed synchronously.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},"max_block_age":-1}
+      expected_response_json: {"id":"0000000000000000000000000000000000000000","block_num":0,"trx_num":0,"expired":false}
