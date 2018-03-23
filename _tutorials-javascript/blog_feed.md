@@ -5,44 +5,60 @@ exclude: true
 layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
-    Skeleton
+    index.html
     ``` html
-    <html>
-    <head><title>User blog</title></head>
-    <body onload="fetchBlog()">
-    <div class="container">
-      <h2>Welcome to my blog!</h2>
-      <div class="list-group" id="postList"></div>
-    </body>
-    </html>
+      <html>
+      <head><title>User blog</title>
+        <script src="bundle.js"></script>
+      </head>
+      <body>
+      <div class="container">
+        <h2>Welcome to my blog!</h2>
+        <div class="list-group" id="postList"></div>
+      </body>
+      </html>
     ```
-    Script Line
-    ``` html
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-    ```
-    fetchBlog Function
-    ``` html
-    <script language="JavaScript">
-    function fetchBlog()
-    {
-        var query = {
-          tag: 'steemitblog',
-          limit: 5
-        };
-        steem.api.getDiscussionsByBlog(query, function(err, result) {
-          var posts = '';
-          for (var i = 0; i < result.length; i++) {
-            var image = JSON.parse(result[i].json_metadata).image[0];
-            posts += 
-            '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">'+result[i].title+'</h4><p>by '+result[i].author+'</p><center><img src='+image+' class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">'+new Date(result[i].created).toDateString()+'</p></a>';
-          }
-          document.getElementById('postList').innerHTML = posts;
-        });
-    }
-    </script>
-    ```
+    app.js
+    ``` javascript
+      const steem = require('steem');
 
+      function fetchBlog()
+      {
+          const query = {
+              tag: 'steemitblog',
+              limit: 5
+          };
+          steem.api.getDiscussionsByBlogAsync(query).then((result) => {
+              var posts = [];
+              result.forEach( (post) => {
+                  const image = JSON.parse(post.json_metadata).image[0];
+                  const title = post.title;
+                  const author = post.author;
+                  const created = new Date(post.created).toDateString();
+                  posts.push(
+                      '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>'
+                  )
+              });
+
+              document.getElementById('postList').innerHTML = posts.join();
+          }).catch((err) => {
+            alert('Error occured');
+          });
+      }
+
+      window.onload = fetchBlog();
+    ```
+    index.js
+    ``` javascript
+      const Koa = require('koa');
+      const app = new Koa();
+      const serve = require('koa-static');
+      app.use(serve('./public'));
+
+      app.listen(3000);
+
+      console.log('listening on port 3000');    
+    ```
 ---
 
 In this tutorials we will build simple webapp or blog for particular user on Steem blockchain using simple HTML and Javascript.
@@ -51,20 +67,34 @@ Using the steem-js library, process is super easy, fetch user blog posts from bl
 
 By default the steem-js library connects to steemit.com's public Steem nodes. To kickstart development this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different Steem nodes, it can be specified with steem-js but it's left out for this simple example.
 
+#### Getting Started ####
+
+* clone [https://github.com/steemit/devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js)
+* run either `npm i` or `yarn install`
+* run `npm run start`
+* browse to (http://localhost:4000/)
+
+> The actual tutorial is available in the subfolder of the above repo under the url [https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed)
+
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even notepad).
 
-#### Skeleton
+#### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
 
-> Make a basic **skeleton** of a webpage in HTML to use as your 'interface'. In our example we using simple bootstrap to style content, but you can choose any styling options you want. 
+> Make a basic html file that contains the structure for the javascript to populate with results returned by the api. Basic bootstrap styling is used.
 
-#### Script line
+#### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
 
-> **Script line** includes basic bootstrap stylesheet and libraries, note we have included inline steem-js library from public available CDN. We are calling `fetchBlog()` function when body of the page is onload. 
+> A seperate javascript file exists with the application to query the API and populate the HTML document with the results returned. We are calling `fetchBlog()` function when body of the page is onload. 
+
+#### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
+
+> index.js is a basic javascript file that loads a `koa` based webserver serving the tutorial so you can access it via a browser
 
 #### fetchBlock
 
 > **fetchBlog** function creates simple query object where tag is set to account name on Steem and limit is set to number of posts being pulled from that account. By using `steem.api.getDiscussionsByBlog` steem-js function we are able to query user's blog posts and reformat them into list of posts.
 > Each blog post has `json_metadata` which holds meta information in post, using that we are able to extract first image from post and use it as thumbnail, post author and created information is also formated and displayed.
+
 
 ``` javascript
 var query = {
