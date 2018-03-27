@@ -2,6 +2,7 @@
 title: SteemConnect
 position: 2
 description: Tutorial is about Authorization on Steem and usage of SteemConnect
+layout: full
 right_code: |
 
     Install
@@ -9,12 +10,12 @@ right_code: |
     npm i sc2-sdk
     ```
 
-    Initializa
+    Initialize
     ``` javascript
     const sc2 = require('sc2-sdk');
     let api = sc2.Initialize({
         app: 'demo-app',
-        callbackURL: 'http://localhost:80/auth',
+        callbackURL: 'http://localhost:3000',
         scope: ['vote','comment']
     })
     ```
@@ -26,12 +27,12 @@ right_code: |
 
     Request link
     ``` object
-    link = https://v2.steemconnect.com/oauth2/authorize?client_id=demo-app&redirect_uri=http://localhost:80/auth&scope=vote,comment
+    link = https://v2.steemconnect.com/oauth2/authorize?client_id=demo-app&redirect_uri=http://localhost:3000&scope=vote,comment
     ```
 
     Result
     ```
-    http://localhost:80/auth?access_token=xyz&expires_in=604800&username=demo
+    http://localhost:3000/auth?access_token=xyz&expires_in=604800&username=demo
 
     access_token: xyz
     expires_in: 604800
@@ -46,7 +47,7 @@ right_code: |
     Get User info
     ``` javascript
     api.me(function(err,res){
-        //json object with following user info
+        //json object with user info
         console.log(err,res);
     });
     ```
@@ -60,13 +61,6 @@ right_code: |
     user_metadata: {},
     ```
 
-    Vote post/comment
-    ``` javascript
-    api.vote(voter, author, permlink, weight, function(err, res){
-        console.log(err, res);
-    })
-    ```
-
     Logout
     ``` javascript
     api.revokeToken(function(err, res){
@@ -74,6 +68,22 @@ right_code: |
     })
     ```
 ---
+### Goal
+
+The application in this tutorial asks the user to grant an access to `demo-app` and get token from Steemconnect. Once permission is granted, `demo-app` can get details of user via an api call that requires access token. 
+Purpose is to allow any application request permission from user and perform action via access token.
+
+Some other calls that require an access token (or login) are:
+
+* Vote
+* Comment
+* Post
+* Follow
+* Reblog
+
+Learn more about [Steemconnect operations here](https://github.com/steemit/steemconnect-sdk)
+
+### Overview
 
 Steemconnect is unified authentification system built on top of Steem built in collaboration of Busy.org and Steemit Inc.
 Layer to ensure easy access and setup for all application developers as well as secure way for users to interact with Steem apps.
@@ -83,12 +93,30 @@ Setting up Steemconnect in your app is straight-forward process and never been t
 ### Step I
 
 1. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
+
+![steemconnect_login](https://steemitimages.com/DQmRpjPgR3BTtFCrL553AxZ6CDswPRdbNAAo9CMRxoCdBZV/Screen%20Shot%202018-03-20%20at%2012.31.37.png)
+
 2. You will see Applications and Developers section, in Developers section click on `My Apps`
-3. Create New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose. Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation.
+
+![steemconnect_dashboard](https://steemitimages.com/DQmZub5Tt8ZuqpDqYYFCP89ypjeFbePWd63Gud9pouSA34S/Screen%20Shot%202018-03-20%20at%2012.31.58.png)
+
+![steemconnect_new_app](https://steemitimages.com/DQmaShy9S6wRMzUMfiULebdB7KsrdTpQn4HNgaWtfFyVL3E/Screen%20Shot%202018-03-20%20at%2012.32.15.png)
+
+3. Create New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
+
+![steemconnect_account_create](https://steemitimages.com/DQmcQvuYJ5wo9xwxmYUHtCkvazfhLHEjwKi8GaNGyZnNSQh/Screen%20Shot%202018-03-20%20at%2012.32.28.png)
+
+Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation. Next step is to login with account which has enough balance to pay for account creation fee.
+
+![](https://steemitimages.com/DQmUtrbpujdNRft5hdEgzMPbGZfgLvXJyRZH9WzKfAWp93p/Screen%20Shot%202018-03-20%20at%2012.32.57.png)
+
 4. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
+
+![steemconnect_myapps](https://steemitimages.com/DQmYkbHUFC6iorEJv6iCC2CB6oG1TigEE9SxuQrZAkTEYJW/FireShot%20Capture%206%20-%20SteemConnect%20-%20https___v2.steemconnect.com_apps_%40demo-app_edit.png)
 
 Redirect URI(s) will be used within your application to forward user after authentification is successful. This is typical backend web development, we hope you know how to set up.
 
+* Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves
 
 ### Step II
 
@@ -123,19 +151,12 @@ Now that `sc2-sdk` is initialized we can start authentication and perform simple
 > Users info can be checked with `me` which will return object
 `account` - current state of account and its details on Steem blockchain, `name` - username, `scope` - permissions allowed with current login, `user` - username, `user_metadata` - additional information user has setup.
 
-
-##### Vote post/comment
-
-> Simple voting operation as shown in this example is simply use `vote` function, which require
-`voter` - username of current user, e.g. demo
-`author` - username of post or comment author
-`permlink` - permanent link for post or comment to vote on
-`weight` - weight of the vote, 10000 equals to 100% vote
-`callback` - if successfull will return block information that transaction was included into.
-
-
 ##### Logout
 
 > In order to logout, you can use `revokeToken` function from sc2-sdk.
 
-Learn more about [Steemconnect operations here](https://github.com/steemit/steemconnect-sdk)
+### Source code
+
+To try this application visit [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js), find [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) and follow **To run** section in README.
+
+
