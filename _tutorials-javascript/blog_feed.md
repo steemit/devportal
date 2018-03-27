@@ -20,7 +20,9 @@ right_code: |
     ```
     app.js
     ``` javascript
-      const steem = require('steem');
+      const { Client } = require('dsteem');
+
+      const client = new Client('https://api.steemit.com');
 
       function fetchBlog()
       {
@@ -28,7 +30,7 @@ right_code: |
               tag: 'steemitblog',
               limit: 5
           };
-          steem.api.getDiscussionsByBlogAsync(query).then((result) => {
+          client.database.getDiscussions('trending', query).then((result) => {
               var posts = [];
               result.forEach( (post) => {
                   const image = JSON.parse(post.json_metadata).image[0];
@@ -36,7 +38,7 @@ right_code: |
                   const author = post.author;
                   const created = new Date(post.created).toDateString();
                   posts.push(
-                      '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>'
+                      `<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>`
                   )
               });
 
@@ -63,9 +65,9 @@ right_code: |
 
 In this tutorials we will build simple webapp or blog for particular user on Steem blockchain using simple HTML and Javascript.
 
-Using the steem-js library, process is super easy, fetch user blog posts from blockchain and style them accordingly.
+Using the [dsteem](https://github.com/jnordberg/dsteem) library, process is super easy, fetch user blog posts from blockchain and style them accordingly.
 
-By default the steem-js library connects to steemit.com's public Steem nodes. To kickstart development this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different Steem nodes, it can be specified with steem-js but it's left out for this simple example.
+By default the `dsteem` library connects to steemit.com's public Steem nodes. To kickstart development this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different Steem nodes, it can be specified with `dsteem` but it's left out for this simple example.
 
 #### Getting Started ####
 
@@ -92,7 +94,7 @@ Open your favorite text editor or IDE (atom, sublimetext, text edit, or even not
 
 #### fetchBlock
 
-> **fetchBlog** function creates simple query object where tag is set to account name on Steem and limit is set to number of posts being pulled from that account. By using `steem.api.getDiscussionsByBlog` steem-js function we are able to query user's blog posts and reformat them into list of posts.
+> **fetchBlog** function creates simple query object where tag is set to account name on Steem and limit is set to number of posts being pulled from that account. By using `client.database.getDiscussions` dsteem function we are able to query user's blog posts and reformat them into list of posts.
 > Each blog post has `json_metadata` which holds meta information in post, using that we are able to extract first image from post and use it as thumbnail, post author and created information is also formated and displayed.
 
 
@@ -120,3 +122,5 @@ Place **script line** and **fetchBlog** function into `<head>` and save the file
 {% include tutorials-javascript/blog_feed.json %}
 ```
 
+{% github_sample /steemit/condenser/blob/4718864eeb0074902b3261b786263a15015313cf/src/app/RootRoute.js %}
+{% github_sample /steemit/condenser/blob/4718864eeb0074902b3261b786263a15015313cf/src/app/RootRoute.js %}
