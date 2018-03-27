@@ -54,6 +54,7 @@ collections:
     position: 9
     output: true
 
+
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag

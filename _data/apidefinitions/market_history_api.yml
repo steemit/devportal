@@ -1,0 +1,31 @@
+- name: Market history API
+  description: Used to lookup market history information. These AppBase API methods are still under development and subject to change.
+  methods:
+    - api_method: market_history_api.get_market_history
+      purpose: Returns the market history for the internal SBD:STEEM market.
+      parameter_json: {"bucket_seconds":0,"start":"1970-01-01T00:00:00","end":"1970-01-01T00:00:00"}
+      expected_response_json: {"buckets":[]}
+    - api_method: market_history_api.get_market_history_buckets
+      purpose: Returns the bucket seconds being tracked by the plugin.
+      parameter_json: {}
+      expected_response_json: {"bucket_sizes":[]}
+    - api_method: market_history_api.get_order_book
+      purpose: Returns the internal market order book.
+      parameter_json: {"limit":500}
+      expected_response_json: {"bids":[],"asks":[]}
+    - api_method: market_history_api.get_recent_trades
+      purpose: Returns the most recent trades for the internal SBD:STEEM market.
+      parameter_json: {"limit":1000}
+      expected_response_json: {"trades":[]}
+    - api_method: market_history_api.get_ticker
+      purpose: Returns the market ticker for the internal SBD:STEEM market.
+      parameter_json: {}
+      expected_response_json: {"latest":"0.00000000000000000","lowest_ask":"0.00000000000000000","highest_bid":"0.00000000000000000","percent_change":"0.00000000000000000","steem_volume":["0",3,"@@000000021"],"sbd_volume":["0",3,"@@000000013"]}
+    - api_method: market_history_api.get_trade_history
+      purpose: Returns the trade history for the internal SBD:STEEM market.
+      parameter_json: {"start":"1970-01-01T00:00:00","end":"1970-01-01T00:00:00","limit":1000}
+      expected_response_json: {"trades":[]}
+    - api_method: market_history_api.get_volume
+      purpose: Returns the market volume for the past 24 hours.
+      parameter_json: {}
+      expected_response_json: {"steem_volume":["0",3,"@@000000021"],"sbd_volume":["0",3,"@@000000013"]}
