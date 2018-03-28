@@ -7,11 +7,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		{% if jekyll.environment == 'production' %}
+		<link rel="shortcut icon" type="image/png" href="/devportal/favicon.png">
+		{% else %}
+		<link rel="shortcut icon" type="image/png" href="/favicon.png">
+		{% endif %}
 
 		{% if jekyll.environment == 'production' %}
 		<link rel="stylesheet" href="css/style.css">
-		<script src="js/main.js"></script>
+		<script src="/devportal/js/main.js"></script>
 		{% else %}
 		<link rel="stylesheet" href="/css/style.css">
 		<script src="/js/main.js"></script>
@@ -34,7 +38,7 @@
 		<header>
 			<h1>
 				{% if jekyll.environment == 'production' %}
-					<a href="#top"><img src="images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
+					<a href="#top"><img src="/devportal/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
 				{% else %}
 					<a href="#top"><img src="/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
 				{% endif %}
@@ -66,7 +70,11 @@
 		<div class="main" id="top">
 			<div class="hero">
 				<h1 class="hero__h1">Steem Developer Portal {% if page.section %} - {{ page.section }}{% endif %}</h1>
-				<img class="hero__img" src="images/hero.png">
+				{% if jekyll.environment == 'production' %}
+				<img class="hero__img" src="/devportal/images/hero.png">
+				{% else %}
+				<img class="hero__img" src="/images/hero.png">
+				{% endif %}
 			</div>
 			{{ content }}
 		</div>
