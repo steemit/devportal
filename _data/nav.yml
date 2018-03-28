@@ -23,6 +23,8 @@ toc:
         collection: tutorials-javascript
       - title: Python
         collection: tutorials-python
+      - title: Ruby
+        collection: tutorials-ruby
   - title: "Python"
     collection: "python"
     url: "/"
