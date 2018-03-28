@@ -123,7 +123,7 @@ var query = {
 };
 ```
 
-[Tag](/glossary/#Tags) - this tag is used to limit the types of posts that are
+`tag` - this [tag](/glossary/#Tags) is used to limit the types of posts that are
 returned. Each post is assigned multiple tags appon creation and by doing this
 allows you to filter what results are returned.
 
