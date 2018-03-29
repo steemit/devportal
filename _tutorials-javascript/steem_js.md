@@ -1,7 +1,7 @@
 ---
 title: Steem.js (legacy)
 position: 999
-description: 
+description: Our tutorials use currently use <code>dsteem</code>, which is significantly faster on the client, is better documented, and has a strong path forward. If you prefer to use <code>steem-js</code> you can find it here.
 layout: full
 right_code: |
     Skeleton
@@ -134,8 +134,6 @@ right_code: |
     console.log(reputation);
     ```
 ---
-
-<b>Note:</b> Our tutorials use currently use `dsteem`, which is significantly faster on the client, is better documented, and has a strong path forward. If you prefer to use `steem-js` you can find our legacy getting started section [here](https://github.com/steemit/steem-js).
 
 The legacy toolkit Steem.js makes is easy to access the steem blockchain for your project. The Javascript library let's your app easily access steem blockchain data and also perform user actions.
 
