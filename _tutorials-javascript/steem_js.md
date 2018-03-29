@@ -1,7 +1,7 @@
 ---
-title: Steem.js (legacy)
+title: Legacy Getting Started
 position: 999
-description: Our tutorials use currently use <code>dsteem</code>, which is significantly faster on the client, is better documented, and has a strong path forward. If you prefer to use <code>steem-js</code> you can find it here.
+description: Our newer tutorials use <code>dsteem</code>, which is significantly faster and better documented than the current version of steem-js library. If you prefer to use <code>steem-js</code> you can find our old Getting Started documentation here.
 layout: full
 right_code: |
     Skeleton
@@ -135,7 +135,7 @@ right_code: |
     ```
 ---
 
-The legacy toolkit Steem.js makes is easy to access the steem blockchain for your project. The Javascript library let's your app easily access steem blockchain data and also perform user actions.
+Steem.js makes it easy to access the steem blockchain for your project. The Javascript library let's your app easily access steem blockchain data and also perform user actions.
 
 The toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js). 
 
