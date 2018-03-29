@@ -15,10 +15,8 @@ toc:
     docs:
       - title: Javascript
         collection: tutorials-javascript
-  - title: "Python"
-    collection: "python"
-    url: "/"
-    position: 5
+      - title: Python
+        collection: tutorials-python
   - title: "Services"
     collection: "services"
     url: "/"
