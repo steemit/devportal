@@ -21,8 +21,6 @@ toc:
     docs:
       - title: Javascript
         collection: tutorials-javascript
-      - title: Python
-        collection: tutorials-python
   - title: "Python"
     collection: "python"
     url: "/"
