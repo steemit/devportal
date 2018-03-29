@@ -135,11 +135,11 @@ right_code: |
     ```
 ---
 
-<b>Note:</b> Our tutorials use currently use `dsteem`, which is significantly faster on the client, is better documented, and has a strong path forward. If you prefer to use `steem-js` you can find our legacy getting started section [here](https://github.com/steemit/steem-js).
-
 The legacy toolkit Steem.js makes is easy to access the steem blockchain for your project. The Javascript library let's your app easily access steem blockchain data and also perform user actions.
 
-The toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js). 
+<blockquote class="warning">
+  <b>Note:</b> Our tutorials use currently use <code>dsteem</code>, which is significantly faster on the client, is better documented, and has a strong path forward. If you prefer to use <code>steem-js</code> you can find our legacy getting started section <a href="https://github.com/steemit/steem-js">here</a>.
+</blockquote>
 
 Get running with Steem.js with a few simple options. 
 
