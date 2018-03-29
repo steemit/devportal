@@ -53,11 +53,6 @@ collections:
     id: tutorials-javascript
     position: 9
     output: true
-  tutorials-ruby:
-    title: Ruby Tutorials
-    id: tutorials-ruby
-    position: 9
-    output: true
 
 
 gems:
