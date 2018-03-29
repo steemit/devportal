@@ -11,10 +11,8 @@ function DynamicAlign() {
 
             // compute left side & match difference
             var $left_item = $("#" + $section_id_name + " .left-docs" + " h3#" + $text);
-            console.log($left_item);
             if ($left_item) {
                 var $left_parent = $left_item.parent().parent().offset().top;
-                console.log($left_parent)
                 var $left_height = $left_item.position().top;
                 var $left_position = $left_height - $left_parent;
                 var $difference = Math.abs($left_position - $right_position);
