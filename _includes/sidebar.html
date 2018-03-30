@@ -8,7 +8,7 @@
 				<ul>
 					{% if nav.docs %}
 						{% for doc in nav.docs | sort: "position" %}
-							<li><a href="{{ nav.url }}#{{ doc.id | slugify }}">{{ doc.title }}</a></li>
+							<li><a href="{{ nav.url }}/#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
 						{% endfor %}
 					{% else %}
 						{% if col %}
