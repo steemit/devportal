@@ -7,12 +7,6 @@ toc:
     collection: "quickstart"
     url: "/"
     position: 2
-  - title: "Javascript"
-    collection: "javascript"
-    url: "/"
-    position: 3
-    docs:
-      - title: Overview
   - title: "Tutorials"
     collection: "tutorials"
     url: "/tutorials"
@@ -21,12 +15,10 @@ toc:
     docs:
       - title: Javascript
         collection: tutorials-javascript
+      - title: Python
+        collection: tutorials-python
       - title: Ruby
         collection: tutorials-ruby
-  - title: "Python"
-    collection: "python"
-    url: "/"
-    position: 5
   - title: "Services"
     collection: "services"
     url: "/"
