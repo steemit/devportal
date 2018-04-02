@@ -1,9 +1,11 @@
 # Be sure to group each tool by testnet_id.
+# Possible places to watch for new testnet tools:
+# https://steemprojects.com/search/?q=testnet
 - name: testnet.steem.vc
   testnet_id: 79276ae
-  url: http://testnet.steem.vc/
+  url: https://steemprojects.com/projects/p/steem-testnet/
   purpose: General bootstrapping to `testnet.steem.vc` maintained maintained by `@almost-digital`.
 - name: TestNET Condenser
   testnet_id: 79276ae
-  url: https://condenser.steem.vc
+  url: https://steemprojects.com/projects/p/testnet-condenser/
   purpose: A condenser instance for `testnet.steem.vc`.
