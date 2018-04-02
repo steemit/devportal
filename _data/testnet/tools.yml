@@ -1,0 +1,9 @@
+# Be sure to group each tool by testnet_id.
+- name: testnet.steem.vc
+  testnet_id: 79276ae
+  url: http://testnet.steem.vc/
+  purpose: General bootstrapping to `testnet.steem.vc` maintained maintained by `@almost-digital`.
+- name: TestNET Condenser
+  testnet_id: 79276ae
+  url: https://condenser.steem.vc
+  purpose: A condenser instance for `testnet.steem.vc`.
