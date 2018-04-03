@@ -26,11 +26,6 @@ collections:
   tutorials:
     title: Tutorials
     id: tutorials
-    position: 4
-    output: true
-  python:
-    title: Python
-    id: python
     position: 5
     output: true
   services:
@@ -53,10 +48,10 @@ collections:
     id: tutorials-javascript
     position: 9
     output: true
-  tutorials-ruby:
-    title: Ruby Tutorials
-    id: tutorials-ruby
-    position: 9
+  tutorials-python:
+    title: Python Tutorials
+    id: tutorials-python
+    position: 10
     output: true
 
 
