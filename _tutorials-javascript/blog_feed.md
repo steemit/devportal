@@ -6,7 +6,7 @@ layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
     index.html
-    ```html
+    ```html.line-numbers
       <html>
       <head><title>User blog</title>
         <script src="bundle.js"></script>
@@ -19,7 +19,7 @@ right_code: |
       </html>
     ```
     app.js
-    ```javascript
+    ```javascript.line-numbers
       const { Client } = require('dsteem');
 
       const client = new Client('https://api.steemit.com');
@@ -50,8 +50,9 @@ right_code: |
 
       window.onload = fetchBlog();
     ```
+
     index.js
-    ```javascript
+    ```javascript.line-numbers
       const Koa = require('koa');
       const app = new Koa();
       const serve = require('koa-static');
@@ -146,6 +147,6 @@ on your first app!
   a JSON object which must be parsed using `JSON.parse` to access. For posts
   this contains the image URL that is stored online
 
-<pre><code class="language-json line-numbers">
+```json.line-numbers
 {% include tutorials-javascript/blog_feed.json %}
-</code></pre>
+```

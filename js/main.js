@@ -112,7 +112,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 	'remove-indent': true,
 	'left-trim': true,
 	'right-trim': true,
-	//'break-lines': 80,
+	'break-lines': 80,
 	'remove-initial-line-feed': true
 });
 
