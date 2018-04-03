@@ -8,6 +8,14 @@ main_script: tutorials-ruby/Gemfile
 main_type: ruby
 main_script_anchor: Setup
 right_code: |
+    <p class="right-section-title">Examples</p>
+
+    ```bash
+    git clone https://github.com/steemit/devportal.git
+    cd devportal/_includes/tutorials-ruby/
+    bundle install
+    ```
+    
     <p class="right-section-title">Typical-Usage</p>
     
     To use the defaults:
@@ -66,6 +74,12 @@ Then, use the `ruby` command with `radiator` specified:
 ```bash
 ruby -r radiator myscript.rb
 ```
+
+### Examples
+
+The tutorials on this site are available within this site's repository.  To get a copy, clone this repository, change directory to `devportal/_includes/tutorials-ruby` and do a `bundle install` to install the required local gems.
+
+From there, you can see all of the `.rb` files referenced on this site.
 
 ### Typical-Usage
 
