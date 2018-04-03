@@ -6,7 +6,7 @@ layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
     index.html
-    ```html.line-numbers
+    ```html
       <html>
       <head><title>User blog</title>
         <script src="bundle.js"></script>
@@ -19,7 +19,7 @@ right_code: |
       </html>
     ```
     app.js
-    ```javascript.line-numbers
+    ```javascript
       const { Client } = require('dsteem');
 
       const client = new Client('https://api.steemit.com');
@@ -52,7 +52,7 @@ right_code: |
     ```
 
     index.js
-    ```javascript.line-numbers
+    ```javascript
       const Koa = require('koa');
       const app = new Koa();
       const serve = require('koa-static');
@@ -117,7 +117,7 @@ notepad).
 > are able to extract first image from post and use it as thumbnail, post author
 > and created information is also formated and displayed.
 
-```javascript.line-numbers
+```javascript
 var query = {
   tag: 'steemitblog', // This tag is used to filter the results by a specific post tag
   limit: 5 // This limit allows us to limit the overall results returned to 5
@@ -147,6 +147,6 @@ on your first app!
   a JSON object which must be parsed using `JSON.parse` to access. For posts
   this contains the image URL that is stored online
 
-```json.line-numbers
+```json
 {% include tutorials-javascript/blog_feed.json %}
 ```
