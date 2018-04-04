@@ -4,7 +4,7 @@ position: 3
 ---
 
 Steem blockchain is written in C++ and in order to modify source code you need some understanding of the C++ programming language. Each Steem node runs instance of software and in order to test your changes you will need to know how to install dependencies which can be found in [Steem repo](https://github.com/steemit/steem/blob/master/doc/building.md). Which means some knowledge of System administion is also required. 
-There are multiple advantages of running Testnet, you can test your scripts or applications on Testnet without spamming live network and it allows you much more flexibility to try new things. Testnet also helps you to work on new features and possibly submit new or improved pull requests to official Steem github repository.
+There are multiple advantages of running Testnet, you can test your scripts or applications on Testnet without extra spam on live network and it allows you much more flexibility to try new things. Testnet also helps you to work on new features and possibly submit new or improved pull requests to official Steem github repository.
 
 ## Running Testnet
 
@@ -38,13 +38,13 @@ Anyone can join Live testnet and start testing their node and applications, beco
 
 ## Custom Testnet
 
-In order to create our custom testnet which separate from offical one, we need to modify few parameters mentioned in previous section.
+In order to create our custom testnet which separate from official one, we need to modify few parameters mentioned in previous section.
 
 In `steem/libraries/protocol/include/steem/protocol/config.hpp` file we can see first few lines dedicated to Testnet section, line starts with `#ifdef IS_TEST_NET`.
 
 Let's say we want to create custom testnet with Initial supply of **1,000,000 STEEM**. We can change `STEEM_INIT_SUPPLY 1,000,000` and by changing `STEEM_CHAIN_ID_NAME "testnet"`, **testnet** to **mytestnet** we will automatically get unique Chain ID for our testnet. Address prefix can be something like **MTN** and of course, we need to change Public and private key to the genesis account. Note that genesis account will recieve all premined supply of 1,000,000 so you can setup script to fund any newly created accounts. Custom testnet won't require stronger hardware requirements to run. 
 
-Minimum of 8GB RAM should be sufficient to run Custom testnet. Currently Steem only has Linux and Mac compiling guides to build. Testnet can either be hosted locally on machine or rented AWS or dedicated servers so one can start testing functionality and explore diffirent APIs, start developing.
+Minimum of 8GB RAM should be sufficient to run Custom testnet. Currently Steem only has Linux and Mac compiling guides to build. Testnet can either be hosted locally on machine or rented AWS or dedicated servers so one can start testing functionality and explore different APIs, start developing.
 
 One more crucial point to modify is to change number of witnesses required to accept hardforks for Custom testnet, by default it is set to 17, we can change it to **1** `STEEM_HARDFORK_REQUIRED_WITNESSES 1` so that only one instance of node would be sufficient and network will be still functional and fast.
 
@@ -52,7 +52,7 @@ Another thing to note is that, you can start new chain with all previous hardfor
 `void database::init_genesis( uint64_t init_supply )` inside `try` add this line:
 `set_hardfork( 19, true );` this would mean that 19 hardforks are accepted by witnesses and new chain starts with all previous forks included.
 
-After all these changes, all we have to do is compile source code and get steemd executable. And once we fire up custom testnet we can start testing and experimenting new things.
+After all these changes, all we have to do is compile source code and get `steemd` executable. And once we fire up custom testnet we can start testing and experimenting new things.
 
 If you want to port some data from Steem main network you can use [Tinman](https://github.com/steemit/tinman) developed by Steemit to help with taking snapshots of main network.
 
