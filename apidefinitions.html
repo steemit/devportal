@@ -6,10 +6,10 @@ section: API Definitions
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
-		<section id="{{doc.id | slugify}}"class="doc-content {{ doc.id | slugify }}">
+		<section id="{{doc.id | replace: '/', '' | replace: '.', ''}}"class="doc-content {{ doc.id | replace: '/', '' | replace: '.', '' }}">
 			<section class="left-docs">
 				<h3>
-					<a id="{{ doc.id | slugify }}">
+					<a id="{{ doc.id | replace: '/', '' | replace: '.', '' }}">
 						{{ doc.title }}
 						{% if doc.type %}
 							<span class="endpoint {{ doc.type }}"></span>
