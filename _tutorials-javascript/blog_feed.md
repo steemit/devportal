@@ -6,7 +6,7 @@ layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
     index.html
-    ``` html
+    ```html
       <html>
       <head><title>User blog</title>
         <script src="bundle.js"></script>
@@ -19,7 +19,7 @@ right_code: |
       </html>
     ```
     app.js
-    ``` javascript
+    ```javascript
       const { Client } = require('dsteem');
 
       const client = new Client('https://api.steemit.com');
@@ -50,8 +50,9 @@ right_code: |
 
       window.onload = fetchBlog();
     ```
+
     index.js
-    ``` javascript
+    ```javascript
       const Koa = require('koa');
       const app = new Koa();
       const serve = require('koa-static');
