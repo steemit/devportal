@@ -21,12 +21,17 @@ toc:
     collection: "services"
     url: "/"
     position: 6
+  - title: "Appbase API"
+    collection: apidefinitions    
+    url: "/apidefinitions.html"
+    exclude: true
+    position: 7    
   - title: "Community"
     collection: "community"
     url: "/"
-    position: 7
+    position: 8
   - title: "Glossary"
     collection: "glossary"
     url: "/glossary/"
-    position: 8
+    position: 9
     exclude: true
