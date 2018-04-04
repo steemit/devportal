@@ -16,7 +16,7 @@ exclude: true
                 <div class="language-json highlighter-rouge">
                 <pre class="language-json highlighter-rouge">
                 <code class="language-json">
-                {{method.parameter_json | jsonify}}
+                {{method.parameter_json | neat_json}}
                 </code>
                 </pre>
                 </div>                                
@@ -26,7 +26,7 @@ exclude: true
                 <div class="language-json highlighter-rouge">
                 <pre class="language-json highlighter-rouge">
                 <code class="language-json">
-                {{method.expected_response_json | jsonify}}
+                {{method.expected_response_json | neat_json}}
                 </code>                
                 </pre>
                 </div>                                
