@@ -12,9 +12,11 @@ exclude: true
 			{% for nav_doc in sorted_nav_docs %}
 				{% assign collection = site.collections | where: "id", nav_doc.collection | first %}
 				{% if collection %}
+					<a id="{{ nav_doc.collection | slugify }}"></a>
 					<h3>{{ nav_doc.title }}</h3>
 					<ul>
-						{% for doc in collection.docs %}
+						{% assign sorted_collection_docs = collection.docs | sort: "position" %}
+						{% for doc in sorted_collection_docs %}
 						<li>
 							<a href="{{ doc.id }}">{{ doc.title }}</a>
 							<p class="overview">{{ doc.description }}</p>

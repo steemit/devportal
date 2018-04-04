@@ -26,11 +26,6 @@ collections:
   tutorials:
     title: Tutorials
     id: tutorials
-    position: 4
-    output: true
-  python:
-    title: Python
-    id: python
     position: 5
     output: true
   services:
@@ -57,6 +52,11 @@ collections:
     title: API Definitions
     id: apidefinitions
     position: 10
+    output: true
+  tutorials-python:
+    title: Python Tutorials
+    id: tutorials-python
+    position: 11
     output: true
 
 gems:

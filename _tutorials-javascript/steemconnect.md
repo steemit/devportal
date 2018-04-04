@@ -1,6 +1,6 @@
 ---
 title: SteemConnect
-position: 2
+position: 3
 description: Tutorial is about Authorization on Steem and usage of SteemConnect
 layout: full
 right_code: |
@@ -174,7 +174,7 @@ result = {
 
 > In order to logout, you can use the `revokeToken` function from `sc2-sdk`.
 
-### Source code
+### Source code [<img src="/images/look.svg" width="16" height="16" />](getting-started#setup_node_js)
 
 To try this application visit [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js), find [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) and follow **To run** section in README.
 
