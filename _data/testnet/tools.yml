@@ -1,6 +1,10 @@
 # Be sure to group each tool by testnet_id.
 # Possible places to watch for new testnet tools:
 # https://steemprojects.com/search/?q=testnet
+- name: Steemit, Inc. Live Testnet Endpoint
+  testnet_id: 46d82ab
+  url: https://testnet.steemitdev.com/
+  purpose: For anyone who wants to start testing their node and applications.
 - name: testnet.steem.vc
   testnet_id: 79276ae
   url: https://steemprojects.com/projects/p/steem-testnet/
