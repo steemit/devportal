@@ -120,7 +120,7 @@ notepad).
 ```javascript
 var query = {
   tag: 'steemitblog', // This tag is used to filter the results by a specific post tag
-  limit: 5 // This limit allows us to limit the overall results returned to 5
+  limit: 5, // This limit allows us to limit the overall results returned to 5
 };
 ```
 

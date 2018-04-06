@@ -1,167 +1,166 @@
 jQuery(function() {
-	var $sidebar = $('#sidebar'),
-		$nav = $('.nav'),
-		$main = $('.main');
+    var $sidebar = $('#sidebar'),
+        $nav = $('.nav'),
+        $main = $('.main');
 
-	var found = true;
+    var found = true;
 
-	var $el;
+    var $el;
 
-	$('section > div.highlighter-rouge:first-of-type').each(function(i) {
-		var $this = $(this).before('<ul class="languages"></ul>'),
-			$languages = $this.prev(),
-			$notFirst = $this.nextUntil(':not(div.highlighter-rouge)'),
-			$all = $this.add($notFirst);
+    $('section > div.highlighter-rouge:first-of-type').each(function(i) {
+        var $this = $(this).before('<ul class="languages"></ul>'),
+            $languages = $this.prev(),
+            $notFirst = $this.nextUntil(':not(div.highlighter-rouge)'),
+            $all = $this.add($notFirst);
 
-		$all.add($languages).wrapAll('<div class="code-viewer"></div>');
+        $all.add($languages).wrapAll('<div class="code-viewer"></div>');
 
-		listLanguages($all, $languages);
+        listLanguages($all, $languages);
 
-		$this.css('display', 'block');
+        $this.css('display', 'block');
 
-		$languages
-			.find('a')
-			.first()
-			.addClass('active');
+        $languages
+            .find('a')
+            .first()
+            .addClass('active');
 
-		$languages.find('a').click(function() {
-			$all.css('display', 'none');
-			$all
-				.eq(
-					$(this)
-						.parent()
-						.index()
-				)
-				.css('display', 'block');
+        $languages.find('a').click(function() {
+            $all.css('display', 'none');
+            $all
+                .eq(
+                    $(this)
+                        .parent()
+                        .index()
+                )
+                .css('display', 'block');
 
-			$languages.find('a').removeClass('active');
-			$(this).addClass('active');
-			return false;
-		});
+            $languages.find('a').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        });
 
-		if ($languages.children().length === 0) {
-			$languages.remove();
-		}
-	});
+        if ($languages.children().length === 0) {
+            $languages.remove();
+        }
+    });
 
-	function listLanguages($el, $insert) {
-		$el.each(function(i) {
-			var title = $(this).attr('title');
-			if (title) {
-				$insert.append('<li><a href="#">' + title + '</a></li>');
-			}
-		});
-	}
+    function listLanguages($el, $insert) {
+        $el.each(function(i) {
+            var title = $(this).attr('title');
+            if (title) {
+                $insert.append('<li><a href="#">' + title + '</a></li>');
+            }
+        });
+    }
 
-	var href = $('.sidebar a')
-		.first()
-		.attr('href');
+    var href = $('.sidebar a')
+        .first()
+        .attr('href');
 
-	if (href !== undefined && href.charAt(0) === '#') {
-		setActiveSidebarLink();
+    if (href !== undefined && href.charAt(0) === '#') {
+        setActiveSidebarLink();
 
-		$(window).on('scroll', function(evt) {
-			setActiveSidebarLink();
-		});
-	}
+        $(window).on('scroll', function(evt) {
+            setActiveSidebarLink();
+        });
+    }
 
-	function setActiveSidebarLink() {
-		$('.sidebar a').removeClass('active');
-		var $closest = getClosestHeader();
-		$closest.addClass('active');
-		document.title = $closest.text();
-	}
+    function setActiveSidebarLink() {
+        $('.sidebar a').removeClass('active');
+        var $closest = getClosestHeader();
+        $closest.addClass('active');
+        document.title = $closest.text();
+    }
 });
 
 function getClosestHeader() {
-	var $links = $('.sidebar a'),
-		top = window.scrollY,
-		$last = $links.first();
+    var $links = $('.sidebar a'),
+        top = window.scrollY,
+        $last = $links.first();
 
-	if (top < 300) {
-		return $last;
-	}
+    if (top < 300) {
+        return $last;
+    }
 
-	if (top + window.innerHeight >= $('.main').height()) {
-		return $links.last();
-	}
+    if (top + window.innerHeight >= $('.main').height()) {
+        return $links.last();
+    }
 
-	for (var i = 0; i < $links.length; i++) {
-		var $link = $links.eq(i),
-			href = $link.attr('href');
+    for (var i = 0; i < $links.length; i++) {
+        var $link = $links.eq(i),
+            href = $link.attr('href');
 
-		if (href !== undefined && href.charAt(0) === '#' && href.length > 1) {
-			var $anchor = $(href);
+        if (href !== undefined && href.charAt(0) === '#' && href.length > 1) {
+            var $anchor = $(href);
 
-			if ($anchor.length > 0) {
-				var offset = $anchor.offset();
+            if ($anchor.length > 0) {
+                var offset = $anchor.offset();
 
-				if (top < offset.top - 300) {
-					return $last;
-				}
+                if (top < offset.top - 300) {
+                    return $last;
+                }
 
-				$last = $link;
-			}
-		}
-	}
-	return $last;
+                $last = $link;
+            }
+        }
+    }
+    return $last;
 }
 
 Prism.plugins.NormalizeWhitespace.setDefaults({
-	'remove-trailing': true,
-	'remove-indent': true,
-	'left-trim': true,
-	'right-trim': true,
-	'break-lines': 80,
-	'remove-initial-line-feed': true
+    'remove-trailing': true,
+    'remove-indent': true,
+    'left-trim': true,
+    'right-trim': true,
+    'remove-initial-line-feed': true,
 });
 
 Prism.config({
-	'auto-line-numbers': true
+    'auto-line-numbers': true,
 });
 
 $(document).ready(function() {
-	// Select all links with hashes
-	$('a[href*="#"]')
-		// Remove links that don't actually link to anything
-		.not('[href="#"]')
-		.not('[href="#0"]')
-		.click(function(event) {
-			// On-page links
-			if (
-				location.pathname.replace(/^\//, '') ==
-					this.pathname.replace(/^\//, '') &&
-				location.hostname == this.hostname
-			) {
-				// Figure out element to scroll to
-				var target = $(this.hash);
-				target = target.length
-					? target
-					: $('[name=' + this.hash.slice(1) + ']');
-				// Does a scroll target exist?
-				if (target.length) {
-					// Only prevent default if animation is actually gonna happen
-					event.preventDefault();
-					$('html, body').animate(
-						{
-							scrollTop: target.offset().top
-						},
-						300,
-						function() {
-							// Callback after animation
-							// Must change focus!
-							var $target = $(target);
-							$target.focus();
-							if ($target.is(':focus')) {
-								// Checking if the target was focused
-								return false;
-							} else {
-								$target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-								$target.focus(); // Set focus again
-							}
-						}
-					);
-				}
-			}
-		});
+    // Select all links with hashes
+    $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+        .not('[href="#"]')
+        .not('[href="#0"]')
+        .click(function(event) {
+            // On-page links
+            if (
+                location.pathname.replace(/^\//, '') ==
+                    this.pathname.replace(/^\//, '') &&
+                location.hostname == this.hostname
+            ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length
+                    ? target
+                    : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate(
+                        {
+                            scrollTop: target.offset().top,
+                        },
+                        300,
+                        function() {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(':focus')) {
+                                // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            }
+                        }
+                    );
+                }
+            }
+        });
 });
