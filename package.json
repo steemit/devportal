@@ -4,6 +4,9 @@
 		"fmt": "node ./node_modules/prettier/bin-prettier.js --config .prettierrc --write ./_includes/*/*",
 		"precommit": "lint-staged"
 	},
+    "lint-staged": {
+        "./_includes/*/*": ["prettier --write", "git add"]
+    },
 	"devDependencies": {
 		"eslint-config-airbnb-base": "^12.1.0",
 		"eslint-plugin-import": "^2.10.0",
