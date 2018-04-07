@@ -1,22 +1,32 @@
-- title: "Introduction"
-  href: "/"
-  categories:
-    - title: "Getting Started"
-    - href: "/"
-    - title: "welcome2"
-    - href: "/"
-  subcategories:
-    - subtitle: "Endpoints"
-    - subcategory:
-      - title: "Getting Started"
-      - href: "yahoo.com"
-
-- title: "Python"
-  href: "/news/"
-  subcategories:
-    - subtitle: "Endpoints"
-
-- title: "Javascript"
-  subcategories:
-    - subtitle: "Endpoints"
-      subhref: "#"
+toc:
+  - title: "Introduction"
+    collection: "introduction"
+    url: "/"
+    position: 1
+  - title: "Quickstart"
+    collection: "quickstart"
+    url: "/"
+    position: 2
+  - title: "Tutorials"
+    collection: "tutorials"
+    url: "/tutorials"
+    position: 4
+    exclude: true
+    docs:
+      - title: Javascript
+        collection: tutorials-javascript
+      - title: Python
+        collection: tutorials-python
+  - title: "Services"
+    collection: "services"
+    url: "/"
+    position: 6
+  - title: "Community"
+    collection: "community"
+    url: "/"
+    position: 7
+  - title: "Glossary"
+    collection: "glossary"
+    url: "/glossary/"
+    position: 8
+    exclude: true

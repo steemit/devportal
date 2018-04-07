@@ -1,0 +1,7 @@
+- name: Account by key API
+  description: Used to lookup account information based on a key. These AppBase API methods are still under development and subject to change.
+  methods:
+    - api_method: account_by_key_api.get_key_references
+      purpose: Returns all accounts that have the key associated with their owner or active authorities.
+      parameter_json: {"keys":[]}
+      expected_response_json: {"accounts":[]}
