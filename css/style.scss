@@ -26,6 +26,19 @@ pre {
   color: white;
 }
 
+.code-viewer {
+  padding-bottom: 20px;
+  pre {
+    margin-bottom: 0;
+  }
+}
+.highlighter-rouge {
+  padding-bottom: 20px;
+  pre.highlight {
+    margin-bottom: 0;
+  }
+}
+
 .row {
   position: relative;
   min-height: 1px;
@@ -98,13 +111,13 @@ header h1 {
     padding: 0px 50px;
     height: 63px;
     display: flex;
-    align-items: center;    
+    align-items: center;
     &__img {
       display: none;
     }
     &__h1 {
       margin-bottom: 0;
-    }    
+    }
   }
 }
 
@@ -115,7 +128,7 @@ header h1 {
     text-align: left;
     padding: 0 50px;
     height: 111px;
-    
+
     position: relative;
 
     justify-content: space-between;

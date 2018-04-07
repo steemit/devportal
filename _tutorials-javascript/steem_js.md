@@ -54,7 +54,7 @@ right_code: |
     	console.log(err, result);
     });
     ~~~
-    
+
     ~~~json
     {
      "ats-david/nature-in-black-and-white-volume-iii": {
@@ -100,54 +100,54 @@ right_code: |
       }
      }
     ~~~
-    
+
     ~~~javascript
     for (var results in content) {
-        // log each payout amount 
-        console.log(pending_payout_value)   
+        // log each payout amount
+        console.log(pending_payout_value)
     }
     ~~~
     <p class="right-section-title">Accounts</p>
-    ``` javascript
+    ~~~javascript
     steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">State</p>
-    ``` javascript
+    ~~~javascript
     steem.api.getState('/trends/funny', function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">Broadcast</p>
-    ``` javascript
+    ~~~javascript
     var steem = require('steem');
 
     var wif = steem.auth.toWif(username, password, 'posting');
     steem.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
         console.log(err, result);
     });
-    ```
+    ~~~
     <p class="right-section-title">Reputation</p>
-    ``` javascript
+    ~~~javascript
     var reputation = steem.formatter.reputation(user.reputation);
     console.log(reputation);
-    ```
+    ~~~
 ---
 
 Steem.js makes it easy to access the steem blockchain for your project. The Javascript library let's your app easily access steem blockchain data and also perform user actions.
 
-The toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js). 
+The toolkit is located at: [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js).
 
-Get running with Steem.js with a few simple options. 
+Get running with Steem.js with a few simple options.
 
-NPM install for Javascript projects. 
+NPM install for Javascript projects.
 
 ```
 npm install steem --save
 ```
 
-Link directly from the CDN. 
+Link directly from the CDN.
 ```
 <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
 ```
@@ -178,20 +178,20 @@ Save the file as `steempostexample.html` and load it in your web browser. That's
 ### Photography
 
 Utilizing the Javascript library with a few lines of code, display the latest
-photography posts, along with payout data. 
+photography posts, along with payout data.
 
-You can easily create the next instagram on the steem platform. 
+You can easily create the next instagram on the steem platform.
 
 Example site: [snapsteem.com](http://www.snapsteem.com/){:target="_blank"}
 
 ##### Let's get started:
 
-Use the get state method to return trending photography posts. 
+Use the get state method to return trending photography posts.
 
-Displayed is example output of an individual content object returned. 
+Displayed is example output of an individual content object returned.
 
 Last, let's loop over your results and return each payout amount. Using our example above we will have
-an object with "content". 
+an object with "content".
 
 ### Accounts
 

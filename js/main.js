@@ -1,3 +1,8 @@
+---
+layout: null
+sitemap: false
+---
+
 jQuery(function() {
 	var $sidebar = $('#sidebar'),
 		$nav = $('.nav'),
@@ -110,8 +115,8 @@ function getClosestHeader() {
       .click(function(event) {
         // On-page links
         if (
-          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-          && 
+          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+          &&
           location.hostname == this.hostname
         ) {
           // Figure out element to scroll to
