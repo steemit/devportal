@@ -1,0 +1,187 @@
+- name: Database API
+  description: Used query information about accounts, transactions, and blockchain data. These AppBase API methods are still under development and subject to change.
+  methods:
+    - api_method: database_api.find_account_recovery_requests
+      purpose: Returns a list of account recovery requests.
+      parameter_json: {"accounts":[]}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.find_accounts
+      purpose: Search for accounts.
+      parameter_json: {"accounts":[]}
+      expected_response_json: {"accounts":[]}
+    - api_method: database_api.find_change_recovery_account_requests
+      purpose: Returns a list of requests to change the recovery account.
+      parameter_json: {"accounts":[]}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.find_comments
+      purpose: Search for comments.
+      parameter_json: {"comments":[]}
+      expected_response_json: {"comments":[]}
+    - api_method: database_api.find_decline_voting_rights_requests
+      purpose: Returns a list of requests to decline voting rights.
+      parameter_json: {"accounts":[]}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.find_escrows
+      purpose: Returns a list of escrows.
+      parameter_json: {"from":""}
+      expected_response_json: {"escrows":[]}
+    - api_method: database_api.find_limit_orders
+      purpose: Returns a list of limit orders.
+      parameter_json: {"account":""}
+      expected_response_json: {"orders":[]}
+    - api_method: database_api.find_owner_histories
+      purpose: Returns owner authority history.
+      parameter_json: {"owner":""}
+      expected_response_json: {"owner_auths":[]}
+    - api_method: database_api.find_savings_withdrawals
+      purpose: Returns the list of savings withdrawls for an account.
+      parameter_json: {"account":""}
+      expected_response_json: {"withdrawals":[]}
+    - api_method: database_api.find_sbd_conversion_requests
+      purpose: Returns the list of SBD conversion requests for an account.
+      parameter_json: {"account":""}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.find_vesting_delegation_expirations
+      purpose: Returns the expirations for vesting delegations.
+      parameter_json: {"account":""}
+      expected_response_json: {"delegations":[]}
+    - api_method: database_api.find_vesting_delegations
+      purpose: Returns the list of vesting delegations for an account.
+      parameter_json: {"account":""}
+      expected_response_json: {"delegations":[]}
+    - api_method: database_api.find_votes
+      purpose: Returns the votes for an author and permlink.
+      parameter_json: {"author":"","permlink":""}
+      expected_response_json: {"votes":[]}
+    - api_method: database_api.find_withdraw_vesting_routes
+      purpose: Returns the list of vesting withdraw routes for an account.
+      parameter_json: {"account":"","order":"by_name"}
+      expected_response_json: {"routes":[]}
+    - api_method: database_api.find_witnesses
+      purpose: Search for witnesses.
+      parameter_json: {"owners":[]}
+      expected_response_json: {"witnesses":[]}
+    - api_method: database_api.get_active_witnesses
+      purpose: Returns the list of active witnesses.
+      parameter_json: {}
+      expected_response_json: {"witnesses":[]}
+    - api_method: database_api.get_config
+      purpose: Returns information about compile-time constants.
+      parameter_json: {}
+      expected_response_json: {}
+    - api_method: database_api.get_current_price_feed
+      purpose: Returns the current price feed.
+      parameter_json: {}
+      expected_response_json: {"base":["0",3,"@@000000021"],"quote":["0",3,"@@000000021"]}
+    - api_method: database_api.get_dynamic_global_properties
+      purpose: Returns the current dynamic global properties.
+      parameter_json: {}
+      expected_response_json: {"id":0,"head_block_number":0,"head_block_id":"0000000000000000000000000000000000000000","time":"1970-01-01T00:00:00","current_witness":"","total_pow":"18446744073709551615","num_pow_witnesses":0,"virtual_supply":["0",3,"@@000000021"],"current_supply":["0",3,"@@000000021"],"confidential_supply":["0",3,"@@000000021"],"current_sbd_supply":["0",3,"@@000000013"],"confidential_sbd_supply":["0",3,"@@000000013"],"total_vesting_fund_steem":["0",3,"@@000000021"],"total_vesting_shares":["0",6,"@@000000037"],"total_reward_fund_steem":["0",3,"@@000000021"],"total_reward_shares2":"0","pending_rewarded_vesting_shares":["0",6,"@@000000037"],"pending_rewarded_vesting_steem":["0",3,"@@000000021"],"sbd_interest_rate":0,"sbd_print_rate":10000,"maximum_block_size":0,"current_aslot":0,"recent_slots_filled":"0","participation_count":0,"last_irreversible_block_num":0,"vote_power_reserve_rate":40}
+    - api_method: database_api.get_feed_history
+      purpose: Returns the history of price feed values.
+      parameter_json: {}
+      expected_response_json: {"id":0,"current_median_history":{"base":["0",3,"@@000000021"],"quote":["0",3,"@@000000021"]},"price_history":[]}
+    - api_method: database_api.get_hardfork_properties
+      purpose: Returns the current properties about the blockchain's hardforks.
+      parameter_json: {}
+      expected_response_json: {"id":0,"processed_hardforks":[],"last_hardfork":0,"current_hardfork_version":"0.0.0","next_hardfork":"0.0.0","next_hardfork_time":"1970-01-01T00:00:00"}
+    - api_method: database_api.get_order_book
+      purpose: Returns the order book.
+      parameter_json: {"limit":0}
+      expected_response_json: {"asks":[],"bids":[]}
+    - api_method: database_api.get_potential_signatures
+      purpose: This method will return the set of all public keys that could possibly sign for a given transaction.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
+      expected_response_json: {"keys":[]}
+    - api_method: database_api.get_required_signatures
+      purpose: This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},"available_keys":[]}
+      expected_response_json: {"keys":[]}
+    - api_method: database_api.get_reward_funds
+      purpose: Returns information about the current reward funds.
+      parameter_json: {}
+      expected_response_json: {"funds":[]}
+    - api_method: database_api.get_transaction_hex
+      purpose: Returns a hexdump of the serialized binary form of a transaction.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
+      expected_response_json: {"hex":""}
+    - api_method: database_api.get_witness_schedule
+      purpose: Returns the current witness schedule.
+      parameter_json: {}
+      expected_response_json: {"id":0,"current_virtual_time":"0","next_shuffle_block_num":0,"current_shuffled_witnesses":[],"num_scheduled_witnesses":48,"top19_weight":77,"timeshare_weight":16,"miner_weight":2,"witness_pay_normalization_factor":0,"median_props":{"account_creation_fee":["1",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000,"account_subsidy_limit":0},"majority_version":"0.0.0","max_voted_witnesses":48,"max_miner_witnesses":77,"max_runner_witnesses":16,"hardfork_required_witnesses":2}
+    - api_method: database_api.list_account_recovery_requests
+      purpose: Returns a list of account recovery requests.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.list_accounts
+      purpose: Returns a list of accounts.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"accounts":[]}
+    - api_method: database_api.list_change_recovery_account_requests
+      purpose: Returns a list of recovery account change requests.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.list_comments
+      purpose: Returns a list of comments.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"comments":[]}
+    - api_method: database_api.list_decline_voting_rights_requests
+      purpose: Returns a list of decline voting rights requests.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.list_escrows
+      purpose: Returns a list of escrows.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"escrows":[]}
+    - api_method: database_api.list_limit_orders
+      purpose: Returns a list of limit orders.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"orders":[]}
+    - api_method: database_api.list_owner_histories
+      purpose: Returns a list of owner authority histories.
+      parameter_json: {"start":null,"limit":0}
+      expected_response_json: {"owner_auths":[]}
+    - api_method: database_api.list_savings_withdrawals
+      purpose: Returns a list of savings withdrawls.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"withdrawals":[]}
+    - api_method: database_api.list_sbd_conversion_requests
+      purpose: Returns a list of SBD conversion requests.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"requests":[]}
+    - api_method: database_api.list_vesting_delegation_expirations
+      purpose: Returns a list of vesting delegation expirations.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"delegations":[]}
+    - api_method: database_api.list_vesting_delegations
+      purpose: Returns a list of vesting delegations.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"delegations":[]}
+    - api_method: database_api.list_votes
+      purpose: Returns a list of votes.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"votes":[]}
+    - api_method: database_api.list_withdraw_vesting_routes
+      purpose: Returns a list of vesting withdraw routes.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"routes":[]}
+    - api_method: database_api.list_witness_votes
+      purpose: Returns a list of witness votes.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"votes":[]}
+    - api_method: database_api.list_witnesses
+      purpose: Returns the list of witnesses.
+      parameter_json: {"start":null,"limit":0,"order":"by_name"}
+      expected_response_json: {"witnesses":[]}
+    - api_method: database_api.verify_account_authority
+      purpose: Returns true if the signers have enough authority to authorize an account.
+      parameter_json: {"account":"","signers":[]}
+      expected_response_json: {"valid":false}
+    - api_method: database_api.verify_authority
+      purpose: Returns true if the transaction has all of the required signatures.
+      parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
+      expected_response_json: {"valid":false}
+    - api_method: database_api.verify_signatures
+      purpose: This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures.
+      parameter_json: {"hash":"0000000000000000000000000000000000000000000000000000000000000000","signatures":[],"required_owner":[],"required_active":[],"required_posting":[],"required_other":[]}
+      expected_response_json: {"valid":false}

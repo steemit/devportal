@@ -263,6 +263,11 @@ h3 .endpoint {
 		margin-top: -11px;
 	}
 
+	.overview {
+		color: #aaa;
+		background: #fefefe;
+	}
+
 	@media (max-width: $mobile-break) {
 		margin: 0;
 	}
@@ -579,3 +584,11 @@ header {
 	pointer-events: none;
 	cursor: default;
 }
+.glossary {
+	dt {
+		top: 0px;
+	}
+
+	dd {
+	}	
+} 
