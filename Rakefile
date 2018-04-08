@@ -22,6 +22,6 @@ namespace :scrape do
     job = Scrape::ApiDefinitionsJob.new
     count = job.perform
     
-    puts "Methods added: #{count}"
+    puts "Methods added or changed: #{count}"
   end
 end

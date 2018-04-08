@@ -15,7 +15,7 @@ module Scrape
     
     # Execute the job.
     #
-    # @return [Integer] total number of methods added in this pass
+    # @return [Integer] total number of methods added or changed in this pass
     def perform
       method_add_count = 0
       
@@ -36,9 +36,7 @@ module Scrape
         
         methods.each do |method|
           method_name = "#{api}.#{method}"
-          next if !!yml[0]['methods'].find{|e| e['api_method'] == method_name}
-          
-          puts "\tAdding: #{method}"
+          existing_api_method = yml[0]['methods'].reverse.find{|e| e['api_method'] == method_name}
           
           request = Net::HTTP::Post.new(uri.request_uri)
           request.body = {
@@ -60,6 +58,19 @@ module Scrape
             response['result']
           else
             raise response.inspect
+          end
+          
+          if existing_api_method
+            parameter_json = signature['args']
+            expected_response_json = signature['ret']
+            if existing_api_method['parameter_json'] == parameter_json &&
+              existing_api_method['expected_response_json'] == expected_response_json
+              next
+            else
+              puts "\tChanged: #{method}"
+            end
+          else
+            puts "\tAdding: #{method}"
           end
           
           dirty = true
