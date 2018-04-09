@@ -56,7 +56,12 @@ collections:
   apidefinitions:
     title: API Definitions
     id: apidefinitions
-    position: 10
+    position: 11
+    output: true
+  testnet:
+    title: Testnet
+    id: testnet
+    position: 12
     output: true
 
 gems:
