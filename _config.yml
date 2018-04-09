@@ -53,6 +53,11 @@ collections:
     id: tutorials-python
     position: 10
     output: true
+  testnet:
+    title: Testnet
+    id: testnet
+    position: 11
+    output: true
 
 
 gems:
