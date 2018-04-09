@@ -1,9 +1,9 @@
 ---
-position: 5
+position: 6
 exclude: true
 ---
 
-{% for sections in site.data.apidefinitions.jsonrpc %}
+{% for sections in site.data.apidefinitions.market_history_api %}
 {{sections.description}}
 {% for method in sections.methods %}
 #### {{method.api_method}}
