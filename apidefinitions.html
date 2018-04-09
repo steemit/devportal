@@ -6,28 +6,20 @@ section: API Definitions
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
-		<section id="{{doc.id | slugify}}"class="doc-content {{ doc.id | slugify }}">
-			<section class="left-docs">
-				<h3>
-					<a id="{{ doc.id | slugify }}">
-						{{ doc.title }}
-						{% if doc.type %}
-							<span class="endpoint {{ doc.type }}"></span>
-						{% endif %}
-					</a>
-				</h3>
-				{% if doc.description %}
-					<p class="description">{{doc.description}}</p>
-				{% endif %}
-
-				{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
-			</section>
-
-			{% if doc.right_code %}
-				<section class="right-code">
-					{{ doc.right_code | markdownify }}
-				</section>
+		<section id="{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
+			<h3>
+				<a id="{{ doc.id | slugify }}">
+					{{ doc.title }}
+					{% if doc.type %}
+						<span class="endpoint {{ doc.type }}"></span>
+					{% endif %}
+				</a>
+			</h3>
+			{% if doc.description %}
+				<p class="description">{{doc.description}}</p>
 			{% endif %}
+
+			{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
 		</section>
 	{% endfor %}
 {% endfor %}
