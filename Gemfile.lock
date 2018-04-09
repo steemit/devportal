@@ -35,6 +35,7 @@ GEM
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.4)
+    rake (12.3.1)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -50,6 +51,7 @@ DEPENDENCIES
   jekyll-seo-tag (= 2.1.0)
   jekyll-sitemap (= 0.12.0)
   neatjson
+  rake
 
 BUNDLED WITH
    1.16.1
