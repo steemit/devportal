@@ -8,6 +8,9 @@ module Scrape
     DEFAULT_API_DATA_PATH = '_data/apidefinitions'
     REQUEST_CONTENT_TYPE = 'application/json; charset=utf-8'
     
+    # Skip these for now.
+    API_EXCLUDE = [:condenser_api]
+    
     def initialize(options = {url: DEFAULT_URL, api_data_path: DEFAULT_API_DATA_PATH})
       @url = options[:url] || DEFAULT_URL
       @api_data_path = options[:api_data_path] || DEFAULT_API_DATA_PATH
@@ -20,6 +23,10 @@ module Scrape
       method_change_count = 0
       
       apis.each do |api, methods|
+        if API_EXCLUDE.include? api
+          puts "Skipping #{api}"
+          next
+        end
         file_name = "#{api_data_path}/#{api}.yml"
         puts "Definitions for: #{api}, methods: #{methods.size}"
         
