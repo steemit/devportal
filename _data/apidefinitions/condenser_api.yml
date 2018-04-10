@@ -6,98 +6,95 @@
   methods:
   - api_method: condenser_api.broadcast_block
     purpose: Used to broadcast a block.
-    parameter_json: []
+    parameter_json: [{"previous":"0000000000000000000000000000000000000000","timestamp":"1970-01-01T00:00:00","witness":"","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[],"witness_signature":"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","transactions":[]}]
     expected_response_json: {}
   - api_method: condenser_api.broadcast_transaction
     purpose: Used to broadcast a transaction.
-    parameter_json: []
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: {}
   - api_method: condenser_api.broadcast_transaction_synchronous
     purpose: Used to broadcast a transaction and waits for it to be processed synchronously.
-    parameter_json: []
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json:
       id: '0000000000000000000000000000000000000000'
       block_num: 0
       trx_num: 0
       expired: false
   - api_method: condenser_api.get_account_bandwidth
-    purpose: Returns the available bandwidth of an account.
-    parameter_json: []
-    expected_response_json: 
+    purpose: "Returns the available bandwidth of an account. `account:string`; `type:string`, e.g.: `forum` or `market`"
+    parameter_json: ["steemit","forum"]
+    expected_response_json: {"id":8,"account":"steemit","type":"forum","average_bandwidth":214996934,"lifetime_bandwidth":"48395000000","last_bandwidth_update":"2018-02-16T03:11:00"}
   - api_method: condenser_api.get_account_count
-    purpose: 
+    purpose: Returns the number of accounts.
     parameter_json: []
     expected_response_json: 0
   - api_method: condenser_api.get_account_history
-    purpose: Returns a history of all operations for a given account.
-    parameter_json: []
+    purpose: "Returns a history of all operations for a given account.  `account:string`; `start:int`. e.g.: -1 for reverse history or any positive numeric; `limit:int` up to 10000"
+    parameter_json: ["",0,1000]
     expected_response_json: []
-  - api_method: condenser_api.get_account_references
-    purpose: 
-    parameter_json: []
-    expected_response_json: []
+  # - api_method: condenser_api.get_account_references
+  #   purpose: 
+  #   parameter_json: []
+  #   expected_response_json: []
   - api_method: condenser_api.get_account_reputations
-    purpose: Returns a list of account reputations.
-    parameter_json: []
+    purpose: Returns a list of account reputations.  `account_lower_bound:int`; `limit:int` up to 1000
+    parameter_json: ["",1000]
     expected_response_json: []
   - api_method: condenser_api.get_account_votes
-    purpose: 
-    parameter_json: []
+    purpose: Returns all votes by an account.  `account:string`
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_accounts
-    purpose: 
-    parameter_json: []
+    purpose: "Returns accounts, queried by name.  `account:string array`, e.g.: `[\"ned\"]`"
+    parameter_json: [[""]]
     expected_response_json: []
   - api_method: condenser_api.get_active_votes
-    purpose: Returns all votes for the given post.
-    parameter_json: []
+    purpose: Returns all votes for the given post.  `author:string`; `permlink:string`
+    parameter_json: ["",""]
     expected_response_json: []
   - api_method: condenser_api.get_active_witnesses
     purpose: Returns the list of active witnesses.
     parameter_json: []
     expected_response_json: []
   - api_method: condenser_api.get_block
-    purpose: 
-    parameter_json: []
-    expected_response_json: 
+    purpose: Returns a block.  `block_num:int`
+    parameter_json: [1]
+    expected_response_json: {"previous":"0000000000000000000000000000000000000000","timestamp":"2016-03-24T16:05:00","witness":"initminer","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[],"witness_signature":"204f8ad56a8f5cf722a02b035a61b500aa59b9519b2c33c77a80c0a714680a5a5a7a340d909d19996613c5e4ae92146b9add8a7a663eef37d837ef881477313043","transactions":[],"block_id":"0000000109833ce528d5bbfb3f6225b39ee10086","signing_key":"STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX","transaction_ids":[]}
   - api_method: condenser_api.get_block_header
-    purpose: 
-    parameter_json: []
-    expected_response_json: 
+    purpose: Returns a block header.  `block_num:int`
+    parameter_json: [1]
+    expected_response_json: {"previous":"0000000000000000000000000000000000000000","timestamp":"2016-03-24T16:05:00","witness":"initminer","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[]}
   - api_method: condenser_api.get_blog
-    purpose: Returns the list of blog entries for an account.
-    parameter_json: []
-    expected_response_json: []
+    purpose: Returns the list of blog entries for an account.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    parameter_json: ["steemit",0,1]
+    expected_response_json: [{"comment":{"id":0,"author":"steemit","permlink":"firstpost","category":"meta","parent_author":"","parent_permlink":"meta","title":"Welcome to Steem!","body":"Steemit is a social media platform where anyone can earn STEEM points by posting. The more people who like a post, the more STEEM the poster earns. Anyone can sell their STEEM for cash or vest it to boost their voting power.","json_metadata":"","last_update":"2016-03-30T18:30:18","created":"2016-03-30T18:30:18","active":"2018-04-09T12:00:42","last_payout":"2016-08-24T19:59:42","depth":0,"children":336,"net_rshares":0,"abs_rshares":0,"vote_rshares":0,"children_abs_rshares":"26169324897669","cashout_time":"1969-12-31T23:59:59","max_cashout_time":"1969-12-31T23:59:59","total_vote_weight":0,"reward_weight":10000,"total_payout_value":["942",3,"@@000000013"],"curator_payout_value":["756",3,"@@000000013"],"author_rewards":3548,"net_votes":90,"root_author":"steemit","root_permlink":"firstpost","max_accepted_payout":["1000000000",3,"@@000000013"],"percent_steem_dollars":10000,"allow_replies":true,"allow_votes":true,"allow_curation_rewards":true,"beneficiaries":[]},"blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
   - api_method: condenser_api.get_blog_authors
     purpose: Returns a list of authors that have had their content reblogged on a given blog account.
     parameter_json: []
     expected_response_json: []
   - api_method: condenser_api.get_blog_entries
-    purpose: Returns a list of blog entries for an account.
-    parameter_json: []
-    expected_response_json: []
+    purpose: Returns a list of blog entries for an account.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    parameter_json: ["steemit",0,1]
+    expected_response_json: [{"author":"steemit","permlink":"firstpost","blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
   - api_method: condenser_api.get_chain_properties
-    purpose: 
+    purpose: Returns the chain properties.
     parameter_json: []
     expected_response_json:
-      account_creation_fee:
-      - '1'
-      - 3
-      - "@@000000021"
+      account_creation_fee: "0.100 STEEM"
       maximum_block_size: 131072
       sbd_interest_rate: 1000
       account_subsidy_limit: 0
   - api_method: condenser_api.get_comment_discussions_by_payout
     purpose: Returns a list of discussions based on payout.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_config
     purpose: Returns information about compile-time constants.
     parameter_json: []
     expected_response_json: {}
   - api_method: condenser_api.get_content
-    purpose: 
-    parameter_json: []
+    purpose: Returns the content (post or comment).  `author:string`; `permlink:string`
+    parameter_json: ["", ""]
     expected_response_json:
       id: 0
       author: ''
@@ -145,12 +142,12 @@
       body_length: 0
       reblogged_by: []
   - api_method: condenser_api.get_content_replies
-    purpose: Returns a list of replies.
-    parameter_json: []
+    purpose: Returns a list of replies.  `author:string`; `permlink:string`
+    parameter_json: ["", ""]
     expected_response_json: []
   - api_method: condenser_api.get_conversion_requests
-    purpose: 
-    parameter_json: []
+    purpose: Returns a list of conversion request.  `id:integer`
+    parameter_json: [0]
     expected_response_json: []
   - api_method: condenser_api.get_current_median_history_price
     purpose: 
@@ -160,51 +157,51 @@
       quote: 0.000 STEEM
   - api_method: condenser_api.get_discussions_by_active
     purpose: Returns a list of discussions based on active.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_author_before_date
     purpose: Returns a list of discussions based on author before date.
-    parameter_json: []
+    parameter_json: [{"author":"","start_permlink":"","before_date":"1970-01-01T00:00:00","limit":100}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_blog
     purpose: Returns a list of discussions by blog.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_cashout
     purpose: Returns a list of discussions by cashout.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_children
     purpose: Returns a list of discussions by children.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_comments
     purpose: Returns a list of discussions by comments.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_created
     purpose: Returns a list of discussions by created.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_feed
     purpose: Returns a list of discussions by feed.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_hot
     purpose: Returns a list of discussions by hot.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_promoted
     purpose: Returns a list of discussions by promoted.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_trending
     purpose: Returns a list of discussions by trending.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_discussions_by_votes
     purpose: Returns a list of discussions by votes.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_dynamic_global_properties
     purpose: Returns the current dynamic global properties.
@@ -243,16 +240,16 @@
     parameter_json: []
     expected_response_json: 
   - api_method: condenser_api.get_expiring_vesting_delegations
-    purpose: 
-    parameter_json: []
-    expected_response_json: []
+    purpose: Returns the expiring vesting delegations for an account.  `account:string`, `after:timestamp`
+    parameter_json: ["", "1970-01-01T00:00:00"]
+    expected_response_json: [{"id":0,"delegator":"","vesting_shares":"0.000000 VESTS","expiration":"1970-01-01T00:00:00"}]
   - api_method: condenser_api.get_feed
-    purpose: Returns a list of items in an account's feed.
-    parameter_json: []
+    purpose: Returns a list of items in an account's feed.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    parameter_json: ["",0,1]
     expected_response_json: []
   - api_method: condenser_api.get_feed_entries
-    purpose: Returns a list of entries in an account's feed.
-    parameter_json: []
+    purpose: Returns a list of entries in an account's feed.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    parameter_json: ["",0,1]
     expected_response_json: []
   - api_method: condenser_api.get_feed_history
     purpose: Returns the history of price feed values.
@@ -264,19 +261,19 @@
         quote: 0.000 STEEM
       price_history: []
   - api_method: condenser_api.get_follow_count
-    purpose: Returns the count of followers for an account.
-    parameter_json: []
+    purpose: Returns the count of followers for an account.  `account:string`
+    parameter_json: [""]
     expected_response_json:
       account: ''
       follower_count: 0
       following_count: 0
   - api_method: condenser_api.get_followers
-    purpose: Returns the list of followers for an account.
-    parameter_json: []
+    purpose: "Returns the list of followers for an account.  `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000"
+    parameter_json: ["","","",1]
     expected_response_json: []
   - api_method: condenser_api.get_following
-    purpose: Returns the list of accounts that are following an account.
-    parameter_json: []
+    purpose: "Returns the list of accounts that are following an account.  `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000"
+    parameter_json: ["","","",1]
     expected_response_json: []
   - api_method: condenser_api.get_hardfork_version
     purpose: 
@@ -284,67 +281,67 @@
     expected_response_json: 0.0.0
   - api_method: condenser_api.get_key_references
     purpose: Returns all accounts that have the key associated with their owner or active authorities.
-    parameter_json: []
-    expected_response_json: []
+    parameter_json: [["STM1111111111111111111111111111111114T1Anm"]]
+    expected_response_json: [["steemit"]]
   - api_method: condenser_api.get_market_history
-    purpose: Returns the market history for the internal SBD:STEEM market.
-    parameter_json: []
-    expected_response_json: []
+    purpose: Returns the market history for the internal SBD:STEEM market.  `bucket_seconds:int`; `start:timestamp`; `end:timestamp`
+    parameter_json: [0,"1970-01-01T00:00:00","1970-01-01T00:00:00"]
+    expected_response_json: [{"id":0,"open":"1970-01-01T00:00:00","seconds":0,"steem":{"high":0,"low":0,"open":0,"close":0,"volume":0},"non_steem":{"high":0,"low":0,"open":0,"close":0,"volume":0}}]
   - api_method: condenser_api.get_market_history_buckets
     purpose: Returns the bucket seconds being tracked by the plugin.
     parameter_json: []
-    expected_response_json: []
+    expected_response_json: [15, 60, 300, 3600, 86400]
   - api_method: condenser_api.get_next_scheduled_hardfork
-    purpose: 
+    purpose: Returns the next scheduled hardfork.
     parameter_json: []
     expected_response_json:
       hf_version: 0.0.0
       live_time: '1970-01-01T00:00:00'
   - api_method: condenser_api.get_open_orders
-    purpose: 
-    parameter_json: []
+    purpose: Returns the open orders for an account.  `account:string`
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_ops_in_block
-    purpose: Returns all operations contained in a block.
-    parameter_json: []
+    purpose: Returns all operations contained in a block.  `block_num:int`; `only_virtual:boolean`
+    parameter_json: [0,false]
     expected_response_json: []
   - api_method: condenser_api.get_order_book
-    purpose: Returns the internal market order book.
-    parameter_json: []
+    purpose: Returns the internal market order book.  `limit:int` up to 500
+    parameter_json: [0]
     expected_response_json:
       bids: []
       asks: []
-  - api_method: condenser_api.get_owner_history
-    purpose: 
-    parameter_json: []
+  - api_method: condenser_api.get_owner_history  `account:string`
+    purpose: Returns the owner history of an account.
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_post_discussions_by_payout
     purpose: Returns a list of post discussions by payout.
-    parameter_json: []
+    parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
   - api_method: condenser_api.get_potential_signatures
     purpose: This method will return the set of all public keys that could possibly sign for a given transaction.
-    parameter_json: []
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: []
   - api_method: condenser_api.get_reblogged_by
-    purpose: Returns a list of authors that have reblogged a post.
-    parameter_json: []
+    purpose: Returns a list of authors that have reblogged a post.  `author:string`; `permlink:string`
+    parameter_json: ["",""]
     expected_response_json: []
   - api_method: condenser_api.get_recent_trades
-    purpose: Returns the most recent trades for the internal SBD:STEEM market.
-    parameter_json: []
-    expected_response_json: []
+    purpose: Returns the most recent trades for the internal SBD:STEEM market.  `limit:int` up to 1000
+    parameter_json: [1]
+    expected_response_json: [{"date":"1970-01-01T00:00:00","current_pays":"0.0 SBD","open_pays":"0.0 STEEM"}]
   - api_method: condenser_api.get_recovery_request
-    purpose: 
-    parameter_json: []
+    purpose: Returns the recovery request for an account.  `account:string`
+    parameter_json: [""]
     expected_response_json: 
   - api_method: condenser_api.get_replies_by_last_update
-    purpose: Returns a list of replies by last update.
-    parameter_json: []
+    purpose: Returns a list of replies by last update.  `start_parent_author:string`, `start_permlink:string`, `limit:int` up to 100
+    parameter_json: ["","",1]
     expected_response_json: []
   - api_method: condenser_api.get_required_signatures
-    purpose: This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction.
-    parameter_json: []
+    purpose: This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. `trx:object`; `available_keys:[string]`
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},[]]
     expected_response_json: []
   - api_method: condenser_api.get_reward_fund
     purpose: Returns information about the current reward funds.
@@ -361,16 +358,16 @@
       author_reward_curve: quadratic
       curation_reward_curve: '34723648'
   - api_method: condenser_api.get_savings_withdraw_from
-    purpose: 
-    parameter_json: []
+    purpose: Returns savings withdraw from an account.  `account:string`
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_savings_withdraw_to
-    purpose: 
-    parameter_json: []
+    purpose: Returns the savings withdraw to an account.  `account:string`
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_state
-    purpose: 
-    parameter_json: []
+    purpose: Returns the state of a path.  **Deprecated.**  `path:string`
+    parameter_json: [""]
     expected_response_json:
       current_route: ''
       props:
@@ -433,8 +430,8 @@
         quote: 0.000 STEEM
       error: ''
   - api_method: condenser_api.get_tags_used_by_author
-    purpose: Returns a list of tags used by an author.
-    parameter_json: []
+    purpose: Returns a list of tags used by an author.  `author:string`
+    parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_ticker
     purpose: Returns the market ticker for the internal SBD:STEEM market.
@@ -447,12 +444,12 @@
       steem_volume: 0.000 STEEM
       sbd_volume: 0.000 STEEM
   - api_method: condenser_api.get_trade_history
-    purpose: Returns the trade history for the internal SBD:STEEM market.
-    parameter_json: []
+    purpose: Returns the trade history for the internal SBD:STEEM market.  `start:timestamp`; `end:timestamp`; `limit:int` up to 1000
+    parameter_json: ["1970-01-01T00:00:00","1970-01-01T00:00:00",1000]
     expected_response_json: []
   - api_method: condenser_api.get_transaction
-    purpose: Returns the details of a transaction based on a transaction id.
-    parameter_json: []
+    purpose: Returns the details of a transaction based on a transaction id.  `trx_id:string`
+    parameter_json: [""]
     expected_response_json:
       ref_block_num: 0
       ref_block_prefix: 0
@@ -465,22 +462,22 @@
       transaction_num: 0
   - api_method: condenser_api.get_transaction_hex
     purpose: Returns a hexdump of the serialized binary form of a transaction.
-    parameter_json: []
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: ''
   - api_method: condenser_api.get_trending_tags
-    purpose: Returns the list of trending tags.
-    parameter_json: []
+    purpose: Returns the list of trending tags.  `start_tag:string`; `limit:int` up to 100
+    parameter_json: ["",1]
     expected_response_json: []
   - api_method: condenser_api.get_version
-    purpose: 
+    purpose: Returns the versions of blockchain, steem, and FC.
     parameter_json: []
     expected_response_json:
       blockchain_version: ''
       steem_revision: ''
       fc_revision: ''
   - api_method: condenser_api.get_vesting_delegations
-    purpose: 
-    parameter_json: []
+    purpose: Returns the vesting delegations by an account.  `delegator_account:string`; `start_account:string`; `limit:int` up to 1000
+    parameter_json: ["","",1]
     expected_response_json: []
   - api_method: condenser_api.get_volume
     purpose: Returns the market volume for the past 24 hours.
@@ -489,13 +486,13 @@
       steem_volume: 0.000 STEEM
       sbd_volume: 0.000 STEEM
   - api_method: condenser_api.get_withdraw_routes
-    purpose: 
-    parameter_json: []
+    purpose: Returns the withdraw routes for an account.  `account:string`; `type:string` of `outgoing`, `incoming`, or `all`
+    parameter_json: ["",""]
     expected_response_json: []
   - api_method: condenser_api.get_witness_by_account
-    purpose: 
-    parameter_json: []
-    expected_response_json: 
+    purpose: Returns the witness of an account.  `account:string`
+    parameter_json: [""]
+    expected_response_json: {"id":0,"owner":"","created":"1970-01-01T00:00:00","url":"","votes":"0","virtual_last_update":"0","virtual_position":"0","virtual_scheduled_time":"0","total_missed":0,"last_aslot":0,"last_confirmed_block_num":0,"pow_worker":0,"signing_key":"","props":{"account_creation_fee":"0.000 STEEM","maximum_block_size":65536,"sbd_interest_rate":0},"sbd_exchange_rate":{"base":"0.000 SBD","quote":"0.000 STEEM"},"last_sbd_exchange_update":"1970-01-01T00:00:00","last_work":"","running_version":"","hardfork_version_vote":"","hardfork_time_vote":"1970-01-01T00:00:00"}
   - api_method: condenser_api.get_witness_count
     purpose: 
     parameter_json: []
@@ -523,30 +520,30 @@
       max_runner_witnesses: 1
       hardfork_required_witnesses: 17
   - api_method: condenser_api.get_witnesses
-    purpose: 
+    purpose: Returns current witnesses.
     parameter_json: []
     expected_response_json: []
   - api_method: condenser_api.get_witnesses_by_vote
-    purpose: 
-    parameter_json: []
+    purpose: Returns current witnesses by vote.  `start_name:string`; `limit:int` up to 1000
+    parameter_json: ["",1000]
     expected_response_json: []
   - api_method: condenser_api.lookup_account_names
-    purpose: 
-    parameter_json: []
-    expected_response_json: []
+    purpose: Looks up account names.  `accounts:[string]`
+    parameter_json: [["steemit"]]
+    expected_response_json: [{"id":28,"name":"steemit","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5tfrdPG1Ycjwa9FuBUueDFFyygndBLXdVEEs2c9eRKScnFk6vM",1],["STM71f6yWztimJuREVyyMXNqAVbx1FzPVW6LLXNoQ35dHwKuszmHX",1],["STM7U3ymhUTuKME72dpdpQkdQvh722gTLjKBKtmKQPPWgtkr418Nf",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5832HKCJzs6K3rRCsZ1PidTKgjF38ZJb718Y3pCW92HEMsCGPf",1],["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH",1],["STM7xVFaqi8RxhWKZwuLA2bKrAiQmhnrbgvw4e2ChAsKYQbPjqUq2",1],["STM83dmDkQcZU9X8MWcxsTztSyutE6udrb55PvYgu7RLzStaoAt67",1]]},"memo_key":"STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH","json_metadata":"","proxy":"","last_owner_update":"2017-03-16T21:17:51","last_account_update":"2017-03-16T23:10:36","created":"2016-03-24T17:00:21","mined":true,"recovery_account":"steem","last_account_recovery":"1970-01-01T00:00:00","reset_account":"null","comment_count":0,"lifetime_vote_count":0,"post_count":1,"can_vote":true,"voting_power":9950,"last_vote_time":"2016-12-04T23:10:57","balance":"0.006 STEEM","savings_balance":"11006644.632 STEEM","sbd_balance":"8581.890 SBD","sbd_seconds":"18846158467785","sbd_seconds_last_update":"2018-04-10T04:08:36","sbd_last_interest_payment":"2018-03-15T17:58:24","savings_sbd_balance":"0.000 SBD","savings_sbd_seconds":"0","savings_sbd_seconds_last_update":"1970-01-01T00:00:00","savings_sbd_last_interest_payment":"1970-01-01T00:00:00","savings_withdraw_requests":0,"reward_sbd_balance":"0.000 SBD","reward_steem_balance":"0.000 STEEM","reward_vesting_balance":"0.000000 VESTS","reward_vesting_steem":"0.000 STEEM","vesting_shares":"90039851836.689703 VESTS","delegated_vesting_shares":"0.000000 VESTS","received_vesting_shares":"0.000000 VESTS","vesting_withdraw_rate":"0.000000 VESTS","next_vesting_withdrawal":"1969-12-31T23:59:59","withdrawn":0,"to_withdraw":0,"withdraw_routes":0,"curation_rewards":0,"posting_rewards":3548,"proxied_vsf_votes":["28583799126",0,0,0],"witnesses_voted_for":0,"last_post":"2016-03-30T18:30:18","last_root_post":"2016-03-30T18:30:18"}]
   - api_method: condenser_api.lookup_accounts
-    purpose: 
-    parameter_json: []
+    purpose: Looks up accounts starting with name.  `lower_bound_name:string`; `limit:int` up to 1000
+    parameter_json: ["",1]
     expected_response_json: []
   - api_method: condenser_api.lookup_witness_accounts
-    purpose: 
-    parameter_json: []
+    purpose: Looks up witness accounts starting with name.  `lower_bound_name:string`; `limit:int` up to 1000
+    parameter_json: ["",1]
     expected_response_json: []
   - api_method: condenser_api.verify_account_authority
-    purpose: Returns true if the signers have enough authority to authorize an account.
-    parameter_json: []
+    purpose: Returns true if the signers have enough authority to authorize an account.  `account:string`, `signer:string`
+    parameter_json: ["",[""]]
     expected_response_json: false
   - api_method: condenser_api.verify_authority
     purpose: Returns true if the transaction has all of the required signatures.
-    parameter_json: []
+    parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: false
