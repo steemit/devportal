@@ -8,9 +8,6 @@ module Scrape
     DEFAULT_API_DATA_PATH = '_data/apidefinitions'
     REQUEST_CONTENT_TYPE = 'application/json; charset=utf-8'
     
-    # Skip these for now.
-    API_EXCLUDE = [:condenser_api]
-    
     def initialize(options = {url: DEFAULT_URL, api_data_path: DEFAULT_API_DATA_PATH})
       @url = options[:url] || DEFAULT_URL
       @api_data_path = options[:api_data_path] || DEFAULT_API_DATA_PATH
@@ -23,10 +20,6 @@ module Scrape
       method_change_count = 0
       
       apis.each do |api, methods|
-        if API_EXCLUDE.include? api
-          puts "Skipping #{api}"
-          next
-        end
         file_name = "#{api_data_path}/#{api}.yml"
         puts "Definitions for: #{api}, methods: #{methods.size}"
         
@@ -80,11 +73,21 @@ module Scrape
           if existing_api_method
             parameter_json = signature['args']
             expected_response_json = signature['ret']
-            if existing_api_method['parameter_json'] == parameter_json &&
-              existing_api_method['expected_response_json'] == expected_response_json
+            case api
+            when :condenser_api
+              # skipping signature analysis on condenser_api
+              # puts "A: " + existing_api_method['parameter_json'].inspect
+              # puts "B: " + parameter_json.inspect
+              # puts "C: " + existing_api_method['expected_response_json'].inspect
+              # puts "D: " + expected_response_json.inspect
               next
             else
-              puts "\tChanged: #{method}"
+              if existing_api_method['parameter_json'] == parameter_json &&
+                existing_api_method['expected_response_json'] == expected_response_json
+                next
+              else
+                puts "\tChanged: #{method}"
+              end
             end
           else
             puts "\tAdding: #{method}"
