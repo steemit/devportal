@@ -311,8 +311,8 @@
     expected_response_json:
       bids: []
       asks: []
-  - api_method: condenser_api.get_owner_history  `account:string`
-    purpose: Returns the owner history of an account.
+  - api_method: condenser_api.get_owner_history
+    purpose: Returns the owner history of an account.  `account:string`
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_post_discussions_by_payout
