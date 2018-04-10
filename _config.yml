@@ -48,15 +48,20 @@ collections:
     id: tutorials-javascript
     position: 9
     output: true
-  apidefinitions:
-    title: API Definitions
-    id: apidefinitions
-    position: 10
-    output: true
   tutorials-python:
     title: Python Tutorials
     id: tutorials-python
     position: 11
+    output: true
+  apidefinitions:
+    title: API Definitions
+    id: apidefinitions
+    position: 12
+    output: true
+  testnet:
+    title: Testnet
+    id: testnet
+    position: 13
     output: true
 
 gems:

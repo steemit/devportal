@@ -4,7 +4,7 @@ module Jekyll
   module NeatJsonFilter
     def neat_json(input)
       begin
-        JSON.neat_generate(input)
+        JSON.neat_generate(input, wrap: 50, after_comma: 1, after_colon: 1)
       rescue JSON::GeneratorError => e
         "Error: #{e}."
       end
