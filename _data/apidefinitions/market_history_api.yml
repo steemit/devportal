@@ -1,5 +1,5 @@
 - name: Market history API
-  description: Used to lookup market history information. These AppBase API methods are still under development and subject to change.
+  description: Used to lookup market history information. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: market_history_api.get_market_history
       purpose: Returns the market history for the internal SBD:STEEM market.

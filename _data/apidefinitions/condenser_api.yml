@@ -2,7 +2,7 @@
 # See: https://git.io/vx5CY
 ---
 - name: :condenser_api
-  description: All calls in condenser_api will return [] as the argument, as the array argument passing is opaque and implemented in the API calls themselves. They follow the current argument formatting. Existing apps should only need to skip using login_api and send all of their calls to condenser_api without any other changes required to use Appbase.
+  description: All calls in `condenser_api` will return `[]` as the argument, as the array argument passing is opaque and implemented in the API calls themselves. They follow the current argument formatting. Existing apps should only need to skip using `login_api` and send all of their calls to `condenser_api` without any other changes required to use Appbase.
   methods:
   - api_method: condenser_api.broadcast_block
     purpose: Used to broadcast a block.
