@@ -1,10 +1,10 @@
 ---
-position: 99
+position: 0
 exclude: true
 ---
 
 {% for sections in site.data.apidefinitions.condenser_api %}
-{{sections.description}}
+{{sections.description | markdownify}}
 {% for method in sections.methods %}
 #### {{method.api_method}}
 {{method.purpose}}

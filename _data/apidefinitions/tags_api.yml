@@ -1,5 +1,5 @@
 - name: Tags API
-  description: Used to lookup information about tags, posts, and discussions. These AppBase API methods are still under development and subject to change.
+  description: Used to lookup information about tags, posts, and discussions. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: tags_api.get_active_votes
       purpose: Returns all votes for the given post.
