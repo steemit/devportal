@@ -36,7 +36,13 @@
       trx_num: 0
       expired: false
   - api_method: condenser_api.get_account_bandwidth
-    purpose: "Returns the available bandwidth of an account. `account:string`; `type:string`, e.g.: `forum` or `market`"
+    purpose: |
+      Returns the available bandwidth of an account.  Parameters: `account:string`; `type:string`, e.g.: `forum` or `market`
+      
+      | `account` (string) | `type` (string) | |
+      |--------------------|-----------------|-|
+      | `"steemit"` | `"forum"` | Query the available forum bandwidth for the account named "steemit". |
+      | `"alice"` | `"market"` | Query the available market bandwidth for the account named "alice". |
     parameter_json: ["steemit","forum"]
     expected_response_json: {"id":8,"account":"steemit","type":"forum","average_bandwidth":214996934,"lifetime_bandwidth":"48395000000","last_bandwidth_update":"2018-02-16T03:11:00"}
   - api_method: condenser_api.get_account_count
@@ -47,8 +53,8 @@
     purpose: |
       Returns a history of all operations for a given account.  Parameters: `account:string`; `start:int`. e.g.: -1 for reverse history or any positive numeric; `limit:int` up to 10000
       
-      account` (string) | `start` (int) | `limit` (int) | |
-      |-------------------|---------------|---------------|-|
+      | `account` (string) | `start` (int) | `limit` (int) | |
+      |--------------------|---------------|---------------|-|
       | `"steemit"` | `0` | `1000` | Queries the account named `steemit` starting on the latest item in history, up to 1,000 results. |
       | `"alice"` | `-1` | `10000` | Queries the account named `alice` starting on the oldest item in history, up to 10,000 results. |
     parameter_json: ["",0,1000]
