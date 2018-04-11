@@ -2,7 +2,22 @@
 # See: https://git.io/vx5CY
 ---
 - name: :condenser_api
-  description: All calls in condenser_api will return [] as the argument, as the array argument passing is opaque and implemented in the API calls themselves. They follow the current argument formatting. Existing apps should only need to skip using login_api and send all of their calls to condenser_api without any other changes required to use Appbase.
+  description:  |
+    To help with this transition, we created `condenser_api`, which contains all of the API methods that currently exist and uses the existing argument formatting. The easiest way to get your app to work with Appbase is to change the api to `condenser_api`.
+    
+    All calls in `condenser_api` will return `[]` as the argument, as the array argument passing is opaque and implemented in the API calls themselves. They follow the current argument formatting. Existing apps should only need to skip using login_api and send all of their calls to condenser_api without any other changes required to use Appbase.
+    
+    For example, calling `get_dynamic_global_properties` with `condenser_api` vs `database_api`:
+    
+    ```json
+    {"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}
+    ```
+    
+    ```json
+    {"jsonrpc":"2.0", "method":"database_api.get_dynamic_global_properties", "id":1}
+    ```
+    
+    Because the method has no arguments, the params field can be omitted when not using `condenser_api`. However, it can optionally be included as the void type (e.g. `"params":{}`) but it is not required.
   methods:
   - api_method: condenser_api.broadcast_block
     purpose: Used to broadcast a block.
@@ -29,7 +44,13 @@
     parameter_json: []
     expected_response_json: 0
   - api_method: condenser_api.get_account_history
-    purpose: "Returns a history of all operations for a given account.  `account:string`; `start:int`. e.g.: -1 for reverse history or any positive numeric; `limit:int` up to 10000"
+    purpose: |
+      Returns a history of all operations for a given account.  Parameters: `account:string`; `start:int`. e.g.: -1 for reverse history or any positive numeric; `limit:int` up to 10000
+      
+      account` (string) | `start` (int) | `limit` (int) | |
+      |-------------------|---------------|---------------|-|
+      | `"steemit"` | `0` | `1000` | Queries the account named `steemit` starting on the latest item in history, up to 1,000 results. |
+      | `"alice"` | `-1` | `10000` | Queries the account named `alice` starting on the oldest item in history, up to 10,000 results. |
     parameter_json: ["",0,1000]
     expected_response_json: []
   # - api_method: condenser_api.get_account_references
@@ -37,43 +58,99 @@
   #   parameter_json: []
   #   expected_response_json: []
   - api_method: condenser_api.get_account_reputations
-    purpose: Returns a list of account reputations.  `account_lower_bound:int`; `limit:int` up to 1000
+    purpose: |
+      Returns a list of account reputations.  Parameters: `account_lower_bound:string`; `limit:int` up to 1000
+      
+      | `account_lower_bound` (string) | `limit` (int) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `1` | Queries for accounts that start with "steemit", only one result. |
+      | `"a"` | `10` | Queries for accounts that start with "a", up to 10 results. |
     parameter_json: ["",1000]
     expected_response_json: []
   - api_method: condenser_api.get_account_votes
-    purpose: Returns all votes by an account.  `account:string`
+    purpose: |
+      Returns all votes by an account.  Parameters: `account:string`
+
+      | `account` (string) | |
+      |-------------------|-|
+      | `"steemit"` | Queries for votes by "steemit". |
+      | `"alice"` | Queries for votes by "alice". |
     parameter_json: [""]
-    expected_response_json: []
+    expected_response_json: [{"authorperm":"","weight":"","rshares":"","percent":,"time":"2016-04-29T22:27:42"}]
   - api_method: condenser_api.get_accounts
-    purpose: "Returns accounts, queried by name.  `account:string array`, e.g.: `[\"ned\"]`"
+    purpose: |
+      Returns accounts, queried by name.  Parameters: `account:string array`
+      
+      | `account` (string array) | |
+      |-------------------|-|
+      | `["steemit"]` | Queries for account named "steemit". |
+      | `["steemit", "alice"]` | Queries for accounts named "steemit" and "alice". |
     parameter_json: [[""]]
-    expected_response_json: []
+    expected_response_json: [{"id":0,"name":"","owner":{"weight_threshold":0,"account_auths":[],"key_auths":[["",0],["",0],["",0]]},"active":{"weight_threshold":0,"account_auths":[],"key_auths":[["",0],["",0]]},"posting":{"weight_threshold":0,"account_auths":[],"key_auths":[["",0],["",0],["",0]]},"memo_key":"","json_metadata":"","proxy":"","last_owner_update":"2017-03-16T21:17:51","last_account_update":"2017-03-16T23:10:36","created":"2016-03-24T17:00:21","mined":false,"recovery_account":"","last_account_recovery":"1970-01-01T00:00:00","reset_account":"null","comment_count":0,"lifetime_vote_count":0,"post_count":0,"can_vote":false,"voting_power":0,"last_vote_time":"2016-12-04T23:10:57","balance":"0.000 STEEM","savings_balance":"0.0 STEEM","sbd_balance":"0.0 SBD","sbd_seconds":"","sbd_seconds_last_update":"2018-04-10T04:08:36","sbd_last_interest_payment":"2018-03-15T17:58:24","savings_sbd_balance":"0.000 SBD","savings_sbd_seconds":"","savings_sbd_seconds_last_update":"1970-01-01T00:00:00","savings_sbd_last_interest_payment":"1970-01-01T00:00:00","savings_withdraw_requests":0,"reward_sbd_balance":"0.000 SBD","reward_steem_balance":"0.000 STEEM","reward_vesting_balance":"0.000000 VESTS","reward_vesting_steem":"0.000 STEEM","vesting_shares":"0.000 VESTS","delegated_vesting_shares":"0.000000 VESTS","received_vesting_shares":"0.000000 VESTS","vesting_withdraw_rate":"0.000000 VESTS","next_vesting_withdrawal":"1969-12-31T23:59:59","withdrawn":0,"to_withdraw":0,"withdraw_routes":0,"curation_rewards":0,"posting_rewards":0,"proxied_vsf_votes":[0,0,0,0],"witnesses_voted_for":0,"last_post":"2016-03-30T18:30:18","last_root_post":"2016-03-30T18:30:18","average_bandwidth":0,"lifetime_bandwidth":"","last_bandwidth_update":"2018-02-16T03:11:00","average_market_bandwidth":0,"lifetime_market_bandwidth":"","last_market_bandwidth_update":"2018-02-01T19:12:24","vesting_balance":"0.000 STEEM","reputation":"","transfer_history":[],"market_history":[],"post_history":[],"vote_history":[],"other_history":[],"witness_votes":[],"tags_usage":[],"guest_bloggers":[]}]
   - api_method: condenser_api.get_active_votes
-    purpose: Returns all votes for the given post.  `author:string`; `permlink:string`
+    purpose: |
+      Returns all votes for the given post.  Parameters: `author:string`; `permlink:string`
+      
+      | `author` (string) | `permlink` (string) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"firstpost"` | Queries votes for content with a slug `@steemit/firstpost` |
+      | `"alice"` | `"a-post-by-alice"` | Queries votes for content with a slug `@alice/a-post-by-alice` |
     parameter_json: ["",""]
-    expected_response_json: []
+    expected_response_json: [{"voter":"","weight":"","rshares":0,"percent":0,"reputation":"","time":"1970-01-01T00:00:00"}]
   - api_method: condenser_api.get_active_witnesses
     purpose: Returns the list of active witnesses.
     parameter_json: []
     expected_response_json: []
   - api_method: condenser_api.get_block
-    purpose: Returns a block.  `block_num:int`
+    purpose: |
+      Returns a block.  Parameters: `block_num:int`
+      
+      | `block_num` (int) | |
+      |-------------------|-|
+      | `1` | Queries the very first block. |
+      | `8675309` | Queries block number 8,675,309. |
+      | `62396745` | Queries block number 62,396,745. |
     parameter_json: [1]
     expected_response_json: {"previous":"0000000000000000000000000000000000000000","timestamp":"2016-03-24T16:05:00","witness":"initminer","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[],"witness_signature":"204f8ad56a8f5cf722a02b035a61b500aa59b9519b2c33c77a80c0a714680a5a5a7a340d909d19996613c5e4ae92146b9add8a7a663eef37d837ef881477313043","transactions":[],"block_id":"0000000109833ce528d5bbfb3f6225b39ee10086","signing_key":"STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX","transaction_ids":[]}
   - api_method: condenser_api.get_block_header
-    purpose: Returns a block header.  `block_num:int`
+    purpose: |
+      Returns a block header.  Parameters: `block_num:int`
+      
+      | `block_num` (int) | |
+      |-------------------|-|
+      | `1` | Queries the block headers for the very first block. |
+      | `8675309` | Queries block headers for block number 8,675,309. |
+      | `62396745` | Queries block headers for block number 62,396,745. |
     parameter_json: [1]
     expected_response_json: {"previous":"0000000000000000000000000000000000000000","timestamp":"2016-03-24T16:05:00","witness":"initminer","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[]}
   - api_method: condenser_api.get_blog
-    purpose: Returns the list of blog entries for an account.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    purpose: |
+      Returns the list of blog entries for an account.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
+      
+      | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
+      |-------------------|------------------------|---------------|-|
+      | "steemit" | `0` | `1` | Queries the blog for the account named "steemit", up to one result. |
+      | "alice" | `0` | `50` | Queries the blog for the account named "steemit", up to 50 results. |
     parameter_json: ["steemit",0,1]
     expected_response_json: [{"comment":{"id":0,"author":"steemit","permlink":"firstpost","category":"meta","parent_author":"","parent_permlink":"meta","title":"Welcome to Steem!","body":"Steemit is a social media platform where anyone can earn STEEM points by posting. The more people who like a post, the more STEEM the poster earns. Anyone can sell their STEEM for cash or vest it to boost their voting power.","json_metadata":"","last_update":"2016-03-30T18:30:18","created":"2016-03-30T18:30:18","active":"2018-04-09T12:00:42","last_payout":"2016-08-24T19:59:42","depth":0,"children":336,"net_rshares":0,"abs_rshares":0,"vote_rshares":0,"children_abs_rshares":"26169324897669","cashout_time":"1969-12-31T23:59:59","max_cashout_time":"1969-12-31T23:59:59","total_vote_weight":0,"reward_weight":10000,"total_payout_value":["942",3,"@@000000013"],"curator_payout_value":["756",3,"@@000000013"],"author_rewards":3548,"net_votes":90,"root_author":"steemit","root_permlink":"firstpost","max_accepted_payout":["1000000000",3,"@@000000013"],"percent_steem_dollars":10000,"allow_replies":true,"allow_votes":true,"allow_curation_rewards":true,"beneficiaries":[]},"blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
   - api_method: condenser_api.get_blog_authors
-    purpose: Returns a list of authors that have had their content reblogged on a given blog account.
-    parameter_json: []
-    expected_response_json: []
+    purpose: |
+      Returns a list of authors that have had their content reblogged on a given blog account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |-------------------|-|
+      | `"steemit"` | Queries for account named "steemit". |
+      | `"alice"` | Queries for accounts named alice". |
+    parameter_json: [""]
+    expected_response_json: [{"author":"","count":0}]
   - api_method: condenser_api.get_blog_entries
-    purpose: Returns a list of blog entries for an account.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    purpose: |
+      Returns a list of blog entries for an account.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
+      
+      | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
+      |-------------------|------------------------|---------------|-|
+      | "steemit" | `0` | `1` | Queries the blog entries for the account named "steemit", up to one result. |
+      | "alice" | `0` | `50` | Queries the blog entries for the account named "steemit", up to 50 results. |
     parameter_json: ["steemit",0,1]
     expected_response_json: [{"author":"steemit","permlink":"firstpost","blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
   - api_method: condenser_api.get_chain_properties
@@ -93,7 +170,13 @@
     parameter_json: []
     expected_response_json: {}
   - api_method: condenser_api.get_content
-    purpose: Returns the content (post or comment).  `author:string`; `permlink:string`
+    purpose: |
+      Returns the content (post or comment).  Parameters: `author:string`; `permlink:string`
+      
+      | `author` (string) | `permlink` (string) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"firstpost"` | Queries content with a slug `@steemit/firstpost` |
+      | `"alice"` | `"a-post-by-alice"` | Queries content with a slug `@alice/a-post-by-alice` |
     parameter_json: ["", ""]
     expected_response_json:
       id: 0
@@ -142,11 +225,68 @@
       body_length: 0
       reblogged_by: []
   - api_method: condenser_api.get_content_replies
-    purpose: Returns a list of replies.  `author:string`; `permlink:string`
+    purpose: |
+      Returns a list of replies.  Parameters: `author:string`; `permlink:string`
+      
+      
+      | `author` (string) | `permlink` (string) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"firstpost"` | Queries replies for a slug `@steemit/firstpost` |
+      | `"alice"` | `"a-post-by-alice"` | Queries replies for a slug `@alice/a-post-by-alice` |
     parameter_json: ["", ""]
-    expected_response_json: []
+    expected_response_json:
+      id: 0
+      author: ''
+      permlink: ''
+      category: ''
+      parent_author: ''
+      parent_permlink: ''
+      title: ''
+      body: ''
+      json_metadata: ''
+      last_update: '1970-01-01T00:00:00'
+      created: '1970-01-01T00:00:00'
+      active: '1970-01-01T00:00:00'
+      last_payout: '1970-01-01T00:00:00'
+      depth: 0
+      children: 0
+      net_rshares: 0
+      abs_rshares: 0
+      vote_rshares: 0
+      children_abs_rshares: 0
+      cashout_time: '1970-01-01T00:00:00'
+      max_cashout_time: '1970-01-01T00:00:00'
+      total_vote_weight: 0
+      reward_weight: 0
+      total_payout_value: 0.000 STEEM
+      curator_payout_value: 0.000 STEEM
+      author_rewards: 0
+      net_votes: 0
+      root_author: ''
+      root_permlink: ''
+      max_accepted_payout: 0.000 STEEM
+      percent_steem_dollars: 0
+      allow_replies: false
+      allow_votes: false
+      allow_curation_rewards: false
+      beneficiaries: []
+      url: ''
+      root_title: ''
+      pending_payout_value: 0.000 STEEM
+      total_pending_payout_value: 0.000 STEEM
+      active_votes: []
+      replies: []
+      author_reputation: 0
+      promoted: 0.000 STEEM
+      body_length: 0
+      reblogged_by: []
   - api_method: condenser_api.get_conversion_requests
-    purpose: Returns a list of conversion request.  `id:integer`
+    purpose: |
+      Returns a list of conversion request.  Parameters: `id:integer`
+      
+      | `id` (int) | |
+      |-------------------|-|
+      | `1234` | Queries a conversion request with the id of 1234. |
     parameter_json: [0]
     expected_response_json: []
   - api_method: condenser_api.get_current_median_history_price
@@ -240,15 +380,33 @@
     parameter_json: []
     expected_response_json: 
   - api_method: condenser_api.get_expiring_vesting_delegations
-    purpose: Returns the expiring vesting delegations for an account.  `account:string`, `after:timestamp`
+    purpose: |
+      Returns the expiring vesting delegations for an account.  Parameters: `account:string`, `after:timestamp`
+      
+      | `account` (string) | `after` (timestamp) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"2018-01-01T00:00:00"` | Queries for expiring vesting after January 1st, 2018. |
+      | `"alice"` | `"2017-12-01T00:00:00"` | Queries for expiring vesting after December 1st, 2017. |
     parameter_json: ["", "1970-01-01T00:00:00"]
     expected_response_json: [{"id":0,"delegator":"","vesting_shares":"0.000000 VESTS","expiration":"1970-01-01T00:00:00"}]
   - api_method: condenser_api.get_feed
-    purpose: Returns a list of items in an account's feed.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    purpose: |
+      Returns a list of items in an account's feed.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
+      
+      | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
+      |-------------------|---------------|---------------|-|
+      | `"steemit"` | `0` | `1` | Queries the account named `steemit` starting on the first item, up to 1 result. |
+      | `"alice"` | `1` | `10` | Queries the account named `alice` starting on the second item, up to 10 results. |
     parameter_json: ["",0,1]
     expected_response_json: []
   - api_method: condenser_api.get_feed_entries
-    purpose: Returns a list of entries in an account's feed.  `account:string`; `start_entry_id:int`; `limit:int` up to 500
+    purpose: |
+      Returns a list of entries in an account's feed.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
+      
+      | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
+      |-------------------|---------------|---------------|-|
+      | `"steemit"` | `0` | `1` | Queries the account named `steemit` starting on the first item, up to 1 result. |
+      | `"alice"` | `1` | `10` | Queries the account named `alice` starting on the second item, up to 10 results. |
     parameter_json: ["",0,1]
     expected_response_json: []
   - api_method: condenser_api.get_feed_history
@@ -261,18 +419,36 @@
         quote: 0.000 STEEM
       price_history: []
   - api_method: condenser_api.get_follow_count
-    purpose: Returns the count of followers for an account.  `account:string`
+    purpose: |
+      Returns the count of followers/following for an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |-------------------|-|
+      | `"steemit"` | Queries the account named `steemit`. |
+      | `"alice"` | Queries the account named `alice`. |
     parameter_json: [""]
     expected_response_json:
       account: ''
       follower_count: 0
       following_count: 0
   - api_method: condenser_api.get_followers
-    purpose: "Returns the list of followers for an account.  `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000"
+    purpose: |
+      Returns the list of followers for an account.  Parameters: `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000
+      
+      | `account` (string) | `start` (string) | `type` (string) | `limit` (int) | |
+      |--------------------|------------------|-----------------|---------------|-|
+      | `"steemit"` | `null` | `"blog"` | `10` | Queries for follows of the account named `steemit`, up to 10 results. |
+      | `"alice"` | `null` | `"ignore"` | `100` | Queries for mutes of the account named `alice`, up to 100 results. |
     parameter_json: ["","","",1]
     expected_response_json: []
   - api_method: condenser_api.get_following
-    purpose: "Returns the list of accounts that are following an account.  `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000"
+    purpose: |
+      Returns the list of accounts that are following an account.  Parameters: `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000
+      
+      | `account` (string) | `start` (string) | `type` (string) | `limit` (int) | |
+      |--------------------|------------------|-----------------|---------------|-|
+      | `"steemit"` | `null` | `"blog"` | `10` | Queries for follows of the account named `steemit`, up to 10 results. |
+      | `"alice"` | `null` | `"ignore"` | `100` | Queries for mutes of the account named `alice`, up to 100 results. |
     parameter_json: ["","","",1]
     expected_response_json: []
   - api_method: condenser_api.get_hardfork_version
@@ -284,7 +460,16 @@
     parameter_json: [["STM1111111111111111111111111111111114T1Anm"]]
     expected_response_json: [["steemit"]]
   - api_method: condenser_api.get_market_history
-    purpose: Returns the market history for the internal SBD:STEEM market.  `bucket_seconds:int`; `start:timestamp`; `end:timestamp`
+    purpose: |
+      Returns the market history for the internal SBD:STEEM market.  Parameters: `bucket_seconds:int`; `start:timestamp`; `end:timestamp`
+      
+      | `bucket_seconds` (int) | `start` (timestamp) | `end` (timestamp) | |
+      |------------------------|---------------------|-------------------|-|
+      | `15` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by 15 seconds. |
+      | `60` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by one minute. |
+      | `300` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by five minutes. |
+      | `3600` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by one hour. |
+      | `86400` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by one day. |
     parameter_json: [0,"1970-01-01T00:00:00","1970-01-01T00:00:00"]
     expected_response_json: [{"id":0,"open":"1970-01-01T00:00:00","seconds":0,"steem":{"high":0,"low":0,"open":0,"close":0,"volume":0},"non_steem":{"high":0,"low":0,"open":0,"close":0,"volume":0}}]
   - api_method: condenser_api.get_market_history_buckets
@@ -302,17 +487,34 @@
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_ops_in_block
-    purpose: Returns all operations contained in a block.  `block_num:int`; `only_virtual:boolean`
+    purpose: |
+      Returns all operations contained in a block.  Parameters: `block_num:int`; `only_virtual:boolean`
+      
+      | `block_num` (int) | `only_virtual` (boolean) | |
+      |-------------------|--------------------------|-|
+      | `1` | `false` | Queries the operations in block #1. |
+      | `5443322` | `true` | Queries only the virtual operations in block #5,443,322. |
     parameter_json: [0,false]
-    expected_response_json: []
+    expected_response_json: [{"trx_id":"0000000000000000000000000000000000000000","block":0,"trx_in_block":0,"op_in_trx":0,"virtual_op":0,"timestamp":"2016-10-01T06:31:24","op":["producer_reward",{"producer":"","vesting_shares":"0.000000 VESTS"}]}]
   - api_method: condenser_api.get_order_book
-    purpose: Returns the internal market order book.  `limit:int` up to 500
+    purpose: |
+      Returns the internal market order book.  Parameters: `limit:int` up to 500
+      
+      | `limit` (int) | |
+      |--------------------|-|
+      | `10` | Queries up to 10 items in the order book. |
+      | `500` | Queries up to 500 items in the order book. |
     parameter_json: [0]
     expected_response_json:
       bids: []
       asks: []
   - api_method: condenser_api.get_owner_history
-    purpose: Returns the owner history of an account.  `account:string`
+    purpose: |
+      Returns the owner history of an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the owner history for account named "steemit". |
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_post_discussions_by_payout
@@ -324,15 +526,32 @@
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: []
   - api_method: condenser_api.get_reblogged_by
-    purpose: Returns a list of authors that have reblogged a post.  `author:string`; `permlink:string`
+    purpose: |
+      Returns a list of authors that have reblogged a post.  Parameters: `author:string`; `permlink:string`
+      
+      | `author` (string) | `permlink` (string) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"firstpost"` | Queries reblogs for content with a slug `@steemit/firstpost` |
+      | `"alice"` | `"a-post-by-alice"` | Queries reblogs for content with a slug `@alice/a-post-by-alice` |
     parameter_json: ["",""]
     expected_response_json: []
   - api_method: condenser_api.get_recent_trades
-    purpose: Returns the most recent trades for the internal SBD:STEEM market.  `limit:int` up to 1000
+    purpose: |
+      Returns the most recent trades for the internal SBD:STEEM market.  Parameters: `limit:int` up to 1000
+      
+      | `limit` (int) | |
+      |--------------------|-|
+      | `10` | Queries up to 10 latest trades. |
+      | `500` | Queries up to 500 latest trades. |
     parameter_json: [1]
     expected_response_json: [{"date":"1970-01-01T00:00:00","current_pays":"0.0 SBD","open_pays":"0.0 STEEM"}]
   - api_method: condenser_api.get_recovery_request
-    purpose: Returns the recovery request for an account.  `account:string`
+    purpose: |
+      Returns the recovery request for an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the recovery requests for account named "steemit". |
     parameter_json: [""]
     expected_response_json: 
   - api_method: condenser_api.get_replies_by_last_update
@@ -340,7 +559,8 @@
     parameter_json: ["","",1]
     expected_response_json: []
   - api_method: condenser_api.get_required_signatures
-    purpose: This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. `trx:object`; `available_keys:[string]`
+    purpose: |
+      This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. Parameters: `trx:object`; `available_keys:[string]`
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},[]]
     expected_response_json: []
   - api_method: condenser_api.get_reward_fund
@@ -358,15 +578,26 @@
       author_reward_curve: quadratic
       curation_reward_curve: '34723648'
   - api_method: condenser_api.get_savings_withdraw_from
-    purpose: Returns savings withdraw from an account.  `account:string`
+    purpose: |
+      Returns savings withdraw from an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the savings withdraw for account named "steemit". |
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_savings_withdraw_to
-    purpose: Returns the savings withdraw to an account.  `account:string`
+    purpose: |
+      Returns the savings withdraw to an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the savings withdraw for account named "steemit". |
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_state
-    purpose: Returns the state of a path.  **Deprecated.**  `path:string`
+    purpose: |
+      Returns the state of a path.  **Deprecated.**  Parameters: `path:string`
     parameter_json: [""]
     expected_response_json:
       current_route: ''
@@ -430,7 +661,12 @@
         quote: 0.000 STEEM
       error: ''
   - api_method: condenser_api.get_tags_used_by_author
-    purpose: Returns a list of tags used by an author.  `author:string`
+    purpose: |
+      Returns a list of tags used by an author.  Parameters: `author:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the tags used by the account named "steemit". |
     parameter_json: [""]
     expected_response_json: []
   - api_method: condenser_api.get_ticker
@@ -444,11 +680,21 @@
       steem_volume: 0.000 STEEM
       sbd_volume: 0.000 STEEM
   - api_method: condenser_api.get_trade_history
-    purpose: Returns the trade history for the internal SBD:STEEM market.  `start:timestamp`; `end:timestamp`; `limit:int` up to 1000
+    purpose: |
+      Returns the trade history for the internal SBD:STEEM market.  Parameters: `start:timestamp`; `end:timestamp`; `limit:int` up to 1000
+      
+      | `start` (timestamp) | `end` (timestamp) | `limit` (int) | |
+      |---------------------|-------------------|---------------|-|
+      | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | 10 | Queries up to 10 trades between January 1st, 2018 and January 2nd, 2018. |
     parameter_json: ["1970-01-01T00:00:00","1970-01-01T00:00:00",1000]
-    expected_response_json: []
+    expected_response_json: [{"date":"1970-01-01T00:00:00","current_pays":"0.000 SBD","open_pays":"0.000 STEEM"}]
   - api_method: condenser_api.get_transaction
-    purpose: Returns the details of a transaction based on a transaction id.  `trx_id:string`
+    purpose: |
+      Returns the details of a transaction based on a transaction id.  Parameters: `trx_id:string`
+      
+      | `trx_id` (string) | |
+      |-------------------|-|
+      | `"6fde0190a97835ea6d9e651293e90c89911f933c"` | Queries for this exact transaction id. |
     parameter_json: [""]
     expected_response_json:
       ref_block_num: 0
@@ -465,9 +711,15 @@
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: ''
   - api_method: condenser_api.get_trending_tags
-    purpose: Returns the list of trending tags.  `start_tag:string`; `limit:int` up to 100
+    purpose: |
+      Returns the list of trending tags.  Parameter: `start_tag:string`; `limit:int` up to 100
+      
+      | `tag` (string) | `limit` (int) | |
+      |----------------|---------------|-|
+      | `null` | 100 | Queries the top 100 trending tags. |
+      | `"steem"` | 10 | Queries the tags after "steem", up to 10 tags. |
     parameter_json: ["",1]
-    expected_response_json: []
+    expected_response_json: [{"name":"","total_payouts":"0.000 SBD","net_votes":0,"top_posts":0,"comments":0,"trending":""}]
   - api_method: condenser_api.get_version
     purpose: Returns the versions of blockchain, steem, and FC.
     parameter_json: []
@@ -476,9 +728,14 @@
       steem_revision: ''
       fc_revision: ''
   - api_method: condenser_api.get_vesting_delegations
-    purpose: Returns the vesting delegations by an account.  `delegator_account:string`; `start_account:string`; `limit:int` up to 1000
+    purpose: |
+      Returns the vesting delegations by an account.  Parameters: `delegator_account:string`; `start_account:string`; `limit:int` up to 1000
+      
+      | `delegator_account` (string) | `start_account` (string) | `limit` (int) | |
+      |------------------------------|--------------------------|---------------|-|
+      | `"steemit"` | `null` | `10` | Queries up to 10 vesting delegations by "steemit". |
     parameter_json: ["","",1]
-    expected_response_json: []
+    expected_response_json: [{"id":0,"delegator":"","delegatee":"","vesting_shares":"0.000000 VESTS","min_delegation_time":"1970-01-01T00:00:00"}]
   - api_method: condenser_api.get_volume
     purpose: Returns the market volume for the past 24 hours.
     parameter_json: []
@@ -486,11 +743,23 @@
       steem_volume: 0.000 STEEM
       sbd_volume: 0.000 STEEM
   - api_method: condenser_api.get_withdraw_routes
-    purpose: Returns the withdraw routes for an account.  `account:string`; `type:string` of `outgoing`, `incoming`, or `all`
+    purpose: |
+      Returns the withdraw routes for an account.  Parameters: `account:string`; `type:string`
+      
+      | `account` (string) | `type` (string) | |
+      |--------------------|-----------------|-|
+      | `"steemit"` | `"outgoing"` | Queries outgoing withdraw routes by "steemit". |
+      | `"steemit"` | `"incoming"` | Queries incoming withdraw routes by "steemit". |
+      | `"steemit"` | `"all"` | Queries all withdraw routes by "steemit". |
     parameter_json: ["",""]
     expected_response_json: []
   - api_method: condenser_api.get_witness_by_account
-    purpose: Returns the witness of an account.  `account:string`
+    purpose: |
+      Returns the witness of an account.  Parameters: `account:string`
+      
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries witness account of "steemit" (of `null` if none exists). |
     parameter_json: [""]
     expected_response_json: {"id":0,"owner":"","created":"1970-01-01T00:00:00","url":"","votes":"0","virtual_last_update":"0","virtual_position":"0","virtual_scheduled_time":"0","total_missed":0,"last_aslot":0,"last_confirmed_block_num":0,"pow_worker":0,"signing_key":"","props":{"account_creation_fee":"0.000 STEEM","maximum_block_size":65536,"sbd_interest_rate":0},"sbd_exchange_rate":{"base":"0.000 SBD","quote":"0.000 STEEM"},"last_sbd_exchange_update":"1970-01-01T00:00:00","last_work":"","running_version":"","hardfork_version_vote":"","hardfork_time_vote":"1970-01-01T00:00:00"}
   - api_method: condenser_api.get_witness_count
@@ -524,7 +793,13 @@
     parameter_json: []
     expected_response_json: []
   - api_method: condenser_api.get_witnesses_by_vote
-    purpose: Returns current witnesses by vote.  `start_name:string`; `limit:int` up to 1000
+    purpose: |
+      Returns current witnesses by vote.  Parameters: `start_name:string`; `limit:int` up to 1000
+      
+      | `account` (string) | `limit` (int) | |
+      |--------------------|---------------|-|
+      | `null` | `21` | Queries top 21 witness votes. |
+      | `"a"` | `1` | Queries top 10 witness votes starting with "a". |
     parameter_json: ["",1000]
     expected_response_json: []
   - api_method: condenser_api.lookup_account_names
@@ -532,15 +807,30 @@
     parameter_json: [["steemit"]]
     expected_response_json: [{"id":28,"name":"steemit","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5tfrdPG1Ycjwa9FuBUueDFFyygndBLXdVEEs2c9eRKScnFk6vM",1],["STM71f6yWztimJuREVyyMXNqAVbx1FzPVW6LLXNoQ35dHwKuszmHX",1],["STM7U3ymhUTuKME72dpdpQkdQvh722gTLjKBKtmKQPPWgtkr418Nf",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5832HKCJzs6K3rRCsZ1PidTKgjF38ZJb718Y3pCW92HEMsCGPf",1],["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH",1],["STM7xVFaqi8RxhWKZwuLA2bKrAiQmhnrbgvw4e2ChAsKYQbPjqUq2",1],["STM83dmDkQcZU9X8MWcxsTztSyutE6udrb55PvYgu7RLzStaoAt67",1]]},"memo_key":"STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH","json_metadata":"","proxy":"","last_owner_update":"2017-03-16T21:17:51","last_account_update":"2017-03-16T23:10:36","created":"2016-03-24T17:00:21","mined":true,"recovery_account":"steem","last_account_recovery":"1970-01-01T00:00:00","reset_account":"null","comment_count":0,"lifetime_vote_count":0,"post_count":1,"can_vote":true,"voting_power":9950,"last_vote_time":"2016-12-04T23:10:57","balance":"0.006 STEEM","savings_balance":"11006644.632 STEEM","sbd_balance":"8581.890 SBD","sbd_seconds":"18846158467785","sbd_seconds_last_update":"2018-04-10T04:08:36","sbd_last_interest_payment":"2018-03-15T17:58:24","savings_sbd_balance":"0.000 SBD","savings_sbd_seconds":"0","savings_sbd_seconds_last_update":"1970-01-01T00:00:00","savings_sbd_last_interest_payment":"1970-01-01T00:00:00","savings_withdraw_requests":0,"reward_sbd_balance":"0.000 SBD","reward_steem_balance":"0.000 STEEM","reward_vesting_balance":"0.000000 VESTS","reward_vesting_steem":"0.000 STEEM","vesting_shares":"90039851836.689703 VESTS","delegated_vesting_shares":"0.000000 VESTS","received_vesting_shares":"0.000000 VESTS","vesting_withdraw_rate":"0.000000 VESTS","next_vesting_withdrawal":"1969-12-31T23:59:59","withdrawn":0,"to_withdraw":0,"withdraw_routes":0,"curation_rewards":0,"posting_rewards":3548,"proxied_vsf_votes":["28583799126",0,0,0],"witnesses_voted_for":0,"last_post":"2016-03-30T18:30:18","last_root_post":"2016-03-30T18:30:18"}]
   - api_method: condenser_api.lookup_accounts
-    purpose: Looks up accounts starting with name.  `lower_bound_name:string`; `limit:int` up to 1000
+    purpose: |
+      Looks up accounts starting with name.  Parameters`lower_bound_name:string`; `limit:int` up to 1000
+      
+      | `lower_bound_name` (string) | `limit` (int) | |
+      |--------------------|---------------|-|
+      | `"a"` | 10 | Queries up to 10 accounts that start with "a".
     parameter_json: ["",1]
     expected_response_json: []
   - api_method: condenser_api.lookup_witness_accounts
-    purpose: Looks up witness accounts starting with name.  `lower_bound_name:string`; `limit:int` up to 1000
+    purpose: |
+      Looks up witness accounts starting with name.  Parameters: `lower_bound_name:string`; `limit:int` up to 1000
+      
+      | `lower_bound_name` (string) | `limit` (int) | |
+      |--------------------|---------------|-|
+      | `"a"` | 10 | Queries up to 10 witnesses that start with "a".
     parameter_json: ["",1]
     expected_response_json: []
   - api_method: condenser_api.verify_account_authority
-    purpose: Returns true if the signers have enough authority to authorize an account.  `account:string`, `signer:string`
+    purpose: |
+      Returns true if the signers have enough authority to authorize an account.  Parameters: `account:string`, `signer:[string]`
+      
+      | `account` (string) | `signer` (string array) | |
+      |--------------------|---------------|-|
+      | `"steemit"` | `["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]` | Checks if the "steemit" account against one of it's current active keys. |
     parameter_json: ["",[""]]
     expected_response_json: false
   - api_method: condenser_api.verify_authority
