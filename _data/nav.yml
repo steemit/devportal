@@ -17,6 +17,8 @@ toc:
         collection: tutorials-javascript
       - title: Python
         collection: tutorials-python
+      - title: Ruby
+        collection: tutorials-ruby
   - title: "Services"
     collection: "services"
     url: "/"
