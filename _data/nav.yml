@@ -7,6 +7,13 @@ toc:
     collection: "quickstart"
     url: "/"
     position: 2
+    docs:
+      - title: "Choose Library"
+        url: "#quickstart-choose-library"
+      - title: "steemd Nodes"
+        url: "#quickstart-steemd-nodes"
+      - title: "Testnet"
+        url: testnet
   - title: "Tutorials"
     collection: "tutorials"
     url: "/tutorials"
