@@ -4,8 +4,8 @@
 	{% for nav in sorted_nav %}
 		{% assign col = site.collections | where:"id", nav.collection | first %}
 		<section>
-			<h6>{{ nav.title }}</h6>
-				<ul>
+			<h6 class="accordion">{{ nav.title }}</h6>
+				<ul class="panel">
 					{% if nav.docs %}
 						{% for doc in nav.docs | sort: "position" %}
 							<li><a href="{{ nav.url }}/#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
