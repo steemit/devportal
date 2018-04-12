@@ -4,7 +4,7 @@ exclude: true
 ---
 
 {% for sections in site.data.apidefinitions.network_broadcast_api %}
-{{sections.description}}
+{{sections.description | markdownify}}
 {% for method in sections.methods %}
 #### {{method.api_method}}
 {{method.purpose}}

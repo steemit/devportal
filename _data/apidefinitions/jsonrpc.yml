@@ -1,5 +1,5 @@
 - name: JSON RPC
-  description: Used to lookup information about the JSON RPC API. These AppBase API methods are still under development and subject to change.
+  description: Used to lookup information about the JSON RPC API. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: jsonrpc.get_methods
       purpose: Returns a list of methods supported by the JSON RPC API.
