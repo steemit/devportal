@@ -13,7 +13,7 @@ toc:
       - title: "steemd Nodes"
         url: "#quickstart-steemd-nodes"
       - title: "Testnet"
-        url: testnet
+        url: testnet/
   - title: "Tutorials"
     collection: "tutorials"
     url: "/tutorials"
