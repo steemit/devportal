@@ -6,7 +6,7 @@ toc:
   - title: "Quickstart"
     collection: "quickstart"
     url: "/"
-    position: 2
+    position: 3
   - title: "Tutorials"
     collection: "tutorials"
     url: "/tutorials"
