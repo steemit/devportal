@@ -73,11 +73,21 @@ module Scrape
           if existing_api_method
             parameter_json = signature['args']
             expected_response_json = signature['ret']
-            if existing_api_method['parameter_json'] == parameter_json &&
-              existing_api_method['expected_response_json'] == expected_response_json
+            case api
+            when :condenser_api
+              # skipping signature analysis on condenser_api
+              # puts "A: " + existing_api_method['parameter_json'].inspect
+              # puts "B: " + parameter_json.inspect
+              # puts "C: " + existing_api_method['expected_response_json'].inspect
+              # puts "D: " + expected_response_json.inspect
               next
             else
-              puts "\tChanged: #{method}"
+              if existing_api_method['parameter_json'] == parameter_json &&
+                existing_api_method['expected_response_json'] == expected_response_json
+                next
+              else
+                puts "\tChanged: #{method}"
+              end
             end
           else
             puts "\tAdding: #{method}"
