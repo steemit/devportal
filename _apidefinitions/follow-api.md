@@ -4,7 +4,7 @@ exclude: true
 ---
 
 {% for sections in site.data.apidefinitions.follow_api %}
-{{sections.description}}
+{{sections.description | markdownify}}
 {% for method in sections.methods %}
 #### {{method.api_method}}
 {{method.purpose}}

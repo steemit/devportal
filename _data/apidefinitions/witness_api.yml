@@ -1,5 +1,5 @@
 - name: Witness API
-  description: Used to query values related to the witness plugin. These AppBase API methods are still under development and subject to change.
+  description: Used to query values related to the witness plugin. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: witness_api.get_account_bandwidth
       purpose: Returns the available bandwidth of an account.
