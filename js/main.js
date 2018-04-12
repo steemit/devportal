@@ -157,18 +157,28 @@ function getClosestHeader() {
             });
         }
         acc[0].click();
-        var clicked = false;
+        var clickedQ, clickedS, clickedC  = false;
 
         $(window).scroll(function (event) {
             var scroll = $(window).scrollTop();
-            console.log(scroll);
             var quickS = $('#quickstart-choose-library').offset().top;
-            console.log(quickS);
+            var services = $('#services-steemit').offset().top;
+            var communityO = $('#community-overview').offset().top;
             
-            if (scroll > quickS && !clicked) {
-                clicked = true;
+            if (scroll > quickS && !clickedQ) {
+                clickedQ = true;
                 acc[0].click();
                 acc[1].click();
+            }
+            if (scroll > services && !clickedS) {
+                clickedS = true;
+                acc[3].click();
+                acc[1].click();
+            }
+             if (scroll > communityO && !clickedC) {
+                clickedC = true;
+                acc[5].click();
+                acc[3].click();
             }
         });
     });
