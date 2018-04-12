@@ -1,5 +1,5 @@
 - name: Account history API
-  description: Used to lookup account history information. These AppBase API methods are still under development and subject to change.
+  description: Used to lookup account history information. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: account_history_api.get_account_history
       purpose: Returns a history of all operations for a given account.

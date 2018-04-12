@@ -1,9 +1,9 @@
 ---
-position: 5
+position: 3
 exclude: true
 ---
 
-{% for sections in site.data.apidefinitions.jsonrpc %}
+{% for sections in site.data.apidefinitions.database_api %}
 {{sections.description | markdownify}}
 {% for method in sections.methods %}
 #### {{method.api_method}}

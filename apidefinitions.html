@@ -2,32 +2,33 @@
 title: API Docs - API Definitions
 section: API Definitions
 ---
+
+<section class="row">
+  <section class="row">
+	  <blockquote class="warning">
+		  While the <code>condenser_api.*</code> calls are ready for use, all other appbase methods are currently works in progress and may change, or be unsuitable for production use.
+	  </blockquote>
+  </section>
+</section>
+
 {% assign sorted_collections = site.collections | where:'title', "API Definitions" %}
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
-		<section id="{{doc.id | replace: '/', '' | replace: '.', ''}}"class="doc-content {{ doc.id | replace: '/', '' | replace: '.', '' }}">
-			<section class="left-docs">
-				<h3>
-					<a id="{{ doc.id | replace: '/', '' | replace: '.', '' }}">
-						{{ doc.title }}
-						{% if doc.type %}
-							<span class="endpoint {{ doc.type }}"></span>
-						{% endif %}
-					</a>
-				</h3>
-				{% if doc.description %}
-					<p class="description">{{doc.description}}</p>
-				{% endif %}
-
-				{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
-			</section>
-
-			{% if doc.right_code %}
-				<section class="right-code">
-					{{ doc.right_code | markdownify }}
-				</section>
+		<section id="{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
+			<h3>
+				<a id="{{ doc.id | slugify }}">
+					{{ doc.title }}
+					{% if doc.type %}
+						<span class="endpoint {{ doc.type }}"></span>
+					{% endif %}
+				</a>
+			</h3>
+			{% if doc.description %}
+				<p class="description">{{doc.description}}</p>
 			{% endif %}
+
+			{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
 		</section>
 	{% endfor %}
 {% endfor %}

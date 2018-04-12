@@ -1,5 +1,5 @@
 - name: Follow API
-  description: Used to lookup information related to reputation and account follow operations. These AppBase API methods are still under development and subject to change.
+  description: Used to lookup information related to reputation and account follow operations. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: follow_api.get_account_reputations
       purpose: Returns a list of account reputations.

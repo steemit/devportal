@@ -53,7 +53,21 @@ collections:
     id: tutorials-python
     position: 10
     output: true
-
+  apidefinitions:
+    title: API Definitions
+    id: apidefinitions
+    position: 11
+    output: true
+  testnet:
+    title: Testnet
+    id: testnet
+    position: 12
+    output: true
+  tutorials-ruby:
+    title: Ruby Tutorials
+    id: tutorials-ruby
+    position: 13
+    output: true
 
 gems:
   - jekyll-sitemap
