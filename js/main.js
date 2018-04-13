@@ -101,84 +101,90 @@ function getClosestHeader() {
 
 
 
- $(document).ready(function(){
+$(document).ready(function(){
     // Select all links with hashes
     $('a[href*="#"]')
-      // Remove links that don't actually link to anything
-      .not('[href="#"]')
-      .not('[href="#0"]')
-      .click(function(event) {
-        // On-page links
-        if (
-          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-          && 
-          location.hostname == this.hostname
-        ) {
-          // Figure out element to scroll to
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-          // Does a scroll target exist?
-          if (target.length) {
-            // Only prevent default if animation is actually gonna happen
-            event.preventDefault();
-            $('html, body').animate({
-              scrollTop: target.offset().top
-            }, 300, function() {
-              // Callback after animation
-              // Must change focus!
-              var $target = $(target);
-              $target.focus();
-              if ($target.is(":focus")) { // Checking if the target was focused
-                return false;
-              } else {
-                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-                $target.focus(); // Set focus again
-              };
-            });
-          }
-        }
-      });
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                /* Toggle between adding and removing the "active" class,
-                to highlight the button that controls the panel */
-                this.classList.toggle("active");
-
-                /* Toggle between hiding and showing the active panel */
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
+    // Remove links that don't actually link to anything
+        .not('[href="#"]')
+        .not('[href="#0"]')
+        .click(function(event) {
+            // On-page links
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                &&
+                location.hostname == this.hostname
+            ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 300, function() {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
                 }
+            }
+        });
+
+    var navSectionList = document.getElementsByClassName("pnl-main-nav-section");
+    var pathname = window.location.pathname;
+    var inPageContentNodes = [];
+
+    Array.prototype.forEach.call(navSectionList, function(section) {
+        if(pathname == section.getAttribute("url")) {
+            section.classList.add("show-content");
+            section.classList.add("lock-open");
+            Array.prototype.forEach.call(section.getElementsByTagName('a'), function(a) {
+                var id = a.href.substring(a.href.indexOf('#') + 1);
+                var contentNode = document.getElementById(id);
+                if(contentNode) {
+                    inPageContentNodes.push({
+                        "id":id,
+                        "a":a,
+                        "node":contentNode,
+                        "top":contentNode.offsetTop,
+                        "bottom":contentNode.offsetTop + contentNode.offsetHeight
+                    });
+
+                }
+
+            });
+        } else {
+            section.getElementsByClassName("ctrl-nav-section")[0].addEventListener("click", function() {
+                section.classList.toggle("show-content");
             });
         }
-        acc[0].click();
-        var clickedQ, clickedS, clickedC  = false;
+    });
 
-        $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            var quickS = $('#quickstart-choose-library').offset().top;
-            var services = $('#services-steemit').offset().top;
-            var communityO = $('#community-overview').offset().top;
-            
-            if (scroll > quickS && !clickedQ) {
-                clickedQ = true;
-                acc[0].click();
-                acc[1].click();
-            }
-            if (scroll > services && !clickedS) {
-                clickedS = true;
-                acc[3].click();
-                acc[1].click();
-            }
-             if (scroll > communityO && !clickedC) {
-                clickedC = true;
-                acc[5].click();
-                acc[3].click();
+    window.onresize(function() {
+        inPageContentNodes.forEach(function(content) {
+            content.top = content.node.offsetTop;
+            content.bottom = content.node.offsetTop + contentNode.offsetHeight
+        });
+    });
+
+    $(window).scroll(function (event) {
+        var scrollTop = $(window).scrollTop();
+        var scrollBottom = scrollTop + window.innerHeight
+        inPageContentNodes.forEach(function(content) {
+            if((scrollBottom >= content.top && scrollTop < content.bottom)) {
+                content.a.classList.add('active');
+            } else {
+                content.a.classList.remove('active');
             }
         });
     });
+});

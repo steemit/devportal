@@ -9,7 +9,7 @@ toc:
     position: 2
   - title: "Tutorials"
     collection: "tutorials"
-    url: "/tutorials"
+    url: "/tutorials/"
     position: 4
     exclude: true
     docs:

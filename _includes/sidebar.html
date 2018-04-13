@@ -3,24 +3,24 @@
 	{% assign sorted_nav = site.data.nav.toc | sort: "position" %}
 	{% for nav in sorted_nav %}
 		{% assign col = site.collections | where:"id", nav.collection | first %}
-		<section>
-			<h6 class="accordion">{{ nav.title }}</h6>
-				<ul class="panel">
-					{% if nav.docs %}
-						{% for doc in nav.docs | sort: "position" %}
-							<li><a href="{{ nav.url }}/#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
+		<section class="pnl-main-nav-section main-nav-section" url="{{ nav.url }}">
+			<h6 class="ctrl-nav-section title">{{ nav.title }}</h6>
+			<ul class="cont-nav-section content">
+				{% if nav.docs %}
+					{% for doc in nav.docs | sort: "position" %}
+						<li><a href="{{ nav.url }}#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
+					{% endfor %}
+				{% else %}
+					{% if col %}
+						{% assign sorted_docs = col.docs | sort: "position" %}
+						{% for doc in sorted_docs %}
+							{% unless doc.exclude_nav %}
+							<li><a href="{{ nav.url }}#{{ doc.id | slugify }}">{{ doc.title }}</a></li>
+							{% endunless %}
 						{% endfor %}
-					{% else %}
-						{% if col %}
-							{% assign sorted_docs = col.docs | sort: "position" %}
-							{% for doc in sorted_docs %}
-								{% unless doc.exclude_nav %}
-								<li><a href="{{ nav.url }}#{{ doc.id | slugify }}">{{ doc.title }}</a></li>
-								{% endunless %}
-							{% endfor %}
-						{% endif %}
 					{% endif %}
-				</ul>
+				{% endif %}
+			</ul>
 		</section>
 	{% endfor %}
 </div>
