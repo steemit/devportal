@@ -9,7 +9,7 @@
 			{% if nav.docs %}
 				{% for doc in nav.docs | sort: "position" %}
 					{% if doc.collection %}
-						<li><a href="{{ nav.url }}/#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
+						<li><a href="{{ nav.url }}#{{ doc.collection | slugify }}">{{ doc.title }}</a></li>
 					{% elsif doc.url %}
 						<li><a href="{{ nav.url }}{{ doc.url }}">{{ doc.title }}</a></li>
 					{% endif %}
