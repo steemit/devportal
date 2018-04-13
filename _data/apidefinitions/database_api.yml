@@ -1,5 +1,5 @@
 - name: Database API
-  description: Used query information about accounts, transactions, and blockchain data. These AppBase API methods are still under development and subject to change.
+  description: Used query information about accounts, transactions, and blockchain data. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: database_api.find_account_recovery_requests
       purpose: Returns a list of account recovery requests.

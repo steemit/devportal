@@ -1,20 +1,20 @@
 ---
-position: 99
+position: 0
 exclude: true
 ---
 
 {% for sections in site.data.apidefinitions.condenser_api %}
-{{sections.description}}
+{{sections.description | markdownify}}
 {% for method in sections.methods %}
 #### {{method.api_method}}
 {{method.purpose}}
 ##### Query Parameters JSON:
 ```json
-{{method.parameter_json | neat_json}}
+{{method.parameter_json | jsonify | neat_json}}
 ```
 ##### Expected Response JSON:
 ```json
-{{method.expected_response_json | neat_json}}
+{{method.expected_response_json | jsonify | neat_json}}
 ```
 ---
 {% endfor %}

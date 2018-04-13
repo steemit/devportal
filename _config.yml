@@ -63,6 +63,11 @@ collections:
     id: testnet
     position: 12
     output: true
+  tutorials-ruby:
+    title: Ruby Tutorials
+    id: tutorials-ruby
+    position: 13
+    output: true
 
 gems:
   - jekyll-sitemap
