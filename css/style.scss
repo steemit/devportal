@@ -130,3 +130,30 @@ header h1 {
   }
 
 }
+
+.main-nav-section {
+  .title {
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+
+  &.show-content {
+    .content {
+      display: block;
+    }
+  }
+
+  .content {
+    display: none;
+    overflow: hidden;
+  }
+}
+
+
+.active, .accordion:hover {
+    /*background-color: #ccc;*/
+}
