@@ -10,11 +10,11 @@ exclude: true
 {{method.purpose}}
 ##### Query Parameters JSON:
 ```json
-{{method.parameter_json | neat_json}}
+{{method.parameter_json | jsonify | neat_json}}
 ```
 ##### Expected Response JSON:
 ```json
-{{method.expected_response_json | neat_json}}
+{{method.expected_response_json | jsonify | neat_json}}
 ```
 ---
 {% endfor %}

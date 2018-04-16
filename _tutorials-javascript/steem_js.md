@@ -51,7 +51,7 @@ right_code: |
     <p class="right-section-title">Photography</p>
     ~~~javascript
     var results = steem.api.getState('/trending/photography', function(err, result) {
-    	console.log(err, result);
+        console.log(err, result);
     });
     ~~~
     
@@ -182,7 +182,6 @@ photography posts, along with payout data.
 
 You can easily create the next instagram on the steem platform. 
 
-Example site: [snapsteem.com](http://www.snapsteem.com/){:target="_blank"}
 
 ##### Let's get started:
 
