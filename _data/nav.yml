@@ -3,13 +3,15 @@ toc:
     collection: "introduction"
     url: "/"
     position: 1
+  - title: "Contributors"
+    collection: "Contributors"
+    url: "/contributors/"
+    position: 2
   - title: "Quickstart"
     collection: "quickstart"
     url: "/"
-    position: 2
+    position: 3
     docs:
-      - title: "Contributing"
-        url: "#contributing"
       - title: "Choose Library"
         url: "#quickstart-choose-library"
       - title: "steemd Nodes"

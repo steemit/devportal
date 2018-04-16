@@ -4,7 +4,13 @@
 	{% for nav in sorted_nav %}
 		{% assign col = site.collections | where:"id", nav.collection | first %}
     <section class="pnl-main-nav-section main-nav-section" url="{{ nav.url }}">
-		<h6 class="ctrl-nav-section title">{{ nav.title }}</h6>
+		<h6 class="ctrl-nav-section title">
+			{% if nav.docs %}
+				{{ nav.title }}
+			{%else %}
+				<a href="{{ nav.url }}">{{ nav.title }}</a>
+			{% endif %}
+		</h6>
 		<ul class="cont-nav-section content">
 			{% if nav.docs %}
 				{% for doc in nav.docs | sort: "position" %}
