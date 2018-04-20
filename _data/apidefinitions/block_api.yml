@@ -18,13 +18,13 @@
       | `1` | Queries the very first block. |
       | `8675309` | Queries block number 8,675,309. |
       | `62396745` | Queries block number 62,396,745. |
-      
-      ```bash
-      curl -s --data '{"jsonrpc":"2.0", "method":"block_api.get_block", "params":{"block_num":1}, "id":1}' https://api.steemit.com
-      ```
     parameter_json:
       block_num: 0
     expected_response_json: {"block":{"previous":"","timestamp":"1970-01-01T00:00:00","witness":"","transaction_merkle_root":"","extensions":[],"witness_signature":"","transactions":[],"block_id":"","signing_key":"","transaction_ids":[]}}
+    curl_examples:
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block", "params":{"block_num":1}, "id":1}'
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block", "params":{"block_num":8675309}, "id":1}'
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block", "params":{"block_num":62396745}, "id":1}'
   - api_method: block_api.get_block_header
     purpose: |
       Retrieve a block header of the referenced block, or null if no matching block was found.
@@ -38,10 +38,10 @@
       | `1` | Queries the block headers for the very first block. |
       | `8675309` | Queries block headers for block number 8,675,309. |
       | `62396745` | Queries block headers for block number 62,396,745. |
-      
-      ```bash
-      curl -s --data '{"jsonrpc":"2.0", "method":"block_api.get_block_header", "params":{"block_num":1}, "id":1}' https://api.steemit.com
-      ```
     parameter_json:
       block_num: 0
     expected_response_json: {"header":{"previous":"","timestamp":"1970-01-01T00:00:00","witness":"","transaction_merkle_root":"","extensions":[]}}
+    curl_examples:
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block_header", "params":{"block_num":1}, "id":1}'
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block_header", "params":{"block_num":8675309}, "id":1}'
+      - '{"jsonrpc":"2.0", "method":"block_api.get_block_header", "params":{"block_num":62396745}, "id":1}'
