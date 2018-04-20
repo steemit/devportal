@@ -5,7 +5,14 @@
       purpose: Returns a list of methods supported by the JSON RPC API.
       parameter_json: {}
       expected_response_json: {}
+      curl_examples:
+        - '{"jsonrpc":"2.0", "method":"jsonrpc.get_methods", "id":1}'
     - api_method: jsonrpc.get_signature
       purpose: Returns the signature information for a JSON RPC method including the arguments and expected response JSON.
       parameter_json: {"method":""}
       expected_response_json: {"args":null,"ret":null}
+      curl_examples:
+        - '{"jsonrpc":"2.0", "method":"jsonrpc.get_signature", "params":{"method":"jsonrpc.get_methods"}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"jsonrpc.get_signature", "params":{"method":"jsonrpc.get_signature"}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"jsonrpc.get_signature", "params":{"method":"condenser_api.get_dynamic_global_properties"}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"jsonrpc.get_signature", "params":{"method":"database_api.get_dynamic_global_properties"}, "id":1}'
