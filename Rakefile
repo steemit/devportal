@@ -40,6 +40,11 @@ namespace :production do
   
   desc "Deploy current master to gh-pages"
   task deploy: [:prevent_dirty_builds, :build] do
+    sh 'git checkout gh-pages'
+    sh 'git add -A'
+    sh 'git commit -m "jekyll base sources"'
+    sh 'git push origin gh-pages'
+    
     exit(0)
   end
   
