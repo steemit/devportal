@@ -9,4 +9,6 @@
       purpose: Returns the current reserve ratio.
       parameter_json: {}
       expected_response_json: {"id":0,"average_block_size":0,"current_reserve_ratio":1,"max_virtual_bandwidth":"0"}
-
+      curl_examples:
+        - '{"jsonrpc":"2.0", "method":"witness_api.get_account_bandwidth", "params":{"account":"steemit","type":"forum"}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"witness_api.get_account_bandwidth", "params":{"account":"alice","type":"market"}, "id":1}'
