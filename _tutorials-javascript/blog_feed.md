@@ -63,6 +63,16 @@ right_code: |
     ```
 ---
 
+<div id="dsteem-flyout">
+    <div class="btn-flyout" onclick="flyout()" title="Interactive Javascript Console"></div>
+    <iframe src="https://playground.steem.vc/"></iframe>
+</div>
+<script>
+window.flyout = function() {
+    document.getElementById("dsteem-flyout").classList.toggle("show");
+}
+</script>
+
 In this tutorials we will build simple webapp or blog for particular user on
 Steem blockchain using simple HTML and Javascript.
 

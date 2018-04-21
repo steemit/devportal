@@ -157,3 +157,33 @@ header h1 {
 .active, .accordion:hover {
     /*background-color: #ccc;*/
 }
+
+
+#dsteem-flyout {
+  position: fixed;
+  right: -600px;
+  height: 400px;
+  width: 600px;
+  transition-duration: 0.5s;
+  z-index: 10000;
+  .btn-flyout {
+    cursor:pointer;
+    width:40px;
+    height:40px;
+    position:absolute;
+    background: #343d46 url(https://cdn2.iconfinder.com/data/icons/nodejs-1/256/nodejs-256.png);
+    background-size: contain;
+    color:white;
+    left:-40px;
+  }
+  &.show {
+    right:0px;
+  }
+
+  iframe {
+    position:absolute;
+    width:600px;
+    height:100%;
+    z-index: 10005;
+  }
+}
