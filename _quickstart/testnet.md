@@ -7,11 +7,11 @@ Steem blockchain software is written in C++ and in order to modify the source co
 
 ## Running Testnet
 
-By following official [build steps](https://github.com/steemit/steem/blob/master/doc/building.md#build_steem_testnetoffon) and enabling the `BUILD_STEEM_TESTNET` flag during compilation, you should be able to run the Steem Testnet locally on your workstation and join the official testnet. Docker can also be used to get started quickly. Compilation generates the `steemd` executable which is the main daemon for the Steem network. Additional `cli_wallet` can also be compiled to test/connect to an instance of `steemd` and request some data from the network, but it is not necessary to run a node.
+By following official [build steps](https://github.com/steemit/steem/blob/master/doc/building.md#build_steem_testnetoffon) and enabling the `BUILD_STEEM_TESTNET` flag during compilation, you should be able to run the Steem Testnet locally on your workstation and join the development testnet. Docker can also be used to get started quickly. Compilation generates the `steemd` executable which is the main daemon for the Steem network. Additional `cli_wallet` can also be compiled to test/connect to an instance of `steemd` and request some data from the network, but it is not necessary to run a node.
 
-The official testnet requires a certain minimum set of hardware requirements, depending on the type of compile flags that have been enabled. Because it is a mirror of the live network, private keys are the same for accounts up to the point of the snapshot timestamp of the testnet.
+The development testnet requires a certain minimum set of hardware requirements, depending on the type of compile flags that have been enabled. Because it is a mirror of the live network, private keys are the same for accounts up to the point of the snapshot timestamp of the testnet.
 
-Joining/Running the official testnet requires around 10 GB for block log on an SSD and 8 GB RAM. The CPU requirements are the same.
+Joining/Running the development testnet requires around 10 GB for block log on an SSD and 8 GB RAM. The CPU requirements are the same.
 
 Testnet has the following parameters by default (as of this writing):
 
@@ -35,7 +35,7 @@ Anyone can join the Live testnet and start testing their node and applications, 
 
 ## Custom Testnet
 
-In order to create a custom testnet, separate from the official one, we need to modify a few parameters mentioned in the previous section.
+In order to create a custom testnet, separate from the development one, we need to modify a few parameters mentioned in the previous section.
 
 In the file named `steem/libraries/protocol/include/steem/protocol/config.hpp`, we can see the first few lines dedicated to the Testnet section.  The line starts with `#ifdef IS_TEST_NET`.
 

@@ -16,7 +16,7 @@ toc:
         url: testnet/
   - title: "Tutorials"
     collection: "tutorials"
-    url: "/tutorials"
+    url: "/tutorials/"
     position: 4
     exclude: true
     docs:
