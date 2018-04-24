@@ -50,6 +50,10 @@ namespace :production do
   
   desc "Rollback gh-pages"
   task rollback: [:prevent_dirty_builds] do
+    sh 'git checkout gh-pages'
+    sh 'git reset --hard HEAD^'
+    sh 'git push origin gh-pages'
+    
     exit(0)
   end
 end
