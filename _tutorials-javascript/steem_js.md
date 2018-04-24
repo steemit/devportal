@@ -48,7 +48,7 @@ right_code: |
     }
     </script>
     ```
-    <p class="right-section-title">Photography</p>
+    <p class="static-right-section-title">Photography</p>
     ~~~javascript
     var results = steem.api.getState('/trending/photography', function(err, result) {
         console.log(err, result);
@@ -107,19 +107,19 @@ right_code: |
         console.log(pending_payout_value)   
     }
     ~~~
-    <p class="right-section-title">Accounts</p>
+    <p class="static-right-section-title">Accounts</p>
     ``` javascript
     steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">State</p>
+    <p class="static-right-section-title">State</p>
     ``` javascript
     steem.api.getState('/trends/funny', function(err, result) {
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">Broadcast</p>
+    <p class="static-right-section-title">Broadcast</p>
     ``` javascript
     var steem = require('steem');
 
@@ -128,7 +128,7 @@ right_code: |
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">Reputation</p>
+    <p class="static-right-section-title">Reputation</p>
     ``` javascript
     var reputation = steem.formatter.reputation(user.reputation);
     console.log(reputation);

@@ -5,7 +5,7 @@ exclude: true
 layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
-    index.html
+    <p class="static-right-section-title">index.html</p>
     ``` html
       <html>
       <head><title>User blog</title>
@@ -18,7 +18,7 @@ right_code: |
       </body>
       </html>
     ```
-    app.js
+    <p class="static-right-section-title">app.js</p>
     ``` javascript
       const { Client } = require('dsteem');
 
@@ -41,16 +41,16 @@ right_code: |
                       `<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>`
                   )
               });
-
               document.getElementById('postList').innerHTML = posts.join();
           }).catch((err) => {
             alert('Error occured');
           });
       }
-
       window.onload = fetchBlog();
     ```
-    index.js
+
+    <p class="static-right-section-title">index.js</p>
+    
     ``` javascript
       const Koa = require('koa');
       const app = new Koa();
@@ -90,18 +90,18 @@ specified with `dsteem` but it's left out for this simple example.
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even
 notepad).
 
-#### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
+### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
 
 > Make a basic html file that contains the structure for the javascript to
 > populate with results returned by the api. Basic bootstrap styling is used.
 
-#### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
+### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
 
 > A seperate javascript file exists with the application to query the API and
 > populate the HTML document with the results returned. We are calling
 > `fetchBlog()` function when body of the page is onload.
 
-#### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
+### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
 
 > index.js is a basic javascript file that loads a `koa` based webserver serving
 > the tutorial so you can access it via a browser

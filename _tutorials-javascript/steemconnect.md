@@ -4,13 +4,11 @@ position: 3
 description: Tutorial is about Authorization on Steem and usage of SteemConnect
 layout: full
 right_code: |
-
-    Install
+    <p class="static-right-section-title">Install</p>
     ```
     npm i sc2-sdk
     ```
-
-    Initialize
+    <p class="static-right-section-title">Initialize</p>
     ``` javascript
     const sc2 = require('sc2-sdk');
     let api = sc2.Initialize({
@@ -19,40 +17,32 @@ right_code: |
         scope: ['vote','comment']
     })
     ```
-
-    Login URL
+    <p class="static-right-section-title">Login URL</p>
     ``` javascript
     let link = sc2.getLoginURL()
     ```
-
-    Request link
+    <p class="static-right-section-title">Request link</p>
     ``` object
     link = https://v2.steemconnect.com/oauth2/authorize?client_id=demo-app&redirect_uri=http://localhost:3000&scope=vote,comment
     ```
-
-    Result
+    <p class="static-right-section-title">Result auth</p>
     ```
     http://localhost:3000/auth?access_token=xyz&expires_in=604800&username=demo
-
     access_token: xyz
     expires_in: 604800
     username: demo
     ```
-
-    Set token
+    <p class="static-right-section-title">Set token</p>
     ``` javascript
     sc2.setAccessToken(access_token)
     ```
-
-    Get User info
+    <p class="static-right-section-title">Get User info</p>
     ``` javascript
     api.me(function(err,res){
         //json object with user info
         console.log(err,res);
     });
     ```
-
-    Result
     ``` object
     account: {id:xxx, name:'demo', owner:{}, active:{},...}
     name: 'demo',
@@ -60,15 +50,14 @@ right_code: |
     user: 'demo',
     user_metadata: {},
     ```
-
-    Logout
+    <p class="static-right-section-title">Logout</p>
     ``` javascript
     api.revokeToken(function(err, res){
         console.log(err, res);
     })
     ```
 ---
-### Goal
+## Goal
 
 The application in this tutorial asks the user to grant access to `demo-app` and get a token from Steemconnect. Once permission is granted, `demo-app` can get details of the user via an api call that requires an access token. 
 The purpose of this is to allow any application to request permission from user and perform action via the access token.
@@ -83,7 +72,7 @@ Some other calls that require an access token (or login) are:
 
 Learn more about [Steemconnect operations here](https://github.com/steemit/steemconnect-sdk)
 
-### Overview
+## Overview
 
 Steemconnect is unified authentification system built on top of Steem and is built in a collaboration of Busy.org and Steemit Inc.
 Steemconnect is a layer to ensure easy access and setup for all application developers as well as a secure way for users to interact with Steem apps.
@@ -93,7 +82,7 @@ Setting up Steemconnect in your app is straight-forward process and never been t
 - This tutorial is available at [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js)
 - The specific Steemconnect tutorial is found here [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect)
 
-### Step I
+## Step I
 
 1. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
 
@@ -121,27 +110,29 @@ Redirect URI(s) will be used within your application to forward user after authe
 
 * Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves
 
-### Step II
+## Step II
 
 Once you have setup your account for the new application, you can setup your application with Steemconnect authentification and API processes.
+
+### Install
 To do that, you will need to install `sc2-sdk` nodejs package with `npm i sc2-sdk`.
 Within the application you can initialize Steemconnect
 
-##### Initialize
+### Initialize
 > `app` - is the account name for the application that we have created in Step I.3, `callbackURL` - is the Redirect URI that we have defined in Step I.4, `scope` - permissions application is requiring/asking from users
 
 
 Now that `sc2-sdk` is initialized we can start authentication and perform simple operations with Steemconnect.
 
-##### Login URL
+### Login URL
 
 > Returns login URL which will redirect the user to sign in with Steemconnect login screen. A successful login will redirect the user to the Redirect URI or `callbackURL`. The result of the successful login will return an `access_token`, `expires_in` and `username` information, which the application will start utilizing.
 
-##### Request link
+### Request link
 
 > Your application can request the link which can be used in a popup screen or relevant screen you develop. The popup screen will ask the user to identify themselves using their username and password. Once they have authenticated successfully the authentication result will be returned
 
-##### Result
+### Result auth
 
 > The returned json object will have the following properties
 
@@ -153,11 +144,11 @@ result = {
 }
 ```
 
-##### Set token
+### Set token
 
 > After getting the `access_token`, we can set token for future Steemconnect API requests.
 
-##### Get user info
+### Get user info
 
 > Users info can be checked with `me` which will return object
 
@@ -170,11 +161,11 @@ result = {
     user_metadata: {} // additional information user has setup.
 }
 ```
-##### Logout
+### Logout
 
 > In order to logout, you can use the `revokeToken` function from `sc2-sdk`.
 
-### Source code [<img src="/images/look.svg" width="16" height="16" />](getting-started#setup_node_js)
+## Source code [<img src="/images/look.svg" width="16" height="16" />](getting-started#setup_node_js)
 
 To try this application visit [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js), find [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) and follow **To run** section in README.
 
