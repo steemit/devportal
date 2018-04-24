@@ -1,0 +1,24 @@
+{% for sections in include.api_data %}
+{{sections.description | markdownify}}
+{% for method in sections.methods %}
+<h4 id="{{ method.api_method | slug }}"><a href="#{{ method.api_method | slug}}">{{method.api_method}}</a></h4>
+{{method.purpose}}
+<h5 id="{{ method.api_method | slug }}-parameter_json"><a href="#{{ method.api_method | slug}}-parameter_json">Query Parameters JSON</a></h5>
+```json
+{{method.parameter_json | jsonify | neat_json}}
+```
+<h5 id="{{ method.api_method | slug }}-expected_response_json"><a href="#{{ method.api_method | slug}}-expected_response_json">Expected Response JSON</a></h5>
+```json
+{{method.expected_response_json | jsonify | neat_json}}
+```
+{% if method.curl_examples %}
+<h5 id="{{ method.api_method | slug }}-curl-examples"><a href="#{{ method.api_method | slug}}-curl-examples">Example <code>curl</code></a></h5>
+{% for curl in method.curl_examples %}
+```bash
+curl -s --data '{{curl}}' https://api.steemit.com
+```
+{% endfor %}
+{% endif %}
+---
+{% endfor %}
+{% endfor %}
