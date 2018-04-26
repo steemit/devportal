@@ -5,7 +5,7 @@ toc:
     position: 1
   - title: "Quickstart"
     collection: "quickstart"
-    url: "/quickstart.html"
+    url: "/quickstart/"
     position: 2
     exclude: true
   - title: "Tutorials"
@@ -22,17 +22,17 @@ toc:
         collection: tutorials-ruby
   - title: "Services"
     collection: "services"
-    url: "/services.html"
+    url: "/services/"
     position: 6
     exclude: true
   - title: "Appbase API"
     collection: apidefinitions    
-    url: "/apidefinitions.html"
+    url: "/apidefinitions/"
     exclude: true
     position: 7    
   - title: "Community"
     collection: "community"
-    url: "/community.html"
+    url: "/community/"
     exclude: true
     position: 8
   - title: "Glossary"
