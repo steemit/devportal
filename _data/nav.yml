@@ -5,15 +5,9 @@ toc:
     position: 1
   - title: "Quickstart"
     collection: "quickstart"
-    url: "/"
+    url: "/quickstart/"
     position: 2
-    docs:
-      - title: "Choose Library"
-        url: "#quickstart-choose-library"
-      - title: "steemd Nodes"
-        url: "#quickstart-steemd-nodes"
-      - title: "Testnet"
-        url: testnet/
+    exclude: true
   - title: "Tutorials"
     collection: "tutorials"
     url: "/tutorials/"
@@ -28,16 +22,18 @@ toc:
         collection: tutorials-ruby
   - title: "Services"
     collection: "services"
-    url: "/"
+    url: "/services/"
     position: 6
+    exclude: true
   - title: "Appbase API"
     collection: apidefinitions    
-    url: "/apidefinitions.html"
+    url: "/apidefinitions/"
     exclude: true
     position: 7    
   - title: "Community"
     collection: "community"
-    url: "/"
+    url: "/community/"
+    exclude: true
     position: 8
   - title: "Glossary"
     collection: "glossary"

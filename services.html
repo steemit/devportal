@@ -1,18 +1,11 @@
 ---
-title: API Docs - API Definitions
-section: API Definitions
-permalink: /apidefinitions/
+title: Services
+section: Services
+layout: default
+permalink: /services/
 ---
 
-<section class="row">
-  <section class="row">
-	  <blockquote class="warning">
-		  While the <code>condenser_api.*</code> calls are ready for use, all other appbase methods are currently works in progress and may change, or be unsuitable for production use.
-	  </blockquote>
-  </section>
-</section>
-
-{% assign sorted_collections = site.collections | where:'title', "API Definitions" %}
+{% assign sorted_collections = site.collections | where:'id', "services" %}
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
