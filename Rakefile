@@ -38,9 +38,14 @@ namespace :production do
     sh 'bundle exec jekyll build'
   end
   
-  desc "Deploy current master to gh-pages"
-  task deploy: [:prevent_dirty_builds, :build] do
+  task :drop_previous_build do
     sh 'git checkout gh-pages'
+    sh 'git rm -rf _site'
+    sh 'git commit -m "jekyll dropped previous site"'
+  end
+  
+  desc "Deploy current master to gh-pages"
+  task deploy: [:prevent_dirty_builds, :drop_previous_build, :build] do
     sh 'git add -A'
     sh 'git commit -m "jekyll base sources"'
     sh 'git push origin gh-pages'
