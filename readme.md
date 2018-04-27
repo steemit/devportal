@@ -42,9 +42,33 @@ $ bundle exec jekyll serve --host x.x.x.x
 http://x.x.x.x:4000
 ~~~
 
+## Rake Tasks
+
+This application uses `rake` (Ruby's make command) to execute maintenance tasks.  You can see the complete list of tasks by typing:
+
+```bash
+$ bundle exec rake -T
+```
+
+### Production Deploy
+
+When you're ready to deploy this application to production, make sure you have nothing to commit and your working tree is clean, then type:
+
+```bash
+$ bundle exec rake production:deploy
+```
+
+The above command will deploy the current site to `gh-pages`.
+
+To reverse a previous bad deploy, use:
+
+```bash
+$ bundle exec rake production:rollback
+```
+
 ### Managing API Definitions
 
-This project maintains a copy of API Definitions in `_data/apidefinitions` in YAML format.  The purpose of these `.yml` files is to reflect details of each method.
+This application maintains a copy of API Definitions in `_data/apidefinitions` in YAML format.  The purpose of these `.yml` files is to reflect details of each method.
 
 In order to accurately synchronize the `.yml` files, we've added a `rake` task to evaluate the current state of the actual API, as reflected by the `jsonrpc` methods.
 
