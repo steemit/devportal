@@ -3,3 +3,4 @@ _site/
 .sass-cache/
 .idea
 vendor
+.DS_Store
