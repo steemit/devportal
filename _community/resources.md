@@ -62,13 +62,6 @@ Client library for Steem blockchain built with Rust
 
 ### Services and databases
 
-**SteemDevs Chat** - [https://discord.gg/B29Bbng](https://discord.gg/B29Bbng)
-
-SteemDevs chat is a Discord chat community where members of the Steem development community go to discuss Steem development, and other related topics.
-It is a great place to go to ask questions, meet other developers that are working on Steem projects, share tips and code snippets, and discuss the items you are working on.
-
----
-
 **SteemSQL** - [http://www.steemsql.com/](http://www.steemsql.com/)
 
 A private Microsoft SQL server database with Steem blockchain data, subscription based, allows you to do flexible queries and analyze blockchain data.
