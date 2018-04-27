@@ -106,7 +106,7 @@ notepad).
 > index.js is a basic javascript file that loads a `koa` based webserver serving
 > the tutorial so you can access it via a browser
 
-#### fetchBlock
+#### fetchBlog
 
 > **fetchBlog** function creates simple query object where tag is set to account
 > name on Steem and limit is set to number of posts being pulled from that
