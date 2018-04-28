@@ -6,11 +6,16 @@ exclude: true
 {% for sections in site.data.apidefinitions.broadcast_ops %}
 {{sections.description | markdownify}}
 {% for op in sections.ops %}
+<div style="float: right;">
+{% if op.since %}
+<span class="info"><strong><small>Since: {{op.since}}</small></strong></span>
+{% endif %}
+{% if op.virtual %}
+<span class="info"><strong><small>Virtual Operation</small></strong></span>
+{% endif %}
+</div>
 <h4 id="broadcast_ops_{{ op.name | slug }}">
 <code>{{op.name}}</code>
-{% if op.virtual %}
-<sup><small>virtual operation</small></sup>
-{% endif %}
 <a href="#broadcast_ops_{{ op.name | slug}}">
 <i class="fas fa-link fa-xs"></i></a>
 </h4>
