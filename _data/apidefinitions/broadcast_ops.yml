@@ -38,6 +38,8 @@
        "id":1
     }
     ```
+    
+    Also see: [Network Broadcast API](/apidefinitions/network-broadcast-api)
   ops:
     - name: vote
       virtual: false
