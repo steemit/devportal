@@ -262,6 +262,29 @@
           json_metadata
       json_examples:
         - '["account_update",{"account":"steemit","posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM6FATHLohxTN8RWWkU9ZZwVywXo6MEDjHHui1jEBYkG2tTdvMYo",1],["STM76EQNV2RTA6yF9TnBvGSV71mW7eW36MM7XQp24JxdoArTfKA76",1]]},"memo_key":"STM6FATHLohxTN8RWWkU9ZZwVywXo6MEDjHHui1jEBYkG2tTdvMYo","json_metadata":""}]'
+    - name: report_over_production
+      disabled: true
+      purpose: |
+        Disabled in HF4
+        
+        This operation is used to report a miner who signs two blocks
+        at the same time. To be valid, the violation must be reported within
+        STEEM_MAX_WITNESSES blocks of the head block (1 round) and the
+        producer must be in the ACTIVE witness set.
+        
+        Users not in the ACTIVE witness set should not have to worry about their
+        key getting compromised and being used to produced multiple blocks so
+        the attacker can report it and steel their vesting steem.
+        
+        The result of the operation is to transfer the full VESTING STEEM balance
+        of the block producer to the reporter.
+      roles:
+        - active
+          owner
+      params:
+        - reporter
+          first_block
+          second_block
     - name: witness_update
       virtual: false
       purpose: |
@@ -323,7 +346,7 @@
       json_examples:
         - '["account_witness_proxy",{"account":"alice","proxy":"bob"}]'
     - name: pow
-      deprecated: true
+      disabled: true
       virtual: false
       purpose: |
         Disabled in HF14.
@@ -496,6 +519,7 @@
       json_examples:
         - '["limit_order_create2",{"owner":"alice","orderid":492991,"amount_to_sell":["1",3,"@@000000013"],"exchange_rate":{"base":["1",3,"@@000000013"],"quote":["10",3,"@@000000021"]},"fill_or_kill":false,"expiration":"2017-05-12T23:11:13"}]'
     - name: challenge_authority
+      disabled: true
       virtual: false
       purpose: |
         Disabled in HF14.
@@ -702,7 +726,7 @@
       json_examples:
         - '["escrow_release",{"from":"alice","to":"bob","agent":"charlie","who":"charlie","receiver":"bob","escrow_id":72526562,"sbd_amount":["5000",3,"@@000000013"],"steem_amount":["0",3,"@@000000021"]}]'
     - name: pow2
-      deprecated: true
+      disabled: true
       virtual: false
       purpose:
         Disabled in HF17.
@@ -823,6 +847,7 @@
       json_examples:
         - '["decline_voting_rights",{"account":"judy","decline":true}]'
     - name: reset_account
+      disabled: true
       since: HF11
       virtual: false
       purpose: |
@@ -838,11 +863,12 @@
           account_to_reset
           new_owner_authority
     - name: set_reset_account
+      disabled: true
       since: HF11
       virtual: false
       purpose: |
         This operation allows `account` owner to control which account has the
-        power to execute the `reset_account_operation` after 60 days.
+        power to execute the `reset_account` operation after 60 days.
         
         See: [#169](https://github.com/steemit/steem/issues/169)
       roles:
@@ -926,7 +952,10 @@
         - '["account_create_with_delegation",{"fee":["3000",3,"@@000000021"],"delegation":["0",6,"@@000000037"],"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5Tki3ecCdCCHCjhhwvQvXuKryL2s34Ma6CXsRzntSUTYVYxCQ9",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM6LUoAA8gCL9tHRz7v9xcwR4ZWD3KDRHP5t1U7UAZHdfanLxyBE",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8anmpHdfVE4AmwsDpcSXpRsydHysEbv6vGJkRQy1d1CC83zeTA",1]]},"memo_key":"STM67RYDyEkP1Ja1jFehJ45BFGA9oHHUnRnYbxKJEtMhVQiHW3S3k","json_metadata":"{}","extensions":[]}]'
     - name: fill_convert_request
       virtual: true
-      purpose:
+      purpose: |
+        Fills when conversion requests with a conversion date before the head
+        block time and then converts them to/from steem/sbd at the current
+        median price feed history price times the premium.
       roles:
         - active
           owner
@@ -935,7 +964,7 @@
           requestid
           amount_in
           amount_out
-    - name: comment_reward
+    - name: author_reward
       virtual: true
       purpose:
       roles:
@@ -945,9 +974,36 @@
       params:
         - author
           permlink
+          sbd_payout
+          steem_payout
+          vesting_payout
+    - name: curation_reward
+      virtual: true
+      purpose:
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - curator
+          reward
+          comment_author
+          comment_permlink
+    - name: comment_reward
+      since: HF17
+      virtual: true
+      purpose: |
+        See: [#774](https://github.com/steemit/steem/issues/774)
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - author
+          permlink
           payout
     - name: liquidity_reward
-      deprecated: true
+      disabled: true
       virtual: true
       purpose: |
         Deprecated as of HF12, see: [#178](https://github.com/steemit/steem/issues/178).
@@ -969,8 +1025,10 @@
       json_examples:
         - '["interest",{"owner":"alice","interest":"0.001 SBD"}]'
     - name: fill_vesting_withdraw
+      since: HF6
       virtual: true
-      purpose:
+      purpose: |
+        See: [#78](https://github.com/steemit/steem/issues/78)
       roles:
         - active
           owner
@@ -997,7 +1055,23 @@
           open_pays
       json_examples:
         - '["fill_order",{"current_owner":"alice","current_orderid":42896,"current_pays":"94.999 SBD","open_owner":"bob","open_orderid":10001,"open_pays":"500.000 STEEM"}]'
+    - name: shutdown_witness
+      since: HF14
+      virtual: true
+      purpose: |
+        When a witness goes offline.
+        
+        See: [#278](https://github.com/steemit/steem/issues/278)
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - owner
+      json_examples:
+        - '["shutdown_witness",{"owner":"alice"}]'
     - name: fill_transfer_from_savings
+      since: HF14
       virtual: true
       purpose:
       roles:
@@ -1010,3 +1084,64 @@
           amount
           request_id
           memo
+    - name: hardfork
+      since: HF9
+      virtual: true
+      purpose:
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - hardfork_id
+    - name: comment_payout_update
+      virtual: true
+      purpose:
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - author
+          permlink
+    - name: return_vesting_delegation
+      since: HF17
+      virtual: true
+      purpose:
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - account
+          vesting_shares
+    - name: comment_benefactor_reward
+      since: HF17
+      virtual: true
+      purpose:
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - benefactor
+          author
+          permlink
+          reward
+    - name: producer_reward
+      since: HF17
+      virtual: true
+      purpose: |
+        Witness rewards for block signing are hard to account for. Making these
+        rewards visible will help witnesses and prospective witnesses by
+        providing them with more complete and accurate information to guide
+        their decisions to invest in the platform.
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - producer
+          vesting_shares
+      json_examples:
+        - '["producer_reward", {"producer":"alice","vesting_shares":"14403.626449 VESTS"}]'

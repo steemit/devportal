@@ -16,6 +16,9 @@ exclude: true
 {% if op.deprecated %}
 <li class="warning"><strong><small>Deprecated</small></strong></li>
 {% endif %}
+{% if op.disabled %}
+<li class="warning"><strong><small>Disabled</small></strong></li>
+{% endif %}
 </ul>
 <h4 id="broadcast_ops_{{ op.name | slug }}">
 <code>{{op.name}}</code>
