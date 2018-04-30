@@ -878,6 +878,9 @@
         
         When a delegation is removed the shares are placed in limbo for a week
         to prevent a satoshi of VESTS from voting on the same content twice.
+        
+        Also see:
+          * [steem_evaluator.cpp:2309](https://github.com/steemit/steem/blob/4b19e00dd6a76699aa4de1c0d50aad392cd2d0b6/libraries/chain/steem_evaluator.cpp#L2309)
       roles:
         - active
           owner
@@ -901,6 +904,10 @@
         delegation. Witnesses should reduce their fee by 30x when the hardfork
         goes live to preserve the same required fee for an all STEEM account
         creation.*
+        
+        Also see:
+          * [config.hpp:145](https://github.com/steemit/steem/blob/65c58af34971416057e142ac1332421e2228749b/libraries/protocol/include/steem/protocol/config.hpp#L145)
+          * [steem_evaluator.cpp:400](https://github.com/steemit/steem/blob/4b19e00dd6a76699aa4de1c0d50aad392cd2d0b6/libraries/chain/steem_evaluator.cpp#L400)
       roles:
         - active
           owner
