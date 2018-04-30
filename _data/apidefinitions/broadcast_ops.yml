@@ -947,6 +947,7 @@
           permlink
           payout
     - name: liquidity_reward
+      deprecated: true
       virtual: true
       purpose: |
         Deprecated as of HF12, see: [#178](https://github.com/steemit/steem/issues/178).
