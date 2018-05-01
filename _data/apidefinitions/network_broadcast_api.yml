@@ -1,5 +1,9 @@
 - name: Network Broadcast API
-  description: Used to broadcast transactions and blocks. **These AppBase API methods are still under development and subject to change.**
+  description: |
+    Used to broadcast transactions and blocks. **These AppBase API methods are
+    still under development and subject to change.**
+    
+    Also see: [Blockchain Ops](/apidefinitions/broadcast-ops)
   methods:
     - api_method: network_broadcast_api.broadcast_block
       purpose: Used to broadcast a block.
