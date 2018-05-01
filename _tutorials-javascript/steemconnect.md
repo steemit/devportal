@@ -74,7 +74,7 @@ Learn more about [Steemconnect operations here](https://github.com/steemit/steem
 
 ## Overview
 
-Steemconnect is unified authentification system built on top of Steem and is built in a collaboration of Busy.org and Steemit Inc.
+Steemconnect is unified authentication system built on top of Steem and is built in a collaboration of Busy.org and Steemit Inc.
 Steemconnect is a layer to ensure easy access and setup for all application developers as well as a secure way for users to interact with Steem apps.
 
 Setting up Steemconnect in your app is straight-forward process and never been this easy.
@@ -112,7 +112,7 @@ Redirect URI(s) will be used within your application to forward user after authe
 
 ## Step II
 
-Once you have setup your account for the new application, you can setup your application with Steemconnect authentification and API processes.
+Once you have setup your account for the new application, you can setup your application with Steemconnect authentication and API processes.
 
 ### Install
 To do that, you will need to install `sc2-sdk` nodejs package with `npm i sc2-sdk`.
@@ -168,5 +168,3 @@ result = {
 ## Source code [<img src="/images/look.svg" width="16" height="16" />](/tutorials-javascript/getting-started)
 
 To try this application visit [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js), find [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) and follow **To run** section in README.
-
-

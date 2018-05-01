@@ -104,7 +104,7 @@ And output of operation object/json is set to `OpInput` element.
 
 ### Sign transaction
 
-Each operation needs to be signed before they can be sent to the network, transactions without signature will not be accepted by network. Because someone has to identify operation and sign it with their private keys. Sign transaction button calls for `signTx` function which is job is to sign selected operation and its obkect with selected account. And output result into `TxOutput` element.
+Each operation needs to be signed before they can be sent to the network, transactions without signature will not be accepted by network. Because someone has to identify operation and sign it with their private keys. Sign transaction button calls for `signTx` function which is job is to sign selected operation and its object with selected account. And output result into `TxOutput` element.
 
 ### Verify signature
 
@@ -112,7 +112,7 @@ This process is mostly done automatically but to show every step, we have includ
 
 ### Broadcast transaction
 
-Final step is to broadcast our signed transction to the selected server. Server chosen in Connect section will handle propagating transction to the network. After network accepts transaction it will return result with transaction `id`, `block_num` that this transaction is included to, `trx_num` transaction number, and if it is `expired` or not. 
+Final step is to broadcast our signed transaction to the selected server. Server chosen in Connect section will handle propagating transaction to the network. After network accepts transaction it will return result with transaction `id`, `block_num` that this transaction is included to, `trx_num` transaction number, and if it is `expired` or not. 
 
 That's it!
 

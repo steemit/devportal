@@ -10,5 +10,5 @@ The source code for the Dev Portal is open source, and pull requests to update t
 Developers who would like to make additional improvements to the Dev Portal may submit pull requests to the GitHub repository: [https://github.com/steemit/devportal](https://github.com/steemit/devportal).
 
 
-Please visit the quickstart section which includes helpful tutorials to get going quickly.
-More detailed endpoint and advanced features are available in services for building robust platforms on the amazing and censorship resistant **steem** blockchain.  
+Please visit the quick-start section which includes helpful tutorials to get going quickly.
+More detailed endpoint and advanced features are available in services for building robust platforms on the amazing and censorship-resistant **steem** blockchain.  
