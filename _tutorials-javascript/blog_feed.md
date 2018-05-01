@@ -75,7 +75,7 @@ a larger project and maybe even a full-fledged site you may want to consider
 running your own nodes. If you want to use different Steem nodes, it can be
 specified with `dsteem` but it's left out for this simple example.
 
-#### Tutorial Setup [<img src="/images/look.svg" width="16" height="16" />](getting-started#setup_node_js)
+#### Tutorial Setup [<img src="/images/look.svg" width="16" height="16" />](/tutorials-javascript/getting-started)
 
 * clone
   [https://github.com/steemit/devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js)
