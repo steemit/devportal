@@ -114,7 +114,7 @@ notepad).
 > to query user's blog posts and reformat them into list of posts. Each blog
 > post has `json_metadata` which holds meta information in post, using that we
 > are able to extract first image from post and use it as thumbnail, post author
-> and created information is also formated and displayed.
+> and created information is also formatted and displayed.
 
 ```javascript
 var query = {
@@ -124,7 +124,7 @@ var query = {
 ```
 
 `tag` - this [tag](/glossary/#Tags) is used to limit the types of posts that are
-returned. Each post is assigned multiple tags appon creation and by doing this
+returned. Each post is assigned multiple tags upon creation and by doing this
 allows you to filter what results are returned.
 
 `limit` - this limit allows us to limit the amount of records that are returned

@@ -33,7 +33,7 @@ A simple library to stream blocks and operations for digesting into other medium
 
 **SteemIAPI** - [http://steem.esteem.ws/](http://steem.esteem.ws/)
 
-Interactive Steem API swagger, [opensource](https://github.com/eSteemApp/steemapi) script allows you to interact with blockchain.
+Interactive Steem API swagger, [open-source](https://github.com/eSteemApp/steemapi) script allows you to interact with blockchain.
 
 ---
 
@@ -70,7 +70,7 @@ A private Microsoft SQL server database with Steem blockchain data, subscription
 
 **Steem Data** - [https://github.com/SteemData](https://github.com/SteemData)
 
-SteemData is discontinued but opensource python project, it parses the STEEM blockchain for you, and provide the data as a fast and convenient MongoDB service. SteemData helps developers and researchers build better STEEM applications.
+SteemData is discontinued but open-source python project, it parses the STEEM blockchain for you, and provide the data as a fast and convenient MongoDB service. SteemData helps developers and researchers build better STEEM applications.
 
 ---
 

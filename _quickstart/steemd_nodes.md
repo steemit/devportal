@@ -20,7 +20,7 @@ right_code: |
     ```  
 ---
 
-Applications that interface directly with the Steem blockchain will need to connect to a steemd node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.
+Applications that interface directly with the Steem blockchain will need to connect to a `steemd` node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.
 
 ### Public Nodes
 
@@ -37,7 +37,7 @@ Applications that interface directly with the Steem blockchain will need to conn
 
 ### Private Nodes
 
-The simplest way to get started is by deploying a prebuilt dockerized container.
+The simplest way to get started is by deploying a pre-built dockerized container.
 
 ##### Dockerized p2p Node
 
