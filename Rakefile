@@ -35,29 +35,29 @@ namespace :production do
   end
   
   task :build do
-    sh 'bundle exec jekyll build'
+    sh 'bundle exec jekyll build --destination docs'
   end
   
   task :drop_previous_build do
-    sh 'git checkout gh-pages'
-    sh 'git rm -rf _site'
-    sh 'git commit -m "jekyll dropped previous site"'
+    sh 'git checkout master'
+    sh 'git rm -rf docs'
+    sh 'git commit -m "jekyll dropped previous docs"'
   end
   
-  desc "Deploy current master to gh-pages"
+  desc "Deploy current master to master"
   task deploy: [:prevent_dirty_builds, :drop_previous_build, :build] do
     sh 'git add -A'
     sh 'git commit -m "jekyll base sources"'
-    sh 'git push origin gh-pages'
+    sh 'git push origin master'
     
     exit(0)
   end
   
-  desc "Rollback gh-pages"
+  desc "Rollback master"
   task rollback: [:prevent_dirty_builds] do
-    sh 'git checkout gh-pages'
-    sh 'git reset --hard HEAD^'
-    sh 'git push origin gh-pages'
+    sh 'git checkout master'
+    sh 'git reset --hard HEAD^2'
+    sh 'git push origin master'
     
     exit(0)
   end
