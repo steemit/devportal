@@ -19,7 +19,7 @@ right_code: |
     
     Check out [yarn](https://yarnpkg.com/en/docs/install).
 ---
-### You
+### Node.js
 To get the most out of these tutorials, you should be familiar with [Node.js](https://nodejs.org/en/), [ES6](https://babeljs.io/learn-es2015/) aka [es2015](http://www.ecma-international.org/ecma-262/6.0/), the DOM, and modern Javascript programming practices. 
 You can still learn a lot of these aren't in your base skillset; it'll be easier if they are.
 

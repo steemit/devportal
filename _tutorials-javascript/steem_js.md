@@ -163,7 +163,7 @@ https://youtu.be/6Sy33DnyGs8
 
 The tutorial assumes some basic knowledge of both HTML and javascript. For simplicity, this is done with a single HTML file and inline javascript.
 
-By default the steem-js library connects to steemit.com's public STEEM nodes. To kickstart 3rd party development projects this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different nodes, the RPC endpoint can be specified but it's left out for this simple example.
+By default the steem-js library connects to steemit.com's public STEEM nodes. To kickstart community development projects this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different nodes, the RPC endpoint can be specified but it's left out for this simple example.
 
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even notepad).
 
