@@ -1,6 +1,7 @@
 ---
 title: steemd Nodes
 position: 2
+exclude: true
 right_code: |
     ``` bash
     docker run \
@@ -19,27 +20,29 @@ right_code: |
     ```  
 ---
 
-Applications that interface directly with the Steem blockchain will need to connect to a steemd node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.
+Applications that interface directly with the Steem blockchain will need to connect to a `steemd` node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.
 
 ### Public Nodes
 
-|URL|Owner|
-|---|---|
-|gtg.steem.house:8090|@gtg|
-|steemd.minnowsupportproject.org|@followbtcnews|
-|steemd.privex.io|@privex|
-|steemd.steemgigs.org|@steemgigs|
-|steemd.steemit.com|@steemit|
-|rpc.curiesteem.com|@curie|
-|rpc.steemliberator.com|@netuoso|
-|rpc.steemviz.com|@ausbitbank|
+| URL                             | Owner          |
+| ------------------------------- | -------------- |
+| gtg.steem.house:8090            | @gtg           |
+| steemd.minnowsupportproject.org | @followbtcnews |
+| steemd.privex.io                | @privex        |
+| steemd.steemgigs.org            | @steemgigs     |
+| steemd.steemit.com              | @steemit       |
+| rpc.curiesteem.com              | @curie         |
+| rpc.steemliberator.com          | @netuoso       |
+| rpc.steemviz.com                | @ausbitbank    |
 
 ### Private Nodes
 
-The simplest way to get started is by deploying a prebuilt dockerized container. 
- 
+The simplest way to get started is by deploying a pre-built dockerized container.
+
 ##### Dockerized p2p Node
-*To run a p2p node (ca. 2GB of memory is required at the moment):*
+
+_To run a p2p node (ca. 2GB of memory is required at the moment):_
 
 ##### Dockerized Full Node
-*to run a node with all the data (e.g. for supporting a content website) that uses ca. 14GB of memory and growing:*
+
+_to run a node with all the data (e.g. for supporting a content website) that uses ca. 14GB of memory and growing:_

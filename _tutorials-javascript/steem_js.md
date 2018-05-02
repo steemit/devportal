@@ -48,7 +48,7 @@ right_code: |
     }
     </script>
     ```
-    <p class="right-section-title">Photography</p>
+    <p class="static-right-section-title">Photography</p>
     ~~~javascript
     var results = steem.api.getState('/trending/photography', function(err, result) {
         console.log(err, result);
@@ -107,19 +107,19 @@ right_code: |
         console.log(pending_payout_value)   
     }
     ~~~
-    <p class="right-section-title">Accounts</p>
+    <p class="static-right-section-title">Accounts</p>
     ``` javascript
     steem.api.getAccounts(['ned', 'sneak'], function(err, result) {
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">State</p>
+    <p class="static-right-section-title">State</p>
     ``` javascript
     steem.api.getState('/trends/funny', function(err, result) {
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">Broadcast</p>
+    <p class="static-right-section-title">Broadcast</p>
     ``` javascript
     var steem = require('steem');
 
@@ -128,7 +128,7 @@ right_code: |
         console.log(err, result);
     });
     ```
-    <p class="right-section-title">Reputation</p>
+    <p class="static-right-section-title">Reputation</p>
     ``` javascript
     var reputation = steem.formatter.reputation(user.reputation);
     console.log(reputation);
@@ -163,7 +163,7 @@ https://youtu.be/6Sy33DnyGs8
 
 The tutorial assumes some basic knowledge of both HTML and javascript. For simplicity, this is done with a single HTML file and inline javascript.
 
-By default the steem-js library connects to steemit.com's public STEEM nodes. To kickstart 3rd party development projects this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different nodes, the RPC endpoint can be specified but it's left out for this simple example.
+By default the steem-js library connects to steemit.com's public STEEM nodes. To kickstart community development projects this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different nodes, the RPC endpoint can be specified but it's left out for this simple example.
 
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even notepad).
 

@@ -1,0 +1,28 @@
+---
+title: Services
+section: Services
+layout: default
+permalink: /services/
+---
+
+{% assign sorted_collections = site.collections | where:'id', "services" %}
+{% for collection in sorted_collections %}
+	{% assign sorted_docs = collection.docs | sort: "position" %}
+	{% for doc in sorted_docs %}
+		<section id="{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
+			<h3>
+				<a id="{{ doc.id | slugify }}">
+					{{ doc.title }}
+					{% if doc.type %}
+						<span class="endpoint {{ doc.type }}"></span>
+					{% endif %}
+				</a>
+			</h3>
+			{% if doc.description %}
+				<p class="description">{{doc.description}}</p>
+			{% endif %}
+
+			{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
+		</section>
+	{% endfor %}
+{% endfor %}
