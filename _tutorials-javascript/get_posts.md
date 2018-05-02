@@ -1,10 +1,10 @@
 ---
 title: Get posts with filters
 position: 5
-description: How to fetch posts from different category.
+description: How to query for posts with specific filters & tags.
 layout: full
 right_code: |
-    <p class="static-right-section-title">Filters or categories</p>
+    <p class="static-right-section-title">Filters or tags</p>
     ``` javascript
     filtersChange = async() => {
         filter = document.getElementById("filters").value
@@ -36,18 +36,18 @@ right_code: |
     ```
 ---
 
-This tutorial pulls a list of the posts from different category or filters and displays them. Source code for this tutorial can be found here: [devportal-tutorials-js/tutorials/04_get_posts](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/04_get_posts).
+This tutorial pulls a list of the posts from different tag or filters and displays them. Source code for this tutorial can be found here: [devportal-tutorials-js/tutorials/04_get_posts](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/04_get_posts).
 
-### Filters or categories
+### Filters
 
-In Steem there are built-in filters `trending`, `hot`, `new`, `active`, `promoted` etc. which helps us to get list of posts. `client.database.getDiscussions(filter, query)` first argument of this function is one of above filter and library fetches posts from those filters.
+In Steem there are built-in filters `trending`, `hot`, `new`, `active`, `promoted` etc. which help us to get list of posts. `client.database.getDiscussions(filter, query)` first argument of this function is one of above filter and library fetches posts from those filters.
 
-### Query
+### Query (tag, limit)
 
 Second argument of `getDisccusions` function is query.
 
-*   You can add a tag to filter the posts that you receive from the server, if this field is empty string it will fetch from full list of posts in that selected category.
-*   You can also limit the amount of results you would like to receive from the query
+*   You can add a tag to filter the posts that you receive from the server, if this field is empty string it will fetch from full list of posts in that selected tag.
+*   You can also limit the number of results you would like to receive from the query
 
 ```javascript
 var query = {
@@ -64,7 +64,7 @@ The result returned form the service is a `JSON` object with the following prope
 {% include tutorials-javascript/get_posts.json %}
 ```
 
-From this result you have access to everything associated to each post including additional metadata which is a `JSON` string that must be decoded to use. This `JSON` object has additional information and properties for the post including a reference to the image uploaded.
+From this result you have access to everything associated with each post including additional metadata which is a `JSON` string that must be decoded to use. This `JSON` object has additional information and properties for the post including a reference to the image uploaded.
 
 `JSON` contains list of posts with their properties, in our example we choose limit 5 which means we will recieve 5 posts in json object. After parsing additional information we will be able to display them as we want.
 
