@@ -35,12 +35,12 @@ namespace :production do
   end
   
   task :build do
-    sh 'bundle exec jekyll build'
+    sh 'bundle exec jekyll build --destination docs'
   end
   
   task :drop_previous_build do
     sh 'git checkout master'
-    sh 'git rm -rf _site'
+    sh 'git rm -rf docs'
     sh 'git commit -m "jekyll dropped previous site"'
   end
   
