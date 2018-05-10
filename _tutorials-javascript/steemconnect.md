@@ -85,30 +85,25 @@ Setting up Steemconnect in your app is straight-forward process and never been t
 ## Step I
 
 1. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
-
 ![steemconnect_login](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_login.png?raw=true)
 
-2. You will see an Applications and Developers section, in Developers section click on `My Apps`
-
+1. You will see an Applications and Developers section, in Developers section click on `My Apps`
 ![steemconnect_dashboard](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_dashboard.png?raw=true)
-
 ![steemconnect_new_app](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_new_app.png?raw=true)
 
-3. Create a New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
-
+1. Create a New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
 ![steemconnect_account_create](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_account_create.png?raw=true)
+    
+    An account creation fee will be deducted from your balance, make sure you have enough funds to complete the account creation. Next step is to login with the account which has enough STEEM to pay for the account creation fee.
 
-An account creation fee will be deducted from your balance, make sure you have enough funds to complete the account creation. Next step is to login with the account which has enough STEEM to pay for the account creation fee.
+    ![steemconnect_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true)
 
-![steemconnect_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true)
-
-4. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
-
-![steemconnect_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true)
+1. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
+    ![steemconnect_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true)
 
 Redirect URI(s) will be used within your application to forward user after authentication is successful. This is typical backend web development, we hope you know how to set this up.
 
-* Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves
+\* _Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves_
 
 ## Step II
 
