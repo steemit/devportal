@@ -25,3 +25,40 @@ namespace :scrape do
     puts "Methods added or changed: #{count}"
   end
 end
+
+namespace :production do
+  task :prevent_dirty_builds do
+    if `git status --porcelain`.chomp.length > 0
+      puts '*** WARNING: You currently have uncommitted changes. ***'
+      fail 'Build aborted, because project directory is not clean.' unless ENV['ALLOW_DIRTY']
+    end
+  end
+  
+  task :build do
+    sh 'bundle exec jekyll build'
+  end
+  
+  task :drop_previous_build do
+    sh 'git checkout gh-pages'
+    sh 'git rm -rf _site'
+    sh 'git commit -m "jekyll dropped previous site"'
+  end
+  
+  desc "Deploy current master to gh-pages"
+  task deploy: [:prevent_dirty_builds, :drop_previous_build, :build] do
+    sh 'git add -A'
+    sh 'git commit -m "jekyll base sources"'
+    sh 'git push origin gh-pages'
+    
+    exit(0)
+  end
+  
+  desc "Rollback gh-pages"
+  task rollback: [:prevent_dirty_builds] do
+    sh 'git checkout gh-pages'
+    sh 'git reset --hard HEAD^'
+    sh 'git push origin gh-pages'
+    
+    exit(0)
+  end
+end

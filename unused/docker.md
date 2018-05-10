@@ -3,9 +3,9 @@ title: Docker
 position: 1
 ---
 
-Just want to get up and running quickly? Try deploying a prebuilt dockerized container. Both common binary types are included.
+Just want to get up and running quickly? Try deploying a pre-built dockerized container. Both common binary types are included.
 
-Just want to get up and running quickly?  Try deploying a prebuilt
+Just want to get up and running quickly?  Try deploying a pre-built
 dockerized container.  Both common binary types are included.
 
 #### Dockerized p2p Node

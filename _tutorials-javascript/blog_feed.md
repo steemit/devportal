@@ -5,7 +5,7 @@ exclude: true
 layout: full
 description: A simple blog feed tutorial using javascript
 right_code: |
-    index.html
+    <p class="static-right-section-title">index.html</p>
     ``` html
       <html>
       <head><title>User blog</title>
@@ -18,7 +18,7 @@ right_code: |
       </body>
       </html>
     ```
-    app.js
+    <p class="static-right-section-title">app.js</p>
     ``` javascript
       const { Client } = require('dsteem');
 
@@ -41,16 +41,16 @@ right_code: |
                       `<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>`
                   )
               });
-
               document.getElementById('postList').innerHTML = posts.join();
           }).catch((err) => {
             alert('Error occured');
           });
       }
-
       window.onload = fetchBlog();
     ```
-    index.js
+
+    <p class="static-right-section-title">index.js</p>
+    
     ``` javascript
       const Koa = require('koa');
       const app = new Koa();
@@ -75,7 +75,7 @@ a larger project and maybe even a full-fledged site you may want to consider
 running your own nodes. If you want to use different Steem nodes, it can be
 specified with `dsteem` but it's left out for this simple example.
 
-#### Tutorial Setup [<img src="/images/look.svg" width="16" height="16" />](getting-started#setup_node_js)
+#### Tutorial Setup [<img src="/images/look.svg" width="16" height="16" />](/tutorials-javascript/getting-started)
 
 * clone
   [https://github.com/steemit/devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js)
@@ -90,23 +90,23 @@ specified with `dsteem` but it's left out for this simple example.
 Open your favorite text editor or IDE (atom, sublimetext, text edit, or even
 notepad).
 
-#### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
+### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
 
 > Make a basic html file that contains the structure for the javascript to
 > populate with results returned by the api. Basic bootstrap styling is used.
 
-#### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
+### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
 
 > A seperate javascript file exists with the application to query the API and
 > populate the HTML document with the results returned. We are calling
 > `fetchBlog()` function when body of the page is onload.
 
-#### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
+### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
 
 > index.js is a basic javascript file that loads a `koa` based webserver serving
 > the tutorial so you can access it via a browser
 
-#### fetchBlock
+#### fetchBlog
 
 > **fetchBlog** function creates simple query object where tag is set to account
 > name on Steem and limit is set to number of posts being pulled from that
@@ -114,7 +114,7 @@ notepad).
 > to query user's blog posts and reformat them into list of posts. Each blog
 > post has `json_metadata` which holds meta information in post, using that we
 > are able to extract first image from post and use it as thumbnail, post author
-> and created information is also formated and displayed.
+> and created information is also formatted and displayed.
 
 ```javascript
 var query = {
@@ -124,7 +124,7 @@ var query = {
 ```
 
 `tag` - this [tag](/glossary/#Tags) is used to limit the types of posts that are
-returned. Each post is assigned multiple tags appon creation and by doing this
+returned. Each post is assigned multiple tags upon creation and by doing this
 allows you to filter what results are returned.
 
 `limit` - this limit allows us to limit the amount of records that are returned
