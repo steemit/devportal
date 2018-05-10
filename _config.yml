@@ -13,15 +13,20 @@ collections:
     id: introduction
     position: 1
     output: true
+  contributors:
+    title: Contributors
+    id: contributors
+    position: 2
+    output: true
   quickstart:
     title: Quickstart
     id: quickstart
-    position: 2
+    position: 3
     output: true
   javascript:
     title: Javascript
     id: javascript
-    position: 3
+    position: 4
     output: true
   tutorials:
     title: Tutorials

@@ -3,4 +3,6 @@ _includes/tutorials-ruby/Gemfile.lock
 .sass-cache/
 .idea
 vendor
+node_modules/
 .DS_Store
+
