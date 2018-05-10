@@ -3,9 +3,6 @@ toc:
     collection: "introduction"
     url: "/"
     position: 1
-    docs:
-    - title: "Contributors"
-      url: "contributors/"
   - title: "Quickstart"
     collection: "quickstart"
     url: "/quickstart/"
