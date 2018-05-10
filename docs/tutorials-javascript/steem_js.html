@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+		
+		<link rel="shortcut icon" type="image/png" href="/favicon.png">
+		
+
+		
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+		<script src="/js/main.js"></script>
+		
+
+		<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Legacy Getting Started - Steem Developer</title>
+<meta property="og:title" content="Legacy Getting Started" />
+<meta name="description" content="Our newer tutorials use dsteem, which is significantly faster and better documented than the current version of steem-js library. If you prefer to use steem-js you can find our old Getting Started documentation here." />
+<meta property="og:description" content="Our newer tutorials use dsteem, which is significantly faster and better documented than the current version of steem-js library. If you prefer to use steem-js you can find our old Getting Started documentation here." />
+<link rel="canonical" href="https://developer.steem.io/tutorials-javascript/steem_js" />
+<meta property="og:url" content="https://developer.steem.io/tutorials-javascript/steem_js" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-10T17:25:26-05:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Legacy Getting Started",
+"datePublished": "2018-05-10T17:25:26-05:00",
+"description": "Our newer tutorials use dsteem, which is significantly faster and better documented than the current version of steem-js library. If you prefer to use steem-js you can find our old Getting Started documentation here.",
+"url": "https://developer.steem.io/tutorials-javascript/steem_js"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		
+	</head>
+	<body>
+		<header>
+			<h1>
+				
+					<a href="/"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+				
+				<a href="/" class="logo-link"></a>
+				<button type="button" class="open-nav" id="open-nav"></button>
+			</h1>
+
+			
+				<form action="/search/" method="get">
+					<input type="text" name="q" id="search-input" placeholder="Search">
+					<input type="submit" value="Search" style="display: none;">
+				</form>
+			
+
+			<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+			<!--<p class="copyright">-->
+				<!--<a href="https://steemit.com.com/">-->
+				  <!--steemit-->
+				<!--</a>-->
+			<!--</p>-->
+			<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+		</header>
+		<div class="main" id="top">
+			<div class="hero">
+				<h1 class="hero__h1">Steem Developer Portal </h1>
+				
+				<img class="hero__img" src="/images/hero.png">
+				
+			</div>
+			<section id="tutorials-javascript-steem-js" class="doc-content tutorials-javascript-steem-js">
+	<section class="left-docs">
+		<h3>
+			<a id="tutorials-javascript-steem-js">
+				Legacy Getting Started
+				
+			</a>
+		</h3>
+		
+			<p class="description">Our newer tutorials use <code>dsteem</code>, which is significantly faster and better documented than the current version of steem-js library. If you prefer to use <code>steem-js</code> you can find our old Getting Started documentation here.</p>
+		
+
+		<p>Steem.js makes it easy to access the steem blockchain for your project. The Javascript library let’s your app easily access steem blockchain data and also perform user actions.</p>
+
+<p>The toolkit is located at: <a href="https://github.com/steemit/steem-js">https://github.com/steemit/steem-js</a>.</p>
+
+<p>Get running with Steem.js with a few simple options.</p>
+
+<p>NPM install for Javascript projects.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install steem --save
+</code></pre>
+</div>
+
+<p>Link directly from the CDN.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="//cdn.steemjs.com/lib/latest/steem.min.js"&gt;&lt;/script&gt;
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="quickstart">Quickstart</h3>
+
+<p>This is a simple example of how to post an article to the STEEM blockchain using the steem-js library. For the purpose of the example, it’s done with inline javascript in an HTML file.</p>
+
+<p>Accompanying youtube tutorial:
+https://youtu.be/6Sy33DnyGs8</p>
+
+<p>The tutorial assumes some basic knowledge of both HTML and javascript. For simplicity, this is done with a single HTML file and inline javascript.</p>
+
+<p>By default the steem-js library connects to steemit.com’s public STEEM nodes. To kickstart community development projects this is entirely acceptable. If your STEEM app turns into a larger project and maybe even a full-fledged site you may want to consider running your own nodes. If you want to use different nodes, the RPC endpoint can be specified but it’s left out for this simple example.</p>
+
+<p>Open your favorite text editor or IDE (atom, sublimetext, text edit, or even notepad).</p>
+
+<p>Make a basic <strong>skeleton</strong> of a webpage in HTML to use as your ‘interface’. Include input boxes for username, posting key, title, and a textarea for the body of the article.</p>
+
+<p>Add a <strong>script line</strong> to pull in the steem-js library inline.</p>
+
+<p>Create a <strong>post function</strong> that uses the steem-js function <code class="highlighter-rouge">steem.broadcast.comment()</code> to make a post. As far as the blockchain is concerned, a new article/post is the same as a comment, you actually use the same function for both.</p>
+
+<p>Save the file as <code class="highlighter-rouge">steempostexample.html</code> and load it in your web browser. That’s it!</p>
+
+<h3 id="photography">Photography</h3>
+
+<p>Utilizing the Javascript library with a few lines of code, display the latest
+photography posts, along with payout data.</p>
+
+<p>You can easily create the next instagram on the steem platform.</p>
+
+<h5 id="lets-get-started">Let’s get started:</h5>
+
+<p>Use the get state method to return trending photography posts.</p>
+
+<p>Displayed is example output of an individual content object returned.</p>
+
+<p>Last, let’s loop over your results and return each payout amount. Using our example above we will have
+an object with “content”.</p>
+
+<h3 id="accounts">Accounts</h3>
+
+<p>Easily fetch account data on the following users.</p>
+
+<h3 id="state">State</h3>
+
+<p>Easily fetch state.</p>
+
+<h3 id="broadcast">Broadcast</h3>
+
+<p>Easily cast a vote for a user.</p>
+
+<h3 id="reputation">Reputation</h3>
+
+<p>Easily handle reputation parsing.</p>
+
+	</section>
+
+	
+		<section class="right-code">
+			<p>Skeleton</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;title&gt;</span>steem-js posting example<span class="nt">&lt;/title&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;h2&gt;</span>Post an article to the steem blockchain!<span class="nt">&lt;/h2&gt;</span>
+Username: <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;&lt;br/&gt;</span>
+Posting key: <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"postingKey"</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">size=</span><span class="s">"65"</span><span class="nt">&gt;&lt;br/&gt;</span>
+Title of article: <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"title"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;&lt;br/&gt;</span>
+Article text:<span class="nt">&lt;br/&gt;</span>
+<span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"article"</span><span class="nt">&gt;&lt;/textarea&gt;&lt;br/&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"postIt"</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"Post it!"</span> <span class="na">onClick=</span><span class="s">postArticle()</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+<p>Script Line</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.steemjs.com/lib/latest/steem.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+</div>
+<p>Post Function</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"JavaScript"</span><span class="nt">&gt;</span>
+<span class="kd">function</span> <span class="nx">postArticle</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">steem</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">comment</span><span class="p">(</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postingKey'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="c1">// posting wif</span>
+    <span class="s1">''</span><span class="p">,</span> <span class="c1">// author, leave blank for new post</span>
+    <span class="s1">'steemtest'</span><span class="p">,</span> <span class="c1">// first tag</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="c1">// username</span>
+    <span class="s1">'name-of-my-test-article-post'</span><span class="p">,</span> <span class="c1">// permlink</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="c1">// Title</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'article'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="c1">// Body of post</span>
+    <span class="c1">// json metadata (additional tags, app name, etc)</span>
+    <span class="p">{</span> <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s1">'secondtag'</span><span class="p">],</span> <span class="na">app</span><span class="p">:</span> <span class="s1">'steemjs-test!'</span> <span class="p">},</span>
+    <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">'Failure! '</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">'Success!'</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+<p class="static-right-section-title">Photography</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">steem</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="s1">'/trending/photography'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"ats-david/nature-in-black-and-white-volume-iii"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2202087</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ats-david"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature-in-black-and-white-volume-iii"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photography"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"parent_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"parent_permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photography"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nature in Black and White: Volume III"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"### Do we see the beauty in colorful objects and detailed images the same when color is removed?\n\nHere are more images from my adventures in nature...in black and white, of course.\n\n&lt;hr&gt;\n\n![IMG_0460-3_bw.jpg](https://steemitimages.com/DQmTb3aYwhUqRuWXjUNWFF8BxG98kzinufY3eMtd1Wggnd1/IMG_0460-3_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_0461-2_bw.jpg](https://steemitimages.com/DQmaw6cofwQMKt8Jpj8Em6VxLYLRU1MYCH5aaQAxefLb3wM/IMG_0461-2_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_0462-2_bw.jpg](https://steemitimages.com/DQmZMAgzj81isjeNZeCSxCBD6TKYAG2n6qc6475rrd9wCCG/IMG_0462-2_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_2581-2_bw.jpg](https://steemitimages.com/DQmV3ECCU9pobunhFa1SgPXTQkiEhYijixqgaqM9Q5RhDGG/IMG_2581-2_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_2928-1_bw.jpg](https://steemitimages.com/DQmXcGpQWDXzuEo2XTzJnErG4rjrgwgbr5TQeQpaM1MwRww/IMG_2928-1_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_2912-1_bw.jpg](https://steemitimages.com/DQmfU8spbdp8isEirVPV1B69LeFVwgj2cucCNyA4kEnCB9h/IMG_2912-1_bw.jpg)\n\n&lt;br /&gt;\n\n![IMG_2935-1_bw.jpg](https://steemitimages.com/DQmVsQUTkdYYVJu2VyHxA6JmHxZY9Re3Pk3Ldkb6Ky2Gmih/IMG"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"json_metadata"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"tags\":[\"photography\",\"nature\",\"life\",\"travel\",\"blackandwhite\"],\"users\":[\"mynameisbrian\",\"ats-david\"],\"image\":[\"https://steemitimages.com/DQmTb3aYwhUqRuWXjUNWFF8BxG98kzinufY3eMtd1Wggnd1/IMG_0460-3_bw.jpg\",\"https://steemitimages.com/DQmaw6cofwQMKt8Jpj8Em6VxLYLRU1MYCH5aaQAxefLb3wM/IMG_0461-2_bw.jpg\",\"https://steemitimages.com/DQmZMAgzj81isjeNZeCSxCBD6TKYAG2n6qc6475rrd9wCCG/IMG_0462-2_bw.jpg\",\"https://steemitimages.com/DQmV3ECCU9pobunhFa1SgPXTQkiEhYijixqgaqM9Q5RhDGG/IMG_2581-2_bw.jpg\",\"https://steemitimages.com/DQmXcGpQWDXzuEo2XTzJnErG4rjrgwgbr5TQeQpaM1MwRww/IMG_2928-1_bw.jpg\",\"https://steemitimages.com/DQmfU8spbdp8isEirVPV1B69LeFVwgj2cucCNyA4kEnCB9h/IMG_2912-1_bw.jpg\",\"https://steemitimages.com/DQmVsQUTkdYYVJu2VyHxA6JmHxZY9Re3Pk3Ldkb6Ky2Gmih/IMG_2935-1_bw.jpg\",\"https://steemitimages.com/DQmU7DULoUra3yxN9KiUErKpZTf8F33UtjW7KjceZn4hQ8X/IMG_2793_1_bw.jpg\",\"https://steemitimages.com/DQmerT739AigSpyXHEn6ariLENvPB6f4KfEZaWoPbNfJXc8/IMG_2814-1_bw.jpg\",\"https://steemitimages.com/DQmYiU1p14qi57MSw3E8QQJxmeBoMFsJ6TVkXYjGjGcXX6F/IMG_2815-1_bw.jpg\",\"https://steemitimages.com/DQmVHgDLF7PbiamAxqfs66XXwnrfPwXbo4PrKaWCoSTdRA8/IMG_2628-2_bw.jpg\",\"http://www.steemimg.com/images/2017/03/08/ats_content_slayer_bwd9706.md.jpg\"],\"links\":[\"http://www.steemimg.com/image/OPX18\"],\"app\":\"steemit/0.1\",\"format\":\"markdown\"}"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-20T20:48:45"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-20T20:48:45"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-21T15:38:51"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"last_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"depth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"children_rshares2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"338868651292331066826618722"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"net_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16371652797084"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29650160882494"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"vote_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23010906839789"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"children_abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30710187259990"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-21T22:47:20"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"max_cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-03T20:49:18"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"total_vote_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15714996608417319864"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"reward_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"total_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"curator_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"author_rewards"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"net_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">312</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"root_comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">2202087</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first_payout"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"max_accepted_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000.000 SBD"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"percent_steem_dollars"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"allow_replies"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"allow_votes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"allow_curation_rewards"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/photography/@ats-david/nature-in-black-and-white-volume-iii"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"root_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nature in Black and White: Volume III"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.332 SBD"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"total_pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.155 SBD"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">results</span> <span class="k">in</span> <span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// log each payout amount </span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pending_payout_value</span><span class="p">)</span>   
+<span class="p">}</span>
+</code></pre>
+</div>
+<p class="static-right-section-title">Accounts</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">steem</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">([</span><span class="s1">'ned'</span><span class="p">,</span> <span class="s1">'sneak'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p class="static-right-section-title">State</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">steem</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="s1">'/trends/funny'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p class="static-right-section-title">Broadcast</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">steem</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'steem'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">wif</span> <span class="o">=</span> <span class="nx">steem</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">toWif</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="s1">'posting'</span><span class="p">);</span>
+<span class="nx">steem</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">vote</span><span class="p">(</span><span class="nx">wif</span><span class="p">,</span> <span class="nx">voter</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">permlink</span><span class="p">,</span> <span class="nx">weight</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p class="static-right-section-title">Reputation</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reputation</span> <span class="o">=</span> <span class="nx">steem</span><span class="p">.</span><span class="nx">formatter</span><span class="p">.</span><span class="nx">reputation</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">reputation</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reputation</span><span class="p">);</span>
+</code></pre>
+</div>
+
+		</section>
+	
+</section>
+
+		</div>
+		<script>
+			document.getElementById("open-nav").addEventListener("click", function () {
+				document.body.classList.toggle("nav-open");
+			});
+		</script>
+	</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
