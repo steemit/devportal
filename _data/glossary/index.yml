@@ -10,6 +10,7 @@
     - term: VESTS
       def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
     - term: STEEM
+      disambiguous: -currency
       def: Currency of the blockchain, liquid version of Steem Power
     - term: SBD
       def: Steem Backed Dollar, $1 worth of STEEM
@@ -37,8 +38,14 @@
       def: Wallet Import Format/Private key, should be kept secret because it grants access to account
     - term: Vote
       def: Voting a content
+    - term: Voter
+      def: Account who votes for a Post or Comment.
+    - term: Weight
+      def: Weight applied to a vote to determine Reward Shares.
+    - term: Reward Shares
+      def: Represents part of the Total Reward Fund distribution.
     - term: Reputation
-      def: Account's reputation on platform
+      def: A non-consensus numerical indicator that attempts to appxoimate quality of content by a given account.
 - name: Governance
   id: glossary-governance
   items:
@@ -59,7 +66,9 @@
   id: glossary-transactions
   items:
     - term: Transaction
-      def: Operations submitted to the blockchain
+      def: Group of operations submitted to the blockchain
+    - term: Operation
+      def: A single statement of fact or action like a comment/vote/transfer.
     - term: Pending Transaction
       def: Transaction that is pending and to be included to the blockchain
     - term: Transaction Hex
