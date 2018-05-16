@@ -1,6 +1,7 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'scrape/api_definitions_job'
+require 'scrape/js_tutorials_job'
 
 require 'rake/testtask'
 require 'net/https'
@@ -23,6 +24,16 @@ namespace :scrape do
     count = job.perform
     
     puts "Methods added or changed: #{count}"
+  end
+  
+  namespace :tutorials do
+    desc 'Scrape JS-Tutorials'
+    task :js, [:num, :force] do |t, args|
+      job = Scrape::JSTutorialsJob.new(num: args[:num], force: args[:force])
+      count = job.perform
+      
+      puts "Tutorials added or changed: #{count}"
+    end
   end
 end
 
