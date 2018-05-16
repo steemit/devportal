@@ -10,9 +10,9 @@ exclude_nav: true
 			{% for sections in site.data.glossary.index %}
 			   	<h3 id="{{ sections.id }}">{{sections.name}}</h3>
 			   	{% for entry in sections.items %}
-			   		<section id="{{entry.term | slugify}}">
+			   		<section id="{{ sections.id }}-{{ entry.term | slugify }}{{ entry.disambiguous }}">
 					   	<dt>{{entry.term}}</dt>
-					    <dd>{{entry.def}}</dd>
+					    <dd>{{entry.def | markdownify}}</dd>
 				    </section>
 			    {% endfor %}
 				<hr/>
