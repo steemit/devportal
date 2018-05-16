@@ -62,3 +62,57 @@ namespace :production do
     exit(0)
   end
 end
+
+namespace :test do
+  KNOWN_APIS = %i(
+    account_by_key_api account_history_api block_api condenser_api 
+    database_api follow_api jsonrpc market_history_api network_broadcast_api
+    tags_api witness_api
+  )
+  
+  desc "Tests the curl examples of api definitions.  Known APIs: #{KNOWN_APIS.join(' ')}"
+  task :curl, [:apis] do |t, args|
+    url = 'https://api.steemit.com'
+    apis = [args[:apis].split(' ').map(&:to_sym)].flatten if !!args[:apis]
+    apis ||= KNOWN_APIS
+    
+    apis.each do |api|
+      file_name = "_data/apidefinitions/#{api}.yml"
+      unless File.exist?(file_name)
+        puts "Does not exist: #{file_name}"
+        next
+      end
+      
+      yml = YAML.load_file(file_name)
+      
+      yml[0]['methods'].each do |method|
+        print "Testing #{method['api_method']} ... "
+        
+        if method['curl_examples'].nil?
+          puts "no curl examples."
+          next
+        end
+        
+        method['curl_examples'].each do |curl_example|
+          response = `curl -s -w \"HTTP_CODE:%{http_code}\" --data '#{curl_example}' #{url}`
+          response = response.split('HTTP_CODE:')
+          json = response[0]
+          code = response[1]
+          if code == '200'
+            data = JSON[json]
+            
+            if !!data['error']
+              print "\n\t#{data['error']['message']}\n"
+            else
+              print '√'
+            end
+          else
+            'X'
+          end
+        end
+        
+        print "\n"
+      end
+    end
+  end
+end
