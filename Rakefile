@@ -72,7 +72,7 @@ namespace :test do
   
   desc "Tests the curl examples of api definitions.  Known APIs: #{KNOWN_APIS.join(' ')}"
   task :curl, [:apis] do |t, args|
-    url = 'https://api.steemit.com'
+    url = ENV.fetch('TEST_NODE', 'https://api.steemit.com')
     apis = [args[:apis].split(' ').map(&:to_sym)].flatten if !!args[:apis]
     apis ||= KNOWN_APIS
     
