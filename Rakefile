@@ -76,6 +76,10 @@ namespace :test do
     apis = [args[:apis].split(' ').map(&:to_sym)].flatten if !!args[:apis]
     apis ||= KNOWN_APIS
     
+    version = `curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_version", "params":[], "id":1}' #{url}`
+    version = JSON[version]['result']
+    puts "#{url}: #{version['blockchain_version']}; steem_rev: #{version['steem_revision'][0..6]}; fc_rev: #{version['fc_revision'][0..6]}"
+    
     apis.each do |api|
       file_name = "_data/apidefinitions/#{api}.yml"
       unless File.exist?(file_name)
