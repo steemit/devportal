@@ -27,7 +27,7 @@ module Scrape
       Pathname.new(CLONE_TUTORIALS_PATH).children.sort.each do |path|
         next unless File.directory? path
         
-        slug = path.to_s.split('/').last
+        slug = include_name = path.to_s.split('/').last
         slug = slug.split('_')
         num = slug[0].to_i
         
@@ -55,7 +55,7 @@ module Scrape
             right_code: |
             #{right_code}
             ---
-            #{body}
+            #{rewrite_images body, include_name}
           DONE
           
           f = File.open(destination, 'w+')
@@ -108,6 +108,17 @@ module Scrape
       end
       
       yield description, right_code, body
+    end
+    
+    def rewrite_images(body, include_name)
+      body = body.gsub(/!\[([^\]]+)\]\(([^)]+)\)/) do
+        alt, src = Regexp.last_match[1..2]
+        src = src.split('/')[1..-1].join('/')
+        
+        "![#{alt}](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/#{include_name}/#{src}?raw=true)"
+      end
+      
+      body
     end
     
     def clean_previous_clone
