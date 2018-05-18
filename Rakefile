@@ -93,7 +93,7 @@ namespace :test do
           next
         end
         
-        method['curl_examples'].each do |curl_example|
+        method['curl_examples'].each_with_index do |curl_example, index|
           response = `curl -s -w \"HTTP_CODE:%{http_code}\" --data '#{curl_example}' #{url}`
           response = response.split('HTTP_CODE:')
           json = response[0]
@@ -102,7 +102,15 @@ namespace :test do
             data = JSON[json]
             
             if !!data['error']
-              print "\n\t#{data['error']['message']}\n"
+              expected_curl_responses = if !!method['expected_curl_responses']
+                method['expected_curl_responses'][index]
+              end
+              
+              if !!expected_curl_responses && data['error']['message'].include?(expected_curl_responses)
+                print '√'
+              else
+                print "\n\t#{data['error']['message']}\n"
+              end
             else
               print '√'
             end
