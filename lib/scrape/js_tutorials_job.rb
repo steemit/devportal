@@ -82,8 +82,8 @@ module Scrape
       File.open(readme, 'r').each_line do |line|
         description ||= line.strip.gsub(/[^a-zA-Z0-9 ]/, '') if line.size > 30
         header = line =~ /^#/
-        close_code_segment = open_code_segment && line =~ /^```/
-        open_code_segment = !open_code_segment if line =~ /^```/
+        close_code_segment = open_code_segment && line =~ /^~~~/
+        open_code_segment = !open_code_segment if line =~ /^~~~/
           
         body << line unless open_code_segment || close_code_segment
         
