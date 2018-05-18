@@ -78,7 +78,10 @@ namespace :test do
     
     version = `curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_version", "params":[], "id":1}' #{url}`
     version = JSON[version]['result']
-    puts "#{url}: #{version['blockchain_version']}; steem_rev: #{version['steem_revision'][0..6]}; fc_rev: #{version['fc_revision'][0..6]}"
+    blockchain_version = version['blockchain_version']
+    steem_rev = version['steem_revision'][0..5]
+    fc_rev = version['fc_revision'][0..5]
+    puts "node: #{url}; blockchain_version: #{blockchain_version}; steem_rev: #{steem_rev}; fc_rev: #{fc_rev}"
     
     apis.each do |api|
       file_name = "_data/apidefinitions/#{api}.yml"
