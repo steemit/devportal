@@ -26,11 +26,13 @@ Applications that interface directly with the Steem blockchain will need to conn
 
 | URL                             | Owner          |
 | ------------------------------- | -------------- |
+| api.steemit.com                 | @steemit       |
 | gtg.steem.house:8090            | @gtg           |
 | steemd.minnowsupportproject.org | @followbtcnews |
+| steemd.pevo.science             | @pharesim      |
 | steemd.privex.io                | @privex        |
 | steemd.steemgigs.org            | @steemgigs     |
-| steemd.steemit.com              | @steemit       |
+| rpc.buildteam.io                | @themarkymark  |
 | rpc.curiesteem.com              | @curie         |
 | rpc.steemliberator.com          | @netuoso       |
 | rpc.steemviz.com                | @ausbitbank    |
