@@ -59,6 +59,12 @@ Golang RPC client library for Steem
 
 Client library for Steem blockchain built with Rust
 
+---
+
+**SteemPress** - [https://github.com/drov0/steempress](https://github.com/drov0/steempress)
+
+SteemPress is a wordpress plugin to allow you to automatically publish your articles to the Steem blockchain whenever you publish them on your blog.
+
 
 ### Services and databases
 
