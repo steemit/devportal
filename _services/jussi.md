@@ -17,6 +17,9 @@ docker build -t="$USER/jussi:$(git rev-parse --abbrev-ref HEAD)" .
 docker run -itp 9000:8080 "$USER/jussi:$(git rev-parse --abbrev-ref HEAD)"
 ```
 
+<img src="/images/services-jussi/kitematic-example.png" width="100%" alt="Kitematic Example" />
+<small><em>jussi in a docker container as seen from [Kitematic for macOS](https://docs.docker.com/docker-for-mac/install/).</em></small>
+
 Try out your local configuration:
 
 ```bash
