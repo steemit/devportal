@@ -19,6 +19,12 @@ Pure JavaScript Steem crypto library for node.js and browsers. Can be used to co
 
 ---
 
+**beem** - [https://github.com/holgern/beem](https://github.com/holgern/beem)
+
+A python library to interact with the STEEM blockchain. It includes the CLI tool beempy.
+
+---
+
 **Piston-cli** - [https://github.com/xeroc/piston-cli](https://github.com/xeroc/piston-cli)
 
 This python library is unmaintained! Swiss army knife for interacting with the STEEM blockchain.
