@@ -62,3 +62,72 @@ namespace :production do
     exit(0)
   end
 end
+
+namespace :test do
+  KNOWN_APIS = %i(
+    account_by_key_api account_history_api block_api condenser_api 
+    database_api follow_api jsonrpc market_history_api network_broadcast_api
+    tags_api witness_api
+  )
+  
+  desc "Tests the curl examples of api definitions.  Known APIs: #{KNOWN_APIS.join(' ')}"
+  task :curl, [:apis] do |t, args|
+    url = ENV.fetch('TEST_NODE', 'https://api.steemit.com')
+    apis = [args[:apis].split(' ').map(&:to_sym)].flatten if !!args[:apis]
+    apis ||= KNOWN_APIS
+    
+    version = `curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_version", "params":[], "id":1}' #{url}`
+    version = JSON[version]['result']
+    blockchain_version = version['blockchain_version']
+    steem_rev = version['steem_revision'][0..5]
+    fc_rev = version['fc_revision'][0..5]
+    puts "node: #{url}; blockchain_version: #{blockchain_version}; steem_rev: #{steem_rev}; fc_rev: #{fc_rev}"
+    
+    apis.each do |api|
+      file_name = "_data/apidefinitions/#{api}.yml"
+      unless File.exist?(file_name)
+        puts "Does not exist: #{file_name}"
+        next
+      end
+      
+      yml = YAML.load_file(file_name)
+      
+      yml[0]['methods'].each do |method|
+        print "Testing #{method['api_method']} ... "
+        
+        if method['curl_examples'].nil?
+          puts "no curl examples."
+          next
+        end
+        
+        method['curl_examples'].each_with_index do |curl_example, index|
+          response = `curl -s -w \"HTTP_CODE:%{http_code}\" --data '#{curl_example}' #{url}`
+          response = response.split('HTTP_CODE:')
+          json = response[0]
+          code = response[1]
+          if code == '200'
+            data = JSON[json]
+            
+            if !!data['error']
+              expected_curl_responses = if !!method['expected_curl_responses']
+                method['expected_curl_responses'][index]
+              end
+              
+              if !!expected_curl_responses && data['error']['message'].include?(expected_curl_responses)
+                print '√'
+              else
+                print "\n\t#{data['error']['message']}\n"
+              end
+            else
+              print '√'
+            end
+          else
+            'X'
+          end
+        end
+        
+        print "\n"
+      end
+    end
+  end
+end

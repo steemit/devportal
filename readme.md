@@ -93,3 +93,23 @@ Definitions for: tags_api, methods: 20
 Definitions for: witness_api, methods: 2
 Methods added or changed: 0
 ```
+
+### Tests
+
+To test all `curl` examples, use the following `rake` task:
+
+```bash
+$ bundle exec rake test:curl
+```
+
+Or, to test specific API namespaces, use:
+
+```bash
+$ bundle exec rake test:curl["follow_api witness_api"]
+```
+
+If you're interested in running this test against testnet, here's how:
+
+```bash
+$ TEST_NODE=https://testnet.steemitdev.com bundle exec rake test:curl
+```
