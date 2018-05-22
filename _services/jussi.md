@@ -30,11 +30,86 @@ See: [Running Condenser, Jussi and a new service locally + adding feature flags 
 
 ---
 
+### Adding Upstreams
+
+The default `DEV_config.json` is:
+
+```json
+{
+   "limits":{"blacklist_accounts":["non-steemit"]},
+   "upstreams":[
+      {
+         "name":"steemd",
+         "translate_to_appbase":false,
+         "urls":[["steemd", "https://steemd.steemitdev.com"]],
+         "ttls":[
+            ["steemd", 3],
+            ["steemd.login_api", -1],
+            ["steemd.network_broadcast_api", -1],
+            ["steemd.follow_api", 10],
+            ["steemd.market_history_api", 1],
+            ["steemd.database_api", 3],
+            ["steemd.database_api.get_block", -2],
+            ["steemd.database_api.get_block_header", -2],
+            ["steemd.database_api.get_content", 1],
+            ["steemd.database_api.get_state", 1],
+            ["steemd.database_api.get_state.params=['/trending']", 30],
+            ["steemd.database_api.get_state.params=['trending']", 30],
+            ["steemd.database_api.get_state.params=['/hot']", 30],
+            ["steemd.database_api.get_state.params=['/welcome']", 30],
+            ["steemd.database_api.get_state.params=['/promoted']", 30],
+            ["steemd.database_api.get_state.params=['/created']", 10],
+            ["steemd.database_api.get_dynamic_global_properties", 1]
+         ],
+         "timeouts":[
+            ["steemd", 5],
+            ["steemd.network_broadcast_api", 0]
+         ]
+      },
+      {
+         "name":"appbase",
+         "urls":[["appbase", "https://steemd.steemitdev.com"]],
+         "ttls":[
+            ["appbase", -2],
+            ["appbase.block_api", -2],
+            ["appbase.database_api", 1]
+         ],
+         "timeouts":[
+            ["appbase", 3],
+            ["appbase.chain_api.push_block", 0],
+            ["appbase.chain_api.push_transaction", 0],
+            ["appbase.network_broadcast_api", 0],
+            ["appbase.condenser_api.broadcast_block", 0],
+            ["appbase.condenser_api.broadcast_transaction", 0],
+            ["appbase.condenser_api.broadcast_transaction_synchronous", 0]
+         ]
+      }
+   ]
+}
+```
+
+Upstreams can be added to the `upstreams` array:
+
+```json
+{
+  "name": "foo",
+  "urls": [["foo", "https://foo.host.name"]],
+  "ttls": [["foo", 3]],
+  "timeouts": [["foo", 5]]
+}
+```
+
+Once the above upstream is added to the local config and docker has been built, the following `curl` will work:
+
+```bash
+curl -s --data '{"jsonrpc":"2.0", "method":"foo.bar", "params":["baz"], "id":1}' http://localhost:9000
+```
+
 ### Benefits of jussi
 
 #### Time To Live
 
-Jussi can be configured with various `TTL` (Time To Live) schemes. A `TTL` is an integer value in seconds.  Integers equal to or less than `0` have special meaning.  The current default:
+Jussi can be configured with various `TTL` (Time To Live) schemes. A `TTL` is an integer value in seconds.  Integers equal to or less than `0` have special meaning.  A reasonable set of defaults would be:
 
 | Upstream   | API                     | Method                          | Parameters         | TTL (seconds) |
 |------------|-------------------------|---------------------------------|--------------------|---------------|
@@ -70,7 +145,7 @@ Some methods and parameters have their own `TTL` that overrides the general defa
 * `-1` won't be cached
 * `-2` will be cached without expiration only if it is `irreversible` in terms of blockchain consensus
 
-If you have a local copy of jussi (see: [Installation](#installation)), you can change these defaults by modifying `PROD_UPSTREAM_CONFIG.json`.
+If you have a local copy of jussi (see: [Installation](#installation)), you can change these defaults by modifying `DEV_config.json`.
 
 #### json-rpc batch
 
