@@ -6,9 +6,15 @@ description: A reverse proxy that forwards json-rpc requests.
 
 Jussi is a custom-built caching layer for use with `steemd` and other various services (such as [SBDS](/services/#services-sbds)).
 
-#### Installation
+The purpose of this document is to help developers and node operators set up their own jussi node within a docker container.
 
-To run `jussi` locally:
+### Intro
+
+Jussi is a reverse proxy that is situation between the API client and the `steemd` server.  It allows node operators to route an API call to nodes that are optimized for the particular call, as if they are all hosted from the same place.
+
+### Installation
+
+##### 1. To run `jussi` locally:
 
 ```bash
 git clone https://github.com/steemit/jussi.git
@@ -20,7 +26,7 @@ docker run -itp 9000:8080 "$USER/jussi:$(git rev-parse --abbrev-ref HEAD)"
 <img src="/images/services-jussi/kitematic-example.png" width="100%" alt="Kitematic Example" />
 <small><em>jussi in a docker container as seen from [Kitematic for macOS](https://docs.docker.com/docker-for-mac/install/).</em></small>
 
-Try out your local configuration:
+##### 2. Try out your local configuration:
 
 ```bash
 curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_block", "params":[8675309], "id":1}' http://localhost:9000
@@ -326,9 +332,12 @@ curl -s --data '[{"jsonrpc":"2.0", "method":"condenser_api.get_block", "params":
    }
 ]
 ```
-**Note:** Batch requests are limited to a maximum of 50 request elements.
 
-*See: [json-rpc batch specification](http://www.jsonrpc.org/specification#batch)*
+### Footnotes
+
+* Batch requests are limited to a maximum of 50 request elements.
+  * *Also see: [json-rpc batch specification](http://www.jsonrpc.org/specification#batch)*
+* Repository: [github.com/steemit/jussi](https://github.com/steemit/jussi)
 
 ---
 
