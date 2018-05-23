@@ -109,3 +109,23 @@ bundle exec rake scrape:tutorials:js[1,true]
 ```
 
 Where `1` represents the numerical prefix like in `01_blog_feed` and `true` instructs the task to overwrite what's there, even if it exists.
+
+### Tests
+
+To test all `curl` examples, use the following `rake` task:
+
+```bash
+$ bundle exec rake test:curl
+```
+
+Or, to test specific API namespaces, use:
+
+```bash
+$ bundle exec rake test:curl["follow_api witness_api"]
+```
+
+If you're interested in running this test against testnet, here's how:
+
+```bash
+$ TEST_NODE=https://testnet.steemitdev.com bundle exec rake test:curl
+```
