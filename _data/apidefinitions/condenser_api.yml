@@ -25,16 +25,12 @@
     expected_response_json: {}
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.broadcast_block", "params":[{"previous":"0000000000000000000000000000000000000000","timestamp":"1970-01-01T00:00:00","witness":"","transaction_merkle_root":"0000000000000000000000000000000000000000","extensions":[],"witness_signature":"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","transactions":[]}], "id":1}'
-    expected_curl_responses:
-      - attempting to push a block that is too old
   - api_method: condenser_api.broadcast_transaction
     purpose: Used to broadcast a transaction.
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
     expected_response_json: {}
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.broadcast_transaction", "params":[{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}], "id":1}'
-    expected_curl_responses:
-      - transaction tapos exception
   - api_method: condenser_api.broadcast_transaction_synchronous
     purpose: Used to broadcast a transaction and waits for it to be processed synchronously.
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
@@ -45,8 +41,6 @@
       expired: false
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.broadcast_transaction_synchronous", "params":[{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}], "id":1}'
-    expected_curl_responses:
-      - transaction tapos exception
   - api_method: condenser_api.get_account_bandwidth
     purpose: |
       Returns the available bandwidth of an account.  Parameters: `account:string`; `type:string`, e.g.: `forum` or `market`
@@ -135,9 +129,6 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_active_votes", "params":["steemit", "firstpost"], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_active_votes", "params":["alice", "a-post-by-alice"], "id":1}'
-    expected_curl_responses:
-      - 
-      - unknown key:unknown key
   - api_method: condenser_api.get_active_witnesses
     purpose: Returns the list of active witnesses.
     parameter_json: []
@@ -413,9 +404,6 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_comments", "params":[{"start_author":"steemit","start_permlink":"firstpost","limit":1}], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_comments", "params":[{"start_author":"alice","start_permlink":"a-post-by-alice","limit":10,"truncate_body":0}], "id":1}'
-    expected_curl_responses:
-      - 
-      - Comment is not in account's comments
   - api_method: condenser_api.get_discussions_by_created
     purpose: Returns a list of discussions by created.
     parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
@@ -707,9 +695,6 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_reblogged_by", "params":["steemit","firstpost"], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_reblogged_by", "params":["alice","a-post-by-alice"], "id":1}'
-    expected_curl_responses:
-      - 
-      - 'unknown key:unknown key:'
   - api_method: condenser_api.get_recent_trades
     purpose: |
       Returns the most recent trades for the internal SBD:STEEM market.  Parameters: `limit:int` up to 1000
@@ -906,8 +891,6 @@
       transaction_num: 0
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_transaction", "params":["6fde0190a97835ea6d9e651293e90c89911f933c"], "id":1}'
-    expected_curl_responses:
-      - account_history_api_plugin not enabled
   - api_method: condenser_api.get_transaction_hex
     purpose: Returns a hexdump of the serialized binary form of a transaction.
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]
@@ -1060,13 +1043,15 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.lookup_witness_accounts", "params":["a",10], "id":1}'
   - api_method: condenser_api.verify_account_authority
     purpose: |
-      **Not Implemented**
+      Returns true if the signers have enough authority to authorize an account.  Parameters: `account:string`, `signer:[string]`
+      
+      | `account` (string) | `signer` (string array) | |
+      |--------------------|---------------|-|
+      | `"steemit"` | `["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]` | Checks if the "steemit" account against one of it's current active keys. |
     parameter_json: ["",[""]]
     expected_response_json: false
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.verify_account_authority", "params":["steemit",["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]], "id":1}'
-    expected_curl_responses:
-      - Missing Active Authority steemit
   - api_method: condenser_api.verify_authority
     purpose: Returns true if the transaction has all of the required signatures.
     parameter_json: [{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}]

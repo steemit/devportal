@@ -20,8 +20,6 @@ toc:
         collection: tutorials-python
       - title: Ruby
         collection: tutorials-ruby
-      - title: Recipes
-        collection: tutorials-recipes
   - title: "Services"
     collection: "services"
     url: "/services/"
