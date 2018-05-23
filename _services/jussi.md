@@ -12,9 +12,18 @@ The purpose of this document is to help developers and node operators set up the
 
 Jussi is a reverse proxy that is situation between the API client and the `steemd` server.  It allows node operators to route an API call to nodes that are optimized for the particular call, as if they are all hosted from the same place.
 
-### Installation
+### Sections
 
-##### 1. To run `jussi` locally:
+* [Installation](#installation)
+* [Adding Upstreams](#adding-upstreams)
+* [Benefits of jussi](#benefits-of-jussi)
+  * [TTL](#time-to-live)
+  * [json-rpc batch](#json-rpc-batch)
+* [Footnotes](#footnotes)
+
+### Installation<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+##### To run `jussi` locally:
 
 ```bash
 git clone https://github.com/steemit/jussi.git
@@ -26,7 +35,7 @@ docker run -itp 9000:8080 "$USER/jussi:$(git rev-parse --abbrev-ref HEAD)"
 <img src="/images/services-jussi/kitematic-example.png" width="100%" alt="Kitematic Example" />
 <small><em>jussi in a docker container as seen from [Kitematic for macOS](https://docs.docker.com/docker-for-mac/install/).</em></small>
 
-##### 2. Try out your local configuration:
+##### Try out your local configuration:
 
 ```bash
 curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_block", "params":[8675309], "id":1}' http://localhost:9000
@@ -36,7 +45,7 @@ See: [Running Condenser, Jussi and a new service locally + adding feature flags 
 
 ---
 
-### Adding Upstreams
+### Adding Upstreams<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 The default `DEV_config.json` is:
 
@@ -111,9 +120,9 @@ Once the above upstream is added to the local config and docker has been built, 
 curl -s --data '{"jsonrpc":"2.0", "method":"foo.bar", "params":["baz"], "id":1}' http://localhost:9000
 ```
 
-### Benefits of jussi
+### Benefits of jussi<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-#### Time To Live
+#### Time To Live<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Jussi can be configured with various `TTL` (Time To Live) schemes. A `TTL` is an integer value in seconds.  Integers equal to or less than `0` have special meaning.  A reasonable set of defaults would be:
 
@@ -153,7 +162,7 @@ Some methods and parameters have their own `TTL` that overrides the general defa
 
 If you have a local copy of jussi (see: [Installation](#installation)), you can change these defaults by modifying `DEV_config.json`.
 
-#### json-rpc batch
+#### json-rpc batch<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Normally, a request is made with a JSON Object (`{}`).  But jussi also supports batch requests, which is constructed with a JSON Array of Objects (`[{}]`).
   
@@ -333,7 +342,7 @@ curl -s --data '[{"jsonrpc":"2.0", "method":"condenser_api.get_block", "params":
 ]
 ```
 
-### Footnotes
+### Footnotes<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 * Batch requests are limited to a maximum of 50 request elements.
   * *Also see: [json-rpc batch specification](http://www.jsonrpc.org/specification#batch)*
