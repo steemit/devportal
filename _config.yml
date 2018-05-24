@@ -48,30 +48,35 @@ collections:
     id: glossary
     position: 8
     output: true
+  tutorials-recipes:
+    title: Recipes
+    id: tutorials-recipes
+    position: 9
+    output: true
   tutorials-javascript:
     title: Javascript Tutorials
     id: tutorials-javascript
-    position: 9
+    position: 10
     output: true
   tutorials-python:
     title: Python Tutorials
     id: tutorials-python
-    position: 10
+    position: 11
     output: true
   apidefinitions:
     title: API Definitions
     id: apidefinitions
-    position: 11
+    position: 12
     output: true
   testnet:
     title: Testnet
     id: testnet
-    position: 12
+    position: 13
     output: true
   tutorials-ruby:
     title: Ruby Tutorials
     id: tutorials-ruby
-    position: 13
+    position: 14
     output: true
 
 gems:
