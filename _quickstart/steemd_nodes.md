@@ -53,7 +53,7 @@ Normally syncing blockchain starts from very first, `0` genesis block. It might 
 
 Trusted block log file helps to download blocks faster. Steemit Inc, provides public block log file which can be downloaded from [here](https://s3.amazonaws.com/steemit-dev-blockchainstate/block_log-latest) and there is also option from community witness `@gtg` which can be downloaded from [here](https://gtg.steem.house/get/blockchain/).
 
-Both `block_log` files updated periodically. Docker container on `stable` branch of Steem source code has option to use `USE_PUBLIC_BLOCKLOG=1` to download latest block log and start Steem node with replay.
+Both `block_log` files updated periodically, as of May 2018 uncompressed `block_log` file size ~110 GB. Docker container on `stable` branch of Steem source code has option to use `USE_PUBLIC_BLOCKLOG=1` to download latest block log and start Steem node with replay.
 
 Block log should be place in `blockchain` directory below `data_dir` and node should be started with `--replay-blockchain` to ensure block log is valid and continue to sync from the point of snapshot. Replay uses the downloaded block log file to build up the shared memory file up to the highest block stored in that snapshot and then continues with sync up to the head block.
 
