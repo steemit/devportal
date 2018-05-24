@@ -72,6 +72,7 @@ namespace :test do
   
   desc "Tests the curl examples of api definitions.  Known APIs: #{KNOWN_APIS.join(' ')}"
   task :curl, [:apis] do |t, args|
+    smoke = 0
     url = ENV.fetch('TEST_NODE', 'https://api.steemit.com')
     apis = [args[:apis].split(' ').map(&:to_sym)].flatten if !!args[:apis]
     apis ||= KNOWN_APIS
@@ -105,23 +106,27 @@ namespace :test do
           response = response.split('HTTP_CODE:')
           json = response[0]
           code = response[1]
-          if code == '200'
+          
+          case code
+          when '200'
             data = JSON[json]
             
             if !!data['error']
-              expected_curl_responses = if !!method['expected_curl_responses']
+              expected_curl_response = if !!method['expected_curl_responses']
                 method['expected_curl_responses'][index]
               end
               
-              if !!expected_curl_responses && data['error']['message'].include?(expected_curl_responses)
+              if !!expected_curl_response && data['error']['message'].include?(expected_curl_response)
                 print '√'
               else
+                smoke += 1
                 print "\n\t#{data['error']['message']}\n"
               end
             else
               print '√'
             end
           else
+            smoke += 1
             'X'
           end
         end
@@ -129,5 +134,7 @@ namespace :test do
         print "\n"
       end
     end
+    
+    exit smoke
   end
 end
