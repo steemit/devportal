@@ -124,7 +124,12 @@ Or, to test specific API namespaces, use:
 $ bundle exec rake test:curl["follow_api witness_api"]
 ```
 
-If you're interested in running this test against testnet, here's how:
+If you're interested in running this test against a different server, run the command like so
+```bash
+$ TEST_NODE=<some server url> bundle exec rake test:curl
+```
+
+An example pointing at the steemitdev testnet
 
 ```bash
 $ TEST_NODE=https://testnet.steemitdev.com bundle exec rake test:curl
