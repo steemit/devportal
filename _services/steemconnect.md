@@ -2,23 +2,31 @@
 title: SteemConnect
 position: 3
 ---
+_A Look at the Why's and How's of SteemConnect_
 
-**SteemConnect** is an identity layer on top of the Steem blockchain that makes accounts secure
+## Why SteemConnect was implemented
 
-**How does SteemConnect work?**
+The goal of SteemConnect is to provide a safe way of connecting to the blockchain via 3rd party apps without compromising the security of your private keys and passwords. It's a simple identity layer built on top of the blockchain allowing users safe access and developers the freedom of not having to handle the authentication system, i.e. managing users' private keys and encryption. This means that devs won't have to opensource their projects in order to gain user trust. When connecting to apps in this manner, neither SteemConnect nor the authorised app store the private keys as the posting key is incrypted on your cookie.
 
-SteemConnect gives you full access to the Steem ecosystem without giving up your private keys. That’s right, never risk a malicious or incompetent 3rd party app getting your private keys again. SteemConnect acts as the identity layer in between that enables participation without vulnerability.
+## How SteemConnect is implemented
 
-**What are the advantages of using SteemConnect?**
+SteemConnect works by granting an access token to the requesting app once the application has been approved.
+A full tutorial on how to set up an application, request authorisation and grant access can be found [HERE](https://developers.steem.io/tutorials-javascript/steemconnect)
 
-SteemConnect is a universal indentity management platform for the Steem blockchain. 3rd Party applications will create an application implementing SteemConnect so when users are required to authenticate applications they do so via SteemConnect. This not only protects the user's private keys but gives them the ability to revoke access should you require. You are in full control of all your keys.
+## Steem Authorisation and OAuth 2
 
-**How does it work?**
+The OAuth protocol allows third party apps to grant limited access to an HTTP service, either on behalf of a resource owner or by allowing the app to obtain access on its own behalf. The authorisation is provided without the private key or password of the user being shared with the third party.
+Simplified, the process includes the following steps:
 
-For developers it allows you to create applications on the SteemConnect portal without having to worry about authentication. This is good news since users will be putting their trust in SteemConnect and you can just worry about building your application
+1. The user is presented with an authorisation link that requests a token from the API
+2. The user has to log in to the service to verify their identity whereupon they will be prompted to authorise the application
+3. The user is redirected to the application redirect URI along with the access token
 
-For users, they will authorize your application via SteemConnect and feel secure that their private keys and passwords are 100%. 
+Once the application has an access token, it may use the token to access the user's account via the API, limited to the scope of access, until the token expires or is revoked.
+A full breakdown of OAuth2 and how it applies to SteemIt and SteemConnect can be found [HERE](https://github.com/steemit/steemconnect/wiki/OAuth-2#code-authorization-flow)
 
-- [Javascript Tutorial for SteemConnect](/tutorials-javascript/steemconnect)
+For additional material you can refer to the original steemit [blog](https://steemit.com/steemconnect/@busy.org/introducing-steemconnect-by-busy-identity-authentication-authorization-for-steem-blockchain-s-apps) post by [busy.org](https://busy.org/)
 
-[OAuth-2 code authorization flow](https://github.com/steemit/steemconnect/wiki/OAuth-2#code-authorization-flow)
+SteemConnect [Repo](https://github.com/steemit/steemconnect)
+
+OAuth2 [libraries](https://github.com/steemit/steemconnect/wiki/Libraries) for various languages
