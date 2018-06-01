@@ -1,92 +1,80 @@
-Name: broadcast_ops_comment
-
-Description:
-
- This is a brief overview of the parameters allowed and values passed by the "comment" operation.
- Additional info for API definitions is available on the [dev portal](https://developers.steem.io/apidefinitions/#broadcast_ops_comment)
-
-Purpose:
-
- A broadcast operation on Steem is a way of expressing intention on the blockchain. They have types, like `comment` in this instance, and they parameters (like author) depending on what their intended use is. In other words, the `broadcast.comment` operation creates a post or a comment on a current post, on the steem blockchain.
-
-Rules:
-
-* The `title` must not be longer than 256 bytes
-* The `title` must be UTF-8
-* The `body` must be larger than 0 bytes
-* The `body` much also be UTF-8
-
-Parameters:
-
-* `parent_author`: the author that comment is being submitted to, when posting a new blog this is an empty string
-* `parent_permlink`: specific post that comment is being submitted to, when posting a new blog this is an empty string
-* `author`: author of the post/comment being submitted (account name)
-* `permlink`: unique string identifier for the post, linked to the author of the post
-* `title`: human readable title of the post being submitted, this is often blank when commenting
-* `body`: body of the post/comment being submitted, or diff-match-patch when updating
-* `json_metadata`: JSON object string
-
- Additional_parameter_definitions:
+---
+- Name: broadcast_ops_comment
+  Description:  |
+    This is a brief overview of the parameters allowed and values passed by the 'comment' operation
+    Additional info for API definitions is available on the [dev portal](https://developers.steem.io/apidefinitions/#broadcast_ops_comment)
+  Purpose:
+    A broadcast operation on Steem is a way of expressing intention on the blockchain. They have types, like `comment` in this instance, and they parameters (like author) depending on what their intended use is. In other words, the `broadcast.comment` operation creates a post or a comment on a current post, on the steem blockchain.
+  Rules:
+    - The "title" must not be longer than 256 bytes
+    - The "title" must be UTF-8
+    - The "body" must be larger than 0 bytes
+    - The "body" much also be UTF-8
+  Parameters:
+    - parent_author: the author that comment is being submitted to, when posting a new blog this is an empty string
+    - parent_permlink: specific post that comment is being submitted to, when posting a new blog this is an empty string
+    - author: author of the post/comment being submitted (account name)
+    - permlink: unique string identifier for the post, linked to the author of the post
+    - title: human readable title of the post being submitted, this is often blank when commenting
+    - body: body of the post/comment being submitted, or diff-match-patch when updating
+    - json_metadata: JSON object string
+  Additional_parameter_definitions:
   Permlink:
-   Two authors may have the same perlink as it's unique to the author only. For example, there could be two authors, alice and bob, and both could have a permlink of `firstpost`
-
+    Two authors may have the same permlink as it's unique to the author only. For example, there could be two authors, alice and bob, and both could have a permlink of `firstpost`
   json_metadata:
-   There is no blockchain enforced validation on json_metadata, but the community has adopted a particular structure. It should contain a JSON object with the following keys:
-   tags: An array of up to 5 strings. Although the blockchain will accept more than 5, the tags plugin only looks at the first five
-   app: A user agent style application identifier. Typically app_name.version, e.g. steemit/0.1
-   format: The format of the body, e.g. markdown
-  In addition to the above keys, application developrs are free to add any other keys they want to help manage the content they broadcast.
+    There is no blockchain enforced validation on json_metadata, but the community has adopted a particular structure.
+  It should contain a JSON object with the following keys:
+    - tags: An array of up to 5 strings. Although the blockchain will accept more than 5, the tags plugin only looks at the first five
+    - app: A user agent style application identifier. Typically app_name.version, e.g. steemit/0.1
+    - format: The format of the body, e.g. markdown
+    - In addition to the above keys, application developrs are free to add any other keys they want to help manage the content they broadcast.
 
-A typical `comment` operation would look similar to the below:
-
-```javascript
+  A typical `comment` operation would look similar to the below:
+    javascript
     const post = {
-        author: "Joe",
-        title: "A post by Joe",
-        body: "Look at my awesome post",
-        parent_author: '',
-        parent_permlink: "steem",
-        permlink: "a-post-by-joe",
-        json_metadata: "{\"tags\":[\"steemit\",\"example\",\"tags\"]}",
+      author :"Joe",
+      title :"A post by Joe",
+      body :"Look at my awesome post",
+      parent_author :'',
+      parent_permlink :"steem",
+      permlink :"a-post-by-joe",
+      json_metadata :"{\"tags\":[\"steemit\",\"example\",\"tags\"]}",
     };
-```
-
-In which case the complete `broadcast` operation would look like this:
-
-```javascript
+  
+  In which case the complete `broadcast` operation would look like this:
+    javascript
     broadcast.comment(post, privatePostingKey)
-```
-With privatePostingKey being the private posting key of the author broadcasting the comment or post
+  
+    With privatePostingKey being the private posting key of the author broadcasting the comment or post
 
-Create_vs_Update:
-When a comment is first broadcast, the permlink must be unique for the author. Otherwise, it is interpreted as an update operation. Updating will either replace the entire body with the latest operation or patch the body if using diff-match-patch.
+  Create_vs_Update:
+    When a comment is first broadcast, the permlink must be unique for the author. Otherwise, it is interpreted as an update operation. Updating will either replace the entire body with the latest operation or patch the body if using diff-match-patch.
+  For example, if we have a paragraph that has already been broadcast:
+    "It's been quite a lot of fun working with these wonderful folk at Steemit, Inc"
+  And we want to change it to:
+    "It's been quite a lot of fun working with these wonderful people at Steemit, Inc"
+  We can broadcast the comment operation with the following body:
+    - "@@ -406,12 +406,14 @@"
+    - ful
+    - -folk
+    - +people
+    - at
+  
+      The blockchain will know that this means we have changed the word 'folk' to 'people' within that paragraph so when fetching this content, this diff will be applied.
+  
+      In addition to body, the title and json_metadata fields will also be replaced by the latest operation.
 
-For example, if we have a paragraph that has already been broadcast:
- "It's been quite a lot of fun working with these wonderful folk at Steemit, Inc"
-And we want to change it to:
- "It's been quite a lot of fun working with these wonderful people at Steemit, Inc"
-We can broadcast the comment operation with the follwoing body:
+  Comment_Options:
+    (https://developers.steem.io/apidefinitions/#broadcast_ops_comment_options)
 
-@@ -406,12 +406,14 @@
-  ful
- -folk
- +people
-   at
+  Updating_Archived_Content:
+    Content that is older than 7 days is considered "archived" and cannot be edited unless the author indicates otherwise by broadcasting a custom_json to the witness plugin using their active authority.
 
-The blockchain will know that this means we have changed the word "folk" to "people" within that paragraph. When fetching this content, this diff will be applied.
+    As of HF18, the witness plugin has a custom operation called enable_content_editing that allows a user to signal they want to edit their content. By consensus, content is editable indefinitely, but is soft forked to be frozen after payout. This operation requires an active key and is designed to prevent vandalism if a posting key is compromised.
 
-In addition to body, the title and json_metadata fields will also be replaced by the latest operation.
-
-Comment_Options:
- See: [`comment_options`](https://developers.steem.io/apidefinitions/#broadcast_ops_comment_options)
-
-Updating_Archived_Content:
-Content that is older than 7 days is considered "archived" and cannot be edited unless the author indicates otherwise by broadcasting a custom_json to the witness plugin using their active authority.
-
- As of HF18, the witness plugin has a custom operation called enable_content_editing that allows a user to signal they want to edit their content. By consensus, content is editable indefinitely, but is soft forked to be frozen after payout. This operation requires an active key and is designed to prevent vandalism if a posting key is compromised.
-
- See: [`custom_json`](https://developers.steem.io/apidefinitions/#broadcast_ops_custom_json)
-
-Vote:
- It should also be noted that a `vote` operation can accompany a `comment` in the same transaction when the author self-upvotes.
- See: ['vote`](https://developers.steem.io/apidefinitions/#broadcast_ops_vote)
+  For 'custom_json':
+    (https://developers.steem.io/apidefinitions/#broadcast_ops_custom_json)
+  
+  Vote:
+    (https://developers.steem.io/apidefinitions/#broadcast_ops_vote)
+    It should also be noted that a `vote` operation can accompany a `comment` in the same transaction when the author `self_upvotes`
