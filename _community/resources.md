@@ -19,7 +19,7 @@ Pure JavaScript Steem crypto library for node.js and browsers. Can be used to co
 
 ---
 
-**beem** - [https://github.com/holgern/beem](https://github.com/holgern/beem)
+**Beem** - [https://github.com/holgern/beem](https://github.com/holgern/beem)
 
 A python library to interact with the STEEM blockchain. It includes the CLI tool beempy.
 
