@@ -16,6 +16,10 @@ What is a Multiplexer?  In this context, a multiplexer an appliance that accepts
 
 Deploying `jussi` on your own local subnet will help improve efficiency because your local applications won't require SSL and `jussi` can take care of gzipping requests that go out over the Internet.
 
+<center>
+  <img src="/images/tutorials-recipes/jussi-multiplexer/network-diagram.png" alt="Network Diagram" />
+</center>
+  
 ## Steps
 
 1. **Setting Up Docker** In order to run `jussi`, `docker` is recommended
