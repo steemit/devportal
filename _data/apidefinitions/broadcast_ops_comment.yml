@@ -1,16 +1,16 @@
 ---
-- Name: broadcast_ops_comment
-  Description:  |
+- name: broadcast_ops_comment
+  description:  |
     This is a brief overview of the parameters allowed and values passed by the 'comment' operation
-    Additional info for API definitions is available on the [dev portal](https://developers.steem.io/apidefinitions/#broadcast_ops_comment)
-  Purpose:
+    Additional info for API definitions is available on the [dev portal](/apidefinitions/#broadcast_ops_comment)
+  purpose:
     A broadcast operation on Steem is a way of expressing intention on the blockchain. They have types, like `comment` in this instance, and they parameters (like author) depending on what their intended use is. In other words, the `broadcast.comment` operation creates a post or a comment on a current post, on the steem blockchain.
-  Rules:
+  rules:
     - The "title" must not be longer than 256 bytes
     - The "title" must be UTF-8
     - The "body" must be larger than 0 bytes
     - The "body" much also be UTF-8
-  Parameters:
+  parameters:
     - parent_author: the author that comment is being submitted to, when posting a new blog this is an empty string
     - parent_permlink: specific post that comment is being submitted to, when posting a new blog this is an empty string
     - author: author of the post/comment being submitted (account name)
@@ -18,8 +18,8 @@
     - title: human readable title of the post being submitted, this is often blank when commenting
     - body: body of the post/comment being submitted, or diff-match-patch when updating
     - json_metadata: JSON object string
-  Additional_parameter_definitions:
-  Permlink:
+  additional_parameter_definitions:
+  permlink:
     Two authors may have the same permlink as it's unique to the author only. For example, there could be two authors, alice and bob, and both could have a permlink of `firstpost`
   json_metadata:
     There is no blockchain enforced validation on json_metadata, but the community has adopted a particular structure.
@@ -65,7 +65,7 @@
       In addition to body, the title and json_metadata fields will also be replaced by the latest operation.
 
   Comment_Options:
-    (https://developers.steem.io/apidefinitions/#broadcast_ops_comment_options)
+    (/apidefinitions/#broadcast_ops_comment_options)
 
   Updating_Archived_Content:
     Content that is older than 7 days is considered "archived" and cannot be edited unless the author indicates otherwise by broadcasting a custom_json to the witness plugin using their active authority.
@@ -73,8 +73,8 @@
     As of HF18, the witness plugin has a custom operation called enable_content_editing that allows a user to signal they want to edit their content. By consensus, content is editable indefinitely, but is soft forked to be frozen after payout. This operation requires an active key and is designed to prevent vandalism if a posting key is compromised.
 
   For 'custom_json':
-    (https://developers.steem.io/apidefinitions/#broadcast_ops_custom_json)
+    (/apidefinitions/#broadcast_ops_custom_json)
   
   Vote:
-    (https://developers.steem.io/apidefinitions/#broadcast_ops_vote)
+    (/apidefinitions/#broadcast_ops_vote)
     It should also be noted that a `vote` operation can accompany a `comment` in the same transaction when the author `self_upvotes`
