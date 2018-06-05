@@ -22,11 +22,11 @@ Deploying `jussi` on your own local subnet will help improve efficiency because 
   
 ## Steps
 
-1. **Setting Up Docker** In order to run `jussi`, `docker` is recommended
-1. **Install `jussi`** Clone `jussi` from the repository and build
-1. **Configure Your Apps** Point all of your applications to this node
+1. [**Setting Up Docker**](#setting-up-docker) In order to run `jussi`, `docker` is recommended
+1. [**Install `jussi`**](#install-jussi) Clone `jussi` from the repository and build
+1. [**Configure Your Apps**](#configure-your-apps) Point all of your applications to this node
 
-#### 1. Setting Up Docker
+#### 1. Setting Up Docker <a name="setting-up-docker"></a>
 
 Although it's possible to set up `jussi` to run natively without virtualization, `docker` is recommended.  Setting up `docker` depends on your operating system:
 
@@ -34,7 +34,7 @@ Although it's possible to set up `jussi` to run natively without virtualization,
 * [Docker for macOS](https://docs.docker.com/docker-for-mac/install/)
 * [Docker for Windows](https://docs.docker.com/docker-for-windows/)
 
-#### 2. Install `jussi`
+#### 2. Install `jussi` <a name="install-jussi"></a>
 
 ```bash
 git clone https://github.com/steemit/jussi.git
@@ -56,7 +56,7 @@ docker build -t="$USER/jussi:$(git rev-parse --abbrev-ref HEAD)" .
 docker run -itp 9000:8080 "$USER/jussi:$(git rev-parse --abbrev-ref HEAD)"
 ```
 
-#### 3. Configure Your Apps
+#### 3. Configure Your Apps <a name="configure-your-apps"></a>
 
 Now, you can use your new `jussi` node as if it's a full node running locally.  For example:
 
