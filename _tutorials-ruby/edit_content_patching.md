@@ -19,6 +19,31 @@ Create a filed called `edit_content_patching.rb`.
 
 This script will take an existing post and append a new line by broadcasting a `comment` operation containing a `diff` instruction.  This instruction will tell the blockchain to append new content to the end of the `body` of the original comment.
 
+```ruby
+dmp = DiffMatchPatch.new
+patches = dmp.patch_make content.body, new_body
+diff_body = dmp.patch_toText(patches)
+
+new_body = diff_body if diff_body < content.body
+```
+
+Above, we have patched the old content with new (or edited) content and make sure that the patch size is smaller than original content, otherwise patching is unnecessary.
+
+```ruby
+post = {
+  type: :comment,
+  parent_author: '',
+  parent_permlink: metadata[:tags][0],
+  author: author,
+  permlink: permlink,
+  json_metadata: metadata.to_json,
+  title: title,
+  body: new_body
+}
+```
+
+Posts on the blockchain can hold additional information in the `json_metadata` field, such as the `tags` list which we have assigned. Posts must also have a unique permanent link scoped to each account. In this case we are just converting the `title` to `permlink` as a parameterize string.
+
 Because this is a live example, we set `broadcast` to `false` so that it only runs if you modify the example and set `broadcast` to `true`.
 
 ### To Run
