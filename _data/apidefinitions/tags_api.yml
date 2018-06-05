@@ -9,6 +9,7 @@
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"steemit", "permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
     - api_method: tags_api.get_comment_discussions_by_payout
+      since: HF17
       purpose: Returns a list of discussions based on payout.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}
       expected_response_json: {"discussions":[]}
@@ -78,6 +79,7 @@
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_created", "params":{"tag":"steem","limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_created", "params":{"tag":"photography","limit":10,"truncate_body":0}, "id":1}'
     - api_method: tags_api.get_discussions_by_feed
+      since: HF14
       purpose: Returns a list of discussions by feed.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}
       expected_response_json: {"discussions":[]}
@@ -92,6 +94,7 @@
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_hot", "params":{"tag":"steem","limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_hot", "params":{"tag":"photography","limit":10,"truncate_body":0}, "id":1}'
     - api_method: tags_api.get_discussions_by_promoted
+      since: HF13
       purpose: Returns a list of discussions by promoted.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}
       expected_response_json: {"discussions":[]}
@@ -113,6 +116,7 @@
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_votes", "params":{"tag":"steem","limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_votes", "params":{"tag":"photography","limit":10,"truncate_body":0}, "id":1}'
     - api_method: tags_api.get_post_discussions_by_payout
+      since: HF17
       purpose: Returns a list of post discussions by payout.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}
       expected_response_json: {"discussions":[]}

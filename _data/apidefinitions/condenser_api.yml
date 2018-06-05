@@ -84,6 +84,7 @@
   #   parameter_json: []
   #   expected_response_json: []
   - api_method: condenser_api.get_account_reputations
+    since: HF13
     purpose: |
       Returns a list of account reputations.  Parameters: `account_lower_bound:string`; `limit:int` up to 1000
       
@@ -224,6 +225,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_chain_properties", "params":[], "id":1}'
   - api_method: condenser_api.get_comment_discussions_by_payout
+    since: HF17
     purpose: Returns a list of discussions based on payout.
     parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
@@ -424,6 +426,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_created", "params":[{"tag":"steem","limit":1}], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_created", "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_discussions_by_feed
+    since: HF14
     purpose: Returns a list of discussions by feed.
     parameter_json: [{"tag":"","start_author":"","start_permlink":"","limit":100}]
     expected_response_json: []
@@ -438,6 +441,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_hot", "params":[{"tag":"steem","limit":1}], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_hot", "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_discussions_by_promoted
+    since: HF13
     purpose: Returns a list of discussions by promoted.
     parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
@@ -493,12 +497,14 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}'
   - api_method: condenser_api.get_escrow
+    since: HF14
     purpose: Returns the escrow for a certain account by id.
     parameter_json: ["",0]
     expected_response_json: 
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_escrow", "params":["steemit", 1234], "id":1}'
   - api_method: condenser_api.get_expiring_vesting_delegations
+    since: HF17
     purpose: |
       Returns the expiring vesting delegations for an account.  Parameters: `account:string`, `after:timestamp`
       
@@ -512,6 +518,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_expiring_vesting_delegations", "params":["steemit","2018-01-01T00:00:00"], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_expiring_vesting_delegations", "params":["alice","2017-12-01T00:00:00"], "id":1}'
   - api_method: condenser_api.get_feed
+    since: HF14
     purpose: |
       Returns a list of items in an account's feed.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
       
@@ -525,6 +532,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_feed", "params":["steemit",0,1], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_feed", "params":["alice",1,10], "id":1}'
   - api_method: condenser_api.get_feed_entries
+    since: HF14
     purpose: |
       Returns a list of entries in an account's feed.  Parameters: `account:string`; `start_entry_id:int`; `limit:int` up to 500
       
@@ -549,6 +557,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_feed_history", "params":[], "id":1}'
   - api_method: condenser_api.get_follow_count
+    since: HF9
     purpose: |
       Returns the count of followers/following for an account.  Parameters: `account:string`
       
@@ -565,6 +574,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_follow_count", "params":["steemit"], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_follow_count", "params":["alice"], "id":1}'
   - api_method: condenser_api.get_followers
+    since: HF9
     purpose: |
       Returns the list of followers for an account.  Parameters: `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000
       
@@ -578,6 +588,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_followers", "params":["steemit",null,"blog",10], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_followers", "params":["alice",null,"ignore",100], "id":1}'
   - api_method: condenser_api.get_following
+    since: HF9
     purpose: |
       Returns the list of accounts that are following an account.  Parameters: `account:string`; `start:string` (account to start from); `type:string` e.g.: `blog`; `limit:int` up to 1000
       
@@ -597,6 +608,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_hardfork_version", "params":[], "id":1}'
   - api_method: condenser_api.get_key_references
+    since: HF16
     purpose: Returns all accounts that have the key associated with their owner or active authorities.
     parameter_json: [["STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH"]]
     expected_response_json: [["steemit"]]
@@ -682,6 +694,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_owner_history", "params":["steemit"], "id":1}'
   - api_method: condenser_api.get_post_discussions_by_payout
+    since: HF17
     purpose: Returns a list of post discussions by payout.
     parameter_json: [{"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}]
     expected_response_json: []
@@ -695,6 +708,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_potential_signatures", "params":[{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}], "id":1}'
   - api_method: condenser_api.get_reblogged_by
+    since: HF14
     purpose: |
       Returns a list of authors that have reblogged a post.  Parameters: `author:string`; `permlink:string`
       
@@ -724,6 +738,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_recent_trades", "params":[10], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_recent_trades", "params":[500], "id":1}'
   - api_method: condenser_api.get_recovery_request
+    since: HF11
     purpose: |
       Returns the recovery request for an account.  Parameters: `account:string`
       
@@ -748,6 +763,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_required_signatures", "params":[{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]},[]], "id":1}'
   - api_method: condenser_api.get_reward_fund
+    since: HF17
     purpose: Returns information about the current reward funds.
     parameter_json: ["post"]
     expected_response_json:
@@ -764,6 +780,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_reward_fund", "params":["post"], "id":1}'
   - api_method: condenser_api.get_savings_withdraw_from
+    since: HF14
     purpose: |
       Returns savings withdraw from an account.  Parameters: `account:string`
       
@@ -775,6 +792,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_savings_withdraw_from", "params":["steemit"], "id":1}'
   - api_method: condenser_api.get_savings_withdraw_to
+    since: HF14
     purpose: |
       Returns the savings withdraw to an account.  Parameters: `account:string`
       
@@ -786,6 +804,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_savings_withdraw_to", "params":["steemit"], "id":1}'
   - api_method: condenser_api.get_state
+    deprecated: true
     purpose: |
       Returns the state of a path.  **Deprecated.**  Parameters: `path:string`
     parameter_json: [""]
@@ -937,6 +956,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_version", "params":[], "id":1}'
   - api_method: condenser_api.get_vesting_delegations
+    since: HF17
     purpose: |
       Returns the vesting delegations by an account.  Parameters: `delegator_account:string`; `start_account:string`; `limit:int` up to 1000
       
@@ -1059,6 +1079,7 @@
     curl_examples:
       - '{"jsonrpc":"2.0", "method":"condenser_api.lookup_witness_accounts", "params":["a",10], "id":1}'
   - api_method: condenser_api.verify_account_authority
+    disabled: true
     purpose: |
       **Not Implemented**
     parameter_json: ["",[""]]
