@@ -11,7 +11,9 @@ main_script_anchor: Script
 
 ### Intro
 
-This example will broadcast a new post to the blockchain using the values provided.
+This example will broadcast a new post to the blockchain using the values provided.  To create a post in `ruby`, we will use a `Radiator::Transaction` containing a `comment` operation, which is how all content is stored internally.
+
+A post is differentiated from a comment by whether or not a `parent_author` exists. When there is no `parent_author`, then it's a post, otherwise it's a comment.
 
 ### Script
 
