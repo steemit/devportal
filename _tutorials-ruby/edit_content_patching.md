@@ -42,13 +42,9 @@ ruby edit_content_patching.rb
 
 ```
 Changes:
-```
-```diff
 @@ -26,8 +26,26 @@
   edited)
 +%0AAppended content.
-```
-```json
 {
   "jsonrpc": "2.0",
   "result": {
