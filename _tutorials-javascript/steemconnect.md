@@ -1,165 +1,125 @@
 ---
-title: SteemConnect
-position: 3
-description: Tutorial is about Authorization on Steem and usage of SteemConnect
+title: Steemconnect
+position: 2
+description: Understand the basics of using Steemconnect with your Steem application
 layout: full
 right_code: |
-    <p class="static-right-section-title">Install</p>
-    ```
-    npm i sc2-sdk
-    ```
-    <p class="static-right-section-title">Initialize</p>
-    ``` javascript
-    const sc2 = require('sc2-sdk');
-    let api = sc2.Initialize({
-        app: 'demo-app',
-        callbackURL: 'http://localhost:3000',
-        scope: ['vote','comment']
-    })
-    ```
-    <p class="static-right-section-title">Login URL</p>
-    ``` javascript
-    let link = sc2.getLoginURL()
-    ```
-    <p class="static-right-section-title">Request link</p>
-    ``` object
-    link = https://v2.steemconnect.com/oauth2/authorize?client_id=demo-app&redirect_uri=http://localhost:3000&scope=vote,comment
-    ```
-    <p class="static-right-section-title">Result auth</p>
-    ```
-    http://localhost:3000/auth?access_token=xyz&expires_in=604800&username=demo
-    access_token: xyz
-    expires_in: 604800
-    username: demo
-    ```
-    <p class="static-right-section-title">Set token</p>
-    ``` javascript
-    sc2.setAccessToken(access_token)
-    ```
-    <p class="static-right-section-title">Get User info</p>
-    ``` javascript
-    api.me(function(err,res){
-        //json object with user info
-        console.log(err,res);
-    });
-    ```
-    ``` object
-    account: {id:xxx, name:'demo', owner:{}, active:{},...}
-    name: 'demo',
-    scope: ['vote'],
-    user: 'demo',
-    user_metadata: {},
-    ```
-    <p class="static-right-section-title">Logout</p>
-    ``` javascript
-    api.revokeToken(function(err, res){
-        console.log(err, res);
-    })
-    ```
----
-## Goal
 
-The application in this tutorial asks the user to grant access to `demo-app` and get a token from Steemconnect. Once permission is granted, `demo-app` can get details of the user via an api call that requires an access token. 
-The purpose of this is to allow any application to request permission from user and perform action via the access token.
+---
+# Steemconnect
+
+_Understand the basics of using Steemconnect with your Steem application._
+
+In this tutorial we will setup Steemconnect for demo application and step by step show the process of setting up dedicated account for your app to use Steemconnect Dashboard and setup backend of your application to use Steemconnect authorization properly.
+
+## Intro
+
+The application in this tutorial asks the user to grant an access to `demo-app` and get token from Steemconnect. Once permission is granted, `demo-app` can get details of user via an api call that requires access token.
+Purpose is to allow any application request permission from user and perform action via access token.
 
 Some other calls that require an access token (or login) are:
 
-* Vote
-* Comment
-* Post
-* Follow
-* Reblog
+*   Vote
+*   Comment
+*   Post
+*   Follow
+*   Reblog
 
 Learn more about [Steemconnect operations here](https://github.com/steemit/steemconnect-sdk)
 
-## Overview
+## Steps
 
-Steemconnect is unified authentication system built on top of Steem and is built in a collaboration of Busy.org and Steemit Inc.
-Steemconnect is a layer to ensure easy access and setup for all application developers as well as a secure way for users to interact with Steem apps.
+1.  [**Steemconnect Dashboard**](#sc-dashboard) Create account for application and set up dashboard
+1.  [**Initialize Steemconnect**](#init-sc) Initialize SDK in your application code
+1.  [**Login URL**](#login-url) Form login url for user
+1.  [**Request token**](#request-token) Request token with login url
+1.  [**Set token**](#set-token) Set or save token for future requests
+1.  [**Get user data**](#get-user) Get user details with token
+1.  [**Logout**](#logout) Logout user and clear token
+
+#### 1. Steemconnect Dashboard<a name="sc-dashboard"></a>
+
+Steemconnect is unified authentification system built on top of Steem built in collaboration of Busy.org and Steemit Inc.
+Layer to ensure easy access and setup for all application developers as well as secure way for users to interact with Steem apps.
 
 Setting up Steemconnect in your app is straight-forward process and never been this easy.
 
-- This tutorial is available at [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js)
-- The specific Steemconnect tutorial is found here [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect)
+Here are the steps that helps you to setup new app:
 
-## Step I
+1a. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
 
-1. Visit [Steemconnect Dashboard](https://steemconnect.com/dashboard) and login with your Steem credentials
 ![steemconnect_login](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_login.png?raw=true)
 
-1. You will see an Applications and Developers section, in Developers section click on `My Apps`
+1b. You will see Applications and Developers section, in Developers section click on `My Apps`
+
 ![steemconnect_dashboard](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_dashboard.png?raw=true)
+
 ![steemconnect_new_app](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_new_app.png?raw=true)
 
-1. Create a New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
+1c. Create New App using Steemconnect, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
+
 ![steemconnect_account_create](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_account_create.png?raw=true)
-    
-    An account creation fee will be deducted from your balance, make sure you have enough funds to complete the account creation. Next step is to login with the account which has enough STEEM to pay for the account creation fee.
 
-    ![steemconnect_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true)
+Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation.
 
-1. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
-    ![steemconnect_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true)
+Next step is to login with account which has enough balance to pay for account creation fee.
 
-Redirect URI(s) will be used within your application to forward user after authentication is successful. This is typical backend web development, we hope you know how to set this up.
+![steemconnect_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true)
 
-\* _Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves_
+1d. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
 
-## Step II
+![steemconnect_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true)
 
-Once you have setup your account for the new application, you can setup your application with Steemconnect authentication and API processes.
+Application name and description should give users clear understanding what permissions it requires and what is the purpose of the app.
 
-### Install
+App Icon field should be publicly accessible and available link to your logo or icon.
+
+Website field is homepage for the application if exist.
+
+Redirect URI(s) will be used within your application to forward user after authentification is successful. You can specify multiple callback URLs with each new line. Callback in Steemconnect SDK should match exactly one of URI(s) specified on this page. Due to security reasons if redirect URI(s) used in SDK is other than you specified, it will not work.
+This is typical backend web development, we hope you know how to set up your backend/app to handle callback URLs.
+
+*   Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves
+
+#### 2. Initialize Steemconnect<a name="init-sc"></a>
+
+Once you have setup account for new application, you can setup application with Steemconnect authentification and API processes.
 To do that, you will need to install `sc2-sdk` nodejs package with `npm i sc2-sdk`.
-Within the application you can initialize Steemconnect
+Within application you can initialize Steemconnect
 
-### Initialize
-> `app` - is the account name for the application that we have created in Step I.3, `callbackURL` - is the Redirect URI that we have defined in Step I.4, `scope` - permissions application is requiring/asking from users
-
+> `app` - is account name for application that we have created in Step I.3, `callbackURL` - is Redirect URI that we have defined in Step I.4, `scope` - permissions application is requiring/asking from users
 
 Now that `sc2-sdk` is initialized we can start authentication and perform simple operations with Steemconnect.
 
-### Login URL
+#### 3. Login URL<a name="login-url"></a>
 
-> Returns login URL which will redirect the user to sign in with Steemconnect login screen. A successful login will redirect the user to the Redirect URI or `callbackURL`. The result of the successful login will return an `access_token`, `expires_in` and `username` information, which the application will start utilizing.
+> `getLoginURL` function you see on the right side, returns login URL which will redirect user to sign in with Steem connect screen. Successfull login will redirect user to Redirect URI or `callbackURL`. Result of successful login will return `access_token`, `expires_in` and `username` information, which application will start utilizing.
 
-### Request link
+#### 4. Request token<a name="request-token"></a>
 
-> Your application can request the link which can be used in a popup screen or relevant screen you develop. The popup screen will ask the user to identify themselves using their username and password. Once they have authenticated successfully the authentication result will be returned
+> Application can request returned link into popup screen or relevant screen you have developed. Popup screen will ask user to identify themselves with their username and password. Once login is successful, you will have Results
 
-### Result auth
+#### 5. Set token<a name="set-token"></a>
 
-> The returned json object will have the following properties
+> Returned data has `access_token` - which will be used in future api calls, `expires_in` - how long access token is valid in seconds and `username` of logged in user.
 
-``` javascript
-result = {
-    "access_token": "xyz", // used for future API calls
-    "expires_in": 604800, // how long the access token will be valid for (in seconds) and how long the user will be logged in for
-    "username": "demo" // current username that is authenticated
-}
-```
+> After getting `access_token`, we can set token for future Steemconnect API requests.
 
-### Set token
-
-> After getting the `access_token`, we can set token for future Steemconnect API requests.
-
-### Get user info
+#### 6. Get user data<a name="get-user"></a>
 
 > Users info can be checked with `me` which will return object
+> `account` - current state of account and its details on Steem blockchain, `name` - username, `scope` - permissions allowed with current login, `user` - username, `user_metadata` - additional information user has setup.
 
-``` javascript
-result = {
-    account: {id:xxx, name:'demo', owner:{}, active:{},...} // current state of account and the details as stored on the Steem blockchain
-    name: 'demo', // the logged in username
-    scope: ['vote'], // the permissions that are allowed for the logged in user
-    user: 'demo', // the current username
-    user_metadata: {} // additional information user has setup.
-}
-```
-### Logout
+#### 7. Logout<a name="logout"></a>
 
-> In order to logout, you can use the `revokeToken` function from `sc2-sdk`.
+> In order to logout, you can use `revokeToken` function from sc2-sdk.
 
-## Source code [<img src="/images/look.svg" width="16" height="16" />](/tutorials-javascript/getting-started)
+**That's all there is to it.**
 
-To try this application visit [Devportal tutorials repo](https://github.com/steemit/devportal-tutorials-js), find [Steemconnect tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) and follow **To run** section in README.
+### To Run the tutorial
+
+1.  clone this repo
+1.  `cd tutorials/02_steemconnect`
+1.  `npm i`
+1.  `npm run dev-server` or `npm run start`
+1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
