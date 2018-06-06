@@ -2,6 +2,7 @@
   description: Used query information about accounts, transactions, and blockchain data. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: database_api.find_account_recovery_requests
+      since: HF11
       purpose: Returns a list of account recovery requests.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
@@ -10,6 +11,7 @@
       parameter_json: {"accounts":[]}
       expected_response_json: {"accounts":[]}
     - api_method: database_api.find_change_recovery_account_requests
+      since: HF11
       purpose: Returns a list of requests to change the recovery account.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
@@ -18,10 +20,12 @@
       parameter_json: {"comments":[]}
       expected_response_json: {"comments":[]}
     - api_method: database_api.find_decline_voting_rights_requests
+      since: HF14
       purpose: Returns a list of requests to decline voting rights.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
     - api_method: database_api.find_escrows
+      since: HF14
       purpose: Returns a list of escrows.
       parameter_json: {"from":""}
       expected_response_json: {"escrows":[]}
@@ -34,6 +38,7 @@
       parameter_json: {"owner":""}
       expected_response_json: {"owner_auths":[]}
     - api_method: database_api.find_savings_withdrawals
+      since: HF14
       purpose: Returns the list of savings withdrawls for an account.
       parameter_json: {"account":""}
       expected_response_json: {"withdrawals":[]}
@@ -42,10 +47,12 @@
       parameter_json: {"account":""}
       expected_response_json: {"requests":[]}
     - api_method: database_api.find_vesting_delegation_expirations
+      since: HF17
       purpose: Returns the expirations for vesting delegations.
       parameter_json: {"account":""}
       expected_response_json: {"delegations":[]}
     - api_method: database_api.find_vesting_delegations
+      since: HF17
       purpose: Returns the list of vesting delegations for an account.
       parameter_json: {"account":""}
       expected_response_json: {"delegations":[]}
@@ -115,6 +122,7 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_required_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]},"available_keys":[]}, "id":1}'
     - api_method: database_api.get_reward_funds
+      since: HF17
       purpose: Returns information about the current reward funds.
       parameter_json: {}
       expected_response_json: {"funds":[]}
@@ -133,6 +141,7 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_witness_schedule", "id":1}'
     - api_method: database_api.list_account_recovery_requests
+      since: HF11
       purpose: Returns a list of account recovery requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
@@ -141,6 +150,7 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"accounts":[]}
     - api_method: database_api.list_change_recovery_account_requests
+      since: HF11
       purpose: Returns a list of recovery account change requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
@@ -149,10 +159,12 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"comments":[]}
     - api_method: database_api.list_decline_voting_rights_requests
+      since: HF14
       purpose: Returns a list of decline voting rights requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
     - api_method: database_api.list_escrows
+      since: HF14
       purpose: Returns a list of escrows.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"escrows":[]}
@@ -165,6 +177,7 @@
       parameter_json: {"start":null,"limit":0}
       expected_response_json: {"owner_auths":[]}
     - api_method: database_api.list_savings_withdrawals
+      since: HF14
       purpose: Returns a list of savings withdrawls.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"withdrawals":[]}
@@ -173,10 +186,12 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
     - api_method: database_api.list_vesting_delegation_expirations
+      since: HF17
       purpose: Returns a list of vesting delegation expirations.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"delegations":[]}
     - api_method: database_api.list_vesting_delegations
+      since: HF17
       purpose: Returns a list of vesting delegations.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"delegations":[]}
@@ -197,7 +212,9 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"witnesses":[]}
     - api_method: database_api.verify_account_authority
-      purpose: Returns true if the signers have enough authority to authorize an account.
+      disabled: true
+      purpose: |
+        **Not Implemented**
       parameter_json: {"account":"","signers":[]}
       expected_response_json: {"valid":false}
       curl_examples:
