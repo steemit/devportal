@@ -93,3 +93,44 @@ Definitions for: tags_api, methods: 20
 Definitions for: witness_api, methods: 2
 Methods added or changed: 0
 ```
+
+### Importing: [devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials)
+
+This command will check for new tutorials in `devportal-tutorials-js` and import them into this project.
+
+```bash
+bundle exec rake scrape:tutorials:js
+```
+
+To force update on a particular tutorial, use the following command:
+
+```bash
+bundle exec rake scrape:tutorials:js[1,true]
+```
+
+Where `1` represents the numerical prefix like in `01_blog_feed` and `true` instructs the task to overwrite what's there, even if it exists.
+
+### Tests
+
+To test all `curl` examples, use the following `rake` task:
+
+```bash
+$ bundle exec rake test:curl
+```
+
+Or, to test specific API namespaces, use:
+
+```bash
+$ bundle exec rake test:curl["follow_api witness_api"]
+```
+
+If you're interested in running this test against a different server, run the command like so
+```bash
+$ TEST_NODE=<some server url> bundle exec rake test:curl
+```
+
+An example pointing at the steemitdev testnet
+
+```bash
+$ TEST_NODE=https://testnet.steemitdev.com bundle exec rake test:curl
+```
