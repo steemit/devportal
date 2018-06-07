@@ -1,151 +1,160 @@
 ---
 title: Blog Feed
-position: 2
-exclude: true
+position: 1
+description: By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem
 layout: full
-description: A simple blog feed tutorial using javascript
 right_code: |
-    <p class="static-right-section-title">index.html</p>
-    ``` html
-      <html>
-      <head><title>User blog</title>
-        <script src="bundle.js"></script>
-      </head>
-      <body>
-      <div class="container">
-        <h2>Welcome to my blog!</h2>
-        <div class="list-group" id="postList"></div>
-      </body>
-      </html>
-    ```
-    <p class="static-right-section-title">app.js</p>
-    ``` javascript
-      const { Client } = require('dsteem');
 
-      const client = new Client('https://api.steemit.com');
+---
+# Blog Feed
 
-      function fetchBlog()
-      {
-          const query = {
-              tag: 'steemitblog',
-              limit: 5
-          };
-          client.database.getDiscussions('trending', query).then((result) => {
-              var posts = [];
-              result.forEach( (post) => {
-                  const image = JSON.parse(post.json_metadata).image[0];
-                  const title = post.title;
-                  const author = post.author;
-                  const created = new Date(post.created).toDateString();
-                  posts.push(
-                      `<a href="#" class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></a>`
-                  )
-              });
-              document.getElementById('postList').innerHTML = posts.join();
-          }).catch((err) => {
-            alert('Error occured');
-          });
-      }
-      window.onload = fetchBlog();
-    ```
+_By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem._
 
-    <p class="static-right-section-title">index.js</p>
-    
-    ``` javascript
-      const Koa = require('koa');
-      const app = new Koa();
-      const serve = require('koa-static');
-      app.use(serve('./public'));
+This tutorial pulls a list of the most recent five user's posts from the blockchain and displays them in simple list. Also some notes about usage of `client.database.getDiscussions` API.
 
-      app.listen(3000);
+## Intro
 
-      console.log('listening on port 3000');    
-    ```
+Tutorial is demonstrates the typical process of fetching account blog posts. It is quite useful if you want to embedd your blog posts on your website these tutorial will help you achieve that goal as well. This tutorial will explain and show you how to access the **Steem** blockchain using the [dsteem](https://github.com/jnordberg/dsteem) library to build a basic blog list of posts filtered by a _tag_
+
+## Steps
+
+1.  [**Configure connection**](#Configure-connection) Configuration of dsteem to use proper connection and network
+1.  [**Query format**](#Query-format) Simple query format to help use fetch data
+1.  [**Fetch data and format**](#Fetch-data-and-format) Fetch data and display in proper interface
+
 ---
 
-In this tutorials we will build simple webapp or blog for particular user on
-Steem blockchain using simple HTML and Javascript.
+#### 1. Configure connection<a name="Configure-connection"></a>
 
-Using the [dsteem](https://github.com/jnordberg/dsteem) library, process is
-super easy, fetch user blog posts from blockchain and style them accordingly.
+In order to connect to the live Steem network, all we have to do is provide connection url to a server that runs on the network. `dsteem` by default set up to use live network but it has flexibility to adjust connection to any other testnet or custom networks, more on that in future tutorials.
 
-By default the `dsteem` library connects to steemit.com's public Steem nodes. To
-kickstart development this is entirely acceptable. If your STEEM app turns into
-a larger project and maybe even a full-fledged site you may want to consider
-running your own nodes. If you want to use different Steem nodes, it can be
-specified with `dsteem` but it's left out for this simple example.
+In first couple lines we require package and define connection server:
 
-#### Tutorial Setup [<img src="/images/look.svg" width="16" height="16" />](/tutorials-javascript/getting-started)
+```
+const { Client } = require('dsteem');
 
-* clone
-  [https://github.com/steemit/devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js)
-* run either `npm i` or `yarn install`
-* run `npm run start`
-* browse to (http://localhost:4000/)
+const client = new Client('https://api.steemit.com');
+```
 
-> The actual tutorial is available in the subfolder of the above repo under the
-> url
-> [https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed)
+#### 2. Query format<a name="Query-format"></a>
 
-Open your favorite text editor or IDE (atom, sublimetext, text edit, or even
-notepad).
-
-### [index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/index.html)
-
-> Make a basic html file that contains the structure for the javascript to
-> populate with results returned by the api. Basic bootstrap styling is used.
-
-### [app.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/public/app.js)
-
-> A seperate javascript file exists with the application to query the API and
-> populate the HTML document with the results returned. We are calling
-> `fetchBlog()` function when body of the page is onload.
-
-### [index.js](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/index.js)
-
-> index.js is a basic javascript file that loads a `koa` based webserver serving
-> the tutorial so you can access it via a browser
-
-#### fetchBlog
-
-> **fetchBlog** function creates simple query object where tag is set to account
-> name on Steem and limit is set to number of posts being pulled from that
-> account. By using `client.database.getDiscussions` dsteem function we are able
-> to query user's blog posts and reformat them into list of posts. Each blog
-> post has `json_metadata` which holds meta information in post, using that we
-> are able to extract first image from post and use it as thumbnail, post author
-> and created information is also formatted and displayed.
+*   You can add a tag to filter the blog posts that you receive from the server, since we are aiming to fetch blog posts of particular user, we will define username as tag.
+*   You can also limit the number of results you would like to receive from the query
 
 ```javascript
 var query = {
-  tag: 'steemitblog', // This tag is used to filter the results by a specific post tag
-  limit: 5 // This limit allows us to limit the overall results returned to 5
+    tag: 'steemitblog', // This tag is used to filter the results by a specific post tag
+    limit: 5, // This limit allows us to limit the overall results returned to 5
 };
 ```
 
-`tag` - this [tag](/glossary/#Tags) is used to limit the types of posts that are
-returned. Each post is assigned multiple tags upon creation and by doing this
-allows you to filter what results are returned.
+#### 3. Fetch data and format<a name="Fetch-data-and-format"></a>
 
-`limit` - this limit allows us to limit the amount of records that are returned
-on a query. By not having a limit you could returned a large amount of data
-which might cause performance issues. By limiting the amount of results you
-return a smaller subset of data that you can work with.
+`client.database.getDiscussions` function is used for fetching discussions or posts. The first argument to this function determines which equivalent of the appbase `condenser_api.get_discussions_by_*` api calls it's going to use.  Below is example of query and keyword **'blog'** indicates `condenser_api.get_discussions_by_blog` and somewhat counter-intuitively _query.tag_ indicates the account from which we want to get posts.
 
-Place **script line** and **fetchBlog** function into `<head>` and save the file
-as `user-blog.html` and load it in your web browser. That's it, congratulations
-on your first app!
+```
+    client.database
+        .getDiscussions('blog', query)
+        .then(result => {
+            var posts = [];
+            result.forEach(post => {
+                const json = JSON.parse(post.json_metadata);
+                const image = json.image ? json.image[0] : '';
+                const title = post.title;
+                const author = post.author;
+                const created = new Date(post.created).toDateString();
+                posts.push(
+                    `<div class="list-group-item"><h4 class="list-group-item-heading">${title}</h4><p>by ${author}</p><center><img src="${image}" class="img-responsive center-block" style="max-width: 450px"/></center><p class="list-group-item-text text-right text-nowrap">${created}</p></div>`
+                );
+            });
 
-#### JSON Result
+            document.getElementById('postList').innerHTML = posts.join('');
+        })
+        .catch(err => {
+            alert('Error occured' + err);
+        });
+```
 
-> A sample of the JSON returned by the `fetchBlog()` function is set out below.
-> Key items to note are the following
-
-* url - This allows you to link back to the original article on Steem
-* json_metadata - This contains custom specific information for the post. It is
-  a JSON object which must be parsed using `JSON.parse` to access. For posts
-  this contains the image URL that is stored online
+The result returned form the service is a `JSON` object with the following properties:
 
 ```json
-{% include tutorials-javascript/blog_feed.json %}
+[
+    {
+        "id": 37338948,
+        "author": "steemitblog",
+        "permlink": "join-team-steemit-at-tokenfest",
+        "category": "steemit",
+        "parent_author": "",
+        "parent_permlink": "steemit",
+        "title": "Join Team Steemit at TokenFest!",
+        "body":
+            "<a href=\"https://tokenfest.adria.digital\"><img src=\"https://i.imgur.com/fOScDIW.png\"/></a>\n\nHello Steemians! If you’d like to meet Team Steemit live-in-person, or are just interested in attending what promises to be a great blockchain conference, join us at <a href=\"https://tokenfest.adria.digital/\">TokenFest</a> in San Francisco from March 15th to 16th. \n\nSteemit CEO, Ned Scott, will be participating in a fireside chat alongside Steemit’s CTO, Harry Schmidt, as well as the creator of Utopian.io, Diego Pucci. Steemit will also be hosting the opening party on Thursday night and we’d certainly love to meet as many of you as possible IRL, so head on over to https://tokenfest.adria.digital/ and get your tickets while you can. \n\n*Team Steemit*",
+        "json_metadata":
+            "{\"tags\":[\"steemit\",\"tokenfest\",\"conference\"],\"image\":[\"https://i.imgur.com/fOScDIW.png\"],\"links\":[\"https://tokenfest.adria.digital\",\"https://tokenfest.adria.digital/\"],\"app\":\"steemit/0.1\",\"format\":\"markdown\"}",
+        "last_update": "2018-03-07T23:22:54",
+        "created": "2018-03-07T20:56:36",
+        "active": "2018-03-13T01:40:21",
+        "last_payout": "1970-01-01T00:00:00",
+        "depth": 0,
+        "children": 29,
+        "net_rshares": "11453442114933",
+        "abs_rshares": "11454054795840",
+        "vote_rshares": "11454054795840",
+        "children_abs_rshares": "13568695606090",
+        "cashout_time": "2018-03-14T20:56:36",
+        "max_cashout_time": "1969-12-31T23:59:59",
+        "total_vote_weight": 3462435,
+        "reward_weight": 10000,
+        "total_payout_value": "0.000 SBD",
+        "curator_payout_value": "0.000 SBD",
+        "author_rewards": 0,
+        "net_votes": 77,
+        "root_comment": 37338948,
+        "max_accepted_payout": "0.000 SBD",
+        "percent_steem_dollars": 10000,
+        "allow_replies": true,
+        "allow_votes": true,
+        "allow_curation_rewards": true,
+        "beneficiaries": [],
+        "url": "/steemit/@steemitblog/join-team-steemit-at-tokenfest",
+        "root_title": "Join Team Steemit at TokenFest!",
+        "pending_payout_value": "46.436 SBD",
+        "total_pending_payout_value": "0.000 STEEM",
+        "active_votes": [
+            {
+                "voter": "steemitblog",
+                "weight": 0,
+                "rshares": "1870813909383",
+                "percent": 10000,
+                "reputation": "128210130644387",
+                "time": "2018-03-07T20:56:36"
+            },
+            {
+                "voter": "kevinwong",
+                "weight": 526653,
+                "rshares": "2208942520687",
+                "percent": 5000,
+                "reputation": "374133832002581",
+                "time": "2018-03-08T04:27:00"
+            }
+        ],
+        "replies": [],
+        "author_reputation": "128210130644387",
+        "promoted": "0.000 SBD",
+        "body_length": 754,
+        "reblogged_by": []
+    }
+]
 ```
+
+From this result we have access to everything associated to the post including additional metadata which is a `JSON` string that must be decoded to use. This `JSON` object has additional information and properties for the post including a reference to the image uploaded. And we are displaying this data in meaningful user interface. _Note: it is truncated to one element, but you would get five posts in array_
+
+That's all there is to it.
+
+### To Run the tutorial
+
+1.  clone this repo
+1.  `cd tutorials/01_blog_feed`
+1.  `npm i`
+1.  `npm run dev-server` or `npm run start`
+1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
