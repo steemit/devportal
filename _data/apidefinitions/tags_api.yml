@@ -8,6 +8,9 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"steemit", "permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
+      expected_curl_responses:
+        - 
+        - 'unknown key:unknown key:'
     - api_method: tags_api.get_comment_discussions_by_payout
       since: HF17
       purpose: Returns a list of discussions based on payout.
@@ -71,6 +74,9 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_comments", "params":{"start_author":"steemit","start_permlink":"firstpost","limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_comments", "params":{"start_author":"alice","start_permlink":"a-post-by-alice","limit":10,"truncate_body":0}, "id":1}'
+      expected_curl_responses:
+        - 
+        - Comment is not in account's comments
     - api_method: tags_api.get_discussions_by_created
       purpose: Returns a list of discussions by created.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}
