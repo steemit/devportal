@@ -113,9 +113,14 @@ module Scrape
     def rewrite_images(body, include_name)
       body = body.gsub(/!\[([^\]]+)\]\(([^)]+)\)/) do
         alt, src = Regexp.last_match[1..2]
-        src = src.split('/')[1..-1].join('/')
+        src = if src.include? '://'
+          src
+        else
+          src = src.split('/')[1..-1].join('/') if src.start_with? './'
+          "https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/#{include_name}/#{src}?raw=true"
+        end
         
-        "![#{alt}](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/#{include_name}/#{src}?raw=true)"
+        "![#{alt}](#{src})"
       end
       
       body
