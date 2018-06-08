@@ -182,7 +182,7 @@
       | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
       |-------------------|------------------------|---------------|-|
       | "steemit" | `0` | `1` | Queries the blog for the account named "steemit", up to one result. |
-      | "alice" | `0` | `50` | Queries the blog for the account named "steemit", up to 50 results. |
+      | "alice" | `0` | `50` | Queries the blog for the account named "alice", up to 50 results. |
     parameter_json: ["steemit",0,1]
     expected_response_json: [{"comment":{"id":0,"author":"steemit","permlink":"firstpost","category":"meta","parent_author":"","parent_permlink":"meta","title":"Welcome to Steem!","body":"Steemit is a social media platform where anyone can earn STEEM points by posting. The more people who like a post, the more STEEM the poster earns. Anyone can sell their STEEM for cash or vest it to boost their voting power.","json_metadata":"","last_update":"2016-03-30T18:30:18","created":"2016-03-30T18:30:18","active":"2018-04-09T12:00:42","last_payout":"2016-08-24T19:59:42","depth":0,"children":336,"net_rshares":0,"abs_rshares":0,"vote_rshares":0,"children_abs_rshares":"26169324897669","cashout_time":"1969-12-31T23:59:59","max_cashout_time":"1969-12-31T23:59:59","total_vote_weight":0,"reward_weight":10000,"total_payout_value":["942",3,"@@000000013"],"curator_payout_value":["756",3,"@@000000013"],"author_rewards":3548,"net_votes":90,"root_author":"steemit","root_permlink":"firstpost","max_accepted_payout":["1000000000",3,"@@000000013"],"percent_steem_dollars":10000,"allow_replies":true,"allow_votes":true,"allow_curation_rewards":true,"beneficiaries":[]},"blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
     curl_examples:
@@ -208,7 +208,7 @@
       | `account` (string) | `start_entry_id` (int) | `limit` (int) | |
       |-------------------|------------------------|---------------|-|
       | "steemit" | `0` | `1` | Queries the blog entries for the account named "steemit", up to one result. |
-      | "alice" | `0` | `50` | Queries the blog entries for the account named "steemit", up to 50 results. |
+      | "alice" | `0` | `50` | Queries the blog entries for the account named "alice", up to 50 results. |
     parameter_json: ["steemit",0,1]
     expected_response_json: [{"author":"steemit","permlink":"firstpost","blog":"steemit","reblog_on":"1970-01-01T00:00:00","entry_id":0}]
     curl_examples:
