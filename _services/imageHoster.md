@@ -1,7 +1,8 @@
 # Definition
 
-Very simply put, imagehoster is a Steem-powered image hosting and proxying service. This service allowes you to upload any image and instead of storing just a link to the image, it stores a copy of the image on the server. This means that the image will not be removed if it is removed from the original upload site, nor when the post is inactive for long periods of time. The image will be available, anytime you need it.
-More information on Imagehoster can be found [HERE](https://github.com/steemit/imagehoster/blob/master/README.md)
+Imagehoster is a Steem-powered image hosting and proxying service. Any image uploaded to, or proxied through, your Imagehoster has a copy stored within it. This means that the image continues to be available even if 3rd party sites go down or change their URLs. For as long as your instance of imagehoster is running the image will be available, anytime you need it.
+
+Detaied information on Imagehoster can be found in its [repository](https://github.com/steemit/imagehoster/blob/master/README.md)
 
 ## The API
 
@@ -13,19 +14,21 @@ Below are examples of how to process images with the API
 
 This returns a JSON object container the URL to the uploaded image, ex:
 
+```
 {
     "url": "https://images.example.com/DQmZi174Xz96UrRVBMNRHb6A2FfU3z1HRPwPPQCgSMgdiUT/test.jpg"
 }
+```
 
-For this to go ahead it requires a signature from a Steem account in good standing.
+For this to succeed it requires a signature from a Steem account in good standing.
 
 **2. Fetch an uploaded image**
 
-`GET /<image_hash>/[<filename>]`
+`GET /<image_hash>/<filename>`
 
 This downloads a previously uploaded image.
 
-`filename` is optional but can be provided to help users and applications understand the contect type (Content-Type header will still always reflect actual image type)
+`<filename>` is optional but can be provided to help users and applications understand the content type (Content-Type header will still always reflect actual image type)
 
 **3. Proxy and resize an image**
 
@@ -33,11 +36,11 @@ This downloads a previously uploaded image.
 
 This downloads and serves the provided `image_url`. Something to note is that a copy will be taken of the image and will be served on subsequent requests, so even if the upstream is removed or changes, you will still get the original from the proxy endpoint.
 
-`width` and `height` can be set to `0` to preserve the image dimensions, if they are `>0` the image will be aspect resized (down-sample only) to fit inside the rectangle.
+`<width>` and `<height>` can be set to `0` to preserve the image's dimensions, if they are `>0` the image will be aspect resized (down-sample only) to fit.
 
 **4. Get user avatar image**
 
-`GET /u/<username>/avatar/[<size>]`
+`GET /u/<username>/avatar/<size>`
 
 This presents the avatar for `username`. If no avatar is set, a default image will be served. This default is set in the service config.
 
@@ -50,7 +53,7 @@ The avatars follow the same sizing rules as proxied images, so you not guarantee
 
 ## Signing uploads
 
-Uploads also require a signature made by a Steem accounts' posting authority. The account has to also be above a certain (service configurable) reputation threshold.
+Uploads also require a signature made by a Steem account's posting authority. The account has to also be above a certain (service configurable) reputation threshold.
 
 Creating a signature for `node.js` and with `dsteem`:
 
