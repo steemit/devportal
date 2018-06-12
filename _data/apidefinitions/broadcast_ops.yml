@@ -120,7 +120,7 @@
           amount
           memo
       json_examples:
-        - '["transfer",{"from":"steemit","to":"alice","amount":["10",3,"@@000000021"],"memo":"Thanks for all the fish."}]'
+        - '["transfer",{"from":"steemit","to":"alice","amount":{"amount":"10","precision":3,"nai":"@@000000021"},"memo":"Thanks for all the fish."}]'
     - name: transfer_to_vesting
       virtual: false
       purpose: |
@@ -140,7 +140,7 @@
           to
           amount
       json_examples:
-        - '["transfer_to_vesting",{"from":"alice","to":"","amount":["357000",3,"@@000000021"]}]'
+        - '["transfer_to_vesting",{"from":"alice","to":"","amount":{"amount":"357000","precision":3,"nai":"@@000000021"}}]'
     - name: withdraw_vesting
       virtual: false
       purpose: |
@@ -163,7 +163,7 @@
         - account
           vesting_shares
       json_examples:
-        - '["withdraw_vesting",{"account":"steemit","vesting_shares":["200000000000",6,"@@000000037"]}]'
+        - '["withdraw_vesting",{"account":"steemit","vesting_shares":{"amount":"200000000000","precision":6,"nai":"@@000000037"}}]'
     - name: limit_order_create
       virtual: false
       purpose: |
@@ -180,7 +180,7 @@
           fill_or_kill
           expiration
       json_examples:
-        - '["limit_order_create",{"owner":"steemit","orderid":10,"amount_to_sell":["9950",3,"@@000000021"],"min_to_receive":["3500",3,"@@000000013"],"fill_or_kill":false,"expiration":"2035-10-29T06:32:22"}]'
+        - '["limit_order_create",{"owner":"steemit","orderid":10,"amount_to_sell":{"amount":"9950","precision":3,"nai":"@@000000021"},"min_to_receive":{"amount":"3500","precision":3,"nai":"@@000000013"},"fill_or_kill":false,"expiration":"2035-10-29T06:32:22"}]'
     - name: limit_order_cancel
       virtual: false
       purpose: |
@@ -215,7 +215,7 @@
         - publisher
           exchange_rate
       json_examples:
-        - '["feed_publish",{"publisher":"alice","exchange_rate":{"base":["1000",3,"@@000000013"],"quote":["1000000",3,"@@000000021"]}}]'
+        - '["feed_publish",{"publisher":"alice","exchange_rate":{"base":{"amount":"1000","precision":3,"nai":"@@000000013"},"quote":{"amount":"1000000","precision":3,"nai":"@@000000021"}}}]'
     - name: convert
       virtual: false
       purpose: |
@@ -229,7 +229,7 @@
           requestid
           amount
       json_examples:
-        - '["convert",{"owner":"steemit","requestid":1467592156,"amount":["5000",3,"@@000000013"]}]'
+        - '["convert",{"owner":"steemit","requestid":1467592156,"amount":{"amount":"5000","precision":3,"nai":"@@000000013"}}]'
     - name: account_create
       virtual: false
       purpose:
@@ -246,7 +246,7 @@
           memo_key
           json_metadata
       json_examples:
-        - '["account_create",{"fee":["0",3,"@@000000021"],"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",1]]},"memo_key":"STM8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG","json_metadata":"{}"}]'
+        - '["account_create",{"fee":{"amount":"0","precision":3,"nai":"@@000000021"},"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",1]]},"memo_key":"STM8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG","json_metadata":"{}"}]'
     - name: account_update
       virtual: false
       purpose:
@@ -317,7 +317,7 @@
           props
           fee
       json_examples:
-        - '["witness_update",{"owner":"alice","url":"witness-category/my-witness","block_signing_key":"STM8LoQjQqJHvotqBo7HjnqmUbFW9oJ2theyqonzUd9DdJ7YYHsvD","props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000},"fee":["0",3,"@@000000021"]}]'
+        - '["witness_update",{"owner":"alice","url":"witness-category/my-witness","block_signing_key":"STM8LoQjQqJHvotqBo7HjnqmUbFW9oJ2theyqonzUd9DdJ7YYHsvD","props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000},"fee":{"amount":"0","precision":3,"nai":"@@000000021"}}]'
     - name: account_witness_vote
       virtual: false
       purpose: |
@@ -359,7 +359,7 @@
           signature
           work
       json_examples:
-        - '["pow",{"worker_account":"admin","block_id":"000004433bd4602cf5f74dbb564183837df9cef8","nonce":82,"work":{"worker":"STM65wH1LZ7BfSHcK69SShnqCAH5xdoSZpGkUjmzHJ5GCuxEK9V5G","input":"59b009f89477919f95914151cef06f28bf344dd6fb7670aca1c1f4323c80446b","signature":"1f3f83209097efcd01b7d6f27ce726164323d503d6fcf4d55bfb7cb3032796f6766738b36062b5850d69447fdf9c091cbc70825df5eeacc4710a0b11ffdbf0912a","work":"0b62f4837801cd857f01d6a541faeb13d6bb95f1c36c6b4b14a47df632aa6c92"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]'
+        - '["pow",{"worker_account":"admin","block_id":"000004433bd4602cf5f74dbb564183837df9cef8","nonce":82,"work":{"worker":"STM65wH1LZ7BfSHcK69SShnqCAH5xdoSZpGkUjmzHJ5GCuxEK9V5G","input":"59b009f89477919f95914151cef06f28bf344dd6fb7670aca1c1f4323c80446b","signature":"1f3f83209097efcd01b7d6f27ce726164323d503d6fcf4d55bfb7cb3032796f6766738b36062b5850d69447fdf9c091cbc70825df5eeacc4710a0b11ffdbf0912a","work":"0b62f4837801cd857f01d6a541faeb13d6bb95f1c36c6b4b14a47df632aa6c92"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}]'
     - name: custom
       virtual: false
       purpose: |
@@ -477,9 +477,9 @@
           allow_curation_rewards
           extensions
       json_examples:
-        - '["comment_options",{"author":"alice","permlink":"a-post-by-alice","max_accepted_payout":["1000000",3,"@@000000013"],"percent_steem_dollars":5000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[]}]'
-        - '["comment_options",{"author":"bob","permlink":"a-post-with-a-beneficiary","max_accepted_payout":["1000000",3,"@@000000013"],"percent_steem_dollars":63,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"charlie","weight":1000}]}]]}]'
-        - '["comment_options",{"author":"charlie","permlink":"a-post-with-multiple-beneficiaries","max_accepted_payout":["1000000",3,"@@000000013"],"percent_steem_dollars":62688,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"david","weight":500},{"account":"erin","weight":500},{"account":"faythe","weight":1000},{"account":"frank","weight":500}]}]]}]'
+        - '["comment_options",{"author":"alice","permlink":"a-post-by-alice","max_accepted_payout":{"amount":"1000000","precision":3,"nai":"@@000000013"},"percent_steem_dollars":5000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[]}]'
+        - '["comment_options",{"author":"bob","permlink":"a-post-with-a-beneficiary","max_accepted_payout":{"amount":"1000000","precision":3,"nai":"@@000000013"},"percent_steem_dollars":63,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"charlie","weight":1000}]}]]}]'
+        - '["comment_options",{"author":"charlie","permlink":"a-post-with-multiple-beneficiaries","max_accepted_payout":{"amount":"1000000","precision":3,"nai":"@@000000013"},"percent_steem_dollars":62688,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"david","weight":500},{"account":"erin","weight":500},{"account":"faythe","weight":1000},{"account":"frank","weight":500}]}]]}]'
     - name: set_withdraw_vesting_route
       virtual: false
       purpose: |
@@ -517,7 +517,7 @@
           fill_or_kill
           expiration
       json_examples:
-        - '["limit_order_create2",{"owner":"alice","orderid":492991,"amount_to_sell":["1",3,"@@000000013"],"exchange_rate":{"base":["1",3,"@@000000013"],"quote":["10",3,"@@000000021"]},"fill_or_kill":false,"expiration":"2017-05-12T23:11:13"}]'
+        - '["limit_order_create2",{"owner":"alice","orderid":492991,"amount_to_sell":{"amount":"1","precision":3,"nai":"@@000000013"},"exchange_rate":{"base":{"amount":"1","precision":3,"nai":"@@000000013"},"quote":{"amount":"10","precision":3,"nai":"@@000000021"}},"fill_or_kill":false,"expiration":"2017-05-12T23:11:13"}]'
     - name: challenge_authority
       disabled: true
       virtual: false
@@ -674,7 +674,7 @@
           escrow_expiration
           json_meta
       json_examples:
-        - '["escrow_transfer",{"from":"alice","to":"bob","sbd_amount":["1000",3,"@@000000013"],"steem_amount":["0",3,"@@000000021"],"escrow_id":23456789,"agent":"charlie","fee":["100",3,"@@000000013"],"json_meta":"{}","ratification_deadline":"2017-02-26T11:22:39","escrow_expiration":"2017-02-28T11:22:39"}]'
+        - '["escrow_transfer",{"from":"alice","to":"bob","sbd_amount":{"amount":"1000","precision":3,"nai":"@@000000013"},"steem_amount":{"amount":"0","precision":3,"nai":"@@000000021"},"escrow_id":23456789,"agent":"charlie","fee":{"amount":"100","precision":3,"nai":"@@000000013"},"json_meta":"{}","ratification_deadline":"2017-02-26T11:22:39","escrow_expiration":"2017-02-28T11:22:39"}]'
     - name: escrow_dispute
       since: HF14
       virtual: false
@@ -724,7 +724,7 @@
           sbd_amount
           steem_amount
       json_examples:
-        - '["escrow_release",{"from":"alice","to":"bob","agent":"charlie","who":"charlie","receiver":"bob","escrow_id":72526562,"sbd_amount":["5000",3,"@@000000013"],"steem_amount":["0",3,"@@000000021"]}]'
+        - '["escrow_release",{"from":"alice","to":"bob","agent":"charlie","who":"charlie","receiver":"bob","escrow_id":72526562,"sbd_amount":{"amount":"5000","precision":3,"nai":"@@000000013"},"steem_amount":{"amount":"0","precision":3,"nai":"@@000000021"}}]'
     - name: pow2
       disabled: true
       virtual: false
@@ -737,7 +737,7 @@
         - input
           pow_summary
       json_examples:
-        - '["pow2",{"work":[0,{"input":{"worker_account":"alice","prev_block":"003ea604345523c344fbadab605073ea712dd76f","nonce":"1052853013628665497"},"pow_summary":3817904373}],"props":{"account_creation_fee":["1",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]'
+        - '["pow2",{"work":[0,{"input":{"worker_account":"alice","prev_block":"003ea604345523c344fbadab605073ea712dd76f","nonce":"1052853013628665497"},"pow_summary":3817904373}],"props":{"account_creation_fee":{"amount":"1","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}]'
     - name: escrow_approve
       since: HF14
       virtual: false
@@ -782,7 +782,7 @@
           amount
           memo
       json_examples:
-        - '["transfer_to_savings",{"from":"alice","to":"alice","amount":["1000",3,"@@000000013"],"memo":""}]'
+        - '["transfer_to_savings",{"from":"alice","to":"alice","amount":{"amount":"1000","precision":3,"nai":"@@000000013"},"memo":""}]'
     - name: transfer_from_savings
       since: HF14
       virtual: false
@@ -797,7 +797,7 @@
           amount
           memo
       json_examples:
-        - '["transfer_from_savings",{"from":"alice","request_id":101,"to":"alice","amount":["1000",3,"@@000000013"],"memo":""}]'
+        - '["transfer_from_savings",{"from":"alice","request_id":101,"to":"alice","amount":{"amount":"1000","precision":3,"nai":"@@000000013"},"memo":""}]'
     - name: cancel_transfer_from_savings
       since: HF14
       virtual: false
@@ -891,7 +891,7 @@
           reward_sbd
           reward_vests
       json_examples:
-        - '["claim_reward_balance",{"account":"alice","reward_steem":["17",3,"@@000000021"],"reward_sbd":["11",3,"@@000000013"],"reward_vests":["185025103",6,"@@000000037"]}]'
+        - '["claim_reward_balance",{"account":"alice","reward_steem":{"amount":"17","precision":3,"nai":"@@000000021"},"reward_sbd":{"amount":"11","precision":3,"nai":"@@000000013"},"reward_vests":{"amount":"185025103","precision":6,"nai":"@@000000037"}}]'
     - name: delegate_vesting_shares
       since: HF17
       virtual: false
@@ -915,7 +915,7 @@
           delegatee
           vesting_shares
       json_examples:
-        - '["delegate_vesting_shares",{"delegator":"alice","delegatee":"bob","vesting_shares":["94599167138276",6,"@@000000037"]}]'
+        - '["delegate_vesting_shares",{"delegator":"alice","delegatee":"bob","vesting_shares":{"amount":"94599167138276","precision":6,"nai":"@@000000037"}}]'
     - name: account_create_with_delegation
       since: HF17
       virtual: false
@@ -949,7 +949,7 @@
           json_metadata
           extensions
       json_examples:
-        - '["account_create_with_delegation",{"fee":["3000",3,"@@000000021"],"delegation":["0",6,"@@000000037"],"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5Tki3ecCdCCHCjhhwvQvXuKryL2s34Ma6CXsRzntSUTYVYxCQ9",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM6LUoAA8gCL9tHRz7v9xcwR4ZWD3KDRHP5t1U7UAZHdfanLxyBE",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8anmpHdfVE4AmwsDpcSXpRsydHysEbv6vGJkRQy1d1CC83zeTA",1]]},"memo_key":"STM67RYDyEkP1Ja1jFehJ45BFGA9oHHUnRnYbxKJEtMhVQiHW3S3k","json_metadata":"{}","extensions":[]}]'
+        - '["account_create_with_delegation",{"fee":{"amount":"3000","precision":3,"nai":"@@000000021"},"delegation":{"amount":"0","precision":6,"nai":"@@000000037"},"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5Tki3ecCdCCHCjhhwvQvXuKryL2s34Ma6CXsRzntSUTYVYxCQ9",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM6LUoAA8gCL9tHRz7v9xcwR4ZWD3KDRHP5t1U7UAZHdfanLxyBE",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8anmpHdfVE4AmwsDpcSXpRsydHysEbv6vGJkRQy1d1CC83zeTA",1]]},"memo_key":"STM67RYDyEkP1Ja1jFehJ45BFGA9oHHUnRnYbxKJEtMhVQiHW3S3k","json_metadata":"{}","extensions":[]}]'
     - name: fill_convert_request
       virtual: true
       purpose: |

@@ -78,3 +78,6 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"follow_api.get_reblogged_by", "params":{"author":"steemit","permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_reblogged_by", "params":{"author":"alice","permlink":"a-post-by-alice"}, "id":1}'
+      expected_curl_responses:
+        - 
+        - 'unknown key:unknown key:'
