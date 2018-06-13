@@ -1,25 +1,27 @@
 ---
-title: Comments List
-position: 4
+title: Get Post Comments
+position: 7
 exclude: true
-layout: main-script
+layout: full-row
 description: Shows replies to content
-main_script: tutorials-ruby/comments_list.rb
-main_type: ruby
-main_script_anchor: Script
 ---
 
 This example will output the reply details and totals for the post/comment passed as an argument to the script.
 
 ### Script
 
-Create a filed called `comments_list.rb` and run it:
+First, we ask the blockchain for the replies on a post or comment.  Then, we grab the authors of those replies and list them, followed by the total comments count.
+
+### To Run
+
+First, set up your workstation using the steps provided in [Getting Started](https://developers.steem.io/tutorials-ruby/getting_started).  Then you can create and execute the script (or clone from this repository):
 
 ```bash
+git clone git@github.com:steemit/devportal-tutorials-rb.git
+cd devportal-tutorials-rb/tutorials/07_get_post_comments
+bundle install
 ruby comments_list.rb https://steemit.com/steem/@steemitblog/dev-portal-update-new-steem-developer-resources
 ```
-
-First, we ask the blockchain for the replies on a post or comment.  Then, we grab the authors of those replies and list them, followed by the total comments count.
 
 ### Example Output
 
