@@ -1,13 +1,19 @@
 ---
 title: Getting Started
-position: 1
+position: 0
 exclude: true
 layout: main-script
 description: Common tasks for getting ruby apps to access the blockchain
-main_script: tutorials-ruby/Gemfile
-main_type: ruby
-main_script_anchor: Setup
 right_code: |
+    <p class="right-section-title">Setup</p>
+    
+    `Gemfile`
+    
+    ```ruby
+    source 'https://rubygems.org'
+    gem 'radiator'
+    ```
+    
     <p class="right-section-title">Examples</p>
 
     ```bash

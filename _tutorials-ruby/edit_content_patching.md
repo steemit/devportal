@@ -2,14 +2,9 @@
 title: How to edit a Post
 position: 5
 exclude: true
-layout: main-script
+layout: full-row
 description: Patching changes to a post on Steem.
-main_script: tutorials-ruby/edit_content_patching.rb
-main_type: ruby
-main_script_anchor: Script
 ---
-
-### Intro
 
 This tutorial will show a technique for efficiently editing a post by only broadcasting changes to the post body.
 
