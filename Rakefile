@@ -20,7 +20,8 @@ namespace :scrape do
   
   desc "Scrape API Definitions"
   task :api_defs do
-    job = Scrape::ApiDefinitionsJob.new
+    url = ENV.fetch('TEST_NODE', 'https://api.steemit.com')
+    job = Scrape::ApiDefinitionsJob.new(url: url)
     count = job.perform
     
     puts "Methods added or changed: #{count}"
