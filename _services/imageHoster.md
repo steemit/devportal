@@ -13,6 +13,7 @@ Below are examples of how to process images with the API
  3. [**Proxy and resize an image**](#proxy-resize)
  4. [**Get user avatar image**](#user-avatar)
  5. [**Signing uploads**](#signing)
+ 6. [**How to run**](#how-to-run)
 
 #### 1. Upload an image <a name="upload-image"></a>
 
@@ -57,7 +58,7 @@ The sizes are:
 
 The avatars follow the same sizing rules as proxied images, so you not guaranteed to get a square image, just an image fitting inside of the `size` square
 
-## Signing uploads <a name="signing"></a>
+#### 5. Signing uploads <a name="signing"></a>
 
 Uploads also require a signature made by a Steem account's posting authority. The account has to also be above a certain (service configurable) reputation threshold.
 
@@ -85,7 +86,7 @@ const imageHash = crypto.createHash('sha256')
 process.stdout.write(key.sign(imageHash).toString() + '\n')
 ```
 
-### How to run
+#### 6. How to run <a name="how-to-run"></a>
 
 This imagehoster demo must be run through linux due to a dependency on the `make` commandline.
 You will also require `node.js` and `yarn` to run
