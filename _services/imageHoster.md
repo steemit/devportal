@@ -8,7 +8,13 @@ Detaied information on Imagehoster can be found in its [repository](https://gith
 
 Below are examples of how to process images with the API
 
-**1. Upload an image**
+ 1. [**Upload an image**](#upload-image)
+ 2. [**Fetch an uploaded image**](#fetch-upload)
+ 3. [**Proxy and resize an image**](#proxy-resize)
+ 4. [**Get user avatar image**](#user-avatar)
+ 5. [**Signing uploads**](#signing)
+
+#### 1. Upload an image <a name="upload-image"></a>
 
 `POST /<username>/<signature>`
 
@@ -22,7 +28,7 @@ This returns a JSON object container the URL to the uploaded image, ex:
 
 For this to succeed it requires a signature from a Steem account in good standing.
 
-**2. Fetch an uploaded image**
+#### 2. Fetch an uploaded image <a name="fetch-upload"></a>
 
 `GET /<image_hash>/<filename>`
 
@@ -30,7 +36,7 @@ This downloads a previously uploaded image.
 
 `<filename>` is optional but can be provided to help users and applications understand the content type (Content-Type header will still always reflect actual image type)
 
-**3. Proxy and resize an image**
+#### 3. Proxy and resize an image <a name="proxy-resize"></a>
 
 `GET /<width>x<hight>/<image_url>`
 
@@ -38,7 +44,7 @@ This downloads and serves the provided `image_url`. Something to note is that a 
 
 `<width>` and `<height>` can be set to `0` to preserve the image's dimensions, if they are `>0` the image will be aspect resized (down-sample only) to fit.
 
-**4. Get user avatar image**
+#### 4. Get user avatar image <a name="user-avatar"></a>
 
 `GET /u/<username>/avatar/<size>`
 
@@ -51,7 +57,7 @@ The sizes are:
 
 The avatars follow the same sizing rules as proxied images, so you not guaranteed to get a square image, just an image fitting inside of the `size` square
 
-## Signing uploads
+## Signing uploads <a name="signing"></a>
 
 Uploads also require a signature made by a Steem account's posting authority. The account has to also be above a certain (service configurable) reputation threshold.
 
