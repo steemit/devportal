@@ -8,6 +8,9 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"account_history_api.get_account_history", "params":{"account":"steemit", "start":1000, "limit":1000}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"account_history_api.get_account_history", "params":{"account":"steemit", "start":-1, "limit":10000}, "id":1}'
+      expected_curl_responses:
+        - Could not find API account_history_api
+        - Could not find API account_history_api
     - api_method: account_history_api.get_ops_in_block
       purpose: Returns all operations contained in a block.
       parameter_json: {"block_num":0,"only_virtual":false}
@@ -15,9 +18,14 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"account_history_api.get_ops_in_block", "params":{"block_num":1,"only_virtual":false}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"account_history_api.get_ops_in_block", "params":{"block_num":5443322,"only_virtual":true}, "id":1}'
+      expected_curl_responses:
+        - Could not find API account_history_api
+        - Could not find API account_history_api
     - api_method: account_history_api.get_transaction
       purpose: Returns the details of a transaction based on a transaction id.
       parameter_json: {"id":"0000000000000000000000000000000000000000"}
       expected_response_json: {"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[],"transaction_id":"0000000000000000000000000000000000000000","block_num":0,"transaction_num":0}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"account_history_api.get_transaction", "params":{"id":"6fde0190a97835ea6d9e651293e90c89911f933c"}, "id":1}'
+      expected_curl_responses:
+        - Could not find API account_history_api

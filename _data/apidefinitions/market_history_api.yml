@@ -34,7 +34,7 @@
     - api_method: market_history_api.get_ticker
       purpose: Returns the market ticker for the internal SBD:STEEM market.
       parameter_json: {}
-      expected_response_json: {"latest":"0.00000000000000000","lowest_ask":"0.00000000000000000","highest_bid":"0.00000000000000000","percent_change":"0.00000000000000000","steem_volume":["0",3,"@@000000021"],"sbd_volume":["0",3,"@@000000013"]}
+      expected_response_json: {"latest":"0.00000000000000000","lowest_ask":"0.00000000000000000","highest_bid":"0.00000000000000000","percent_change":"0.00000000000000000","steem_volume":{"amount":"0","precision":3,"nai":"@@000000021"},"sbd_volume":{"amount":"0","precision":3,"nai":"@@000000013"}}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"market_history_api.get_ticker", "id":1}'
     - api_method: market_history_api.get_trade_history
@@ -46,6 +46,6 @@
     - api_method: market_history_api.get_volume
       purpose: Returns the market volume for the past 24 hours.
       parameter_json: {}
-      expected_response_json: {"steem_volume":["0",3,"@@000000021"],"sbd_volume":["0",3,"@@000000013"]}
+      expected_response_json: {"steem_volume":{"amount":"0","precision":3,"nai":"@@000000021"},"sbd_volume":{"amount":"0","precision":3,"nai":"@@000000013"}}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"market_history_api.get_volume", "id":1}'

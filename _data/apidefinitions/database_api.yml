@@ -2,6 +2,7 @@
   description: Used query information about accounts, transactions, and blockchain data. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: database_api.find_account_recovery_requests
+      since: HF11
       purpose: Returns a list of account recovery requests.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
@@ -10,6 +11,7 @@
       parameter_json: {"accounts":[]}
       expected_response_json: {"accounts":[]}
     - api_method: database_api.find_change_recovery_account_requests
+      since: HF11
       purpose: Returns a list of requests to change the recovery account.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
@@ -18,10 +20,12 @@
       parameter_json: {"comments":[]}
       expected_response_json: {"comments":[]}
     - api_method: database_api.find_decline_voting_rights_requests
+      since: HF14
       purpose: Returns a list of requests to decline voting rights.
       parameter_json: {"accounts":[]}
       expected_response_json: {"requests":[]}
     - api_method: database_api.find_escrows
+      since: HF14
       purpose: Returns a list of escrows.
       parameter_json: {"from":""}
       expected_response_json: {"escrows":[]}
@@ -34,6 +38,7 @@
       parameter_json: {"owner":""}
       expected_response_json: {"owner_auths":[]}
     - api_method: database_api.find_savings_withdrawals
+      since: HF14
       purpose: Returns the list of savings withdrawls for an account.
       parameter_json: {"account":""}
       expected_response_json: {"withdrawals":[]}
@@ -42,10 +47,12 @@
       parameter_json: {"account":""}
       expected_response_json: {"requests":[]}
     - api_method: database_api.find_vesting_delegation_expirations
+      since: HF17
       purpose: Returns the expirations for vesting delegations.
       parameter_json: {"account":""}
       expected_response_json: {"delegations":[]}
     - api_method: database_api.find_vesting_delegations
+      since: HF17
       purpose: Returns the list of vesting delegations for an account.
       parameter_json: {"account":""}
       expected_response_json: {"delegations":[]}
@@ -76,17 +83,17 @@
     - api_method: database_api.get_current_price_feed
       purpose: Returns the current price feed.
       parameter_json: {}
-      expected_response_json: {"base":["0",3,"@@000000021"],"quote":["0",3,"@@000000021"]}
+      expected_response_json: {"base":{"amount":"0","precision":3,"nai":"@@000000021"},"quote":{"amount":"0","precision":3,"nai":"@@000000021"}}
     - api_method: database_api.get_dynamic_global_properties
       purpose: Returns the current dynamic global properties.
       parameter_json: {}
-      expected_response_json: {"id":0,"head_block_number":0,"head_block_id":"0000000000000000000000000000000000000000","time":"1970-01-01T00:00:00","current_witness":"","total_pow":"18446744073709551615","num_pow_witnesses":0,"virtual_supply":["0",3,"@@000000021"],"current_supply":["0",3,"@@000000021"],"confidential_supply":["0",3,"@@000000021"],"current_sbd_supply":["0",3,"@@000000013"],"confidential_sbd_supply":["0",3,"@@000000013"],"total_vesting_fund_steem":["0",3,"@@000000021"],"total_vesting_shares":["0",6,"@@000000037"],"total_reward_fund_steem":["0",3,"@@000000021"],"total_reward_shares2":"0","pending_rewarded_vesting_shares":["0",6,"@@000000037"],"pending_rewarded_vesting_steem":["0",3,"@@000000021"],"sbd_interest_rate":0,"sbd_print_rate":10000,"maximum_block_size":0,"current_aslot":0,"recent_slots_filled":"0","participation_count":0,"last_irreversible_block_num":0,"vote_power_reserve_rate":40}
+      expected_response_json: {"id":0,"head_block_number":0,"head_block_id":"0000000000000000000000000000000000000000","time":"1970-01-01T00:00:00","current_witness":"","total_pow":"18446744073709551615","num_pow_witnesses":0,"virtual_supply":{"amount":"0","precision":3,"nai":"@@000000021"},"current_supply":{"amount":"0","precision":3,"nai":"@@000000021"},"confidential_supply":{"amount":"0","precision":3,"nai":"@@000000021"},"current_sbd_supply":{"amount":"0","precision":3,"nai":"@@000000013"},"confidential_sbd_supply":{"amount":"0","precision":3,"nai":"@@000000013"},"total_vesting_fund_steem":{"amount":"0","precision":3,"nai":"@@000000021"},"total_vesting_shares":{"amount":"0","precision":6,"nai":"@@000000037"},"total_reward_fund_steem":{"amount":"0","precision":3,"nai":"@@000000021"},"total_reward_shares2":"0","pending_rewarded_vesting_shares":{"amount":"0","precision":6,"nai":"@@000000037"},"pending_rewarded_vesting_steem":{"amount":"0","precision":3,"nai":"@@000000021"},"sbd_interest_rate":0,"sbd_print_rate":10000,"maximum_block_size":0,"current_aslot":0,"recent_slots_filled":"0","participation_count":0,"last_irreversible_block_num":0,"vote_power_reserve_rate":40}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_dynamic_global_properties", "id":1}'
     - api_method: database_api.get_feed_history
       purpose: Returns the history of price feed values.
       parameter_json: {}
-      expected_response_json: {"id":0,"current_median_history":{"base":["0",3,"@@000000021"],"quote":["0",3,"@@000000021"]},"price_history":[]}
+      expected_response_json: {"id":0,"current_median_history":{"base":{"amount":"0","precision":3,"nai":"@@000000021"},"quote":{"amount":0","precision":3,"nai":"@@000000021"}},"price_history":[]}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_feed_history", "id":1}'
     - api_method: database_api.get_hardfork_properties
@@ -107,14 +114,15 @@
       parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
       expected_response_json: {"keys":[]}
       curl_examples:
-        - '{"jsonrpc":"2.0", "method":"database_api.get_potential_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"database_api.get_potential_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'
     - api_method: database_api.get_required_signatures
       purpose: This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction.
       parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]},"available_keys":[]}
       expected_response_json: {"keys":[]}
       curl_examples:
-        - '{"jsonrpc":"2.0", "method":"database_api.get_required_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]},"available_keys":[]}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"database_api.get_required_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]},"available_keys":[]}, "id":1}'
     - api_method: database_api.get_reward_funds
+      since: HF17
       purpose: Returns information about the current reward funds.
       parameter_json: {}
       expected_response_json: {"funds":[]}
@@ -125,14 +133,15 @@
       parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
       expected_response_json: {"hex":""}
       curl_examples:
-        - '{"jsonrpc":"2.0", "method":"database_api.get_transaction_hex", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"database_api.get_transaction_hex", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'
     - api_method: database_api.get_witness_schedule
       purpose: Returns the current witness schedule.
       parameter_json: {}
-      expected_response_json: {"id":0,"current_virtual_time":"0","next_shuffle_block_num":0,"current_shuffled_witnesses":[],"num_scheduled_witnesses":48,"top19_weight":77,"timeshare_weight":16,"miner_weight":2,"witness_pay_normalization_factor":0,"median_props":{"account_creation_fee":["1",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000,"account_subsidy_limit":0},"majority_version":"0.0.0","max_voted_witnesses":48,"max_miner_witnesses":77,"max_runner_witnesses":16,"hardfork_required_witnesses":2}
+      expected_response_json: {"id":0,"current_virtual_time":"0","next_shuffle_block_num":0,"current_shuffled_witnesses":[],"num_scheduled_witnesses":48,"top19_weight":77,"timeshare_weight":16,"miner_weight":2,"witness_pay_normalization_factor":0,"median_props":{"account_creation_fee":["amount":"1","precision":3,"nai":"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000,"account_subsidy_limit":0},"majority_version":"0.0.0","max_voted_witnesses":48,"max_miner_witnesses":77,"max_runner_witnesses":16,"hardfork_required_witnesses":2}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_witness_schedule", "id":1}'
     - api_method: database_api.list_account_recovery_requests
+      since: HF11
       purpose: Returns a list of account recovery requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
@@ -141,6 +150,7 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"accounts":[]}
     - api_method: database_api.list_change_recovery_account_requests
+      since: HF11
       purpose: Returns a list of recovery account change requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
@@ -149,10 +159,12 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"comments":[]}
     - api_method: database_api.list_decline_voting_rights_requests
+      since: HF14
       purpose: Returns a list of decline voting rights requests.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
     - api_method: database_api.list_escrows
+      since: HF14
       purpose: Returns a list of escrows.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"escrows":[]}
@@ -165,6 +177,7 @@
       parameter_json: {"start":null,"limit":0}
       expected_response_json: {"owner_auths":[]}
     - api_method: database_api.list_savings_withdrawals
+      since: HF14
       purpose: Returns a list of savings withdrawls.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"withdrawals":[]}
@@ -173,10 +186,12 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"requests":[]}
     - api_method: database_api.list_vesting_delegation_expirations
+      since: HF17
       purpose: Returns a list of vesting delegation expirations.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"delegations":[]}
     - api_method: database_api.list_vesting_delegations
+      since: HF17
       purpose: Returns a list of vesting delegations.
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"delegations":[]}
@@ -197,17 +212,21 @@
       parameter_json: {"start":null,"limit":0,"order":"by_name"}
       expected_response_json: {"witnesses":[]}
     - api_method: database_api.verify_account_authority
-      purpose: Returns true if the signers have enough authority to authorize an account.
+      disabled: true
+      purpose: |
+        **Not Implemented**
       parameter_json: {"account":"","signers":[]}
       expected_response_json: {"valid":false}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.verify_account_authority", "params":{"account":"steemit","signers":["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]}, "id":1}'
+      expected_curl_responses:
+        - 'Missing Active Authority steemit'
     - api_method: database_api.verify_authority
       purpose: Returns true if the transaction has all of the required signatures.
       parameter_json: {"trx":{"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[]}}
       expected_response_json: {"valid":false}
       curl_examples:
-        - '{"jsonrpc":"2.0", "method":"database_api.verify_authority", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":["100000",3,"@@000000021"],"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}}, "id":1}'
+        - '{"jsonrpc":"2.0", "method":"database_api.verify_authority", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'
     - api_method: database_api.verify_signatures
       purpose: This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures.
       parameter_json: {"hash":"0000000000000000000000000000000000000000000000000000000000000000","signatures":[],"required_owner":[],"required_active":[],"required_posting":[],"required_other":[]}

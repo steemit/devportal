@@ -2,6 +2,7 @@
   description: Used to lookup information related to reputation and account follow operations. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: follow_api.get_account_reputations
+      since: HF13
       purpose: Returns a list of account reputations.
       parameter_json: {"account_lower_bound":"","limit":1000}
       expected_response_json: {"reputations":[]}
@@ -30,6 +31,7 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_blog_entries", "params":{"account":"steemit","start_entry_id":0,"limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_blog_entries", "params":{"account":"alice","start_entry_id":0,"limit":50}, "id":1}'
     - api_method: follow_api.get_feed
+      since: HF14
       purpose: Returns a list of items in an account's feed.
       parameter_json: {"account":"","start_entry_id":0,"limit":500}
       expected_response_json: {"feed":[]}
@@ -37,6 +39,7 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_feed", "params":{"account":"steemit","start_entry_id":0,"limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_feed", "params":{"account":"alice","start_entry_id":1,"limit":10}, "id":1}'
     - api_method: follow_api.get_feed_entries
+      since: HF14
       purpose: Returns a list of entries in an account's feed.
       parameter_json: {"account":"","start_entry_id":0,"limit":500}
       expected_response_json: {"feed":[]}
@@ -44,6 +47,7 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_feed_entries", "params":{"account":"steemit","start_entry_id":0,"limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_feed_entries", "params":{"account":"alice","start_entry_id":1,"limit":10}, "id":1}'
     - api_method: follow_api.get_follow_count
+      since: HF9
       purpose: Returns the count of followers for an account.
       parameter_json: {"account":""}
       expected_response_json: {"account":"","follower_count":0,"following_count":0}
@@ -51,6 +55,7 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_follow_count", "params":{"account":"steemit"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_follow_count", "params":{"account":"alice"}, "id":1}'
     - api_method: follow_api.get_followers
+      since: HF9
       purpose: Returns the list of followers for an account.
       parameter_json: {"account":"","start":"","type":"undefined","limit":1000}
       expected_response_json: {"followers":[]}
@@ -58,6 +63,7 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_followers", "params":{"account":"steemit","start":null,"type":"blog","limit":10}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_followers", "params":{"account":"alice","start":null,"type":"ignore","limit":100}, "id":1}'
     - api_method: follow_api.get_following
+      since: HF9
       purpose: Returns the list of accounts that are following an account.
       parameter_json: {"account":"","start":"","type":"undefined","limit":1000}
       expected_response_json: {"following":[]}
@@ -65,9 +71,13 @@
         - '{"jsonrpc":"2.0", "method":"follow_api.get_following", "params":{"account":"steemit","start":null,"type":"blog","limit":10}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_following", "params":{"account":"alice","start":null,"type":"ignore","limit":100}, "id":1}'
     - api_method: follow_api.get_reblogged_by
+      since: HF14
       purpose: Returns a list of authors that have reblogged a post.
       parameter_json: {"author":"","permlink":""}
       expected_response_json: {"accounts":[]}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"follow_api.get_reblogged_by", "params":{"author":"steemit","permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"follow_api.get_reblogged_by", "params":{"author":"alice","permlink":"a-post-by-alice"}, "id":1}'
+      expected_curl_responses:
+        - 
+        - 'unknown key:unknown key:'
