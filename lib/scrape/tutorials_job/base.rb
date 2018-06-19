@@ -47,15 +47,13 @@ module Scrape
             next
           end
           
-          parse_readme(readme) do |description, right_code, body|
+          parse_readme(readme) do |description, body|
             template = <<~DONE
               ---
               title: #{title}
               position: #{num}
               description: #{description}
-              layout: full
-              right_code: |
-              #{right_code}
+              layout: full-row
               ---
               #{rewrite_images body, include_name}
             DONE
@@ -75,41 +73,21 @@ module Scrape
     private
       def parse_readme(readme)
         description = nil
-        right_code = ''
         body = ''
-        open_code_segment = false
-        close_code_segment = false
-        temp_right_code = ''
         
         File.open(readme, 'r').each_line do |line|
-          description ||= line.strip.gsub(/[^a-zA-Z0-9 ]/, '') if line.size > 30
-          header = line =~ /^#/
-          close_code_segment = open_code_segment && line =~ /^~~~/
-          open_code_segment = !open_code_segment if line =~ /^~~~/
+          next if line =~ /^# /
+          
+          if description.nil? && !line.strip.empty?
+            description ||= line.gsub(/[^a-zA-Z0-9 ]/, '').strip
             
-          body << line unless open_code_segment || close_code_segment
-          
-          if header || open_code_segment || close_code_segment
-            temp_right_code << line
+            next
           end
+          
+          body << line
         end
         
-        temp_right_code = temp_right_code.split("\n")
-        temp_right_code.each_with_index do |line, index|
-          next_line = temp_right_code[index + 1]
-          
-          next if line =~ /^#/ && next_line.nil?
-          next if line =~ /^#/ && next_line =~ /^#/
-          
-          if line =~ /^#/
-            heading = line.gsub(/^#+ /, '')
-            right_code = "    <p class=\"static-right-section-title\">#{heading}</p>\n"
-          else
-            right_code << "    #{line}\n"
-          end
-        end
-        
-        yield description, right_code, body
+        yield description, body
       end
       
       def rewrite_images(body, include_name)
