@@ -49,7 +49,7 @@
         json_metadata :"{\"tags\":[\"steemit\",\"example\",\"tags\"]}",
       };
     ```
-    In which case the complete `broadcast` operation would look like this:
+    After which the actual `broadcast` operation would look like the below:
     
     ```javascript
       broadcast.comment(post, privatePostingKey)
@@ -80,6 +80,14 @@
   
       In addition to body, the title and json_metadata fields will also be replaced by the latest operation.
 
+    **Broadcast.Comment:** A definition of this type of broadcast operation is available [HERE](/apidefinitions/#broadcast_ops_comment)
+
+      There are also tutorials for this type:
+
+        [Submit post](/tutorials-javascript/submit_post)
+        [Submit comment](/tutorials-javascript/submit_comment_reply)
+        [Edit content patching](/tutorials-javascript/edit_content_patching)
+
     **Comment_Options:** [LINK](/apidefinitions/#broadcast_ops_comment_options)
 
     **Updating_Archived_Content:**
@@ -88,8 +96,22 @@
 
       As of HF18, the witness plugin has a custom operation called enable_content_editing that allows a user to signal they want to edit their content. By consensus, content is editable indefinitely, but is soft forked to be frozen after payout. This operation requires an active key and is designed to prevent vandalism if a posting key is compromised.
 
-    **For 'custom_json':** [LINK](/apidefinitions/#broadcast_ops_custom_json)
+    **custom_json:** A definition of this type of broadcast operation is available [HERE](/apidefinitions/#broadcast_ops_custom_json)
+
+      There are also tutorials for this type:
+
+        [Reblogging post](/tutorials-javascript/reblogging_post)
   
-    **Vote:** [LINK](/apidefinitions/#broadcast_ops_vote)
+    **Vote:** A definition of this type of broadcast operation is available [HERE](/apidefinitions/#broadcast_ops_vote)
       
+      There are also tutorials for this type:
+
+        [Vote on content](/tutorials-javascript/vote_on_content)
+
       It should also be noted that a `vote` operation can accompany a `comment` in the same transaction when the author `self_upvotes`
+
+    **Sign:** All transactions must be signed in order for the blockchain to accept them.
+
+      A tutorial for this type is available:
+
+        [Client signing](/tutorials-javascript/client_signing)
