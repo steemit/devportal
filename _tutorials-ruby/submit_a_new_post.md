@@ -2,7 +2,7 @@
 title: Submit a New Post
 position: 10
 exclude: true
-layout: full-row
+layout: full
 description: Broadcast a new top level post.
 ---
 

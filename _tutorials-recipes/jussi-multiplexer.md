@@ -3,7 +3,7 @@ title: Using jussi as a Multiplexer
 position: 1
 description: Optimize your local applications with jussi
 exclude: true
-layout: full-row
+layout: full
 ---
 
 *By the end of this recipe you should know how to install `jussi` on your local subnet to take advantage of its features.*

@@ -3,8 +3,6 @@ title: Get Account Replies
 position: 8
 description: By the end of this tutorial you would know how to get replies made on particular accounts content
 layout: full
-right_code: |
-
 ---
 # Get account replies
 

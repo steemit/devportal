@@ -3,8 +3,6 @@ title: Get Posts
 position: 4
 description:  Get posts using filters  tags
 layout: full
-right_code: |
-
 ---
 # Get posts using filters & tags
 

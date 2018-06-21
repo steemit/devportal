@@ -3,8 +3,6 @@ title: Welcome to Steem
 position: 1
 ---
 
-
-
 #### Welcome to the Steem Developer Portal! 
 
 This site is designed to aid those interested in developing applications on the  **[Steem](http://steem.com){:target="_blank"}** blockchain. 

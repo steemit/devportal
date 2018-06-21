@@ -2,7 +2,7 @@
 title: How to edit a Post
 position: 5
 exclude: true
-layout: full-row
+layout: full
 description: Patching changes to a post on Steem.
 ---
 

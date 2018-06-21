@@ -3,8 +3,6 @@ title: Blog Feed
 position: 1
 description: By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem
 layout: full
-right_code: |
-
 ---
 # Blog Feed
 

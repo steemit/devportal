@@ -3,8 +3,6 @@ title: Reblogging Post
 position: 14
 description: By the end of this tutorial you should know how to reblog resteem a blog from steemit
 layout: full
-right_code: |
-
 ---
 # Reblogging Post
 

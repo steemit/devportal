@@ -3,8 +3,6 @@ title: Stream Blockchain Transactions
 position: 13
 description:  Stream blockchain transactions
 layout: full
-right_code: |
-
 ---
 # Stream blockchain transactions
 

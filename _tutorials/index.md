@@ -4,8 +4,8 @@ section: Tutorials
 exclude: true
 ---
 {% assign nav = site.data.nav.toc | where: "collection", "tutorials" | first %}
-<section id="{{ doc.id | slugify }}" class="doc-content {{ doc.id | slugify }}">
-	<section class="left-docs">
+<section id="{{ doc.id | slugify }}" class="row {{ doc.id | slugify }}">
+	<section class="row">
 		<p>Read, play, and <i>learn <b>Steem</b></i>.</p>
 		{% if nav.docs %}
 			{% assign sorted_nav_docs = nav.docs | sort: "position" %}

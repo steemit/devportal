@@ -3,8 +3,6 @@ title: Get Post Details
 position: 5
 description: By the end of this tutorial you would know how to get post details and use them appropriately
 layout: full
-right_code: |
-
 ---
 # How to Get Post Details
 
