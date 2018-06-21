@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-position: 1
+position: 0
 layout: full
 description: Common tasks for getting python apps to access the blockchain
 ---
