@@ -141,4 +141,12 @@ Ruby Omniauth2 Strategy for SteemConnect.
 
 SteemConnect Library for iOS / Swift.
 
+---
+
+**SteemConnect4j** - [https://github.com/hapramp/steemconnect4j](https://github.com/hapramp/steemconnect4j)
+
+Steemconnect SDK for Java.
+
+---
+
 Many more projects and tools can be found here [https://steemprojects.com](https://steemprojects.com) and [https://steemtools.com](https://steemtools.com)
