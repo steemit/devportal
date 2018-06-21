@@ -3,8 +3,6 @@ title: Edit Content Patching
 position: 12
 description: By the end of this tutorial you should know how to patch post edits to Steem
 layout: full
-right_code: |
-
 ---
 # How to edit a Post
 

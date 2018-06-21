@@ -3,8 +3,6 @@ title: Get Voters List On Post
 position: 6
 description:  How to Get Voters List on Post
 layout: full
-right_code: |
-
 ---
 # How to Get Voters List on Post
 

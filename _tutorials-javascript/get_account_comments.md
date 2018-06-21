@@ -3,8 +3,6 @@ title: Get Account Comments
 position: 9
 description: By the end of this tutorial you should know how to retrieve account comments from the steem blockchain
 layout: full
-right_code: |
-
 ---
 # Get Account Comments
 

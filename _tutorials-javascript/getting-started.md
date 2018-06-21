@@ -4,20 +4,6 @@ position: 1
 exclude: true
 layout: full
 description: Common tasks for using javascript to access the blockchain
-right_code: |
-    <img src="/images/npm-logo.svg" width="80%" />
-    
-    Tip:
-    ```
-    One advantage of using nvm to manage node.js is it does not require sudo or third party OS package managers.
-    ```
-    
-    Tip:
-    ```
-    Instead of 'npm i' you may also use 'yarn install'.
-    ```
-    
-    Check out [yarn](https://yarnpkg.com/en/docs/install).
 ---
 ### Node.js
 To get the most out of these tutorials, you should be familiar with [Node.js](https://nodejs.org/en/), [ES6](https://babeljs.io/learn-es2015/) aka [es2015](http://www.ecma-international.org/ecma-262/6.0/), the DOM, and modern Javascript programming practices. 
@@ -46,3 +32,15 @@ open http://localhost:3000/
 ### Github
 
 If you'd rather clone projects in a windowed environment rather than the terminal, consider [Github Desktop](https://desktop.github.com/).
+
+Tip:
+```
+One advantage of using nvm to manage node.js is it does not require sudo or third party OS package managers.
+```
+
+Tip:
+```
+Instead of 'npm i' you may also use 'yarn install'.
+```
+
+Check out [yarn](https://yarnpkg.com/en/docs/install).
