@@ -53,7 +53,7 @@ module Scrape
               title: #{title}
               position: #{num}
               description: #{description}
-              layout: full-row
+              layout: full
               ---
               #{rewrite_images body, include_name}
             DONE
