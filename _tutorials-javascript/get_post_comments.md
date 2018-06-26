@@ -3,8 +3,6 @@ title: Get Post Comments
 position: 7
 description: By the end of this tutorial you would know how to get comments made by others on any post
 layout: full
-right_code: |
-
 ---
 # How to Get Post Comments
 

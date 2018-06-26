@@ -2,7 +2,7 @@
 title:  Voter List
 position: 6
 exclude: true
-layout: full-row
+layout: full
 description: Shows active vote totals
 ---
 

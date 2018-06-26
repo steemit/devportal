@@ -3,8 +3,6 @@ title: Client Signing
 position: 3
 description: By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem
 layout: full
-right_code: |
-
 ---
 # Client sign
 

@@ -106,7 +106,15 @@ An example pointing at the steemitdev testnet:
 $ TEST_NODE=https://testnet.steemitdev.com bundle exec rake scrape:api_defs
 ```
 
-### Importing: [devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials)
+### Importing
+
+To import all new tutorials from all known tutorial repositories, which is the typical use case:
+
+```bash
+bundle exec rake scrape:tutorials
+```
+
+#### Targeted Import: [devportal-tutorials-js](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials)
 
 This command will check for new tutorials in `devportal-tutorials-js` and import them into this project.
 
@@ -121,6 +129,20 @@ bundle exec rake scrape:tutorials:js[1,true]
 ```
 
 Where `1` represents the numerical prefix like in `01_blog_feed` and `true` instructs the task to overwrite what's there, even if it exists.
+
+Other Targeted imports supported are `:py` and `:js` using the same syntax.
+
+#### Targeted Import: [devportal-tutorials-py](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials)
+
+```bash
+bundle exec rake scrape:tutorials:py
+```
+
+#### Targeted Import: [devportal-tutorials-rb](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials)
+
+```bash
+bundle exec rake scrape:tutorials:rb
+```
 
 ### Tests
 

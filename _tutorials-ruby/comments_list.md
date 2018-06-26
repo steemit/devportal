@@ -2,7 +2,7 @@
 title: Get Post Comments
 position: 7
 exclude: true
-layout: full-row
+layout: full
 description: Shows replies to content
 ---
 

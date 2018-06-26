@@ -9,8 +9,8 @@ title: API Docs
 			{% assign sorted_docs = col.docs | sort: "position" %}
 			{% for doc in sorted_docs %}
 				{% unless doc.exclude %}    
-					<section id="{{doc.id | slugify}}"class="doc-content {{ doc.id | slugify }}">
-						<section class="left-docs">
+					<section id="{{doc.id | slugify}}"class="row {{ doc.id | slugify }}">
+						<section class="row">
 							<h3>
 								<a id="{{ doc.id | slugify }}">
 									{{ doc.title }}
@@ -25,12 +25,6 @@ title: API Docs
 
 							{{ doc.content | replace: "<dl>", "<h6>Parameters</h6><dl>" }}
 						</section>
-
-						{% if doc.right_code %}
-							<section class="right-code">
-								{{ doc.right_code | markdownify }}
-							</section>
-						{% endif %}
 					</section>
 				{% endunless %}	
 			{% endfor %}

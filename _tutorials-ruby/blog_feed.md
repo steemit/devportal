@@ -2,7 +2,7 @@
 title: Blog Feed
 position: 1
 exclude: true
-layout: full-row
+layout: full
 description: A simple blog feed tutorial using ruby
 ---
 
