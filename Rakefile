@@ -1,7 +1,10 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'scrape/api_definitions_job'
-require 'scrape/js_tutorials_job'
+require 'scrape/tutorials_job/base'
+require 'scrape/tutorials_job/javascript'
+require 'scrape/tutorials_job/python'
+require 'scrape/tutorials_job/ruby'
 
 require 'rake/testtask'
 require 'net/https'
@@ -27,10 +30,39 @@ namespace :scrape do
     puts "Methods added or changed: #{count}"
   end
   
+  desc 'Scrape all known tutorial repositories.'
+  task :tutorials do
+    puts '=' * 80
+    puts "JS-Tutorials:"
+    Rake::Task["scrape:tutorials:js"].invoke
+    puts '=' * 80
+    puts "PY-Tutorials:"
+    Rake::Task["scrape:tutorials:py"].invoke
+    puts '=' * 80
+    puts "RB-Tutorials:"
+    Rake::Task["scrape:tutorials:rb"].invoke
+  end
+  
   namespace :tutorials do
     desc 'Scrape JS-Tutorials'
     task :js, [:num, :force] do |t, args|
-      job = Scrape::JSTutorialsJob.new(num: args[:num], force: args[:force])
+      job = Scrape::TutorialsJob::Javascript.new(num: args[:num], force: args[:force])
+      count = job.perform
+    
+      puts "Tutorials added or changed: #{count}"
+    end
+    
+    desc 'Scrape PY-Tutorials'
+    task :py, [:num, :force] do |t, args|
+      job = Scrape::TutorialsJob::Python.new(num: args[:num], force: args[:force])
+      count = job.perform
+      
+      puts "Tutorials added or changed: #{count}"
+    end
+    
+    desc 'Scrape RB-Tutorials'
+    task :rb, [:num, :force] do |t, args|
+      job = Scrape::TutorialsJob::Ruby.new(num: args[:num], force: args[:force])
       count = job.perform
       
       puts "Tutorials added or changed: #{count}"
