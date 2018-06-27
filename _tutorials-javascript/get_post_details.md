@@ -4,9 +4,7 @@ position: 5
 description: By the end of this tutorial you would know how to get post details and use them appropriately
 layout: full
 ---
-# How to Get Post Details
 
-_By the end of this tutorial you would know how to get post details and use them appropriately._
 
 The purpose of this tutorial is to **a)** demonstrate how to get a list of articles from the trending list on the blockchain, and **b)** fetch the contents of the selected post to display its title and body.
 

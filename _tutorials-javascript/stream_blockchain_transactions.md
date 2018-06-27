@@ -1,12 +1,10 @@
 ---
 title: Stream Blockchain Transactions
 position: 13
-description:  Stream blockchain transactions
+description: By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain
 layout: full
 ---
-# Stream blockchain transactions
 
-_By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain._
 
 This tutorial will take you through the process of preparing and streaming blocks using the `blockchain.getBlockStream()` operation. Being able to stream blocks is crucial if you are building automated or follow up scripts or detect certain type of transactions on network or simply use it for your backend application to sync and/or work with data in real-time.
 

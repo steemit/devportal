@@ -1,22 +1,14 @@
 ---
 title: Getting Started
 position: 0
-exclude: true
-description: Common tasks for getting ruby apps to access the blockchain
+description: To access the Steem blockchain using Ruby install the Radiator gem httpsgithubcominertia186radiatorhttpsgithubcominertia186radiator  Full documentation on Radiator api methods are hosted on rubydocinfohttpwwwrubydocinfogemsradiator
+layout: full
 ---
 
-To access the Steem blockchain using Ruby, install the Radiator gem: [https://github.com/inertia186/radiator](https://github.com/inertia186/radiator).  Full documentation on Radiator api methods are hosted on [rubydoc.info](http://www.rubydoc.info/gems/radiator).
 
 ### Setup
 
 The following is a minimal `Gemfile` for running `.rb` files in these examples.
-
-`Gemfile`
-
-```ruby
-source 'https://rubygems.org'
-gem 'radiator'
-```
 
 Add `gem 'radiator'` to your `Gemfile`.  Then install the gem:
 
@@ -85,3 +77,7 @@ options = {
 }
 api = Radiator::Api.new(options)
 ```
+
+### Next Step
+
+If you'd like to dive right into the first tutorial, have a look at: [Blog Feed](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/01_blog_feed)
