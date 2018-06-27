@@ -2,22 +2,6 @@
 title: steemd Nodes
 position: 2
 exclude: true
-right_code: |
-    ``` bash
-    docker run \
-        -d -p 2001:2001 -p 8090:8090 --name steemd-default \
-        steemit/steem
-    
-    docker logs -f steemd-default  # follow along
-    ``` 
-    ``` bash
-    docker run \
-        --env USE_WAY_TOO_MUCH_RAM=1 \
-        -d -p 2001:2001 -p 8090:8090 --name steemd-full \
-        steemit/steem
-    
-    docker logs -f steemd-full
-    ```  
 ---
 
 Applications that interface directly with the Steem blockchain will need to connect to a `steemd` node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.
@@ -83,3 +67,19 @@ echo 30000 | sudo tee /proc/sys/vm/dirty_writeback_centisecs
 ```
 
 Another settings that can be changed in `config.ini` is `flush` - it is to specify a target number of blocks to process before flushing the chain database to disk. This is needed on Linux machines and a value of 100000 is recommended. It is not needed on OS X, but can be used if desired.
+
+``` bash
+docker run \
+    -d -p 2001:2001 -p 8090:8090 --name steemd-default \
+    steemit/steem
+
+docker logs -f steemd-default  # follow along
+``` 
+``` bash
+docker run \
+    --env USE_WAY_TOO_MUCH_RAM=1 \
+    -d -p 2001:2001 -p 8090:8090 --name steemd-full \
+    steemit/steem
+
+docker logs -f steemd-full
+```  

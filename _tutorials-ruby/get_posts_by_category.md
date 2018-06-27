@@ -2,7 +2,7 @@
 title: Get Posts by Category
 position: 4
 exclude: true
-layout: full-row
+layout: full
 description: Get post list from different category (trending, hot, active, etc.)
 ---
 

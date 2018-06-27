@@ -3,8 +3,6 @@ title: Submit Post
 position: 10
 description: By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcastcomment function
 layout: full
-right_code: |
-
 ---
 # Submit Post
 

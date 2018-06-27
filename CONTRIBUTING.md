@@ -1,7 +1,7 @@
 ---
 title: Contributors
 position: 1
-layout: full-row
+layout: full
 ---
 
 Everyone is welcome to contribute code to Steemit, Inc. projects. We have a Code of Conduct;

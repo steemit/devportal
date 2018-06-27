@@ -3,8 +3,6 @@ title: Submit Comment Reply
 position: 11
 description: By the end of this tutorial you should know how to post a simple comment to Steem
 layout: full
-right_code: |
-
 ---
 # Submit a Comment
 

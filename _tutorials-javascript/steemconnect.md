@@ -3,8 +3,6 @@ title: Steemconnect
 position: 2
 description: Understand the basics of using Steemconnect with your Steem application
 layout: full
-right_code: |
-
 ---
 # Steemconnect
 
