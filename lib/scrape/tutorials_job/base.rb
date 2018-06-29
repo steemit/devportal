@@ -56,6 +56,9 @@ module Scrape
               layout: full
               ---
               #{rewrite_images body, include_name}
+              ---
+              #{links title, include_name}
+              
             DONE
             
             f = File.open(destination, 'w+')
@@ -104,6 +107,13 @@ module Scrape
         end
         
         body
+      end
+      
+      def links(title, include_name)
+        [
+          "[<i class=\"fas fa-compass fa-pull-left\"> #{title}</i>](#{@tutorial_url}/tree/master/tutorials/#{include_name})",
+          "[<i class=\"fas fa-sitemap fa-pull-right\"> All Tutorials</i>](#{@tutorial_url}/tree/master/tutorials/)"
+        ].join("\n")
       end
       
       def clean_previous_clone
