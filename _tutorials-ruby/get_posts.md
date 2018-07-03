@@ -1,9 +1,8 @@
 ---
-title: Get Posts by Category
+title: Get Posts
 position: 4
-exclude: true
+description: Get Posts by Category
 layout: full
-description: Get post list from different category (trending, hot, active, etc.)
 ---
 
 This example will output posts depending on which category is provided as the arguments.

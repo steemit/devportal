@@ -4,9 +4,7 @@ position: 9
 description: By the end of this tutorial you should know how to retrieve account comments from the steem blockchain
 layout: full
 ---
-# Get Account Comments
 
-_By the end of this tutorial you should know how to retrieve account comments from the steem blockchain_
 
 This tutorial will show how to fetch comments made by a specific account (in this case `@steemitblog`) by demonstrating how to use the `get_state` api function call. We will also demonstrate the most commonly used fields from the response object as well as how to parse the body of each comment.
 

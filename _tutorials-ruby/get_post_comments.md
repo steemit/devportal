@@ -1,12 +1,10 @@
 ---
 title: Get Post Comments
 position: 7
-exclude: true
+description: This example will output the reply details and totals for the postcomment passed as an argument to the script
 layout: full
-description: Shows replies to content
 ---
 
-This example will output the reply details and totals for the post/comment passed as an argument to the script.
 
 ### Script
 

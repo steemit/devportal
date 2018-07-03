@@ -4,9 +4,7 @@ position: 7
 description: By the end of this tutorial you would know how to get comments made by others on any post
 layout: full
 ---
-# How to Get Post Comments
 
-_By the end of this tutorial you would know how to get comments made by others on any post._
 
 The purpose of this tutorial is to **a)** demonstrate how to get a list of articles from the trending list on the blockchain, and **b)** fetch the contents of the selected post to display its title and body and **c)** fetch comments of the post and display them with author, body, created time and number of votes.
 

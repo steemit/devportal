@@ -4,9 +4,7 @@ position: 3
 description: By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem
 layout: full
 ---
-# Client sign
 
-_By the end of this tutorial you would know how to sign, verify broadcast transactions locally on Steem._
 
 This tutorial gives you overview of how client side transaction signing works under the hood.
 

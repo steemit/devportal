@@ -1,12 +1,10 @@
 ---
 title: Get Posts
 position: 4
-description:  Get posts using filters  tags
+description: Query for the most recent posts having a specific tag using a Steem filter
 layout: full
 ---
-# Get posts using filters & tags
 
-Query for the most recent posts having a specific tag, using a Steem filter
 
 This tutorial pulls a list of the posts from different tags or filters and displays them.
 Tags and filters are different. It's important to understand them.
@@ -48,7 +46,7 @@ There are three input components to the UI.
 *   Get Posts: It's a button. You click it, and we move on to assembling our post.
     `<button class="btn btn-primary" onclick="getPosts()">Get Posts</button>`
 
-![Step-01-UI.png](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/04_get_posts/Step-01-UI.png?raw=true)
+![Step-01-UI.png](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/04_get_posts/images/Step-01-UI.png?raw=true)
 
 #### 2. Construct query <a name="Construct-query"></a>
 
