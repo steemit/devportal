@@ -3,12 +3,8 @@ title: Edit Content Patching
 position: 12
 description: By the end of this tutorial you should know how to patch post edits to Steem
 layout: full
-right_code: |
-
 ---
-# How to edit a Post
 
-_By the end of this tutorial you should know how to patch post edits to Steem._
 
 This tutorial will take you through the process of preparing and patching post using the `broadcast.comment` operation. Being able to patch a post is critical to save resources on Steem.
 

@@ -1,12 +1,10 @@
 ---
 title: Blog Feed
 position: 1
-exclude: true
-layout: full-row
-description: A simple blog feed tutorial using ruby
+description: This example will output blog details to the terminal for the author specified limited to five results
+layout: full
 ---
 
-This example will output blog details to the terminal for the author specified, limited to five results.
 
 ### Script
 

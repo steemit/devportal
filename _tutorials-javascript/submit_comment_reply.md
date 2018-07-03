@@ -3,12 +3,8 @@ title: Submit Comment Reply
 position: 11
 description: By the end of this tutorial you should know how to post a simple comment to Steem
 layout: full
-right_code: |
-
 ---
-# Submit a Comment
 
-_By the end of this tutorial you should know how to post a simple comment to Steem._
 
 This tutorial will take you through the process of preparing and posting comment using the `broadcast.comment` operation.
 Being able to post a comment is critical to most social applications built on Steem.

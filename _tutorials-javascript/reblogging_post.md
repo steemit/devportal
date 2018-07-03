@@ -3,12 +3,8 @@ title: Reblogging Post
 position: 14
 description: By the end of this tutorial you should know how to reblog resteem a blog from steemit
 layout: full
-right_code: |
-
 ---
-# Reblogging Post
 
-_By the end of this tutorial you should know how to reblog (resteem) a blog from steemit_
 
 This tutorial will show the method of obtaining the relevant inputs for the reblog process followed by broadcasting the info to the steem blockchain using a `demo` account on the `production server`.
 

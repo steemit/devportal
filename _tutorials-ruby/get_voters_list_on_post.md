@@ -1,12 +1,10 @@
 ---
-title:  Voter List
+title: Get Voters List On Post
 position: 6
-exclude: true
-layout: full-row
-description: Shows active vote totals
+description: This example will output the active vote totals for the postcomment passed as an argument to the script
+layout: full
 ---
 
-This example will output the active vote totals for the post/comment passed as an argument to the script.
 
 ### Script
 
