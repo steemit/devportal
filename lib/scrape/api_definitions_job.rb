@@ -1,16 +1,18 @@
+require 'steem'
+
 module Scrape
   
   # Scrapes all known methods for all known APIs and saves them to as `.yml`.
   class ApiDefinitionsJob
-    attr_accessor :url, :api_data_path
+    attr_accessor :url, :api_data_path, :jsonrpc
     
     DEFAULT_URL = 'https://appbasetest.timcliff.com'
     DEFAULT_API_DATA_PATH = '_data/apidefinitions'
-    REQUEST_CONTENT_TYPE = 'application/json; charset=utf-8'
     
     def initialize(options = {url: DEFAULT_URL, api_data_path: DEFAULT_API_DATA_PATH})
       @url = options[:url] || DEFAULT_URL
       @api_data_path = options[:api_data_path] || DEFAULT_API_DATA_PATH
+      @jsonrpc = Steem::Jsonrpc.new(url: @url)
     end
     
     # Execute the job.
@@ -18,8 +20,10 @@ module Scrape
     # @return [Integer] total number of methods added or changed in this pass
     def perform
       method_change_count = 0
+      all_signatures = jsonrpc.get_all_signatures
       
       apis.each do |api, methods|
+        signatures = all_signatures.select { |k, v| k == api }
         file_name = "#{api_data_path}/#{api}.yml"
         puts "Definitions for: #{api}, methods: #{methods.size}"
         
@@ -34,45 +38,15 @@ module Scrape
           ]]
         end
         
-        request_body = methods.map do |method|
+        signatures.each do |_api, signature|
+          method = signature.keys.first
           method_name = "#{api}.#{method}"
-          
-          {
-            jsonrpc: '2.0',
-            id: 1,
-            method: 'jsonrpc.get_signature',
-            params: {method: method_name}
-          }
-        end
-        
-        request = http_post
-        request.body = request_body.to_json
-        request['Content-Type'] = REQUEST_CONTENT_TYPE
-
-        response = http.request(request)
-        all_signatures = {}
-        
-        case response.code
-        when '200'
-          response = JSON[response.body]
-          
-          response.each_with_index do |r, index|
-            next if !!r['error']
-            
-            method_name = "#{api}.#{methods[index]}"
-            all_signatures[method_name] = r['result']
-          end
-        else
-          raise response.inspect
-        end
-        
-        all_signatures.each do |method_name, signature|
-          _api, method = method_name.split('.')
+          signature = signature.values.first
           existing_api_method = yml[0]['methods'].reverse.find{|e| e['api_method'] == method_name}
           
           if existing_api_method
-            parameter_json = signature['args']
-            expected_response_json = signature['ret']
+            parameter_json = signature.args.to_json
+            expected_response_json = signature.ret.to_json
             case api
             when :condenser_api
               # skipping signature analysis on condenser_api
@@ -97,8 +71,8 @@ module Scrape
           yml[0]['methods'] << {
             'api_method' => method_name,
             'purpose' => nil,
-            'parameter_json' => signature['args'],
-            'expected_response_json' => signature['ret']
+            'parameter_json' => signature.args.to_json,
+            'expected_response_json' => signature.ret.to_json
           }
           
           method_change_count += 1
@@ -124,58 +98,16 @@ module Scrape
       method_change_count
     end
   private
-    def uri
-      @uri ||= URI.parse(url)
-    end
-    
-    def http
-      @http ||= Net::HTTP.new(uri.host, uri.port).tap do |http|
-        http.use_ssl = true
-      end
-    end
-    
-    def http_post
-      @http_post ||= Net::HTTP::Post.new(uri.request_uri)
-    end
-    
     def apis
-      request = http_post
-      request.body = {
-        jsonrpc: '2.0',
-        id: 1,
-        method: 'jsonrpc.get_methods',
-        params: {}
-      }.to_json
-      request['Content-Type'] = REQUEST_CONTENT_TYPE
+      apis = {}
       
-      response = http.request(request)
-      
-      case response.code
-      when '200'
-        response = JSON[response.body]
+      jsonrpc.get_methods do |methods|
+        methods.each do |method|
+          api, method = method.split('.').map(&:to_sym)
         
-        if !!response['error']
-          puts "Error while trying to make request: #{request.body}"
-          puts "#{url} is not an AppBase api endpoint?"
-          
-          raise response.inspect 
-        end
-        
-        methods = response['result'].map do |method|
-          method.split('.').map(&:to_sym)
-        end
-        
-        apis = {}
-        
-        methods.each do |api, method|
           apis[api] ||= []
           apis[api] << method
         end
-      else
-        puts "Error while trying to make request: #{request.body}"
-        puts "#{url} is not an api endpoint?"
-        
-        raise response.inspect
       end
       
       apis

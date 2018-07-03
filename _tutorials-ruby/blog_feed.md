@@ -1,23 +1,12 @@
 ---
 title: Blog Feed
-position: 2
-exclude: true
-layout: main-script
-description: A simple blog feed tutorial using ruby
-main_script: tutorials-ruby/blog_feed.rb
-main_type: ruby
-main_script_anchor: Script
+position: 1
+description: This example will output blog details to the terminal for the author specified limited to five results
+layout: full
 ---
 
-This example will output blog details to the terminal for the author specified, limited to five results.
 
 ### Script
-
-Create a filed called `blog_feed.rb` and run it:
-
-```bash
-ruby blog_feed.rb steemitblog
-```
 
 The script parses the creation date, assuming Zulu timezone (AKA UTC).
 
@@ -26,6 +15,17 @@ The output will be the latest five posts/reblogs for the account specified.  If 
 It also counts the words in the content body by splitting the text into an array of strings, delimited by whitespace.
 
 Finally, it creates the canonical URL by combining `parent_permlink`, `author`, and `permlink`.
+
+### To Run
+
+First, set up your workstation using the steps provided in [Getting Started](https://developers.steem.io/tutorials-ruby/getting_started).  Then you can create and execute the script (or clone from this repository):
+
+```bash
+git clone git@github.com:steemit/devportal-tutorials-rb.git
+cd devportal-tutorials-rb/tutorials/01_blog_feed
+bundle install
+ruby blog_feed.rb steemitblog
+```
 
 ### Example Output
 

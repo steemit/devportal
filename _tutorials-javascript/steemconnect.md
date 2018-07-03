@@ -3,12 +3,8 @@ title: Steemconnect
 position: 2
 description: Understand the basics of using Steemconnect with your Steem application
 layout: full
-right_code: |
-
 ---
-# Steemconnect
 
-_Understand the basics of using Steemconnect with your Steem application._
 
 In this tutorial we will setup Steemconnect for demo application and step by step show the process of setting up dedicated account for your app to use Steemconnect Dashboard and setup backend of your application to use Steemconnect authorization properly.
 

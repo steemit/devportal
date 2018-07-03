@@ -1,6 +1,5 @@
 /docs/
 _site/
-_includes/tutorials-ruby/Gemfile.lock
 .sass-cache/
 .idea
 vendor

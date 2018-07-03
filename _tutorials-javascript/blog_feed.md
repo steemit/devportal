@@ -3,12 +3,8 @@ title: Blog Feed
 position: 1
 description: By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem
 layout: full
-right_code: |
-
 ---
-# Blog Feed
 
-_By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem._
 
 This tutorial pulls a list of the most recent five user's posts from the blockchain and displays them in simple list. Also some notes about usage of `client.database.getDiscussions` API.
 

@@ -1,15 +1,9 @@
 ---
-title: Get Posts by Category
+title: Get Posts
 position: 4
-exclude: true
-layout: main-script
-description: Get post list from different category (trending, hot, active, etc.)
-main_script: tutorials-ruby/get_posts_by_category.rb
-main_type: ruby
-main_script_anchor: Script
+description: Get Posts by Category
+layout: full
 ---
-
-### Intro
 
 This example will output posts depending on which category is provided as the arguments.
 
@@ -40,15 +34,14 @@ For each post we retrieve, we are going to build up a summary to display the int
 * Number of words in the body
 * Canonical URL
 
-#### Error Handling
-
-We're checking the result for `error` in case the remote node has an issue to raise.  Normally, it will be `nil`, but if it's populated, output `error.message` and exit.
-
 ### To Run
 
-First, set up your workstation using the steps provided in [Getting Started](/tutorials-ruby/getting_started).  Then you can create and execute the script (or clone from this repository):
+First, set up your workstation using the steps provided in [Getting Started](https://developers.steem.io/tutorials-ruby/getting_started).  Then you can create and execute the script (or clone from this repository):
 
 ```bash
+git clone git@github.com:steemit/devportal-tutorials-rb.git
+cd devportal-tutorials-rb/tutorials/04_get_posts
+bundle install
 ruby get_posts_by_category.rb trending 1 steem
 ```
 
@@ -64,3 +57,7 @@ ruby get_posts_by_category.rb trending 1 steem
   Words: 190
   https://steemit.com/steemit/@happymoneyman/new-phone-app-for-steemit-wow
 ```
+
+#### Error Handling
+
+We're checking the result for `error` in case the remote node has an issue to raise.  Normally, it will be `nil`, but if it's populated, output `error.message` and exit.

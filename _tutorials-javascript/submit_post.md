@@ -3,12 +3,8 @@ title: Submit Post
 position: 10
 description: By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcastcomment function
 layout: full
-right_code: |
-
 ---
-# Submit Post
 
-_By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcast.comment function._
 
 This tutorial will show the method of properly formatting content followed by broadcasting the information to the steem blockchain using a `demo` account on the `testnet`.
 

@@ -8,6 +8,9 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"steemit", "permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_active_votes", "params":{"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
+      expected_curl_responses:
+        - 
+        - 'unknown key:unknown key:'
     - api_method: tags_api.get_comment_discussions_by_payout
       since: HF17
       purpose: Returns a list of discussions based on payout.
@@ -26,7 +29,7 @@
     - api_method: tags_api.get_discussion
       purpose: Returns the discussion given an author and permlink.
       parameter_json: {"author":"","permlink":""}
-      expected_response_json: {"id":0,"author":"","permlink":"","category":"","parent_author":"","parent_permlink":"","title":"","body":"","json_metadata":"","last_update":"1970-01-01T00:00:00","created":"1970-01-01T00:00:00","active":"1970-01-01T00:00:00","last_payout":"1970-01-01T00:00:00","depth":0,"children":0,"net_rshares":0,"abs_rshares":0,"vote_rshares":0,"children_abs_rshares":0,"cashout_time":"1970-01-01T00:00:00","max_cashout_time":"1970-01-01T00:00:00","total_vote_weight":0,"reward_weight":0,"total_payout_value":["0",3,"@@000000021"],"curator_payout_value":["0",3,"@@000000021"],"author_rewards":0,"net_votes":0,"root_author":"","root_permlink":"","max_accepted_payout":["0",3,"@@000000021"],"percent_steem_dollars":0,"allow_replies":false,"allow_votes":false,"allow_curation_rewards":false,"beneficiaries":[],"url":"","root_title":"","pending_payout_value":["0",3,"@@000000021"],"total_pending_payout_value":["0",3,"@@000000021"],"active_votes":[],"replies":[],"author_reputation":0,"promoted":["0",3,"@@000000013"],"body_length":0,"reblogged_by":[]}
+      expected_response_json: {"id":0,"author":"","permlink":"","category":"","parent_author":"","parent_permlink":"","title":"","body":"","json_metadata":"","last_update":"1970-01-01T00:00:00","created":"1970-01-01T00:00:00","active":"1970-01-01T00:00:00","last_payout":"1970-01-01T00:00:00","depth":0,"children":0,"net_rshares":0,"abs_rshares":0,"vote_rshares":0,"children_abs_rshares":0,"cashout_time":"1970-01-01T00:00:00","max_cashout_time":"1970-01-01T00:00:00","total_vote_weight":0,"reward_weight":0,"total_payout_value":{"amount":"0","precision":3,"nai":"@@000000021"},"curator_payout_value":{"amount":"0","precision":3,"nai":"@@000000021"},"author_rewards":0,"net_votes":0,"root_author":"","root_permlink":"","max_accepted_payout":{"amount":"0","precision":3,"nai":"@@000000021"},"percent_steem_dollars":0,"allow_replies":false,"allow_votes":false,"allow_curation_rewards":false,"beneficiaries":[],"url":"","root_title":"","pending_payout_value":{"amount":"0","precision":3,"nai":"@@000000021"},"total_pending_payout_value":{"amount":"0","precision":3,"nai":"@@000000021"},"active_votes":[],"replies":[],"author_reputation":0,"promoted":{"amount":"0","precision":3,"nai":"@@000000013"},"body_length":0,"reblogged_by":[]}
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussion", "params":{"author":"steemit", "permlink":"firstpost"}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussion", "params":{"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
@@ -71,6 +74,9 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_comments", "params":{"start_author":"steemit","start_permlink":"firstpost","limit":1}, "id":1}'
         - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_comments", "params":{"start_author":"alice","start_permlink":"a-post-by-alice","limit":10,"truncate_body":0}, "id":1}'
+      expected_curl_responses:
+        - 
+        - Comment is not in account's comments
     - api_method: tags_api.get_discussions_by_created
       purpose: Returns a list of discussions by created.
       parameter_json: {"tag":"","limit":0,"filter_tags":[],"select_authors":[],"select_tags":[],"truncate_body":0}

@@ -3,12 +3,8 @@ title: Get Account Replies
 position: 8
 description: By the end of this tutorial you would know how to get replies made on particular accounts content
 layout: full
-right_code: |
-
 ---
-# Get account replies
 
-_By the end of this tutorial you would know how to get replies made on particular account's content._
 
 The purpose of this tutorial is **How to get account replies** and **a)** demonstrate how to use `get_state` api function call, and **b)** fetch recent replies for the content of specific account, in this case `@steemitblog`.
 
