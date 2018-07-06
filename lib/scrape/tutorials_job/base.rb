@@ -56,6 +56,7 @@ module Scrape
               layout: full
               ---
               #{rewrite_images body, include_name}
+              #{rewrite_relative_links body}
               ---
               #{links title, include_name}
               
@@ -107,6 +108,17 @@ module Scrape
         end
         
         body
+      end
+      
+      def rewrite_relative_links(body)
+        body = body.gsub(/\[([^\]]+)\]\(([^)]+)\)/) do
+          text, href = Regexp.last_match[1..2]
+          href = if href.include? '://'
+            href
+          else
+            href = "https://developers.steem.io/#{@dest_tutorials_path}/#{href}"
+          end
+        end
       end
       
       def links(title, include_name)
