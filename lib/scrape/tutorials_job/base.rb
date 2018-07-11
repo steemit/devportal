@@ -55,7 +55,7 @@ module Scrape
               description: #{description}
               layout: full
               ---
-              #{rewrite_images body, include_name}
+              #{rewrite_relative_links(rewrite_images body, include_name)}
               ---
               #{links title, include_name}
               
@@ -104,6 +104,35 @@ module Scrape
           end
           
           "![#{alt}](#{src})"
+        end
+        
+        body
+      end
+      
+      def rewrite_relative_links(body)
+        body = body.gsub(/\[([^\]]+)\]\(([^)]+)\)/) do
+          text, href = Regexp.last_match[1..2]
+          href = if href.include? '://'
+            href
+          elsif href.include? @tutorial_url
+            relative_href = href.gsub(/#{@tutorial_url}\/tree\/master\/tutorials\/(\d+)_([a-z0-9_]+)/) do
+              num, name = Regexp.last_match[1..2]
+              
+              name
+            end
+            
+            relative_href
+          else
+            relative_href = href.gsub(/..\/(\d+)_([a-z0-9_]+)/) do
+              num, name = Regexp.last_match[1..2]
+              
+              name
+            end
+            
+            relative_href
+          end
+          
+          "[#{text}](#{href})"
         end
         
         body
