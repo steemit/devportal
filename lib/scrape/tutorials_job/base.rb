@@ -21,6 +21,7 @@ module Scrape
       # @return [Integer] total number of tutorials added or changed in this pass
       def perform
         tutorial_change_count = 0
+        tutorial_title_prefix = @tutorial_github_name.split('-').last.upcase
         
         clean_previous_clone
         
@@ -50,7 +51,7 @@ module Scrape
           parse_readme(readme) do |description, body|
             template = <<~DONE
               ---
-              title: #{title}
+              title: '#{tutorial_title_prefix}: #{title}'
               position: #{num}
               description: #{description}
               layout: full
