@@ -467,7 +467,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_votes", "params":[{"tag":"steem","limit":1}], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_votes", "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_dynamic_global_properties
-    purpose: Returns the current dynamic global properties.
+    purpose: 'Returns the current dynamic global properties.  See: [Understanding Dynamic Global Properties](/tutorials-recipes/understanding-dynamic-global-properties)'
     parameter_json: []
     expected_response_json:
       head_block_number: 0
