@@ -189,7 +189,7 @@ Used to compute witness participation.
 
 ### `last_irreversible_block_num`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-The block number that has been confirmed by two thirds of all block producers and is thus irreversible.
+The latest block number that has been confirmed by two thirds of all block producers and is thus irreversible.
 
 * example: `24155017`
 
