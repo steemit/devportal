@@ -219,7 +219,7 @@ The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_blo
 
 ### Example Method Call<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-To retrieve the current results for [`condenser_api.get_dynamic_global_properties`](http://127.0.0.1:4000/apidefinitions/#condenser_api.get_dynamic_global_properties), we can retrieve the current state information using `curl`:
+To retrieve the current results for [`condenser_api.get_dynamic_global_properties`](https://developers.steem.io/apidefinitions/#condenser_api.get_dynamic_global_properties), we can retrieve the current state information using `curl`:
 
 ```bash
 curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}' https://api.steemit.com
