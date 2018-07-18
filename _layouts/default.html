@@ -7,11 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	{% if jekyll.environment == 'production' %}
 	<link rel="shortcut icon" type="image/png" href="/favicon.png">
-	{% else %}
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
-	{% endif %}
 
 	{% if jekyll.environment == 'production' %}
 	<link rel="stylesheet" href="/css/style.css">
@@ -39,13 +35,8 @@
 <body>
 <header>
 	<h1>
-		{% if jekyll.environment == 'production' %}
-		<a href="/"><img src="/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
-		{% else %}
-		<a href="/"><img src="/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
-		{% endif %}
-		<a href="/" class="logo-link"></a>
 		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="{{ site.title }} logo"></a>
 	</h1>
 
 	{% if jekyll.environment == 'production' %}
