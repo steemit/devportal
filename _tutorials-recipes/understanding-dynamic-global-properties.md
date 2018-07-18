@@ -76,11 +76,19 @@ Account name of the current witness.
 
 ### `total_pow`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
+<ul style="float: right; list-style: none;">
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+</ul>
+
 The total POW accumulated, aka the sum of `num_pow_witness` at the time new POW is added.
 
 * example: `514415`
 
 ### `num_pow_witnesses`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+<ul style="float: right; list-style: none;">
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+</ul>
 
 The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.
 
