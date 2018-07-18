@@ -58,7 +58,9 @@ Used to implement TaPoS (Transaction as Proof of Stake).  The first 4 bytes (8 h
 
 ### `time`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-Used to verify TaPoS.  Point in time (UTC) that the block was included in the chain.
+Point in time (UTC) that the block was included in the chain.
+
+Used to synchronize events like Hard Fork activation.
 
 When attempting to calculate the validity of a transaction we need to lookup a past block and check its block hash and the time it occurred so we can calculate whether the current transaction is valid and at what time it should expire.
 
