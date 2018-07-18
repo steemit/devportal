@@ -1,9 +1,12 @@
 ---
-title: Get Account Replies
+title: 'PY: Get Account Replies'
 position: 8
 description: By the end of this tutorial you would know how to get replies made on particular accounts content
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Replies](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/08_get_account_replies) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch a list of comments made on a specific accounts content.
@@ -94,3 +97,4 @@ Next, we will print the details obtained from the function. Because we only want
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+---

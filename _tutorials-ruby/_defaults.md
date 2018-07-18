@@ -1,6 +1,0 @@
----
-title:
-position:
-type:
-description:
----

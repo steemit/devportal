@@ -1,9 +1,12 @@
 ---
-title: Get Post Replies
+title: 'PY: Get Post Replies'
 position: 4
 description: This tutorial pulls a list of replies on selected post from the blockchain
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Replies](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/04_get_post_replies) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts and get replies info on selected post.
@@ -190,3 +193,6 @@ That's it!
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+---

@@ -1,9 +1,12 @@
 ---
-title: Get Voters List
+title: 'PY: Get Voters List'
 position: 3
 description: This tutorial pulls a list of the voters on selected post from the blockchain
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Voters List](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/03_get_voters_list) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts and get voters info on selected post.
@@ -116,3 +119,6 @@ That's it!
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+---
