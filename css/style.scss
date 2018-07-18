@@ -99,13 +99,13 @@ header h1 {
     padding: 0px 50px;
     height: 63px;
     display: flex;
-    align-items: center;    
+    align-items: center;
     &__img {
       display: none;
     }
     &__h1 {
       margin-bottom: 0;
-    }    
+    }
   }
 }
 
@@ -116,7 +116,7 @@ header h1 {
     text-align: left;
     padding: 0 50px;
     height: 111px;
-    
+
     position: relative;
 
     justify-content: space-between;
@@ -124,13 +124,24 @@ header h1 {
       display: block;
       max-width: 100%;
     }
-}
+  }
   header h1 {
     height: 107px;
   }
 
 }
+.footer {
+  background-color:#3E4956;
+  border-top: 1px solid #eeeeee;
+  display:flex;
+  justify-content: center;
+  padding:10px;
+  a:hover,
+  a:visited {
+    color: #4BA2F2;
+  }
 
+}
 .main-nav-section {
   .title {
     cursor: pointer;
@@ -155,7 +166,7 @@ header h1 {
 
 
 .active, .accordion:hover {
-    /*background-color: #ccc;*/
+  /*background-color: #ccc;*/
 }
 
 .top-of-tutorial-repo-link {
