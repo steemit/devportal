@@ -1,9 +1,12 @@
 ---
-title: Getting Started
+title: 'PY: Getting Started'
 position: 0
 description: The official Steem library for Python is steempython It comes with a BIP38 encrypted wallet and a practical CLI utility called steempy
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Getting Started](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 The library was designed to allow Python developers to easily access the network as well as build utilities and applications.
@@ -30,4 +33,6 @@ In our Python tutorials we recommend developers to be familiar with following re
 
 To get started with Python, you can also check official [Python installation](https://wiki.python.org/moin/BeginnersGuide/Download) and [Python tutorial](https://docs.python.org/3/tutorial/).
 
-To get started with our Python tutorials, checkout our [first tutorial here](/tutorials/01_get_posts/).
+To get started with our Python tutorials, checkout our [first tutorial here](get_posts/).
+
+---
