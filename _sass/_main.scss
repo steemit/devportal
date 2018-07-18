@@ -491,12 +491,14 @@ header {
 		background-image: url(/images/menu.svg);
 		background-color: transparent;
 		background-repeat: no-repeat;
-		background-size: 100%;
+		background-size: 50%;
+		background-position:center;
+		padding-right:0px;
 		border: 0;
-		position: absolute;
 		border-radius: 2px;
 		cursor: pointer;
-		display: none;
+		height:60px;
+		width:60px;
 		&:focus {
 			outline: none;
 			background-color: rgba(0, 0, 0, 0.05);

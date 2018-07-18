@@ -1,9 +1,12 @@
 ---
-title: Get Posts
+title: 'RB: Get Posts'
 position: 4
 description: Get Posts by Category
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Posts](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/04_get_posts) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>
+<br>
+
 
 This example will output posts depending on which category is provided as the arguments.
 
@@ -61,3 +64,6 @@ ruby get_posts_by_category.rb trending 1 steem
 #### Error Handling
 
 We're checking the result for `error` in case the remote node has an issue to raise.  Normally, it will be `nil`, but if it's populated, output `error.message` and exit.
+
+
+---

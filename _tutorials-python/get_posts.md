@@ -1,9 +1,12 @@
 ---
-title: Get Posts
+title: 'PY: Get Posts'
 position: 1
 description: This tutorial pulls a list of the posts from the blockchain with selected filter and tag then displays output
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Posts](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/01_get_posts) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts filtered by a _filter_ and _tag_
@@ -171,3 +174,6 @@ That's it!
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+---

@@ -1,9 +1,12 @@
 ---
-title: Get Account Comments
+title: 'PY: Get Account Comments'
 position: 9
 description: This tutorial pulls a list of comments made by selected account from the blockchain
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Comments](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/09_get_account_comments) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
+
 
 
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts to randomize account list and get replies of selected account.
@@ -206,3 +209,6 @@ That's it!
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+---

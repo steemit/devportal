@@ -21,6 +21,7 @@ module Scrape
       # @return [Integer] total number of tutorials added or changed in this pass
       def perform
         tutorial_change_count = 0
+        tutorial_title_prefix = @tutorial_github_name.split('-').last.upcase
         
         clean_previous_clone
         
@@ -50,14 +51,17 @@ module Scrape
           parse_readme(readme) do |description, body|
             template = <<~DONE
               ---
-              title: #{title}
+              title: '#{tutorial_title_prefix}: #{title}'
               position: #{num}
               description: #{description}
               layout: full
+              ---              
+              #{tutorial_repo_links title, include_name, tutorial_title_prefix}
+              <br>
+
+              #{rewrite_relative_links(rewrite_images body, include_name)}
               ---
-              #{rewrite_images body, include_name}
-              ---
-              #{links title, include_name}
+              
               
             DONE
             
@@ -109,11 +113,37 @@ module Scrape
         body
       end
       
-      def links(title, include_name)
-        [
-          "[<i class=\"fas fa-compass fa-pull-left\"> #{title}</i>](#{@tutorial_url}/tree/master/tutorials/#{include_name})",
-          "[<i class=\"fas fa-sitemap fa-pull-right\"> All Tutorials</i>](#{@tutorial_url}/tree/master/tutorials/)"
-        ].join("\n")
+      def rewrite_relative_links(body)
+        body = body.gsub(/\[([^\]]+)\]\(([^)]+)\)/) do
+          text, href = Regexp.last_match[1..2]
+          href = if href.include? '://'
+            href
+          elsif href.include? @tutorial_url
+            relative_href = href.gsub(/#{@tutorial_url}\/tree\/master\/tutorials\/(\d+)_([a-z0-9_]+)/) do
+              num, name = Regexp.last_match[1..2]
+              
+              name
+            end
+            
+            relative_href
+          else
+            relative_href = href.gsub(/..\/(\d+)_([a-z0-9_]+)/) do
+              num, name = Regexp.last_match[1..2]
+              
+              name
+            end
+            
+            relative_href
+          end
+          
+          "[#{text}](#{href})"
+        end
+        
+        body
+      end
+      
+      def tutorial_repo_links(title, include_name, tutorial_title_prefix)
+          "<span class=\"fa-pull-left top-of-tutorial-repo-link\"><span class=\"first-word\">Full</span>, runnable src of [#{title}](#{@tutorial_url}/tree/master/tutorials/#{include_name}) can be downloaded as part of the [#{tutorial_title_prefix} tutorials repository](#{@tutorial_url}).</span>"
       end
       
       def clean_previous_clone

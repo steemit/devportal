@@ -1,9 +1,12 @@
 ---
-title: Client Signing
+title: 'JS: Client Signing'
 position: 3
 description: By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Client Signing](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/03_client_signing) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 This tutorial gives you overview of how client side transaction signing works under the hood.
@@ -118,3 +121,5 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+---

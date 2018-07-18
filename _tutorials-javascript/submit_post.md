@@ -1,9 +1,12 @@
 ---
-title: Submit Post
+title: 'JS: Submit Post'
 position: 10
 description: By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcastcomment function
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Submit Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/10_submit_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 This tutorial will show the method of properly formatting content followed by broadcasting the information to the steem blockchain using a `demo` account on the `testnet`.
@@ -105,10 +108,14 @@ Note that the `parent_author` and `parent_permlink` fields are used for replies 
 
 After the post has been broadcast to the network, we can simply set all the fields to empty strings and show the post link to check it from a condenser instance running on the selected testnet.
 
+The `broadcast` operation has more to offer than just committing a post/comment to the blockchain. It provides a mulititude of options that can accompany this commit. The max payout and percent of steem dollars can be set. When authors don't want all of the benifits from a post, they can set the payout factors to zero or beneficiaries can be set to receive part of the rewards. You can also set whether votes are allowed or not. The broadcast to the blockchain can be modified to meet the exact requirements of the author. More information on how to use the `broadcast` operation can be found on the Steem [Devportal](https://developers.steem.io/apidefinitions/#apidefinitions-broadcast-ops-comment) with a list of the available broadcast options under the specific [Appbase API](https://developers.steem.io/apidefinitions/#broadcast_ops_comment_options)
+
 ### To Run the tutorial
 
 1.  clone this repo
 1.  `cd tutorials/10_submit_post`
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
-1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+1.  After a few moments, the server should be running at http://localhost:3000/
+
+---

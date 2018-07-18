@@ -1,9 +1,12 @@
 ---
-title: Get Voters List On Post
+title: 'RB: Get Voters List On Post'
 position: 6
 description: This example will output the active vote totals for the postcomment passed as an argument to the script
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Voters List On Post](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/06_get_voters_list_on_post) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>
+<br>
+
 
 
 ### Script
@@ -32,3 +35,5 @@ Unvotes: 0
 Total: 232
 Top Voter: thejohalfiles
 ```
+
+---
