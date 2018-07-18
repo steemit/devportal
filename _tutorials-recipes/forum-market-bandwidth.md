@@ -59,7 +59,7 @@ In this example, we got forum (blogging) average bandwidth of 7,525,646,416,619 
 
 Note, `average_bandwidth` is expressed as an integer with six decimal places represented.  Divide by 1,000,000 in order to get the actual bytes of bandwidth, in this case: 7,525,646 bytes.
 
-### Dynamic Global Propertis
+### Dynamic Global Properties
 
 To do the calculation, we need `max_virtual_bandwidth` and `total_vesting_shares` from the global properties, e.g.:
 
