@@ -59,6 +59,8 @@
       |--------------------|-----------------|-|
       | `"steemit"` | `"forum"` | Query the available forum bandwidth for the account named "steemit". |
       | `"alice"` | `"market"` | Query the available market bandwidth for the account named "alice". |
+      
+      See: [Forum/Market Bandwidth](/tutorials-recipes/forum-market-bandwidth)
     parameter_json: ["steemit","forum"]
     expected_response_json: {"id":8,"account":"steemit","type":"forum","average_bandwidth":214996934,"lifetime_bandwidth":"48395000000","last_bandwidth_update":"2018-02-16T03:11:00"}
     curl_examples:
