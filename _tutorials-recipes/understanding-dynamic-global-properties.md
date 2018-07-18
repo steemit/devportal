@@ -30,19 +30,16 @@ Dynamic Global Properties represents a set of values that are calculated during 
   * [total_vesting_shares](#total_vesting_shares)
   * [total_reward_fund_steem](#total_reward_fund_steem)
   * [total_reward_shares2](#total_reward_shares2)
-  * [pending_rewarded_vesting_shares](#pending_rewarded_vesting_shares)
-  * [pending_rewarded_vesting_steem](#pending_rewarded_vesting_steem)
   * [sbd_interest_rate](#sbd_interest_rate)
-  * [sbd_print_rate](#sbd_print_rate)
   * [maximum_block_size](#maximum_block_size)
   * [current_aslot](#current_aslot)
   * [recent_slots_filled](#recent_slots_filled)
-  * [participation_count](#participation_count)
   * [last_irreversible_block_num](#last_irreversible_block_num)
   * [vote_power_reserve_rate](#vote_power_reserve_rate)
   * [average_block_size](#average_block_size)
   * [current_reserve_ratio](#current_reserve_ratio)
   * [max_virtual_bandwidth](#max_virtual_bandwidth)
+* [Not Covered](#not-covered)
 * [Example Method Call](#example-method-call)
 * [Example Output](#example-output)
 
@@ -141,26 +138,11 @@ Number of shares in the pool.
 
 * example: `0`
 
-### `pending_rewarded_vesting_shares`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-
-* example: `365893896.029111 VESTS`
-
-### `pending_rewarded_vesting_steem`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-
-* example: `178750.531 STEEM`
-
 ### `sbd_interest_rate`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 This property defines the interest rate that SBD deposits receive.
 
 * example: `0`
-
-### `sbd_print_rate`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-
-* example: `2866`
 
 ### `maximum_block_size`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -181,11 +163,6 @@ The current absolute slot number.  Equal to the total number of slots since gene
 Used to compute witness participation.
 
 * example: `340282366920938463463374607431768211455`
-
-### `participation_count`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-
-* example: `128`
 
 ### `last_irreversible_block_num`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -216,6 +193,15 @@ Any time `average_block_size <= 50% maximum_block_size` this value grows by 1 un
 The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_block_size * STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEM_BLOCK_INTERVAL`; The maximum virtual bandwidth is: `max_bandwidth * current_reserve_ratio`
 
 * example: `264241152000000000000`
+
+### `Not Covered`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+Fields not covered in this recipe are:
+
+* `pending_rewarded_vesting_shares`
+* `pending_rewarded_vesting_steem`
+* `sbd_print_rate`
+* `participation_count`
 
 ### Example Method Call<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
