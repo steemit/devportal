@@ -1,7 +1,6 @@
 ---
 title: Welcome to Steem
 position: 1
-url: /
 ---
 
 #### Welcome to the Steem Developer Portal! 
