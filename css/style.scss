@@ -157,3 +157,10 @@ header h1 {
 .active, .accordion:hover {
     /*background-color: #ccc;*/
 }
+
+.top-of-tutorial-repo-link {
+  text-transform: lowercase;
+  .first-word {
+    text-transform: capitalize;
+  }
+}
