@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>JS: Client Signing - Steem Developer</title>
+<meta property="og:title" content="JS: Client Signing" />
+<meta name="description" content="By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem" />
+<meta property="og:description" content="By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem" />
+<link rel="canonical" href="https://developer.steem.io/tutorials-javascript/client_signing" />
+<meta property="og:url" content="https://developer.steem.io/tutorials-javascript/client_signing" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-07-20T12:56:08-05:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "JS: Client Signing",
+"datePublished": "2018-07-20T12:56:08-05:00",
+"description": "By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem",
+"url": "https://developer.steem.io/tutorials-javascript/client_signing"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-client-signing" class="row tutorials-javascript-client-signing">
+	<h3>
+		<a id="tutorials-javascript-client-signing">
+			JS: Client Signing
+			
+		</a>
+	</h3>
+	
+		<p class="description">By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem</p>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/03_client_signing">Client Signing</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial gives you overview of how client side transaction signing works under the hood.</p>
+
+<p>Purpose is to guide you through the steps required so that you could adapt this in your own applications.</p>
+
+<p>We have predefined accounts to select for you to quickly use and few transaction types to test the process.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Client side signing of transaction is yet another way of interacting with Steem blockchain. Compare to <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect">Steemconnect</a> method, client signing doesn’t rely on other servers to generate and verify transaction, except when transaction is broadcasted to the network, it should be routed through one of the servers connected to that network or blockchain. It can be your own local machine running Steem blockchain or it could be any other publicly accessible servers.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#app-setup"><strong>App setup</strong></a> Import <code class="highlighter-rouge">dsteem</code> into <code class="highlighter-rouge">app.js</code> and prepare it to communicate with a Testnet instance of Steem blockchain</li>
+  <li><a href="#get-globals"><strong>Get globals</strong></a> Network globals</li>
+  <li><a href="#account-selection"><strong>Account selection</strong></a> Select predefined account</li>
+  <li><a href="#operation-selection"><strong>Operation selection</strong></a> Select common operations</li>
+  <li><a href="#generate-trx"><strong>Generate transaction</strong></a> Generate transaction with selected account and operation</li>
+  <li><a href="#sav-trx"><strong>Sign and verify transaction</strong></a> Sign and verify signature of the transaction</li>
+  <li><a href="#broadcast-trx"><strong>Broadcast transaction</strong></a> Broadcast signed transaction to the network</li>
+</ol>
+
+<h4 id="1-app-setup">1. App setup<a name="app-setup"></a></h4>
+
+<p>Testnet and Production networks only differ with few settings which helps developers to switch their application from testnet to production. One of these settings is <code class="highlighter-rouge">addressPrefix</code> - string that is defined and will be in front of every public address on that chain/network. Another one is <code class="highlighter-rouge">chainId</code> - id of that network. By defining those parameters we are selecting Testnet and connecting to publicly available server with help of <code class="highlighter-rouge">dsteem</code> library. First few lines of code in <code class="highlighter-rouge">public/app.js</code> gives you example of connection to different networks, testnet and production.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">opts</span><span class="p">.</span><span class="nx">addressPrefix</span> <span class="o">=</span> <span class="s1">'TST'</span><span class="p">;</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">chainId</span> <span class="o">=</span>
+    <span class="s1">'46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32'</span><span class="p">;</span>
+<span class="c1">//connect to server which is connected to the network/testnet</span>
+<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="s1">'https://testnet.steemitdev.com'</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<ul>
+  <li><em>Disclaimer: In this tutorial we are using testnet powered by community member (<code class="highlighter-rouge">@almost-digital</code>) and predefined accounts reside on this network only.</em></li>
+</ul>
+
+<h4 id="2-get-globals">2. Get globals<a name="get-globals"></a></h4>
+
+<p>To test connection as well as to get parameters of the connected network, we can use <code class="highlighter-rouge">getDynamicGlobalProperties</code> function from <strong>dsteem</strong> library. Only 2 fields are in our interesting for this tutorial, <code class="highlighter-rouge">head_block_number</code> - returns head or latest block number of the network, <code class="highlighter-rouge">head_block_id</code> - returns id of head block.</p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/03_client_signing/images/overview.png?raw=true" alt="Overview" /></p>
+
+<h4 id="3-account-selection">3. Account selection<a name="account-selection"></a></h4>
+
+<p>We have predefined list of accounts to help you with generate, sign, verify and broadcast transaction on testnet. Select list has posting private key for each account and <code class="highlighter-rouge">onchange</code> selection event we keep account name and credentials in memory. <code class="highlighter-rouge">accountChange</code> function shows example of turning plain posting private key into private key buffer format that is understandable by <strong>dsteem</strong>.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">PrivateKey</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'account'</span><span class="p">).</span><span class="nx">value</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Account and its credentials should belong to specified testnet/mainnet network to sign/verify/broadcast transactions properly.</p>
+
+<h4 id="4-operation-selection">4. Operation selection<a name="operation-selection"></a></h4>
+
+<p>Number of operations are also predefined to show you example of operation format. <code class="highlighter-rouge">opChange</code> also keeps selected operation name in memory.</p>
+
+<h4 id="5-generate-transaction">5. Generate transaction<a name="generate-trx"></a></h4>
+
+<p>Next we have button which helps us to generate operation object. Depending on selected operation type we have different structure for operation object. Typically, each transaction object has following fields:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ref_block_num</code> - references block number in past, in this example we have chosen head block number, but it is possible to use a block number from up to 65,536 blocks ago. This is required in TaPoS (Transaction as Proof of Stake) to avoid network forks.</li>
+  <li><code class="highlighter-rouge">ref_block_prefix</code> - reference buffer of block id of <code class="highlighter-rouge">ref_block_num</code> as prefix</li>
+  <li><code class="highlighter-rouge">expiration</code> - transaction expiration date in future, in our example we have set it +1 minute into future</li>
+  <li><code class="highlighter-rouge">operations</code> - array of operations, this field holds main information about transaction type and its structure which is recognized by the network</li>
+  <li><code class="highlighter-rouge">extensions</code> - any extensions to the transaction to change its parameters or options</li>
+</ul>
+
+<p>Vote operation example</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>op = {
+    ref_block_num: head_block_number,
+    ref_block_prefix: Buffer.from(head_block_id, 'hex').readUInt32LE(4),
+    expiration: new Date(Date.now() + expireTime).toISOString().slice(0, -5),
+    operations: [['vote', {
+        voter: account,
+        author: 'test',
+        permlink: 'test',
+        weight: 10000
+    }]],
+    extensions: [],
+}
+</code></pre>
+</div>
+
+<p>First item, operation type, <code class="highlighter-rouge">vote</code> and second item object with <code class="highlighter-rouge">voter</code> - account that is casting vote, <code class="highlighter-rouge">author</code> - author of post vote is being casted to, <code class="highlighter-rouge">permlink</code> - permanent link of the post, <code class="highlighter-rouge">weight</code> - vote weight 10000 being 100%, 1 being 0.01% smallest voting unit.</p>
+
+<p>And output of operation object/json is set to <code class="highlighter-rouge">OpInput</code> element.</p>
+
+<h4 id="6-sign-and-verify-transaction">6. Sign and verify transaction<a name="sav-trx"></a></h4>
+
+<p>Each operation needs to be signed before they can be sent to the network, transactions without signature will not be accepted by network. Because someone has to identify operation and sign it with their private keys. Sign transaction button calls for <code class="highlighter-rouge">signTx</code> function which is job is to sign selected operation and its obkect with selected account. And output result into <code class="highlighter-rouge">TxOutput</code> element.</p>
+
+<p><code class="highlighter-rouge">stx = client.broadcast.sign(op, privateKey)</code></p>
+
+<p>Verifying transaction process is mostly done automatically but to show every step, we have included this process to check validity of the transaction signature. Verify transaction button calls <code class="highlighter-rouge">verifyTx</code> function. Function then verify authority of the signature in signed transaction, if it was signed with correct private key and authority. If verification is successful user interfaces adds checkmark next to button otherwise adds crossmark to indicate state of the signature.</p>
+
+<p><code class="highlighter-rouge">const rv = await client.database.verifyAuthority(stx)</code></p>
+
+<h4 id="7-broadcast-transaction">7. Broadcast transaction<a name="broadcast-trx"></a></h4>
+
+<p>Final step is to broadcast our signed transction to the selected server. Server chosen in Connect section will handle propagating transction to the network. After network accepts transaction it will return result with transaction <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">block_num</code> that this transaction is included to, <code class="highlighter-rouge">trx_num</code> transaction number, and if it is <code class="highlighter-rouge">expired</code> or not.</p>
+
+<p><code class="highlighter-rouge">const res = await client.broadcast.send(stx)</code></p>
+
+<p>That’s it!</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/03_client_signing</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
