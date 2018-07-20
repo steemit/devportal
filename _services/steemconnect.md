@@ -1,6 +1,6 @@
 ---
 title: SteemConnect
-position: 3
+position: 2
 ---
 
 _A Look at the Why's and How's of SteemConnect_
