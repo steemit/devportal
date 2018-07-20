@@ -1,3 +1,7 @@
+---
+title: ImageHoster
+position: 4
+---
 # Definition
 
 Imagehoster is a Steem-powered image hosting and proxying service. Any image uploaded to, or proxied through, your Imagehoster has a copy stored within it. This means that the image continues to be available even if 3rd party sites go down or change their URLs. For as long as your instance of imagehoster is running the image will be available, anytime you need it.

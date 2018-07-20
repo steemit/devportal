@@ -1,6 +1,6 @@
 ---
 title: SBDS
-position: 2
+position: 5
 ---
 
 **sbds** is a tool for easily querying the data of the Steem Blockchain.
