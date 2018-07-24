@@ -23,9 +23,7 @@ Dynamic Global Properties represents a set of values that are calculated during 
   * [num_pow_witnesses](#num_pow_witnesses)
   * [virtual_supply](#virtual_supply)
   * [current_supply](#current_supply)
-  * [confidential_supply](#confidential_supply)
   * [current_sbd_supply](#current_sbd_supply)
-  * [confidential_sbd_supply](#confidential_sbd_supply)
   * [total_vesting_fund_steem](#total_vesting_fund_steem)
   * [total_vesting_shares](#total_vesting_shares)
   * [total_reward_fund_steem](#total_reward_fund_steem)
@@ -126,7 +124,13 @@ Total asset held in confidential balances.
 
 ### `total_vesting_fund_steem`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-STEEM that is invested in STEEM POWER (powered up).
+<ul style="float: right; list-style: none;">
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+</ul>
+
+*Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).*
+
+Use [`condenser_api.get_reward_fund`](/apidefinitions/#condenser_api.get_reward_fund) instead.
 
 * example: `192713261.007 STEEM`
 
@@ -144,7 +148,13 @@ STEEM available in the reward pool.
 
 ### `total_reward_shares2`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-Number of shares in the pool.
+<ul style="float: right; list-style: none;">
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+</ul>
+
+*Now deprecated way to get the number of shares in the pool.*
+
+Use [`condenser_api.get_reward_fund`](/apidefinitions/#condenser_api.get_reward_fund) instead.
 
 * example: `0`
 
@@ -208,6 +218,8 @@ The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_blo
 
 Fields not covered in this recipe are:
 
+* `confidential_supply`
+* `confidential_sbd_supply`
 * `pending_rewarded_vesting_shares`
 * `pending_rewarded_vesting_steem`
 * `sbd_print_rate`
