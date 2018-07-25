@@ -72,21 +72,14 @@ Account name of the current witness.
 
 * example: `blocktrades`
 
-### `total_pow`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-<ul style="float: right; list-style: none;">
-<li class="warning"><strong><small>Deprecated</small></strong></li>
-</ul>
+### `total_pow` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 The total POW accumulated, aka the sum of `num_pow_witness` at the time new POW is added.
 
 * example: `514415`
 
-### `num_pow_witnesses`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `num_pow_witnesses` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-<ul style="float: right; list-style: none;">
-<li class="warning"><strong><small>Deprecated</small></strong></li>
-</ul>
 
 The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.
 
@@ -122,11 +115,7 @@ Total asset held in confidential balances.
 
 * example: `0.000 SBD`
 
-### `total_vesting_fund_steem`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-<ul style="float: right; list-style: none;">
-<li class="warning"><strong><small>Deprecated</small></strong></li>
-</ul>
+### `total_vesting_fund_steem` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 *Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).*
 
@@ -146,11 +135,7 @@ STEEM available in the reward pool.
 
 * example: `0.000 STEEM`
 
-### `total_reward_shares2`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-<ul style="float: right; list-style: none;">
-<li class="warning"><strong><small>Deprecated</small></strong></li>
-</ul>
+### `total_reward_shares2` <span class="warn deprecated">Deprecated</span> <a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 *Now deprecated way to get the number of shares in the pool.*
 
