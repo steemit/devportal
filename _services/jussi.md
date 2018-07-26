@@ -18,6 +18,7 @@ Jussi is a reverse proxy that is situation between the API client and the `steem
 * [Adding Upstreams](#adding-upstreams)
 * [Benefits of jussi](#benefits-of-jussi)
   * [TTL](#time-to-live)
+  * [Retry](#retry)
   * [json-rpc batch](#json-rpc-batch)
 * [Footnotes](#footnotes)
 
@@ -78,6 +79,10 @@ The default `DEV_config.json` is:
          ],
          "timeouts":[
             ["steemd", 5],
+            ["steemd.network_broadcast_api", 0]
+         ],
+         "retries": [
+            ["steemd", 3],
             ["steemd.network_broadcast_api", 0]
          ]
       },
@@ -161,6 +166,12 @@ Some methods and parameters have their own `TTL` that overrides the general defa
 * `-2` will be cached without expiration only if it is `irreversible` in terms of blockchain consensus
 
 If you have a local copy of jussi (see: [Installation](#installation)), you can change these defaults by modifying `DEV_config.json`.
+
+#### Retry<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+Adding a `retries` element defines the number of retry attempts, where `0` (or absent) means no retry.  The maximum number of retries is `3`.
+
+Note that retrying broadcast methods is not recommended, which is why the example explicitly sets `steemd.network_broadcast_api` to `0`.
 
 #### json-rpc batch<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
