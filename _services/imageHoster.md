@@ -6,6 +6,12 @@ position: 4
 
 Imagehoster is a Steem-powered image hosting and proxying service. Any image uploaded to, or proxied through, your Imagehoster has a copy stored within it. This means that the image continues to be available even if 3rd party sites go down or change their URLs. For as long as your instance of imagehoster is running the image will be available, anytime you need it.
 
+The purpose of this tool is to provide a way to host and proxy images used by [condenser](https://github.com/steemit/condenser#condenser) to help maintain the privacy of the authors and general users accessing the images.
+
+Using ImageHoster will help limit access to IP addresses of the general user.  It will also strip [image metadata](https://en.wikipedia.org/wiki/Exif) related to the author's geographical location.  It also helps to verify that the original author uploaded the image they intended.
+
+The ability to upload images on steemit.com was originally added in January, 2017.  Please note that this tool **does not** store any image data on the blockchain.
+
 Detaied information on Imagehoster can be found in its [repository](https://github.com/steemit/imagehoster/blob/master/README.md)
 
 ## The API
