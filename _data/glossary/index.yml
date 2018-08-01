@@ -48,11 +48,11 @@
     - term: Markdown language
       def: Easy to read and write, plain text format language commonly used to create Steemit articles
     - term: Permlink
-      def: Unique identifier of every comment or post of an author
+      def: Unique identifier of every comment or post of an author, within the context of that author. ('@author/permlink' combos are globally unique)
     - term: Mainnet
-      def: The main production network wherein actual transactions take place on a distributed ledger
+      def: The 'production' Steem blockchain network wherein real STEEM is held and actual transactions take place.
     - term: Delegation
-      def: Assign your Steem Power for use by another account for a set period
+      def: The assignment of a portion your Steem Power for use to another account (cannot be spent, can be reclaimed)
     - term: PowerUp
       def: Convert STEEM to Steem Power and vice-versa with PowerDown
       
