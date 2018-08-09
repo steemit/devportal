@@ -239,7 +239,7 @@
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_comment_discussions_by_payout", "params":[{"tag":"steem","limit":1}], "id":1}'
       - '{"jsonrpc":"2.0", "method":"condenser_api.get_comment_discussions_by_payout", "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_config
-    purpose: Returns information about compile-time constants.
+    purpose: 'Returns information about compile-time constants.  See: [Understanding Configuration Values](/tutorials-recipes/understanding-configuration-values)'
     parameter_json: []
     expected_response_json: {}
     curl_examples:

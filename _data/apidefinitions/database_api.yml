@@ -75,7 +75,7 @@
       curl_examples:
         - '{"jsonrpc":"2.0", "method":"database_api.get_active_witnesses", "id":1}'
     - api_method: database_api.get_config
-      purpose: Returns information about compile-time constants.
+      purpose: 'Returns information about compile-time constants.  See: [Understanding Configuration Values](/tutorials-recipes/understanding-configuration-values)'
       parameter_json: {}
       expected_response_json: {}
       curl_examples:
