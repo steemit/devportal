@@ -23,14 +23,20 @@ Usually, these configuration values are universally adhered to, but there are si
   * [`STEEM_REDUCED_VOTE_POWER_RATE`](#steem_reduced_vote_power_rate)
   * [`STEEM_ADDRESS_PREFIX`](#steem_address_prefix)
   * [`STEEM_BLOCK_INTERVAL`](#steem_block_interval)
+  * [`STEEM_CASHOUT_WINDOW_SECONDS`](#steem_cashout_window_seconds)
   * [`STEEM_CHAIN_ID`](#steem_chain_id)
   * [`STEEM_CHAIN_ID_NAME`](#steem_chain_id_name)
+  * [`STEEM_CREATE_ACCOUNT_DELEGATION_RATIO`](#steem_create_account_delegation_ratio)
+  * [`STEEM_CREATE_ACCOUNT_DELEGATION_TIME`](#steem_create_account_delegation_time)
   * [`STEEM_FEED_HISTORY_WINDOW`](#steem_feed_history_window)
   * [`STEEM_GENESIS_TIME`](#steem_genesis_time)
   * [`STEEM_HARDFORK_REQUIRED_WITNESSES`](#steem_hardfork_required_witnesses)
   * [`STEEM_INFLATION_NARROWING_PERIOD`](#steem_inflation_narrowing_period)
   * [`STEEM_MAX_ACCOUNT_NAME_LENGTH`](#steem_max_account_name_length)
   * [`STEEM_MAX_ACCOUNT_WITNESS_VOTES`](#steem_max_account_witness_votes)
+  * [`STEEM_MAX_WITNESSES`](#steem_max_witnesses)
+  * [`STEEM_MAX_PERMLINK_LENGTH`](#steem_max_permlink_length)
+  * [`STEEM_MAX_WITNESS_URL_LENGTH`](#steem_max_witness_url_length)
   * [`STEEM_MIN_REPLY_INTERVAL`](#steem_min_reply_interval)
   * [`STEEM_MIN_REPLY_INTERVAL_HF20`](#steem_min_reply_interval_hf20)
   * [`STEEM_MIN_ROOT_COMMENT_INTERVAL`](#steem_min_root_comment_interval)
@@ -38,6 +44,9 @@ Usually, these configuration values are universally adhered to, but there are si
   * [`STEEM_NULL_ACCOUNT`](#steem_null_account)
   * [`STEEM_REVERSE_AUCTION_WINDOW_SECONDS`](#steem_reverse_auction_window_seconds)
   * [`STEEM_SOFT_MAX_COMMENT_DEPTH`](#steem_soft_max_comment_depth)
+  * [`STEEM_SAVINGS_WITHDRAW_TIME`](#steem_savings_withdraw_time)
+  * [`STEEM_UPVOTE_LOCKOUT_HF17`](#steem_upvote_lockout_hf17)
+  * [`STEEM_VESTING_WITHDRAW_INTERVALS`](#steem_vesting_withdraw_intervals)
 * [Not Covered](#not-covered)
 * [Example Method Call](#example-method-call)
 * [Example Output](#example-output)
@@ -66,6 +75,14 @@ Address prefix used on mainnet is `STM` and on testnet is `TST`.  See: [Steem Te
 
 Block interval in seconds is `3`.  This is the target for block production.  This constant is also used as a component for determining valid peer inventory, bandwidth calculations, and block production gaps.
 
+### `STEEM_CASHOUT_WINDOW_SECONDS`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+This value was simply set to 7 days, [since HF17](https://github.com/steemit/steem/releases/tag/v0.17.0).
+
+Prior to this, other very complicated machinations were tried like multiple payouts and an initial 24 hours (prior to HF12) and even initial 12 hours ([in HF12](https://github.com/steemit/steem/issues/177)) all with time extensions depending on how much of an upvote the content got.
+
+Note, on testnet, this is typically much shorter: 1 hour.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+
 ### `STEEM_CHAIN_ID`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 The chain ID to connect to, which is used to seed signing and prevent transaction crosstalk between two chains, typically mainnet and testnet.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
@@ -73,6 +90,20 @@ The chain ID to connect to, which is used to seed signing and prevent transactio
 ### `STEEM_CHAIN_ID_NAME`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Tyically used to automatically get a unique chain id for a testnet.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+
+### `STEEM_CREATE_ACCOUNT_DELEGATION_RATIO`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+This ratio is set to 5 and is used to determine the cost of an account created with delegation.
+
+As an example, imagine the account creation fee is currently `3.000 STEEM`.  Instead of creating the account using pure STEEM, there is an option to use delegation so that the blockchain would reduce the creation fee to `0.100 STEEM`.  Going this route would require a delegation of `15.000 STEEM`, that can be revoked at any time, but will stay in limbo for 30 days after the creation date ([`STEEM_CREATE_ACCOUNT_DELEGATION_TIME`](#steem_create_account_delegation_time)).
+
+This minimum STEEM ensures that those accounts can transact if the delegation is removed.
+
+### `STEEM_CREATE_ACCOUNT_DELEGATION_TIME`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+There is a minimum delegation period (30 days) and a minimum fee in STEEM even when delegating for account creation (derived with [`STEEM_CREATE_ACCOUNT_DELEGATION_RATIO`](#steem_create_account_delegation_ratio)).  The minimum period enforces a rate limit on account creation.
+
+Note that delegation can be revoked before 30 days have elapsed from the creation date, but stays in limbo.
 
 ### `STEEM_FEED_HISTORY_WINDOW`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -128,6 +159,20 @@ In addition we require the following:
 
 Each account may cast up to 30 witness votes.
 
+### `STEEM_MAX_WITNESSES`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+This value is set to 21, which means there are 21 witnesses cycling to produce blocks.
+
+Every round of block production begins with the shuffling of 21 witnesses: the top 20 witnesses (by vote), plus one randomly-selected standby witness.  Each is given a turn to produce a single block at a fixed rate of one block every 3 seconds.  If a witness does not produce a block in their time slot, then that time slot is skipped, and the next witness produces the next block.
+
+### `STEEM_MAX_PERMLINK_LENGTH`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+A permlink is a unique string identifier for a post/comment, linked to the author of the post/comment.  It must not exceed 256 characters.
+
+### `STEEM_MAX_WITNESS_URL_LENGTH`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+Witnesses may provide a URL in their witness proposal.  It must not exceed 2,048 characters.
+
 ### `STEEM_MIN_REPLY_INTERVAL`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Prior to HF20, comments (replies) could only be broadcasted once every 20 seconds, per account.
@@ -162,6 +207,20 @@ A comment is nested at a maximum depth of 255.  As a soft limit, it is enforced 
 
 Prior to HF17, the maximum comment depth was 6.  See: [#767](https://github.com/steemit/steem/issues/767)
 
+### `STEEM_SAVINGS_WITHDRAW_TIME`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+This value sets the timelock of 3 days for funds being withdrawn from savings.  Funds can be transferred into savings instantly, but require 72 hours (3 days) to withdraw from savings. This will guarantee there is at least 1 business day during which you can contact your recovery agent.
+
+### `STEEM_UPVOTE_LOCKOUT_HF17`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+Accounts may not increase payout within last 12 hours before payout, since HF17.
+
+### `STEEM_VESTING_WITHDRAW_INTERVALS`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+Sets the power-down rate, which is fulfilled once a week over 13 weeks.
+
+Prior to HF16, this value was 104 weeks.
+
 ### `Not Covered`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Fields not covered in this recipe are:
@@ -187,7 +246,6 @@ Fields not covered in this recipe are:
 * `STEEM_BLOCKS_PER_DAY`
 * `STEEM_BLOCKS_PER_HOUR`
 * `STEEM_BLOCKS_PER_YEAR`
-* `STEEM_CASHOUT_WINDOW_SECONDS`
 * `STEEM_CASHOUT_WINDOW_SECONDS_PRE_HF12`
 * `STEEM_CASHOUT_WINDOW_SECONDS_PRE_HF17`
 * `STEEM_COMMENT_REWARD_FUND_NAME`
@@ -196,8 +254,6 @@ Fields not covered in this recipe are:
 * `STEEM_CONTENT_REWARD_PERCENT`
 * `STEEM_CONVERSION_DELAY`
 * `STEEM_CONVERSION_DELAY_PRE_HF_16`
-* `STEEM_CREATE_ACCOUNT_DELEGATION_RATIO`
-* `STEEM_CREATE_ACCOUNT_DELEGATION_TIME`
 * `STEEM_CREATE_ACCOUNT_WITH_STEEM_MODIFIER`
 * `STEEM_CURATE_APR_PERCENT`
 * `STEEM_DEFAULT_SBD_INTEREST_RATE`
@@ -226,10 +282,8 @@ Fields not covered in this recipe are:
 * `STEEM_MAX_FEED_AGE_SECONDS`
 * `STEEM_MAX_INSTANCE_ID`
 * `STEEM_MAX_MEMO_SIZE`
-* `STEEM_MAX_WITNESSES`
 * `STEEM_MAX_MINER_WITNESSES_HF0`
 * `STEEM_MAX_MINER_WITNESSES_HF17`
-* `STEEM_MAX_PERMLINK_LENGTH`
 * `STEEM_MAX_PROXY_RECURSION_DEPTH`
 * `STEEM_MAX_RATION_DECAY_RATE`
 * `STEEM_MAX_RESERVE_RATIO`
@@ -246,7 +300,6 @@ Fields not covered in this recipe are:
 * `STEEM_MAX_VOTED_WITNESSES_HF0`
 * `STEEM_MAX_VOTED_WITNESSES_HF17`
 * `STEEM_MAX_WITHDRAW_ROUTES`
-* `STEEM_MAX_WITNESS_URL_LENGTH`
 * `STEEM_MIN_ACCOUNT_CREATION_FEE`
 * `STEEM_MIN_ACCOUNT_NAME_LENGTH`
 * `STEEM_MIN_BLOCK_SIZE_LIMIT`
@@ -285,7 +338,6 @@ Fields not covered in this recipe are:
 * `STEEM_RECENT_RSHARES_DECAY_TIME_HF17`
 * `STEEM_ROOT_POST_PARENT`
 * `STEEM_SAVINGS_WITHDRAW_REQUEST_LIMIT`
-* `STEEM_SAVINGS_WITHDRAW_TIME`
 * `STEEM_SBD_START_PERCENT`
 * `STEEM_SBD_STOP_PERCENT`
 * `STEEM_SECOND_CASHOUT_WINDOW`
@@ -293,9 +345,7 @@ Fields not covered in this recipe are:
 * `STEEM_START_VESTING_BLOCK`
 * `STEEM_TEMP_ACCOUNT`
 * `STEEM_UPVOTE_LOCKOUT_HF7`
-* `STEEM_UPVOTE_LOCKOUT_HF17`
 * `STEEM_VESTING_FUND_PERCENT`
-* `STEEM_VESTING_WITHDRAW_INTERVALS`
 * `STEEM_VESTING_WITHDRAW_INTERVALS_PRE_HF_16`
 * `STEEM_VESTING_WITHDRAW_INTERVAL_SECONDS`
 * `STEEM_VOTE_DUST_THRESHOLD`
