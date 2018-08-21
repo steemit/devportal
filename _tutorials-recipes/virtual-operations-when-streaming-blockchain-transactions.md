@@ -82,7 +82,7 @@ And each transaction contains operations:
 
 #### 2. Virtual operation streaming <a name="V-ops"></a>
 
-Virtual operations (curation rewards, etc) are derived from blockchain activity, but aren't actually stored as operations themselves. They happen based on consensus from the blockchain based on other user initiated operations. This information is not available on the head block so a 100% live feed of these virtual operaions would not be possible. In order to follow these operaions you would have to stream the `last_irreversible_block`. To get a feed of virtual operations, each of the block transactions needs to be investigated for the `type` of the operations.
+Virtual operations (curation rewards, etc) are derived from blockchain activity, but aren't actually stored as operations themselves. They happen based on consensus from the blockchain based on other user initiated operations. These `virtual operations` are **NOT** available on the `head block`, so a 100% live feed of this information would not be possible. In order then to follow these operations you would have to stream the `last_irreversible_block`. To get a feed of virtual operations, each of the block transactions needs to be investigated for the `type` of the operations.
 
 `steem-python` provides a very simple method to stream virtual or any other operations directly:
 
