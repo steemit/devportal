@@ -6,37 +6,88 @@ exclude: true
 
 Steem blockchain software is written in C++ and in order to modify the source code you need some understanding of the C++ programming language. Each Steem node runs an instance of this software, so in order to test your changes, you will need to know how to install dependencies which can be found in the [Steem repo](https://github.com/steemit/steem/blob/master/doc/building.md). This also means that some knowledge of System administration is also required. There are multiple advantages of running a testnet, you can test your scripts or applications on a testnet without extra spam on the live network, which allows much more flexibility to try new things. Having access to a testnet also helps you to work on new features and possibly submit new or improved pull requests to official the Steem GitHub repository.
 
-## Running Testnet
+## Steemit's Testnet
 
-By following official [build steps](https://github.com/steemit/steem/blob/master/doc/building.md#build_steem_testnetoffon) and enabling the `BUILD_STEEM_TESTNET` flag during compilation, you should be able to run the Steem Testnet locally on your workstation and join the development testnet. Docker can also be used to get started quickly. Compilation generates the `steemd` executable which is the main daemon for the Steem network. Additional `cli_wallet` can also be compiled to test/connect to an instance of `steemd` and request some data from the network, but it is not necessary to run a node.
+Steemit maintains a live testnet you can connect. In the near future, we expect the chain id to update with every code change. The address prefix may also evolve. To get the current chain id & prefix for any steem test net you can use the [get_config](https://developers.steem.io/apidefinitions/#condenser_api.get_config) api call (there is a curl example included). Be sure to point it at an api node on the testnet for which you want information!
 
-The development testnet requires a certain minimum set of hardware requirements, depending on the type of compile flags that have been enabled. Because it is a mirror of the live network, private keys are the same for accounts up to the point of the snapshot timestamp of the testnet.
+At the time of this writing, the connection information for Steemit's testnet is as follows: 
+ 
+* ChainID: `46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32`
+* Address prefix: `TST`
+* API node: `https://testnet.steemitdev.com`
 
-Joining/Running the development testnet requires around 10 GB for block log on an SSD and 8 GB RAM. The CPU requirements are the same.
+## Running a Testnet Node
 
-Testnet has the following parameters by default (as of this writing):
+First, let's build `steemd` specifically for testnet.  Recommended specs:
 
-*   Initial supply (250 billion) - `STEEM_INIT_SUPPLY 250,000,000,000`
-*   Max number of blocks to be produced - `TESTNET_BLOCK_LIMIT 3,000,000`
-*   Address prefix, prefix on public addresses - `STEEM_ADDRESS_PREFIX "TST"`
-*   Chain id name, used for chain id - `STEEM_CHAIN_ID_NAME "testnet"`
-*   Chain id, unique id hash of chain - `STEEM_CHAIN_ID (fc::sha256::hash(STEEM_CHAIN_ID_NAME))`
-*   Public key of genesis account - `STEEM_INIT_PUBLIC_KEY_STR`
-*   Account creation fee - `STEEM_MIN_ACCOUNT_CREATION_FEE 0`
+* `Ubuntu Server 16.04 LTS`
+* `100GB HDD`
+* `16GB RAM` (mostly needed for `steemd` build)
 
-There are a number of other subtle changes that we don't need to focus on right now.
+```bash
+sudo apt-get update && sudo apt-get dist-upgrade
+sudo reboot
 
-#### Live testnet
+sudo apt-get install autoconf automake autotools-dev bsdmainutils build-essential cmake doxygen \
+   git libboost-all-dev libreadline-dev libssl-dev libtool ncurses-dev pbzip2 pkg-config \
+   python3-dev python3-jinja2 python3-pip libbz2-dev libsnappy-dev\
+   wget curl screen pv virtualenv nano xz-utils
+mkdir -p src
+cd src
+git clone https://github.com/steemit/steem
+cd steem
+git checkout <20180824-testnet OR develop OR a more current branch>
+git submodule update --init --recursive
+mkdir -p build
+cd build
+cmake \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DBUILD_STEEM_TESTNET=ON \
+   -DENABLE_SMT_SUPPORT=ON \
+   -DLOW_MEMORY_NODE=ON \
+   -DCHAINBASE_CHECK_LOCKING=ON \
+   -DCLEAR_VOTES=ON \
+   -DSKIP_BY_TX_ID=ON \
+   -DSTEEM_LINT_LEVEL=OFF \
+   ..
+make -j$(nproc) install
+cd
+mkdir -p testnet-data
+nano config.ini
+```
 
-*   ChainID: `46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32`
-*   Address prefix: `TST`
-*   API node: `https://testnet.steemitdev.com`
+### `config.ini`
 
-Anyone can join the Live testnet and start testing their node and applications, become a witness, and provide API (RPC) node for public use.
+```ini
+log-console-appender = {"appender":"stderr","stream":"std_error"}
+log-file-appender = {"appender":"p2p","file":"logs/p2p/p2p.log"}
+log-logger = {"name":"default","level":"info","appender":"stderr"}
+log-logger = {"name":"p2p","level":"warn","appender":"p2p"}
+
+backtrace = yes
+plugin = chain p2p webserver witness database_api network_broadcast_api block_api 
+
+shared-file-dir = "blockchain"
+shared-file-size = 12G
+p2p-endpoint = 0.0.0.0:2001
+webserver-http-endpoint = 0.0.0.0:8751
+webserver-ws-endpoint = 0.0.0.0:8752
+
+# testnet.steemitdev.com
+p2p-seed-node = testnet.steemitdev.com:2001
+```
+
+```bash
+steemd --data-dir=. --chain-id=46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32
+```
+
+Now let it sync, and you'll have a shiny new testnet seed node to play with.
+
+
 
 ## Custom Testnet
 
-In order to create a custom testnet, separate from the development one, we need to modify a few parameters mentioned in the previous section.
+In order to create a custom, isolated, testnet separate from the Steemit's we need to modify a few things mentioned in the previous section.
 
 In the file named `steem/libraries/protocol/include/steem/protocol/config.hpp`, we can see the first few lines dedicated to the Testnet section. The line starts with `#ifdef IS_TEST_NET`.
 
@@ -60,8 +111,9 @@ If you want to port some data from Steem main network you can use [Tinman](https
 
 #### Custom live testnet
 
+An example of a custom testnet run by Steem community member [@almost-digital](https://steemit.com/@almost-digital). It doesn't have a snapshot of the main network
+
 *   ChainID: `79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673`
 *   Address prefix: `STX`
 *   API node: `https://testnet.steem.vc`
 
-The above testnet is powered by community member @almost-digital and doesn't have a snapshot of the main network.
