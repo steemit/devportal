@@ -11,9 +11,9 @@ This recipe will take you through the process of streaming blockchain transactio
 
 ## Intro
 
-There are two points from which Steem blockchain transactions can be streamed to give a "live" view of what's happening on the blockchain. The first is from the `head block` which is the most recent block created on the chain (every 3 seconds when a new block is created). The second, is from the `last irreversible block` which is the newest block that has been confirmed by a sufficient number of block producers so that it can no longer be modified. This is not a live view but it is normally not far behind the head block number.
+There are two points from which Steem blockchain transactions can be streamed to give a "live" view of what's happening on the blockchain. The first is from the `head block` which is the most recent block created on the chain (every 3 seconds when a new block is created). The second, is from the `last irreversible block` which is the newest block that has been confirmed by a sufficient number of block producers so that it can no longer be invalidated. This is not a live view but it is normally not far behind the head block number.
 
-There is already a [javascript tutorial](https://developers.steem.io/tutorials-javascript/stream_blockchain_transactions) on the [devportal](https://developers.steem.io/) on how to stream blockchain transactions. This recipe will go into further detail on operations on each block and more specifically the virtual operations that are executed with every new block. We will also assume that you have already run through the basic tutorials on the Steem blockchain and will focus more on the specific functions and outputs pertinent to this topic.
+There is already a [javascript tutorial](https://developers.steem.io/tutorials-javascript/stream_blockchain_transactions) on the [devportal](https://developers.steem.io/) describing how to stream blockchain transactions. This recipe will go into further detail on operations on each block and more specifically the virtual operations that are executed with every new block. We will also assume that you have already run through the basic tutorials on the Steem blockchain and will focus more on the specific functions and outputs pertinent to this topic.
 
 ## Steps
 
@@ -22,7 +22,7 @@ There is already a [javascript tutorial](https://developers.steem.io/tutorials-j
 
 #### 1. Blocks, transactions and operations <a name="BTO"></a>
 
-In order to stream a block and get the information as will be shown below we use the `blockchain api` in the `dsteem` library. The below method has an option parameter `mode` that defaults to `irreversible` but can be set to `latest` which would then return the `head blocks`. This means that both types of blocks can be streamed.
+In order to stream a block and get the information as will be shown below we use the `blockchain api` in the `dsteem` library. The below method has an option parameter `mode` that defaults to `irreversible` but can be set to `latest` which would then return the `head block`. This means that both types of blocks can be streamed.
 
 ```javascript
 stream = client.blockchain.getBlockStream();
