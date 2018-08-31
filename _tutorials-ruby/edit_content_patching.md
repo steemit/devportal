@@ -1,7 +1,7 @@
 ---
 title: 'RB: Edit Content Patching'
 position: 12
-description: 
+description: '---'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Edit Content Patching](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/12_edit_content_patching) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>

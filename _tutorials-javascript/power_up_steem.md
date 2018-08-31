@@ -1,10 +1,10 @@
 ---
 title: 'JS: Power Up Steem'
-position: 22
-description: In this tutorial we will learn how to power up Steem to account itself or another account using Steemconnect as well as with Clientside signing method
+position: 24
+description: "_Power up an account's Steem using either Steemconnect or a client-side signing._"
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Up Steem](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/22_power_up_steem) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Up Steem](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/24_power_up_steem) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

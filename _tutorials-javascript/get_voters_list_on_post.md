@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Voters List On Post'
 position: 6
-description: By the end of this tutorial you would know how to get voters list on any content
+description: '_By the end of this tutorial you would know how to get voters list on any content._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Voters List On Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/06_get_voters_list_on_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

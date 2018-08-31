@@ -1,7 +1,7 @@
 ---
 title: 'PY: Submit Post'
 position: 10
-description: By the end of this tutorial you should know how to submit a post to the Steem blockchain
+description: 'How to submit post on Steem blockchain using Python.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Submit Post](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/10_submit_post) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -9,11 +9,9 @@ layout: full
 
 
 
-This tutorial will explain and show you how to submit a new post to the `Steem` blockchain using the `commit` class found within the [steem-python](https://github.com/steemit/steem-python) library.
+In this tutorial will explain and show you how to submit a new post to the `Steem` blockchain using the `commit` class found within the [steem-python](https://github.com/steemit/steem-python) library.
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 The Steem python library has a built-in function to transmit transactions to the blockchain. We are using the `post` method found within the `commit` class in the the library. It should be noted that comments and new post are both treated as `commit.post` operation with the only difference being that a comment/reply has got an additional parameter containing the `parent post/comment`. There are 11 parameters within the `post` method:
 
@@ -110,11 +108,11 @@ You can also check on the [testportal](http://condenser.steem.vc/blog/@cdemo) fo
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 2.  `cd tutorials/10_submit_post`
 3.  `pip install -r requirements.txt`
 4.  `python index.py`
 5.  After a few moments, you should see a prompt for input in terminal screen.
-
 
 ---

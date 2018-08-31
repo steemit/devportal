@@ -1,10 +1,10 @@
 ---
 title: 'JS: Delegate Power'
-position: 25
-description: In this tutorial we will learn how to delegate power to other users using Steemconnect as well as with Clientside signing method
+position: 27
+description: '_Delegate power to other users using Steemconnect or Client-side signing._'
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Delegate Power](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/25_delegate_power) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Delegate Power](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/27_delegate_power) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

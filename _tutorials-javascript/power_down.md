@@ -1,10 +1,10 @@
 ---
 title: 'JS: Power Down'
-position: 23
-description: In this tutorial we will show how to perform a power down on all or part of an accounts VESTS using Steemconnect as well as show a clientside signing method
+position: 25
+description: "_Perform a power down on all or part of an account's VESTS using either Steemconnect or client-side signing._"
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Down](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/23_power_down) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Down](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/25_power_down) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

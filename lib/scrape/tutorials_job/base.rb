@@ -86,7 +86,7 @@ module Scrape
           next if line =~ /^# /
           
           if description.nil? && !line.strip.empty?
-            description ||= line.gsub(/[^a-zA-Z0-9 ]/, '').strip
+            description ||= "'#{line.strip}'"
             
             next
           end

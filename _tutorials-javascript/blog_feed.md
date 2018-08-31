@@ -1,7 +1,7 @@
 ---
 title: 'JS: Blog Feed'
 position: 1
-description: By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem
+description: '_By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Blog Feed](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
