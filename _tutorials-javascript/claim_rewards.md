@@ -1,10 +1,10 @@
 ---
 title: 'JS: Claim Rewards'
-position: 21
-description: In this tutorial we will learn how to claim rewards from unclaimed reward balance using Steemconnect as well as client signing method
+position: 23
+description: '_Learn how to claim rewards from unclaimed reward balance using Steemconnect as well as client signing method._'
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Claim Rewards](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/21_claim_rewards) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Claim Rewards](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/23_claim_rewards) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Account Replies'
 position: 8
-description: By the end of this tutorial you would know how to get replies made on particular accounts content
+description: 'List of replies received by account to its content, post, comment.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Replies](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/08_get_account_replies) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -9,11 +9,9 @@ layout: full
 
 
 
-This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch a list of comments made on a specific accounts content.
+Tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch a list of comments made on a specific accounts content.
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 In Steem there are built-in functions in the official library `steem-python` that we are going to use throughout all Python tutorials. For this one we are using the `get_replies` function.
 
@@ -92,6 +90,7 @@ Next, we will print the details obtained from the function. Because we only want
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 1.  `cd tutorials/08_get_account_replies`
 1.  `pip install -r requirements.txt`

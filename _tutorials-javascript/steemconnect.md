@@ -1,7 +1,7 @@
 ---
 title: 'JS: Steemconnect'
 position: 2
-description: Understand the basics of using Steemconnect with your Steem application
+description: '_Understand the basics of using Steemconnect with your Steem application._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Steemconnect](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

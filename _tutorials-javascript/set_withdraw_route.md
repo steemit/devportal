@@ -1,10 +1,10 @@
 ---
 title: 'JS: Set Withdraw Route'
-position: 26
-description: This tutorial is about setting routes to your power downs or withdraws
+position: 28
+description: "_Set routes to an account's power downs or withdraws._"
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Set Withdraw Route](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_set_withdraw_route) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Set Withdraw Route](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/28_set_withdraw_route) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

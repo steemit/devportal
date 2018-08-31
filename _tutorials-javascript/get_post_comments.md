@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Post Comments'
 position: 7
-description: By the end of this tutorial you would know how to get comments made by others on any post
+description: '_By the end of this tutorial you would know how to get comments made by others on any post._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Comments](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/07_get_post_comments) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

@@ -1,10 +1,10 @@
 ---
 title: 'JS: Create Account'
-position: 24
-description: In this tutorial we will create Steem account using Steemconnect as well as with Clientside signing method
+position: 26
+description: '_Create Steem account using Steemconnect as well as with client-side signing._'
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Create Account](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/24_create_account) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Create Account](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 

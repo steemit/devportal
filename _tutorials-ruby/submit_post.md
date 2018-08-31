@@ -1,7 +1,7 @@
 ---
 title: 'RB: Submit Post'
 position: 10
-description: This example will broadcast a new post to the blockchain using the values provided  To create a post in ruby we will use a RadiatorTransaction containing a comment operation which is how all content is stored internally
+description: 'This example will broadcast a new post to the blockchain using the values provided.  To create a post in `ruby`, we will use a `Radiator::Transaction` containing a `comment` operation, which is how all content is stored internally.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Submit Post](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/10_submit_post) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>

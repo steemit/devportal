@@ -1,7 +1,7 @@
 ---
 title: 'JS: Submit Post'
 position: 10
-description: By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcastcomment function
+description: '_By the end of this tutorial you should know how to prepare comments for Steem and then submit using the broadcast.comment function._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Submit Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/10_submit_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

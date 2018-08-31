@@ -1,7 +1,7 @@
 ---
 title: 'RB: Search Accounts'
 position: 15
-description: Performing a search on account by names starting with a given input
+description: 'Performing a search on account by names starting with a given input.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Search Accounts](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/15_search_accounts) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>

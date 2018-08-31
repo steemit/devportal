@@ -1,7 +1,7 @@
 ---
 title: 'JS: Stream Blockchain Transactions'
 position: 13
-description: By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain
+description: '_By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Stream Blockchain Transactions](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/13_stream_blockchain_transactions) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

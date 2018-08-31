@@ -1,7 +1,7 @@
 ---
 title: 'PY: Using Keys Securely'
 position: 12
-description: In this tutorial we will learn how SteemPython library handles transaction signing with users key and how to securely manage your private keys
+description: "Learn how Steem-Python library handles transaction signing with user's key and how to securely manage your private keys."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Using Keys Securely](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/12_using_keys_securely) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -10,8 +10,6 @@ layout: full
 
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 Steem python library has 2 ways to handle your keys. One is from source code, another one is through command line interface called `steempy`. `steempy` cli is installed by default when you install steem-python library on your machine.
 
@@ -89,6 +87,7 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 1.  `cd tutorials/12_using_keys_securely`
 1.  `pip install -r requirements.txt`

@@ -1,7 +1,7 @@
 ---
 title: 'RB: Blog Feed'
 position: 1
-description: This example will output blog details to the terminal for the author specified limited to five results
+description: 'This example will output blog details to the terminal for the author specified, limited to five results.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Blog Feed](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/01_blog_feed) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>
