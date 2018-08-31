@@ -8,7 +8,7 @@ Steem blockchain software is written in C++ and in order to modify the source co
 
 ## Steemit's Testnet
 
-Steemit maintains a live testnet you can connect. In the near future, we expect the chain id to update with every code change. The address prefix may also evolve. To get the current chain id & prefix for any steem test net you can use the [get_config](https://developers.steem.io/apidefinitions/#condenser_api.get_config) api call (there is a curl example included). Be sure to point it at an api node on the testnet for which you want information!
+Steemit maintains a live testnet to which you can connect. In the near future, we expect the chain id to update with every code change. To get the current chain id for any HF20+ Steem testnet you can use the [database_api.get_version](/apidefinitions/#database_api.get_version) api call (curl example included for your convenience). Be sure to point it at an api node on the testnet for which you want information!
 
 At the time of this writing, the connection information for Steemit's testnet is as follows: 
  
