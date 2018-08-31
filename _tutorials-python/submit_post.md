@@ -115,5 +115,4 @@ You can also check on the [testportal](http://condenser.steem.vc/blog/@cdemo) fo
 4.  `python index.py`
 5.  After a few moments, you should see a prompt for input in terminal screen.
 
-
 ---

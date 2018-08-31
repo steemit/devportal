@@ -94,5 +94,4 @@ That's it!
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
 
-
 ---

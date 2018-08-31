@@ -134,4 +134,5 @@ A simple confirmation of the chosen action is printed on the screen.
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see a prompt for input in terminal screen.
+
 ---

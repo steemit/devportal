@@ -96,4 +96,5 @@ Next, we will print the details obtained from the function. Because we only want
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
 ---
