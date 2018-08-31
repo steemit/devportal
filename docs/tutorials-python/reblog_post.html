@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>PY: Reblog Post - Steem Developer</title>
+<meta property="og:title" content="PY: Reblog Post" />
+<meta name="description" content="We will show how to reblog or resteem post using Python, with username and posting private key." />
+<meta property="og:description" content="We will show how to reblog or resteem post using Python, with username and posting private key." />
+<link rel="canonical" href="https://developer.steem.io/tutorials-python/reblog_post" />
+<meta property="og:url" content="https://developer.steem.io/tutorials-python/reblog_post" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-31T09:53:03-05:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "PY: Reblog Post",
+"datePublished": "2018-08-31T09:53:03-05:00",
+"description": "We will show how to reblog or resteem post using Python, with username and posting private key.",
+"url": "https://developer.steem.io/tutorials-python/reblog_post"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-python-reblog-post" class="row tutorials-python-reblog-post">
+	<h3>
+		<a id="tutorials-python-reblog-post">
+			PY: Reblog Post
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>We will show how to reblog or resteem post using Python, with username and posting private key.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/11_reblog_post">Reblog Post</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-py">PY tutorials repository</a>.</span>
+<br /></p>
+
+<p>Tutorial will also explain and show you how to sign/broadcast transaction on <strong>Steem</strong> blockchain using the <a href="https://github.com/steemit/steem-python">steem-python</a> library.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Steem python library has built-in function to commit transaction and broadcast it to the network.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#app-setup"><strong>App setup</strong></a> - Library install and import</li>
+  <li><a href="#post-list"><strong>Post list</strong></a> - List of posts to select from trending filter</li>
+  <li><a href="#credentials-list"><strong>Enter user credentials</strong></a> - Enter user credentails to sign transaction</li>
+</ol>
+
+<h4 id="1-app-setup-">1. App setup <a name="app-setup"></a></h4>
+
+<p>In this tutorial we use 3 packages, <code class="highlighter-rouge">pick</code> - helps us to select filter interactively. <code class="highlighter-rouge">steem</code> - steem-python library, interaction with Blockchain. <code class="highlighter-rouge">pprint</code> - print results in better format.</p>
+
+<p>First we import all three library and initialize Steem class</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">pprint</span>
+    <span class="kn">from</span> <span class="nn">pick</span> <span class="kn">import</span> <span class="n">pick</span>
+    <span class="c"># initialize Steem class</span>
+    <span class="kn">from</span> <span class="nn">steem</span> <span class="kn">import</span> <span class="n">Steem</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h4 id="2-post-list-">2. Post list <a name="post-list"></a></h4>
+
+<p>Next we will fetch and make list of accounts and setup <code class="highlighter-rouge">pick</code> properly.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">query</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s">"limit"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="c">#number of posts</span>
+      <span class="s">"tag"</span><span class="p">:</span><span class="s">""</span> <span class="c">#tag of posts</span>
+    <span class="p">}</span>
+    <span class="c"># post list from trending post list</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get_discussions_by_trending</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="s">'Please choose post to reblog: '</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c"># post list</span>
+    <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">posts</span><span class="p">:</span>
+      <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'@'</span><span class="o">+</span><span class="n">post</span><span class="p">[</span><span class="s">"author"</span><span class="p">]</span><span class="o">+</span><span class="s">'/'</span><span class="o">+</span><span class="n">post</span><span class="p">[</span><span class="s">"permlink"</span><span class="p">])</span>
+
+</code></pre>
+</div>
+
+<p>This will show us list of posts to select in terminal/command prompt. And after selection we will get formatted post as an <code class="highlighter-rouge">option</code> variable.</p>
+
+<h4 id="3-enter-user-credentials-">3. Enter user credentials <a name="credentials-list"></a></h4>
+
+<p>Next in order to sign transaction, application asks for username and posting private key to sign transaction and broadcast it.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="c"># get index and selected post</span>
+  <span class="n">option</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pick</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+  <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="s">"You selected: "</span><span class="o">+</span><span class="n">option</span><span class="p">)</span>
+
+  <span class="n">account</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your username? "</span><span class="p">)</span>
+  <span class="n">wif</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your Posting private key? "</span><span class="p">)</span>
+
+  <span class="c"># commit or build transaction</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">Commit</span><span class="p">(</span><span class="n">steem</span><span class="o">=</span><span class="n">Steem</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="n">wif</span><span class="p">]))</span>
+
+  <span class="c"># broadcast transaction</span>
+  <span class="n">c</span><span class="o">.</span><span class="n">resteem</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">account</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>That’s it, if transaction is successful you shouldn’t see any error messages, otherwise you will be notified.</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li><a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements">review dev requirements</a></li>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/11_reblog_post</code></li>
+  <li><code class="highlighter-rouge">pip install -r requirements.txt</code></li>
+  <li><code class="highlighter-rouge">python index.py</code></li>
+  <li>After a few moments, you should see output in terminal/command prompt screen.</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

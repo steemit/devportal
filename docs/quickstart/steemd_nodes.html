@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>steemd Nodes - Steem Developer</title>
+<meta property="og:title" content="steemd Nodes" />
+<meta name="description" content="Applications that interface directly with the Steem blockchain will need to connect to a steemd node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node." />
+<meta property="og:description" content="Applications that interface directly with the Steem blockchain will need to connect to a steemd node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node." />
+<link rel="canonical" href="https://developer.steem.io/quickstart/steemd_nodes" />
+<meta property="og:url" content="https://developer.steem.io/quickstart/steemd_nodes" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-31T09:53:03-05:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "steemd Nodes",
+"datePublished": "2018-08-31T09:53:03-05:00",
+"description": "Applications that interface directly with the Steem blockchain will need to connect to a steemd node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.",
+"url": "https://developer.steem.io/quickstart/steemd_nodes"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<p>Applications that interface directly with the Steem blockchain will need to connect to a <code class="highlighter-rouge">steemd</code> node. Developers may choose to use one of the public API nodes that are available, or run their own instance of a node.</p>
+
+<h3 id="public-nodes">Public Nodes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>api.steemit.com</td>
+      <td>@steemit</td>
+    </tr>
+    <tr>
+      <td>api.steemitdev.com</td>
+      <td>@steemit</td>
+    </tr>
+    <tr>
+      <td>api.steemitstage.com</td>
+      <td>@steemit</td>
+    </tr>
+    <tr>
+      <td>api.steem.house</td>
+      <td>@gtg</td>
+    </tr>
+    <tr>
+      <td>appbasetest.timcliff.com</td>
+      <td>@timcliff</td>
+    </tr>
+    <tr>
+      <td>appbase.buildteam.io</td>
+      <td>@themarkymark</td>
+    </tr>
+    <tr>
+      <td>gtg.steem.house:8090</td>
+      <td>@gtg</td>
+    </tr>
+    <tr>
+      <td>rpc.buildteam.io</td>
+      <td>@themarkymark</td>
+    </tr>
+    <tr>
+      <td>rpc.curiesteem.com</td>
+      <td>@curie</td>
+    </tr>
+    <tr>
+      <td>rpc.steemliberator.com</td>
+      <td>@netuoso</td>
+    </tr>
+    <tr>
+      <td>rpc.steemviz.com</td>
+      <td>@ausbitbank</td>
+    </tr>
+    <tr>
+      <td>steemd.minnowsupportproject.org</td>
+      <td>@followbtcnews</td>
+    </tr>
+    <tr>
+      <td>steemd.privex.io</td>
+      <td>@privex</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="private-nodes">Private Nodes</h3>
+
+<p>The simplest way to get started is by deploying a pre-built dockerized container.</p>
+
+<h5 id="dockerized-p2p-node">Dockerized p2p Node</h5>
+
+<p><em>To run a p2p node (ca. 2GB of memory is required at the moment):</em></p>
+
+<h5 id="dockerized-full-node">Dockerized Full Node</h5>
+
+<p><em>to run a node with all the data (e.g. for supporting a content website) that uses ca. 14GB of memory and growing:</em></p>
+
+<h3 id="syncing-blockchain">Syncing blockchain</h3>
+
+<p>Normally syncing blockchain starts from very first, <code class="highlighter-rouge">0</code> genesis block. It might take long time to catch up with live network. Because it connectes to various p2p nodes in the Steem network and requests blocks from 0 to head block. It stores blocks in block log file and builds up the current state in the shared memory file. But there is a way to bootstrap syncing by using trusted <code class="highlighter-rouge">block_log</code> file. The block log is an external append only log of the blocks. It contains blocks that are only added to the log after they are irreversible because the log is append only.</p>
+
+<p>Trusted block log file helps to download blocks faster. Steemit Inc, provides public block log file which can be downloaded from <a href="https://s3.amazonaws.com/steemit-dev-blockchainstate/block_log-latest">here</a> and there is also option from community witness <code class="highlighter-rouge">@gtg</code> which can be downloaded from <a href="https://gtg.steem.house/get/blockchain/">here</a>.</p>
+
+<p>Both <code class="highlighter-rouge">block_log</code> files updated periodically, as of May 2018 uncompressed <code class="highlighter-rouge">block_log</code> file size ~110 GB. Docker container on <code class="highlighter-rouge">stable</code> branch of Steem source code has option to use <code class="highlighter-rouge">USE_PUBLIC_BLOCKLOG=1</code> to download latest block log and start Steem node with replay.</p>
+
+<p>Block log should be place in <code class="highlighter-rouge">blockchain</code> directory below <code class="highlighter-rouge">data_dir</code> and node should be started with <code class="highlighter-rouge">--replay-blockchain</code> to ensure block log is valid and continue to sync from the point of snapshot. Replay uses the downloaded block log file to build up the shared memory file up to the highest block stored in that snapshot and then continues with sync up to the head block.</p>
+
+<p>Replay helps to sync blockchain in much faster rate, but as blockchain grows in size replay might also take some time to verify blocks.</p>
+
+<p>There is another <a href="https://github.com/steemit/steem/issues/2391">trick which might help</a> with faster sync/replay on smaller equipped servers:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>while :
+do
+   dd if=blockchain/block_log iflag=nocache count=0
+   sleep 60
+done
+</code></pre>
+</div>
+
+<p>Above bash script drops <code class="highlighter-rouge">block_log</code> from the OS cache, leaving more memory free for backing the blockchain database. It might also help while running live, but measurement would be needed to determine this.</p>
+
+<h5 id="few-other-tricks-that-might-help">Few other tricks that might help:</h5>
+
+<p>For Linux users, virtual memory writes dirty pages of the shared file out to disk more often than is optimal which results in steemd being slowed down by redundant IO operations. These settings are recommended to optimize reindex time.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>echo    75 | sudo tee /proc/sys/vm/dirty_background_ratio
+echo  1000 | sudo tee /proc/sys/vm/dirty_expire_centisecs
+echo    80 | sudo tee /proc/sys/vm/dirty_ratio
+echo 30000 | sudo tee /proc/sys/vm/dirty_writeback_centisecs
+</code></pre>
+</div>
+
+<p>Another settings that can be changed in <code class="highlighter-rouge">config.ini</code> is <code class="highlighter-rouge">flush</code> - it is to specify a target number of blocks to process before flushing the chain database to disk. This is needed on Linux machines and a value of 100000 is recommended. It is not needed on OS X, but can be used if desired.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run <span class="se">\</span>
+    -d -p 2001:2001 -p 8090:8090 --name steemd-default <span class="se">\</span>
+    steemit/steem
+
+docker logs -f steemd-default  <span class="c"># follow along</span>
+</code></pre>
+</div>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run <span class="se">\</span>
+    --env <span class="nv">USE_WAY_TOO_MUCH_RAM</span><span class="o">=</span>1 <span class="se">\</span>
+    -d -p 2001:2001 -p 8090:8090 --name steemd-full <span class="se">\</span>
+    steemit/steem
+
+docker logs -f steemd-full
+</code></pre>
+</div>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
