@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Account Replies'
 position: 8
-description: By the end of this tutorial you would know how to get replies made on particular accounts content
+description: "_By the end of this tutorial you would know how to get replies made on particular account's content._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Replies](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/08_get_account_replies) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

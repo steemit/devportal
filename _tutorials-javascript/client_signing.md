@@ -1,7 +1,7 @@
 ---
 title: 'JS: Client Signing'
 position: 3
-description: By the end of this tutorial you would know how to sign verify broadcast transactions locally on Steem
+description: '_By the end of this tutorial you would know how to sign, verify broadcast transactions locally on Steem._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Client Signing](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/03_client_signing) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

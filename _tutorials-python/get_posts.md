@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Posts'
 position: 1
-description: This tutorial pulls a list of the posts from the blockchain with selected filter and tag then displays output
+description: 'Tutorial pulls a list of the posts from the blockchain with selected filter and tag then displays output.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Posts](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/01_get_posts) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -13,9 +13,7 @@ This tutorial will explain and show you how to access the **Steem** blockchain u
 
 ## Intro
 
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
-
-In Steem there are built-in filters `trending`, `hot`, `created`, `active`, `promoted` etc. which helps us to get list of posts. `get_discussions_by_trending(query)`, `get_discussions_by_hot(query)`, `get_discussions_by_created(query)`, etc. functions are built-in in official library `steem-python` that we are going to use throughout all Python tutorials.
+In Steem there are built-in filters `trending`, `hot`, `created`, `active`, `promoted` etc. which helps us to get list of posts. `get_discussions_by_trending(query)`, `get_discussions_by_hot(query)`, `get_discussions_by_created(query)`, etc. functions are built-in in official library `steem-python` that we are going to use throughout all Python tutorials. 
 
 
 ## Steps
@@ -169,6 +167,7 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 1.  `cd tutorials/01_get_posts`
 1.  `pip install -r requirements.txt`

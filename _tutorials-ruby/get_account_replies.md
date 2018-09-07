@@ -1,7 +1,7 @@
 ---
 title: 'RB: Get Account Replies'
 position: 8
-description: Fetching the replies written to a particular account
+description: 'Fetching the replies written to a particular account.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Replies](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/08_get_account_replies) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>

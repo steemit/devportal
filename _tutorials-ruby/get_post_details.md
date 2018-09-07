@@ -1,7 +1,7 @@
 ---
 title: 'RB: Get Post Details'
 position: 5
-description: Understand and use the most common fields of the requested content
+description: 'Understand and use the most common fields of the requested content.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Details](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/05_get_post_details) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>

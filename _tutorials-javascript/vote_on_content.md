@@ -1,7 +1,7 @@
 ---
 title: 'JS: Vote On Content'
 position: 17
-description: Create a weighted up or down vote on a comment or post and send it to Steem
+description: '_Create a weighted up or down vote on a comment/post._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Vote On Content](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/17_vote_on_content) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -25,42 +25,43 @@ comment. Voting is done on either of the two based on the author and permlink of
 required for the voting operation:
 
 1.  _Username_ - The username of the account making the vote (the voter)
-2.  _Privatekey_ - This is the private posting key of the voter
-3.  _Author_ - The author of the comment/post that the voter is voting on
-4.  _Permlink_ - The unique identifier of the comment/post of the author
-5.  _Weight_ - This is the weight that the vote will carry. The value ranges from -10000 (100% flag) to 10000 (100% upvote)
+1.  _Privatekey_ - This is the private posting key of the voter
+1.  _Author_ - The author of the comment/post that the voter is voting on
+1.  _Permlink_ - The unique identifier of the comment/post of the author
+1.  _Weight_ - This is the weight that the vote will carry. The value ranges from -10000 (100% flag) to 10000 (100% upvote)
 
 Due to the low amount of posts on the testnet we added an additional step to create a post before we vote on it. The values are auto loaded in the respective input boxes. A full tutorial on how to create a new post can be found on the [Steem Devportal](https://developers.steem.io/tutorials-javascript/submit_post)
 
 ## Steps
 
 1.  [**Configure connection**](#connection) Configuration of `dsteem` to communicate with a Steem blockchain
-2.  [**Create new post**](#createpost) Creating a new post on the testnet
-3.  [**Input variables**](#input) Collecting the required inputs via an HTML UI
-4.  [**Broadcast**](#broadcast) Creating an object and broadcasting the vote to the blockchain
+1.  [**Create new post**](#createpost) Creating a new post on the testnet
+1.  [**Input variables**](#input) Collecting the required inputs via an HTML UI
+1.  [**Broadcast**](#broadcast) Creating an object and broadcasting the vote to the blockchain
 
 #### 1. Configure connection<a name="connection"></a>
 
 As usual, we have a `public/app.js` file which holds the Javascript segment of the tutorial. In the first few lines we define the configured library and packages:
 
 ```javascript
-const dsteem = require('dsteem');
+import { Client, PrivateKey } from 'dsteem';
+import { Testnet as NetConfig } from '../../configuration'; //A Steem Testnet. Replace 'Testnet' with 'Mainnet' to connect to the main Steem blockchain.
 
-const addressPrefix = 'STX';
-const chainId =
-    '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673';
-const apiUrl = 'https://testnet.steem.vc';
+let opts = { ...NetConfig.net };
 
-const opts = {
-    addressPrefix,
-    chainId,
-};
-
-const client = new dsteem.Client('https://testnet.steem.vc', opts);
+//connect to a steem node, testnet in this case
+const client = new Client(NetConfig.url, opts);
 ```
 
-Above, we have `dsteem` pointing to the test network with the proper chainId, addressPrefix, and endpoint.  
-Because this tutorial modifies the blockchain, we will use a testnet and a predefined account to demonstrate voting.
+Above, we have `dsteem` pointing to the test network with the proper chainId, addressPrefix, and endpoint by importing from the `configuration.js` file. Because this tutorial is interactive, we will not publish test content to the main network. Instead, we're using the testnet and a predefined account which is imported once the application loads, to demonstrate voting on content.
+
+```javascript
+window.onload = () => {
+    const account = NetConfig.accounts[0];
+    document.getElementById('username').value = account.address;
+    document.getElementById('postingKey').value = account.privPosting;
+};
+```
 
 #### 2. Create new post<a name="createpost"></a>
 
@@ -219,9 +220,9 @@ More information on how to use the `broadcast` operation and options surrounding
 ### To run this tutorial
 
 1.  clone this repo
-2.  `cd tutorials/17_vote_on_content`
-3.  `npm i`
-4.  `npm run dev-server` or `npm run start`
-5.  After a few moments, the server should be running at http://localhost:3000/
+1.  `cd tutorials/17_vote_on_content`
+1.  `npm i`
+1.  `npm run dev-server` or `npm run start`
+1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
 
 ---

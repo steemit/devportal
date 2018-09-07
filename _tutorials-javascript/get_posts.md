@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Posts'
 position: 4
-description: Query for the most recent posts having a specific tag using a Steem filter
+description: 'Query for the most recent posts having a specific tag, using a Steem filter'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Posts](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/04_get_posts) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
