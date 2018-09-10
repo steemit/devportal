@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Account Comments'
 position: 9
-description: This tutorial pulls a list of comments made by selected account from the blockchain
+description: 'Fetch list of comments made by account on posts or comments.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Comments](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/09_get_account_comments) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -9,11 +9,9 @@ layout: full
 
 
 
-This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts to randomize account list and get replies of selected account.
+In this tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts to randomize account list and get replies of selected account.
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 Steem python library has built-in function to get comments list made by specific account. Since we don't have predefined account list, we will fetch newly created posts and show their authors for selection and give option to choose one account to get its comments. `get_discussions_by_comments` function fetches list of comments made by account. Note that `get_discussions_by_created` filter is used for fetching 5 posts and after selection of its author tutorial uses `author` of the post to fetch that account's comments. 
 
@@ -204,6 +202,7 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 1.  `cd tutorials/09_get_account_comments`
 1.  `pip install -r requirements.txt`

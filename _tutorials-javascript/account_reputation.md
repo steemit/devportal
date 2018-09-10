@@ -1,7 +1,7 @@
 ---
 title: 'JS: Account Reputation'
 position: 20
-description: In this tutorial we will show how to interpret account reputation
+description: "_Learn how to interpret account reputation._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Account Reputation](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/20_account_reputation) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

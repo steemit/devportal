@@ -1,10 +1,10 @@
 ---
 title: 'JS: Transfer Steem And Sbd'
-position: 20
-description: By the end of this tutorial you should know how to transfer both STEEM and SBD from one account to another
+position: 21
+description: '_Transfer both STEEM and SBD from one account to another._'
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Transfer Steem And Sbd](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/20_transfer_steem_and_sbd) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Transfer Steem And Sbd](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/21_transfer_steem_and_sbd) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
 <br>
 
 
@@ -17,12 +17,12 @@ There is also an alternative method to transfer from one account to another usin
 
 We are using the `broadcast.transfer` function provided by the `dsteem` library to send the transaction through to the network. In order to do the transfer, two accounts are required. One the sender and the other the recipient. You also can't transfer from and to the same account, which is why two accounts have been provided for this tutorial. There are 6 parameters required for the transfer operation:
 
- 1. _Username_ - The username of the account making the transfer (`from` account)
- 2. _Privatekey_ - This is the private `active` key of the sender
- 3. _Recipient_ - The account that is receiving the STEEM or SBD (`to` account)
- 4. _Memo_ - This is a text field which can be used for a comment on the transfer or it can be left empty
- 5. _Amount_ - This is the amount of STEEM to transfer. This has to be a positive value with 3 decimals in order for the transaction to be completed
- 6. _Type_ - This is the currency of the transfer, STEEM or SBD. This value has to be written ALL CAPS in order for the transaction to be completed
+1.  _Username_ - The username of the account making the transfer (`from` account)
+2.  _Privatekey_ - This is the private `active` key of the sender
+3.  _Recipient_ - The account that is receiving the STEEM or SBD (`to` account)
+4.  _Memo_ - This is a text field which can be used for a comment on the transfer or it can be left empty
+5.  _Amount_ - This is the amount of STEEM to transfer. This has to be a positive value with 3 decimals in order for the transaction to be completed
+6.  _Type_ - This is the currency of the transfer, STEEM or SBD. This value has to be written ALL CAPS in order for the transaction to be completed
 
 It is noteworthy that Steem Power (VESTS) cannot be transferred with this operation.
 
@@ -82,13 +82,13 @@ In the `broadcast.transfer` operation, the `amount` parameter is a combination o
 
 ```javascript
 const transfer = quantity.concat(' ', type);
-    
-    //create transfer object
-    const transf = new Object();
-    transf.from = username;
-    transf.to = recipient;
-    transf.amount = transfer;
-    transf.memo = comments;
+
+//create transfer object
+const transf = new Object();
+transf.from = username;
+transf.to = recipient;
+transf.amount = transfer;
+transf.memo = comments;
 ```
 
 #### 4. Broadcast<a name="broadcast"></a>
@@ -97,35 +97,35 @@ We can complete the `broadcast` operation using the created object and the priva
 
 ```javascript
 client.broadcast.transfer(transf, privateKey).then(
-        function(result) {
-            console.log(
-                'included in block: ' + result.block_num,
-                'expired: ' + result.expired
-            );
-            document.getElementById('transferResultContainer').style.display =
-                'flex';
-            document.getElementById('transferResult').className =
-                'form-control-plaintext alert alert-success';
-            document.getElementById('transferResult').innerHTML = 'Success';
-        },
-        function(error) {
-            console.error(error);
-            document.getElementById('transferResultContainer').style.display =
-                'flex';
-            document.getElementById('transferResult').className =
-                'form-control-plaintext alert alert-danger';
-            document.getElementById('transferResult').innerHTML =
-                error.jse_shortmsg;
-        }
-    );
+    function(result) {
+        console.log(
+            'included in block: ' + result.block_num,
+            'expired: ' + result.expired
+        );
+        document.getElementById('transferResultContainer').style.display =
+            'flex';
+        document.getElementById('transferResult').className =
+            'form-control-plaintext alert alert-success';
+        document.getElementById('transferResult').innerHTML = 'Success';
+    },
+    function(error) {
+        console.error(error);
+        document.getElementById('transferResultContainer').style.display =
+            'flex';
+        document.getElementById('transferResult').className =
+            'form-control-plaintext alert alert-danger';
+        document.getElementById('transferResult').innerHTML =
+            error.jse_shortmsg;
+    }
+);
 ```
 
 ### To run this tutorial
 
- 1. clone this repo
- 2. `cd tutorials/20_transfer_STEEM_and_SBD`
- 3. `npm i`
- 4. `npm run dev-server` or `npm run start`
- 5. After a few moments, the server should be running at http://localhost:3000/
+1.  clone this repo
+2.  `cd tutorials/20_transfer_STEEM_and_SBD`
+3.  `npm i`
+4.  `npm run dev-server` or `npm run start`
+5.  After a few moments, the server should be running at http://localhost:3000/
 
 ---

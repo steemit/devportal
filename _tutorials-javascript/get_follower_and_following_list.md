@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Follower And Following List'
 position: 19
-description: By the end of this tutorial you should know how to create a list of followers and users that you are following
+description: '_Get the followers of a user/author & the authors that user is following._'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Follower And Following List](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/19_get_follower_and_following_list) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -15,10 +15,10 @@ This tutorial will take you through the process of calling both the `follower` a
 
 We are using the `call` operation provided by the `dsteem` library to pull the follow information for a specified user account. There are 4 variables required to execute this operation:
 
-1. _username_ - The specific user for which the follower(ing) list will be retrieved.
-2. _startFollower(ing)_ - The starting letter(s) or name for the search query.
-3. _followType_ - This value is set to `blog` and includes all users following or being followed by the `user`.
-4. _limit_ - The maximum number of lines to be returned by the query.
+1.  _username_ - The specific user for which the follower(ing) list will be retrieved.
+2.  _startFollower(ing)_ - The starting letter(s) or name for the search query.
+3.  _followType_ - This value is set to `blog` and includes all users following or being followed by the `user`.
+4.  _limit_ - The maximum number of lines to be returned by the query.
 
 A simple HTML interface is used to capture the required information after which the function is executed.
 
@@ -58,7 +58,7 @@ The two queries are very similar and run from two different functions activated 
 window.submitFollower = async () => {
     //clear list
     document.getElementById('followList').innerHTML = '';
-    
+
     //get user name
     const username = document.getElementById('username').value;
     //get starting letters / word
@@ -98,7 +98,7 @@ A list of followers or users being followed is called from the database with the
     document.getElementById('followResultContainer').style.display = 'flex';
     document.getElementById('followResult').className = 'form-control-plaintext alert alert-success';
     document.getElementById('followResult').innerHTML = 'Following';
-  
+
 ```
 
 #### 4. Display<a name="display"></a>
@@ -106,19 +106,19 @@ A list of followers or users being followed is called from the database with the
 The result returned from the query is an array of objects. The follower(ing) value from that array is displayed on both the UI and the console via a simple `forEach` array method.
 
 ```javascript
-    followlist.forEach((newObj) => {
-        name = newObj.follower;
-        document.getElementById('followList').innerHTML += name + '<br>';
-        console.log(name);
-    });
+followlist.forEach(newObj => {
+    name = newObj.follower;
+    document.getElementById('followList').innerHTML += name + '<br>';
+    console.log(name);
+});
 ```
 
 ### To run this tutorial
 
- 1. clone this repo
- 2. `cd tutorials/19_get_follower_and_following_list`
- 3. `npm i`
- 4. `npm run dev-server` or `npm run start`
- 5. After a few moments, the server should be running at http://localhost:3000/
+1.  clone this repo
+2.  `cd tutorials/19_get_follower_and_following_list`
+3.  `npm i`
+4.  `npm run dev-server` or `npm run start`
+5.  After a few moments, the server should be running at http://localhost:3000/
 
 ---

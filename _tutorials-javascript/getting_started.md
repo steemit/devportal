@@ -1,7 +1,7 @@
 ---
 title: 'JS: Getting Started'
 position: 0
-description: Prepare your development environment to use Javascript with the Steem blockchain
+description: 'Prepare your development environment to use Javascript with the Steem blockchain.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Getting Started](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/00_getting_started) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>

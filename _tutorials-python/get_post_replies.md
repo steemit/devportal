@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Post Replies'
 position: 4
-description: This tutorial pulls a list of replies on selected post from the blockchain
+description: 'Fetch comments made on each content or post using Python.'
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Replies](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/04_get_post_replies) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -12,8 +12,6 @@ layout: full
 This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts and get replies info on selected post.
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 Steem python library has built-in function to get active voters information if post with author and permlink as an argument. Since we don't have predefined post or author/permlink. We will fetch post list from previous tutorial and give option to choose one post to get its active voters. `get_content_replies` function fetches list of replies on content. Note that `get_discussions_by_hot` filter is used for fetching 5 posts and after selection of post tutorial uses `author` and `permlink` of the post to fetch replies. 
 
@@ -188,6 +186,7 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
 1.  clone this repo
 1.  `cd tutorials/04_get_post_replies`
 1.  `pip install -r requirements.txt`
