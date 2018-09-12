@@ -918,15 +918,20 @@
         - '["delegate_vesting_shares",{"delegator":"alice","delegatee":"bob","vesting_shares":{"amount":"94599167138276","precision":6,"nai":"@@000000037"}}]'
     - name: account_create_with_delegation
       since: HF17
+      deprecated: true
       virtual: false
       purpose: |
-        Instead of paying the entire account creation fee with Steem, creators
+        **Deprecated as of HF20** If an account creation service would still like to provide a delegation of Steem Power
+        to the accounts they create, they can still follow the account creation operation with an additional call to
+        `delegate_vesting_shares` to add a delegation of SP to the account.
+
+        >Instead of paying the entire account creation fee with Steem, creators
         can now pay a smaller fee (30x less) and delegate some Steem Power for
         30 days. The exact amount is 5 * min_fee + STEEM_POWER == 150 * min_fee.
         You can pay any combination of STEEM and Steem Power along that curve
         (so long as the minimum fee is paid).
 
-        *The witness voted STEEM fee is now the minimum required STEEM fee for
+        >*The witness voted STEEM fee is now the minimum required STEEM fee for
         delegation. Witnesses should reduce their fee by 30x when the hardfork
         goes live to preserve the same required fee for an all STEEM account
         creation.*
