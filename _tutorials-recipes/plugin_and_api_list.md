@@ -1,12 +1,14 @@
 ---
-title: Steem plugins and API list
+title: Enable SteemD Node APIs 
 position: 1
-description: Steem plugins
+description: Run a SteemD Node with your preferred APIs
 exclude: true
 layout: full
 ---
 
-**When setting up the config file it has to be noted that by default, `steemd` runs the `chain`, `p2p`, and `webserver` plugins regardless of any other dependencies**
+*This is a list of the plugins, and their associated dependencies, required to enable specific apis.*
+
+**When setting up the config file `steemd` will run the `chain`, `p2p`, and `webserver` plugins regardless of other dependencies**
 
 ## API's with their respective plugin dependencies
 
@@ -93,7 +95,7 @@ layout: full
 * <steem/plugins/json_rpc/json_rpc_plugin.hpp>
 * [https://github.com/steemit/steem/tree/master/libraries/plugins/apis/witness_api/include/steem/plugins/witness_api](https://github.com/steemit/steem/tree/master/libraries/plugins/apis/witness_api/include/steem/plugins/witness_api)
 
-# Available plugins with any other plugin dependencies listed
+## Available plugins with any other plugin dependencies listed
 
 ### account_by_key_plugin
 
