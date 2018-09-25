@@ -1,10 +1,10 @@
 ---
 title: 'PY: Get Follower And Following List'
-position: 15
-description: 'Tutorial pulls a list of the followers or authors being followed from the blockchain then displays the result.'
+position: 19
+description: "Tutorial pulls a list of the followers or authors being followed from the blockchain then displays the result."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Follower And Following List](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/15_get_follower_and_following_list) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Follower And Following List](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/19_get_follower_and_following_list) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -116,11 +116,12 @@ This is a fairly simple example of how to use these functions but we encourage y
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/15_get_follower_and_following_list`
+1.  `cd tutorials/19_get_follower_and_following_list`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
 
 ---

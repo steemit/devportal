@@ -1,7 +1,7 @@
 ---
 title: 'PY: Power Up Steem'
 position: 24
-description: 'How to power up your STEEM to STEEM POWER using Python.'
+description: "How to power up your STEEM to STEEM POWER using Python."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Up Steem](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/24_power_up_steem) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -141,7 +141,7 @@ We encourage users to play around with different values and data types to fully 
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
 1.  `cd tutorials/24_power_up_steem`
 1.  `pip install -r requirements.txt`

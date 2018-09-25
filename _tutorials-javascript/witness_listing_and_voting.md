@@ -1,7 +1,7 @@
 ---
 title: 'JS: Witness Listing And Voting'
 position: 22
-description: '_Create a list of available witnesses as well as vote for and remove your vote for a witness._'
+description: "_Create a list of available witnesses as well as vote for and remove your vote for a witness._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Witness Listing And Voting](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/22_witness_listing_and_voting) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -188,5 +188,6 @@ The option buttons (continue with voting process or stop) are disabled at the en
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

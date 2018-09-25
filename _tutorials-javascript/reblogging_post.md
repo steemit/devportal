@@ -1,7 +1,7 @@
 ---
 title: 'JS: Reblogging Post'
 position: 14
-description: '_By the end of this tutorial you should know how to reblog (resteem) a blog from steem_'
+description: "_By the end of this tutorial you should know how to reblog (resteem) a blog from steem_"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Reblogging Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/14_reblogging_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -142,5 +142,6 @@ It should be noted that reblogging a post does not create a new post on the bloc
 3.  `npm i`
 4.  `npm run dev-server` or `npm run start`
 5.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---

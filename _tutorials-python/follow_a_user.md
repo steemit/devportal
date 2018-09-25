@@ -1,10 +1,10 @@
 ---
-title: 'PY: Follow Another User'
-position: 16
-description: 'How to follow or unfollow an author using Python.'
+title: 'PY: Follow A User'
+position: 18
+description: "How to follow or unfollow an author using Python."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Follow Another User](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/16_follow_another_user) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Follow A User](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/18_follow_a_user) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -24,7 +24,7 @@ The Steem python library has a built-in function to transmit transactions to the
 1.  [**App setup**](#setup) - Library install and import. Connection to testnet
 1.  [**User information and steem node**](#userinfo) - Input user information and connection to Steem node
 1.  [**Check author status**](#authorstat) - Validity check on requested autor to follow
-1.  [**Follow status**](followstat) - Check whether specified author is already followed
+1.  [**Follow status**](#followstat) - Check whether specified author is already followed
 1.  [**Follow/Unfollow commit**](#commit) - Follow/unfollow commit to the blockchain
 
 #### 1. App setup <a name="setup"></a>
@@ -126,11 +126,12 @@ You can also check on the [testportal](http://condenser.steem.vc/blog/@cdemo) fo
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/16_follow_another_user`
+1.  `cd tutorials/18_follow_a_user`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see a prompt for input in terminal screen.
+
 
 ---

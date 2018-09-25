@@ -1,7 +1,7 @@
 ---
 title: 'JS: Create Account'
 position: 26
-description: '_Create Steem account using Steemconnect as well as with client-side signing._'
+description: "_Create Steem account using Steemconnect as well as with client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Create Account](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -135,5 +135,6 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

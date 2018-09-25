@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Account Comments'
 position: 9
-description: 'Fetch list of comments made by account on posts or comments.'
+description: "Fetch list of comments made by account on posts or comments."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Comments](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/09_get_account_comments) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -202,12 +202,13 @@ That's it!
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
 1.  `cd tutorials/09_get_account_comments`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
 
 
 ---
