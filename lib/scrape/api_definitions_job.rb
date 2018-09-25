@@ -100,7 +100,7 @@ module Scrape
           f.write yml.to_yaml
         end
 
-        puts "Changes in: #{api} methods added/updated: #{api_method_change_count}"
+        puts "\t#{api_method_change_count} methods added/updated in #{api}"
       end
 
       method_change_count
