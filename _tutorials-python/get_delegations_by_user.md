@@ -1,7 +1,7 @@
 ---
 title: 'PY: Get Delegations By User'
 position: 29
-description: 'How to get a list of active or expiring vesting delegations using Python.'
+description: "How to get a list of active or expiring vesting delegations using Python."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Delegations By User](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/29_get_delegations_by_user) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
@@ -104,7 +104,7 @@ That's it!
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
 1.  `cd tutorials/29_get_delegations_by_user`
 1.  `pip install -r requirements.txt`

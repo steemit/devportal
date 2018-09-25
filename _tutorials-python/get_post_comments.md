@@ -1,10 +1,10 @@
 ---
-title: 'PY: Get Post Replies'
-position: 4
-description: 'Fetch comments made on each content or post using Python.'
+title: 'PY: Get Post Comments'
+position: 7
+description: "Fetch comments made on each content or post using Python."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Replies](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/04_get_post_replies) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Comments](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/07_get_post_comments) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -186,12 +186,13 @@ That's it!
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/04_get_post_replies`
+1.  `cd tutorials/07_get_post_comments`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
 
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'RB: Search Tags'
 position: 16
-description: 'Performing a search for tags.'
+description: "Performing a search for tags."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Search Tags](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/16_search_tags) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>
@@ -90,5 +90,6 @@ cd devportal-tutorials-rb/tutorials/16_search_tags
 bundle install
 ruby search_tags.rb [limit]
 ```
+
 
 ---

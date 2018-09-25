@@ -1,7 +1,7 @@
 ---
 title: 'RB: Get Post Comments'
 position: 7
-description: 'This example will output the reply details and totals for the post/comment passed as an argument to the script.'
+description: "This example will output the reply details and totals for the post/comment passed as an argument to the script."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Comments](https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/07_get_post_comments) can be downloaded as part of the [RB tutorials repository](https://github.com/steemit/devportal-tutorials-rb).</span>
@@ -50,5 +50,6 @@ Replies by:
 	badribireuen
 Total replies: 20
 ```
+
 
 ---

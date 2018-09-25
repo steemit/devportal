@@ -1,10 +1,10 @@
 ---
 title: 'PY: Using Keys Securely'
-position: 12
+position: 1
 description: "Learn how Steem-Python library handles transaction signing with user's key and how to securely manage your private keys."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Using Keys Securely](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/12_using_keys_securely) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Using Keys Securely](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/001_using_keys_securely) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -87,11 +87,13 @@ That's it!
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/12_using_keys_securely`
+1.  `cd tutorials/001_using_keys_securely`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
 
 ---

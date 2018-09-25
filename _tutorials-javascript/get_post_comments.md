@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Post Comments'
 position: 7
-description: '_By the end of this tutorial you would know how to get comments made by others on any post._'
+description: "_By the end of this tutorial you would know how to get comments made by others on any post._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Comments](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/07_get_post_comments) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -151,5 +151,6 @@ From this result, you have access to comments made on selected post.
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Account Comments'
 position: 9
-description: '_By the end of this tutorial you should know how to retrieve account comments from the steem blockchain_'
+description: "_By the end of this tutorial you should know how to retrieve account comments from the steem blockchain_"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Comments](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/09_get_account_comments) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -277,5 +277,6 @@ Each line is then pushed and displayed separately.
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---
