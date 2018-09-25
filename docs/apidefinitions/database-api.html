@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Database Api - Steem Developer</title>
+<meta property="og:title" content="Database Api" />
+<meta name="description" content="Used to query information about accounts, transactions, and blockchain data. These AppBase API methods are still under development and subject to change. Since: HF11 database_api.find_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_accounts Search for accounts. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.find_change_recovery_account_requests Returns a list of requests to change the recovery account. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_comments Search for comments. Query Parameters JSON {&quot;comments&quot;: []} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.find_decline_voting_rights_requests Returns a list of requests to decline voting rights. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.find_escrows Returns a list of escrows. Query Parameters JSON {&quot;from&quot;: &quot;&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.find_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.find_owner_histories Returns owner authority history. Query Parameters JSON {&quot;owner&quot;: &quot;&quot;} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.find_savings_withdrawals Returns the list of savings withdrawls for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.find_sbd_conversion_requests Returns the list of SBD conversion requests for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.find_vesting_delegation_expirations Returns the expirations for vesting delegations. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.find_vesting_delegations Returns the list of vesting delegations for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.find_votes Returns the votes for an author and permlink. Query Parameters JSON {&quot;author&quot;: &quot;&quot;, &quot;permlink&quot;: &quot;&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.find_withdraw_vesting_routes Returns the list of vesting withdraw routes for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.find_witnesses Search for witnesses. Query Parameters JSON {&quot;owners&quot;: []} Expected Response JSON {&quot;witnesses&quot;: []} database_api.get_active_witnesses Returns the list of active witnesses. Query Parameters JSON {} Expected Response JSON {&quot;witnesses&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_active_witnesses&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_config Returns information about compile-time constants. Some properties may not be present. See: Understanding Configuration Values Query Parameters JSON {} Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_config&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_current_price_feed Returns the current price feed. Query Parameters JSON {} Expected Response JSON { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } } database_api.get_dynamic_global_properties Returns the current dynamic global properties. See: Understanding Dynamic Global Properties Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;head_block_number&quot;: 0, &quot;head_block_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;current_witness&quot;: &quot;&quot;, &quot;total_pow&quot;: &quot;18446744073709551615&quot;, &quot;num_pow_witnesses&quot;: 0, &quot;virtual_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;confidential_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;confidential_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;total_vesting_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;total_reward_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_reward_shares2&quot;: &quot;0&quot;, &quot;pending_rewarded_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;pending_rewarded_vesting_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;sbd_interest_rate&quot;: 0, &quot;sbd_print_rate&quot;: 10000, &quot;maximum_block_size&quot;: 0, &quot;current_aslot&quot;: 0, &quot;recent_slots_filled&quot;: &quot;0&quot;, &quot;participation_count&quot;: 0, &quot;last_irreversible_block_num&quot;: 0, &quot;vote_power_reserve_rate&quot;: 40, &quot;delegation_return_period&quot;: 604800, &quot;reverse_auction_seconds&quot;: 0, &quot;available_account_subsidies&quot;: 0, &quot;sbd_stop_percent&quot;: 0, &quot;sbd_start_percent&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_dynamic_global_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_feed_history Returns the history of price feed values. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_median_history&quot;: { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } }, &quot;price_history&quot;: [] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_feed_history&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_hardfork_properties Returns the current properties about the blockchain’s hardforks. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_hardfork_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_order_book Returns the order book. Query Parameters JSON {&quot;limit&quot;: 0} Expected Response JSON {&quot;asks&quot;: [], &quot;bids&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:10}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_potential_signatures This method will return the set of all public keys that could possibly sign for a given transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_potential_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_required_signatures This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;available_keys&quot;: [] } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_required_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;available_keys&quot;:[]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF17 database_api.get_reward_funds Returns information about the current reward funds. Query Parameters JSON {} Expected Response JSON {&quot;funds&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_reward_funds&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_transaction_hex Returns a hexdump of the serialized binary form of a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;hex&quot;: &quot;&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_transaction_hex&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 database_api.get_version Returns the compile time versions of blockchain, steem, FC. Also returns the boot time version of the chain id (may be different from compile time value only when looking at a testnet) Query Parameters JSON {} Expected Response JSON { &quot;blockchain_version&quot;: &quot;&quot;, &quot;steem_revision&quot;: &quot;&quot;, &quot;fc_revision&quot;: &quot;&quot;, &quot;chain_id&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_version&quot;, &quot;params&quot;:[], &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_witness_schedule Returns the current witness schedule. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 76479392, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 0, &quot;elected_weight&quot;: 132, &quot;timeshare_weight&quot;: 86, &quot;miner_weight&quot;: 125, &quot;witness_pay_normalization_factor&quot;: 32767, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;1&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 0, &quot;max_miner_witnesses&quot;: 0, &quot;max_runner_witnesses&quot;: 0, &quot;hardfork_required_witnesses&quot;: 0, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_witness_schedule&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF11 database_api.list_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_accounts Returns a list of accounts. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.list_change_recovery_account_requests Returns a list of recovery account change requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_comments Returns a list of comments. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.list_decline_voting_rights_requests Returns a list of decline voting rights requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.list_escrows Returns a list of escrows. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.list_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.list_owner_histories Returns a list of owner authority histories. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.list_savings_withdrawals Returns a list of savings withdrawls. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.list_sbd_conversion_requests Returns a list of SBD conversion requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.list_vesting_delegation_expirations Returns a list of vesting delegation expirations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.list_vesting_delegations Returns a list of vesting delegations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.list_votes Returns a list of votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_withdraw_vesting_routes Returns a list of vesting withdraw routes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.list_witness_votes Returns a list of witness votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_witnesses Returns the list of witnesses. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;witnesses&quot;: []} Disabled database_api.verify_account_authority Not Implemented Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;signers&quot;: []} Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_account_authority&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;,&quot;signers&quot;:[&quot;STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_authority Returns true if the transaction has all of the required signatures. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_authority&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_signatures This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures. Query Parameters JSON { &quot;hash&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;signatures&quot;: [], &quot;required_owner&quot;: [], &quot;required_active&quot;: [], &quot;required_posting&quot;: [], &quot;required_other&quot;: [] } Expected Response JSON {&quot;valid&quot;: false}" />
+<meta property="og:description" content="Used to query information about accounts, transactions, and blockchain data. These AppBase API methods are still under development and subject to change. Since: HF11 database_api.find_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_accounts Search for accounts. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.find_change_recovery_account_requests Returns a list of requests to change the recovery account. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_comments Search for comments. Query Parameters JSON {&quot;comments&quot;: []} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.find_decline_voting_rights_requests Returns a list of requests to decline voting rights. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.find_escrows Returns a list of escrows. Query Parameters JSON {&quot;from&quot;: &quot;&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.find_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.find_owner_histories Returns owner authority history. Query Parameters JSON {&quot;owner&quot;: &quot;&quot;} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.find_savings_withdrawals Returns the list of savings withdrawls for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.find_sbd_conversion_requests Returns the list of SBD conversion requests for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.find_vesting_delegation_expirations Returns the expirations for vesting delegations. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.find_vesting_delegations Returns the list of vesting delegations for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.find_votes Returns the votes for an author and permlink. Query Parameters JSON {&quot;author&quot;: &quot;&quot;, &quot;permlink&quot;: &quot;&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.find_withdraw_vesting_routes Returns the list of vesting withdraw routes for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.find_witnesses Search for witnesses. Query Parameters JSON {&quot;owners&quot;: []} Expected Response JSON {&quot;witnesses&quot;: []} database_api.get_active_witnesses Returns the list of active witnesses. Query Parameters JSON {} Expected Response JSON {&quot;witnesses&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_active_witnesses&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_config Returns information about compile-time constants. Some properties may not be present. See: Understanding Configuration Values Query Parameters JSON {} Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_config&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_current_price_feed Returns the current price feed. Query Parameters JSON {} Expected Response JSON { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } } database_api.get_dynamic_global_properties Returns the current dynamic global properties. See: Understanding Dynamic Global Properties Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;head_block_number&quot;: 0, &quot;head_block_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;current_witness&quot;: &quot;&quot;, &quot;total_pow&quot;: &quot;18446744073709551615&quot;, &quot;num_pow_witnesses&quot;: 0, &quot;virtual_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;confidential_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;confidential_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;total_vesting_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;total_reward_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_reward_shares2&quot;: &quot;0&quot;, &quot;pending_rewarded_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;pending_rewarded_vesting_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;sbd_interest_rate&quot;: 0, &quot;sbd_print_rate&quot;: 10000, &quot;maximum_block_size&quot;: 0, &quot;current_aslot&quot;: 0, &quot;recent_slots_filled&quot;: &quot;0&quot;, &quot;participation_count&quot;: 0, &quot;last_irreversible_block_num&quot;: 0, &quot;vote_power_reserve_rate&quot;: 40, &quot;delegation_return_period&quot;: 604800, &quot;reverse_auction_seconds&quot;: 0, &quot;available_account_subsidies&quot;: 0, &quot;sbd_stop_percent&quot;: 0, &quot;sbd_start_percent&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_dynamic_global_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_feed_history Returns the history of price feed values. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_median_history&quot;: { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } }, &quot;price_history&quot;: [] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_feed_history&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_hardfork_properties Returns the current properties about the blockchain’s hardforks. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_hardfork_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_order_book Returns the order book. Query Parameters JSON {&quot;limit&quot;: 0} Expected Response JSON {&quot;asks&quot;: [], &quot;bids&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:10}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_potential_signatures This method will return the set of all public keys that could possibly sign for a given transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_potential_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_required_signatures This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;available_keys&quot;: [] } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_required_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;available_keys&quot;:[]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF17 database_api.get_reward_funds Returns information about the current reward funds. Query Parameters JSON {} Expected Response JSON {&quot;funds&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_reward_funds&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_transaction_hex Returns a hexdump of the serialized binary form of a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;hex&quot;: &quot;&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_transaction_hex&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 database_api.get_version Returns the compile time versions of blockchain, steem, FC. Also returns the boot time version of the chain id (may be different from compile time value only when looking at a testnet) Query Parameters JSON {} Expected Response JSON { &quot;blockchain_version&quot;: &quot;&quot;, &quot;steem_revision&quot;: &quot;&quot;, &quot;fc_revision&quot;: &quot;&quot;, &quot;chain_id&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_version&quot;, &quot;params&quot;:[], &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_witness_schedule Returns the current witness schedule. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 76479392, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 0, &quot;elected_weight&quot;: 132, &quot;timeshare_weight&quot;: 86, &quot;miner_weight&quot;: 125, &quot;witness_pay_normalization_factor&quot;: 32767, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;1&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 0, &quot;max_miner_witnesses&quot;: 0, &quot;max_runner_witnesses&quot;: 0, &quot;hardfork_required_witnesses&quot;: 0, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_witness_schedule&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF11 database_api.list_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_accounts Returns a list of accounts. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.list_change_recovery_account_requests Returns a list of recovery account change requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_comments Returns a list of comments. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.list_decline_voting_rights_requests Returns a list of decline voting rights requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.list_escrows Returns a list of escrows. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.list_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.list_owner_histories Returns a list of owner authority histories. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.list_savings_withdrawals Returns a list of savings withdrawls. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.list_sbd_conversion_requests Returns a list of SBD conversion requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.list_vesting_delegation_expirations Returns a list of vesting delegation expirations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.list_vesting_delegations Returns a list of vesting delegations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.list_votes Returns a list of votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_withdraw_vesting_routes Returns a list of vesting withdraw routes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.list_witness_votes Returns a list of witness votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_witnesses Returns the list of witnesses. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;witnesses&quot;: []} Disabled database_api.verify_account_authority Not Implemented Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;signers&quot;: []} Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_account_authority&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;,&quot;signers&quot;:[&quot;STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_authority Returns true if the transaction has all of the required signatures. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_authority&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_signatures This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures. Query Parameters JSON { &quot;hash&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;signatures&quot;: [], &quot;required_owner&quot;: [], &quot;required_active&quot;: [], &quot;required_posting&quot;: [], &quot;required_other&quot;: [] } Expected Response JSON {&quot;valid&quot;: false}" />
+<link rel="canonical" href="https://developer.steem.io/apidefinitions/database-api" />
+<meta property="og:url" content="https://developer.steem.io/apidefinitions/database-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-25T13:58:36-05:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Database Api",
+"datePublished": "2018-09-25T13:58:36-05:00",
+"description": "Used to query information about accounts, transactions, and blockchain data. These AppBase API methods are still under development and subject to change. Since: HF11 database_api.find_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_accounts Search for accounts. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.find_change_recovery_account_requests Returns a list of requests to change the recovery account. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} database_api.find_comments Search for comments. Query Parameters JSON {&quot;comments&quot;: []} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.find_decline_voting_rights_requests Returns a list of requests to decline voting rights. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.find_escrows Returns a list of escrows. Query Parameters JSON {&quot;from&quot;: &quot;&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.find_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.find_owner_histories Returns owner authority history. Query Parameters JSON {&quot;owner&quot;: &quot;&quot;} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.find_savings_withdrawals Returns the list of savings withdrawls for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.find_sbd_conversion_requests Returns the list of SBD conversion requests for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.find_vesting_delegation_expirations Returns the expirations for vesting delegations. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.find_vesting_delegations Returns the list of vesting delegations for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.find_votes Returns the votes for an author and permlink. Query Parameters JSON {&quot;author&quot;: &quot;&quot;, &quot;permlink&quot;: &quot;&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.find_withdraw_vesting_routes Returns the list of vesting withdraw routes for an account. Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.find_witnesses Search for witnesses. Query Parameters JSON {&quot;owners&quot;: []} Expected Response JSON {&quot;witnesses&quot;: []} database_api.get_active_witnesses Returns the list of active witnesses. Query Parameters JSON {} Expected Response JSON {&quot;witnesses&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_active_witnesses&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_config Returns information about compile-time constants. Some properties may not be present. See: Understanding Configuration Values Query Parameters JSON {} Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_config&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_current_price_feed Returns the current price feed. Query Parameters JSON {} Expected Response JSON { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } } database_api.get_dynamic_global_properties Returns the current dynamic global properties. See: Understanding Dynamic Global Properties Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;head_block_number&quot;: 0, &quot;head_block_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;current_witness&quot;: &quot;&quot;, &quot;total_pow&quot;: &quot;18446744073709551615&quot;, &quot;num_pow_witnesses&quot;: 0, &quot;virtual_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;confidential_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;current_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;confidential_sbd_supply&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000013&quot; }, &quot;total_vesting_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;total_reward_fund_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;total_reward_shares2&quot;: &quot;0&quot;, &quot;pending_rewarded_vesting_shares&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;pending_rewarded_vesting_steem&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;sbd_interest_rate&quot;: 0, &quot;sbd_print_rate&quot;: 10000, &quot;maximum_block_size&quot;: 0, &quot;current_aslot&quot;: 0, &quot;recent_slots_filled&quot;: &quot;0&quot;, &quot;participation_count&quot;: 0, &quot;last_irreversible_block_num&quot;: 0, &quot;vote_power_reserve_rate&quot;: 40, &quot;delegation_return_period&quot;: 604800, &quot;reverse_auction_seconds&quot;: 0, &quot;available_account_subsidies&quot;: 0, &quot;sbd_stop_percent&quot;: 0, &quot;sbd_start_percent&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_dynamic_global_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_feed_history Returns the history of price feed values. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_median_history&quot;: { &quot;base&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;quote&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; } }, &quot;price_history&quot;: [] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_feed_history&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_hardfork_properties Returns the current properties about the blockchain’s hardforks. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_hardfork_properties&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_order_book Returns the order book. Query Parameters JSON {&quot;limit&quot;: 0} Expected Response JSON {&quot;asks&quot;: [], &quot;bids&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:10}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_order_book&quot;, &quot;params&quot;:{&quot;limit&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_potential_signatures This method will return the set of all public keys that could possibly sign for a given transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_potential_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_required_signatures This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;available_keys&quot;: [] } Expected Response JSON {&quot;keys&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_required_signatures&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;available_keys&quot;:[]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF17 database_api.get_reward_funds Returns information about the current reward funds. Query Parameters JSON {} Expected Response JSON {&quot;funds&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_reward_funds&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_transaction_hex Returns a hexdump of the serialized binary form of a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;hex&quot;: &quot;&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_transaction_hex&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 database_api.get_version Returns the compile time versions of blockchain, steem, FC. Also returns the boot time version of the chain id (may be different from compile time value only when looking at a testnet) Query Parameters JSON {} Expected Response JSON { &quot;blockchain_version&quot;: &quot;&quot;, &quot;steem_revision&quot;: &quot;&quot;, &quot;fc_revision&quot;: &quot;&quot;, &quot;chain_id&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot; } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_version&quot;, &quot;params&quot;:[], &quot;id&quot;:1}&#39; https://api.steemit.com database_api.get_witness_schedule Returns the current witness schedule. Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 76479392, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 0, &quot;elected_weight&quot;: 132, &quot;timeshare_weight&quot;: 86, &quot;miner_weight&quot;: 125, &quot;witness_pay_normalization_factor&quot;: 32767, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;1&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 0, &quot;max_miner_witnesses&quot;: 0, &quot;max_runner_witnesses&quot;: 0, &quot;hardfork_required_witnesses&quot;: 0, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.get_witness_schedule&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF11 database_api.list_account_recovery_requests Returns a list of account recovery requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_accounts Returns a list of accounts. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;accounts&quot;: []} Since: HF11 database_api.list_change_recovery_account_requests Returns a list of recovery account change requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} database_api.list_comments Returns a list of comments. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;comments&quot;: []} Since: HF14 database_api.list_decline_voting_rights_requests Returns a list of decline voting rights requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF14 database_api.list_escrows Returns a list of escrows. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;escrows&quot;: []} database_api.list_limit_orders Returns a list of limit orders. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;orders&quot;: []} database_api.list_owner_histories Returns a list of owner authority histories. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0} Expected Response JSON {&quot;owner_auths&quot;: []} Since: HF14 database_api.list_savings_withdrawals Returns a list of savings withdrawls. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;withdrawals&quot;: []} database_api.list_sbd_conversion_requests Returns a list of SBD conversion requests. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;requests&quot;: []} Since: HF17 database_api.list_vesting_delegation_expirations Returns a list of vesting delegation expirations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} Since: HF17 database_api.list_vesting_delegations Returns a list of vesting delegations. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;delegations&quot;: []} database_api.list_votes Returns a list of votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_withdraw_vesting_routes Returns a list of vesting withdraw routes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;routes&quot;: []} database_api.list_witness_votes Returns a list of witness votes. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;votes&quot;: []} database_api.list_witnesses Returns the list of witnesses. Query Parameters JSON {&quot;start&quot;: null, &quot;limit&quot;: 0, &quot;order&quot;: &quot;by_name&quot;} Expected Response JSON {&quot;witnesses&quot;: []} Disabled database_api.verify_account_authority Not Implemented Query Parameters JSON {&quot;account&quot;: &quot;&quot;, &quot;signers&quot;: []} Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_account_authority&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;,&quot;signers&quot;:[&quot;STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_authority Returns true if the transaction has all of the required signatures. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] } } Expected Response JSON {&quot;valid&quot;: false} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;database_api.verify_authority&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com database_api.verify_signatures This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures. Query Parameters JSON { &quot;hash&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;signatures&quot;: [], &quot;required_owner&quot;: [], &quot;required_active&quot;: [], &quot;required_posting&quot;: [], &quot;required_other&quot;: [] } Expected Response JSON {&quot;valid&quot;: false}",
+"url": "https://developer.steem.io/apidefinitions/database-api"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	
+<p>Used to query information about accounts, transactions, and blockchain data. <strong>These AppBase API methods are still under development and subject to change.</strong></p>
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF11</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_account_recovery_requests">database_api.find_account_recovery_requests <a href="#database_api.find_account_recovery_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of account recovery requests.</p>
+<h5 id="database_api.find_account_recovery_requests-parameter_json">Query Parameters JSON <a href="#database_api.find_account_recovery_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_account_recovery_requests-expected_response_json">Expected Response JSON <a href="#database_api.find_account_recovery_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_accounts">database_api.find_accounts <a href="#database_api.find_accounts"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Search for accounts.</p>
+<h5 id="database_api.find_accounts-parameter_json">Query Parameters JSON <a href="#database_api.find_accounts-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_accounts-expected_response_json">Expected Response JSON <a href="#database_api.find_accounts-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF11</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_change_recovery_account_requests">database_api.find_change_recovery_account_requests <a href="#database_api.find_change_recovery_account_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of requests to change the recovery account.</p>
+<h5 id="database_api.find_change_recovery_account_requests-parameter_json">Query Parameters JSON <a href="#database_api.find_change_recovery_account_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_change_recovery_account_requests-expected_response_json">Expected Response JSON <a href="#database_api.find_change_recovery_account_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_comments">database_api.find_comments <a href="#database_api.find_comments"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Search for comments.</p>
+<h5 id="database_api.find_comments-parameter_json">Query Parameters JSON <a href="#database_api.find_comments-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_comments-expected_response_json">Expected Response JSON <a href="#database_api.find_comments-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_decline_voting_rights_requests">database_api.find_decline_voting_rights_requests <a href="#database_api.find_decline_voting_rights_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of requests to decline voting rights.</p>
+<h5 id="database_api.find_decline_voting_rights_requests-parameter_json">Query Parameters JSON <a href="#database_api.find_decline_voting_rights_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_decline_voting_rights_requests-expected_response_json">Expected Response JSON <a href="#database_api.find_decline_voting_rights_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_escrows">database_api.find_escrows <a href="#database_api.find_escrows"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of escrows.</p>
+<h5 id="database_api.find_escrows-parameter_json">Query Parameters JSON <a href="#database_api.find_escrows-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_escrows-expected_response_json">Expected Response JSON <a href="#database_api.find_escrows-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"escrows"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_limit_orders">database_api.find_limit_orders <a href="#database_api.find_limit_orders"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of limit orders.</p>
+<h5 id="database_api.find_limit_orders-parameter_json">Query Parameters JSON <a href="#database_api.find_limit_orders-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_limit_orders-expected_response_json">Expected Response JSON <a href="#database_api.find_limit_orders-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_owner_histories">database_api.find_owner_histories <a href="#database_api.find_owner_histories"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns owner authority history.</p>
+<h5 id="database_api.find_owner_histories-parameter_json">Query Parameters JSON <a href="#database_api.find_owner_histories-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_owner_histories-expected_response_json">Expected Response JSON <a href="#database_api.find_owner_histories-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"owner_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_savings_withdrawals">database_api.find_savings_withdrawals <a href="#database_api.find_savings_withdrawals"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of savings withdrawls for an account.</p>
+<h5 id="database_api.find_savings_withdrawals-parameter_json">Query Parameters JSON <a href="#database_api.find_savings_withdrawals-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_savings_withdrawals-expected_response_json">Expected Response JSON <a href="#database_api.find_savings_withdrawals-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_sbd_conversion_requests">database_api.find_sbd_conversion_requests <a href="#database_api.find_sbd_conversion_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of SBD conversion requests for an account.</p>
+<h5 id="database_api.find_sbd_conversion_requests-parameter_json">Query Parameters JSON <a href="#database_api.find_sbd_conversion_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_sbd_conversion_requests-expected_response_json">Expected Response JSON <a href="#database_api.find_sbd_conversion_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF17</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_vesting_delegation_expirations">database_api.find_vesting_delegation_expirations <a href="#database_api.find_vesting_delegation_expirations"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the expirations for vesting delegations.</p>
+<h5 id="database_api.find_vesting_delegation_expirations-parameter_json">Query Parameters JSON <a href="#database_api.find_vesting_delegation_expirations-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_vesting_delegation_expirations-expected_response_json">Expected Response JSON <a href="#database_api.find_vesting_delegation_expirations-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"delegations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF17</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.find_vesting_delegations">database_api.find_vesting_delegations <a href="#database_api.find_vesting_delegations"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of vesting delegations for an account.</p>
+<h5 id="database_api.find_vesting_delegations-parameter_json">Query Parameters JSON <a href="#database_api.find_vesting_delegations-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_vesting_delegations-expected_response_json">Expected Response JSON <a href="#database_api.find_vesting_delegations-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"delegations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_votes">database_api.find_votes <a href="#database_api.find_votes"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the votes for an author and permlink.</p>
+<h5 id="database_api.find_votes-parameter_json">Query Parameters JSON <a href="#database_api.find_votes-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nt">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_votes-expected_response_json">Expected Response JSON <a href="#database_api.find_votes-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_withdraw_vesting_routes">database_api.find_withdraw_vesting_routes <a href="#database_api.find_withdraw_vesting_routes"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of vesting withdraw routes for an account.</p>
+<h5 id="database_api.find_withdraw_vesting_routes-parameter_json">Query Parameters JSON <a href="#database_api.find_withdraw_vesting_routes-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_withdraw_vesting_routes-expected_response_json">Expected Response JSON <a href="#database_api.find_withdraw_vesting_routes-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.find_witnesses">database_api.find_witnesses <a href="#database_api.find_witnesses"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Search for witnesses.</p>
+<h5 id="database_api.find_witnesses-parameter_json">Query Parameters JSON <a href="#database_api.find_witnesses-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.find_witnesses-expected_response_json">Expected Response JSON <a href="#database_api.find_witnesses-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"witnesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_active_witnesses">database_api.get_active_witnesses <a href="#database_api.get_active_witnesses"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of active witnesses.</p>
+<h5 id="database_api.get_active_witnesses-parameter_json">Query Parameters JSON <a href="#database_api.get_active_witnesses-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_active_witnesses-expected_response_json">Expected Response JSON <a href="#database_api.get_active_witnesses-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"witnesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_active_witnesses-curl-examples">Example <code>curl</code> <a href="#database_api.get_active_witnesses-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_active_witnesses", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_config">database_api.get_config <a href="#database_api.get_config"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns information about compile-time constants. Some properties may not be present.  See: <a href="/tutorials-recipes/understanding-configuration-values">Understanding Configuration Values</a></p>
+<h5 id="database_api.get_config-parameter_json">Query Parameters JSON <a href="#database_api.get_config-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_config-expected_response_json">Expected Response JSON <a href="#database_api.get_config-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_config-curl-examples">Example <code>curl</code> <a href="#database_api.get_config-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_config", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_current_price_feed">database_api.get_current_price_feed <a href="#database_api.get_current_price_feed"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the current price feed.</p>
+<h5 id="database_api.get_current_price_feed-parameter_json">Query Parameters JSON <a href="#database_api.get_current_price_feed-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_current_price_feed-expected_response_json">Expected Response JSON <a href="#database_api.get_current_price_feed-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_dynamic_global_properties">database_api.get_dynamic_global_properties <a href="#database_api.get_dynamic_global_properties"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the current dynamic global properties.  See: <a href="/tutorials-recipes/understanding-dynamic-global-properties">Understanding Dynamic Global Properties</a></p>
+<h5 id="database_api.get_dynamic_global_properties-parameter_json">Query Parameters JSON <a href="#database_api.get_dynamic_global_properties-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_dynamic_global_properties-expected_response_json">Expected Response JSON <a href="#database_api.get_dynamic_global_properties-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"head_block_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"head_block_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_witness"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total_pow"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18446744073709551615"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"num_pow_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"virtual_supply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"current_supply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"confidential_supply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"current_sbd_supply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000013"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"confidential_sbd_supply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000013"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"total_vesting_fund_steem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"total_vesting_shares"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000037"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"total_reward_fund_steem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"total_reward_shares2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"pending_rewarded_vesting_shares"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000037"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"pending_rewarded_vesting_steem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"sbd_interest_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sbd_print_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"maximum_block_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_aslot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recent_slots_filled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"participation_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_irreversible_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vote_power_reserve_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"delegation_return_period"</span><span class="p">:</span><span class="w"> </span><span class="mi">604800</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reverse_auction_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"available_account_subsidies"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sbd_stop_percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sbd_start_percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_dynamic_global_properties-curl-examples">Example <code>curl</code> <a href="#database_api.get_dynamic_global_properties-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_dynamic_global_properties", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_feed_history">database_api.get_feed_history <a href="#database_api.get_feed_history"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the history of price feed values.</p>
+<h5 id="database_api.get_feed_history-parameter_json">Query Parameters JSON <a href="#database_api.get_feed_history-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_feed_history-expected_response_json">Expected Response JSON <a href="#database_api.get_feed_history-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_median_history"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"price_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_feed_history-curl-examples">Example <code>curl</code> <a href="#database_api.get_feed_history-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_feed_history", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_hardfork_properties">database_api.get_hardfork_properties <a href="#database_api.get_hardfork_properties"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the current properties about the blockchain’s hardforks.</p>
+<h5 id="database_api.get_hardfork_properties-parameter_json">Query Parameters JSON <a href="#database_api.get_hardfork_properties-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_hardfork_properties-expected_response_json">Expected Response JSON <a href="#database_api.get_hardfork_properties-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"processed_hardforks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"last_hardfork"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_hardfork_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_hardfork"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_hardfork_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_hardfork_properties-curl-examples">Example <code>curl</code> <a href="#database_api.get_hardfork_properties-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_hardfork_properties", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_order_book">database_api.get_order_book <a href="#database_api.get_order_book"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the order book.</p>
+<h5 id="database_api.get_order_book-parameter_json">Query Parameters JSON <a href="#database_api.get_order_book-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_order_book-expected_response_json">Expected Response JSON <a href="#database_api.get_order_book-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="nt">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_order_book-curl-examples">Example <code>curl</code> <a href="#database_api.get_order_book-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_order_book", "params":{"limit":10}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_order_book", "params":{"limit":50}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_potential_signatures">database_api.get_potential_signatures <a href="#database_api.get_potential_signatures"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>This method will return the set of all public keys that could possibly sign for a given transaction.</p>
+<h5 id="database_api.get_potential_signatures-parameter_json">Query Parameters JSON <a href="#database_api.get_potential_signatures-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_potential_signatures-expected_response_json">Expected Response JSON <a href="#database_api.get_potential_signatures-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_potential_signatures-curl-examples">Example <code>curl</code> <a href="#database_api.get_potential_signatures-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_potential_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_required_signatures">database_api.get_required_signatures <a href="#database_api.get_required_signatures"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction.</p>
+<h5 id="database_api.get_required_signatures-parameter_json">Query Parameters JSON <a href="#database_api.get_required_signatures-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"available_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_required_signatures-expected_response_json">Expected Response JSON <a href="#database_api.get_required_signatures-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_required_signatures-curl-examples">Example <code>curl</code> <a href="#database_api.get_required_signatures-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_required_signatures", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]},"available_keys":[]}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF17</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.get_reward_funds">database_api.get_reward_funds <a href="#database_api.get_reward_funds"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns information about the current reward funds.</p>
+<h5 id="database_api.get_reward_funds-parameter_json">Query Parameters JSON <a href="#database_api.get_reward_funds-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_reward_funds-expected_response_json">Expected Response JSON <a href="#database_api.get_reward_funds-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"funds"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_reward_funds-curl-examples">Example <code>curl</code> <a href="#database_api.get_reward_funds-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_reward_funds", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_transaction_hex">database_api.get_transaction_hex <a href="#database_api.get_transaction_hex"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a hexdump of the serialized binary form of a transaction.</p>
+<h5 id="database_api.get_transaction_hex-parameter_json">Query Parameters JSON <a href="#database_api.get_transaction_hex-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_transaction_hex-expected_response_json">Expected Response JSON <a href="#database_api.get_transaction_hex-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"hex"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_transaction_hex-curl-examples">Example <code>curl</code> <a href="#database_api.get_transaction_hex-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_transaction_hex", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.get_version">database_api.get_version <a href="#database_api.get_version"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the compile time versions of blockchain, steem, FC. Also returns the boot time version of the chain id (<em>may</em> be different from compile time value only when looking at a testnet)</p>
+<h5 id="database_api.get_version-parameter_json">Query Parameters JSON <a href="#database_api.get_version-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_version-expected_response_json">Expected Response JSON <a href="#database_api.get_version-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"blockchain_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"steem_revision"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fc_revision"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"chain_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000000000000000000000000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_version-curl-examples">Example <code>curl</code> <a href="#database_api.get_version-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_version", "params":[], "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.get_witness_schedule">database_api.get_witness_schedule <a href="#database_api.get_witness_schedule"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the current witness schedule.</p>
+<h5 id="database_api.get_witness_schedule-parameter_json">Query Parameters JSON <a href="#database_api.get_witness_schedule-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.get_witness_schedule-expected_response_json">Expected Response JSON <a href="#database_api.get_witness_schedule-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_virtual_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_shuffle_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">76479392</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_shuffled_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"num_scheduled_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"elected_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"timeshare_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">86</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"miner_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"witness_pay_normalization_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">32767</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"median_props"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"account_creation_fee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"maximum_block_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">131072</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sbd_interest_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_subsidy_budget"</span><span class="p">:</span><span class="w"> </span><span class="mi">797</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_subsidy_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">347321</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"majority_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"max_voted_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"max_miner_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"max_runner_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hardfork_required_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_subsidy_rd"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"account_subsidy_witness_rd"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"min_witness_account_subsidy_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.get_witness_schedule-curl-examples">Example <code>curl</code> <a href="#database_api.get_witness_schedule-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.get_witness_schedule", "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF11</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_account_recovery_requests">database_api.list_account_recovery_requests <a href="#database_api.list_account_recovery_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of account recovery requests.</p>
+<h5 id="database_api.list_account_recovery_requests-parameter_json">Query Parameters JSON <a href="#database_api.list_account_recovery_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_account_recovery_requests-expected_response_json">Expected Response JSON <a href="#database_api.list_account_recovery_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_accounts">database_api.list_accounts <a href="#database_api.list_accounts"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of accounts.</p>
+<h5 id="database_api.list_accounts-parameter_json">Query Parameters JSON <a href="#database_api.list_accounts-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_accounts-expected_response_json">Expected Response JSON <a href="#database_api.list_accounts-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF11</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_change_recovery_account_requests">database_api.list_change_recovery_account_requests <a href="#database_api.list_change_recovery_account_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of recovery account change requests.</p>
+<h5 id="database_api.list_change_recovery_account_requests-parameter_json">Query Parameters JSON <a href="#database_api.list_change_recovery_account_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_change_recovery_account_requests-expected_response_json">Expected Response JSON <a href="#database_api.list_change_recovery_account_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_comments">database_api.list_comments <a href="#database_api.list_comments"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of comments.</p>
+<h5 id="database_api.list_comments-parameter_json">Query Parameters JSON <a href="#database_api.list_comments-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_comments-expected_response_json">Expected Response JSON <a href="#database_api.list_comments-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_decline_voting_rights_requests">database_api.list_decline_voting_rights_requests <a href="#database_api.list_decline_voting_rights_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of decline voting rights requests.</p>
+<h5 id="database_api.list_decline_voting_rights_requests-parameter_json">Query Parameters JSON <a href="#database_api.list_decline_voting_rights_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_decline_voting_rights_requests-expected_response_json">Expected Response JSON <a href="#database_api.list_decline_voting_rights_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_escrows">database_api.list_escrows <a href="#database_api.list_escrows"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of escrows.</p>
+<h5 id="database_api.list_escrows-parameter_json">Query Parameters JSON <a href="#database_api.list_escrows-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_escrows-expected_response_json">Expected Response JSON <a href="#database_api.list_escrows-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"escrows"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_limit_orders">database_api.list_limit_orders <a href="#database_api.list_limit_orders"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of limit orders.</p>
+<h5 id="database_api.list_limit_orders-parameter_json">Query Parameters JSON <a href="#database_api.list_limit_orders-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_limit_orders-expected_response_json">Expected Response JSON <a href="#database_api.list_limit_orders-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_owner_histories">database_api.list_owner_histories <a href="#database_api.list_owner_histories"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of owner authority histories.</p>
+<h5 id="database_api.list_owner_histories-parameter_json">Query Parameters JSON <a href="#database_api.list_owner_histories-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_owner_histories-expected_response_json">Expected Response JSON <a href="#database_api.list_owner_histories-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"owner_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF14</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_savings_withdrawals">database_api.list_savings_withdrawals <a href="#database_api.list_savings_withdrawals"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of savings withdrawls.</p>
+<h5 id="database_api.list_savings_withdrawals-parameter_json">Query Parameters JSON <a href="#database_api.list_savings_withdrawals-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_savings_withdrawals-expected_response_json">Expected Response JSON <a href="#database_api.list_savings_withdrawals-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_sbd_conversion_requests">database_api.list_sbd_conversion_requests <a href="#database_api.list_sbd_conversion_requests"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of SBD conversion requests.</p>
+<h5 id="database_api.list_sbd_conversion_requests-parameter_json">Query Parameters JSON <a href="#database_api.list_sbd_conversion_requests-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_sbd_conversion_requests-expected_response_json">Expected Response JSON <a href="#database_api.list_sbd_conversion_requests-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF17</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_vesting_delegation_expirations">database_api.list_vesting_delegation_expirations <a href="#database_api.list_vesting_delegation_expirations"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of vesting delegation expirations.</p>
+<h5 id="database_api.list_vesting_delegation_expirations-parameter_json">Query Parameters JSON <a href="#database_api.list_vesting_delegation_expirations-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_vesting_delegation_expirations-expected_response_json">Expected Response JSON <a href="#database_api.list_vesting_delegation_expirations-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"delegations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF17</small></strong></li>
+
+
+
+</ul>
+<h4 id="database_api.list_vesting_delegations">database_api.list_vesting_delegations <a href="#database_api.list_vesting_delegations"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of vesting delegations.</p>
+<h5 id="database_api.list_vesting_delegations-parameter_json">Query Parameters JSON <a href="#database_api.list_vesting_delegations-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_vesting_delegations-expected_response_json">Expected Response JSON <a href="#database_api.list_vesting_delegations-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"delegations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_votes">database_api.list_votes <a href="#database_api.list_votes"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of votes.</p>
+<h5 id="database_api.list_votes-parameter_json">Query Parameters JSON <a href="#database_api.list_votes-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_votes-expected_response_json">Expected Response JSON <a href="#database_api.list_votes-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_withdraw_vesting_routes">database_api.list_withdraw_vesting_routes <a href="#database_api.list_withdraw_vesting_routes"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of vesting withdraw routes.</p>
+<h5 id="database_api.list_withdraw_vesting_routes-parameter_json">Query Parameters JSON <a href="#database_api.list_withdraw_vesting_routes-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_withdraw_vesting_routes-expected_response_json">Expected Response JSON <a href="#database_api.list_withdraw_vesting_routes-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_witness_votes">database_api.list_witness_votes <a href="#database_api.list_witness_votes"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a list of witness votes.</p>
+<h5 id="database_api.list_witness_votes-parameter_json">Query Parameters JSON <a href="#database_api.list_witness_votes-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_witness_votes-expected_response_json">Expected Response JSON <a href="#database_api.list_witness_votes-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.list_witnesses">database_api.list_witnesses <a href="#database_api.list_witnesses"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the list of witnesses.</p>
+<h5 id="database_api.list_witnesses-parameter_json">Query Parameters JSON <a href="#database_api.list_witnesses-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by_name"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.list_witnesses-expected_response_json">Expected Response JSON <a href="#database_api.list_witnesses-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"witnesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+<li class="warning"><strong><small>Disabled</small></strong></li>
+
+</ul>
+<h4 id="database_api.verify_account_authority">database_api.verify_account_authority <a href="#database_api.verify_account_authority"><i class="fas fa-link fa-xs"></i></a></h4>
+<p><strong>Not Implemented</strong></p>
+
+<h5 id="database_api.verify_account_authority-parameter_json">Query Parameters JSON <a href="#database_api.verify_account_authority-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nt">"signers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.verify_account_authority-expected_response_json">Expected Response JSON <a href="#database_api.verify_account_authority-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.verify_account_authority-curl-examples">Example <code>curl</code> <a href="#database_api.verify_account_authority-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.verify_account_authority", "params":{"account":"steemit","signers":["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.verify_authority">database_api.verify_authority <a href="#database_api.verify_authority"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns true if the transaction has all of the required signatures.</p>
+<h5 id="database_api.verify_authority-parameter_json">Query Parameters JSON <a href="#database_api.verify_authority-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.verify_authority-expected_response_json">Expected Response JSON <a href="#database_api.verify_authority-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h5 id="database_api.verify_authority-curl-examples">Example <code>curl</code> <a href="#database_api.verify_authority-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -s --data <span class="s1">'{"jsonrpc":"2.0", "method":"database_api.verify_authority", "params":{"trx":{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[{"type":"pow_operation","value":{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}}],"extensions":[],"signatures":[]}}, "id":1}'</span> https://api.steemit.com
+</code></pre>
+</div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+</ul>
+<h4 id="database_api.verify_signatures">database_api.verify_signatures <a href="#database_api.verify_signatures"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>This is a general purpose API that checks signatures against accounts for an arbitrary sha256 hash using the existing authority structures.</p>
+<h5 id="database_api.verify_signatures-parameter_json">Query Parameters JSON <a href="#database_api.verify_signatures-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"required_owner"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"required_active"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"required_posting"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"required_other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h5 id="database_api.verify_signatures-expected_response_json">Expected Response JSON <a href="#database_api.verify_signatures-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
