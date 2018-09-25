@@ -16,11 +16,11 @@
 {{method.purpose}}
 <h5 id="{{ method.api_method | slug }}-parameter_json">Query Parameters JSON <a href="#{{ method.api_method | slug}}-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
 ```json
-{{method.parameter_json | jsonify | neat_json}}
+{{method.parameter_json | neat_json}}
 ```
 <h5 id="{{ method.api_method | slug }}-expected_response_json">Expected Response JSON <a href="#{{ method.api_method | slug}}-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
 ```json
-{{method.expected_response_json | jsonify | neat_json}}
+{{method.expected_response_json | neat_json}}
 ```
 {% if method.curl_examples %}
 <h5 id="{{ method.api_method | slug }}-curl-examples">Example <code>curl</code> <a href="#{{ method.api_method | slug}}-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
