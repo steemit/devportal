@@ -1,7 +1,7 @@
 ---
 title: 'JS: Transfer Steem And Sbd'
 position: 21
-description: '_Transfer both STEEM and SBD from one account to another._'
+description: "_Transfer both STEEM and SBD from one account to another._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Transfer Steem And Sbd](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/21_transfer_steem_and_sbd) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -127,5 +127,6 @@ client.broadcast.transfer(transf, privateKey).then(
 3.  `npm i`
 4.  `npm run dev-server` or `npm run start`
 5.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---

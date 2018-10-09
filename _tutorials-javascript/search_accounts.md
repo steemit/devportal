@@ -1,7 +1,7 @@
 ---
 title: 'JS: Search Accounts'
 position: 15
-description: '_By the end of this tutorial you should know how to call a list of user names from the steem blockchain_'
+description: "_By the end of this tutorial you should know how to call a list of user names from the steem blockchain_"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Search Accounts](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/15_search_accounts) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -78,5 +78,6 @@ document.getElementById('accList').innerHTML = _accounts.join('<br>');
 3.  `npm i`
 4.  `npm run dev-server` or `npm run start`
 5.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---

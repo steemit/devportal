@@ -1,7 +1,7 @@
 ---
 title: 'JS: Getting Started'
 position: 0
-description: 'Prepare your development environment to use Javascript with the Steem blockchain.'
+description: "Prepare your development environment to use Javascript with the Steem blockchain."
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Getting Started](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/00_getting_started) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -44,5 +44,6 @@ Let's say you wanted to run the very [first tutorial](blog_feed), `01_blog_feed`
 
 If you'd rather clone projects in a windowed environment rather than the terminal, consider [Github Desktop](https://desktop.github.com/).
 ```
+
 
 ---

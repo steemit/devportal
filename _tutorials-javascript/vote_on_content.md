@@ -1,7 +1,7 @@
 ---
 title: 'JS: Vote On Content'
 position: 17
-description: '_Create a weighted up or down vote on a comment/post._'
+description: "_Create a weighted up or down vote on a comment/post._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Vote On Content](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/17_vote_on_content) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -224,5 +224,6 @@ More information on how to use the `broadcast` operation and options surrounding
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

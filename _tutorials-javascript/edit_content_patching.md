@@ -1,7 +1,7 @@
 ---
 title: 'JS: Edit Content Patching'
 position: 12
-description: '_By the end of this tutorial you should know how to patch post edits to Steem._'
+description: "_By the end of this tutorial you should know how to patch post edits to Steem._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Edit Content Patching](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/12_edit_content_patching) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -180,5 +180,6 @@ After the post has been broadcasted to the network, we can simply set all the fi
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---

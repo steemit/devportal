@@ -1,10 +1,10 @@
 ---
-title: 'PY: Reblog Post'
-position: 11
-description: 'We will show how to reblog or resteem post using Python, with username and posting private key.'
+title: 'PY: Reblogging Post'
+position: 14
+description: "We will show how to reblog or resteem post using Python, with username and posting private key."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Reblog Post](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/11_reblog_post) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Reblogging Post](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/14_reblogging_post) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -84,12 +84,13 @@ That's it, if transaction is successful you shouldn't see any error messages, ot
 
 ### To Run the tutorial
 
-1.  [review dev requirements](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/00_getting_started#dev-requirements)
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/11_reblog_post`
+1.  `cd tutorials/14_reblogging_post`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
 
 
 ---

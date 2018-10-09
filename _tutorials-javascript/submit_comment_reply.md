@@ -1,7 +1,7 @@
 ---
 title: 'JS: Submit Comment Reply'
 position: 11
-description: '_By the end of this tutorial you should know how to post a simple comment to Steem._'
+description: "_By the end of this tutorial you should know how to post a simple comment to Steem._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Submit Comment Reply](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/11_submit_comment_reply) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -146,5 +146,6 @@ The `broadcast` operation has more to offer than just committing a post/comment 
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---

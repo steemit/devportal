@@ -1,7 +1,7 @@
 ---
 title: 'JS: Delegate Power'
 position: 27
-description: '_Delegate power to other users using Steemconnect or Client-side signing._'
+description: "_Delegate power to other users using Steemconnect or Client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Delegate Power](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/27_delegate_power) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -111,5 +111,6 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

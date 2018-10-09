@@ -1,7 +1,7 @@
 ---
 title: 'JS: Claim Rewards'
 position: 23
-description: '_Learn how to claim rewards from unclaimed reward balance using Steemconnect as well as client signing method._'
+description: "_Learn how to claim rewards from unclaimed reward balance using Steemconnect as well as client signing method._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Claim Rewards](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/23_claim_rewards) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -110,5 +110,6 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

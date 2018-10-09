@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Voters List On Post'
 position: 6
-description: '_By the end of this tutorial you would know how to get voters list on any content._'
+description: "_By the end of this tutorial you would know how to get voters list on any content._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Voters List On Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/06_get_voters_list_on_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -107,5 +107,6 @@ From this result, you have access to everything associated with the selected pos
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 
 ---

@@ -6,7 +6,7 @@
     on what their purpose is.
     
     Operations are grouped into transactions and passed as parameters to
-    methods like `network_broadcast_api.broadcast_transaction_synchronous`, in
+    methods like `network_broadcast_api.broadcast_transaction`, in
     the `operations` array.  Transactions must be signed in order for the
     blockchain to accept them.  Here is an example of a transaction that
     contains one operation (shown without signatures).
@@ -14,7 +14,7 @@
     ```json
     {
        "jsonrpc":"2.0",
-       "method":"network_broadcast_api.broadcast_transaction_synchronous",
+       "method":"network_broadcast_api.broadcast_transaction",
        "params":{
           "trx":{
              "ref_block_num":1097,

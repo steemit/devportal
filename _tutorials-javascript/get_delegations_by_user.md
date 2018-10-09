@@ -1,7 +1,7 @@
 ---
 title: 'JS: Get Delegations By User'
 position: 29
-description: '_View the vesting delegations made by a user as well as the delegations that are expiring._'
+description: "_View the vesting delegations made by a user as well as the delegations that are expiring._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Delegations By User](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/29_get_delegations_by_user) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -160,5 +160,6 @@ delegationdata.forEach(newObj => {
 3.  `npm i`
 4.  `npm run dev-server` or `npm run start`
 5.  After a few moments, the server should be running at http://localhost:3000/
+
 
 ---
