@@ -19,7 +19,7 @@ exclude: true
 						{% for doc in sorted_collection_docs %}
 						<li>
 							<a href="{{ doc.id }}">{{ doc.title }}</a>
-							<p class="overview">{{ doc.description }}</p>
+							<span class="overview">{{ doc.description | markdownify }}</span>
 						</li>
 						{% endfor %}
 					</ul>

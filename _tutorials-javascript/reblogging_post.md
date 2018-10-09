@@ -1,9 +1,12 @@
 ---
-title: Reblogging Post
+title: 'JS: Reblogging Post'
 position: 14
-description: By the end of this tutorial you should know how to reblog resteem a blog from steemit
+description: "_By the end of this tutorial you should know how to reblog (resteem) a blog from steem_"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Reblogging Post](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/14_reblogging_post) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 This tutorial will show the method of obtaining the relevant inputs for the reblog process followed by broadcasting the info to the steem blockchain using a `demo` account on the `production server`.
@@ -17,7 +20,7 @@ We are using the `client.broadcast` function provided by `dsteem` to reblog the 
 *   The author of the post that is being reblogged
 *   The title of the post that is being reblogged
 
-A simple HTML interface is used to capture the required information after which the transaction is submitted. There are two prerequisites within the reblog process in STEEM that have to be adhered to, namely, the post must not be older than 7 days, and the post can only be reblogged once by a specific account. The fields have been populated with information to give an example of what it would look like but care has to be taken to provide correct details before the function is executed.
+A simple HTML interface is used to capture the required information after which the transaction is submitted. There are two prerequisites within the reblog process in Steem that have to be adhered to, namely, the post must not be older than 7 days, and the post can only be reblogged once by a specific account. The fields have been populated with information to give an example of what it would look like but care has to be taken to provide correct details before the function is executed.
 
 This tutorial makes use of the This function is taken from the tutorial [Blog Feed](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/01_blog_feed/) to get a list of trending posts.
 
@@ -130,12 +133,15 @@ If the reblog fails the `console.log` will present a long line of error code:
 
 There is a line in the error log indicating "Account has already reblogged this post" indicating exactly that. This process can be run until a positive result is found.
 
+It should be noted that reblogging a post does not create a new post on the blockchain but merely shares the post to whomever is following the user doing the reblog. Along with `reblogging` the `custom_json` broadcast operation also includes options for following users and editing blog content. More information on how to use the `broadcast` operation and options surrounding the operation can be found on the Steem [Devportal](https://developers.steem.io/apidefinitions/#apidefinitions-broadcast-ops-comment)
+
 ## To run this tutorial
 
 1.  clone this repo
 2.  `cd tutorials/14_reblogging_post`
 3.  `npm i`
-4.  `npm run start`
+4.  `npm run dev-server` or `npm run start`
+5.  After a few moments, the server should be running at http://localhost:3000/
 
-To run this tutorial in development mode simply replace the last statement with `npm run dev-server`
-Running in dev mode will start a web server accessible from `http://localhost:3000/` and will automatically refresh your browser with any changes you make to the code.
+
+---

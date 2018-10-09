@@ -1,9 +1,12 @@
 ---
-title: Get Post Details
+title: 'JS: Get Post Details'
 position: 5
-description: By the end of this tutorial you would know how to get post details and use them appropriately
+description: "_By the end of this tutorial you would know how to get post details and use them appropriately._"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Details](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/05_get_post_details) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 The purpose of this tutorial is to **a)** demonstrate how to get a list of articles from the trending list on the blockchain, and **b)** fetch the contents of the selected post to display its title and body.
@@ -189,3 +192,6 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+
+---

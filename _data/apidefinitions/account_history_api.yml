@@ -22,6 +22,7 @@
         - Could not find API account_history_api
         - Could not find API account_history_api
     - api_method: account_history_api.get_transaction
+      deprecated: true
       purpose: Returns the details of a transaction based on a transaction id.
       parameter_json: {"id":"0000000000000000000000000000000000000000"}
       expected_response_json: {"ref_block_num":0,"ref_block_prefix":0,"expiration":"1970-01-01T00:00:00","operations":[],"extensions":[],"signatures":[],"transaction_id":"0000000000000000000000000000000000000000","block_num":0,"transaction_num":0}

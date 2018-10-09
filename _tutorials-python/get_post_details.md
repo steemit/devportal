@@ -1,16 +1,17 @@
 ---
-title: Get Post Details
-position: 2
-description: This tutorial pulls a list of the posts from the blockchain with created filter and tag then display selected post details
+title: 'PY: Get Post Details'
+position: 5
+description: "Get post details from list of posts from the blockchain with `created` filter and tag then display selected post details."
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Post Details](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/05_get_post_details) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
 
 
-This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts filtered by a _filter_ and _tag_
+
+We will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts filtered by a _filter_ and _tag_
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 Steem python library has built-in function to get details of post with author and permlink as an argument. Since we don't have predefined post or author/permlink. We will fetch post list from previous tutorial and give option to choose one option/post to get its details. `get_content` function fetches latest state of the post and delivers its details. Note that `get_discussions_by_created` filter is used for fetching 5 posts which by default contains details of each post, but for purpose of this tutorial we will showcase `get_content` function to fetch details.
 
@@ -157,8 +158,13 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/02_get_post_details`
+1.  `cd tutorials/05_get_post_details`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+
+---

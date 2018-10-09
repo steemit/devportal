@@ -1,16 +1,17 @@
 ---
-title: Get Voters List
-position: 3
-description: This tutorial pulls a list of the voters on selected post from the blockchain
+title: 'PY: Get Voters List On Post'
+position: 6
+description: "Voters list and detail of each vote on selected content."
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Voters List On Post](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/06_get_voters_list_on_post) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<br>
 
 
-This tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts and get voters info on selected post.
+
+Tutorial will explain and show you how to access the **Steem** blockchain using the [steem-python](https://github.com/steemit/steem-python) library to fetch list of posts and get voters info on selected post.
 
 ## Intro
-
-All python tutorials will be in Python3 and developers following these tutorials should have sufficient knowlegde to use pip/pip3 package manager. Your development environment should be set up properly to test these tutorials.
 
 Steem python library has built-in function to get active voters information if post with author and permlink as an argument. Since we don't have predefined post or author/permlink. We will fetch post list from previous tutorial and give option to choose one post to get its active voters. `get_active_votes` function fetches list of active voters on content. Note that `get_discussions_by_active` filter is used for fetching 5 posts which by default contains `active_votes` of each post, but for purpose of this tutorial we will use `get_active_votes` function to fetch voters info.
 
@@ -111,8 +112,13 @@ That's it!
 
 ### To Run the tutorial
 
+1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/03_get_voters_list`
+1.  `cd tutorials/06_get_voters_list`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see output in terminal/command prompt screen.
+
+
+
+---

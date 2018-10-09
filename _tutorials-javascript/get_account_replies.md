@@ -1,9 +1,12 @@
 ---
-title: Get Account Replies
+title: 'JS: Get Account Replies'
 position: 8
-description: By the end of this tutorial you would know how to get replies made on particular accounts content
+description: "_By the end of this tutorial you would know how to get replies made on particular account's content._"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Account Replies](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/08_get_account_replies) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 The purpose of this tutorial is **How to get account replies** and **a)** demonstrate how to use `get_state` api function call, and **b)** fetch recent replies for the content of specific account, in this case `@steemitblog`.
@@ -268,3 +271,6 @@ We check if `content` is not an empty object and we iterate through each object 
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+
+---

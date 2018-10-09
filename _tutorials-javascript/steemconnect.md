@@ -1,9 +1,12 @@
 ---
-title: Steemconnect
+title: 'JS: Steemconnect'
 position: 2
-description: Understand the basics of using Steemconnect with your Steem application
+description: "_Understand the basics of using Steemconnect with your Steem application._"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Steemconnect](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 In this tutorial we will setup Steemconnect for demo application and step by step show the process of setting up dedicated account for your app to use Steemconnect Dashboard and setup backend of your application to use Steemconnect authorization properly.
@@ -119,3 +122,6 @@ Now that `sc2-sdk` is initialized we can start authentication and perform simple
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+
+---

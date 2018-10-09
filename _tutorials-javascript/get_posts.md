@@ -1,9 +1,12 @@
 ---
-title: Get Posts
+title: 'JS: Get Posts'
 position: 4
-description: Query for the most recent posts having a specific tag using a Steem filter
+description: "Query for the most recent posts having a specific tag, using a Steem filter"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Get Posts](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/04_get_posts) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 This tutorial pulls a list of the posts from different tags or filters and displays them.
@@ -31,7 +34,7 @@ application.
 
 #### 1. UI <a name="UI"></a>
 
-The source HTML for our UI can be found in [public/index.html](./public/index.html)
+The source HTML for our UI can be found in [public/index.html](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/04_get_posts/public/index.html)
 
 There are three input components to the UI.
 
@@ -180,7 +183,7 @@ The result returned from the service is a `JSON` list. This is an example list w
 ]
 ```
 
-**And that's all there is to getting top-level posts.** _See [Get post comments](../07_get_post_comments) for getting comments_
+**And that's all there is to getting top-level posts.** _See [Get post comments](get_post_comments) for getting comments_
 
 ### To Run the tutorial
 
@@ -189,3 +192,6 @@ The result returned from the service is a `JSON` list. This is an example list w
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+
+---

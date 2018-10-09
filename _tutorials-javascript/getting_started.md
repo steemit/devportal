@@ -1,9 +1,12 @@
 ---
-title: Getting Started
+title: 'JS: Getting Started'
 position: 0
-description: Prepare your development environment to use Javascript with the Steem blockchain
+description: "Prepare your development environment to use Javascript with the Steem blockchain."
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Getting Started](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/00_getting_started) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 For Javascript tutorials, we will use the opensource library [dsteem](https://github.com/steemit/dsteem).
@@ -22,9 +25,10 @@ If you want to keep multiple versions of Node on your system try [Node Version M
 
 ### Running a typical Tutorial
 
-Let's say you wanted to run the very [first tutorial](tutorials/01_blog_feed), `01_blog_feed`. Here's how you'd do it:
+Let's say you wanted to run the very [first tutorial](blog_feed), `01_blog_feed`. Here's how you'd do it:
 
-1. From Bash:
+1.  From Bash:
+
     ```bash
     git clone https://github.com/steemit/devportal-tutorials-js.git
 
@@ -32,9 +36,14 @@ Let's say you wanted to run the very [first tutorial](tutorials/01_blog_feed), `
     npm i
     npm run dev-server
     ```
-1. open http://localhost:3000/ in your web browser
-```
 
+1.  open http://localhost:3000/ in your web browser
+
+```
 ### Github
 
 If you'd rather clone projects in a windowed environment rather than the terminal, consider [Github Desktop](https://desktop.github.com/).
+```
+
+
+---

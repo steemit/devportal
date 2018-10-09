@@ -35,10 +35,27 @@
       def: Private key to sign a transaction with account's authority, should be kept secret because it grants access to account
     - term: Wif
       def: Wallet Import Format/Private key, should be kept secret because it grants access to account
+    - term: Active key
+      def: The active key is used to make transfers and place orders in the internal market
+    - term: Posting key
+      def: The posting key is used for posting and voting
+    - term: Owner key
+      def: The owner key is the master key for the account and is required to change the other keys
     - term: Vote
       def: Voting a content
     - term: Reputation
       def: Account's reputation on platform
+    - term: Markdown language
+      def: Easy to read and write, plain text format language commonly used to create Steemit articles
+    - term: Permlink
+      def: Unique identifier of every comment or post of an author, within the context of that author. ('@author/permlink' combos are globally unique)
+    - term: Mainnet
+      def: The 'production' Steem blockchain network wherein real STEEM is held and actual transactions take place.
+    - term: Delegation
+      def: The assignment of a portion your Steem Power for use to another account (cannot be spent, can be reclaimed)
+    - term: PowerUp
+      def: Convert STEEM to Steem Power and vice-versa with PowerDown
+      
 - name: Governance
   id: glossary-governance
   items:
@@ -48,8 +65,6 @@
       def: Servers running blockchain software
     - term: Witness
       def: Witness is a position/role for the people who are chosen by community (delegate trust) to support platform and run consensus protocol to ensure security and validity of transactions/blocks on the blockchain
-    - term: Node
-      def: Servers running blockchain software
     - term: Hardfork
       def: Process to release protocol/blockchain consensus upgrades
     - term: Softfork
@@ -70,6 +85,8 @@
       def: Transaction signature signed by account with private key
     - term: Broadcast Transaction
       def: Event where signed transaction is broadcasted to the network, so that witnesses could validate and include in block
+    - term: Virtual operation
+      def: Operations that are derived from blockchain activity, but aren't actually stored as operations themselves (ex. curation and author rewards). They happen based on consensus from the blockchain based on other normal operations
 
 - name: API 
   id: glossary-api
@@ -96,12 +113,20 @@
       def: Mostly used tags
     - term: Following
       def: Account that is being followed
+    - term: Follower
+      def: Account that is following the user
     - term: State
       def: State of blockchain for path - accounts/tags/filters/posts
     - term: Dynamic Global Properties
       def: Current blockchain global properties which is being in each block
     - term: Median Price
       def: Median Price feed provided by all witnesses
+    - term: Curator
+      def: A steem user who upvotes a post by using their daily voting power to assign value to a post that they believe has good quality content and should be seen and the author rewarded
+    - term: Curation reward
+      def: The reward given to a curator, which is their portion of the 50% allocated to all curators that have upvoted a post
+    - term: Resteem
+      def: (Reblog) re-posting another authors' post in your blog feed for your followers list
 
 - name: Market
   id: glossary-market

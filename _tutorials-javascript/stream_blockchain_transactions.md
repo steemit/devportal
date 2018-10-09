@@ -1,9 +1,12 @@
 ---
-title: Stream Blockchain Transactions
+title: 'JS: Stream Blockchain Transactions'
 position: 13
-description: By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain
+description: "_By the end of this tutorial you should know how to stream transactions and blocks from Steem blockchain._"
 layout: full
----
+---              
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Stream Blockchain Transactions](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/13_stream_blockchain_transactions) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
+<br>
+
 
 
 This tutorial will take you through the process of preparing and streaming blocks using the `blockchain.getBlockStream()` operation. Being able to stream blocks is crucial if you are building automated or follow up scripts or detect certain type of transactions on network or simply use it for your backend application to sync and/or work with data in real-time.
@@ -127,3 +130,6 @@ That's it!
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
 1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
+
+
+---

@@ -49,6 +49,8 @@ Edit the file `DEV_config.json` and change all:
 
 `https://api.steemit.com`
 
+Also consider adding the [`retries`](/services/#retry) element to your `DEV_config.json`.
+
 Then build and run:
 
 ```bash
