@@ -79,7 +79,7 @@ collections:
     position: 14
     output: true
 
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
