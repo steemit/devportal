@@ -898,7 +898,7 @@
       purpose: |
         Delegate vesting shares from one account to the other. The vesting
         shares are still owned by the original account, but content voting
-        rights and bandwidth allocation are transferred to the receiving
+        rights and resource credit are transferred to the receiving
         account. This sets the delegation to `vesting_shares`, increasing it or
         decreasing it as needed (i.e. a delegation of 0 removes the delegation).
         

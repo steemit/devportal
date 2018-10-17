@@ -19,24 +19,24 @@ Dynamic Global Properties represents a set of values that are calculated during 
   * [head_block_id](#head_block_id)
   * [time](#time)
   * [current_witness](#current_witness)
-  * [total_pow](#total_pow)
-  * [num_pow_witnesses](#num_pow_witnesses)
+  * [total_pow](#total_pow-deprecated)
+  * [num_pow_witnesses](#num_pow_witnesses-deprecated)
   * [virtual_supply](#virtual_supply)
   * [current_supply](#current_supply)
   * [current_sbd_supply](#current_sbd_supply)
-  * [total_vesting_fund_steem](#total_vesting_fund_steem)
+  * [total_vesting_fund_steem](#total_vesting_fund_steem-deprecated)
   * [total_vesting_shares](#total_vesting_shares)
-  * [total_reward_fund_steem](#total_reward_fund_steem)
-  * [total_reward_shares2](#total_reward_shares2)
+  * [total_reward_fund_steem](#total_reward_fund_steem-deprecated)
+  * [total_reward_shares2](#total_reward_shares2-deprecated)
   * [sbd_interest_rate](#sbd_interest_rate)
   * [maximum_block_size](#maximum_block_size)
   * [current_aslot](#current_aslot)
   * [recent_slots_filled](#recent_slots_filled)
   * [last_irreversible_block_num](#last_irreversible_block_num)
   * [vote_power_reserve_rate](#vote_power_reserve_rate)
-  * [average_block_size](#average_block_size)
-  * [current_reserve_ratio](#current_reserve_ratio)
-  * [max_virtual_bandwidth](#max_virtual_bandwidth)
+  * <del>[average_block_size](#average_block_size-removed)</del>
+  * <del>[current_reserve_ratio](#current_reserve_ratio-removed)</del>
+  * <del>[max_virtual_bandwidth](#max_virtual_bandwidth-removed)</del>
 * [Not Covered](#not-covered)
 * [Example Method Call](#example-method-call)
 * [Example Output](#example-output)
@@ -72,13 +72,13 @@ Account name of the current witness.
 
 * example: `blocktrades`
 
-### `total_pow` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `total_pow`<span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 The total POW accumulated, aka the sum of `num_pow_witness` at the time new POW is added.
 
 * example: `514415`
 
-### `num_pow_witnesses` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `num_pow_witnesses`<span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 
 The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.
@@ -129,13 +129,13 @@ VESTS that are invested in STEEM POWER (powered up).
 
 * example: `390950506702.452773 VESTS`
 
-### `total_reward_fund_steem`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `total_reward_fund_steem` <a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 STEEM available in the reward pool.
 
 * example: `0.000 STEEM`
 
-### `total_reward_shares2` <span class="warn deprecated">Deprecated</span> <a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `total_reward_shares2` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 *Now deprecated way to get the number of shares in the pool.*
 
@@ -181,19 +181,25 @@ The number of votes regenerated per day.  Any user voting slower than this rate 
 
 * example: `10`
 
-### `average_block_size`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `average_block_size` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+ 
+**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
 
 Average block size is updated every block to be: `average_block_size = (99 * average_block_size + new_block_size) / 100`.  This property is used to update the `current_reserve_ratio` to maintain approximately *  50% or less utilization of network capacity.
 
 * example: `9309`
 
-### `current_reserve_ratio`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `current_reserve_ratio` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
 
 Any time `average_block_size <= 50% maximum_block_size` this value grows by 1 until it reaches `STEEM_MAX_RESERVE_RATIO`.  Any time `average_block_size` is greater than 50% it falls by 1%.  Upward adjustments happen once per round, downward adjustments happen every block.
 
 * example: `200000000`
 
-### `max_virtual_bandwidth`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+### `max_virtual_bandwidth` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
 
 The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_block_size * STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEM_BLOCK_INTERVAL`; The maximum virtual bandwidth is: `max_bandwidth * current_reserve_ratio`
 
@@ -249,10 +255,7 @@ curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_pro
       "recent_slots_filled":"340282366920938463463374607431768211400",
       "participation_count":128,
       "last_irreversible_block_num":24238230,
-      "vote_power_reserve_rate":10,
-      "average_block_size":10950,
-      "current_reserve_ratio":200000000,
-      "max_virtual_bandwidth":"264241152000000000000"
+      "vote_power_reserve_rate":10
    }
 }
 ```

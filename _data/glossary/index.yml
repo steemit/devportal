@@ -6,7 +6,9 @@
     - term: Steem
       def: Name of the blockchain and platform
     - term: Bandwidth
-      def: is the limit of data each account can send/use
+      def: formerly the limit of data each account can send/use (replaced by Resource Credits)
+    - term: Resource Credits
+      def: is the limit of data each account can utilize resources on the blockchain (also known as RC)
     - term: VESTS
       def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
     - term: STEEM
