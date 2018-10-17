@@ -3,7 +3,7 @@
 ---
 - name: Resource Credit API
   description: |
-    Allows querying of various Resource Credit metrics.  See: [RC Bandwidth System](https://github.com/steemit/steem/wiki/RC-Bandwidth-System), [0.20.2 Release Notes](https://github.com/steemit/steem/releases/tag/v0.20.2)
+    Allows querying of various Resource Credit metrics.  See: [RC Bandwidth System](https://github.com/steemit/steem/wiki/RC-Bandwidth-System), [0.20.2 Release Notes](https://github.com/steemit/steem/releases/tag/v0.20.2), [Developer Guide: Resource Credit System](https://steemit.com/steem/@steemitdev/developer-guide-resource-credit-system)
   methods:
   - api_method: rc_api.find_rc_accounts
     since: HF20
