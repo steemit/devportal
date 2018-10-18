@@ -15,9 +15,7 @@ Applications that interface directly with the Steem blockchain will need to conn
 | api.steemitstage.com            | @steemit       |
 | api.steem.house                 | @gtg           |
 | appbasetest.timcliff.com        | @timcliff      |
-| appbase.buildteam.io            | @themarkymark  |
 | gtg.steem.house:8090            | @gtg           |
-| rpc.buildteam.io                | @themarkymark  |
 | rpc.curiesteem.com              | @curie         |
 | rpc.steemliberator.com          | @netuoso       |
 | rpc.steemviz.com                | @ausbitbank    |

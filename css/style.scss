@@ -186,3 +186,18 @@ header h1 {
   position: relative;
   top:-3px;
 }
+
+.danger {
+  background: #dc3545;
+  color: #fff;
+  font-weight: bold;
+  padding:5px;
+}
+
+.danger.removed {
+  font-size: small;
+  display:inline-block;
+  margin-left:5px;
+  position: relative;
+  top:-3px;
+}

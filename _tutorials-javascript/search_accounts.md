@@ -77,7 +77,7 @@ document.getElementById('accList').innerHTML = _accounts.join('<br>');
 2.  `cd tutorials/15_search_accounts`
 3.  `npm i`
 4.  `npm run dev-server` or `npm run start`
-5.  After a few moments, the server should be running at http://localhost:3000/
+5.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
 
 
 ---

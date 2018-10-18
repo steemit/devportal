@@ -146,7 +146,7 @@ const accObj = {
 }
 ```
 
-#### 5. Broadcast operation<a name="broadcast></a>
+#### 5. Broadcast operation<a name="broadcast"></a>
 
 With all the parameters assigned, the transaction can be broadcast to the blockchain. As stated before, the actual `broadcast` operation for both new permissions and to revoke permissions use the same parameters.
 
