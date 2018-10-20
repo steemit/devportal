@@ -1,14 +1,17 @@
 - name: broadcast_ops_comment
   description:  |
-    This is a brief overview of the parameters allowed and values passed by the 'comment' operation
+    This is a brief overview of the parameters allowed and values passed by the 'comment' operation in the broadcast API
     
     Additional info for API definitions is available on the [dev portal](/apidefinitions/#broadcast_ops_comment)
   
     **Purpose:**
     
     A broadcast operation on Steem is a way of expressing intention on the blockchain.
-    They have types, like `comment` in this instance, and they parameters (like author) depending on what their intended use is
-    In other words, the `broadcast.comment` operation creates a post or a comment on a current post, on the steem blockchain.
+    It is used to transmit signed transactions to the Steem network.
+    
+    There are various broadcast types, in this instance we are focusing specifically on the `comment` operation.
+    Each of the broadcast operations have parameters that are passed with the specific method in order to affect the required change to the blockchain.
+    In other words, the `broadcast.comment` operation creates a comment or a post (post are also defined as comments) on the Steem blockchain.
   
     **Rules:**
       - The "title" must not be longer than 256 bytes
@@ -34,7 +37,7 @@
           - tags - An array of up to 5 strings. Although the blockchain will accept more than 5, the tags plugin only looks at the first five
           - app - A user agent style application identifier. Typically app_name.version, e.g. steemit/0.1
           - format - The format of the body, e.g. markdown
-          - In addition to the above keys, application developrs are free to add any other keys they want to help manage the content they broadcast.
+          - In addition to the above keys, application developers are free to add any other keys they want to help manage the content they broadcast.
 
     A typical `comment` operation would look similar to the below:
     
