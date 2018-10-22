@@ -8,6 +8,10 @@ layout: full
 
 ### Intro
 
+<h4 class="danger">
+  Please note, Bandwidth has been replaced by <a href="/search/?q=resource+credits">Resource Credits</a>.  This document is outdated and will remain in place to give historical context prior to HF20.  Also see: <a href="https://github.com/steemit/steem/wiki/RC-Bandwidth-System">RC Bandwidth System</a>, <a href="https://github.com/steemit/steem/releases/tag/v0.20.2">0.20.2 Release Notes</a>, <a href="https://steemit.com/steem/@steemitdev/developer-guide-resource-credit-system">Developer Guide: Resource Credit System</a>
+</h4>
+
 We're going over the various API calls needed to determine the remaining bandwidth available to a particular account.  As mentioned in the [STEEM Whitepaper](https://steem.io/steem-whitepaper.pdf):
 
 > Bandwidth used by an individual user should be measured over a suitably long period of time to allow that

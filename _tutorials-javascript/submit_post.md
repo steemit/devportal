@@ -116,7 +116,7 @@ The `broadcast` operation has more to offer than just committing a post/comment 
 1.  `cd tutorials/10_submit_post`
 1.  `npm i`
 1.  `npm run dev-server` or `npm run start`
-1.  After a few moments, the server should be running at http://localhost:3000/
+1.  After a few moments, the server should be running at [http://localhost:3000/](http://localhost:3000/)
 
 
 ---

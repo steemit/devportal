@@ -14,7 +14,7 @@ Being able to post a comment is critical to most social applications built on St
 
 ## Intro
 
-We are using the `broadcast.comment` function provided by the `dsteem` library which generates, signs, and broadcasts the transaction to the network. On the Steem platform, posts and comments are all internally stored as a `comment` object, differentiated by whether or not a `parent_author` exists. When there is no `parent_author`, the it's a post, when there is, it's a comment.
+We are using the `broadcast.comment` function provided by the `dsteem` library which generates, signs, and broadcasts the transaction to the network. On the Steem platform, posts and comments are all internally stored as a `comment` object, differentiated by whether or not a `parent_author` exists. When there is no `parent_author`, the it's a post, when there is, it's a comment. An account can broadcast a comment on the blockchain every 3 seconds (with every new block) enabling the user to comment as they wish with almost no wait time between commits.
 
 ## Steps
 

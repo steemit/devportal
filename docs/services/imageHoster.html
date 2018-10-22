@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>ImageHoster | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="ImageHoster" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Definition" />
+<meta property="og:description" content="Definition" />
+<link rel="canonical" href="https://developers.steem.io/services/imageHoster" />
+<meta property="og:url" content="https://developers.steem.io/services/imageHoster" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"Definition","@type":"WebPage","url":"https://developers.steem.io/services/imageHoster","headline":"ImageHoster","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<h1 id="definition">Definition</h1>
+
+<p>Imagehoster is a Steem-powered image hosting and proxying service. Any image uploaded to, or proxied through, your Imagehoster has a copy stored within it. This means that the image continues to be available even if 3rd party sites go down or change their URLs. For as long as your instance of imagehoster is running the image will be available, anytime you need it.</p>
+
+<p>The purpose of this tool is to provide a way to host and proxy images used by <a href="https://github.com/steemit/condenser#condenser">condenser</a> to help maintain the privacy of the authors and general users accessing the images.</p>
+
+<p>Using ImageHoster will help limit access to IP addresses of the general user.  It will also strip <a href="https://en.wikipedia.org/wiki/Exif">image metadata</a> related to the author’s geographical location.  It also helps to verify that the original author uploaded the image they intended.</p>
+
+<p>The ability to upload images on steemit.com was originally added in January, 2017.  Please note that this tool <strong>does not</strong> store any image data on the blockchain.</p>
+
+<p>Detaied information on Imagehoster can be found in its <a href="https://github.com/steemit/imagehoster/blob/master/README.md">repository</a></p>
+
+<h2 id="the-api">The API</h2>
+
+<p>Below are examples of how to process images with the API</p>
+
+<ol>
+  <li><a href="#upload-image"><strong>Upload an image</strong></a></li>
+  <li><a href="#fetch-upload"><strong>Fetch an uploaded image</strong></a></li>
+  <li><a href="#proxy-resize"><strong>Proxy and resize an image</strong></a></li>
+  <li><a href="#user-avatar"><strong>Get user avatar image</strong></a></li>
+  <li><a href="#signing"><strong>Signing uploads</strong></a></li>
+  <li><a href="#how-to-run"><strong>How to run</strong></a></li>
+</ol>
+
+<h4 id="1-upload-an-image-">1. Upload an image <a name="upload-image"></a></h4>
+
+<p><code class="highlighter-rouge">POST /&lt;username&gt;/&lt;signature&gt;</code></p>
+
+<p>This returns a JSON object container the URL to the uploaded image, ex:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "url": "https://images.example.com/DQmZi174Xz96UrRVBMNRHb6A2FfU3z1HRPwPPQCgSMgdiUT/test.jpg"
+}
+</code></pre></div></div>
+
+<p>For this to succeed it requires a signature from a Steem account in good standing.</p>
+
+<h4 id="2-fetch-an-uploaded-image-">2. Fetch an uploaded image <a name="fetch-upload"></a></h4>
+
+<p><code class="highlighter-rouge">GET /&lt;image_hash&gt;/&lt;filename&gt;</code></p>
+
+<p>This downloads a previously uploaded image.</p>
+
+<p><code class="highlighter-rouge">&lt;filename&gt;</code> is optional but can be provided to help users and applications understand the content type (Content-Type header will still always reflect actual image type)</p>
+
+<h4 id="3-proxy-and-resize-an-image-">3. Proxy and resize an image <a name="proxy-resize"></a></h4>
+
+<p><code class="highlighter-rouge">GET /&lt;width&gt;x&lt;hight&gt;/&lt;image_url&gt;</code></p>
+
+<p>This downloads and serves the provided <code class="highlighter-rouge">image_url</code>. Something to note is that a copy will be taken of the image and will be served on subsequent requests, so even if the upstream is removed or changes, you will still get the original from the proxy endpoint.</p>
+
+<p><code class="highlighter-rouge">&lt;width&gt;</code> and <code class="highlighter-rouge">&lt;height&gt;</code> can be set to <code class="highlighter-rouge">0</code> to preserve the image’s dimensions, if they are <code class="highlighter-rouge">&gt;0</code> the image will be aspect resized (down-sample only) to fit.</p>
+
+<h4 id="4-get-user-avatar-image-">4. Get user avatar image <a name="user-avatar"></a></h4>
+
+<p><code class="highlighter-rouge">GET /u/&lt;username&gt;/avatar/&lt;size&gt;</code></p>
+
+<p>This presents the avatar for <code class="highlighter-rouge">username</code>. If no avatar is set, a default image will be served. This default is set in the service config.</p>
+
+<p>The sizes are:</p>
+<ul>
+  <li>small - 64x64</li>
+  <li>medium - 128x128</li>
+  <li>large - 512x512</li>
+</ul>
+
+<p>The avatars follow the same sizing rules as proxied images, so you not guaranteed to get a square image, just an image fitting inside of the <code class="highlighter-rouge">size</code> square</p>
+
+<h4 id="5-signing-uploads-">5. Signing uploads <a name="signing"></a></h4>
+
+<p>Uploads also require a signature made by a Steem account’s posting authority. The account has to also be above a certain (service configurable) reputation threshold.</p>
+
+<p>Creating a signature for <code class="highlighter-rouge">node.js</code> and with <code class="highlighter-rouge">dsteem</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dsteem</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'dsteem'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="p">[</span><span class="nx">wif</span><span class="p">,</span> <span class="nx">file</span><span class="p">]</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">wif</span> <span class="o">||</span> <span class="o">!</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">stderr</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">`Usage: ./sign.js &lt;posting_wif&gt; &lt;file&gt;\n`</span><span class="p">)</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">PrivateKey</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span><span class="nx">wif</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">imageHash</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s1">'ImageSigningChallenge'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">digest</span><span class="p">()</span>
+
+<span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">key</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">imageHash</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'</span><span class="err">\</span><span class="s1">n'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="6-how-to-run-">6. How to run <a name="how-to-run"></a></h4>
+
+<p>This imagehoster demo must be run through linux due to a dependency on the <code class="highlighter-rouge">make</code> commandline.
+You will also require <code class="highlighter-rouge">node.js</code> and <code class="highlighter-rouge">yarn</code> to run</p>
+
+<ul>
+  <li>
+    <p>git clone https://github.com/steemit/imagehoster</p>
+  </li>
+  <li>
+    <p>Run <code class="highlighter-rouge">make devserver</code></p>
+  </li>
+</ul>
+
+<p>This will pull in all dependencies and spin up a hot-reloading development server. From there the HTTP methods can be used to alter the image loaded from the &lt;./test&gt; module.</p>
+
+<ul>
+  <li>Run <code class="highlighter-rouge">make lint</code> to load the autolinter.</li>
+  <li>Run <code class="highlighter-rouge">make test</code> to run the unit tests for the active functions.</li>
+</ul>
+
+<p>Default configuration variables are in &lt;./config/defailt.toml&gt; and can be overridden by environment variables as definded in &lt;./config/custom-enfironment-variables.toml&gt;</p>
+
+<p>The load order for the config files are: env vars &gt; <code class="highlighter-rouge">config/$NODE_ENV.toml</code> &gt; <code class="highlighter-rouge">config/default.toml</code></p>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

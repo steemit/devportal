@@ -2,15 +2,23 @@
 # See: https://git.io/vx5CY
 ---
 - name: Witness API
-  description: Used to query values related to the witness plugin. **These AppBase
-    API methods are still under development and subject to change.**
+  description: |
+    **API removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
   methods:
   - api_method: witness_api.get_account_bandwidth
-    purpose: 'Returns the available bandwidth of an account.  See: [Forum/Market Bandwidth](/tutorials-recipes/forum-market-bandwidth)'
+    disabled: true
+    purpose: |
+      **Disabled since 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
+      
+      Returns the available bandwidth of an account.  See: [Forum/Market Bandwidth](/tutorials-recipes/forum-market-bandwidth)
     parameter_json: '{"account":"","type":"post"}'
     expected_response_json: "{}"
   - api_method: witness_api.get_reserve_ratio
-    purpose: Returns the current reserve ratio.
+    disabled: true
+    purpose: |
+      **Disabled since 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
+      
+      Returns the current reserve ratio.
     parameter_json: "{}"
     expected_response_json: '{"id":0,"average_block_size":0,"current_reserve_ratio":1,"max_virtual_bandwidth":"0"}'
     curl_examples:
@@ -18,3 +26,6 @@
       "id":1}'
     - '{"jsonrpc":"2.0", "method":"witness_api.get_account_bandwidth", "params":{"account":"alice","type":"market"},
       "id":1}'
+    expected_curl_responses:
+    - Could not find API witness_api
+    - Could not find API witness_api
