@@ -10,7 +10,7 @@ Since HF20 a Resource Credit (RC) system has been implemented to manage the numb
 
 ## Intro
 
-RCs are non-transferable credits that accrue to each Steem account based on how much Steem Power it has. An account spends RC when it transacts on the Steem blockchain. RCs regenerate over a 5 day period. If an account doesn’t have sufficient credits, the transaction will not be allowed to occur.
+RCs are non-transferable credits that accrue to each Steem account based on how much Steem Power(SP) it has. An account spends RC when it transacts on the Steem blockchain. RCs regenerate over a 5 day period. If an account doesn’t have sufficient credits, the transaction will not be allowed to occur.
 
 The price of a transaction (which consumes a particular resource, or resources) is based on the current stockpile of those resources. As a stockpile of a resource decreases, the RC cost of that resource increases. In other words, as the stockpile goes down, accounts will have to pay more RCs to use the remaining resources. This system disincentivize the over-consumption of resources by users as well as spam.
 
@@ -20,7 +20,7 @@ There are applications available to check an account's status, like [steemd.com]
 
 ## Calculating available RC
 
-Since RC is calculated relative to Steem Power, we first need to know the available SP before we can calculate how much RC we have left. The value of the current available mana(RC) is also accessible as a field from the `getAccounts` function.
+Since RC is calculated relative to SP, we first need to know the available SP before we can calculate how much RC we have left. The value of the current available mana(RC) is also accessible as a field from the `getAccounts` function.
 
 ```javascript
 //capture account
@@ -45,7 +45,7 @@ var currentManaPerc = currentMana * 100 / maxMana;
 console.log(currentManaPerc);
 ```
 
-The beem-python library offers a solution to calculate the RC costs for a specific operation. The three main operations being posts/comments, transfers and voting on posts. The functions can be executed with the default parameter values (as seen below) to provide an estimate of an average operation.
+A community created library, [beem-python](https://github.com/holgern/beem) offers a solution to calculate the RC costs for a different transaction types. The three main transaction types are: posts/comments, transfers, and vote(on posts). The beem's functions can be executed with no parameters (as seen below) to provide a rough estimate of an average operation.
 
 ```python
 import beem
@@ -54,12 +54,13 @@ from beem.rc import RC
 client = beem.Steem()
 
 rc = RC(steem_instance=client)
+#beem sets its own rough, default values if you don't pass them in.
 print(rc.comment()) #(self, tx_size=1000, permlink_length=10, parent_permlink_length=10)
 print(rc.vote()) #(self, tx_size=210)
 print(rc.transfer()) #(self, tx_size=290, market_op_count=1)
 ```
 
-The functions can also be executed for a specific operation by replacing the default parameter values with the specific vote/transfer/etc in question. The first step is to calculate the transfer size of the operation which is then used to execute the function to calculate the RC costs.
+The functions can also be executed for a specific transaction by passing in data for transaction in question. The first step is to calculate the transfer size of the operation which is then used to execute the function to calculate the RC costs.
 
 ```python
 opdata = {
