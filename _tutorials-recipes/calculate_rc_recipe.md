@@ -6,17 +6,17 @@ exclude: true
 layout: full
 ---
 
-Since HF20 a resource credit (RC) system has been implemented to manage the amount of transactions (comments, votes, transfers, etc) you can process on the blockchain at any given time. This recipe will look at how to calculate your remaining RC and also what the various RC costs are.
+Since HF20 a Resource Credit (RC) system has been implemented to manage the number of transactions (comments, votes, transfers, etc) you can execute on the blockchain at any given time. This recipe will look at how to calculate your current RC and also what the current RC cost is for a given transaction.
 
 ## Intro
 
-The most important thing to understand about RCs is that they are non-transferable credits given to each account based on how much Steem Power it has, which get “spent” whenever a user transacts with the Steem blockchain. Of course, if RCs did not replenish over time, then eventually everyone would become unable to transact at some point. For that reason, RCs regenerate over a 5 day period. If an account doesn’t have sufficient credits, the transaction will not be allowed to occur.
+RCs are non-transferable credits that accrue to each Steem account based on how much Steem Power it has. An account spends RC when it transacts on the Steem blockchain. RCs regenerate over a 5 day period. If an account doesn’t have sufficient credits, the transaction will not be allowed to occur.
 
-The price of each resource is based on the current level of the stockpile. As the stockpile decreases, the price of that resource (in terms of RCs) increases. In other words, as the stockpile goes down, accounts will have to pay more RCs to use the remaining resources. This system disincentivize the over-consumption of resources by users as well as spam.
+The price of a transaction (which consumes a particular resource, or resources) is based on the current stockpile of those resources. As a stockpile of a resource decreases, the RC cost of that resource increases. In other words, as the stockpile goes down, accounts will have to pay more RCs to use the remaining resources. This system disincentivize the over-consumption of resources by users as well as spam.
 
-The RC system uses three measurements to determine how much an operation should cost in terms of RCs: blockchain size, compute time, and state size. If an operation is especially expensive in any one of these measurements, then performing that operation will be costly in terms of RCs. It is important to bear in mind that these are objective measurements of resource consumption at the blockchain level, so when something is expensive in RCs, all that means is that performing the action places a high burden on the network relative to other operations.
+The RC system uses three measurements to determine how much a transaction should cost in terms of RCs: blockchain size, compute time, and state size. If an transaction is especially expensive in any one of these measurements, then performing that operation will be costly in terms of RCs. It is important to bear in mind that these are objective measurements of resource consumption at the blockchain level, so when something is expensive in RCs, all that means is that performing the action places a high burden on the network relative to other operations.
 
-There are applications available to check an accounts status, like [steemd.com](https://steemd.com/@username), but here we will look at how calculate the values manually.
+There are applications available to check an account's status, like [steemd.com](https://steemd.com/@username), but here we will look at how calculate the values manually.
 
 ## Calculating available RC
 
