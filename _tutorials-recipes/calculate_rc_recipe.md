@@ -6,7 +6,7 @@ exclude: true
 layout: full
 ---
 
-Since HF20 a Resource Credit (RC) system has been implemented to manage the number of transactions (comments, votes, transfers, etc) you can execute on the blockchain at any given time. This recipe will look at how to calculate your current RC and also what the current RC cost is for a given transaction.
+Since HF20 a Resource Credit (RC) system has been implemented to manage the number of transactions (comments, votes, transfers, etc) you can execute on the blockchain at any given time. This recipe will look at how to calculate your current RC and also what the current RC cost is for a given transaction. This recipe is far more 'basics oriented' than most. For a more in-depth description of how RC's work consume [this excellent RC demo](https://github.com/steemit/rcdemo) created by Steemit's Blockchain Team.
 
 ## Intro
 
@@ -78,5 +78,5 @@ print(vote_tx)
 print(rc.vote(vote_tx))
 ```
 
-The full RC class in beem can be viewed at [beem-python](https://github.com/holgern/beem/blob/master/beem/rc.py)
-Additional info can also be found in [this article](https://steemit.com/utopian-io/@holger80/update-for-beem-adding-rc-costs-calculation-and-witnesssetproperties-broadcasting?sort=new)
+You can find the source for beem's RC class in the [beem github repo](https://github.com/holgern/beem/blob/master/beem/rc.py)
+Additional info can also be found in [this article by steem user @holger80](https://steemit.com/utopian-io/@holger80/update-for-beem-adding-rc-costs-calculation-and-witnesssetproperties-broadcasting?sort=new)
