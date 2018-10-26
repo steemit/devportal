@@ -38,7 +38,7 @@ Claiming tokens is the first step required to create an account without paying t
     {
         "creator": "creator",
         "fee": "0.000 STEEM",
-        "extensions": [],
+        "extensions": []
     }
 ]
 ```
@@ -73,7 +73,7 @@ Once you have claimed a token you are able to broadcast the `create_claimed_acco
         },
         "json_metadata": "",
         "extensions": []
-    },
+    }
 ]
 ```
 
