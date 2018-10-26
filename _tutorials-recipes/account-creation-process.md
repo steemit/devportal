@@ -6,109 +6,113 @@ exclude: true
 layout: full
 ---
 
-The purpose of this is to explain the different methods of creating new accounts with selected examples of the relevant code. There will also be a full tutorial on account creation in the [tutorial section](https://developers.steem.io/tutorials/#tutorials-javascript) of the devportal.
-
-Please note that this document only has code snippets and not a complete and executable app for account creation.
+This recipe will take you through the different options when creating accounts on the Steem blockchain.
 
 ## Intro
 
-With the introduction of the Resource Credit system there are now three ways in which to create an account. The methods are listed below with a detailed explanation of each in the following section.
+With the introduction of the Resource Credit system there are now two ways in which to create an account. The methods are listed below with a detailed explanation of each in the following section.
 
-1.  [**Steemconnect**`](#steemconnect)
+1. [**Account creation method comparison**](#create)
+1.  [**Discounted**](#discounted)
 1.  [**Non-discounted**](#nondisc)
-1.  [**Discounted**](#disc)
 
-#### 1. Steemconnect<a name="steemconnect"></a>
+#### Account creation method comparison<a name="create"></a>
 
-Steemconnect offers a "simple link" solution to creating new accounts. Instead of running through a list of operations on your app, you can simply use the link below and follow the steps. You will be required to enter the new username (a random generated password will be supplied) as well as the account name and private active key of the "sponsor" account that needs to supply the 3 STEEM to create the account.
+| Discounted account creations  | Non-discounted account creations |
+| - | - |
+| You can purchase claim tokens and use them at a later stage to create an account. These tokens do not expire.| You need to create an account and wait for it to be approved by the Steemit faucet |
+| Account's are created immediately at no additional cost.  | You are required to pay the 3 STEEM to create an account and wait for the account to be approved.  |
 
-[https://steemconnect.com/accounts/create](https://steemconnect.com/accounts/create)
 
-#### 2. Non-discounted account creations<a name="nondisc"></a>
+#### 1. Discounted account creations<a name="discounted"></a>
 
-Non-discounted account creation is where the creation fee is paid with STEEM. We use the `account_create` function to commit this transaction to the blockchain. Currently this `account_creation_fee` is set to 3 STEEM. This is not the preferred way to create new accounts but it's a very simple solution. When creating a new account, the new username and password needs to be supplied. This is used to create the public and private keys for this account. An example of the code to create keys can be seen below:
-
-```javascript
-const username = //new username
-const password = //new password
-
-//create private keys
-const ownerKey = dsteem.PrivateKey.fromLogin(username, password, 'owner');
-const activeKey = dsteem.PrivateKey.fromLogin(username, password, 'active');
-const postingKey = dsteem.PrivateKey.fromLogin(username, password, 'posting');
-const memoKey = dsteem.PrivateKey.fromLogin(username, password, 'memo').createPublic();
-
-//create public keys
-const ownerAuth = {
-    weight_threshold: 1,
-    account_auths: [],
-    key_auths: [[ownerKey.createPublic(), 1]],
-};
-const activeAuth = {
-    weight_threshold: 1,
-    account_auths: [],
-    key_auths: [[activeKey.createPublic(), 1]],
-};
-const postingAuth = {
-    weight_threshold: 1,
-    account_auths: [],
-    key_auths: [[postingKey.createPublic(), 1]],
-};
-```
-
-The actual `account_create` function can be seen below. The created keys are required to complete this transaction as well as the "sponsor" account and the creation fee (3 STEEM). In order for this function to execute correctly the Steem instance needs to be initiated with the creator account's private Active key as no transfer transaction for any account can happen without Active authority being provided.
-
-```javascript
-const op = [
-    'account_create',
-    {
-        fee: , //3.00 STEEM
-        creator: , //account supplying the fee
-        new_account_name: username, //new account
-        owner: ownerAuth, //new owner key
-        active: activeAuth, //new active key
-        posting: postingAuth, //new posting key
-        memo_key: memoKey, //new memo key
-        json_metadata: ''
-    },
-];
-```
-
-#### 3. Discounted account creations<a name="disc"></a>
-
-The discounted account creation process uses an `Account creation token` that is purchased with Resource Credits (RC) to create the account instead of paying the creation fee in STEEM. These tokens are fairly expensive in RC terms so a new account for example won't be able to create more accounts. This ensures that the account creator is incentivized to only create accounts for people that will add value to the network.
+The discounted account creation process uses an `Account creation token` that is purchased with Resource Credits (RC) to create the account instead of paying the creation fee in STEEM.
 
 Purchasing an Account Creation token only enables you to do one thing: create one account at zero cost. It should be noted that these tokens do not expire, are not transferable and there is also no upper limit to the amount of tokens one can have, so they can be stockpiled. There is however a limit on the total amount of tokens available on the blockchain for claiming at any one time. The available tokens replenishes over time and the limit is decided upon by the witnesses.
 
-Purchasing/Claiming the token is only the first step in this process. Once you have an `Account creation token` you are able to initiate the second step, which is the actual account creation. This step is very similar to the previous method of creating accounts, except that no fee is included. These requirements include the "sponsor" account, login requirements and public and private key creations. Before the creation of the account however, you first have to claim a token:
+Claiming tokens is the first step required to create an account without paying the STEEM cost. You are required to broadcast the `claim_account` operation on the network to claim an account token.
 
-```javascript
-//claim discounted account operation
-const claim_op = [
-    'claim_account',
+```json
+[
+    "claim_account",
     {
-        creator: //creator account,
-        fee: '0.000 STEEM', //0 STEEM indicating RC to be used
-        extensions: [],
+        "creator": "creator",
+        "fee": "0.000 STEEM",
+        "extensions": [],
     }
-];
+]
 ```
 
-After which you proceed to create an account:
+Once you have claimed a token you are able to broadcast the `create_claimed_account` operation to create the account. You are required to use the `creator` account, as well as select a new unique account name and then provide account keys for the new account. These can be generated using any of the Steem libraries available.
 
-```javascript
-//create operation to transmit
-const create_op = [
-    'create_claimed_account',
+```json
+[
+    "create_claimed_account",
     {
-        creator: //creator account
-        new_account_name: username, //new account
-        owner: ownerAuth, //new owner key
-        active: activeAuth, //new active key
-        posting: postingAuth, //new posting key
-        memo_key: memoKey, //new memo key
-        json_metadata: '',
-        extensions: []
+        "creator": "creator",
+        "new_account_name": "new_account_name",
+        "owner": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "active": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "posting": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "memo_key": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "json_metadata": "",
+        "extensions": []
     },
-];
+]
 ```
+
+Created accounts with this method, doesn't have any SP on it but have a couple of RCs to interact with the chain.
+
+#### 2. Non-discounted account creation<a name="nondisc"></a>
+
+Non-discounted account creation operation allows you to create accounts and paying the creation cost using STEEM. Currently the `account_creation_fee` is 3 STEEM to create a single account. We use the `account_create` operation to commit this transaction to the blockchain. When creating a new account, the new `account_name` needs to be supplied. The keys must be derived from a `master_key` which must be kept safe. The account keys can be generated using the `new_account_name`, `master_key` and Steem tools.
+
+```json
+[
+    "account_create",
+    {
+        "fee": "3.00 STEEM",
+        "creator": "creator",
+        "new_account_name": "new_account_name",
+        "owner": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "active": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "posting": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "memo_key": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "json_metadata": ""
+    }
+]
+```
+
+You can follow this [tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) to see working code of how to create accounts.
