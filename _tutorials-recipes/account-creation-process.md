@@ -81,7 +81,7 @@ Accounts created with this method, don't have any SP, but do have enough RC to i
 
 #### 2. Non-discounted account creation<a name="nondisc"></a>
 
-Non-discounted account creation operation allows you to create accounts and paying the creation cost using STEEM. Currently the `account_creation_fee` is 3 STEEM to create a single account. We use the `account_create` operation to commit this transaction to the blockchain. When creating a new account, the new `account_name` needs to be supplied. The keys must be derived from a `master_key` which must be kept safe. The account keys can be generated using the `new_account_name`, `master_key` and Steem tools.
+Non-discounted account creation operation allows you to create accounts by paying an account creation fee of 3 STEEM as part of the account creation api call. We use the `account_create` operation to commit this transaction to the blockchain. When creating a new account, the new `account_name` needs to be supplied. The keys must be derived from an owner-key which must be kept safe. The account keys can be generated using the `new_account_name`, owner-key and Steem tools.
 
 ```json
 [
@@ -115,4 +115,4 @@ Non-discounted account creation operation allows you to create accounts and payi
 ]
 ```
 
-You can follow this [tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) to see working code of how to create accounts.
+You can follow this [tutorial](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) to see a working example of how to create accounts.
