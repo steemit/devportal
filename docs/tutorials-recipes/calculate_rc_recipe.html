@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Calculating RC costs | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Calculating RC costs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to calculate resource credit cost for transactions." />
+<meta property="og:description" content="How to calculate resource credit cost for transactions." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-recipes/calculate_rc_recipe" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-recipes/calculate_rc_recipe" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-26T23:11:13-05:00" />
+<script type="application/ld+json">
+{"description":"How to calculate resource credit cost for transactions.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-recipes/calculate_rc_recipe","headline":"Calculating RC costs","dateModified":"2018-10-26T23:11:13-05:00","datePublished":"2018-10-26T23:11:13-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-recipes/calculate_rc_recipe"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-recipes-calculate-rc-recipe" class="row tutorials-recipes-calculate-rc-recipe">
+	<h3>
+		<a id="tutorials-recipes-calculate-rc-recipe">
+			Calculating RC costs
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>How to calculate resource credit cost for transactions.</p>
+</span>
+	
+
+	<p>Since HF20 a Resource Credit (RC) system has been implemented to manage the number of transactions (comments, votes, transfers, etc) you can execute on the blockchain at any given time. This recipe will look at how to calculate your current RC and also what the current RC cost is for a given transaction. This recipe is far more ‘basics oriented’ than most. For a more in-depth description of how RC’s work consume <a href="https://github.com/steemit/rcdemo">this excellent RC demo</a> created by Steemit’s Blockchain Team.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>RCs are non-transferable credits that accrue to each Steem account based on how much Steem Power(SP) it has. An account spends RC when it transacts on the Steem blockchain. RCs regenerate over a 5 day period. If an account doesn’t have sufficient credits, the transaction will not be allowed to occur.</p>
+
+<p>The price of a transaction (which consumes a particular resource, or resources) is based on the current stockpile of those resources. As a stockpile of a resource decreases, the RC cost of that resource increases. In other words, as the stockpile goes down, accounts will have to pay more RCs to use the remaining resources. This system disincentivize the over-consumption of resources by users as well as spam.</p>
+
+<p>The RC system uses three measurements to determine how much a transaction should cost in terms of RCs: blockchain size, compute time, and state size. If an transaction is especially expensive in any one of these measurements, then performing that operation will be costly in terms of RCs. It is important to bear in mind that these are objective measurements of resource consumption at the blockchain level, so when something is expensive in RCs, all that means is that performing the action places a high burden on the network relative to other operations.</p>
+
+<p>There are applications available to check an account’s status, like <a href="https://steemd.com/@username">steemd.com</a>, but here we will look at how calculate the values manually.</p>
+
+<h2 id="calculating-available-rc">Calculating available RC</h2>
+
+<p>Since RC is calculated relative to SP, we first need to know the available SP before we can calculate how much RC we have left. The value of the current available mana(RC) is also accessible as a field from the <code class="highlighter-rouge">getAccounts</code> function.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//capture account</span>
+<span class="kd">var</span> <span class="nx">_account</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">database</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">([</span><span class="s1">'username'</span><span class="p">])</span>
+<span class="kd">var</span> <span class="nx">account</span> <span class="o">=</span> <span class="nx">_account</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">database</span><span class="p">.</span><span class="nx">getDynamicGlobalProperties</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nx">CURRENT_UNIX_TIMESTAMP</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">((</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">time</span><span class="p">).</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="c1">//calculate available SP</span>
+<span class="kd">var</span> <span class="nx">totalShares</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">vesting_shares</span><span class="p">)</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">received_vesting_shares</span><span class="p">)</span> <span class="o">-</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">delegated_vesting_shares</span><span class="p">);</span>
+<span class="c1">//determine elapsed time since last RC update</span>
+<span class="kd">var</span> <span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">CURRENT_UNIX_TIMESTAMP</span> <span class="o">-</span> <span class="nx">account</span><span class="p">.</span><span class="nx">voting_manabar</span><span class="p">.</span><span class="nx">last_update_time</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">maxMana</span> <span class="o">=</span> <span class="nx">totalShares</span> <span class="o">*</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="c1">//calculate current mana for the 5 day period (432000 sec = 5 days)</span>
+<span class="kd">var</span> <span class="nx">currentMana</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">voting_manabar</span><span class="p">.</span><span class="nx">current_mana</span><span class="p">)</span> <span class="o">+</span> <span class="nx">elapsed</span> <span class="o">*</span> <span class="nx">maxMana</span> <span class="o">/</span> <span class="mi">432000</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">currentMana</span> <span class="o">&gt;</span> <span class="nx">maxMana</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">currentMana</span> <span class="o">=</span> <span class="nx">maxMana</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//determine percentage of available mana(RC)</span>
+<span class="kd">var</span> <span class="nx">currentManaPerc</span> <span class="o">=</span> <span class="nx">currentMana</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="nx">maxMana</span><span class="p">;</span>
+    
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentManaPerc</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>A community created library, <a href="https://github.com/holgern/beem">beem-python</a> offers a solution to calculate the RC costs for a different transaction types. The three main transaction types are: posts/comments, transfers, and vote(on posts). The beem’s functions can be executed with no parameters (as seen below) to provide a rough estimate of an average operation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">beem</span>
+<span class="kn">from</span> <span class="nn">beem.rc</span> <span class="kn">import</span> <span class="n">RC</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">beem</span><span class="o">.</span><span class="n">Steem</span><span class="p">()</span>
+
+<span class="n">rc</span> <span class="o">=</span> <span class="n">RC</span><span class="p">(</span><span class="n">steem_instance</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+<span class="c1">#beem sets its own rough, default values if you don't pass them in.
+</span><span class="k">print</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">comment</span><span class="p">())</span> <span class="c1">#(self, tx_size=1000, permlink_length=10, parent_permlink_length=10)
+</span><span class="k">print</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">vote</span><span class="p">())</span> <span class="c1">#(self, tx_size=210)
+</span><span class="k">print</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">transfer</span><span class="p">())</span> <span class="c1">#(self, tx_size=290, market_op_count=1)
+</span></code></pre></div></div>
+
+<p>The functions can also be executed for a specific transaction by passing in data for transaction in question. The first step is to calculate the transfer size of the operation which is then used to execute the function to calculate the RC costs.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">opdata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'voter'</span><span class="p">:</span> <span class="s">'steemit'</span><span class="p">,</span>
+    <span class="s">'author'</span><span class="p">:</span> <span class="s">'r1s2g3'</span><span class="p">,</span>
+    <span class="s">'permlink'</span><span class="p">:</span> <span class="s">'rc-calculations-according-to-your-need-part-1'</span><span class="p">,</span>
+    <span class="s">'weight'</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">}</span>
+<span class="c1">#create operation to check
+</span><span class="n">op</span> <span class="o">=</span> <span class="n">beembase</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">Vote</span><span class="p">(</span><span class="n">opdata</span><span class="p">)</span>
+<span class="c1">#check vote transaction size
+</span><span class="n">vote_tx</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">get_tx_size</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vote_tx</span><span class="p">)</span>
+<span class="c1">#check vote RC cost
+</span><span class="k">print</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">vote</span><span class="p">(</span><span class="n">vote_tx</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>You can find the source for beem’s RC class in the <a href="https://github.com/holgern/beem/blob/master/beem/rc.py">beem github repo</a>
+Additional info can also be found in <a href="https://steemit.com/utopian-io/@holger80/update-for-beem-adding-rc-costs-calculation-and-witnesssetproperties-broadcasting?sort=new">this article by steem user @holger80</a></p>
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

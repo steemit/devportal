@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Follow A User | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="JS: Follow A User" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Follow and unfollow a user / author." />
+<meta property="og:description" content="Follow and unfollow a user / author." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/follow_a_user" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/follow_a_user" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-26T23:11:13-05:00" />
+<script type="application/ld+json">
+{"description":"Follow and unfollow a user / author.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-javascript/follow_a_user","headline":"JS: Follow A User","dateModified":"2018-10-26T23:11:13-05:00","datePublished":"2018-10-26T23:11:13-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/follow_a_user"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-follow-a-user" class="row tutorials-javascript-follow-a-user">
+	<h3>
+		<a id="tutorials-javascript-follow-a-user">
+			JS: Follow A User
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>Follow and unfollow a user / author.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/18_follow_a_user">Follow A User</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial will take you through the process of checking the <code class="highlighter-rouge">follow status</code> of an author and either follow or unfollow that user depending on the current status. This is done with the <code class="highlighter-rouge">call</code> operation as well as the <code class="highlighter-rouge">broadcast.json</code> operation.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>We are using the <code class="highlighter-rouge">broadcast.json</code> operation provided by the <code class="highlighter-rouge">dsteem</code> library to follow or unfollow a selected author. There are 4 variables required to execute this operation:</p>
+
+<ol>
+  <li><em>follower</em> - The specific user that will select the author to follow/unfollow (<code class="highlighter-rouge">username</code>).</li>
+  <li><em>privatekey</em> - This is the private posting key of the user(<code class="highlighter-rouge">postingKey</code>).</li>
+  <li><em>following</em> - The account/author that the user would like to follow (<code class="highlighter-rouge">author</code>).</li>
+  <li><em>what</em> - The <code class="highlighter-rouge">type</code> of follow operation. This variable can have one of two values: <code class="highlighter-rouge">blog</code>, to follow an author, and a <code class="highlighter-rouge">null value</code>, unfollow the selected author.</li>
+</ol>
+
+<p>A simple HTML UI is used to capture the required information, after which the broadcast operation can be compiled.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#connection"><strong>Configure connection</strong></a> Configuration of <code class="highlighter-rouge">dsteem</code> to communicate with the Steem blockchain</li>
+  <li><a href="#input"><strong>Input variables</strong></a> Collecting the required inputs via an HTML UI</li>
+  <li><a href="#status"><strong>Get status</strong></a> Get the follow status for the specified author</li>
+  <li><a href="#follow"><strong>Follow operation</strong></a> Execute the <code class="highlighter-rouge">follow</code> operation</li>
+</ol>
+
+<h4 id="1-configure-connection">1. Configure connection<a name="connection"></a></h4>
+
+<p>As usual, we have a <code class="highlighter-rouge">public/app.js</code> file which holds the Javascript segment of the tutorial. In the first few lines we define the configured library and packages:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Client</span><span class="p">,</span> <span class="nx">PrivateKey</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'dsteem'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Testnet</span> <span class="k">as</span> <span class="nx">NetConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'../../configuration'</span><span class="p">;</span> <span class="c1">//A Steem Testnet. Replace 'Testnet' with 'Mainnet' to connect to the main Steem blockchain.</span>
+
+<span class="kd">let</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">NetConfig</span><span class="p">.</span><span class="nx">net</span> <span class="p">};</span>
+
+<span class="c1">//connect to a steem node, testnet in this case</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">(</span><span class="nx">NetConfig</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Above, we have <code class="highlighter-rouge">dsteem</code> pointing to the test network with the proper chainId, addressPrefix, and endpoint by importing from the <code class="highlighter-rouge">configuration.js</code> file. Because this tutorial is interactive, we will not publish test content to the main network. Instead, we’re using the testnet and a predefined account which is imported once the application loads, to demonstrate following of an author.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="nx">NetConfig</span><span class="p">.</span><span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">accountI</span> <span class="o">=</span> <span class="nx">NetConfig</span><span class="p">.</span><span class="nx">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">account</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postingKey'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">account</span><span class="p">.</span><span class="nx">privPosting</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'author'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">accountI</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="2-input-variables">2. Input variables<a name="input"></a></h4>
+
+<p>The required parameters for the follow operation is recorded via an HTML UI that can be found in the <code class="highlighter-rouge">public/index.html</code> file.</p>
+
+<p>The parameter values are allocated as seen below once the user clicks on the “Follow / Unfollow” button.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">submitFollow</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//get private key</span>
+    <span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">PrivateKey</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postingKey'</span><span class="p">).</span><span class="nx">value</span>
+    <span class="p">);</span>
+    <span class="c1">//get account name</span>
+    <span class="kd">const</span> <span class="nx">follower</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+    <span class="c1">//get author permalink</span>
+    <span class="kd">const</span> <span class="nx">following</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'author'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="3-get-status">3. Get status<a name="status"></a></h4>
+
+<p>The current follow status for the author is called from the database and a variable is assigned in order to specify whether the follow operation should execute as <code class="highlighter-rouge">follow</code> or <code class="highlighter-rouge">unfollow</code>. For more information on this process you can refer to tutorial 19_get_follower_and_following_list.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span> <span class="na">follower</span><span class="p">:</span> <span class="nx">follower</span><span class="p">,</span> <span class="na">following</span><span class="p">:</span> <span class="nx">following</span> <span class="p">});</span>
+
+    <span class="kd">let</span> <span class="nx">status</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'follow_api'</span><span class="p">,</span> <span class="s1">'get_following'</span><span class="p">,</span> <span class="p">[</span>
+        <span class="nx">follower</span><span class="p">,</span>
+        <span class="nx">following</span><span class="p">,</span>
+        <span class="s1">'blog'</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="nx">status</span> <span class="p">});</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">status</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">status</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">following</span> <span class="o">==</span> <span class="nx">following</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">type</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">type</span> <span class="o">=</span> <span class="s1">'blog'</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="4-follow-operation">4. Follow operation<a name="follow"></a></h4>
+
+<p>A JSON with the collected input variables is created in order for the <code class="highlighter-rouge">data object</code> within the <code class="highlighter-rouge">broadcast</code> operation to be completed.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span>
+    <span class="s1">'follow'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">follower</span><span class="p">:</span> <span class="nx">follower</span><span class="p">,</span>
+        <span class="na">following</span><span class="p">:</span> <span class="nx">following</span><span class="p">,</span>
+        <span class="na">what</span><span class="p">:</span> <span class="p">[</span><span class="nx">type</span><span class="p">],</span> <span class="c1">//null value for unfollow, 'blog' for follow</span>
+    <span class="p">},</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">broadcast.json</code> operation requires a <code class="highlighter-rouge">data object</code> and <code class="highlighter-rouge">private key</code> in order the execute. For the follow/unfollow operation the variables in the object have predefined values. These values can change depending on the type of operation.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'follow'</span><span class="p">,</span>
+    <span class="na">json</span><span class="p">:</span> <span class="nx">json</span><span class="p">,</span>
+    <span class="na">required_auths</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="na">required_posting_auths</span><span class="p">:</span> <span class="p">[</span><span class="nx">follower</span><span class="p">],</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The broadcast operation is then executed with the created object and the private posting key. We also display the follow status on the UI in order for the user to know the whether the process was a success.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">client</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">privateKey</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'user follow result: '</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResultContainer'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'flex'</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span>
+            <span class="s1">'form-control-plaintext alert alert-success'</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">'blog'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
+                <span class="s1">'Author followed'</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
+                <span class="s1">'Author unfollowed'</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResultContainer'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'flex'</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span>
+            <span class="s1">'form-control-plaintext alert alert-danger'</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">error</span><span class="p">.</span><span class="nx">jse_shortmsg</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>If either of the values for the user or author does not exist the proper error result will be displayed on the UI. The result is also displayed in the console in order for the user to confirm that a block transaction has taken place. The status of the operation can be verified on the <a href="http://condenser.steem.vc/@cdemo/followed">demo account</a>.</p>
+
+<h3 id="to-run-this-tutorial">To run this tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/18_follow_user</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

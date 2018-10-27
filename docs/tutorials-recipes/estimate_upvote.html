@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Estimate the value of an upvote | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Estimate the value of an upvote" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Calculate the approximate value of an upvote on Steem" />
+<meta property="og:description" content="Calculate the approximate value of an upvote on Steem" />
+<link rel="canonical" href="https://developers.steem.io/tutorials-recipes/estimate_upvote" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-recipes/estimate_upvote" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-26T23:11:13-05:00" />
+<script type="application/ld+json">
+{"description":"Calculate the approximate value of an upvote on Steem","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-recipes/estimate_upvote","headline":"Estimate the value of an upvote","dateModified":"2018-10-26T23:11:13-05:00","datePublished":"2018-10-26T23:11:13-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-recipes/estimate_upvote"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/community/">
+		<h6 class="ctrl-nav-section title">Community</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/community/#community-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/community/#community-resources">Resources</a></li>
+						
+					
+						
+						<li><a href="/community/#community-developeradvocate">Sharing & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-recipes-estimate-upvote" class="row tutorials-recipes-estimate-upvote">
+	<h3>
+		<a id="tutorials-recipes-estimate-upvote">
+			Estimate the value of an upvote
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>Calculate the approximate value of an upvote on Steem</p>
+</span>
+	
+
+	<p><em>By the end of this recipe you should know how to estimate value of each vote on Steem.</em></p>
+
+<p>This recipe will take you through the process of fetching necessary data and formulating estimation.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Calculating value of each vote depends on multiple factors. Reward fund, recent claims, account’s total vests, rate of the sbd, voting power and weight of the vote. It is quite useful information for users to see and estimate. All of the data is possible to get via available APIs.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><strong>Get Reward Fund</strong> Current reward fund information is crucial part of estimation</li>
+  <li><strong>Get Account</strong> Steem power and voting power is another important info</li>
+  <li><strong>Feed history</strong> To get price rate reported by witnesses</li>
+  <li><strong>Final calculation</strong> Formulate all information we have</li>
+</ol>
+
+<h4 id="1-get-reward-fund">1. Get Reward Fund</h4>
+
+<p>Getting Reward Fund information is simply calling <code class="highlighter-rouge">get_reward_fund('post')</code> api call, it will give us <code class="highlighter-rouge">reward_balance</code> and <code class="highlighter-rouge">recent_claims</code>.</p>
+
+<p>The response we’re working with will look like:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"post"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"reward_balance"</span><span class="p">:</span><span class="s2">"741222.051 STEEM"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"recent_claims"</span><span class="p">:</span><span class="s2">"457419472820935017"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"last_update"</span><span class="p">:</span><span class="s2">"2018-05-23T12:08:36"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"content_constant"</span><span class="p">:</span><span class="s2">"2000000000000"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"percent_curation_rewards"</span><span class="p">:</span><span class="mi">2500</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"percent_content_rewards"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"author_reward_curve"</span><span class="p">:</span><span class="s2">"linear"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"curation_reward_curve"</span><span class="p">:</span><span class="s2">"square_root"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="2-get-account">2. Get Account</h4>
+
+<p>Next we will need total vests held by account, <code class="highlighter-rouge">get_accounts</code> api call returns account data, which will hold <code class="highlighter-rouge">vesting_shares</code>, <code class="highlighter-rouge">received_vesting_shares</code>, <code class="highlighter-rouge">delegated_vesting_shares</code>. It also returns current <code class="highlighter-rouge">voting_power</code> information.</p>
+
+<p>The response example will look like:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9660</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemitblog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"ned"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"key_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM65wH1LZ7BfSHcK69SShnqCAH5xdoSZpGkUjmzHJ5GCuxEK9V5G"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"key_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM65wH1LZ7BfSHcK69SShnqCAH5xdoSZpGkUjmzHJ5GCuxEK9V5G"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"posting"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"ned"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"key_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM4yfYEjUoey4PLrKhnKFo1XKQZtZ77fWLnbGTr2mAUaSt2Sx9W4"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM5FeHFtL8J453DUi98LKwkqXBH5iwxf9xCqYs6QwPibPru3RNq3"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM5VwLXkNQf17sQ2XuxScdxruwBy1jak2mDxCjmyfYMNhm1WzPzN"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"STM5ke2kzgwBmysSqCNM6zRABi8SNpaJEtnFXuTtRcU3Uvf47481z"</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"memo_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STM5FeHFtL8J453DUi98LKwkqXBH5iwxf9xCqYs6QwPibPru3RNq3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"json_metadata"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxy"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_owner_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T18:19:18"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_account_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T18:19:18"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T18:54:24"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mined"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recovery_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steem"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_account_recovery"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-19T19:48:54"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reset_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lifetime_vote_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"post_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">154</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"can_vote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"voting_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">9800</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_vote_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22T20:10:45"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"810.371 STEEM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sbd_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4613.426 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sbd_seconds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10828300402329"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sbd_seconds_last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22T22:34:24"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sbd_last_interest_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-25T18:26:15"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_sbd_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_sbd_seconds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_sbd_seconds_last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_sbd_last_interest_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings_withdraw_requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward_sbd_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.490 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward_steem_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward_vesting_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"608341.169185 VESTS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward_vesting_steem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"293.101 STEEM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vesting_shares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93540695.469156 VESTS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delegated_vesting_shares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000 VESTS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"received_vesting_shares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000 VESTS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vesting_withdraw_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000 VESTS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next_vesting_withdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1969-12-31T23:59:59"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"withdrawn"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"to_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"withdraw_routes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"curation_rewards"</span><span class="p">:</span><span class="w"> </span><span class="mi">10288</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"posting_rewards"</span><span class="p">:</span><span class="w"> </span><span class="mi">38917298</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxied_vsf_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"witnesses_voted_for"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_post"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22T18:59:33"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_root_post"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22T18:59:33"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"average_bandwidth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34722906781"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lifetime_bandwidth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"656153000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_bandwidth_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-22T20:10:45"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"average_market_bandwidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1170000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lifetime_market_bandwidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1170000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_market_bandwidth_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-27T15:10:09"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vesting_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"146151592482665"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transfer_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"market_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"post_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"vote_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"other_history"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"witness_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"tags_usage"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"guest_bloggers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="3-feed-history">3. Feed history</h4>
+
+<p>Last thing we will need is rate of the <code class="highlighter-rouge">get_current_median_history_price</code>, returns median price rate bucket with <code class="highlighter-rouge">base</code> element.</p>
+
+<p>The response example will look like:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.029 SBD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000 STEEM"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="4-final-calculation">4. Final calculation</h4>
+
+<p>After getting all these variables, all we have to do is to calculate estimation</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>total_vests = vesting_shares + received_vesting_shares - delegated_vesting_shares
+final_vest = total_vests * 1e6
+power = (voting_power * weight / 10000) / 50
+rshares = power * final_vest / 10000
+estimate = rshares / recent_claims * reward_balance * sbd_median_price
+</code></pre></div></div>
+
+<p>That’s all there is to it.</p>
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
