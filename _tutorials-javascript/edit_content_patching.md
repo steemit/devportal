@@ -13,8 +13,9 @@ This tutorial will take you through the process of preparing and patching post u
 
 ## Intro
 
-Tutorial is demonstrating the typical process of editing content that has been previously posted on the blockchain. Instead of replacing the entire body of the post, the Steem blockchain offers an alternative strategy.
-In this tutorial, we will focus on properly patching existing content and then broadcasting the patch with a `demo` account on a testnet.
+Tutorial is demonstrating the typical process of editing content that has been previously posted on the blockchain. Instead of replacing the entire body of the post, the Steem blockchain offers an alternative strategy. In this tutorial, we will focus on properly patching existing content and then broadcasting the patch with a `demo` account on a testnet.
+
+***Note for long time community members:** Since HF20 even archived content (older than 7 days) can be changed/updated. Editing content will also use less RC (resource credits) than creating new posts entirely.*
 
 We are using the `broadcast.comment` function provided by `dsteem` which generates, signs, and broadcast the transaction to the network. On the Steem platform, posts and comments are all internally stored as a `comment` object, differentiated by whether or not a `parent_author` exists. When there is no `parent_author`, it's a post, when there is, it's a comment. When editing a post, we need to make sure that we don't resubmit the same post over and over again, which will spam the network and adds additional cost to operate the platform. Instead we will use a package called `diff-match-patch`, which allows us to only apply changes and save resources on the Steem platform.
 
