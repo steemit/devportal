@@ -168,7 +168,7 @@
       virtual: false
       purpose: |
         This operation creates a limit order and matches it against existing
-        open orders.
+        open orders. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner
@@ -505,7 +505,7 @@
       virtual: false
       purpose: |
         This operation is identical to `limit_order_create` except it serializes
-        the price rather than calculating it from other fields.
+        the price rather than calculating it from other fields. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner
