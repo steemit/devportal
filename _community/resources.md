@@ -11,9 +11,15 @@ Radiator is a Ruby API client to interact with the steem blockchain.
 
 ---
 
-**SteemJS** - [https://github.com/svk31/steemjs-lib](https://github.com/svk31/steemjs-lib)
+**Steem-JS** - [https://github.com/steemit/steem-js](https://github.com/steemit/steem-js)
 
 Pure JavaScript Steem crypto library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript.
+
+---
+
+**DSteem** - [https://github.com/jnordberg/dsteem](https://github.com/jnordberg/dsteem) 
+
+A Typescript Steem crypto library for node.js and browsers. Steemit Inc [also maintains a version of this library](https://github.com/steemit/dsteem)
 
 ---
 
@@ -71,27 +77,9 @@ A private Microsoft SQL server database with Steem blockchain data, subscription
 
 ---
 
-**Steem Data** - [https://github.com/SteemData](https://github.com/SteemData)
-
-SteemData is discontinued but open-source python project, it parses the STEEM blockchain for you, and provide the data as a fast and convenient MongoDB service. SteemData helps developers and researchers build better STEEM applications.
-
----
-
-**SteemData-Ruby** - [https://github.com/steem-third-party/steem_data](https://github.com/steem-third-party/steem_data)
-
-Wrapper for accessing steemdata.com in a ruby application. It uses MongoID and ActiveModel to leverage all of the tools provided by those libraries.
-
----
-
 **eSync** - [https://github.com/eSteemApp/esync](https://github.com/eSteemApp/esync)
 
 eSync extracts Steem blockchain data and saves into Mongodb, written in Nodejs.
-
----
-
-**Glasnost** - [https://github.com/cyberpunk-ventures/glasnost](https://github.com/cyberpunk-ventures/glasnost)
-
-Glasnost is an GraphQL app server for Steem blockchain built with Elixir, Phoenix and Mnesia.
 
 ---
 
