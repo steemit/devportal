@@ -45,6 +45,8 @@ var currentManaPerc = currentMana * 100 / maxMana;
 console.log(currentManaPerc);
 ```
 
+## Calculating transaction cost
+
 A community created library, [beem-python](https://github.com/holgern/beem) offers a solution to calculate the RC costs for a different transaction types. The three main transaction types are: posts/comments, transfers, and vote(on posts). The beem's functions can be executed with no parameters (as seen below) to provide a rough estimate of an average operation.
 
 ```python
@@ -80,3 +82,7 @@ print(rc.vote(vote_tx))
 
 You can find the source for beem's RC class in the [beem github repo](https://github.com/holgern/beem/blob/master/beem/rc.py)
 Additional info can also be found in [this article by steem user @holger80](https://steemit.com/utopian-io/@holger80/update-for-beem-adding-rc-costs-calculation-and-witnesssetproperties-broadcasting?sort=new)
+
+## Allocation of RC to blockchain resources
+
+An in depth look at how RC's are assigned to each of the three resources (CPU megacycles/state memory/history size) can be found in Steemit's wiki articles for [RC Bandwidth System](https://github.com/steemit/steem/wiki/RC-Bandwidth-System) and [Parameters](https://github.com/steemit/steem/wiki/RC-Bandwidth-Parameters)
