@@ -38,9 +38,9 @@ collections:
     id: services
     position: 6
     output: true
-  community:
-    title: Community
-    id: community
+  resources:
+    title: Resources
+    id: resources
     position: 7
     output: true
   glossary:

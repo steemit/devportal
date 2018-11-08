@@ -33,7 +33,7 @@ toc:
     exclude: true
     position: 7    
   - title: "Resources"
-    collection: "community"
+    collection: "resources"
     url: "/resources/"
     exclude: true
     position: 8
