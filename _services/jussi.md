@@ -1,5 +1,5 @@
 ---
-title: jussi
+title: Jussi
 position: 3
 description: A reverse proxy that forwards json-rpc requests.
 ---

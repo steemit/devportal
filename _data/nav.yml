@@ -32,9 +32,9 @@ toc:
     url: "/apidefinitions/"
     exclude: true
     position: 7    
-  - title: "Community"
-    collection: "community"
-    url: "/community/"
+  - title: "Resources"
+    collection: "resources"
+    url: "/resources/"
     exclude: true
     position: 8
   - title: "Glossary"
