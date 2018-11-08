@@ -1,40 +1,92 @@
 ---
 title: Create a password recoverable account
 position: 1
-description: How to create a new account that will be recoverable
+description: How to create a new account that will be recoverable, and how to recover your account
 exclude: true
 layout: full
 ---
 
-*This recipe is to show how to create an account that is recoverable in the event of a hacked account or lost password*
+*This recipe shows how to create an account that is recoverable in the event of a hacked account or lost password as well as how to recover that account*
 
-This recipe is effectively an RFC. It only outlines part of the account creation process. It should not be considered complete, nor legal advice on best process for account creation.
+This recipe is effectively an RFC. It only outlines part of the account creation and recovery process. It should not be considered complete, nor legal advice on best process for account creation.
 
-## The 7 Rules of Steemit!
+## Requirements for recovery
 
-The first rule of Steemit is: Do not lose your password.
-The second rule of Steemit is: Do not lose your password.
-The third rule of Steemit is: We cannot recover your password.
-The fourth rule: If you can remember the password, it's not secure.
-The fifth rule: Use only randomly-generated passwords.
-The sixth rule: Do not tell anyone your password.
-The seventh rule: Always backup your password.
+There is already a [recipe](https://developers.steem.io/tutorials-recipes/account-creation-process) on how to create a new account as well as tutorials on the subject. In order for that newly created account to be recoverable a password is necessary. Without a previously used password the account cannot be recovered. Lost passwords can't be recovered either. Once an account has been compramised you only have 30 days to recover the account.
 
-In order for you to recover your account, you need a password that was used previously. If you lost your password, nothing can be done to recover it.
+If you created your account via Steemit.com and have your last known master password you can attempt to recover your account directly through the website. If however it was created via SteemInvite.com or Anonsteem or any other third party services then they will be your recovery agent. Recovery of an account must go through your accounts registrar/recovery agent. Only the "recovery agent" can initialise the recovery process on the blockchain.
 
-#### Create a backup of your password and private keys
+The account specific recovery agent can be obtained from [Steemd.com/@username](Steemd.com/@username)
 
-In order for a n account to be recovered, an old password is required. The whole process for recovery is set out in a [tutorial](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/35_account_recovery) or direcly on [Steemit.com](https://steemit.com/recover_account_step_1). Without that password nothing can be done. If you lose your password, your account is lost and cannot be recovered.
+## Account recovery
 
-For account security it is also advisable to change your password every month. There is a [tutorial](https://developers.steem.io/tutorials-python/password_key_change) that describes this process or you can run it directly from [Steemit.com](https://steemit.com/change_password). Since Steemit offers these functions through their webiste there is no need to work on the backend. If your account gets hijacked, you have up to 30 days to recover your account.
+There are two steps in recovering a steemit account:
 
-#### Account Recovery
+1.  [**Request account recovery**](#request) - indication of intent to recover account
+1.  [**Recover account**](#recover) - recovery of indicated account
 
-If you created your account via Steemit.com and have your last known master password you can attempt to recover your account.
-If however you created your account via SteemInvite.com or Anonsteem or any other third party services then they are your recovery agent. You need to go to your account registrar/recovery agent to recover your account.
+#### Request account recovery <a name="request"></a>
 
-If you are unsure you can view your recovery agent on [Steemd.com/@username](Steemd.com/@username)
+The first step to recovering an account is to broadcast the `request_account_recovery` function to the blockchain. This step is done to verify the user and account information for the account being recovered. This effectively broadcasts intent to recover an account. The `recovery_account` parameter is the registrar/recovery agent of the account to recover.
 
-#### Keep your funds safe
+```json
+[
+    "request_account_recovery",
+    {
+        "account_to_recover": "account_to_recover",
+        "recovery_account": "recovery_account",
+        "new_owner_authority": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "extensions": []
+    }
+]
+```
 
-In addition to just having STEEM in your account, you can store liquid Steem tokens as Steem Power or hold your SBD/STEEM in 'savings' - both these features prevent rapid liquidation and transfer of asset and give you more time to recover your account without any loss of funds.
+#### Recover account <a name="recover"></a>
+
+The second step is the actual recovery of the account. The `recover_account` function is used for this step to transmit the recovery.
+
+```json
+[
+    "recover_account",
+    {
+        "account_to_recover": "account_to_recover",
+        "new_owner_authority": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "recent_owner_authority": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        },
+        "extensions": []
+    }
+]
+```
+
+Once the account recovery has been broadcast with the new owner key, the rest of the account keys needs to be created and updated as well. This is done with an account update operation. A working tutorial explaining the change of account keys is available [here](https://developers.steem.io/tutorials-python/password_key_change)
+
+```json
+{
+    "account": "account",
+    "active": {
+        "weight_threshold": 1,
+        "account_auths": [],
+        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+    },
+    "posting": {
+        "weight_threshold": 1,
+        "account_auths": [],
+        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+    },
+    "memo_key": "000000000000000000000000000000000000000000000000000",
+    "json_metadata": ""
+}
+```
+
+To see a working example of how to recover an account you can follow the tutorial [here](https://developers.steem.io/tutorials/#tutorials-python) .
