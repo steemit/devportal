@@ -54,5 +54,3 @@ SteemConnect Library for iOS / Swift.
 **SteemConnect4j** - [https://github.com/hapramp/steemconnect4j](https://github.com/hapramp/steemconnect4j)
 
 Steemconnect SDK for Java.
-
----

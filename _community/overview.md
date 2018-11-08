@@ -1,6 +1,6 @@
 ---
 title: Overview
-position: 2
+position: 1
 ---
 
 Steem has an active developer community that is constantly innovating on the blockchain. 
