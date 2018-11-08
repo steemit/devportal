@@ -14,7 +14,7 @@
     ```json
     {
        "jsonrpc":"2.0",
-       "method":"network_broadcast_api.broadcast_transaction",
+       "method":"condenser_api.broadcast_transaction",
        "params":{
           "trx":{
              "ref_block_num":1097,
@@ -39,7 +39,7 @@
     }
     ```
     
-    Also see: [Network Broadcast API](/apidefinitions/network-broadcast-api)
+    Also see: [Broadcast Transaction](/apidefinitions/#condenser_api.broadcast_transaction)
   ops:
     - name: vote
       virtual: false
@@ -168,7 +168,7 @@
       virtual: false
       purpose: |
         This operation creates a limit order and matches it against existing
-        open orders.
+        open orders. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner
@@ -505,7 +505,7 @@
       virtual: false
       purpose: |
         This operation is identical to `limit_order_create` except it serializes
-        the price rather than calculating it from other fields.
+        the price rather than calculating it from other fields. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner

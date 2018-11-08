@@ -4,7 +4,7 @@ position: 21
 description: "How to transfer STEEM and SBD to another account using Python."
 layout: full
 ---              
-<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Transfer Steem And Sbd](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/21_transfer_STEEM_and_SBD) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
+<span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Transfer Steem And Sbd](https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/21_transfer_steem_and_sbd) can be downloaded as part of the [PY tutorials repository](https://github.com/steemit/devportal-tutorials-py).</span>
 <br>
 
 
@@ -155,7 +155,7 @@ We encourage users to play around with different values and data types to fully 
 
 1.  [review dev requirements](getting_started)
 1.  clone this repo
-1.  `cd tutorials/21_transfer_STEEM_and_SBD`
+1.  `cd tutorials/21_transfer_steem_and_sbd`
 1.  `pip install -r requirements.txt`
 1.  `python index.py`
 1.  After a few moments, you should see a prompt for input in terminal screen.
