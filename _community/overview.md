@@ -3,8 +3,6 @@ title: Overview
 position: 2
 ---
 
-The steem community is thriving with developer activity and projects to support
-our great blockchain **steem**. 
-
-While we don't officially endorse the following projects, below are growing community developer
-projects which could be beneficial for your steem project.  
+Steem has an active developer community that is constantly innovating on the blockchain. 
+While the their presence on this page doesn't constitute endorsement, 
+it's likely a few of these projects could be beneficial for your Steem idea.  
