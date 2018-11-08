@@ -53,6 +53,7 @@ cmake \
 make -j$(nproc) install
 cd
 mkdir -p testnet-data
+cd testnet-data
 nano config.ini
 ```
 
@@ -76,6 +77,8 @@ webserver-ws-endpoint = 0.0.0.0:8752
 # testnet.steemitdev.com
 p2p-seed-node = testnet.steemitdev.com:2001
 ```
+
+Then execute:
 
 ```bash
 steemd --data-dir=. --chain-id=46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32
@@ -116,4 +119,3 @@ An example of a custom testnet run by Steem community member [@almost-digital](h
 *   ChainID: `79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673`
 *   Address prefix: `STX`
 *   API node: `https://testnet.steem.vc`
-
