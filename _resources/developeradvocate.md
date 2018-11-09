@@ -1,5 +1,5 @@
 ---
-title: Sharing & Help
+title: Community & Help
 position: 6
 ---
 

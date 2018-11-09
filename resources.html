@@ -1,11 +1,11 @@
 ---
-title: Community
-section: Community
+title: Resources
+section: Resources
 layout: default
-permalink: /community/
+permalink: /resources/
 ---
 
-{% assign sorted_collections = site.collections | where:'id', "community" %}
+{% assign sorted_collections = site.collections | where:'id', "resources" %}
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}

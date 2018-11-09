@@ -13,7 +13,7 @@ This tutorial runs on the main Steem blockchain. And accounts queried/searched a
 
 ## Intro
 
-This tutorial will show few functions such as querying account by name and getting account vesting balance. We then convert VESTS to STEEM POWER for convenience of user. And allow user to choose portion or all holdings of VESTS to delegate other users. A simple HTML interface is provided to capture the account with search and its VESTS balance as well as allowing interactively delegate.
+This tutorial will show few functions such as querying account by name and getting account vesting balance. We then convert VESTS to STEEM POWER for convenience of user. And allow user to choose portion or all holdings of VESTS to delegate other users. A simple HTML interface is provided to capture the account with search and its VESTS balance as well as allowing interactively delegate. It should be noted that when a delegation is cancelled, the VESTS will only be available again after a 5 day cool-down period.
 
 ## Steps
 

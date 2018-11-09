@@ -6,17 +6,17 @@ exclude: true
 layout: full
 ---
 
-*This recipe shows how to create an account that is recoverable in the event of a hacked account or lost password as well as how to recover that account*
+_This recipe shows how to create an account that is recoverable in the event of a hacked account or lost password as well as how to recover that account_
 
 This recipe is effectively an RFC. It only outlines part of the account creation and recovery process. It should not be considered complete, nor legal advice on best process for account creation.
 
 ## Requirements for recovery
 
-There is already a [recipe](https://developers.steem.io/tutorials-recipes/account-creation-process) on how to create a new account as well as tutorials on the subject. The recovery account for your new account depends on where you created the account from. If you did so through Steemit.com, they will be the account responsible to assist with your account recovery. The same goes for creating an account through a third party or via an invitation from another Steemit user.
+There is already an [Account Creation Process Recipe](https://developers.steem.io/tutorials-recipes/account-creation-process) on how to create a new account as well as tutorials on the subject. The recovery account for your new account depends on where you created the account from. If you did so through Steemit.com, they will be the account responsible to assist with your account recovery. The same goes for creating an account through a third party or via an invitation from another Steemit user.
 
 Recovery of an account must go through your account's registrar/recovery agent. Only the "recovery agent" can initialise the recovery process on the blockchain. The recovery process is there to assist users who had their account key stolen.
 
-The account specific recovery agent can be obtained from [Steemd.com/@username](Steemd.com/@username)
+The account specific recovery agent can be obtained from `steemd.com/@username`
 
 The term multisig refers to the requirement of having more than one signature to create a valid transaction. Most transactions don't have this requirement because they are tied to regular accounts. However, you can extend your account to a multi-authority account by adding more keys and requiring more than one of them to sign a transaction. With multisig you can give owner authority to another trusted account. This account can then be used to recover the first account in the case of a lost password. This permission can be granted to multiple users and can be set up to require more than one signature to action anything on the owner authority. You could share authority with 2 other accounts and set the threshold to require 2 signatures meaning that 2 of the 3 accounts need to approve the action. When adding multisig for your owner authority remember that the owner level provides COMPLETE access to all functions of your account.
 
@@ -40,7 +40,9 @@ The first step to recovering an account is to broadcast the `request_account_rec
         "new_owner_authority": {
             "weight_threshold": 1,
             "account_auths": [],
-            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+            "key_auths": [
+                ["000000000000000000000000000000000000000000000000000", 1]
+            ]
         },
         "extensions": []
     }
@@ -59,12 +61,16 @@ The second step is the actual recovery of the account. The `recover_account` fun
         "new_owner_authority": {
             "weight_threshold": 1,
             "account_auths": [],
-            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+            "key_auths": [
+                ["000000000000000000000000000000000000000000000000000", 1]
+            ]
         },
         "recent_owner_authority": {
             "weight_threshold": 1,
             "account_auths": [],
-            "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+            "key_auths": [
+                ["000000000000000000000000000000000000000000000000000", 1]
+            ]
         },
         "extensions": []
     }
@@ -79,17 +85,23 @@ Once the account recovery has been broadcast with the new owner key, the rest of
     "active": {
         "weight_threshold": 1,
         "account_auths": [],
-        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        "key_auths": [
+            ["000000000000000000000000000000000000000000000000000", 1]
+        ]
     },
     "posting": {
         "weight_threshold": 1,
         "account_auths": [],
-        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        "key_auths": [
+            ["000000000000000000000000000000000000000000000000000", 1]
+        ]
     },
     "memo_key": {
         "weight_threshold": 1,
         "account_auths": [],
-        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+        "key_auths": [
+            ["000000000000000000000000000000000000000000000000000", 1]
+        ],
     },
     "json_metadata": ""
 }
