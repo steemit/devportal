@@ -12,11 +12,13 @@ This recipe is effectively an RFC. It only outlines part of the account creation
 
 ## Requirements for recovery
 
-There is already a [recipe](https://developers.steem.io/tutorials-recipes/account-creation-process) on how to create a new account as well as tutorials on the subject. In order for that newly created account to be recoverable a password is necessary. Without a previously used password the account cannot be recovered. Lost passwords can't be recovered either. Once an account has been compramised you only have 30 days to recover the account.
+There is already a [recipe](https://developers.steem.io/tutorials-recipes/account-creation-process) on how to create a new account as well as tutorials on the subject. The recovery account for your new account depends on where you created the account from. If you did so through Steemit.com, they will be the account responsible to assist with your account recovery. The same goes for creating an account through a third party or via an invitation from another Steemit user.
 
-If you created your account via Steemit.com and have your last known master password you can attempt to recover your account directly through the website. If however it was created via SteemInvite.com or Anonsteem or any other third party services then they will be your recovery agent. Recovery of an account must go through your accounts registrar/recovery agent. Only the "recovery agent" can initialise the recovery process on the blockchain.
+Recovery of an account must go through your account's registrar/recovery agent. Only the "recovery agent" can initialise the recovery process on the blockchain. The recovery process is there to assist users who had their account key stolen.
 
 The account specific recovery agent can be obtained from [Steemd.com/@username](Steemd.com/@username)
+
+The term multisig refers to the requirement of having more than one signature to create a valid transaction. Most transactions don't have this requirement because they are tied to regular accounts. However, you can extend your account to a multi-authority account by adding more keys and requiring more than one of them to sign a transaction. With multisig you can give owner authority to another trusted account. This account can then be used to recover the first account in the case of a lost password. This permission can be granted to multiple users and can be set up to require more than one signature to action anything on the owner authority. You could share authority with 2 other accounts and set the threshold to require 2 signatures meaning that 2 of the 3 accounts need to approve the action. When adding multisig for your owner authority remember that the owner level provides COMPLETE access to all functions of your account.
 
 ## Account recovery
 
@@ -47,7 +49,7 @@ The first step to recovering an account is to broadcast the `request_account_rec
 
 #### Recover account <a name="recover"></a>
 
-The second step is the actual recovery of the account. The `recover_account` function is used for this step to transmit the recovery.
+The second step is the actual recovery of the account. The `recover_account` function is used for this step to transmit the recovery. In the case of an account with multisig the recent/old owner key can be provided by the account(s) that you have given owner authority to.
 
 ```json
 [
@@ -69,7 +71,7 @@ The second step is the actual recovery of the account. The `recover_account` fun
 ]
 ```
 
-Once the account recovery has been broadcast with the new owner key, the rest of the account keys needs to be created and updated as well. This is done with an account update operation. A working tutorial explaining the change of account keys is available [here](https://developers.steem.io/tutorials-python/password_key_change)
+Once the account recovery has been broadcast with the new owner key, the rest of the account keys will be created and updated as well. This is done with an account update operation. A working tutorial explaining the change of account keys is available [here](https://developers.steem.io/tutorials-python/password_key_change)
 
 ```json
 {
@@ -84,9 +86,13 @@ Once the account recovery has been broadcast with the new owner key, the rest of
         "account_auths": [],
         "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
     },
-    "memo_key": "000000000000000000000000000000000000000000000000000",
+    "memo_key": {
+        "weight_threshold": 1,
+        "account_auths": [],
+        "key_auths": [["000000000000000000000000000000000000000000000000000", 1]],
+    },
     "json_metadata": ""
 }
 ```
 
-To see a working example of how to recover an account you can follow the tutorial [here](https://developers.steem.io/tutorials/#tutorials-python) .
+To see a working example of how to recover an account you can follow the tutorial [here](https://developers.steem.io/tutorials/#tutorials-python)
