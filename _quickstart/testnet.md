@@ -10,6 +10,13 @@ Steem blockchain software is written in C++ and in order to modify the source co
 
 Steemit maintains a live testnet to which you can connect. In the near future, we expect the chain id to update with every code change. To get the current chain id for any HF20+ Steem testnet you can use the [database_api.get_version](/apidefinitions/#database_api.get_version) api call (curl example included for your convenience). Be sure to point it at an api node on the testnet for which you want information!
 
+
+### Features
+
+The official Steemit, Inc. Testnet is a mirror of the mainnet.  This is achieved by copying the existing accounts and transactions from the mainnet state, as the they happen.  Accounts are copied from a [snapshot](https://github.com/steemit/tinman#taking-a-snapshot) of mainnet while the module used to copy transactions in real time is called [`gatling`](https://github.com/steemit/tinman#gatling-transactions-from-mainnet).  The `gatling` module runs at the final step of each testnet deployment.
+
+The combination of `snapshot` and `gatling` means that this testnet approaches a subset of the same activity that the mainnet experiences.  Not everything can be mirrored.  For example, if someone comments or votes on a post that hasn't been mirrored to the testnet (because the post itself pre-dates the testnet deploy), those operations will also not be included.
+
 At the time of this writing, the connection information for Steemit's testnet is as follows: 
  
 * ChainID: `46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32`
@@ -53,6 +60,7 @@ cmake \
 make -j$(nproc) install
 cd
 mkdir -p testnet-data
+cd testnet-data
 nano config.ini
 ```
 
@@ -77,13 +85,13 @@ webserver-ws-endpoint = 0.0.0.0:8752
 p2p-seed-node = testnet.steemitdev.com:2001
 ```
 
+Then execute:
+
 ```bash
 steemd --data-dir=. --chain-id=46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32
 ```
 
 Now let it sync, and you'll have a shiny new testnet seed node to play with.
-
-
 
 ## Custom Testnet
 
@@ -116,4 +124,3 @@ An example of a custom testnet run by Steem community member [@almost-digital](h
 *   ChainID: `79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673`
 *   Address prefix: `STX`
 *   API node: `https://testnet.steem.vc`
-

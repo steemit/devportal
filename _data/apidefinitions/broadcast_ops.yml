@@ -14,7 +14,7 @@
     ```json
     {
        "jsonrpc":"2.0",
-       "method":"network_broadcast_api.broadcast_transaction",
+       "method":"condenser_api.broadcast_transaction",
        "params":{
           "trx":{
              "ref_block_num":1097,
@@ -39,7 +39,7 @@
     }
     ```
     
-    Also see: [Network Broadcast API](/apidefinitions/network-broadcast-api)
+    Also see: [Broadcast Transaction](/apidefinitions/#condenser_api.broadcast_transaction)
   ops:
     - name: vote
       virtual: false
@@ -168,7 +168,7 @@
       virtual: false
       purpose: |
         This operation creates a limit order and matches it against existing
-        open orders.
+        open orders. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner
@@ -247,6 +247,53 @@
           json_metadata
       json_examples:
         - '["account_create",{"fee":{"amount":"0","precision":3,"nai":"@@000000021"},"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",1]]},"memo_key":"STM8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG","json_metadata":"{}"}]'
+    - name: create_claimed_account
+      since: HF20
+      virtual: false
+      purpose: |
+        When used with `claim_account`, works identically to `account_create`.  See: [Steem 0.20.2 Release Notes](https://github.com/steemit/steem/releases/tag/v0.20.2)
+      roles:
+        - active
+          owner
+      params:
+        - creator
+          new_account_name
+          owner
+          active
+          posting
+          memo_key
+          json_metadata
+      json_examples:
+        - '["create_claimed_account",{"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",1]]},"memo_key":"STM8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG","json_metadata":"{}"}]'
+    - name: claim_account
+      since: HF20
+      virtual: false
+      purpose: |
+        When used with `create_claimed_account`, works identically to `account_create`.  See: [Steem 0.20.2 Release Notes](https://github.com/steemit/steem/releases/tag/v0.20.2)
+      roles:
+        - active
+          owner
+      params:
+        - fee
+          creator
+          extensions
+      json_examples:
+        - '["claim_account",{"fee":{"amount":"0","precision":3,"nai":"@@000000021"},"creator":"steemit","extensions":[]}]'
+    - name: witness_set_properties
+      since: HF20
+      virtual: false
+      purpose: |
+        Added in HF20 to replace the `witness_update` which was not easily extendable.  While it is recommended to use `witness_set_properties`, `witness_update` will continue to work.  See: [Witness Parameters](https://github.com/steemit/steem/blob/master/doc/witness_parameters.md)
+      roles:
+        - block_signing
+          active
+          owner
+      params:
+        - owner
+          props
+          extensions
+      json_examples:
+        - '["witness_set_properties",{"owner":"alice", "props":{"account_creation_fee":"0.000 STEEM","account_subsidy_budget":10000,"account_subsidy_decay":330782,"maximum_block_size":65536,"sbd_interest_rate": "0.000 STEEM","sbd_exchange_rate":{"base": "0.000 SBD", "quote": "0.000 STEEM"}, "url": "68747470733A2F2F737465656D69742E636F6D", "new_signing_key": "25688bbe7b1204f26e40be054c8b2ff1997eec6d4e7be6a105aab8a0e6f11c616d7cb6066"}, "extensions": []}]'
     - name: account_update
       virtual: false
       purpose:
@@ -505,7 +552,7 @@
       virtual: false
       purpose: |
         This operation is identical to `limit_order_create` except it serializes
-        the price rather than calculating it from other fields.
+        the price rather than calculating it from other fields. The maximum expiration time for any limit order is 28 days from `head_block_time()`.
       roles:
         - active
           owner

@@ -66,11 +66,15 @@ client = steem.Steem(nodes=['https://testnet.steem.vc'],keys=[wif])
 
 #### 3. Check reward balance <a name="balance"></a>
 
-In order to get a clear picture of the available rewards that can be claimed, we send a query to the blockchain using the `get_account` function. From the result we can gather the rewards balances.
+We send a query to the blockchain using the `get_account` function to check if the username exists on the blockchain. We also use this function to get a clear picture of the available rewards that can be claimed and display this on the console/terminal.
 
 ```python
 #get account reward balances
 userinfo = client.get_account(username)
+
+if(userinfo is None) :
+    print('Oops. Looks like user ' + username + ' doesn\'t exist on this chain!')
+    exit()
 
 reward_steem = userinfo['reward_steem_balance']
 reward_sbd = userinfo['reward_sbd_balance']
@@ -86,8 +90,6 @@ print('Reward Balances:' + '\n' +
 
 input('\n' + 'Press enter to continue to claim selection')
 ```
-
-The result of the query is displayed in the console/terminal.
 
 #### 4. Claim commit <a name="commit"></a>
 
@@ -140,6 +142,8 @@ As a final check we run the account query again to get updated values for the av
 
 ```python
 #get updated account reward balances
+input("Press enter for new account balances")
+
 userinfo = client.get_account(username)
 
 reward_steem = userinfo['reward_steem_balance']
