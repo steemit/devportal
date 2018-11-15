@@ -983,6 +983,12 @@
       "id":1}'
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_followers", "params":["alice",null,"ignore",100],
       "id":1}'
+    mainnet:
+      working: true
+      detail: ""
+    testnet:
+      working: false
+      detail: "Will not work because this function requires jussi to work correctly which is not available on the testnet"
   - api_method: condenser_api.get_following
     since: HF9
     purpose: |
