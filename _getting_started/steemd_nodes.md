@@ -1,6 +1,6 @@
 ---
 title: steemd Nodes
-position: 2
+position: 3
 exclude: true
 ---
 
