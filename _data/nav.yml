@@ -3,9 +3,9 @@ toc:
     collection: "introduction"
     url: "/"
     position: 1
-  - title: "Quickstart"
-    collection: "quickstart"
-    url: "/quickstart/"
+  - title: "Getting Started"
+    collection: "getting_started"
+    url: "/getting_started/"
     position: 2
     exclude: true
   - title: "Tutorials"

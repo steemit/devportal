@@ -17,7 +17,7 @@ you can either submit a pull request or file an issue. Please follow our
 
 #### Site Resources
 
-The **quickstart** section has some general information on working with nodes, and testnets.
+The **getting started** section has some general information on working with nodes, and testnets.
 
 Our **tutorials** section will take you through the basics of interacting with Steem apis in Javascript, Python, and Ruby.
 

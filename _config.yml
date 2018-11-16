@@ -18,9 +18,9 @@ collections:
     id: contributors
     position: 2
     output: true
-  quickstart:
-    title: Quickstart
-    id: quickstart
+  getting_started:
+    title: Getting Started
+    id: getting_started
     position: 3
     output: true
   javascript:

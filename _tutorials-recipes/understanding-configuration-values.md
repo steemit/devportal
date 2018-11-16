@@ -53,7 +53,7 @@ Usually, these configuration values are universally adhered to, but there are si
 
 ### `IS_TEST_NET`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-Indicates if this node is running on testnet.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+Indicates if this node is running on testnet.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_ENABLE_SMT`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -69,7 +69,7 @@ The rate used since HF19.  The number of votes an account may cast per day befor
 
 ### `STEEM_ADDRESS_PREFIX`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-Address prefix used on mainnet is `STM` and on testnet is `TST`.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+Address prefix used on mainnet is `STM` and on testnet is `TST`.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_BLOCK_INTERVAL`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -81,15 +81,15 @@ This value was simply set to 7 days, [since HF17](https://github.com/steemit/ste
 
 Prior to this, other very complicated machinations were tried like multiple payouts and an initial 24 hours (prior to HF12) and even initial 12 hours ([in HF12](https://github.com/steemit/steem/issues/177)) all with time extensions depending on how much of an upvote the content got.
 
-Note, on testnet, this is typically much shorter: 1 hour.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+Note, on testnet, this is typically much shorter: 1 hour.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_CHAIN_ID`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-The chain ID to connect to, which is used to seed signing and prevent transaction crosstalk between two chains, typically mainnet and testnet.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+The chain ID to connect to, which is used to seed signing and prevent transaction crosstalk between two chains, typically mainnet and testnet.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_CHAIN_ID_NAME`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-Tyically used to automatically get a unique chain id for a testnet.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+Tyically used to automatically get a unique chain id for a testnet.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_CREATE_ACCOUNT_DELEGATION_RATIO`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -117,7 +117,7 @@ Scheduled time that the blockchain waited until the first block was produced.  I
 
 The minimum number of Delegated Proof of Stake witnesses required for hardfork.  This guarantees 75% participation on all subsequent rounds.
 
-By default it is set to 17, but when running a testnet, we can change it to 1 so that only one node instance would be sufficient and the network will be still functional and fast.  See: [Steem Testnet](/quickstart/#quickstart-testnet)
+By default it is set to 17, but when running a testnet, we can change it to 1 so that only one node instance would be sufficient and the network will be still functional and fast.  See: [Steem Testnet](/getting_started/#getting_started-testnet)
 
 ### `STEEM_INFLATION_NARROWING_PERIOD`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 

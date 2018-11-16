@@ -1,11 +1,11 @@
 ---
-title: Quickstart
-section: Quickstart
+title: Getting Started
+section: Getting Started
 layout: default
-permalink: /quickstart/
+permalink: /getting_started/
 ---
 
-{% assign sorted_collections = site.collections | where:'id', "quickstart" %}
+{% assign sorted_collections = site.collections | where:'id', "getting_started" %}
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
