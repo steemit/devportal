@@ -10,7 +10,7 @@ layout: full
 
 Hive is a "consensus interpretation" layer for the Steem blockchain, maintaining the state of social features such as post feeds, follows, and communities. Written in Python, it synchronizes an SQL database with chain state, providing developers with a more flexible/extensible alternative to the raw steemd API. This means that you can bypass steemd and access data in a more traditional way, for example, with SQL. But you can't use SQL on steemd. So Hivemind solves that problem. Hive does not support any queries to do with wallets, orders, escrow, keys, recovery, or account history.
 
-A good source of additional information on hive and how to use it can be found in [this Steemit article](https://steemit.com/hivemind/@inertia/hivemind-queries) by @inertia
+A good source of additional information on hive and how to use it can be found in [this Steemit article](https://steemit.com/hivemind/@inertia/hivemind-queries) by @inertia.
 
 #### Supported API functionality:
 
@@ -30,7 +30,7 @@ A good source of additional information on hive and how to use it can be found i
 *   condenser_api.get_content
 *   condenser_api.get_state
 
-**Additional funtions available within hive-steem library**
+**Additional functions available within hive-steem library**
 
 The majority of these functions are reliant on steemd so any changes to steemd would affect these function calls. The only two functions not directly reliant on steemd are `stream_blocks` and `get_steem_per_mvest`.
 
@@ -55,7 +55,7 @@ Detailed information on the hive-steem library can be found in the [Hivemind rep
 
 Hivemind is available as a pre-built docker image which can be downloaded directly from Dockerhub at [https://hub.docker.com/r/steemit/hivemind/](https://hub.docker.com/r/steemit/hivemind/)
 
-If you would prefer to install Hivemind yourself you can do so following the basic intructions below.
+If you would prefer to install Hivemind yourself you can do so following the basic instructions below.
 
 This setup can be performed on an Ubuntu server.
 
@@ -73,7 +73,7 @@ $ sudo apt-get install python3 python3-pip
 $ sudo apt-get install postgresql
 ```
 
-More detailed documentation on the setup of Hivemind can be found at the [Hivemind githob repository](https://github.com/steemit/hivemind)
+More detailed documentation on the setup of Hivemind can be found at the [Hivemind github repository](https://github.com/steemit/hivemind)
 
 Once the dependencies have been installed the database can be created and the environment variables set
 
