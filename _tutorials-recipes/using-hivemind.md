@@ -15,60 +15,65 @@ A good source of additional information on hive and how to use it can be found i
 #### Supported API functionality:
 
 **Core API set available in Hive:**
--  condenser_api.get_follow_count
--  condenser_api.get_followers
--  condenser_api.get_following
--  condenser_api.get_discussions_by_trending
--  condenser_api.get_discussions_by_hot
--  condenser_api.get_discussions_by_promoted
--  condenser_api.get_discussions_by_created
--  condenser_api.get_discussions_by_blog
--  condenser_api.get_discussions_by_feed
--  condenser_api.get_discussions_by_comments
--  condenser_api.get_discussions_by_last_update
--  condenser_api.get_content
--  condenser_api.get_state
+
+*   condenser_api.get_follow_count
+*   condenser_api.get_followers
+*   condenser_api.get_following
+*   condenser_api.get_discussions_by_trending
+*   condenser_api.get_discussions_by_hot
+*   condenser_api.get_discussions_by_promoted
+*   condenser_api.get_discussions_by_created
+*   condenser_api.get_discussions_by_blog
+*   condenser_api.get_discussions_by_feed
+*   condenser_api.get_discussions_by_comments
+*   condenser_api.get_discussions_by_last_update
+*   condenser_api.get_content
+*   condenser_api.get_state
 
 **Additional funtions available within hive-steem library**
 
 The majority of these functions are reliant on steemd so any changes to steemd would affect these function calls. The only two functions not directly reliant on steemd are `stream_blocks` and `get_steem_per_mvest`.
 
--  get_accounts
--  get_all_account_names
--  get_content_batch
--  get_block
--  stream_blocks
--  _gdgp (get dynamic global properties)
--  head_time
--  head_block
--  last_irreversible
--  gdgp_extended
--  get_steem_per_mvest
--  get_feed_price
--  get_steem_price
--  get_blocks_range
+*   get_accounts
+*   get_all_account_names
+*   get_content_batch
+*   get_block
+*   stream_blocks
+*   \_gdgp (get dynamic global properties)
+*   head_time
+*   head_block
+*   last_irreversible
+*   gdgp_extended
+*   get_steem_per_mvest
+*   get_feed_price
+*   get_steem_price
+*   get_blocks_range
 
 Detailed information on the hive-steem library can be found in the [Hivemind repo](https://github.com/steemit/hivemind/blob/master/hive/steem/client.py)
 
 #### Hivemind dependencies and setup
 
-Hive is deployed as Docker container and a built docker image is available in [this steemit repo](https://hub.docker.com/r/steemit/hivemind/)
+Hivemind is available as a pre-built docker image which can be downloaded directly from Dockerhub at [https://hub.docker.com/r/steemit/hivemind/](https://hub.docker.com/r/steemit/hivemind/)
+
+If you would prefer to install Hivemind yourself you can do so following the basic intructions below.
+
+This setup can be performed on an Ubuntu server.
 
 There are two dependencies for setting up the dev environment on ubuntu for running hivemind:
 
-*  Python
+*   Python
 
 ```bash
 $ sudo apt-get install python3 python3-pip
 ```
 
-*  Postgres
+*   Postgres
 
 ```bash
 $ sudo apt-get install postgresql
 ```
 
-Full information on the setup for hive dev environment and production can be found on the [Hivemind github repository](https://github.com/steemit/hivemind)
+More detailed documentation on the setup of Hivemind can be found at the [Hivemind githob repository](https://github.com/steemit/hivemind)
 
 Once the dependencies have been installed the database can be created and the environment variables set
 
@@ -77,26 +82,32 @@ $ createdb hive
 $ export DATABASE_URL=postgresql://user:pass@localhost:5432/hive
 ```
 
-If you want to connect to a testnet instead of production you can change the `STEEMD_URL` environment variable
+By default Hivemind will connect to the mainnet [https://api.steemit.com](https://api.steemit.com) but if required you can change this to connect to a testnet. To do this set the environment variable as described below.
 
 ```bash
 $ export STEEMD_URL=https://testnet.steem.vc
 ```
 
-After this you can sync your database with the chosen network
+Now that the basic setup is done you are able to sync the database.
 
 ```bash
 $ hive sync
 ```
 
-You can also check the status of you synced database
+You can also check the status of your synced database
 
 ```bash
 $ hive status
 ```
 
-Once you start the hive server you have a working dev environment for your hive database
+Once the synchronization is complete you can start the Hivemind server which will allow you to start performing queries on your local database.
 
 ```bash
 $ hive server
+```
+
+By default the server is available on [http://0.0.0.0:8080](http://0.0.0.0:8080), this can also be changed by adding an environment variable
+
+```base
+$ export HTTP_SERVER_PORT=8090
 ```
