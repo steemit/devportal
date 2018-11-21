@@ -49,11 +49,11 @@ The majority of these functions are reliant on steemd so any changes to steemd w
 *   get_steem_price
 *   get_blocks_range
 
-Detailed information on the hive-steem library can be found in the [Hivemind repo](https://github.com/steemit/hivemind/blob/master/hive/steem/client.py)
+Detailed information on the hive-steem library can be found in the [Hivemind repo](https://github.com/steemit/hivemind/blob/master/hive/steem/client.py).
 
 #### Hivemind dependencies and setup
 
-Hivemind is available as a pre-built docker image which can be downloaded directly from Dockerhub at [https://hub.docker.com/r/steemit/hivemind/](https://hub.docker.com/r/steemit/hivemind/)
+Hivemind is available as a pre-built docker image which can be downloaded directly from Dockerhub at [https://hub.docker.com/r/steemit/hivemind/](https://hub.docker.com/r/steemit/hivemind/).
 
 If you would prefer to install Hivemind yourself you can do so following the basic instructions below.
 
@@ -73,9 +73,9 @@ $ sudo apt-get install python3 python3-pip
 $ sudo apt-get install postgresql
 ```
 
-More detailed documentation on the setup of Hivemind can be found at the [Hivemind github repository](https://github.com/steemit/hivemind)
+More detailed documentation on the setup of Hivemind can be found at the [Hivemind github repository](https://github.com/steemit/hivemind).
 
-Once the dependencies have been installed the database can be created and the environment variables set
+Once the dependencies have been installed the database can be created and the environment variables set.
 
 ```bash
 $ createdb hive
@@ -94,7 +94,7 @@ Now that the basic setup is done you are able to sync the database.
 $ hive sync
 ```
 
-You can also check the status of your synced database
+You can also check the status of your synced database.
 
 ```bash
 $ hive status
@@ -106,8 +106,8 @@ Once the synchronization is complete you can start the Hivemind server which wil
 $ hive server
 ```
 
-By default the server is available on [http://0.0.0.0:8080](http://0.0.0.0:8080), this can also be changed by adding an environment variable
+By default the server is available on [http://0.0.0.0:8080](http://0.0.0.0:8080), this can also be changed by adding an environment variable.
 
-```base
+```bash
 $ export HTTP_SERVER_PORT=8090
 ```
