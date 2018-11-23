@@ -20,6 +20,50 @@ The account specific recovery agent can be obtained from `steemd.com/@username`
 
 The term multisig refers to the requirement of having more than one signature to create a valid transaction. Most transactions don't have this requirement because they are tied to regular accounts. However, you can extend your account to a multi-authority account by adding more keys and requiring more than one of them to sign a transaction. With multisig you can give owner authority to another trusted account. This account can then be used to recover the first account in the case of a lost password. This permission can be granted to multiple users and can be set up to require more than one signature to action anything on the owner authority. You could share authority with 2 other accounts and set the threshold to require 2 signatures meaning that 2 of the 3 accounts need to approve the action. When adding multisig for your owner authority remember that the owner level provides COMPLETE access to all functions of your account.
 
+## Account creation
+
+When a new account has been created you can add multiple owner authorities to the account via the same process as our [grant posting permission](https://developers.steem.io/tutorials-javascript/grant_posting_permission) and [grant active permission](https://developers.steem.io/tutorials-javascript/grant_active_permission) tutorials. This is done by pushing an array of account names or owner keys for the new account. The weight threshold can be changed to require more than one of the owner authorities for any operation.
+
+```json
+{
+    "account": "new_account",
+    "json_metadata": "json_metadata",
+    "memo_key": "memo_key",
+    "owner": {
+        "account_auths": ["Additional_owner_authority", 1],
+        "key_auths": ["000000000000000000000000000000000000000000000000000", 1],
+        "weight_threshold": 1
+    },
+}
+```
+
+This information is broadcast using the new account's PRIVATE owner key. Once this has been done, a second owner authority has been added to the newly created account. This can be done on any account, not just newly created accounts. An excerpt of the code for this process can be seen below. This can be substituded in the previously mentioned tutorials on granting permission to change the tutorial to adding an OWNER authority.
+
+```javascript
+//collecting user data and owner auth array
+var _data = new Array();
+_data = await client.database.getAccounts([username]);
+const ownerAuth = _data[0].owner;
+
+//adding of new account to posting array
+ownerAuth.account_auths.push([
+    newAccount,
+    parseInt(ownerAuth.weight_threshold),
+]);
+//sort array required for steem blockchain
+ownerAuth.account_auths.sort();
+
+//object creation
+const accObj = {
+    account: username,
+    json_metadata: _data[0].json_metadata,
+    memo_key: _data[0].memo_key,
+    owner: ownerAuth,
+};
+```
+
+After this point the object is broadcast to the blockchain.
+
 ## Account recovery
 
 There are two steps in recovering a steemit account:
@@ -77,7 +121,7 @@ The second step is the actual recovery of the account. The `recover_account` fun
 ]
 ```
 
-Once the account recovery has been broadcast with the new owner key, the rest of the account keys will be created and updated as well. This is done with an account update operation. A working tutorial explaining the change of account keys is available [here](https://developers.steem.io/tutorials-python/password_key_change)
+Once the account recovery has been broadcast with the new owner key, the rest of the account keys will be created and updated as well. This is done with an account update operation. A working tutorial explaining the [change of account keys](https://developers.steem.io/tutorials-python/password_key_change) is available.
 
 ```json
 {
@@ -107,4 +151,4 @@ Once the account recovery has been broadcast with the new owner key, the rest of
 }
 ```
 
-To see a working example of how to recover an account you can follow the tutorial [here](https://developers.steem.io/tutorials/#tutorials-python)
+To see a working example of how to recover an account you can follow the [account recovery tutorial](https://developers.steem.io/tutorials/#tutorials-python) on the devportal.
