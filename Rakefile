@@ -10,6 +10,7 @@ require 'rake/testtask'
 require 'net/https'
 require 'json'
 require 'yaml'
+require 'html-proofer'
 
 namespace :scrape do
   desc "Scrape steemjs docs"
@@ -200,5 +201,21 @@ namespace :test do
     end
     
     exit smoke
+  end
+  
+  desc 'Want some work to do?  Run this report and get busy.'
+  task :proof do
+    # See: https://github.com/gjtorikian/html-proofer#configuration
+    sh 'bundle exec jekyll build'
+    options = {
+      assume_extension: true,
+      only_4xx: true,
+      check_favicon: true,
+      check_html: true,
+      allow_hash_href: true,
+      empty_alt_ignore: true
+    }
+    
+    HTMLProofer.check_directory("./_site", options).run
   end
 end
