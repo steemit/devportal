@@ -107,6 +107,26 @@ namespace :production do
   end
 end
 
+desc 'Dump all operation types.  Useful for schema comparison.'
+task :ops_dump, [:vops, :appbase] do |t, args|
+  vops = args[:vops] == 'true'
+  appbase = args[:appbase] == 'true'
+  file_name = '_data/apidefinitions/broadcast_ops.yml'
+  op_names = []
+  yaml = YAML.load_file(file_name)
+  op_names += yaml[0]['ops'].map do |op|
+    next if op['virtual'] && !vops
+    
+    if !!appbase
+      op['name'] + '_operation'
+    else
+      op['name']
+    end
+  end
+  
+  puts op_names.compact.sort
+end
+
 namespace :test do
   KNOWN_APIS = %i(
     account_by_key_api account_history_api block_api condenser_api 
