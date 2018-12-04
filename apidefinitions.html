@@ -16,7 +16,7 @@ permalink: /apidefinitions/
 {% for collection in sorted_collections %}
 	{% assign sorted_docs = collection.docs | sort: "position" %}
 	{% for doc in sorted_docs %}
-		<section id="{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
+		<section id="section-{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
 			<h3>
 				<a id="{{ doc.id | slugify }}">
 					{{ doc.title }}
