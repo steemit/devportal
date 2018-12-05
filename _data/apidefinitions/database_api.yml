@@ -19,13 +19,24 @@
   methods:
   - api_method: database_api.find_account_recovery_requests
     since: HF11
-    purpose: Returns a list of account recovery requests.
+    purpose: |
+      Returns a list of account recovery requests.  Parameters: `account:string`
+
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the recovery requests for account named "steemit". |
     parameter_json: '{"accounts":[]}'
     expected_response_json: '{"requests":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_account_recovery_requests", "params": {"accounts":["steemit"]}, "id":1}'
   - api_method: database_api.find_accounts
-    purpose: Search for accounts.
+    purpose: |
+      Returns accounts, queried by name.  Parameters: `account:string array`
+
+      | `account` (string array) | |
+      |-------------------|-|
+      | `["steemit"]` | Queries for account named "steemit". |
+      | `["steemit", "alice"]` | Queries for accounts named "steemit" and "alice". |
     parameter_json: '{"accounts":[]}'
     expected_response_json: |
       {
@@ -184,9 +195,15 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_accounts", "params": {"accounts":["steemit"]}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_accounts", "params": {"accounts":["steemit", "alice"]}, "id":1}'
   - api_method: database_api.find_change_recovery_account_requests
     since: HF11
-    purpose: Returns a list of requests to change the recovery account.
+    purpose: |
+      Returns a list of requests to change the recovery account.  Parameters: `account:array`
+
+      | `account` (array) | |
+      |--------------------|-|
+      | `["steemit"]` | Queries the recovery requests for account named "steemit". |
     parameter_json: '{"accounts":[]}'
     expected_response_json: '{"requests":[]}'
     curl_examples:
@@ -249,40 +266,94 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_limit_orders", "params": {"account":"temp"}, "id":1}'
   - api_method: database_api.find_owner_histories
-    purpose: Returns owner authority history.
+    purpose: |
+      Returns owner authority history.  Parameters: `owner:string`
+
+      | `owner` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the owner history for account named "steemit". |
+      | `"alice"` | Queries the owner history for account named "alice". |
     parameter_json: '{"owner":""}'
     expected_response_json: '{"owner_auths":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"temp"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
   - api_method: database_api.find_savings_withdrawals
     since: HF14
-    purpose: Returns the list of savings withdrawls for an account.
+    purpose: |
+      Returns the list of savings withdrawls for an account.  Parameters: `account:string`
+
+      | `account` (string) | |
+      |--------------------|-|
+      | `"steemit"` | Queries the savings withdraw for account named "steemit". |
+    parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     parameter_json: '{"account":""}'
     expected_response_json: '{"withdrawals":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_savings_withdrawals", "params": {"start":"temp"}, "id":1}'
   - api_method: database_api.find_sbd_conversion_requests
-    purpose: Returns the list of SBD conversion requests for an account.
+    purpose: |
+      Returns the list of SBD conversion requests for an account.  Parameters: `account:string`
+
+      | `account` (string) | |
+      |-------------------|-|
+      | `"steemit"` | Queries a conversion request for steemit. |
+      | `"alice"` | Queries a conversion request for alice. |
     parameter_json: '{"account":""}'
     expected_response_json: '{"requests":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_sbd_conversion_requests", "params": {"account":"temp"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_sbd_conversion_requests", "params": {"account":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_sbd_conversion_requests", "params": {"account":"alice"}, "id":1}'
   - api_method: database_api.find_vesting_delegation_expirations
     since: HF17
-    purpose: Returns the expirations for vesting delegations.
+    purpose: |
+      Returns the expiring vesting delegations for an account.  Parameters: `account:string`
+
+      | `account` (string) | | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | | Queries for expiring vesting for `steemit`. |
+      | `"alice"` | | Queries for expiring vesting for `alice`. |
     parameter_json: '{"account":""}'
-    expected_response_json: '{"delegations":[]}'
+    expected_response_json: |
+      {
+        "delegations": [
+          {
+            "id": 3077902,
+            "delegator": "steem",
+            "vesting_shares": {
+              "amount": "201417615",
+              "precision": 6,
+              "nai": "@@000000037"
+            },
+            "expiration": "2018-12-05T21:46:48"
+          }
+        ]
+      }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegation_expirations", "params": {"account":"temp"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegation_expirations", "params": {"account":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegation_expirations", "params": {"account":"alice"}, "id":1}'
   - api_method: database_api.find_vesting_delegations
     since: HF17
-    purpose: Returns the list of vesting delegations for an account.
+    purpose: |
+      Returns the list of vesting delegations for an account.  Parameters: `account:string`
+
+      | `account` (string) | | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | | Queries for vesting for `steemit`. |
+      | `"alice"` | | Queries for vesting for `alice`. |
     parameter_json: '{"account":""}'
     expected_response_json: '{"delegations":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegations", "params": {"account":"temp"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegations", "params": {"account":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_vesting_delegations", "params": {"account":"alice"}, "id":1}'
   - api_method: database_api.find_votes
-    purpose: Returns the votes for an author and permlink.
+    purpose: |
+      Returns all votes for the given post.  Parameters: `author:string`; `permlink:string`
+
+      | `author` (string) | `permlink` (string) | |
+      |----------------------------|---------------|-|
+      | `"steemit"` | `"firstpost"` | Queries votes for content with a slug `@steemit/firstpost` |
+      | `"alice"` | `"a-post-by-alice"` | Queries votes for content with a slug `@alice/a-post-by-alice` |
     parameter_json: '{"author":"","permlink":""}'
     expected_response_json: |
       {
@@ -312,7 +383,11 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_votes", "params": {"author":"temp", "permlink":"test1"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_votes", "params": {"author":"steemit", "permlink":"firstpost"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_votes", "params": {"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
+    expected_curl_responses:
+    - 
+    - Could not find comment alice/a-post-by-alice
   - api_method: database_api.find_withdraw_vesting_routes
     purpose: Returns the list of vesting withdraw routes for an account.
     parameter_json: '{"account":"","order":"by_name"}'
@@ -720,13 +795,38 @@
     - '{"jsonrpc":"2.0", "method":"database_api.get_witness_schedule", "id":1}'
   - api_method: database_api.list_account_recovery_requests
     since: HF11
-    purpose: Returns a list of account recovery requests.
+    purpose: |
+      Returns a list of account recovery requests.  Parameters: `start:string`, `limit:int`, `order:string`
+      
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_account` - order by accont name
+        * `by_expiration` - order by expiration
+      
+      | `account` (string) | `limit` (int) | `order` (string) | |
+      |--------------------|-|
+      | `"steemit"` | 10 | `"by_account"` | Queries the recovery requests for account named "steemit", ordered by account name. |
+      | `["1960-01-01T00:00:00"]` | 10 | `"by_expiration"`| Queries the recovery requests for date, ordered by expiration. |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: '{"requests":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_account_recovery_requests", "params": {"start":"", "limit":10, "order":"by_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_account_recovery_requests", "params": {"start":["1960-01-01T00:00:00"], "limit":10, "order":"by_expiration"}, "id":1}'
   - api_method: database_api.list_accounts
-    purpose: Returns a list of accounts.
+    purpose: |
+      List accounts ordered by specified key.  Parameters: `start:object`, `limit:int`, `order:string`
+      
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_name` - order by accont name
+        * `by_proxy` - order by proxy **(WIP)**
+        * `by_next_vesting_withdrawal` - order by next next vesting withdrawal **(WIP)**
+      
+      | `start` (object) | `limit` (int) | `order` (string) |
+      |-------------------|-|
+      | `""` | `10` | `"by_name"` Queries for up to 10 accounts starting at the beginning, sorted by name. |
+      | `[""]` | `10` | `"by_proxy"` Queries for up to 10 accounts starting at the beginning, sorted by proxy. |
+      | `["1960-01-01T00:00:00"]` | `10` | `"by_next_vesting_withdrawal"` Queries for up to 10 accounts starting at the beginning, sorted by next vesting withdrawl. |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -873,6 +973,8 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":"", "limit":10, "order":"by_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":[""], "limit":10, "order":"by_proxy"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":["1960-01-01T00:00:00"], "limit":10, "order":"by_next_vesting_withdrawal"}, "id":1}'
   - api_method: database_api.list_change_recovery_account_requests
     since: HF11
     purpose: Returns a list of recovery account change requests.
@@ -1015,7 +1117,13 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":1000,"precision":3,"nai":"@@000000021"},"quote":{"amount":1,"precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
   - api_method: database_api.list_owner_histories
-    purpose: Returns a list of owner authority histories.
+    purpose: |
+      Returns a list of owner authority histories.  Parameters: `start:array`, `limit:int`
+
+      | `start` (array) | `limit` (int) | |
+      |--------------------|-|-|
+      | `["steemit", "1970-01-01T00:00:00"]` | 10 | Queries the owner history starting from account named "steemit" on "1970-01-01T00:00:00", limit 10 results. |
+      | `["alice", "1970-01-01T00:00:00"]` | 10 | Queries the owner history starting from account named "alice", limit 10 results. |
     parameter_json: '{"start":null,"limit":0}'
     expected_response_json: |
       {
@@ -1038,10 +1146,22 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_owner_histories", "params": {"start":["","1970-01-01T00:00:00"], "limit":10}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_owner_histories", "params": {"start":["steemit","1970-01-01T00:00:00"], "limit":10}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_owner_histories", "params": {"start":["alice","1970-01-01T00:00:00"], "limit":10}, "id":1}'
   - api_method: database_api.list_savings_withdrawals
     since: HF14
-    purpose: Returns a list of savings withdrawls.
+    purpose: |
+      Returns a list of savings withdrawls.  Parameters: `start:object`, `limit:int`, `order:string`
+      
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_from_id` - order by id
+        * `by_complete_from_id` - order by id (complete)
+      
+      | `start` (object) | `limit` (int) | `order` (string) | |
+      |--------------------|-|-|-|
+      | `[0]` | `10` | `"by_from_id"` | Queries the savings withdraw for id. |
+      | `["2018-12-07T16:54:03", "steemit", 0]` | `10` | `"by_complete_from_id"` | Queries the savings withdraw for id (completed). |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1062,9 +1182,21 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":["",0], "limit":10, "order":"by_from_id"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":[0], "limit":10, "order":"by_from_id"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":["2018-12-07T16:54:03", "steemit", 0], "limit":10, "order":"by_complete_from_id"}, "id":1}'
   - api_method: database_api.list_sbd_conversion_requests
-    purpose: Returns a list of SBD conversion requests.
+    purpose: |
+      Returns the list of SBD conversion requests for an account.  Parameters: `start:array`, `limit:int`, `order:string`
+      
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_conversion_date` - order by conversion date
+        * `by_account` - order by accont name
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |-------------------|-|-|-|
+      | `["steemit"]` | 10 | `by_account` | Queries a conversion request for steemit, limit to 10 results, order by account name. |
+      | `["2018-12-07T16:54:03"]` | 10 | `by_conversion_date`| Queries a conversion request from this date, limit to 10 results, order by conversion date. |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1083,7 +1215,8 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["",0], "limit":10, "order":"by_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["steemit"], "limit":10, "order":"by_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["2018-12-07T16:54:03"], "limit":10, "order":"by_conversion_date"}, "id":1}'
   - api_method: database_api.list_vesting_delegation_expirations
     since: HF17
     purpose: Returns a list of vesting delegation expirations.
@@ -1128,8 +1261,20 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_vesting_delegations", "params": {"start":["",""], "limit":10, "order":"by_delegation"}, "id":1}'
   - api_method: database_api.list_votes
-    purpose: Returns a list of votes.
-    parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
+    purpose: |
+      Returns all votes for the given post.  Parameters: `start:array`; `limit:int`; `order:string`
+
+      * `start` is an array of three optional values: `author`, `permlink`, `voter`
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_comment_voter` - order by comment voter
+        * `by_voter_comment` - order by voter comment
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `["", "", ""]` | 10 | `"by_comment_voter"` | Queries first 10 votes, sort by comment voter |
+      | `["", "", ""]` | 10 | `"by_voter_comment"` | Queries first 10 votes, sort by voter comment |
+    parameter_json: '{"start":null,"limit":0,"order":"by_comment_voter"}'
     expected_response_json: |
       {
         "votes": [
@@ -1147,7 +1292,9 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["","",""], "limit":10, "order":"by_comment_voter"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", ""], "limit":10, "order":"by_comment_voter"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", ""], "limit":10, "order":"by_voter_comment"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["steemit", "", ""], "limit":10, "order":"by_voter_comment"}, "id":1}'
   - api_method: database_api.list_withdraw_vesting_routes
     purpose: Returns a list of vesting withdraw routes.
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
