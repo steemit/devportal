@@ -17,7 +17,7 @@ What is a Multiplexer?  In this context, a multiplexer an appliance that accepts
 Deploying `jussi` on your own local subnet will help improve efficiency because your local applications won't require SSL and `jussi` can take care of gzipping requests that go out over the Internet.
 
 <center>
-  <img src="/images/tutorials-recipes/jussi-multiplexer/network-diagram.png" alt="Network Diagram" />
+  <img src="{{ '/images/tutorials-recipes/jussi-multiplexer/network-diagram.png' | relative_url }}" alt="Network Diagram" />
 </center>
   
 ## Steps
@@ -49,7 +49,7 @@ Edit the file `DEV_config.json` and change all:
 
 `https://api.steemit.com`
 
-Also consider adding the [`retries`](/services/#retry) element to your `DEV_config.json`.
+Also consider adding the [`retries`]({{ '/services/#retry' | relative_url }}) element to your `DEV_config.json`.
 
 Then build and run:
 

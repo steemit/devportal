@@ -13,7 +13,7 @@ A post is differentiated from a comment by whether or not a `parent_author` exis
 
 ### Script
 
-You should change `wif` to the posting key that matches your `author`.  This script will pass along the values as a [`comment` operation](/apidefinitions/broadcast-ops#broadcast_ops_comment):
+You should change `wif` to the posting key that matches your `author`.  This script will pass along the values as a [`comment` operation]({{ '/apidefinitions/broadcast-ops#broadcast_ops_comment' | relative_url }}):
 
 * `author` - Account name of the author currently posting.
 * `permlink` - Value unique to the author 
