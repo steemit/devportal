@@ -6,7 +6,7 @@ exclude: true
 layout: full
 ---
 
-The overarching goal is to stop using [`condenser_api.broadcast_transaction_synchronous`](/apidefinitions/#condenser_api.broadcast_transaction_synchronous) but we still want the benefits.
+The overarching goal is to stop using [`condenser_api.broadcast_transaction_synchronous`]({{ '/apidefinitions/#condenser_api.broadcast_transaction_synchronous' | relative_url }}) but we still want the benefits.
 
 * [Why Client-side Computation?](#why-client-side-computation)
 * [Why After Broadcast?](#why-after-broadcast)
@@ -17,15 +17,15 @@ The overarching goal is to stop using [`condenser_api.broadcast_transaction_sync
 
 ## Why Client-side Computation?
 
-The primary reason to compute the `trx_id` before broadcast is to track the transaction when quality of service is impacted. If the `trx_id` is known before [`condenser_api.broadcast_transaction`](/apidefinitions/#condenser_api.broadcast_transaction), but the response times out, we can still track the transaction.
+The primary reason to compute the `trx_id` before broadcast is to track the transaction when quality of service is impacted. If the `trx_id` is known before [`condenser_api.broadcast_transaction`]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }}), but the response times out, we can still track the transaction.
 
 ## Why After Broadcast?
 
-Assuming quality of service has not been impacted, solely relying on the [`condenser_api.broadcast_transaction`](/apidefinitions/#condenser_api.broadcast_transaction) response should not be a problem.
+Assuming quality of service has not been impacted, solely relying on the [`condenser_api.broadcast_transaction`]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }}) response should not be a problem.
 
 ## Why In General?
 
-Whichever method we use above to get `trx_id`, we can track it if anything goes wrong while we wait for it to be included in a block. Then, even after it's included, we can still track a transaction while we wait for 2/3rds of the witnesses to verify (thus irreversable). We can poll [`transaction_status_api`](/apidefinitions/#apidefinitions-transaction-status-api) until we're satisfied that the `trx_id` has been included.
+Whichever method we use above to get `trx_id`, we can track it if anything goes wrong while we wait for it to be included in a block. Then, even after it's included, we can still track a transaction while we wait for 2/3rds of the witnesses to verify (thus irreversable). We can poll [`transaction_status_api`]({{ '/apidefinitions/#apidefinitions-transaction-status-api' | relative_url }}) until we're satisfied that the `trx_id` has been included.
 ## Client-side Computation
 
 First, create a transaction, for example:
@@ -71,9 +71,9 @@ This is the computed `trx_id`.
 
 ## After Broadcast
 
-If your client does not support client-side id computation, you can still get the `trx_id` from the result of [`condenser_api.broadcast_transaction`](/apidefinitions/#condenser_api.broadcast_transaction).
+If your client does not support client-side id computation, you can still get the `trx_id` from the result of [`condenser_api.broadcast_transaction`]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }}).
 
-The combination of [`condenser_api.broadcast_transaction`](/apidefinitions/#condenser_api.broadcast_transaction) and [`transaction_status_api.find_transaction`](/apidefinitions/#transaction_status_api.find_transaction), described below, allows us to avoid using [`condenser_api.broadcast_transaction_synchronous`](/apidefinitions/#condenser_api.broadcast_transaction_synchronous), which is being deprecated.
+The combination of [`condenser_api.broadcast_transaction`]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }}) and [`transaction_status_api.find_transaction`]({{ '/apidefinitions/#transaction_status_api.find_transaction' | relative_url }}), described below, allows us to avoid using [`condenser_api.broadcast_transaction_synchronous`]({{ '/apidefinitions/#condenser_api.broadcast_transaction_synchronous' | relative_url }}), which is being deprecated.
 
 ## Polling
 
@@ -113,4 +113,4 @@ Possible `status` results are:
 | `expired_irreversible` | Transaction has expired, transaction is irreversible (transaction cannot be in a fork) |
 | `too_old` | Transaction is too old, I don't know about it |
 
-See: [`transaction_status_api`](/apidefinitions/#apidefinitions-transaction-status-api)
+See: [`transaction_status_api`]({{ '/apidefinitions/#apidefinitions-transaction-status-api' | relative_url }})
