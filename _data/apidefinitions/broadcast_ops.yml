@@ -39,7 +39,7 @@
     }
     ```
     
-    Also see: [Broadcast Transaction](/apidefinitions/#condenser_api.broadcast_transaction)
+    Also see: [Broadcast Transaction]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }})
   ops:
     - name: vote
       virtual: false
@@ -369,7 +369,7 @@
       virtual: false
       purpose: |
         All accounts with a VFS (Vesting Fund Shares) can vote for or against
-        any witness.  See: [`STEEM_MAX_ACCOUNT_WITNESS_VOTES`](/tutorials-recipes/understanding-configuration-values#steem_max_account_witness_votes)
+        any witness.  See: [`STEEM_MAX_ACCOUNT_WITNESS_VOTES`]({{ '/tutorials-recipes/understanding-configuration-values#steem_max_account_witness_votes' | relative_url }})
         
         If a proxy is specified then all existing votes are removed.
       roles:

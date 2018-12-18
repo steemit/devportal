@@ -10,7 +10,7 @@
     purpose: |
       **Disabled since 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
       
-      Returns the available bandwidth of an account.  See: [Forum/Market Bandwidth](/tutorials-recipes/forum-market-bandwidth)
+      Returns the available bandwidth of an account.  See: [Forum/Market Bandwidth]({{ '/tutorials-recipes/forum-market-bandwidth' | relative_url }})
     parameter_json: '{"account":"","type":"post"}'
     expected_response_json: "{}"
   - api_method: witness_api.get_reserve_ratio

@@ -5,7 +5,7 @@ position: 4
 
 Most people who will be implementing OAuth2 will want to find and utilize a library in the language of their choice. These libraries, while not necessarily built by Steemit, should support the SteemConnect API.
 
-If you're wondering what SteemConnect is, go [here](/services/#services-steemconnect).
+If you're wondering what SteemConnect is, go [here]({{ '/services/#services-steemconnect' | relative_url }}).
 
 ---
 
