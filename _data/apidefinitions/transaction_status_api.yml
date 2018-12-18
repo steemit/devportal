@@ -3,7 +3,7 @@
 ---
 - name: :transaction_status_api
   description: |
-    This API is intended to evaluate a transaction status after calling [`condenser_api.broadcast_transaction`](/apidefinitions/#condenser_api.broadcast_transaction).
+    This API is intended to evaluate a transaction status after calling [`condenser_api.broadcast_transaction`](#condenser_api.broadcast_transaction).
     
     To enable this API for `steemd`, the following is required in `config.ini` by specifying:
     
