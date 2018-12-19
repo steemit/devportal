@@ -87,7 +87,7 @@ plugin = block_api
 * **Optional:**
   * `account_by_key`
   * `tags`
-  * `follow`
+  * `follow` or `reputation` (e.g.: if fronting hivemind)
   * `market_history`
   * `account_history`
 * **Exposed Methods:** [`condenser_api.*`]({{ '/apidefinitions/#apidefinitions-condenser-api' | relative_url}})
@@ -96,6 +96,13 @@ Example in `chain.ini`:
 
 ```ini
 plugin = account_by_key tags follow market_history account_history
+plugin = condenser_api
+```
+
+...or ...
+
+```ini
+plugin = account_by_key tags reputation market_history account_history
 plugin = condenser_api
 ```
 
