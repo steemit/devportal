@@ -3,7 +3,7 @@
   items:
     - term: Blockchain
       def: Decentralized ledger and consensus protocol
-    - term: Steem
+    - term: Steem (blockchain)
       def: Name of the blockchain and platform
     - term: Bandwidth
       def: formerly the limit of data each account can send/use (replaced by Resource Credits)
@@ -11,7 +11,7 @@
       def: is the limit of data each account can utilize resources on the blockchain (also known as RC)
     - term: VESTS
       def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
-    - term: STEEM
+    - term: STEEM (currency)
       def: Currency of the blockchain, liquid version of Steem Power
     - term: SBD
       def: Steem Backed Dollar, $1 worth of STEEM
@@ -77,8 +77,6 @@
 - name: Transactions
   id: glossary-transactions
   items:
-    - term: Transaction
-      def: Operations submitted to the blockchain
     - term: Pending Transaction
       def: Transaction that is pending and to be included to the blockchain
     - term: Transaction Hex
@@ -136,6 +134,6 @@
     - term: Conversion Requests
       def: Request submitted for Converting SBD to STEEM
     - term: Order Book
-      def: Internal market order book to exchange SBD<->STEEM
+      def: Internal market order book to exchange SBD&lt;-&gt;STEEM
     - term: SMT
       def: Smart Media Tokens

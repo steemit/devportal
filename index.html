@@ -9,7 +9,7 @@ title: API Docs
 			{% assign sorted_docs = col.docs | sort: "position" %}
 			{% for doc in sorted_docs %}
 				{% unless doc.exclude %}    
-					<section id="{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
+					<section id="section-{{doc.id | slugify}}" class="row {{ doc.id | slugify }}">
 						<section class="row">
 							<h3>
 								<a id="{{ doc.id | slugify }}">
