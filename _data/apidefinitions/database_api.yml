@@ -1262,18 +1262,24 @@
     - '{"jsonrpc":"2.0", "method":"database_api.list_vesting_delegations", "params": {"start":["",""], "limit":10, "order":"by_delegation"}, "id":1}'
   - api_method: database_api.list_votes
     purpose: |
-      Returns all votes for the given post.  Parameters: `start:array`; `limit:int`; `order:string`
+      Returns all votes, starting with the specified voter and/or author and permlink.  Parameters: `start:array`; `limit:int`; `order:string`
 
-      * `start` is an array of three optional values: `author`, `permlink`, `voter`
+      * `start` depends on `order` (see below)
+        * `voter` is optional
+        * `author` and `permlink` are optional, but if one is blank, they must both be blank
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_comment_voter` - order by comment voter
+          * `start` is an array of three optional values: `author`, `permlink`, `voter`
         * `by_voter_comment` - order by voter comment
+          * `start` is an array of three optional values: `voter`, `author`, `permlink`
 
       | `start` (array) | `limit` (int) | `order` (string) | |
       |----------------------------|---------------|-|
       | `["", "", ""]` | 10 | `"by_comment_voter"` | Queries first 10 votes, sort by comment voter |
       | `["", "", ""]` | 10 | `"by_voter_comment"` | Queries first 10 votes, sort by voter comment |
+      | `["", "", "steemit"]` | 10 | `"by_comment_voter"` | Queries first 10 votes by steemit, sort by comment voter |
+      | `["alice", "xeroc", "vanteem-config"]` | 10 | `"by_voter_comment"` | Queries first 10 votes by alice starting from the post at `@xeroc/vanteem-config`, sort by voter comment |
     parameter_json: '{"start":null,"limit":0,"order":"by_comment_voter"}'
     expected_response_json: |
       {
@@ -1294,7 +1300,8 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", ""], "limit":10, "order":"by_comment_voter"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", ""], "limit":10, "order":"by_voter_comment"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["steemit", "", ""], "limit":10, "order":"by_voter_comment"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", "steemit"], "limit":10, "order":"by_comment_voter"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["alice", "xeroc", "vanteem-config"], "limit":10, "order":"by_voter_comment"}, "id":1}'
   - api_method: database_api.list_withdraw_vesting_routes
     purpose: Returns a list of vesting withdraw routes.
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
