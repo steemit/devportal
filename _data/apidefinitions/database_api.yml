@@ -1113,7 +1113,7 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":1000,"precision":3,"nai":"@@000000021"},"quote":{"amount":1,"precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":"1000","precision":3,"nai":"@@000000021"},"quote":{"amount":"1","precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
   - api_method: database_api.list_owner_histories
     purpose: |
       Returns a list of owner authority histories.  Parameters: `start:array`, `limit:int`
