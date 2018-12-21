@@ -8,19 +8,22 @@ Applications that interface directly with the Steem blockchain will need to conn
 
 ### Public Nodes
 
+Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes typically do not.  All nodes listed use HTTPS (`https://`).  If you require WebSockets for your solutions, please consider setting up your own `steemd` node or proxy WebSockets to HTTPS using [lineman](https://github.com/steemit/lineman).
+
 | URL                             | Owner          |
 | ------------------------------- | -------------- |
 | api.steemit.com                 | @steemit       |
 | api.steemitdev.com              | @steemit       |
-| api.steemitstage.com            | @steemit       |
+| steemd-appbase.steemit.com      | @steemit       |
 | api.steem.house                 | @gtg           |
 | appbasetest.timcliff.com        | @timcliff      |
-| gtg.steem.house:8090            | @gtg           |
 | rpc.curiesteem.com              | @curie         |
-| rpc.steemliberator.com          | @netuoso       |
 | rpc.steemviz.com                | @ausbitbank    |
 | steemd.minnowsupportproject.org | @followbtcnews |
 | steemd.privex.io                | @privex        |
+| anyx.io                         | @anyx          |
+
+For a report on the latest public full nodes, check the latest posts by [@fullnodeupdate](https://steemit.com/@fullnodeupdate) by [@holger80](https://steemit.com/@holger80).  Another excellent tool for checking real-time full node status is [geo.steem.pl](https://geo.steem.pl) by [@jamzed](https://steemit.com/@jamzed).
 
 ### Private Nodes
 
