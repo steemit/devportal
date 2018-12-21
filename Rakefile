@@ -106,6 +106,11 @@ namespace :production do
     
     exit(0)
   end
+  
+  desc "Make a clean build."
+  task :clean do
+    sh 'rm -rf _site && rm -rf docs && git checkout -- docs && git checkout -- _site'
+  end
 end
 
 desc 'Dump all operation types.  Useful for schema comparison.'
