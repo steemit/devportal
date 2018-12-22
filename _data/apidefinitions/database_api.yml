@@ -277,7 +277,7 @@
     expected_response_json: '{"owner_auths":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"alice"}, "id":1}'
   - api_method: database_api.find_savings_withdrawals
     since: HF14
     purpose: |
