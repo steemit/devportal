@@ -277,7 +277,7 @@
     expected_response_json: '{"owner_auths":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"steemit"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_owner_histories", "params": {"owner":"alice"}, "id":1}'
   - api_method: database_api.find_savings_withdrawals
     since: HF14
     purpose: |
@@ -983,7 +983,27 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_change_recovery_account_requests", "params": {"start":["1960-01-01T00:00:00",""], "limit":10, "order":"by_effective_date"}, "id":1}'
   - api_method: database_api.list_comments
-    purpose: Returns a list of comments.
+    purpose: |
+      Returns all comments, starting with the specified options.  Parameters: `start:array`; `limit:int`; `order:string`
+
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_cashout_time` - order by cashout time
+          * `start` is an array of one required value and two optional: `timestamp`, `author`, `permlink`
+        * `by_permlink` - order by permlink
+          * `start` is an array of two optional values: `author`, `permlink`
+        * `by_root` - order by root
+          * `start` is an array of two required values and two optional: `root_author`, `root_permlink`, `child_author`, `child_permlink`
+        * `by_parent` - order by parent
+          * `start` is an array of two required values and two optional: `parent_author`, `parent_permlink`, `child_author`, `child_permlink`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `["1970-01-01T00:00:00", "", ""]` | 10 | `"by_cashout_time"` | Queries first 10 comments, sort by cashout time |
+      | `["", ""]` | 10 | `"by_permlink"` | Queries first 10 comments, sort by permlink |
+      | `["steemit","firstpost","",""]` | 10 | `"by_root"` | Queries first 10 comments of @steemit/firstpost, sort by root |
+      | `["steemit","firstpost","",""]` | 10 | `"by_parent"` | Queries first 10 comments @steemit/firstpost, sort by parent |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1041,6 +1061,9 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_comments", "params": {"start":["1970-01-01T00:00:00","",""], "limit":10, "order":"by_cashout_time"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_comments", "params": {"start":["",""], "limit":10, "order":"by_permlink"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_comments", "params": {"start":["steemit","firstpost","",""], "limit":10, "order":"by_root"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_comments", "params": {"start":["steemit","firstpost","",""], "limit":10, "order":"by_parent"}, "id":1}'
   - api_method: database_api.list_decline_voting_rights_requests
     since: HF14
     purpose: Returns a list of decline voting rights requests.
@@ -1115,7 +1138,7 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":1000,"precision":3,"nai":"@@000000021"},"quote":{"amount":1,"precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":"1000","precision":3,"nai":"@@000000021"},"quote":{"amount":"1","precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
   - api_method: database_api.list_owner_histories
     purpose: |
       Returns a list of owner authority histories.  Parameters: `start:array`, `limit:int`
