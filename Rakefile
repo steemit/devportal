@@ -10,6 +10,7 @@ require 'rake/testtask'
 require 'net/https'
 require 'json'
 require 'yaml'
+require 'html-proofer'
 
 namespace :scrape do
   desc "Scrape steemjs docs"
@@ -105,6 +106,31 @@ namespace :production do
     
     exit(0)
   end
+  
+  desc "Make a clean build."
+  task :clean do
+    sh 'rm -rf _site && rm -rf docs && git checkout -- docs && git checkout -- _site'
+  end
+end
+
+desc 'Dump all operation types.  Useful for schema comparison.'
+task :ops_dump, [:vops, :appbase] do |t, args|
+  vops = args[:vops] == 'true'
+  appbase = args[:appbase] == 'true'
+  file_name = '_data/apidefinitions/broadcast_ops.yml'
+  op_names = []
+  yaml = YAML.load_file(file_name)
+  op_names += yaml[0]['ops'].map do |op|
+    next if op['virtual'] && !vops
+    
+    if !!appbase
+      op['name'] + '_operation'
+    else
+      op['name']
+    end
+  end
+  
+  puts op_names.compact.sort
 end
 
 namespace :test do
@@ -180,5 +206,21 @@ namespace :test do
     end
     
     exit smoke
+  end
+  
+  desc 'Want some work to do?  Run this report and get busy.'
+  task :proof do
+    # See: https://github.com/gjtorikian/html-proofer#configuration
+    sh 'bundle exec jekyll build'
+    options = {
+      assume_extension: true,
+      only_4xx: true,
+      check_favicon: true,
+      check_html: true,
+      allow_hash_href: true,
+      empty_alt_ignore: true
+    }
+    
+    HTMLProofer.check_directory("./_site", options).run
   end
 end
