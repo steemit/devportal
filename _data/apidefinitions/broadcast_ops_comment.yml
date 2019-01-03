@@ -2,7 +2,7 @@
   description:  |
     This is a brief overview of the parameters allowed and values passed by the 'comment' operation in the broadcast API
     
-    Additional info for API definitions is available on the [dev portal](/apidefinitions/#broadcast_ops_comment)
+    Additional info for API definitions is available on the [dev portal]({{ '/apidefinitions/#broadcast_ops_comment' | relative_url }})
   
     **Purpose:**
     
@@ -83,7 +83,7 @@
   
       In addition to body, the title and json_metadata fields will also be replaced by the latest operation.
 
-    **Comment_Options:** [LINK](/apidefinitions/#broadcast_ops_comment_options)
+    **Comment_Options:** [LINK]({{ '/apidefinitions/#broadcast_ops_comment_options' | relative_url }})
 
     **Updating_Archived_Content:**
       
@@ -91,8 +91,8 @@
 
       As of HF18, the witness plugin has a custom operation called enable_content_editing that allows a user to signal they want to edit their content. By consensus, content is editable indefinitely, but is soft forked to be frozen after payout. This operation requires an active key and is designed to prevent vandalism if a posting key is compromised.
 
-    **For 'custom_json':** [LINK](/apidefinitions/#broadcast_ops_custom_json)
+    **For 'custom_json':** [LINK]({{ '/apidefinitions/#broadcast_ops_custom_json' | relative_url }})
   
-    **Vote:** [LINK](/apidefinitions/#broadcast_ops_vote)
+    **Vote:** [LINK]({{ '/apidefinitions/#broadcast_ops_vote' | relative_url }})
       
       It should also be noted that a `vote` operation can accompany a `comment` in the same transaction when the author `self_upvotes`

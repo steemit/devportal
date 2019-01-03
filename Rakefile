@@ -93,7 +93,7 @@ namespace :production do
   task deploy: [:prevent_dirty_builds, :drop_previous_build, :build] do
     sh 'git add -A'
     sh 'git commit -m "jekyll base sources"'
-    sh 'git push origin master'
+    sh 'git push experimental master'
     
     exit(0)
   end

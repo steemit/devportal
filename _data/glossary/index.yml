@@ -3,7 +3,7 @@
   items:
     - term: Blockchain
       def: Decentralized ledger and consensus protocol
-    - term: Steem
+    - term: Steem (blockchain)
       def: Name of the blockchain and platform
     - term: Bandwidth
       def: formerly the limit of data each account can send/use (replaced by Resource Credits)
@@ -11,26 +11,28 @@
       def: is the limit of data each account can utilize resources on the blockchain (also known as RC)
     - term: VESTS
       def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
-    - term: STEEM
+    - term: STEEM (currency)
       def: Currency of the blockchain, liquid version of Steem Power
     - term: SBD
       def: Steem Backed Dollar, $1 worth of STEEM
     - term: Steem Power
       def: Locked version of STEEM which gives account influence on the platform
     - term: Transaction
-      def: Operations/Activity/Write requests to the blockchain
+      def: Operations/Activity/Write requests to the blockchain.  A transaction is a submitted update to the Steem blockchain.  This can include token transfers, posts/comments, votes, etc.
     - term: Block
-      def: Bundle of transactions to be included in blockchain
+      def: Every three seconds, the Steem blockchain produces a new block. Each time a new block is produced, the distributed network is updated with all of the transactions that occurred within that block.
     - term: Block Header
       def: Information about block, root and witness who signed, etc.
     - term: Price feed 
       def: Feed that is maintained by witnesses to ensure SBD/STEEM price stability
     - term: Account 
-      def: User account on Steem blockchain
+      def: An account is a container for all of the activity associated with a particular user's wallet on the blockchain. This includes all of their tokens, posts, comments, upvotes, transfers, etc.
     - term: Authority
       def: Each Account has multiple authority and keys to manager different permissions on the platform
     - term: Owner
       def: Owner authority/permission of account
+    - term: Key
+      def: Keys are used to authenticate transactions. Each key contains a public/private pair. When a transaction is submitted to the Steem blockchain, it is signed by the account owner using their private key. The blockchain is able to determine that the transaction is valid by validating the signiture against the public key from the pair.
     - term: Public Key
       def: Public key of account's certain authority
     - term: Private Key
@@ -43,8 +45,12 @@
       def: The posting key is used for posting and voting
     - term: Owner key
       def: The owner key is the master key for the account and is required to change the other keys
+    - term: Post
+      def: A post is a root level comment - one that has no "parent".
+    - term: Comment
+      def: A comment is text content that is stored on the blockchain. Comments can be linked to other comments as "replies" through parent/child relationships.
     - term: Vote
-      def: Voting a content
+      def: A vote is an expression of like (upvote) or dislike (downvote) for a post/comment. The Steem blockchain uses the votes that a post/comment has received to determine it's share of the rewards.
     - term: Reputation
       def: Account's reputation on platform
     - term: Markdown language
@@ -57,6 +63,8 @@
       def: The assignment of a portion your Steem Power for use to another account (cannot be spent, can be reclaimed)
     - term: PowerUp
       def: Convert STEEM to Steem Power and vice-versa with PowerDown
+    - term: Reward Pool
+      def: Every day, a fixed amount of STEEM tokens are allocated to the network reward fund, commonly called the "reward pool." These get distributed to authors and curators for posting and voting on content.
       
 - name: Governance
   id: glossary-governance
@@ -64,9 +72,9 @@
     - term: DPOS
       def: Delegated Proof of Stake
     - term: Node
-      def: Servers running blockchain software
+      def: A node is an instance of the Steem blockchain running on a server.
     - term: Witness
-      def: Witness is a position/role for the people who are chosen by community (delegate trust) to support platform and run consensus protocol to ensure security and validity of transactions/blocks on the blockchain
+      def: Witness is a position/role for the people who are chosen by community (delegate trust) to support platform and run consensus protocol to ensure security and validity of transactions/blocks on the blockchain.  A witness is responsible for signing and validating blocks for the Steem blockchain.
     - term: Hardfork
       def: Process to release protocol/blockchain consensus upgrades
     - term: Softfork
@@ -77,8 +85,6 @@
 - name: Transactions
   id: glossary-transactions
   items:
-    - term: Transaction
-      def: Operations submitted to the blockchain
     - term: Pending Transaction
       def: Transaction that is pending and to be included to the blockchain
     - term: Transaction Hex
@@ -110,7 +116,7 @@
     - term: Pending Payout
       def: Estimated pending payout for blog posts/comments
     - term: Tags
-      def: Tags, categories, hashtags each post is assigned to.
+      def: A tag is a descriptor that is used to identify the type of content contained within a comment/post.
     - term: Trending Tags
       def: Mostly used tags
     - term: Following
@@ -136,6 +142,6 @@
     - term: Conversion Requests
       def: Request submitted for Converting SBD to STEEM
     - term: Order Book
-      def: Internal market order book to exchange SBD<->STEEM
+      def: Internal market order book to exchange SBD&lt;-&gt;STEEM
     - term: SMT
       def: Smart Media Tokens

@@ -1,5 +1,5 @@
 ---
-position: 11
+position: 12
 exclude: true
 ---
 {% include api-template.html api_data=site.data.apidefinitions.witness_api %}

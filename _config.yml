@@ -3,6 +3,7 @@
 
 title: Steem Developer
 description: Steem Developer Documentation.
+baseurl: '/devportal'
 url: https://developers.steem.io
 google_analytics_key: UA-76480270-4
 permalink: /:categories/:title.html
@@ -105,3 +106,4 @@ types:
 kramdown:
   auto_ids: true
   
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'CONTRIBUTING.md']

@@ -115,4 +115,4 @@ Non-discounted account creation operation allows you to create accounts by payin
 ]
 ```
 
-You can follow this [tutorial](/tutorials-javascript/create_account) to see a working example of how to create accounts.
+You can follow this [tutorial]({{ '/tutorials-javascript/create_account' | relative_url }}) to see a working example of how to create accounts.
