@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/devportal/favicon.png">
+
+	
+	<link rel="stylesheet" href="/devportal/css/style.css">
+	<link rel="stylesheet" href="/devportal/css/css/fontawesome-all.min.css">
+	<script src="/devportal/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Set Withdraw Route | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Set Withdraw Route" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Set routes to an account’s power downs or withdraws." />
+<meta property="og:description" content="Set routes to an account’s power downs or withdraws." />
+<link rel="canonical" href="https://developers.steem.io/devportal/tutorials-javascript/set_withdraw_route" />
+<meta property="og:url" content="https://developers.steem.io/devportal/tutorials-javascript/set_withdraw_route" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-03T12:55:25-05:00" />
+<script type="application/ld+json">
+{"description":"Set routes to an account’s power downs or withdraws.","@type":"BlogPosting","url":"https://developers.steem.io/devportal/tutorials-javascript/set_withdraw_route","headline":"JS: Set Withdraw Route","dateModified":"2019-01-03T12:55:25-05:00","datePublished":"2019-01-03T12:55:25-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/devportal/tutorials-javascript/set_withdraw_route"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/devportal/"  class="logo-link"><img src="/devportal/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/devportal/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/devportal/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/devportal/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/devportal/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/devportal/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/devportal/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/devportal/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/devportal/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/devportal/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/devportal/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/devportal/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/devportal/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/devportal/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/devportal/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/devportal/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/devportal/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/devportal/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/devportal/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/devportal/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/devportal/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-set-withdraw-route" class="row tutorials-javascript-set-withdraw-route">
+	<h3>
+		<a id="tutorials-javascript-set-withdraw-route">
+			JS: Set Withdraw Route
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>Set routes to an account’s power downs or withdraws.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/28_set_withdraw_route">Set Withdraw Route</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>We will learn how to allocate a percentage for withdrawal to other accounts using Steemconnect as well as with the client-side signing method. This tutorial runs on the main Steem blockchain. Therefore, any accounts used here will affect real funds on the live network. <strong>Use with caution.</strong></p>
+
+<h2 id="intro">Intro</h2>
+
+<p>This tutorial will demonstrate a few functions such as querying account by name and determining the vesting balance of the related account. This will allow us to set “withdraw routes” to other accounts with a percent selection and auto power up function. This feature is quite useful if you want to withdraw a portion of your STEEM to a separate account or POWER UP other accounts as you withdraw from one account.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#app-setup"><strong>App setup</strong></a> Setup <code class="highlighter-rouge">dsteem</code> to use the proper connection and network.</li>
+  <li><a href="#search-account"><strong>Get account routes</strong></a> Get account’s current routes</li>
+  <li><a href="#fill-form"><strong>Fill form</strong></a> Fill form with appropriate data</li>
+  <li><a href="#withdraw-route"><strong>Set withdraw route</strong></a> Set route with Steemconnect or client-side signing</li>
+</ol>
+
+<h4 id="1-app-setup-">1. App setup <a name="app-setup"></a></h4>
+
+<p>Below, we have <code class="highlighter-rouge">dsteem</code> pointing to the production network with the proper chainId, addressPrefix, and endpoint. There is a <code class="highlighter-rouge">public/app.js</code> file which holds the Javascript segment of this tutorial. In the first few lines we define the configured library and packages:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dsteem</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'dsteem'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="c1">//connect to production server</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">addressPrefix</span> <span class="o">=</span> <span class="s1">'STM'</span><span class="p">;</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">chainId</span> <span class="o">=</span>
+    <span class="s1">'0000000000000000000000000000000000000000000000000000000000000000'</span><span class="p">;</span>
+<span class="c1">//connect to server which is connected to the network/production</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="s1">'https://api.steemit.com'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="2-get-account-routes-">2. Get account routes <a name="search-account"></a></h4>
+
+<p>After the account name field is provided, using the <code class="highlighter-rouge">Get withdraw routes</code> button, we can fetch the current withdraw routes, if they exist. The related HTML input forms can be found in the <code class="highlighter-rouge">index.html</code> file. The values are pulled from that screen with the following:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">accSearch</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">_account</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">database</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_withdraw_routes'</span><span class="p">,</span> <span class="p">[</span><span class="nx">accSearch</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`_account:`</span><span class="p">,</span> <span class="nx">_account</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="3-fill-form-">3. Fill form <a name="fill-form"></a></h4>
+
+<p>After we have fetched the account data, we will show a list of current routes, if they exist, and display information to the user about how many much they can apply to other accounts.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">info</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">_account</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">_account</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">info</span> <span class="o">+=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">_account</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">to_account</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nx">_account</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">percent</span> <span class="o">/</span> <span class="mi">100</span><span class="p">}</span><span class="s2">%&lt;br&gt;`</span><span class="p">;</span>
+        <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">_account</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">percent</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">info</span> <span class="o">+=</span> <span class="s2">`No route is available!&lt;br&gt;`</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">info</span> <span class="o">+=</span> <span class="s2">`You can set </span><span class="p">${</span><span class="mi">100</span> <span class="o">-</span> <span class="nx">sum</span><span class="p">}</span><span class="s2">% remaining part to other accounts!`</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'accInfo'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">info</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Previous routes can be overwritten by changing and submitting a new transaction to the same account.</p>
+
+<p>We also generate a Steemconnect signing link.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">openSC</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="s2">`https://steemconnect.com/sign/set-withdraw-vesting-route?from_account=</span><span class="p">${</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span>
+    <span class="p">}</span><span class="s2">&amp;percent=</span><span class="p">${</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'steem'</span><span class="p">).</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">}</span><span class="s2">&amp;to_account=</span><span class="p">${</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'account'</span><span class="p">).</span><span class="nx">value</span>
+    <span class="p">}</span><span class="s2">&amp;auto_vest=</span><span class="p">${</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'percent'</span><span class="p">).</span><span class="nx">checked</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="4-set-withdraw-route-">4. Set withdraw route <a name="withdraw-route"></a></h4>
+
+<p>We have two options on how to Power down: Steemconnect and client-side signing. Since this action requires Active authority, both client-side and Stemconnect signing will require the Active Private key to sign the transaction. The transaction submission function appears as follows:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">submitTx</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">PrivateKey</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'wif'</span><span class="p">).</span><span class="nx">value</span>
+    <span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">op</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'set_withdraw_vesting_route'</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="na">from_account</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span>
+            <span class="na">to_account</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'account'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span>
+            <span class="na">percent</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'steem'</span><span class="p">).</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="na">auto_vest</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'percent'</span><span class="p">).</span><span class="nx">checked</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">];</span>
+    <span class="nx">client</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">sendOperations</span><span class="p">([</span><span class="nx">op</span><span class="p">],</span> <span class="nx">privateKey</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'result'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'block'</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span>
+                <span class="s1">'result'</span>
+            <span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">`&lt;br/&gt;&lt;p&gt;Included in block: </span><span class="p">${</span>
+                <span class="nx">result</span><span class="p">.</span><span class="nx">block_num</span>
+            <span class="p">}</span><span class="s2">&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;`</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>That’s it!</p>
+
+<h3 id="to-run-this-tutorial">To run this tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/26_set_withdraw_route</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/devportal/js/adjust.js"></script>
+
