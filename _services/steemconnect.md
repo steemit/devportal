@@ -11,7 +11,7 @@ The goal of SteemConnect is to provide a safe way of connecting to the blockchai
 **How SteemConnect is implemented**
 
 SteemConnect works by granting an access token to the requesting app once the application has been approved.
-A full tutorial on how to set up an application, request authorisation and grant access can be found [here](/tutorials-javascript/steemconnect).
+A full tutorial on how to set up an application, request authorisation and grant access can be found [here]({{ '/tutorials-javascript/steemconnect' | relative_url }}).
 
 **Steem Authorisation and OAuth 2**
 
@@ -28,7 +28,7 @@ A full breakdown of OAuth2 and how it applies to SteemIt and SteemConnect can be
 **Useful Links**
 
 *   [SteemConnect Repo](https://github.com/steemit/steemconnect)
-*   [Community Resources](/resources/#community-steem-connect-libs)
+*   [Community Resources]({{ '/resources/#community-steem-connect-libs' | relative_url }})
 
 
 For additional material you can refer to the original steemit [blog](https://steemit.com/steemconnect/@busy.org/introducing-steemconnect-by-busy-identity-authentication-authorization-for-steem-blockchain-s-apps) post by [busy.org](https://busy.org/)

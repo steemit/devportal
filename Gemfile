@@ -5,6 +5,7 @@ gem 'neatjson'
 gem 'rake'
 gem 'git'
 gem 'steem-ruby'
+gem 'html-proofer'
 
 group :jekyll_plugins do
   gem 'jekyll-seo-tag'

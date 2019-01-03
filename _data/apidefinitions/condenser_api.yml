@@ -91,7 +91,7 @@
       | `"steemit"` | `"forum"` | Query the available forum bandwidth for the account named "steemit". |
       | `"alice"` | `"market"` | Query the available market bandwidth for the account named "alice". |
 
-      See: [Forum/Market Bandwidth](/tutorials-recipes/forum-market-bandwidth)
+      See: [Forum/Market Bandwidth]({{ '/tutorials-recipes/forum-market-bandwidth' | relative_url }})
     parameter_json:
     - steemit
     - forum
@@ -500,8 +500,9 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_comment_discussions_by_payout",
       "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_config
-    purpose: 'Returns information about compile-time constants.  See: [Understanding
-      Configuration Values](/tutorials-recipes/understanding-configuration-values)'
+    purpose: |
+      Returns information about compile-time constants.  See: [Understanding
+      Configuration Values]({{ '/tutorials-recipes/understanding-configuration-values' | relative_url }})
     parameter_json: []
     expected_response_json: {}
     curl_examples:
@@ -830,8 +831,9 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_votes", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_dynamic_global_properties
-    purpose: 'Returns the current dynamic global properties.  See: [Understanding
-      Dynamic Global Properties](/tutorials-recipes/understanding-dynamic-global-properties)'
+    purpose: |
+      Returns the current dynamic global properties.  See: [Understanding
+      Dynamic Global Properties]({{ '/tutorials-recipes/understanding-dynamic-global-properties' | relative_url }})
     parameter_json: []
     expected_response_json:
       head_block_number: 0

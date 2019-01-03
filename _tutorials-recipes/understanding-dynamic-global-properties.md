@@ -119,7 +119,7 @@ Total asset held in confidential balances.
 
 *Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).*
 
-Use [`condenser_api.get_reward_fund`](/apidefinitions/#condenser_api.get_reward_fund) instead.
+Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
 
 * example: `192713261.007 STEEM`
 
@@ -139,7 +139,7 @@ STEEM available in the reward pool.
 
 *Now deprecated way to get the number of shares in the pool.*
 
-Use [`condenser_api.get_reward_fund`](/apidefinitions/#condenser_api.get_reward_fund) instead.
+Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
 
 * example: `0`
 

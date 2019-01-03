@@ -4,7 +4,7 @@ exclude: true
 ---
 
 {% for sections in site.data.apidefinitions.broadcast_ops %}
-{{sections.description | markdownify}}
+{{ sections.description | liquify | markdownify }}
 {% for op in sections.ops %}
 <ul style="float: right; list-style: none;">
 {% if op.since %}
@@ -25,7 +25,7 @@ exclude: true
 <a href="#broadcast_ops_{{ op.name | slug}}">
 <i class="fas fa-link fa-xs"></i></a>
 </h4>
-{{op.purpose}}
+{{ op.purpose | liquify | markdownify }}
 <h5 id="{{ op.name | slug }}-roles">Roles: <code>{{op.roles}}</code></h5>
 <h5 id="{{ op.name | slug }}-parameter">Parameters: <code>{{op.params}}</code></h5>
 {% if op.json_examples %}
