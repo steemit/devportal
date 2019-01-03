@@ -23,7 +23,9 @@ Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes 
 | steemd.privex.io                | @privex        |
 | anyx.io                         | @anyx          |
 
+
 For a report on the latest public full nodes, check the latest posts on [@fullnodeupdate](https://steemit.com/@fullnodeupdate) by [@holger80](https://steemit.com/@holger80).  Another excellent tool for checking real-time full node status is [geo.steem.pl](https://geo.steem.pl) by [@jamzed](https://steemit.com/@jamzed).
+
 
 ### Private Nodes
 
