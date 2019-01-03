@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Get Follower And Following List | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Get Follower And Following List" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Get the followers of a user/author &amp; the authors that user is following." />
+<meta property="og:description" content="Get the followers of a user/author &amp; the authors that user is following." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/get_follower_and_following_list" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/get_follower_and_following_list" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-03T13:02:31-05:00" />
+<script type="application/ld+json">
+{"description":"Get the followers of a user/author &amp; the authors that user is following.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-javascript/get_follower_and_following_list","headline":"JS: Get Follower And Following List","dateModified":"2019-01-03T13:02:31-05:00","datePublished":"2019-01-03T13:02:31-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/get_follower_and_following_list"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-get-follower-and-following-list" class="row tutorials-javascript-get-follower-and-following-list">
+	<h3>
+		<a id="tutorials-javascript-get-follower-and-following-list">
+			JS: Get Follower And Following List
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>Get the followers of a user/author &amp; the authors that user is following.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/19_get_follower_and_following_list">Get Follower And Following List</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial will take you through the process of calling both the <code class="highlighter-rouge">follower</code> and <code class="highlighter-rouge">following</code> functions from the STEEM API.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>We are using the <code class="highlighter-rouge">call</code> operation provided by the <code class="highlighter-rouge">dsteem</code> library to pull the follow information for a specified user account. There are 4 variables required to execute this operation:</p>
+
+<ol>
+  <li><em>username</em> - The specific user for which the follower(ing) list will be retrieved.</li>
+  <li><em>startFollower(ing)</em> - The starting letter(s) or name for the search query.</li>
+  <li><em>followType</em> - This value is set to <code class="highlighter-rouge">blog</code> and includes all users following or being followed by the <code class="highlighter-rouge">user</code>.</li>
+  <li><em>limit</em> - The maximum number of lines to be returned by the query.</li>
+</ol>
+
+<p>A simple HTML interface is used to capture the required information after which the function is executed.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#connection"><strong>Configure connection</strong></a> Configuration of <code class="highlighter-rouge">dsteem</code> to communicate with the Steem blockchain</li>
+  <li><a href="#input"><strong>Input variables</strong></a> Collecting the required inputs via an HTML UI</li>
+  <li><a href="#query"><strong>Get followers/following</strong></a> Get the followers or users being followed</li>
+  <li><a href="#display"><strong>Display</strong></a> Display the array of results on the UI</li>
+</ol>
+
+<h4 id="1-configure-connection">1. Configure connection<a name="connection"></a></h4>
+
+<p>As usual, we have a <code class="highlighter-rouge">public/app.js</code> file which holds the Javascript segment of the tutorial. In the first few lines we define the configured library and packages:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dsteem</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'dsteem'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="c1">//define network parameters</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">addressPrefix</span> <span class="o">=</span> <span class="s1">'STM'</span><span class="p">;</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">chainId</span> <span class="o">=</span>
+    <span class="s1">'0000000000000000000000000000000000000000000000000000000000000000'</span><span class="p">;</span>
+<span class="c1">//connect to a steem node, production in this case</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="s1">'https://api.steemit.com'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Above, we have <code class="highlighter-rouge">dsteem</code> pointing to the production network with the proper chainId, addressPrefix, and endpoint.</p>
+
+<h4 id="2-input-variables">2. Input variables<a name="input"></a></h4>
+
+<p>The required parameters for the follow operation is recorded via an HTML UI that can be found in the <code class="highlighter-rouge">public/index.html</code> file. The values have been pre-populated for ease of use but are editable.</p>
+
+<p>The parameter values are allocated as seen below once the user clicks on the “Get Followers” or “Get Following” button.
+The two queries are very similar and run from two different functions activated from a button on the UI. The first line of both functions is used to clear the display before new information is queried.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Followers function</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">submitFollower</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//clear list</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followList'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+    <span class="c1">//get user name</span>
+    <span class="kd">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+    <span class="c1">//get starting letters / word</span>
+    <span class="kd">const</span> <span class="nx">startFollow</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'startFollow'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+    <span class="c1">//get limit</span>
+    <span class="kd">var</span> <span class="nx">limit</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'limit'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="3-get-followersfollowing">3. Get followers/following<a name="query"></a></h4>
+
+<p>A list of followers or users being followed is called from the database with the <code class="highlighter-rouge">follow_api</code> available in the <code class="highlighter-rouge">SteemJS</code> library.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//get list of followers</span>
+<span class="c1">//getFollowers(following, startFollower, followType, limit)</span>
+    <span class="kd">let</span> <span class="nx">followlist</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'follow_api'</span><span class="p">,</span> <span class="s1">'get_followers'</span><span class="p">,</span> <span class="p">[</span>
+        <span class="nx">username</span><span class="p">,</span>
+        <span class="nx">startFollow</span><span class="p">,</span>
+        <span class="s1">'blog'</span><span class="p">,</span>
+        <span class="nx">limit</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResultContainer'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'flex'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">'form-control-plaintext alert alert-success'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Followers'</span><span class="p">;</span>
+
+
+<span class="c1">//get list of authors you are following</span>
+<span class="c1">//getFollowing(follower, startFollowing, followType, limit)</span>
+    <span class="kd">let</span> <span class="nx">followlist</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'follow_api'</span><span class="p">,</span> <span class="s1">'get_following'</span><span class="p">,</span> <span class="p">[</span>
+        <span class="nx">username</span><span class="p">,</span>
+        <span class="nx">startFollow</span><span class="p">,</span>
+        <span class="s1">'blog'</span><span class="p">,</span>
+        <span class="nx">limit</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResultContainer'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'flex'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">'form-control-plaintext alert alert-success'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followResult'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Following'</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h4 id="4-display">4. Display<a name="display"></a></h4>
+
+<p>The result returned from the query is an array of objects. The follower(ing) value from that array is displayed on both the UI and the console via a simple <code class="highlighter-rouge">forEach</code> array method.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">followlist</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">newObj</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="o">=</span> <span class="nx">newObj</span><span class="p">.</span><span class="nx">follower</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'followList'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">'&lt;br&gt;'</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="to-run-this-tutorial">To run this tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/19_get_follower_and_following_list</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at http://localhost:3000/</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

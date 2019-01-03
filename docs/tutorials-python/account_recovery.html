@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>PY: Account Recovery | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="PY: Account Recovery" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to recover an account using Python." />
+<meta property="og:description" content="How to recover an account using Python." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-python/account_recovery" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-python/account_recovery" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-03T13:02:31-05:00" />
+<script type="application/ld+json">
+{"description":"How to recover an account using Python.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-python/account_recovery","headline":"PY: Account Recovery","dateModified":"2019-01-03T13:02:31-05:00","datePublished":"2019-01-03T13:02:31-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-python/account_recovery"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-python-account-recovery" class="row tutorials-python-account-recovery">
+	<h3>
+		<a id="tutorials-python-account-recovery">
+			PY: Account Recovery
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>How to recover an account using Python.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/35_account_recovery">Account Recovery</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-py">PY tutorials repository</a>.</span>
+<br /></p>
+
+<p>In this tutorial we show you how to request account recovery for a user and also recover that account on the <strong>Steem</strong> blockchain using the <a href="https://github.com/holgern/beem">beem-python</a> library.</p>
+
+<p>The recovery system is used to recover hacked accounts. In the event that you lose your password, your account is lost forever. You must know at least one old password that was used on your account within 30 days. This recovery process can only be executed once an hour. Stolen Account Recovery gives the rightful account owner 30 days to recover their account from the moment the thief changed their owner key.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>There are two parties involved in recovering an account. The user that requires their account to be recovered, and the recovery account (or trustee) which is the account that created the username on the blockchain. For anyone creating their account through the main Steemit webiste, their recovery account would be Steemit. If however your account was created for you by another user, that user is the one that would have to initialize your account recovery. The recovery account can be changed however to whichever user you require.</p>
+
+<p>For this tutorial we are using the <code class="highlighter-rouge">beem-python</code> library which contains the required functions to execute this recovery process. There are two main sections to this process. Firstly, there is the <code class="highlighter-rouge">request_account_recovery</code> function where the owner is verified and the intent for account recovery is transmitted to the blockchain. The second part is the actual <code class="highlighter-rouge">recover_account</code> process. Along with this we also create a complete set of new account keys (posting, active, owner and memo) in order for the account to function properly. If these keys are not generated you will receive an error when trying to log in with your new password: <code class="highlighter-rouge">This password is bound to your account's owner key and can not be used to login to this site. However, you can use it to update your password to obtain a more secure set of keys</code></p>
+
+<p><strong>This tutorial runs on the live network so special care needs to be taken when running it.</strong></p>
+
+<p>The <code class="highlighter-rouge">request_account_recovery</code> function has the following parameters:</p>
+
+<ol>
+  <li><em>account to recover</em> - The account name that wishes to be recovered</li>
+  <li><em>recovery account</em> - The trustee account / account owner that will recover the account</li>
+  <li><em>new owner authority</em> - The new owner PUBLIC key of the account to be recovered</li>
+  <li><em>extensions</em> - empty array</li>
+</ol>
+
+<p>The <code class="highlighter-rouge">recover_account</code> function has the following parameters:</p>
+
+<ol>
+  <li><em>account_to_recover</em> - The account name that wishes to be recovered</li>
+  <li><em>new_owner_authority</em> - The new owner PUBLIC key of the account to be recovered</li>
+  <li><em>recent_owner_authority</em> - The OLD owner PUBLIC key of the account to be recovered</li>
+  <li><em>extensions</em> - empty array</li>
+</ol>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#setup"><strong>App setup</strong></a> - Library install and import. Input user info and connection to production</li>
+  <li><a href="#owner_key"><strong>Owner key creation</strong></a> - Creation of new and old owner keys</li>
+  <li><a href="#recovery_request"><strong>Recovery request operation and transmission</strong></a> - creation of data object, operation and transmission of recovery request function</li>
+  <li><a href="#new_keys"><strong>Account recovery and new account keys data objects</strong></a> - creation of new account keys and objects for account update and recovery</li>
+  <li><a href="#recovery_commit"><strong>Account recovery commit</strong></a> - transmit account recovery to blockchain</li>
+  <li><a href="#account_commit"><strong>Account update commit</strong></a> - transmit account key update to blockchain</li>
+</ol>
+
+<h4 id="1-app-setup-and-connection-">1. App setup and connection <a name="setup"></a></h4>
+
+<p>In this tutorial we use 1 packages:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">beem</code> - beem-python library and interaction with Blockchain</li>
+</ul>
+
+<p>We import the libraries for the application.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">beembase</span>
+<span class="kn">from</span> <span class="nn">beem.account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="kn">from</span> <span class="nn">beem</span> <span class="kn">import</span> <span class="n">Steem</span>
+<span class="kn">from</span> <span class="nn">beem.transactionbuilder</span> <span class="kn">import</span> <span class="n">TransactionBuilder</span>
+<span class="kn">from</span> <span class="nn">beemgraphenebase.account</span> <span class="kn">import</span> <span class="n">PasswordKey</span>
+<span class="kn">from</span> <span class="nn">beembase.objects</span> <span class="kn">import</span> <span class="n">Permission</span>
+</code></pre></div></div>
+
+<p>There are 5 inputs required. The account name to be recovered along with the old and new passwords. We also require the account name and private active key of the recovery account (account owner / trustee). For the first step in the process we initialize the steem class with the private key from the recovery account. The values are supplied via the terminal/console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#capture user information
+</span><span class="n">username</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'account to be recovered: '</span><span class="p">)</span>
+<span class="n">old_password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'recent password for account: '</span><span class="p">)</span>
+<span class="n">new_password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'new password for account: '</span><span class="p">)</span>
+
+<span class="n">recovery_account</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'account owner (recovery account): '</span><span class="p">)</span>
+<span class="n">recovery_account_private_key</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'account owner private ACTIVE key: '</span><span class="p">)</span>
+
+<span class="c1">#connect to production server with active key
+</span><span class="n">s</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="p">[</span><span class="s">'https://api.steemit.com'</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="n">recovery_account_private_key</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>The new password for the account to be recovered must be at least 32 characters long.</p>
+
+<h4 id="2-owner-key-creation-">2. Owner key creation <a name="owner_key"></a></h4>
+
+<p>Both new and old owner keys are generated from the passwords supplied in the first step. For a more in depth look at creating keys please refer to <a href="https://developers.steem.io/tutorials-python/password_key_change">this</a> tutorial on changing your password and keys.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#create new account owner keys
+</span><span class="n">new_account_owner_private_key</span> <span class="o">=</span> <span class="n">PasswordKey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">new_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">'owner'</span><span class="p">)</span><span class="o">.</span><span class="n">get_private_key</span><span class="p">()</span>
+<span class="n">new_account_owner_private_key_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_account_owner_private_key</span><span class="p">)</span>
+<span class="n">new_account_owner_public_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_account_owner_private_key</span><span class="o">.</span><span class="n">pubkey</span><span class="p">)</span>
+
+<span class="c1">#create old account owner keys
+</span><span class="n">old_account_owner_private_key</span> <span class="o">=</span> <span class="n">PasswordKey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">old_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">'owner'</span><span class="p">)</span><span class="o">.</span><span class="n">get_private_key</span><span class="p">()</span>
+<span class="n">old_account_owner_private_key_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">old_account_owner_private_key</span><span class="p">)</span>
+<span class="n">old_account_owner_public_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">old_account_owner_private_key</span><span class="o">.</span><span class="n">pubkey</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The Steem blockchain knows the history of your account, and every owner key that has ever been used for it. When you enter your recent password, it uses that to generate an owner key that can match up to a previous owner public key on the account. Without that password and owner key, the recovery account can’t do anything to recover your account.</p>
+
+<h4 id="3-recovery-request-operation-and-transmission-">3. Recovery request operation and transmission <a name="recovery_request"></a></h4>
+
+<p>The <code class="highlighter-rouge">new_owner_authority</code> containing the new public key is formatted in order to be used in the <code class="highlighter-rouge">request_account_recovery</code> operation. Once the data object has been created, the operation is transmitted to the blockchain to confirm that the account in question is going to be recovered.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_owner_authority</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"key_auths"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">new_account_owner_public_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s">"account_auths"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">"weight_threshold"</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="c1">#recovery request data object creation
+</span><span class="n">request_op_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'account_to_recover'</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+    <span class="s">'recovery_account'</span><span class="p">:</span> <span class="n">recovery_account</span><span class="p">,</span>
+    <span class="s">'new_owner_authority'</span><span class="p">:</span> <span class="n">new_owner_authority</span><span class="p">,</span>
+    <span class="s">'extensions'</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+
+<span class="c1">#recovery request operation creation
+</span><span class="n">request_op</span> <span class="o">=</span> <span class="n">beembase</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">Request_account_recovery</span><span class="p">(</span><span class="o">**</span><span class="n">request_op_data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'request_op_data'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">request_op_data</span><span class="p">)</span>
+
+<span class="c1">#recovery request broadcast
+</span><span class="n">request_result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">finalizeOp</span><span class="p">(</span><span class="n">request_op</span><span class="p">,</span> <span class="n">recovery_account</span><span class="p">,</span> <span class="s">"active"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'request_result'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">request_result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="4-account-recovery-and-new-account-keys-data-objects-">4. Account recovery and new account keys data objects <a name="new_keys"></a></h4>
+
+<p>The old owner key is formatted and the object for the account recovery function is created with the required parameters.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recent_owner_authority</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"key_auths"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">old_account_owner_public_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s">"account_auths"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">"weight_threshold"</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="n">op_recover_account_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'account_to_recover'</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+    <span class="s">'new_owner_authority'</span><span class="p">:</span> <span class="n">new_owner_authority</span><span class="p">,</span>
+    <span class="s">'recent_owner_authority'</span><span class="p">:</span> <span class="n">recent_owner_authority</span><span class="p">,</span>
+    <span class="s">'extensions'</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The object for the account key update operation is created with the relevant keys created in the correct format within the object.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">op_account_update_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"account"</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+    <span class="s">"active"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"key_auths"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">PasswordKey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">new_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">'active'</span><span class="p">)</span><span class="o">.</span><span class="n">get_private_key</span><span class="p">()</span><span class="o">.</span><span class="n">pubkey</span><span class="p">),</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="p">],</span>
+        <span class="s">"account_auths"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"weight_threshold"</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="s">"posting"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"key_auths"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">PasswordKey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">new_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">'posting'</span><span class="p">)</span><span class="o">.</span><span class="n">get_private_key</span><span class="p">()</span><span class="o">.</span><span class="n">pubkey</span><span class="p">),</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="p">],</span>
+        <span class="s">"account_auths"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"weight_threshold"</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="s">"memo_key"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">PasswordKey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">new_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">'memo'</span><span class="p">)</span><span class="o">.</span><span class="n">get_private_key</span><span class="p">()</span><span class="o">.</span><span class="n">pubkey</span><span class="p">),</span>
+    <span class="s">"json_metadata"</span><span class="p">:</span> <span class="s">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="5-account-recovery-commit-">5. Account recovery commit <a name="recovery_commit"></a></h4>
+
+<p>The steem class is initialised once more but with the required WIF for this specific section. This is necessary when different keys are required at various steps. The <code class="highlighter-rouge">recover_account</code> function is transmitted to the blockchain via the <code class="highlighter-rouge">TransactionBuilder</code> operation in order to append the new private keys. The operation is then broadcast.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="p">[</span><span class="s">'https://api.steemit.com'</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="n">recovery_account_private_key</span><span class="p">])</span>
+
+<span class="n">op_recover_account</span> <span class="o">=</span> <span class="n">beembase</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">Recover_account</span><span class="p">(</span><span class="o">**</span><span class="n">op_recover_account_data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'op_recover_account'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">op_recover_account</span><span class="p">)</span>
+
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TransactionBuilder</span><span class="p">()</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendOps</span><span class="p">([</span><span class="n">op_recover_account</span><span class="p">])</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendWif</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">old_account_owner_private_key</span><span class="p">))</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendWif</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">new_account_owner_private_key</span><span class="p">))</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">broadcast</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'result'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="6-account-update-commit-">6. Account update commit <a name="account_commit"></a></h4>
+
+<p>The same basic process is followed as in the previous step. For this step however we require the new owner private key which is initialised in the steem class. The <code class="highlighter-rouge">TransactionBuilder</code> operation is used once more for the transmission to the blockchain.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="p">[</span><span class="s">'https://api.steemit.com'</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="n">new_account_owner_private_key</span><span class="p">])</span>
+
+<span class="n">op_account_update</span> <span class="o">=</span> <span class="n">beembase</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">Account_update</span><span class="p">(</span><span class="o">**</span><span class="n">op_account_update_data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'op_account_update'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">op_account_update</span><span class="p">)</span>
+
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TransactionBuilder</span><span class="p">()</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendOps</span><span class="p">([</span><span class="n">op_account_update</span><span class="p">])</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendWif</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">new_account_owner_private_key</span><span class="p">))</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">broadcast</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'result'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And that’s it!</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li><a href="getting_started">review dev requirements</a></li>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/35_account_recovery</code></li>
+  <li><code class="highlighter-rouge">pip install -r requirements.txt</code></li>
+  <li><code class="highlighter-rouge">python index.py</code></li>
+  <li>After a few moments, you should see a prompt for input in terminal screen.</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

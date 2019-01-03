@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Debug Node Api | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Debug Node Api" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This plugin allows all sorts of creative “what-if” experiments with the chain. See: debug_node_plugin.md Working on mainnet Working on testnet debug_node_api.debug_generate_blocks Generate blocks locally. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip&quot;: 0, &quot;miss_blocks&quot;: 0, &quot;edit_if_needed&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_generate_blocks_until Generate blocks locally until a specified head block time. Can generate them sparsely. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;head_block_time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;generate_sparsely&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_get_hardfork_property_object Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Working on mainnet Working on testnet debug_node_api.debug_get_json_schema Query Parameters JSON {} Expected Response JSON {&quot;schema&quot;: &quot;&quot;} Working on mainnet Working on testnet debug_node_api.debug_get_witness_schedule Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 21573344, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 192, &quot;elected_weight&quot;: 49, &quot;timeshare_weight&quot;: 73, &quot;miner_weight&quot;: 1, &quot;witness_pay_normalization_factor&quot;: 0, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 128, &quot;max_miner_witnesses&quot;: 131, &quot;max_runner_witnesses&quot;: 191, &quot;hardfork_required_witnesses&quot;: 4, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Working on mainnet Working on testnet debug_node_api.debug_has_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {&quot;has_hardfork&quot;: false} Working on mainnet Working on testnet debug_node_api.debug_pop_block Pop a block from the blockchain, returning it. Query Parameters JSON {} Expected Response JSON {} Working on mainnet Working on testnet debug_node_api.debug_push_blocks Push blocks from existing database. Query Parameters JSON { &quot;src_filename&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip_validate_invariants&quot;: false } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_set_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {}" />
+<meta property="og:description" content="This plugin allows all sorts of creative “what-if” experiments with the chain. See: debug_node_plugin.md Working on mainnet Working on testnet debug_node_api.debug_generate_blocks Generate blocks locally. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip&quot;: 0, &quot;miss_blocks&quot;: 0, &quot;edit_if_needed&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_generate_blocks_until Generate blocks locally until a specified head block time. Can generate them sparsely. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;head_block_time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;generate_sparsely&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_get_hardfork_property_object Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Working on mainnet Working on testnet debug_node_api.debug_get_json_schema Query Parameters JSON {} Expected Response JSON {&quot;schema&quot;: &quot;&quot;} Working on mainnet Working on testnet debug_node_api.debug_get_witness_schedule Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 21573344, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 192, &quot;elected_weight&quot;: 49, &quot;timeshare_weight&quot;: 73, &quot;miner_weight&quot;: 1, &quot;witness_pay_normalization_factor&quot;: 0, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 128, &quot;max_miner_witnesses&quot;: 131, &quot;max_runner_witnesses&quot;: 191, &quot;hardfork_required_witnesses&quot;: 4, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Working on mainnet Working on testnet debug_node_api.debug_has_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {&quot;has_hardfork&quot;: false} Working on mainnet Working on testnet debug_node_api.debug_pop_block Pop a block from the blockchain, returning it. Query Parameters JSON {} Expected Response JSON {} Working on mainnet Working on testnet debug_node_api.debug_push_blocks Push blocks from existing database. Query Parameters JSON { &quot;src_filename&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip_validate_invariants&quot;: false } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_set_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {}" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/debug-node-api" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/debug-node-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"This plugin allows all sorts of creative “what-if” experiments with the chain. See: debug_node_plugin.md Working on mainnet Working on testnet debug_node_api.debug_generate_blocks Generate blocks locally. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip&quot;: 0, &quot;miss_blocks&quot;: 0, &quot;edit_if_needed&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_generate_blocks_until Generate blocks locally until a specified head block time. Can generate them sparsely. Query Parameters JSON { &quot;debug_key&quot;: &quot;&quot;, &quot;head_block_time&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;generate_sparsely&quot;: true } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_get_hardfork_property_object Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;processed_hardforks&quot;: [], &quot;last_hardfork&quot;: 0, &quot;current_hardfork_version&quot;: &quot;0.0.0&quot;, &quot;next_hardfork&quot;: &quot;0.0.0&quot;, &quot;next_hardfork_time&quot;: &quot;1970-01-01T00:00:00&quot; } Working on mainnet Working on testnet debug_node_api.debug_get_json_schema Query Parameters JSON {} Expected Response JSON {&quot;schema&quot;: &quot;&quot;} Working on mainnet Working on testnet debug_node_api.debug_get_witness_schedule Query Parameters JSON {} Expected Response JSON { &quot;id&quot;: 0, &quot;current_virtual_time&quot;: &quot;0&quot;, &quot;next_shuffle_block_num&quot;: 21573344, &quot;current_shuffled_witnesses&quot;: [], &quot;num_scheduled_witnesses&quot;: 192, &quot;elected_weight&quot;: 49, &quot;timeshare_weight&quot;: 73, &quot;miner_weight&quot;: 1, &quot;witness_pay_normalization_factor&quot;: 0, &quot;median_props&quot;: { &quot;account_creation_fee&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 3, &quot;nai&quot;: &quot;@@000000021&quot; }, &quot;maximum_block_size&quot;: 131072, &quot;sbd_interest_rate&quot;: 1000, &quot;account_subsidy_budget&quot;: 797, &quot;account_subsidy_decay&quot;: 347321 }, &quot;majority_version&quot;: &quot;0.0.0&quot;, &quot;max_voted_witnesses&quot;: 128, &quot;max_miner_witnesses&quot;: 131, &quot;max_runner_witnesses&quot;: 191, &quot;hardfork_required_witnesses&quot;: 4, &quot;account_subsidy_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;account_subsidy_witness_rd&quot;: { &quot;resource_unit&quot;: 0, &quot;budget_per_time_unit&quot;: 0, &quot;pool_eq&quot;: 0, &quot;max_pool_size&quot;: 0, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 0, &quot;decay_per_time_unit_denom_shift&quot;: 0 }, &quot;min_decay&quot;: 0 }, &quot;min_witness_account_subsidy_decay&quot;: 0 } Working on mainnet Working on testnet debug_node_api.debug_has_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {&quot;has_hardfork&quot;: false} Working on mainnet Working on testnet debug_node_api.debug_pop_block Pop a block from the blockchain, returning it. Query Parameters JSON {} Expected Response JSON {} Working on mainnet Working on testnet debug_node_api.debug_push_blocks Push blocks from existing database. Query Parameters JSON { &quot;src_filename&quot;: &quot;&quot;, &quot;count&quot;: 0, &quot;skip_validate_invariants&quot;: false } Expected Response JSON {&quot;blocks&quot;: 0} Working on mainnet Working on testnet debug_node_api.debug_set_hardfork Query Parameters JSON {&quot;hardfork_id&quot;: 0} Expected Response JSON {}","@type":"WebPage","url":"https://developers.steem.io/apidefinitions/debug-node-api","headline":"Debug Node Api","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	
+<p>This plugin allows all sorts of creative “what-if” experiments with the chain.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/blob/master/doc/devs/debug_node_plugin.md">debug_node_plugin.md</a></p>
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_generate_blocks">debug_node_api.debug_generate_blocks <a href="#debug_node_api.debug_generate_blocks"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Generate blocks locally.</p>
+
+<h5 id="debug_node_api.debug_generate_blocks-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_generate_blocks-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"debug_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"skip"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"miss_blocks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"edit_if_needed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_generate_blocks-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_generate_blocks-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_generate_blocks_until">debug_node_api.debug_generate_blocks_until <a href="#debug_node_api.debug_generate_blocks_until"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Generate blocks locally until a specified head block time.  Can generate them sparsely.</p>
+
+<h5 id="debug_node_api.debug_generate_blocks_until-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_generate_blocks_until-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"debug_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"head_block_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"generate_sparsely"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_generate_blocks_until-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_generate_blocks_until-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_get_hardfork_property_object">debug_node_api.debug_get_hardfork_property_object <a href="#debug_node_api.debug_get_hardfork_property_object"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="debug_node_api.debug_get_hardfork_property_object-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_get_hardfork_property_object-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_get_hardfork_property_object-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_get_hardfork_property_object-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"processed_hardforks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"last_hardfork"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"current_hardfork_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_hardfork"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_hardfork_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_get_json_schema">debug_node_api.debug_get_json_schema <a href="#debug_node_api.debug_get_json_schema"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="debug_node_api.debug_get_json_schema-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_get_json_schema-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_get_json_schema-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_get_json_schema-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_get_witness_schedule">debug_node_api.debug_get_witness_schedule <a href="#debug_node_api.debug_get_witness_schedule"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="debug_node_api.debug_get_witness_schedule-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_get_witness_schedule-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_get_witness_schedule-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_get_witness_schedule-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"current_virtual_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_shuffle_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">21573344</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"current_shuffled_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"num_scheduled_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"elected_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timeshare_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"miner_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"witness_pay_normalization_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"median_props"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"account_creation_fee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000021"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"maximum_block_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">131072</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sbd_interest_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account_subsidy_budget"</span><span class="p">:</span><span class="w"> </span><span class="mi">797</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account_subsidy_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">347321</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"majority_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"max_voted_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"max_miner_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"max_runner_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">191</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hardfork_required_witnesses"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_subsidy_rd"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"account_subsidy_witness_rd"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"min_witness_account_subsidy_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_has_hardfork">debug_node_api.debug_has_hardfork <a href="#debug_node_api.debug_has_hardfork"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="debug_node_api.debug_has_hardfork-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_has_hardfork-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"hardfork_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_has_hardfork-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_has_hardfork-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"has_hardfork"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_pop_block">debug_node_api.debug_pop_block <a href="#debug_node_api.debug_pop_block"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Pop a block from the blockchain, returning it.</p>
+
+<h5 id="debug_node_api.debug_pop_block-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_pop_block-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_pop_block-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_pop_block-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_push_blocks">debug_node_api.debug_push_blocks <a href="#debug_node_api.debug_push_blocks"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Push blocks from existing database.</p>
+
+<h5 id="debug_node_api.debug_push_blocks-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_push_blocks-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"src_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"skip_validate_invariants"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_push_blocks-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_push_blocks-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="debug_node_api.debug_set_hardfork">debug_node_api.debug_set_hardfork <a href="#debug_node_api.debug_set_hardfork"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="debug_node_api.debug_set_hardfork-parameter_json">Query Parameters JSON <a href="#debug_node_api.debug_set_hardfork-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"hardfork_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="debug_node_api.debug_set_hardfork-expected_response_json">Expected Response JSON <a href="#debug_node_api.debug_set_hardfork-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

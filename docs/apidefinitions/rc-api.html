@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Rc Api | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Rc Api" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Allows querying of various Resource Credit metrics. See: RC Bandwidth System, 0.20.2 Release Notes, Developer Guide: Resource Credit System Since: HF20 Working on mainnet Working on testnet rc_api.find_rc_accounts Returns the available resource credits of accounts. Parameters: accounts:string array accounts (string)   &quot;steemit&quot; Query the available resource credits for the account named “steemit”. &quot;alice&quot; Query the available resource credits for the accounts named “alice” and “bob”. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON { &quot;rc_accounts&quot;: [ { &quot;account&quot;: &quot;&quot;, &quot;rc_manabar&quot;: {&quot;current_mana&quot;: &quot;0&quot;, &quot;last_update_time&quot;: 0}, &quot;max_rc_creation_adjustment&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;max_rc&quot;: &quot;0&quot; } ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;steemit&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;alice&quot;,&quot;bob&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_params Work in progress. See: #2980 Query Parameters JSON {} Expected Response JSON { &quot;resource_names&quot;: [ &quot;resource_history_bytes&quot;, &quot;resource_new_accounts&quot;, &quot;resource_market_bytes&quot;, &quot;resource_state_bytes&quot;, &quot;resource_execution_time&quot; ], &quot;resource_params&quot;: { &quot;resource_history_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 347222, &quot;pool_eq&quot;: &quot;216404314004&quot;, &quot;max_pool_size&quot;: &quot;432808628007&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: 1690658703, &quot;shift&quot;: 49 } }, &quot;resource_new_accounts&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10000, &quot;budget_per_time_unit&quot;: 797, &quot;pool_eq&quot;: 157691079, &quot;max_pool_size&quot;: 157691079, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 347321, &quot;decay_per_time_unit_denom_shift&quot;: 36 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;16484671763857882971&quot;, &quot;coeff_b&quot;: 1231961, &quot;shift&quot;: 51 } }, &quot;resource_market_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10, &quot;budget_per_time_unit&quot;: 578704, &quot;pool_eq&quot;: &quot;16030041350&quot;, &quot;max_pool_size&quot;: &quot;32060082699&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 2540365427, &quot;decay_per_time_unit_denom_shift&quot;: 46 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;9231393461629499392&quot;, &quot;coeff_b&quot;: 125234698, &quot;shift&quot;: 53 } }, &quot;resource_state_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 231481481, &quot;pool_eq&quot;: &quot;144269542669147&quot;, &quot;max_pool_size&quot;: &quot;288539085338293&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;1127105802103&quot;, &quot;shift&quot;: 49 } }, &quot;resource_execution_time&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 82191781, &quot;pool_eq&quot;: &quot;51225569123068&quot;, &quot;max_pool_size&quot;: &quot;102451138246135&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;400199758774&quot;, &quot;shift&quot;: 49 } } }, &quot;size_info&quot;: { &quot;resource_state_bytes&quot;: { &quot;authority_base_size&quot;: 40000, &quot;authority_account_member_size&quot;: 180000, &quot;authority_key_member_size&quot;: 350000, &quot;account_object_base_size&quot;: 4800000, &quot;account_authority_object_base_size&quot;: 400000, &quot;account_recovery_request_object_base_size&quot;: 320000, &quot;comment_object_base_size&quot;: 2010000, &quot;comment_object_permlink_char_size&quot;: 10000, &quot;comment_object_parent_permlink_char_size&quot;: 20000, &quot;comment_object_beneficiaries_member_size&quot;: 180000, &quot;comment_vote_object_base_size&quot;: 470000, &quot;convert_request_object_base_size&quot;: 480000, &quot;decline_voting_rights_request_object_base_size&quot;: 280000, &quot;escrow_object_base_size&quot;: 1190000, &quot;limit_order_object_base_size&quot;: 147440, &quot;savings_withdraw_object_byte_size&quot;: 14656, &quot;transaction_object_base_size&quot;: 6090, &quot;transaction_object_byte_size&quot;: 174, &quot;vesting_delegation_object_base_size&quot;: 600000, &quot;vesting_delegation_expiration_object_base_size&quot;: 440000, &quot;withdraw_vesting_route_object_base_size&quot;: 430000, &quot;witness_object_base_size&quot;: 2660000, &quot;witness_object_url_char_size&quot;: 10000, &quot;witness_vote_object_base_size&quot;: 400000, &quot;STATE_BYTES_SCALE&quot;: 10000 }, &quot;resource_execution_time&quot;: { &quot;account_create_operation_exec_time&quot;: 57700, &quot;account_create_with_delegation_operation_exec_time&quot;: 57700, &quot;account_update_operation_exec_time&quot;: 14000, &quot;account_witness_proxy_operation_exec_time&quot;: 117000, &quot;account_witness_vote_operation_exec_time&quot;: 23000, &quot;cancel_transfer_from_savings_operation_exec_time&quot;: 11500, &quot;change_recovery_account_operation_exec_time&quot;: 12000, &quot;claim_account_operation_exec_time&quot;: 10000, &quot;claim_reward_balance_operation_exec_time&quot;: 50300, &quot;comment_operation_exec_time&quot;: 114100, &quot;comment_options_operation_exec_time&quot;: 13200, &quot;convert_operation_exec_time&quot;: 15700, &quot;create_claimed_account_operation_exec_time&quot;: 57700, &quot;custom_operation_exec_time&quot;: 228000, &quot;custom_json_operation_exec_time&quot;: 228000, &quot;custom_binary_operation_exec_time&quot;: 228000, &quot;decline_voting_rights_operation_exec_time&quot;: 5300, &quot;delegate_vesting_shares_operation_exec_time&quot;: 19900, &quot;delete_comment_operation_exec_time&quot;: 51100, &quot;escrow_approve_operation_exec_time&quot;: 9900, &quot;escrow_dispute_operation_exec_time&quot;: 11500, &quot;escrow_release_operation_exec_time&quot;: 17200, &quot;escrow_transfer_operation_exec_time&quot;: 19100, &quot;feed_publish_operation_exec_time&quot;: 6200, &quot;limit_order_cancel_operation_exec_time&quot;: 9600, &quot;limit_order_create_operation_exec_time&quot;: 31700, &quot;limit_order_create2_operation_exec_time&quot;: 31700, &quot;request_account_recovery_operation_exec_time&quot;: 54400, &quot;set_withdraw_vesting_route_operation_exec_time&quot;: 17900, &quot;transfer_from_savings_operation_exec_time&quot;: 17500, &quot;transfer_operation_exec_time&quot;: 9600, &quot;transfer_to_savings_operation_exec_time&quot;: 6400, &quot;transfer_to_vesting_operation_exec_time&quot;: 44400, &quot;vote_operation_exec_time&quot;: 26500, &quot;withdraw_vesting_operation_exec_time&quot;: 10400, &quot;witness_set_properties_operation_exec_time&quot;: 9500, &quot;witness_update_operation_exec_time&quot;: 9500 } } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_params&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_pool Work in progress. See: #2563, PR#2678 Query Parameters JSON {} Expected Response JSON { &quot;resource_pool&quot;: { &quot;resource_history_bytes&quot;: {&quot;pool&quot;: &quot;200825644923&quot;}, &quot;resource_new_accounts&quot;: {&quot;pool&quot;: 37393465}, &quot;resource_market_bytes&quot;: {&quot;pool&quot;: &quot;15915722826&quot;}, &quot;resource_state_bytes&quot;: {&quot;pool&quot;: &quot;132151641791507&quot;}, &quot;resource_execution_time&quot;: {&quot;pool&quot;: &quot;47739958648192&quot;} } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_pool&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta property="og:description" content="Allows querying of various Resource Credit metrics. See: RC Bandwidth System, 0.20.2 Release Notes, Developer Guide: Resource Credit System Since: HF20 Working on mainnet Working on testnet rc_api.find_rc_accounts Returns the available resource credits of accounts. Parameters: accounts:string array accounts (string)   &quot;steemit&quot; Query the available resource credits for the account named “steemit”. &quot;alice&quot; Query the available resource credits for the accounts named “alice” and “bob”. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON { &quot;rc_accounts&quot;: [ { &quot;account&quot;: &quot;&quot;, &quot;rc_manabar&quot;: {&quot;current_mana&quot;: &quot;0&quot;, &quot;last_update_time&quot;: 0}, &quot;max_rc_creation_adjustment&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;max_rc&quot;: &quot;0&quot; } ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;steemit&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;alice&quot;,&quot;bob&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_params Work in progress. See: #2980 Query Parameters JSON {} Expected Response JSON { &quot;resource_names&quot;: [ &quot;resource_history_bytes&quot;, &quot;resource_new_accounts&quot;, &quot;resource_market_bytes&quot;, &quot;resource_state_bytes&quot;, &quot;resource_execution_time&quot; ], &quot;resource_params&quot;: { &quot;resource_history_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 347222, &quot;pool_eq&quot;: &quot;216404314004&quot;, &quot;max_pool_size&quot;: &quot;432808628007&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: 1690658703, &quot;shift&quot;: 49 } }, &quot;resource_new_accounts&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10000, &quot;budget_per_time_unit&quot;: 797, &quot;pool_eq&quot;: 157691079, &quot;max_pool_size&quot;: 157691079, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 347321, &quot;decay_per_time_unit_denom_shift&quot;: 36 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;16484671763857882971&quot;, &quot;coeff_b&quot;: 1231961, &quot;shift&quot;: 51 } }, &quot;resource_market_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10, &quot;budget_per_time_unit&quot;: 578704, &quot;pool_eq&quot;: &quot;16030041350&quot;, &quot;max_pool_size&quot;: &quot;32060082699&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 2540365427, &quot;decay_per_time_unit_denom_shift&quot;: 46 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;9231393461629499392&quot;, &quot;coeff_b&quot;: 125234698, &quot;shift&quot;: 53 } }, &quot;resource_state_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 231481481, &quot;pool_eq&quot;: &quot;144269542669147&quot;, &quot;max_pool_size&quot;: &quot;288539085338293&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;1127105802103&quot;, &quot;shift&quot;: 49 } }, &quot;resource_execution_time&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 82191781, &quot;pool_eq&quot;: &quot;51225569123068&quot;, &quot;max_pool_size&quot;: &quot;102451138246135&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;400199758774&quot;, &quot;shift&quot;: 49 } } }, &quot;size_info&quot;: { &quot;resource_state_bytes&quot;: { &quot;authority_base_size&quot;: 40000, &quot;authority_account_member_size&quot;: 180000, &quot;authority_key_member_size&quot;: 350000, &quot;account_object_base_size&quot;: 4800000, &quot;account_authority_object_base_size&quot;: 400000, &quot;account_recovery_request_object_base_size&quot;: 320000, &quot;comment_object_base_size&quot;: 2010000, &quot;comment_object_permlink_char_size&quot;: 10000, &quot;comment_object_parent_permlink_char_size&quot;: 20000, &quot;comment_object_beneficiaries_member_size&quot;: 180000, &quot;comment_vote_object_base_size&quot;: 470000, &quot;convert_request_object_base_size&quot;: 480000, &quot;decline_voting_rights_request_object_base_size&quot;: 280000, &quot;escrow_object_base_size&quot;: 1190000, &quot;limit_order_object_base_size&quot;: 147440, &quot;savings_withdraw_object_byte_size&quot;: 14656, &quot;transaction_object_base_size&quot;: 6090, &quot;transaction_object_byte_size&quot;: 174, &quot;vesting_delegation_object_base_size&quot;: 600000, &quot;vesting_delegation_expiration_object_base_size&quot;: 440000, &quot;withdraw_vesting_route_object_base_size&quot;: 430000, &quot;witness_object_base_size&quot;: 2660000, &quot;witness_object_url_char_size&quot;: 10000, &quot;witness_vote_object_base_size&quot;: 400000, &quot;STATE_BYTES_SCALE&quot;: 10000 }, &quot;resource_execution_time&quot;: { &quot;account_create_operation_exec_time&quot;: 57700, &quot;account_create_with_delegation_operation_exec_time&quot;: 57700, &quot;account_update_operation_exec_time&quot;: 14000, &quot;account_witness_proxy_operation_exec_time&quot;: 117000, &quot;account_witness_vote_operation_exec_time&quot;: 23000, &quot;cancel_transfer_from_savings_operation_exec_time&quot;: 11500, &quot;change_recovery_account_operation_exec_time&quot;: 12000, &quot;claim_account_operation_exec_time&quot;: 10000, &quot;claim_reward_balance_operation_exec_time&quot;: 50300, &quot;comment_operation_exec_time&quot;: 114100, &quot;comment_options_operation_exec_time&quot;: 13200, &quot;convert_operation_exec_time&quot;: 15700, &quot;create_claimed_account_operation_exec_time&quot;: 57700, &quot;custom_operation_exec_time&quot;: 228000, &quot;custom_json_operation_exec_time&quot;: 228000, &quot;custom_binary_operation_exec_time&quot;: 228000, &quot;decline_voting_rights_operation_exec_time&quot;: 5300, &quot;delegate_vesting_shares_operation_exec_time&quot;: 19900, &quot;delete_comment_operation_exec_time&quot;: 51100, &quot;escrow_approve_operation_exec_time&quot;: 9900, &quot;escrow_dispute_operation_exec_time&quot;: 11500, &quot;escrow_release_operation_exec_time&quot;: 17200, &quot;escrow_transfer_operation_exec_time&quot;: 19100, &quot;feed_publish_operation_exec_time&quot;: 6200, &quot;limit_order_cancel_operation_exec_time&quot;: 9600, &quot;limit_order_create_operation_exec_time&quot;: 31700, &quot;limit_order_create2_operation_exec_time&quot;: 31700, &quot;request_account_recovery_operation_exec_time&quot;: 54400, &quot;set_withdraw_vesting_route_operation_exec_time&quot;: 17900, &quot;transfer_from_savings_operation_exec_time&quot;: 17500, &quot;transfer_operation_exec_time&quot;: 9600, &quot;transfer_to_savings_operation_exec_time&quot;: 6400, &quot;transfer_to_vesting_operation_exec_time&quot;: 44400, &quot;vote_operation_exec_time&quot;: 26500, &quot;withdraw_vesting_operation_exec_time&quot;: 10400, &quot;witness_set_properties_operation_exec_time&quot;: 9500, &quot;witness_update_operation_exec_time&quot;: 9500 } } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_params&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_pool Work in progress. See: #2563, PR#2678 Query Parameters JSON {} Expected Response JSON { &quot;resource_pool&quot;: { &quot;resource_history_bytes&quot;: {&quot;pool&quot;: &quot;200825644923&quot;}, &quot;resource_new_accounts&quot;: {&quot;pool&quot;: 37393465}, &quot;resource_market_bytes&quot;: {&quot;pool&quot;: &quot;15915722826&quot;}, &quot;resource_state_bytes&quot;: {&quot;pool&quot;: &quot;132151641791507&quot;}, &quot;resource_execution_time&quot;: {&quot;pool&quot;: &quot;47739958648192&quot;} } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_pool&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/rc-api" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/rc-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"Allows querying of various Resource Credit metrics. See: RC Bandwidth System, 0.20.2 Release Notes, Developer Guide: Resource Credit System Since: HF20 Working on mainnet Working on testnet rc_api.find_rc_accounts Returns the available resource credits of accounts. Parameters: accounts:string array accounts (string)   &quot;steemit&quot; Query the available resource credits for the account named “steemit”. &quot;alice&quot; Query the available resource credits for the accounts named “alice” and “bob”. Query Parameters JSON {&quot;accounts&quot;: []} Expected Response JSON { &quot;rc_accounts&quot;: [ { &quot;account&quot;: &quot;&quot;, &quot;rc_manabar&quot;: {&quot;current_mana&quot;: &quot;0&quot;, &quot;last_update_time&quot;: 0}, &quot;max_rc_creation_adjustment&quot;: { &quot;amount&quot;: &quot;0&quot;, &quot;precision&quot;: 6, &quot;nai&quot;: &quot;@@000000037&quot; }, &quot;max_rc&quot;: &quot;0&quot; } ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;steemit&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.find_rc_accounts&quot;, &quot;params&quot;:{&quot;accounts&quot;:[&quot;alice&quot;,&quot;bob&quot;]}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_params Work in progress. See: #2980 Query Parameters JSON {} Expected Response JSON { &quot;resource_names&quot;: [ &quot;resource_history_bytes&quot;, &quot;resource_new_accounts&quot;, &quot;resource_market_bytes&quot;, &quot;resource_state_bytes&quot;, &quot;resource_execution_time&quot; ], &quot;resource_params&quot;: { &quot;resource_history_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 347222, &quot;pool_eq&quot;: &quot;216404314004&quot;, &quot;max_pool_size&quot;: &quot;432808628007&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: 1690658703, &quot;shift&quot;: 49 } }, &quot;resource_new_accounts&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10000, &quot;budget_per_time_unit&quot;: 797, &quot;pool_eq&quot;: 157691079, &quot;max_pool_size&quot;: 157691079, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 347321, &quot;decay_per_time_unit_denom_shift&quot;: 36 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;16484671763857882971&quot;, &quot;coeff_b&quot;: 1231961, &quot;shift&quot;: 51 } }, &quot;resource_market_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 10, &quot;budget_per_time_unit&quot;: 578704, &quot;pool_eq&quot;: &quot;16030041350&quot;, &quot;max_pool_size&quot;: &quot;32060082699&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 2540365427, &quot;decay_per_time_unit_denom_shift&quot;: 46 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;9231393461629499392&quot;, &quot;coeff_b&quot;: 125234698, &quot;shift&quot;: 53 } }, &quot;resource_state_bytes&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 231481481, &quot;pool_eq&quot;: &quot;144269542669147&quot;, &quot;max_pool_size&quot;: &quot;288539085338293&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;1127105802103&quot;, &quot;shift&quot;: 49 } }, &quot;resource_execution_time&quot;: { &quot;resource_dynamics_params&quot;: { &quot;resource_unit&quot;: 1, &quot;budget_per_time_unit&quot;: 82191781, &quot;pool_eq&quot;: &quot;51225569123068&quot;, &quot;max_pool_size&quot;: &quot;102451138246135&quot;, &quot;decay_params&quot;: { &quot;decay_per_time_unit&quot;: 3613026481, &quot;decay_per_time_unit_denom_shift&quot;: 51 }, &quot;min_decay&quot;: 0 }, &quot;price_curve_params&quot;: { &quot;coeff_a&quot;: &quot;12981647055416481792&quot;, &quot;coeff_b&quot;: &quot;400199758774&quot;, &quot;shift&quot;: 49 } } }, &quot;size_info&quot;: { &quot;resource_state_bytes&quot;: { &quot;authority_base_size&quot;: 40000, &quot;authority_account_member_size&quot;: 180000, &quot;authority_key_member_size&quot;: 350000, &quot;account_object_base_size&quot;: 4800000, &quot;account_authority_object_base_size&quot;: 400000, &quot;account_recovery_request_object_base_size&quot;: 320000, &quot;comment_object_base_size&quot;: 2010000, &quot;comment_object_permlink_char_size&quot;: 10000, &quot;comment_object_parent_permlink_char_size&quot;: 20000, &quot;comment_object_beneficiaries_member_size&quot;: 180000, &quot;comment_vote_object_base_size&quot;: 470000, &quot;convert_request_object_base_size&quot;: 480000, &quot;decline_voting_rights_request_object_base_size&quot;: 280000, &quot;escrow_object_base_size&quot;: 1190000, &quot;limit_order_object_base_size&quot;: 147440, &quot;savings_withdraw_object_byte_size&quot;: 14656, &quot;transaction_object_base_size&quot;: 6090, &quot;transaction_object_byte_size&quot;: 174, &quot;vesting_delegation_object_base_size&quot;: 600000, &quot;vesting_delegation_expiration_object_base_size&quot;: 440000, &quot;withdraw_vesting_route_object_base_size&quot;: 430000, &quot;witness_object_base_size&quot;: 2660000, &quot;witness_object_url_char_size&quot;: 10000, &quot;witness_vote_object_base_size&quot;: 400000, &quot;STATE_BYTES_SCALE&quot;: 10000 }, &quot;resource_execution_time&quot;: { &quot;account_create_operation_exec_time&quot;: 57700, &quot;account_create_with_delegation_operation_exec_time&quot;: 57700, &quot;account_update_operation_exec_time&quot;: 14000, &quot;account_witness_proxy_operation_exec_time&quot;: 117000, &quot;account_witness_vote_operation_exec_time&quot;: 23000, &quot;cancel_transfer_from_savings_operation_exec_time&quot;: 11500, &quot;change_recovery_account_operation_exec_time&quot;: 12000, &quot;claim_account_operation_exec_time&quot;: 10000, &quot;claim_reward_balance_operation_exec_time&quot;: 50300, &quot;comment_operation_exec_time&quot;: 114100, &quot;comment_options_operation_exec_time&quot;: 13200, &quot;convert_operation_exec_time&quot;: 15700, &quot;create_claimed_account_operation_exec_time&quot;: 57700, &quot;custom_operation_exec_time&quot;: 228000, &quot;custom_json_operation_exec_time&quot;: 228000, &quot;custom_binary_operation_exec_time&quot;: 228000, &quot;decline_voting_rights_operation_exec_time&quot;: 5300, &quot;delegate_vesting_shares_operation_exec_time&quot;: 19900, &quot;delete_comment_operation_exec_time&quot;: 51100, &quot;escrow_approve_operation_exec_time&quot;: 9900, &quot;escrow_dispute_operation_exec_time&quot;: 11500, &quot;escrow_release_operation_exec_time&quot;: 17200, &quot;escrow_transfer_operation_exec_time&quot;: 19100, &quot;feed_publish_operation_exec_time&quot;: 6200, &quot;limit_order_cancel_operation_exec_time&quot;: 9600, &quot;limit_order_create_operation_exec_time&quot;: 31700, &quot;limit_order_create2_operation_exec_time&quot;: 31700, &quot;request_account_recovery_operation_exec_time&quot;: 54400, &quot;set_withdraw_vesting_route_operation_exec_time&quot;: 17900, &quot;transfer_from_savings_operation_exec_time&quot;: 17500, &quot;transfer_operation_exec_time&quot;: 9600, &quot;transfer_to_savings_operation_exec_time&quot;: 6400, &quot;transfer_to_vesting_operation_exec_time&quot;: 44400, &quot;vote_operation_exec_time&quot;: 26500, &quot;withdraw_vesting_operation_exec_time&quot;: 10400, &quot;witness_set_properties_operation_exec_time&quot;: 9500, &quot;witness_update_operation_exec_time&quot;: 9500 } } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_params&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF20 Working on mainnet Working on testnet rc_api.get_resource_pool Work in progress. See: #2563, PR#2678 Query Parameters JSON {} Expected Response JSON { &quot;resource_pool&quot;: { &quot;resource_history_bytes&quot;: {&quot;pool&quot;: &quot;200825644923&quot;}, &quot;resource_new_accounts&quot;: {&quot;pool&quot;: 37393465}, &quot;resource_market_bytes&quot;: {&quot;pool&quot;: &quot;15915722826&quot;}, &quot;resource_state_bytes&quot;: {&quot;pool&quot;: &quot;132151641791507&quot;}, &quot;resource_execution_time&quot;: {&quot;pool&quot;: &quot;47739958648192&quot;} } } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rc_api.get_resource_pool&quot;, &quot;id&quot;:1}&#39; https://api.steemit.com","@type":"WebPage","url":"https://developers.steem.io/apidefinitions/rc-api","headline":"Rc Api","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	
+<p>Allows querying of various Resource Credit metrics.  See: <a href="https://github.com/steemit/steem/wiki/RC-Bandwidth-System">RC Bandwidth System</a>, <a href="https://github.com/steemit/steem/releases/tag/v0.20.2">0.20.2 Release Notes</a>, <a href="https://steemit.com/steem/@steemitdev/developer-guide-resource-credit-system">Developer Guide: Resource Credit System</a></p>
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="rc_api.find_rc_accounts">rc_api.find_rc_accounts <a href="#rc_api.find_rc_accounts"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the available resource credits of accounts.  Parameters: <code class="highlighter-rouge">accounts:string array</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="highlighter-rouge">accounts</code> (string)</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">"steemit"</code></td>
+      <td>Query the available resource credits for the account named “steemit”.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"alice"</code></td>
+      <td>Query the available resource credits for the accounts named “alice” and “bob”.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="rc_api.find_rc_accounts-parameter_json">Query Parameters JSON <a href="#rc_api.find_rc_accounts-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="rc_api.find_rc_accounts-expected_response_json">Expected Response JSON <a href="#rc_api.find_rc_accounts-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"rc_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rc_manabar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"current_mana"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"last_update_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"max_rc_creation_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nai"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@@000000037"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"max_rc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="rc_api.find_rc_accounts-curl-examples">Example <code>curl</code> <a href="#rc_api.find_rc_accounts-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rc_api.find_rc_accounts", "params":{"accounts":["steemit"]}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rc_api.find_rc_accounts", "params":{"accounts":["alice","bob"]}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="rc_api.get_resource_params">rc_api.get_resource_params <a href="#rc_api.get_resource_params"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Work in progress.  See: <a href="https://github.com/steemit/steem/issues/2980">#2980</a></p>
+
+<h5 id="rc_api.get_resource_params-parameter_json">Query Parameters JSON <a href="#rc_api.get_resource_params-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="rc_api.get_resource_params-expected_response_json">Expected Response JSON <a href="#rc_api.get_resource_params-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"resource_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"resource_history_bytes"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resource_new_accounts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resource_market_bytes"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resource_state_bytes"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resource_execution_time"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"resource_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"resource_history_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resource_dynamics_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">347222</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"216404314004"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"432808628007"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3613026481</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"price_curve_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coeff_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12981647055416481792"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coeff_b"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690658703</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_new_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resource_dynamics_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">797</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="mi">157691079</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">157691079</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">347321</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"price_curve_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coeff_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16484671763857882971"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coeff_b"</span><span class="p">:</span><span class="w"> </span><span class="mi">1231961</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_market_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resource_dynamics_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">578704</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16030041350"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32060082699"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2540365427</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"price_curve_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coeff_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9231393461629499392"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coeff_b"</span><span class="p">:</span><span class="w"> </span><span class="mi">125234698</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_state_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resource_dynamics_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">231481481</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"144269542669147"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"288539085338293"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3613026481</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"price_curve_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coeff_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12981647055416481792"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coeff_b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1127105802103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_execution_time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resource_dynamics_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">82191781</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pool_eq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51225569123068"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_pool_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102451138246135"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decay_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3613026481</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"decay_per_time_unit_denom_shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"min_decay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"price_curve_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coeff_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12981647055416481792"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coeff_b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400199758774"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shift"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"size_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"resource_state_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"authority_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"authority_account_member_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">180000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"authority_key_member_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">350000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">4800000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_authority_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_recovery_request_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">320000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2010000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_object_permlink_char_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_object_parent_permlink_char_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_object_beneficiaries_member_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">180000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_vote_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">470000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"convert_request_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">480000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"decline_voting_rights_request_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">280000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"escrow_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1190000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_order_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">147440</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"savings_withdraw_object_byte_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">14656</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transaction_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">6090</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transaction_object_byte_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vesting_delegation_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">600000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vesting_delegation_expiration_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">440000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdraw_vesting_route_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">430000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"witness_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2660000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"witness_object_url_char_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"witness_vote_object_base_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"STATE_BYTES_SCALE"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_execution_time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"account_create_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">57700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_create_with_delegation_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">57700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_update_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">14000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_witness_proxy_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">117000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_witness_vote_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">23000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cancel_transfer_from_savings_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">11500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"change_recovery_account_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claim_account_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claim_reward_balance_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">50300</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">114100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment_options_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">13200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"convert_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">15700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"create_claimed_account_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">57700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"custom_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">228000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"custom_json_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">228000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"custom_binary_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">228000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"decline_voting_rights_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">5300</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delegate_vesting_shares_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">19900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delete_comment_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">51100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"escrow_approve_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">9900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"escrow_dispute_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">11500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"escrow_release_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">17200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"escrow_transfer_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">19100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"feed_publish_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">6200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_order_cancel_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">9600</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_order_create_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">31700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_order_create2_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">31700</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"request_account_recovery_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">54400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"set_withdraw_vesting_route_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">17900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_from_savings_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">17500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">9600</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_to_savings_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">6400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_to_vesting_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">44400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vote_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">26500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdraw_vesting_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">10400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"witness_set_properties_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">9500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"witness_update_operation_exec_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">9500</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="rc_api.get_resource_params-curl-examples">Example <code>curl</code> <a href="#rc_api.get_resource_params-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rc_api.get_resource_params", "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="rc_api.get_resource_pool">rc_api.get_resource_pool <a href="#rc_api.get_resource_pool"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Work in progress.  See: <a href="https://github.com/steemit/steem/issues/2563">#2563</a>, <a href="https://github.com/steemit/steem/pull/2678">PR#2678</a></p>
+
+<h5 id="rc_api.get_resource_pool-parameter_json">Query Parameters JSON <a href="#rc_api.get_resource_pool-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="rc_api.get_resource_pool-expected_response_json">Expected Response JSON <a href="#rc_api.get_resource_pool-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"resource_pool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"resource_history_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200825644923"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_new_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"pool"</span><span class="p">:</span><span class="w"> </span><span class="mi">37393465</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_market_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15915722826"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_state_bytes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"132151641791507"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resource_execution_time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47739958648192"</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="rc_api.get_resource_pool-curl-examples">Example <code>curl</code> <a href="#rc_api.get_resource_pool-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rc_api.get_resource_pool", "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
