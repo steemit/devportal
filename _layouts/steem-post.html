@@ -1,6 +1,20 @@
 ---
 layout: default
 ---
-<div class="steem-content">
-  {{ content }}
-</div>
+<section id="{{page.id | slugify}}" class="row {{ page.id | slugify }}">
+  <h3>
+    <a id="{{ page.id | slugify }}">
+      {{ page.title }}
+      {% if page.type %}
+        <span class="endpoint {{ page.type }}"></span>
+      {% endif %}
+    </a>
+  </h3>
+  {% if page.description %}
+    <span class="description">{{page.description | markdownify}}</span>
+  {% endif %}
+
+  <div class="steem-content">
+    {{ content }}
+  </div>
+</section>
