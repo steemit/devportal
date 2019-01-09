@@ -6,4 +6,4 @@ exclude: true
 layout: steem-post
 ---
 
-{{'@stoodkev/how-to-set-up-and-use-multisignature-accounts-on-steem-blockchain' | steem_post}}
+{{'@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324' | steem_post}}
