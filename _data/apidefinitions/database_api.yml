@@ -4,16 +4,16 @@
 - name: Database API
   description: |
     Used to query information about accounts, transactions, and blockchain data.
-    
-    
-    
+
+
+
     To enable this API for `steemd`, the following is required in `config.ini`
     by specifying:
-    
+
     ```ini
     plugin = database_api
     ```
-    
+
     **These AppBase API methods are still under development and subject to
     change.**
   methods:
@@ -386,7 +386,7 @@
     - '{"jsonrpc":"2.0", "method":"database_api.find_votes", "params": {"author":"steemit", "permlink":"firstpost"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.find_votes", "params": {"author":"alice", "permlink":"a-post-by-alice"}, "id":1}'
     expected_curl_responses:
-    - 
+    -
     - Could not find comment alice/a-post-by-alice
   - api_method: database_api.find_withdraw_vesting_routes
     purpose: Returns the list of vesting withdraw routes for an account.
@@ -706,7 +706,7 @@
         "STEEM_DEFAULT_ACCOUNT_SUBSIDY_DECAY": 347321,
         "STEEM_DEFAULT_ACCOUNT_SUBSIDY_BUDGET": 797,
         "STEEM_DECAY_BACKSTOP_PERCENT": 9000
-      }    
+      }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.get_config", "id":1}'
   - api_method: database_api.get_current_price_feed
@@ -797,12 +797,12 @@
     since: HF11
     purpose: |
       Returns a list of account recovery requests.  Parameters: `start:string`, `limit:int`, `order:string`
-      
+
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_account` - order by accont name
         * `by_expiration` - order by expiration
-      
+
       | `account` (string) | `limit` (int) | `order` (string) | |
       |--------------------|-|
       | `"steemit"` | 10 | `"by_account"` | Queries the recovery requests for account named "steemit", ordered by account name. |
@@ -815,13 +815,13 @@
   - api_method: database_api.list_accounts
     purpose: |
       List accounts ordered by specified key.  Parameters: `start:object`, `limit:int`, `order:string`
-      
+
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_name` - order by accont name
         * `by_proxy` - order by proxy **(WIP)**
         * `by_next_vesting_withdrawal` - order by next next vesting withdrawal **(WIP)**
-      
+
       | `start` (object) | `limit` (int) | `order` (string) |
       |-------------------|-|
       | `""` | `10` | `"by_name"` Queries for up to 10 accounts starting at the beginning, sorted by name. |
@@ -1002,8 +1002,8 @@
       |----------------------------|---------------|-|
       | `["1970-01-01T00:00:00", "", ""]` | 10 | `"by_cashout_time"` | Queries first 10 comments, sort by cashout time |
       | `["", ""]` | 10 | `"by_permlink"` | Queries first 10 comments, sort by permlink |
-      | `["steemit","firstpost","",""]` | 10 | `"by_root"` | Queries first 10 comments of @steemit/firstpost, sort by root |
-      | `["steemit","firstpost","",""]` | 10 | `"by_parent"` | Queries first 10 comments @steemit/firstpost, sort by parent |
+      | `["steemit","firstpost","",""]` | 10 | `"by_root"` | Queries next 10 comments starting at @steemit/firstpost, sort by root |
+      | `["steemit","firstpost","",""]` | 10 | `"by_parent"` | Queries next 10 comments starting at @steemit/firstpost, sort by parent |
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1175,12 +1175,12 @@
     since: HF14
     purpose: |
       Returns a list of savings withdrawls.  Parameters: `start:object`, `limit:int`, `order:string`
-      
+
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_from_id` - order by id
         * `by_complete_from_id` - order by id (complete)
-      
+
       | `start` (object) | `limit` (int) | `order` (string) | |
       |--------------------|-|-|-|
       | `[0]` | `10` | `"by_from_id"` | Queries the savings withdraw for id. |
@@ -1210,7 +1210,7 @@
   - api_method: database_api.list_sbd_conversion_requests
     purpose: |
       Returns the list of SBD conversion requests for an account.  Parameters: `start:array`, `limit:int`, `order:string`
-      
+
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_conversion_date` - order by conversion date
@@ -1301,8 +1301,8 @@
       |----------------------------|---------------|-|
       | `["", "", ""]` | 10 | `"by_comment_voter"` | Queries first 10 votes, sort by comment voter |
       | `["", "", ""]` | 10 | `"by_voter_comment"` | Queries first 10 votes, sort by voter comment |
-      | `["", "", "steemit"]` | 10 | `"by_comment_voter"` | Queries first 10 votes by steemit, sort by comment voter |
-      | `["alice", "xeroc", "vanteem-config"]` | 10 | `"by_voter_comment"` | Queries first 10 votes by alice starting from the post at `@xeroc/vanteem-config`, sort by voter comment |
+      | `["xeroc", "vanteem-config", ""]` | 10 | `"by_comment_voter"` | Queries next 10 votes starting on the post `@xeroc/vanteem-config`, sort by comment voter |
+      | `["alice", "xeroc", "vanteem-config"]` | 10 | `"by_voter_comment"` | Queries next 10 votes starting at alice on the post `@xeroc/vanteem-config`, sort by voter comment |
     parameter_json: '{"start":null,"limit":0,"order":"by_comment_voter"}'
     expected_response_json: |
       {
