@@ -192,6 +192,11 @@ namespace :test do
                 smoke += 1
                 print "\n\t#{data['error']['message']}\n"
               end
+            elsif !!data['result'] && data['result'].class == ::Hash && !!data['result']['error']
+              # Capture errors provided by hivemind.
+              
+              smoke += 1
+              print "\n\t#{data['result']['error']['message']}\n"
             else
               print '√'
             end
