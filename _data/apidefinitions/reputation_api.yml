@@ -25,7 +25,7 @@
         "reputation": 0
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"reputation_api.get_account_reputations", "params": {"account_lower_bound": "steemit", "limit": 1}}'
+    - '{"jsonrpc":"2.0", "method":"reputation_api.get_account_reputations", "params": {"account_lower_bound": "steemit", "limit": 1}, "id":1}'
     mainnet:
       working: true
       detail: ""
