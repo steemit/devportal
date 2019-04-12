@@ -12,16 +12,16 @@ Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes 
 
 | URL                             | Owner          |
 | ------------------------------- | -------------- |
+| anyx.io                         | @anyx          |
 | api.steemit.com                 | @steemit       |
-| api.steemitdev.com              | @steemit       |
-| steemd-appbase.steemit.com      | @steemit       |
 | api.steem.house                 | @gtg           |
 | appbasetest.timcliff.com        | @timcliff      |
-| rpc.curiesteem.com              | @curie         |
+| gtg.steem.house:8090            | @gtg           |
+| hive.anyx.io                    | @anyx          |
 | rpc.steemviz.com                | @ausbitbank    |
+| rpc.usesteem.com                | @themarkymark  |
 | steemd.minnowsupportproject.org | @followbtcnews |
 | steemd.privex.io                | @privex        |
-| anyx.io                         | @anyx          |
 
 
 For a report on the latest public full nodes, check the latest posts on [@fullnodeupdate](https://steemit.com/@fullnodeupdate) by [@holger80](https://steemit.com/@holger80).  Another excellent tool for checking real-time full node status is [geo.steem.pl](https://geo.steem.pl) by [@jamzed](https://steemit.com/@jamzed).
