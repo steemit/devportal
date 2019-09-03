@@ -23,6 +23,7 @@ layout: full
 * [`network_broadcast_api`](#network_broadcast_api)
 * [`rc_api`](#rc_api)
 * [`reputation_api`](#reputation_api)
+* [`rewards_api`](#rewards_api)
 * [`tags_api`](#tags_api)
 * [`transaction_status_api`](#transaction_status_api)
 * [`witness_api`](#witness_api)
@@ -205,6 +206,22 @@ Example in `chain.ini`:
 
 ```ini
 plugin = reputation_api
+```
+
+---
+
+### `rewards_api`
+
+* **Purpose:** Used to simulate curve payouts.
+* **Requires:** *No additional*
+* **Exposed Methods:** [`rewards_api.*`]({{ '/apidefinitions/#apidefinitions-rewards-api' | relative_url}})
+
+Note: **The `rewards_api` plugin is for testing purposes only, do not run in production.**
+
+Example in `chain.ini`:
+
+```ini
+plugin = rewards_api
 ```
 
 ---
