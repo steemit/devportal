@@ -383,7 +383,14 @@
         - '["account_witness_vote",{"account":"alice","witness":"bob","approve":true}]'
     - name: account_witness_proxy
       virtual: false
-      purpose:
+      purpose: |
+        Allows one account to delegate witness votes to another account.
+        
+        If a proxy is specified then all existing witness votes are removed.
+      
+        Note, as of HF21, setting a witness proxy also applies to Steem.DAO
+        proposal approval.  If you trust someone to cast your witness votes, it
+        is assumed that you would also trust them to cast your proposal votes.
       roles:
         - active
           owner
@@ -1053,6 +1060,45 @@
           approve
       json_examples:
         - '["update_proposal_votes",{"voter":"alice","proposal_ids":[0],"approve":true}]'
+    - name: clear_null_account_balance
+      since: HF20
+      virtual: true
+      purpose: |
+         For per-block processing that clears null account balances. See: [#2627](https://github.com/steemit/steem/issues/2627)
+      roles:
+        - active
+          owner
+      params:
+        - total_cleared
+    - name: proposal_pay
+      since: HF21
+      virtual: true
+      purpose: |
+        Dedicated operation to be generated during proposal payment phase to provide info in Account History related to funds transfer.
+      roles:
+        - active
+          owner
+      params:
+        - receiver
+          payment
+          trx_id
+          op_in_trx
+      json_examples:
+        - '["proposal_pay",{"receiver":"steem.dao","payment":"1.637 SBD","trx_id":"0000000000000000000000000000000000000000","op_in_trx":0}]'
+    - name: sps_fund
+      since: HF21
+      virtual: true
+      purpose: |
+         Created once per maintenance interval to document how much SBD was
+         added to the threasury from inflation in that maintenance interval
+         (i.e., to track the funding of the SPS).
+      roles:
+        - active
+          owner
+      params:
+        - additional_funds
+      json_examples:
+        - '["sps_fund",{"additional_funds":"71.460 SBD"}]'
     - name: fill_convert_request
       virtual: true
       purpose: |
