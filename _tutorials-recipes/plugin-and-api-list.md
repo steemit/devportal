@@ -48,7 +48,7 @@ plugin = account_by_key_api
 * **Requires:** `account_history` or `account_history_rocksdb`
 * **Exposed Methods:** [`account_history_api.*`]({{ '/apidefinitions/#apidefinitions-account-history-api' | relative_url}})
 
-Note, while the `account_history_rocksdb` plugin is a more efficient, the current implementation does not provide support for [`condenser_api.get_transaction`]({{ '/apidefinitions/#condenser_api.get_transaction' | relative_url}}).
+Note, the `account_history_rocksdb` plugin does not provide support for [`condenser_api.get_transaction`]({{ '/apidefinitions/#condenser_api.get_transaction' | relative_url}}).
 
 Example in `chain.ini`:
 
