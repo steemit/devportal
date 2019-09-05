@@ -7,15 +7,15 @@
     for account reputations (the latter if [`hivemind`]({{ '/tutorials-recipes/using-hivemind' | relative_url }}) is fronting `follow_api`)
   methods:
   - api_method: reputation_api.get_account_reputations
-    since: The Mysterious Future
     purpose: |
-      Returns the reputation of accounts.  Parameters: `accounts:string array`; `limit:int`
+      Returns the reputation of accounts.  Parameters: `account_lower_bound:string`; `limit:int`
       
       * `limit` is up to 1000.
       
-      | `account` (string) | `limit` (int) | |
+      | `account_lower_bound` (string) | `limit` (int) | |
       |--------------------|-|
-      | `"steemit"` | 10 | Queries the reputation for account named "steemit". |
+      | `"steemit"` | 1 | Queries for accounts that start with "steemit", only one result. |
+      | `"a"` | 10 | Queries for accounts that start with "a", up to 10 results. |
       
       See [#1425](https://github.com/steemit/steem/issues/1425)
     parameter_json: '{"account_lower_bound":"","limit":1000}'
@@ -25,7 +25,7 @@
         "reputation": 0
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"reputation_api.get_account_reputations", "params": {"account_lower_bound": "steem"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"reputation_api.get_account_reputations", "params": {"account_lower_bound": "steemit", "limit": 1}, "id":1}'
     mainnet:
-      working: false
-      detail: "Not yet enabled."
+      working: true
+      detail: ""
