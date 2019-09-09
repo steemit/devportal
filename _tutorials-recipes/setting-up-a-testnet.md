@@ -342,7 +342,7 @@ cp gatling.conf.example gatling.conf
   tinman gatling -c gatling.conf -f 0 -t 0 -o - | tinman prefixsub \
 ) | \
 tinman keysub --get-dev-key $GET_DEV_KEY | \
-tinman submit --realtime -t http://127.0.0.1:18751 \
+tinman submit --realtime -t http://127.0.0.1:8751 \
     --signer $SIGN_TRANSACTION \
     --timeout 600 \
     --fail /dev/null
