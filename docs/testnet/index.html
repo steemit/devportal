@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Steem Testnet | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Steem Testnet" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Steem blockchain software is written in C++ and in order to modify the source code you need some understanding of the C++ programming language. Each Steem node runs an instance of this software, so in order to test your changes, you will need to know how to install dependencies which can be found in the Steem repo. This also means that some knowledge of System administration is also required. There are multiple advantages of running a testnet, you can test your scripts or applications on a testnet without extra spam on the live network, which allows much more flexibility to try new things. Having access to a testnet also helps you to work on new features and possibly submit new or improved pull requests to official the Steem GitHub repository." />
+<meta property="og:description" content="Steem blockchain software is written in C++ and in order to modify the source code you need some understanding of the C++ programming language. Each Steem node runs an instance of this software, so in order to test your changes, you will need to know how to install dependencies which can be found in the Steem repo. This also means that some knowledge of System administration is also required. There are multiple advantages of running a testnet, you can test your scripts or applications on a testnet without extra spam on the live network, which allows much more flexibility to try new things. Having access to a testnet also helps you to work on new features and possibly submit new or improved pull requests to official the Steem GitHub repository." />
+<link rel="canonical" href="https://developers.steem.io/testnet/index" />
+<meta property="og:url" content="https://developers.steem.io/testnet/index" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-18T14:30:09-05:00" />
+<script type="application/ld+json">
+{"description":"Steem blockchain software is written in C++ and in order to modify the source code you need some understanding of the C++ programming language. Each Steem node runs an instance of this software, so in order to test your changes, you will need to know how to install dependencies which can be found in the Steem repo. This also means that some knowledge of System administration is also required. There are multiple advantages of running a testnet, you can test your scripts or applications on a testnet without extra spam on the live network, which allows much more flexibility to try new things. Having access to a testnet also helps you to work on new features and possibly submit new or improved pull requests to official the Steem GitHub repository.","headline":"Steem Testnet","dateModified":"2019-09-18T14:30:09-05:00","datePublished":"2019-09-18T14:30:09-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/testnet/index"},"url":"https://developers.steem.io/testnet/index","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-sbds">SBDS</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="testnet-index" class="row testnet-index">
+	<h3>
+		<a id="testnet-index">
+			Steem Testnet
+			
+		</a>
+	</h3>
+	
+
+	<p>Steem blockchain software is written in C++ and in order to modify the source code you need some understanding of the C++ programming language. Each Steem node runs an instance of this software, so in order to test your changes, you will need to know how to install dependencies which can be found in the <a href="https://github.com/steemit/steem/blob/master/doc/building.md">Steem repo</a>. This also means that some knowledge of System administration is also required. There are multiple advantages of running a testnet, you can test your scripts or applications on a testnet without extra spam on the live network, which allows much more flexibility to try new things. 
+Having access to a testnet also helps you to work on new features and possibly submit new or improved pull requests to official the Steem GitHub repository.</p>
+
+<h2 id="running-testnet">Running Testnet</h2>
+
+<p>By following official <a href="https://github.com/steemit/steem/blob/master/doc/building.md#build_steem_testnetoffon">build steps</a> and enabling the <code class="highlighter-rouge">BUILD_STEEM_TESTNET</code> flag during compilation, you should be able to run the Steem Testnet locally on your workstation and join the development testnet. Docker can also be used to get started quickly. Compilation generates the <code class="highlighter-rouge">steemd</code> executable which is the main daemon for the Steem network. Additional <code class="highlighter-rouge">cli_wallet</code> can also be compiled to test/connect to an instance of <code class="highlighter-rouge">steemd</code> and request some data from the network, but it is not necessary to run a node.</p>
+
+<p>The development testnet requires a certain minimum set of hardware requirements, depending on the type of compile flags that have been enabled. Because it is a mirror of the live network, private keys are the same for accounts up to the point of the snapshot timestamp of the testnet.</p>
+
+<p>Joining/Running the development testnet requires around 10 GB for block log on an SSD and 8 GB RAM. The CPU requirements are the same.</p>
+
+<p>Testnet has the following parameters by default (as of this writing):</p>
+
+<ul>
+  <li>Initial supply (250 billion) - <code class="highlighter-rouge">STEEM_INIT_SUPPLY 250,000,000,000</code></li>
+  <li>Max number of blocks to be produced - <code class="highlighter-rouge">TESTNET_BLOCK_LIMIT 3,000,000</code></li>
+  <li>Address prefix, prefix on public addresses - <code class="highlighter-rouge">STEEM_ADDRESS_PREFIX "TST"</code></li>
+  <li>Chain id name, used for chain id - <code class="highlighter-rouge">STEEM_CHAIN_ID_NAME "testnet"</code></li>
+  <li>Chain id, unique id hash of chain - <code class="highlighter-rouge">STEEM_CHAIN_ID (fc::sha256::hash(STEEM_CHAIN_ID_NAME))</code></li>
+  <li>Public key of genesis account - <code class="highlighter-rouge">STEEM_INIT_PUBLIC_KEY_STR </code></li>
+  <li>Account creation fee - <code class="highlighter-rouge">STEEM_MIN_ACCOUNT_CREATION_FEE 0</code></li>
+</ul>
+
+<p>There are a number of other subtle changes that we don’t need to focus on right now.</p>
+
+<h4 id="live-testnet">Live testnet</h4>
+
+<ul>
+  <li>ChainID: <code class="highlighter-rouge">46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32</code></li>
+  <li>Address prefix: <code class="highlighter-rouge">TST</code></li>
+  <li>API node: <code class="highlighter-rouge">https://testnet.steemitdev.com</code></li>
+</ul>
+
+<p>Anyone can join the Live testnet and start testing their node and applications, become a witness, and provide API (RPC) node for public use.</p>
+
+<h2 id="custom-testnet">Custom Testnet</h2>
+
+<p>In order to create a custom testnet, separate from the development one, we need to modify a few parameters mentioned in the previous section.</p>
+
+<p>In the file named <code class="highlighter-rouge">steem/libraries/protocol/include/steem/protocol/config.hpp</code>, we can see the first few lines dedicated to the Testnet section.  The line starts with <code class="highlighter-rouge">#ifdef IS_TEST_NET</code>.</p>
+
+<p>Let’s say we want to create a custom testnet with an initial supply of <strong>1,000,000 STEEM</strong>. We can change <code class="highlighter-rouge">STEEM_INIT_SUPPLY 1,000,000</code> and by changing <code class="highlighter-rouge">STEEM_CHAIN_ID_NAME "testnet"</code>, <strong>testnet</strong> to <strong>mytestnet</strong> we will automatically get a unique Chain ID for our testnet. The address prefix can be set to something like <strong>MTN</strong> and of course, we need to change the public and private keys to the genesis account. Note that the genesis account will receive the entire pre-mined supply of 1,000,000.  That way, you can execute a setup script to fund any newly created accounts. Such a custom testnet will not have any additional hardware requirements to run.</p>
+
+<p>A minimum of 8GB RAM should be sufficient to run a custom testnet. Currently, Steem only has Linux and Mac compiling guides to build. A testnet can either be hosted locally, on a rented AWS, or dedicated bare metal servers so one can start testing functionality, explore different APIs, and start developing.</p>
+
+<p>One more crucial point to modify is to change the number of witnesses required to accept hardforks for a custom testnet, by default it is set to 17, we can change it to <strong>1</strong> <code class="highlighter-rouge">STEEM_HARDFORK_REQUIRED_WITNESSES 1</code> so that only one node instance would be sufficient and the network will be still functional and fast.</p>
+
+<p>Another thing to note is that you can start a new chain with all previous hardforks already accepted, by changing the file named <code class="highlighter-rouge">steem/blob/master/libraries/chain/database.cpp</code> with the following function:</p>
+
+<p><code class="highlighter-rouge">void database::init_genesis( uint64_t init_supply )</code> inside <code class="highlighter-rouge">try</code> add this line:</p>
+
+<p><code class="highlighter-rouge">set_hardfork( 19, true );</code></p>
+
+<p>This would mean that 19 hardforks have been accepted by witnesses and the new chain will start with all previous forks included.</p>
+
+<p>After these changes, all we have to do is compile the source code and get the <code class="highlighter-rouge">steemd</code> executable. And once we fire up the custom testnet we can start testing and experimenting.</p>
+
+<p>If you want to port some data from Steem main network you can use <a href="https://github.com/steemit/tinman">Tinman</a>, also developed by Steemit, to help with taking snapshots of the main network.</p>
+
+<h4 id="custom-live-testnet">Custom live testnet</h4>
+
+<ul>
+  <li>ChainID: <code class="highlighter-rouge">79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673</code></li>
+  <li>Address prefix: <code class="highlighter-rouge">STX</code></li>
+  <li>API node: <code class="highlighter-rouge">https://testnet.steem.vc</code></li>
+</ul>
+
+<p>The above testnet is powered by community member @almost-digital and doesn’t have a snapshot of the main network.</p>
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
