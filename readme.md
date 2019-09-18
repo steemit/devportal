@@ -52,7 +52,14 @@ $ bundle exec rake -T
 
 ### Production Deploy
 
-When you're ready to deploy this application to production, make sure you have nothing to commit and your working tree is clean, then type:
+Prep for deploy:
+
+1. clean your working tree
+2. pull latest develop
+3. pull latest master
+4. merge develop into master
+
+When you're ready to deploy this application to production, make sure your working tree is clean, then type:
 
 ```bash
 $ bundle exec rake production:deploy
