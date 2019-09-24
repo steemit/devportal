@@ -1436,3 +1436,139 @@
     expected_response_json: '{"valid":false}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.verify_signatures", "params":{"hash": "0000000000000000000000000000000000000000000000000000000000000000", "signatures": [], "required_owner": [], "required_active": [], "required_posting": [], "required_other": []}, "id":1}'
+  - api_method: database_api.find_proposals
+    purpose: |
+      Finds proposals by `proposal.id` (not `proposal.proposal_id`).
+    parameter_json: '{"proposal_ids":[0]}'
+    expected_response_json: |
+      {"proposals":[{
+        "id": 0,
+        "proposal_id": "139925218365120",
+        "creator": "alice",
+        "receiver": "bob",
+        "start_date": "2019-07-01T00:00:00",
+        "end_date": "2019-08-01T23:59:59",
+        "daily_pay": {
+          "amount": "4800000",
+          "precision": 3,
+          "nai": "@@000000013"
+        },
+        "subject": "My Proposal",
+        "permlink": "creator-proposal-permlink",
+        "total_votes": "77351826710",
+        "status": "active"
+      }]}
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"database_api.find_proposals", "params":{"proposal_ids": [0]}, "id":1}'
+  - api_method: database_api.list_proposal_votes
+    purpose: |
+      Returns all proposal votes, starting with the specified voter or `proposal.id`.  Parameters: `start:array`; `limit:int`; `order:string`; `order_direction:string`; `status:string`
+      
+      * `start` depends on `order` (see below)
+        * `voter` - voter of the proposal  (account name string)
+        * `proposal.id` - id the proposal (int)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_voter_proposal` - order by proposal voter
+        * `by_proposal_voter` - order by `proposal.id`
+      * `order_direction` can be one of:
+        * `ascending`
+        * `descending`
+      * `status`
+        * `all`
+        * `inactive`
+        * `active`
+        * `expired`
+        * `votable`
+      
+      | `start` (array) | `limit` (int) | `order` (string) | `order_direction` (string) | `status` (string) | |
+      |-------------------|-|-|-|-|-|
+      | `["alice"]` | 10 | `by_voter_proposal` | `ascending` | `active` | list 10 proposals with active status, ordered by voter, ascending |
+      | `[10]` | 1000 | `by_proposal_voter` | `ascending` | `votable` | list 1000 votes on proposal 10, ordered by `proposal.id`, ascending |
+    parameter_json: '{"start":null,"limit":0,"order":"by_name","order_direction":"ascending","status":"all"}'
+    expected_response_json: |
+      {"proposal_votes":[{
+        "id": 0,
+        "voter": "charlie",
+        "proposal": {
+          "id": 0,
+          "proposal_id": 0,
+          "creator": "alice",
+          "receiver": "bob",
+          "start_date": "2019-07-01T00:00:00",
+          "end_date": "2019-08-01T23:59:59",
+          "daily_pay": {
+            "amount": "4800000",
+            "precision": 3,
+            "nai": "@@000000013"
+          },
+          "subject": "My Proposal",
+          "permlink": "creator-proposal-permlink",
+          "total_votes": "77351826710",
+          "status": "active"
+        }
+      }]}
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposal_votes", "params":{"start": [""], "limit": 10, "order": "by_voter_proposal", "order_direction": "ascending", "status": "active"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposal_votes", "params":{"start": [0], "limit": 10, "order": "by_proposal_voter", "order_direction": "ascending", "status": "active"}, "id":1}'
+  - api_method: database_api.list_proposals
+    purpose: |
+      Returns all proposals, starting with the specified creator or start date.  Parameters: `start:array`; `limit:int`; `order:string`; `order_direction:string`; `status:string`
+      
+      * `start` depends on `order` (see below)
+        * `creator` - creator of the proposal  (account name string)
+        * `start_date` - start date of the proposal (date string)
+        * `end_date` - end date of the proposal (date string)
+        * `total_votes` - total votes of the proposal (int)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_creator` - order by proposal creator
+        * `by_start_date` - order by proposal start date
+        * `by_end_date` - order by proposal end date
+        * `by_total_votes` - order by proposal total votes
+      * `order_direction` can be one of:
+        * `ascending`
+        * `descending`
+      * `status`
+        * `all`
+        * `inactive`
+        * `active`
+        * `expired`
+        * `votable`
+      
+      | `start` (array) | `limit` (int) | `order` (string) | `order_direction` (string) | `status` (string) | |
+      |-------------------|-|-|-|-|-|
+      | `[""]` | 10 | `by_creator` | `ascending` | `active` | list 10 proposals with active status, ordered by creator, ascending |
+      | `["2019-08-07T16:54:03"]` | 1000 | `by_start_date` | `ascending` | `inactive` | list 1000 proposals with inactive status, ordered by start date, ascending, since 2019-08-07T16:54:03 |
+      | `["a"]` | 1 | `by_creator` | `ascending` | `expired` | list 1 proposal with expired status, ordered by creator, ascending, by accounts starting with "a" |
+      | `["alice"]` | 10 | `by_creator` | `ascending` | `all` | list 10 proposals with any status, ordered by creator, ascending, by alice |
+      | `[""]` | 1000 | `by_creator` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending |
+      | `[10]` | 1000 | `by_total_votes` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending, having at least 10 votes |
+    parameter_json: '{"start":null,"limit":0,"order":"by_name","order_direction":"ascending","status":"all"}'
+    expected_response_json: |
+      {"proposals":[
+        {
+          "id": 0,
+          "proposal_id": "1103806595072",
+          "creator": "alice",
+          "receiver": "bob",
+          "start_date": "2019-07-01T00:00:00",
+          "end_date": "2019-08-01T23:59:59",
+          "daily_pay": {
+            "amount": "4800000",
+            "precision": 3,
+            "nai": "@@000000013"
+          },
+          "subject": "My Proposal",
+          "permlink": "creator-proposal-permlink",
+          "total_votes": "77351826710",
+          "status": "active"
+        }
+      ]}
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": [""], "limit": 10, "order": "by_creator", "order_direction": "ascending", "status": "active"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": ["2019-08-07T16:54:03"], "limit": 1000, "order": "by_start_date", "order_direction": "ascending", "status": "inactive"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": ["a"], "limit": 1, "order": "by_creator", "order_direction": "ascending", "status": "expired"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": ["alice"], "limit": 10, "order": "by_creator", "order_direction": "ascending", "status": "all"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": [""], "limit": 1000, "order": "by_creator", "order_direction": "ascending", "status": "votable"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": [10], "limit": 1000, "order": "by_total_votes", "order_direction": "ascending", "status": "votable"}, "id":1}'
