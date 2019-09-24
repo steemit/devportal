@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>PY: Search Accounts | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="PY: Search Accounts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to pull a list of the active user accounts or trending tags from the blockchain using Python." />
+<meta property="og:description" content="How to pull a list of the active user accounts or trending tags from the blockchain using Python." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-python/search_accounts" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-python/search_accounts" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-24T13:19:26-05:00" />
+<script type="application/ld+json">
+{"description":"How to pull a list of the active user accounts or trending tags from the blockchain using Python.","headline":"PY: Search Accounts","dateModified":"2019-09-24T13:19:26-05:00","datePublished":"2019-09-24T13:19:26-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-python/search_accounts"},"url":"https://developers.steem.io/tutorials-python/search_accounts","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-python-search-accounts" class="row tutorials-python-search-accounts">
+	<h3>
+		<a id="tutorials-python-search-accounts">
+			PY: Search Accounts
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>How to pull a list of the active user accounts or trending tags from the blockchain using Python.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/15_search_accounts">Search Accounts</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-py">PY tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial will explain and show you how to access the <strong>Steem</strong> blockchain using the <a href="https://github.com/steemit/steem-python">steem-python</a> library to fetch a list of active authors or trending tags, starting the search from a specified value, and displaying the results on the console.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>We are using the <code class="highlighter-rouge">lookup_accounts</code> and <code class="highlighter-rouge">get_trending_tags</code> functions that are built-in in the official library <code class="highlighter-rouge">steem-python</code>. These functions allow us to query the Steem blockchain in order to retrieve either a list of active authors or a list of trending tags. The option is available to either get a complete list starting from the first value on the blockchain or starting the list from any other closest match string value as provided by the user. Both of these functions have only two parameters:</p>
+
+<ol>
+  <li><em>account/aftertag</em> - The string value from where to start the search. If this value is left empty the search will start from the first value available</li>
+  <li><em>limit</em> - The maximum number of names/tags that the query retrieves</li>
+</ol>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#setup"><strong>App setup</strong></a> - Library import and Steem class initialisation</li>
+  <li><a href="#list"><strong>List selection</strong></a> - Selection of the type of list</li>
+  <li><a href="#accounts"><strong>Get and display account names</strong></a> - Get a list of account names from the blockchain</li>
+  <li><a href="#tags"><strong>Get and display trending tags</strong></a> - Get a list of trending tags from the blockchain</li>
+</ol>
+
+<h4 id="1-app-setup">1. App setup<a name="setup"></a></h4>
+
+<p>In this tutorial we use 2 packages, <code class="highlighter-rouge">pick</code> - helps us to select the query type interactively. <code class="highlighter-rouge">steem</code> - steem-python library for interaction with the Blockchain.</p>
+
+<p>First we import both libraries and initialize Steem class</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">steem</span> <span class="kn">import</span> <span class="n">Steem</span>
+<span class="kn">from</span> <span class="nn">pick</span> <span class="kn">import</span> <span class="n">pick</span>
+
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="2-list-selection">2. List selection<a name="list"></a></h4>
+
+<p>The user is given the option of which list to create, <code class="highlighter-rouge">active accounts</code> or <code class="highlighter-rouge">trending tags</code>. We create this option list and setup <code class="highlighter-rouge">pick</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#choose list type
+</span><span class="n">title</span> <span class="o">=</span> <span class="s">'Please select type of list:'</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Active Account names'</span><span class="p">,</span> <span class="s">'Trending tags'</span><span class="p">]</span>
+
+<span class="c1">#get index and selected list name
+</span><span class="n">option</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pick</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This will show the two options as a list to select in terminal/command prompt. From there we can determine which function to execute.</p>
+
+<h4 id="3-get-and-display-account-names">3. Get and display account names<a name="accounts"></a></h4>
+
+<p>Once the user selects the required list, a simple <code class="highlighter-rouge">if</code> statement is used to execute the relevant function. Based on the selection we then run the query. The parameters for the <code class="highlighter-rouge">lookup_accounts</code> function is captured in the <code class="highlighter-rouge">if</code> statement via the terminal/console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">option</span><span class="o">==</span><span class="s">'Active Account names'</span> <span class="p">:</span>
+	<span class="c1">#capture starting account
+</span>	<span class="n">account</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter account name to start search from: "</span><span class="p">)</span>
+	<span class="c1">#input list limit
+</span>	<span class="n">limit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter max number of accounts to display: "</span><span class="p">)</span>
+	<span class="n">lists</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">lookup_accounts</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span> <span class="o">+</span> <span class="s">"List of "</span> <span class="o">+</span> <span class="n">option</span> <span class="o">+</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">lists</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Once the list is generated it is displayed on the UI with line separators along with a heading of what list it is.</p>
+
+<h4 id="4-get-and-display-trending-tags">4. Get and display trending tags<a name="tags"></a></h4>
+
+<p>The query for a list of trending tags is executed in the second part of the <code class="highlighter-rouge">if</code> statement. Again, the parameters for the query is captured via the terminal/console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="p">:</span>
+	<span class="c1">#capture starting tag
+</span>	<span class="n">aftertag</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter tag name to start search from: "</span><span class="p">)</span>
+	<span class="c1">#capture list limit
+</span>	<span class="n">limit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter max number of tags to display: "</span><span class="p">)</span>
+	<span class="n">lists</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get_trending_tags</span><span class="p">(</span><span class="n">aftertag</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span> <span class="o">+</span> <span class="s">"List of "</span> <span class="o">+</span> <span class="n">option</span> <span class="o">+</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">lists</span> <span class="p">:</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>The query returns an array of objects. We use the <code class="highlighter-rouge">for</code> loop to build a list of only the tag <code class="highlighter-rouge">names</code> from that array and then display the list on the UI with line separators. This creates an easy to read list of tags.</p>
+
+<p>That’s it!.</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li><a href="getting_started">review dev requirements</a></li>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/15_search_accounts</code></li>
+  <li><code class="highlighter-rouge">pip install -r requirements.txt</code></li>
+  <li><code class="highlighter-rouge">python index.py</code></li>
+  <li>After a few moments, you should see output in terminal/command prompt screen.</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
