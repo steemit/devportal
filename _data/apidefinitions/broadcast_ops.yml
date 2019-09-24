@@ -383,7 +383,14 @@
         - '["account_witness_vote",{"account":"alice","witness":"bob","approve":true}]'
     - name: account_witness_proxy
       virtual: false
-      purpose:
+      purpose: |
+        Allows one account to delegate witness votes to another account.
+        
+        If a proxy is specified then all existing witness votes are removed.
+      
+        Note, as of HF21, setting a witness proxy also applies to Steem.DAO
+        proposal approval.  If you trust someone to cast your witness votes, it
+        is assumed that you would also trust them to cast your proposal votes.
       roles:
         - active
           owner
@@ -1002,6 +1009,96 @@
           extensions
       json_examples:
         - '["account_create_with_delegation",{"fee":{"amount":"3000","precision":3,"nai":"@@000000021"},"delegation":{"amount":"0","precision":6,"nai":"@@000000037"},"creator":"steemit","new_account_name":"alice","owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM5Tki3ecCdCCHCjhhwvQvXuKryL2s34Ma6CXsRzntSUTYVYxCQ9",1]]},"active":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM6LUoAA8gCL9tHRz7v9xcwR4ZWD3KDRHP5t1U7UAZHdfanLxyBE",1]]},"posting":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8anmpHdfVE4AmwsDpcSXpRsydHysEbv6vGJkRQy1d1CC83zeTA",1]]},"memo_key":"STM67RYDyEkP1Ja1jFehJ45BFGA9oHHUnRnYbxKJEtMhVQiHW3S3k","json_metadata":"{}","extensions":[]}]'
+    - name: create_proposal
+      since: HF21
+      deprecated: false
+      virtual: false
+      purpose: |
+        Creates a new proposal.
+      roles:
+        - posting
+        - active
+          owner
+      params:
+        - creator
+          receiver
+          start_date
+          end_date
+          daily_pay
+          subject
+          permlink
+      json_examples:
+        - '["create_proposal",{"creator":"alice","receiver":"bob","start_date":"2019-08-26T11:22:39","end_date":"2019-08-26T11:22:39","daily_pay":{"amount":"3000","precision":3,"nai":"@@000000013"},"subject":"subject","permlink":"creator-proposal-permlink"}]'
+    - name: remove_proposal
+      since: HF21
+      deprecated: false
+      virtual: false
+      purpose: |
+        Removes proposal using `proposal.id` of a given proposal.
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - creator
+          proposal_ids
+      json_examples:
+        - '["remove_proposal",{"creator":"alice","proposal_ids":[0]}]'
+    - name: update_proposal_votes
+      since: HF21
+      deprecated: false
+      virtual: false
+      purpose: |
+        Update proposal votes by `proposal.id`.
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - voter
+          proposal_ids
+          approve
+      json_examples:
+        - '["update_proposal_votes",{"voter":"alice","proposal_ids":[0],"approve":true}]'
+    - name: clear_null_account_balance
+      since: HF20
+      virtual: true
+      purpose: |
+         For per-block processing that clears null account balances. See: [#2627](https://github.com/steemit/steem/issues/2627)
+      roles:
+        - active
+          owner
+      params:
+        - total_cleared
+    - name: proposal_pay
+      since: HF21
+      virtual: true
+      purpose: |
+        Dedicated operation to be generated during proposal payment phase to provide info in Account History related to funds transfer.
+      roles:
+        - active
+          owner
+      params:
+        - receiver
+          payment
+          trx_id
+          op_in_trx
+      json_examples:
+        - '["proposal_pay",{"receiver":"steem.dao","payment":"1.637 SBD","trx_id":"0000000000000000000000000000000000000000","op_in_trx":0}]'
+    - name: sps_fund
+      since: HF21
+      virtual: true
+      purpose: |
+         Created once per maintenance interval to document how much SBD was
+         added to the threasury from inflation in that maintenance interval
+         (i.e., to track the funding of the SPS).
+      roles:
+        - active
+          owner
+      params:
+        - additional_funds
+      json_examples:
+        - '["sps_fund",{"additional_funds":"71.460 SBD"}]'
     - name: fill_convert_request
       virtual: true
       purpose: |
