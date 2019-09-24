@@ -23,6 +23,7 @@ layout: full
 * [`network_broadcast_api`](#network_broadcast_api)
 * [`rc_api`](#rc_api)
 * [`reputation_api`](#reputation_api)
+* [`rewards_api`](#rewards_api)
 * [`tags_api`](#tags_api)
 * [`transaction_status_api`](#transaction_status_api)
 * [`witness_api`](#witness_api)
@@ -48,7 +49,7 @@ plugin = account_by_key_api
 * **Requires:** `account_history` or `account_history_rocksdb`
 * **Exposed Methods:** [`account_history_api.*`]({{ '/apidefinitions/#apidefinitions-account-history-api' | relative_url}})
 
-Note, while the `account_history_rocksdb` plugin is a more efficient, the current implementation does not provide support for [`condenser_api.get_transaction`]({{ '/apidefinitions/#condenser_api.get_transaction' | relative_url}}).
+Note, the `account_history_rocksdb` plugin does not provide support for [`condenser_api.get_transaction`]({{ '/apidefinitions/#condenser_api.get_transaction' | relative_url}}).
 
 Example in `chain.ini`:
 
@@ -205,6 +206,22 @@ Example in `chain.ini`:
 
 ```ini
 plugin = reputation_api
+```
+
+---
+
+### `rewards_api`
+
+* **Purpose:** Used to simulate curve payouts.
+* **Requires:** *No additional*
+* **Exposed Methods:** [`rewards_api.*`]({{ '/apidefinitions/#apidefinitions-rewards-api' | relative_url}})
+
+Note: **The `rewards_api` plugin is for testing purposes only, do not run in production.**
+
+Example in `chain.ini`:
+
+```ini
+plugin = rewards_api
 ```
 
 ---
