@@ -10,7 +10,7 @@
     - term: Resource Credits
       def: is the limit of data each account can utilize resources on the blockchain (also known as RC)
     - term: VESTS
-      def: Vests is underlying token that STEEM is derived from, and are share in Steem Power
+      def: The fundamental unit of accounting that STEEM Power is derived from
     - term: STEEM (currency)
       def: Currency of the blockchain, liquid version of Steem Power
     - term: SBD
@@ -22,7 +22,7 @@
     - term: Block
       def: Every three seconds, the Steem blockchain produces a new block. Each time a new block is produced, the distributed network is updated with all of the transactions that occurred within that block.
     - term: Block Header
-      def: Information about block, root and witness who signed, etc.
+      def: Information about block, root, and witness who signed, etc.
     - term: Price feed 
       def: Feed that is maintained by witnesses to ensure SBD/STEEM price stability
     - term: Account 
@@ -30,9 +30,9 @@
     - term: Authority
       def: Each Account has multiple authority and keys to manager different permissions on the platform
     - term: Owner
-      def: Owner authority/permission of account
+      def: Owner authority/permission of a given account
     - term: Key
-      def: Keys are used to authenticate transactions. Each key contains a public/private pair. When a transaction is submitted to the Steem blockchain, it is signed by the account owner using their private key. The blockchain is able to determine that the transaction is valid by validating the signiture against the public key from the pair.
+      def: Keys are used to authenticate transactions. Each key contains a public/private pair. When a transaction is submitted to the Steem blockchain, it is signed by the account owner using their private key. The blockchain is able to determine that the transaction is valid by validating the signature against the public key from the pair.
     - term: Public Key
       def: Public key of account's certain authority
     - term: Private Key
@@ -50,9 +50,9 @@
     - term: Comment
       def: A comment is text content that is stored on the blockchain. Comments can be linked to other comments as "replies" through parent/child relationships.
     - term: Vote
-      def: A vote is an expression of like (upvote) or dislike (downvote) for a post/comment. The Steem blockchain uses the votes that a post/comment has received to determine it's share of the rewards.
+      def: A vote is an expression of like (upvote) or dislike (downvote) for a post/comment. The Steem blockchain uses the votes that a post/comment has received to determine its share of the rewards.
     - term: Reputation
-      def: Account's reputation on platform
+      def: Account's reputation on the platform
     - term: Markdown language
       def: Easy to read and write, plain text format language commonly used to create Steemit articles
     - term: Permlink
@@ -60,17 +60,47 @@
     - term: Mainnet
       def: The 'production' Steem blockchain network wherein real STEEM is held and actual transactions take place.
     - term: Delegation
-      def: The assignment of a portion your Steem Power for use to another account (cannot be spent, can be reclaimed)
+      def: The assignment of STEEM Power for content influence by another account (cannot be spent, can be revoked by the delegator in 5 days)
     - term: PowerUp
       def: Convert STEEM to Steem Power and vice-versa with PowerDown
     - term: Reward Pool
       def: Every day, a fixed amount of STEEM tokens are allocated to the network reward fund, commonly called the "reward pool." These get distributed to authors and curators for posting and voting on content.
+    - term: AppBase
+      def: Plug-in architecture that provides a robust foundation for scaling.  It enables many components of the Steem blockchain to become modular by creating additional non-consensus blockchains as dedicated plugins.
+    - term: RocksDB
+      def: A fast-on-disk data store with an advanced caching layer, which minimizes latency when reading/writing to and from disk.
+    - term: MIRA
+      def: Multi Index Rocksdb Adapter that updates the database backend of Steem from memory mapped files to a disk log-structured merge-tree implemented via the RocksDB library.
+    - term: Manabar
+      def: |
+        <p>
+          Tracked voting power that is regenerated from 0 to 100% of max
+          linearly over 5 days.  It is a function of STEEM Power, delegations,
+          and active power down that tracks unspent reward fund shares.
+        </p>
+        
+        <p>
+          Each user also has a manabar specifically for downvotes, which is 25%
+          of the upvote manabar.  Downvotes will consume this mana first before
+          consuming regular mana.  When voting, 1/50<sup>th</sup> of the
+          remaining mana is used for a 100% vote.  The same math is used for
+          downvote mana but multiplied by 4 because the downvote manabar is 25%
+          the size of the normal manabar.  The maximum of these values is used.
+          When both manabars are at 100%, the values are the same.  When
+          downvote mana runs out, normal mana is then used.
+        </p>
+    - term: Reverse Auction
+      def: The window of 5 minutes where curation rewards are sent back to reward pool.
+    - term: SPS
+      def: Also known as Steem Proposal System.  An on-chain decentralized autonomous organization (DAO) that allows users to submit proposals for funding and use stake weighted voting to select which proposals should be funded.
       
 - name: Governance
   id: glossary-governance
   items:
     - term: DPOS
       def: Delegated Proof of Stake
+    - term: Proxy
+      def: The assignment of STEEM Power for DPOS governance and SPS approval by another account (cannot be spent, can be revoked instantly)
     - term: Node
       def: A node is an instance of the Steem blockchain running on a server.
     - term: Witness
@@ -81,18 +111,28 @@
       def: Process to release protocol/blockchain software improvements
     - term: Witness Vote
       def: Voting/electing witnesses with account's stake
+    - term: DAO
+      def: 'Decentralized Autonomous Organization (see: SPS).'
+    - term: SBD Haircut
+      def: 'Rules to stop printing SBD when the supply is too high.  Note: SBD printing for the SPS (@steem.dao) does not follow these rules and will continue to print SBD regardless of the supply.'
 
 - name: Transactions
   id: glossary-transactions
   items:
+    - term: P2P
+      def: The peer-to-peer network is how transactions are broadcasted to mempool until they are included in a block.
+    - term: Mempool
+      def: Where a transaction that is being conducted over the p2p network is transmitted and held until a witness picks it up and includes it in the next block.
     - term: Pending Transaction
       def: Transaction that is pending and to be included to the blockchain
     - term: Transaction Hex
       def: Hash of the transaction
     - term: Signatures
-      def: Transaction signature signed by account with private key
+      def: Transaction signature signed by an account with a private key
+    - term: Canonical Signatures
+      def: Reduce entropy Signatures that follow the BIP-0062 specification to prevent transaction malleability.  All Signatures on Steem are Canonical Signatures, since 0.20.2.
     - term: Broadcast Transaction
-      def: Event where signed transaction is broadcasted to the network, so that witnesses could validate and include in block
+      def: Event where a signed transaction is broadcasted to the p2p network so that witnesses could validate and include in a block
     - term: Virtual operation
       def: Operations that are derived from blockchain activity, but aren't actually stored as operations themselves (ex. curation and author rewards). They happen based on consensus from the blockchain based on other normal operations
 
@@ -100,13 +140,13 @@
   id: glossary-api
   items:
     - term: Trending
-      def: Posts/Discussions that are highly valued by community with bigger time interval update
+      def: Posts/Discussions that are highly valued by the community with bigger time interval update
     - term: Hot
-      def: Posts/Disccussions that are highly valued with shorter time interval update
+      def: Posts/Discussions that are highly valued with shorter time interval update
     - term: Feed
-      def: Posts/Disccussions from followers of particular account
+      def: Posts/Discussions from followers of a particular account
     - term: Active
-      def: Posts/Disscussions that are still actively being engaged
+      def: Posts/Discussions that are still actively being engaged
     - term: New
       def: Newly created posts
     - term: Cashout
@@ -126,7 +166,7 @@
     - term: State
       def: State of blockchain for path - accounts/tags/filters/posts
     - term: Dynamic Global Properties
-      def: Current blockchain global properties which is being in each block
+      def: Current blockchain global properties in play for each block
     - term: Median Price
       def: Median Price feed provided by all witnesses
     - term: Curator
@@ -145,3 +185,5 @@
       def: Internal market order book to exchange SBD&lt;-&gt;STEEM
     - term: SMT
       def: Smart Media Tokens
+    - term: Limit Order
+      def: A direction given to the DEX to buy or sell an asset at a specified price or better, that expire within 30 days of creation.
