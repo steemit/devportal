@@ -80,7 +80,14 @@ namespace :production do
   end
   
   task :build do
-    sh 'bundle exec jekyll build --destination docs'
+    baseurl = ENV.fetch('BASEURL', '/')
+    cmd = 'bundle exec jekyll build --destination docs'
+    
+    if !!baseurl && baseurl != '/'
+      cmd += " --baseurl #{baseurl}"
+    end
+    
+    sh cmd
   end
   
   task :drop_previous_build do
@@ -91,9 +98,11 @@ namespace :production do
   
   desc "Deploy current master to GH Pages"
   task deploy: [:prevent_dirty_builds, :drop_previous_build, :build] do
+    remote = ENV.fetch('REMOTE', 'origin')
+    
     sh 'git add -A'
     sh 'git commit -m "jekyll base sources"'
-    sh 'git push origin master'
+    sh "git push #{remote} master"
     
     exit(0)
   end
