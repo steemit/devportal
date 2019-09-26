@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>PY: Delegate Power | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="PY: Delegate Power" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to delegate or remove delegation of STEEM POWER to another user using Python." />
+<meta property="og:description" content="How to delegate or remove delegation of STEEM POWER to another user using Python." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-python/delegate_power" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-python/delegate_power" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-26T14:04:30-05:00" />
+<script type="application/ld+json">
+{"description":"How to delegate or remove delegation of STEEM POWER to another user using Python.","headline":"PY: Delegate Power","dateModified":"2019-09-26T14:04:30-05:00","datePublished":"2019-09-26T14:04:30-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-python/delegate_power"},"url":"https://developers.steem.io/tutorials-python/delegate_power","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-python-delegate-power" class="row tutorials-python-delegate-power">
+	<h3>
+		<a id="tutorials-python-delegate-power">
+			PY: Delegate Power
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>How to delegate or remove delegation of STEEM POWER to another user using Python.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/27_delegate_power">Delegate Power</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-py">PY tutorials repository</a>.</span>
+<br /></p>
+
+<p>In this tutorial we show you how to delegate a portion of an accounts available VESTS (STEEM POWER) to another user on the <strong>Steem</strong> blockchain using the <code class="highlighter-rouge">commit</code> class found within the <a href="https://github.com/steemit/steem-python">steem-python</a> library.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>The Steem python library has a built-in function to transmit transactions to the blockchain. We are using the <code class="highlighter-rouge">delegate_vesting_shares</code> method found within the <code class="highlighter-rouge">commit</code> class in the library. When you delegate power you make a portion of your VESTS available to another user. This can empower an application, author, or curator to make higher votes. Before we do the delegation, we use the <code class="highlighter-rouge">get_account</code> function to check the current VESTS balance of the account to see what is available. This is not strictly necessary but adds to the useability of the process. It should be noted that when a delegation is cancelled the VESTS will only be available again after 7 days. The <code class="highlighter-rouge">delegate_vesting_shares</code> method has 3 parameters:</p>
+
+<ol>
+  <li><em>to_account</em> - The account we are delegating shares to (delegatee)</li>
+  <li><em>vesting_shares</em> - The amount of VESTS to delegate. This is required to be a string value</li>
+  <li><em>account</em> - The source user account for the delegation (delegator)</li>
+</ol>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#setup"><strong>App setup</strong></a> - Library install and import. Connection to testnet</li>
+  <li><a href="#userinfo"><strong>User information and steem node</strong></a> - Input user information and connection to Steem node</li>
+  <li><a href="#balance"><strong>Check balance</strong></a> - Check current VESTS balance of user account</li>
+  <li><a href="#delegate"><strong>Delegation amount and commit</strong></a> - Input delegation amount and commit to blockchain</li>
+</ol>
+
+<h4 id="1-app-setup-">1. App setup <a name="setup"></a></h4>
+
+<p>In this tutorial we use 3 packages:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">steem</code> - steem-python library and interaction with Blockchain</li>
+  <li><code class="highlighter-rouge">pick</code> - helps select the query type interactively</li>
+  <li><code class="highlighter-rouge">pprint</code> - print results in better format</li>
+</ul>
+
+<p>We import the libraries and connect to the <code class="highlighter-rouge">testnet</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">steembase</span>
+<span class="kn">import</span> <span class="nn">steem</span>
+<span class="kn">from</span> <span class="nn">pick</span> <span class="kn">import</span> <span class="n">pick</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">from</span> <span class="nn">steem.amount</span> <span class="kn">import</span> <span class="n">Amount</span>
+
+<span class="n">steembase</span><span class="o">.</span><span class="n">chains</span><span class="o">.</span><span class="n">known_chains</span><span class="p">[</span><span class="s">'STEEM'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'chain_id'</span><span class="p">:</span> <span class="s">'79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'</span><span class="p">,</span>
+    <span class="s">'prefix'</span><span class="p">:</span> <span class="s">'STX'</span><span class="p">,</span> <span class="s">'steem_symbol'</span><span class="p">:</span> <span class="s">'STEEM'</span><span class="p">,</span> <span class="s">'sbd_symbol'</span><span class="p">:</span> <span class="s">'SBD'</span><span class="p">,</span> <span class="s">'vests_symbol'</span><span class="p">:</span> <span class="s">'VESTS'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Because this tutorial alters the blockchain we connect to a testnet so we don’t create spam on the production server.</p>
+
+<h4 id="2-user-information-and-steem-node-">2. User information and steem node <a name="userinfo"></a></h4>
+
+<p>We require the <code class="highlighter-rouge">private active key</code> of the user in order for the transaction to be committed to the blockchain. This is why we are using a testnet. The values are supplied via the terminal/console before we initialise the steem class. We also check if the user name provided is active on the chain. There are some demo accounts available but we encourage you to create your own accounts on this testnet and create balances you can delegate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#capture user information
+</span><span class="n">username</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Enter username: '</span><span class="p">)</span> <span class="c1">#demo account: cdemo
+</span><span class="n">wif</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Enter private ACTIVE key: '</span><span class="p">)</span> <span class="c1">#demo account: 5KaNM84WWSqzwKzY82fXPaUW43idbLnPqf5SfjGxLfw6eV2kAP3
+</span>
+<span class="c1">#connect node and private active key
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">steem</span><span class="o">.</span><span class="n">Steem</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="s">'https://testnet.steem.vc'</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="n">wif</span><span class="p">])</span>
+
+<span class="c1">#check valid user
+</span><span class="n">userinfo</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_account</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">userinfo</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Oops. Looks like user '</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">' doesn</span><span class="se">\'</span><span class="s">t exist on this chain!'</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="3-check-balance-">3. Check balance <a name="balance"></a></h4>
+
+<p>In order to give the user enough information to make the delegation we check the current VESTS balance of the account using the <code class="highlighter-rouge">get_account</code> function. We also display a list of currently active delegations should the user choose to remove a delegation. You can refer to tutorial <code class="highlighter-rouge">29_get_delegations_by_user</code> to see how this is done.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#display active delegations (refer to tutorial #29_get_delegations_by_user)
+</span><span class="n">delegations</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_vesting_delegations</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delegations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'No active delegations'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">delegations</span><span class="p">)</span>
+
+<span class="c1">#available VESTS
+</span><span class="n">avail_vests</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amount</span><span class="p">(</span><span class="n">userinfo</span><span class="p">[</span><span class="s">'vesting_shares'</span><span class="p">])</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> 
+    <span class="p">((</span><span class="n">userinfo</span><span class="p">[</span><span class="s">'to_withdraw'</span><span class="p">]</span><span class="o">-</span><span class="n">userinfo</span><span class="p">[</span><span class="s">'withdrawn'</span><span class="p">])</span><span class="o">/</span><span class="mi">1000000</span><span class="p">)</span><span class="o">-</span>
+    <span class="n">Amount</span><span class="p">(</span><span class="n">userinfo</span><span class="p">[</span><span class="s">'delegated_vesting_shares'</span><span class="p">])</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span> <span class="o">+</span> <span class="s">'Available VESTS : '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avail_vests</span><span class="p">))</span>
+
+<span class="nb">input</span><span class="p">(</span><span class="s">'Press enter to continue'</span> <span class="o">+</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The result of the query is displayed in the console/terminal.</p>
+
+<h4 id="4-delegation-amount-and-commit-">4. Delegation amount and commit <a name="delegate"></a></h4>
+
+<p>Both the <code class="highlighter-rouge">vesting_shares</code> and the <code class="highlighter-rouge">to_account</code> parameters are assigned via input from the terminal/console. The user is given the option to delegate power to or remove a currently active delegation from another user. We also check the <code class="highlighter-rouge">to_account</code> to make sure it’s a valid account name.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#choice of action
+</span><span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="s">'Please choose action'</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s">'DELEGATE POWER'</span><span class="p">,</span> <span class="s">'UN-DELEGATE POWER'</span><span class="p">,</span> <span class="s">'CANCEL'</span><span class="p">]</span>
+<span class="n">option</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pick</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">option</span> <span class="o">==</span> <span class="s">'CANCEL'</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'operation cancelled'</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">()</span>
+
+<span class="c1">#get account to authorise and check if valid
+</span><span class="n">delegatee</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Please enter the account name to ADD / REMOVE delegation: '</span><span class="p">)</span>
+<span class="n">delegatee_userinfo</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_account</span><span class="p">(</span><span class="n">delegatee</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">delegatee_userinfo</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Oops. Looks like user '</span> <span class="o">+</span> <span class="n">delegatee</span> <span class="o">+</span> <span class="s">' doesn</span><span class="se">\'</span><span class="s">t exist on this chain!'</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Any amount of VESTS delegated to a user will overwrite the amount of VESTS currently delegated to that user. This means that to cancel a delegation we transmit to the blockchain a <code class="highlighter-rouge">vesting_shares</code> value of zero. The inputs and function execution is based on the users choice. If you are using one of Steemit’s demo accounts, please leave some VESTS for others to delegate!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">option</span> <span class="o">==</span> <span class="s">'DELEGATE POWER'</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">vesting_value</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Please enter the amount of VESTS to delegate: '</span><span class="p">)</span>
+    <span class="n">vesting_shares</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">vesting_value</span><span class="p">)</span> <span class="o">+</span> <span class="s">' VESTS'</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">delegate_vesting_shares</span><span class="p">(</span><span class="n">to_account</span><span class="o">=</span><span class="n">delegatee</span><span class="p">,</span> <span class="n">vesting_shares</span><span class="o">=</span><span class="n">vesting_shares</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vesting_shares</span><span class="p">)</span> <span class="o">+</span> <span class="s">' have been successfully been delegated to '</span> <span class="o">+</span> <span class="n">delegatee</span><span class="p">)</span>
+<span class="k">else</span> <span class="p">:</span>
+    <span class="n">vesting_shares</span> <span class="o">=</span> <span class="s">'0 VESTS'</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">delegate_vesting_shares</span><span class="p">(</span><span class="n">to_account</span><span class="o">=</span><span class="n">delegatee</span><span class="p">,</span> <span class="n">vesting_shares</span><span class="o">=</span><span class="n">vesting_shares</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Delegated VESTS have been successfully removed from '</span> <span class="o">+</span> <span class="n">delegatee</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A confirmation of the transaction is displayed on the UI.</p>
+
+<p>We encourage users to play around with different values and data types to fully understand how this process works. You can also check the balances and transaction history on the <a href="http://condenser.steem.vc/">testnet portal</a>.</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li><a href="getting_started">review dev requirements</a></li>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/27_delegate_power</code></li>
+  <li><code class="highlighter-rouge">pip install -r requirements.txt</code></li>
+  <li><code class="highlighter-rouge">python index.py</code></li>
+  <li>After a few moments, you should see a prompt for input in terminal screen.</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

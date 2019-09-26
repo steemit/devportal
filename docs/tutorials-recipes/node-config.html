@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Steem Node Config | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Steem Node Config" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="All config.ini options available to steemd" />
+<meta property="og:description" content="All config.ini options available to steemd" />
+<link rel="canonical" href="https://developers.steem.io/tutorials-recipes/node-config" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-recipes/node-config" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-26T14:04:30-05:00" />
+<script type="application/ld+json">
+{"description":"All config.ini options available to steemd","headline":"Steem Node Config","dateModified":"2019-09-26T14:04:30-05:00","datePublished":"2019-09-26T14:04:30-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-recipes/node-config"},"url":"https://developers.steem.io/tutorials-recipes/node-config","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-recipes-node-config" class="row tutorials-recipes-node-config">
+	<h3>
+		<a id="tutorials-recipes-node-config">
+			Steem Node Config
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>All <code class="highlighter-rouge">config.ini</code> options available to <code class="highlighter-rouge">steemd</code></p>
+</span>
+	
+
+	<p>When running <code class="highlighter-rouge">steemd</code> for the first time, once the startup banner appears, press <code class="highlighter-rouge">Ctrl+C</code> to exit.  Running <code class="highlighter-rouge">steemd</code> like this will generate a data directory and a pristine copy of <code class="highlighter-rouge">config.ini</code>.</p>
+
+<p>Also refer to:</p>
+
+<ul>
+  <li><a href="https://github.com/steemit/steem/blob/master/doc/example_config.ini">example_config.ini</a></li>
+  <li><a href="https://github.com/steemit/steem/blob/master/contrib/fullnode.config.ini">fullnode.config.ini</a></li>
+  <li><a href="https://github.com/steemit/steem/blob/master/contrib/config-for-ahnode.ini">config-for-ahnode.ini</a></li>
+  <li><a href="https://github.com/steemit/steem/blob/master/contrib/config-for-docker.ini">config-for-docker.ini</a></li>
+  <li><a href="https://github.com/steemit/steem/blob/master/contrib/config-for-broadcaster.ini">config-for-broadcaster.ini</a></li>
+  <li><a href="https://github.com/steemit/steem/blob/master/contrib/fullnode.opswhitelist.config.ini">fullnode.opswhitelist.config.ini</a></li>
+</ul>
+
+<h3 id="sections">Sections</h3>
+
+<ul>
+  <li><a href="#state-format"><code class="highlighter-rouge">state-format</code></a></li>
+  <li><a href="#from-state"><code class="highlighter-rouge">from-state</code></a></li>
+  <li><a href="#to-state"><code class="highlighter-rouge">to-state</code></a></li>
+  <li><a href="#log-appender"><code class="highlighter-rouge">log-appender</code></a></li>
+  <li><a href="#log-console-appender"><code class="highlighter-rouge">log-console-appender</code></a></li>
+  <li><a href="#log-file-appender"><code class="highlighter-rouge">log-file-appender</code></a></li>
+  <li><a href="#log-logger"><code class="highlighter-rouge">log-logger</code></a></li>
+  <li><a href="#backtrace"><code class="highlighter-rouge">backtrace</code></a></li>
+  <li><a href="#plugin"><code class="highlighter-rouge">plugin</code></a></li>
+  <li><a href="#account-history-track-account-range"><code class="highlighter-rouge">account-history-track-account-range</code></a></li>
+  <li><del><a href="#track-account-range"><code class="highlighter-rouge">track-account-range</code></a></del></li>
+  <li><a href="#account-history-whitelist-ops"><code class="highlighter-rouge">account-history-whitelist-ops</code></a></li>
+  <li><del><a href="#history-whitelist-ops"><code class="highlighter-rouge">history-whitelist-ops</code></a></del></li>
+  <li><a href="#account-history-blacklist-ops"><code class="highlighter-rouge">account-history-blacklist-ops</code></a></li>
+  <li><del><a href="#history-blacklist-ops"><code class="highlighter-rouge">history-blacklist-ops</code></a></del></li>
+  <li><a href="#history-disable-pruning"><code class="highlighter-rouge">history-disable-pruning</code></a></li>
+  <li><a href="#account-history-rocksdb-path"><code class="highlighter-rouge">account-history-rocksdb-path</code></a></li>
+  <li><a href="#account-history-rocksdb-track-account-range"><code class="highlighter-rouge">account-history-rocksdb-track-account-range</code></a></li>
+  <li><a href="#account-history-rocksdb-whitelist-ops"><code class="highlighter-rouge">account-history-rocksdb-whitelist-ops</code></a></li>
+  <li><a href="#account-history-rocksdb-blacklist-ops"><code class="highlighter-rouge">account-history-rocksdb-blacklist-ops</code></a></li>
+  <li><a href="#block-data-export-file"><code class="highlighter-rouge">block-data-export-file</code></a></li>
+  <li><a href="#block-log-info-print-interval-seconds"><code class="highlighter-rouge">block-log-info-print-interval-seconds</code></a></li>
+  <li><a href="#block-log-info-print-irreversible"><code class="highlighter-rouge">block-log-info-print-irreversible</code></a></li>
+  <li><a href="#block-log-info-print-file"><code class="highlighter-rouge">block-log-info-print-file</code></a></li>
+  <li><a href="#sps-remove-threshold"><code class="highlighter-rouge">sps-remove-threshold</code></a></li>
+  <li><a href="#shared-file-dir"><code class="highlighter-rouge">shared-file-dir</code></a></li>
+  <li><a href="#shared-file-size"><code class="highlighter-rouge">shared-file-size</code></a></li>
+  <li><a href="#shared-file-full-threshold"><code class="highlighter-rouge">shared-file-full-threshold</code></a></li>
+  <li><a href="#shared-file-scale-rate"><code class="highlighter-rouge">shared-file-scale-rate</code></a></li>
+  <li><a href="#checkpoint"><code class="highlighter-rouge">checkpoint</code></a></li>
+  <li><a href="#flush-state-interval"><code class="highlighter-rouge">flush-state-interval</code></a></li>
+  <li><a href="#debug-node-edit-script"><code class="highlighter-rouge">debug-node-edit-script</code></a></li>
+  <li><del><a href="#edit-script"><code class="highlighter-rouge">edit-script</code></a></del></li>
+  <li><a href="#follow-max-feed-size"><code class="highlighter-rouge">follow-max-feed-size</code></a></li>
+  <li><a href="#follow-start-feeds"><code class="highlighter-rouge">follow-start-feeds</code></a></li>
+  <li><a href="#log-json-rpc"><code class="highlighter-rouge">log-json-rpc</code></a></li>
+  <li><a href="#market-history-bucket-size"><code class="highlighter-rouge">market-history-bucket-size</code></a></li>
+  <li><a href="#market-history-buckets-per-size"><code class="highlighter-rouge">market-history-buckets-per-size</code></a></li>
+  <li><a href="#p2p-endpoint"><code class="highlighter-rouge">p2p-endpoint</code></a></li>
+  <li><a href="#p2p-max-connections"><code class="highlighter-rouge">p2p-max-connections</code></a></li>
+  <li><del><a href="#seed-node"><code class="highlighter-rouge">seed-node</code></a></del></li>
+  <li><a href="#p2p-seed-node"><code class="highlighter-rouge">p2p-seed-node</code></a></li>
+  <li><a href="#p2p-parameters"><code class="highlighter-rouge">p2p-parameters</code></a></li>
+  <li><a href="#p2p-user-agent"><code class="highlighter-rouge">p2p-user-agent</code></a></li>
+  <li><a href="#rc-skip-reject-not-enough-rc"><code class="highlighter-rouge">rc-skip-reject-not-enough-rc</code></a></li>
+  <li><a href="#rc-compute-historical-rc"><code class="highlighter-rouge">rc-compute-historical-rc</code></a></li>
+  <li><a href="#rc-start-at-block"><code class="highlighter-rouge">rc-start-at-block</code></a></li>
+  <li><a href="#rc-account-whitelist"><code class="highlighter-rouge">rc-account-whitelist</code></a></li>
+  <li><a href="#statsd-endpoint"><code class="highlighter-rouge">statsd-endpoint</code></a></li>
+  <li><a href="#statsd-batchsize"><code class="highlighter-rouge">statsd-batchsize</code></a></li>
+  <li><a href="#statsd-whitelist"><code class="highlighter-rouge">statsd-whitelist</code></a></li>
+  <li><a href="#statsd-blacklist"><code class="highlighter-rouge">statsd-blacklist</code></a></li>
+  <li><a href="#tags-start-promoted"><code class="highlighter-rouge">tags-start-promoted</code></a></li>
+  <li><a href="#tags-skip-startup-update"><code class="highlighter-rouge">tags-skip-startup-update</code></a></li>
+  <li><a href="#transaction-status-block-depth"><code class="highlighter-rouge">transaction-status-block-depth</code></a></li>
+  <li><a href="#transaction-status-track-after-block"><code class="highlighter-rouge">transaction-status-track-after-block</code></a></li>
+  <li><a href="#webserver-http-endpoint"><code class="highlighter-rouge">webserver-http-endpoint</code></a></li>
+  <li><a href="#webserver-ws-endpoint"><code class="highlighter-rouge">webserver-ws-endpoint</code></a></li>
+  <li><a href="#webserver-unix-endpoint"><code class="highlighter-rouge">webserver-unix-endpoint</code></a></li>
+  <li><del><a href="#rpc-endpoint"><code class="highlighter-rouge">rpc-endpoint</code></a></del></li>
+  <li><a href="#webserver-thread-pool-size"><code class="highlighter-rouge">webserver-thread-pool-size</code></a></li>
+  <li><a href="#enable-stale-production"><code class="highlighter-rouge">enable-stale-production</code></a></li>
+  <li><a href="#required-participation"><code class="highlighter-rouge">required-participation</code></a></li>
+  <li><a href="#witness"><code class="highlighter-rouge">witness</code></a></li>
+  <li><a href="#private-key"><code class="highlighter-rouge">private-key</code></a></li>
+  <li><a href="#witness-skip-enforce-bandwidth"><code class="highlighter-rouge">witness-skip-enforce-bandwidth</code></a></li>
+  <li><a href="#account-stats-bucket-size"><code class="highlighter-rouge">account-stats-bucket-size</code></a></li>
+  <li><a href="#account-stats-history-per-bucket"><code class="highlighter-rouge">account-stats-history-per-bucket</code></a></li>
+  <li><a href="#account-stats-tracked-accounts"><code class="highlighter-rouge">account-stats-tracked-accounts</code></a></li>
+  <li><a href="#trusted-node"><code class="highlighter-rouge">trusted-node</code></a></li>
+  <li><a href="#pm-account-range"><code class="highlighter-rouge">pm-account-range</code></a></li>
+  <li><a href="#chain-stats-bucket-size"><code class="highlighter-rouge">chain-stats-bucket-size</code></a></li>
+  <li><a href="#chain-stats-history-per-bucket"><code class="highlighter-rouge">chain-stats-history-per-bucket</code></a></li>
+</ul>
+
+<h3 id="from-state"><code class="highlighter-rouge">from-state</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Load from state, then replay subsequent blocks.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">from-state</span> <span class="p">=</span> 
+</code></pre></div></div>
+
+<h3 id="to-state"><code class="highlighter-rouge">to-state</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>File to save state after <code class="highlighter-rouge">--stop-replay-at-block</code> option.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">to-state</span> <span class="p">=</span> 
+</code></pre></div></div>
+
+<h3 id="state-format"><code class="highlighter-rouge">state-format</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>State file save format <code class="highlighter-rouge">(binary|json)</code>.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">state-format</span> <span class="p">=</span> <span class="s">binary</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, portable state format
+</span><span class="py">state-format</span> <span class="p">=</span> <span class="s">json</span>
+</code></pre></div></div>
+
+<h3 id="log-appender"><code class="highlighter-rouge">log-appender</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Appender definition JSON: <code class="highlighter-rouge">{"appender", "stream", "file"}</code>.  Each appender can only specify a file <em>or</em> a stream.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">log-appender</span> <span class="p">=</span> <span class="s">{"appender":"stderr","stream":"std_error"} {"appender":"p2p","file":"logs/p2p/p2p.log"}</span>
+</code></pre></div></div>
+
+<h3 id="log-console-appender"><code class="highlighter-rouge">log-console-appender</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Console appender definition JSON: <code class="highlighter-rouge">{"appender", "stream"}</code>.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example
+</span><span class="py">log-console-appender</span> <span class="p">=</span> <span class="s">{"appender":"stderr","stream":"std_error"}</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">log-console-appender</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="log-file-appender"><code class="highlighter-rouge">log-file-appender</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>File appender definition JSON: <code class="highlighter-rouge">{"appender", "file"}</code>.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example
+</span><span class="py">log-file-appender</span> <span class="p">=</span> <span class="s">{"appender":"p2p","file":"logs/p2p/p2p.log"}</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">log-file-appender</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="log-logger"><code class="highlighter-rouge">log-logger</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Logger definition JSON: <code class="highlighter-rouge">{"name", "level", "appender"}</code>.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">log-logger</span> <span class="p">=</span> <span class="s">{"name":"default","level":"info","appender":"stderr"} {"name":"p2p","level":"warn","appender":"p2p"}</span>
+</code></pre></div></div>
+
+<h3 id="backtrace"><code class="highlighter-rouge">backtrace</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Whether or not to print a backtrace on SIGSEGV (segmentation fault).</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1542">#1542</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">backtrace</span> <span class="p">=</span> <span class="s">yes</span>
+</code></pre></div></div>
+
+<h3 id="plugin"><code class="highlighter-rouge">plugin</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Plugin(s) to enable, may be specified multiple times.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list">Plugin &amp; API List</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">plugin</span> <span class="p">=</span> <span class="s">witness account_by_key account_by_key_api condenser_api</span>
+</code></pre></div></div>
+
+<h3 id="account-history-track-account-range"><code class="highlighter-rouge">account-history-track-account-range</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a range of accounts to track as a JSON pair <code class="highlighter-rouge">["from","to"]</code>.  Can be specified multiple times.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/blob/970f599655465b65bbe939b78db348a21af982e0/doc/exchangequickstart.md#configuration-files-when-not-using-a-docker-image"><code class="highlighter-rouge">exchangequickstart.md</code></a>, <a href="https://github.com/steemit/steem/issues/862#issuecomment-285432626">#862</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># examples
+</span><span class="py">account-history-track-account-range</span> <span class="p">=</span> <span class="s">["blocktrades", "blocktrades"]</span>
+<span class="py">account-history-track-account-range</span> <span class="p">=</span> <span class="s">["c", "f"]</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-track-account-range</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="track-account-range"><code class="highlighter-rouge">track-account-range</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a range of accounts to track as a JSON pair <code class="highlighter-rouge">["from","to"]</code>.  Can be specified multiple times.</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">account-history-track-account-range</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">track-account-range</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="account-history-whitelist-ops"><code class="highlighter-rouge">account-history-whitelist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly logged.</p>
+
+<p>See: <a href="#https://github.com/steemit/steem/issues/301">#301</a>, <a href="https://github.com/steemit/steem/issues/521">#521</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-whitelist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, defines a list of operations which will be explicitly logged.
+</span><span class="py">account-history-whitelist-ops</span> <span class="p">=</span> <span class="s">transfer_operation transfer_to_vesting_operation withdraw_vesting_operation interest_operation transfer_to_savings_operation transfer_from_savings_operation cancel_transfer_from_savings_operation escrow_transfer_operation escrow_approve_operation escrow_dispute_operation escrow_release_operation fill_convert_request_operation fill_order_operation claim_reward_balance_operation author_reward_operation curation_reward_operation fill_vesting_withdraw_operation fill_transfer_from_savings_operation delegate_vesting_shares_operation return_vesting_delegation_operation comment_benefactor_reward_operation</span>
+</code></pre></div></div>
+
+<h3 id="history-whitelist-ops"><code class="highlighter-rouge">history-whitelist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly logged.</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">account-history-whitelist-ops</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">history-whitelist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="account-history-blacklist-ops"><code class="highlighter-rouge">account-history-blacklist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly ignored.</p>
+
+<p>See: <a href="#https://github.com/steemit/steem/issues/301">#301</a>, <a href="https://github.com/steemit/steem/issues/521">#521</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-blacklist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="history-blacklist-ops"><code class="highlighter-rouge">history-blacklist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly ignored.</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">account-history-blacklist-ops</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 
+</span><span class="py">history-blacklist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="history-disable-pruning"><code class="highlighter-rouge">history-disable-pruning</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Disables automatic account history trimming.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1671">#1671</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">history-disable-pruning</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="account-history-rocksdb-path"><code class="highlighter-rouge">account-history-rocksdb-path</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>The location of the rocksdb database for account history.  By default it is <code class="highlighter-rouge">$DATA_DIR/blockchain/account-history-rocksdb-storage</code>.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2066">#2066</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-rocksdb-path</span> <span class="p">=</span> <span class="s">"blockchain/account-history-rocksdb-storage"</span>
+</code></pre></div></div>
+
+<h3 id="account-history-rocksdb-track-account-range"><code class="highlighter-rouge">account-history-rocksdb-track-account-range</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a range of accounts to track as a JSON pair <code class="highlighter-rouge">["from","to"]</code>.  Can be specified multiple times.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2066">#2066</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-rocksdb-track-account-range</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="account-history-rocksdb-whitelist-ops"><code class="highlighter-rouge">account-history-rocksdb-whitelist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly logged.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2066">#2066</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-rocksdb-whitelist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="account-history-rocksdb-blacklist-ops"><code class="highlighter-rouge">account-history-rocksdb-blacklist-ops</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a list of operations which will be explicitly ignored.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2066">#2066</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-history-rocksdb-blacklist-ops</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="block-data-export-file"><code class="highlighter-rouge">block-data-export-file</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Where to export data (NONE to discard).</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2244">#2244</a>, <a href="https://github.com/steemit/steem/pull/2326">#2326</a></p>
+
+<p>Used by plugins: <code class="highlighter-rouge">block_data_export</code>, <code class="highlighter-rouge">stats_export</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">block-data-export-file</span> <span class="p">=</span> <span class="s">NONE</span>
+</code></pre></div></div>
+
+<h3 id="block-log-info-print-interval-seconds"><code class="highlighter-rouge">block-log-info-print-interval-seconds</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>How often to print out block_log_info (default 1 day).</p>
+
+<p>Example output (if set to output every minute on a testnet):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>block_num=2   size=143   hash=5a22d010d890d2463cd9c82417f8286cdbd1f9ed01c686aceb4d81da65787c7a
+block_num=10   size=89593   hash=6009f4626ed5581851d0d2bca57e1eb92e77e68304f586253bb3cd44c0db0080
+block_num=30   size=311238   hash=8379b697f4b6a7306d2313721107ac76997f159a74656cd88da97452c1a70f18
+block_num=50   size=533390   hash=cee168b76a2a8c382377e644c263e7cce43014f10d68afabb9b57c7ee0345a20
+block_num=70   size=851264   hash=f665b7067c836aeb9e8e8e746d2e5f03395e2662ded7aa5e12429161d92d70db
+block_num=90   size=1192756   hash=64f992b4e3716ff444c4cb85a6b8f4b61f8c3902514723991271717fff5fad73
+block_num=106   size=1383514   hash=7161fb618e7caf496a8869f1938f69c75f0247558bfc3623b53fd389751dc7db
+block_num=119   size=1385342   hash=ca0853f8e9a6179402637efe3f27240ffda63c6a742c4dbe027517cc1276e04d
+block_num=139   size=1387982   hash=466b42461d5d433f54053e61387dd0422c0461fb4bb5835b2cd751a476b8a59b
+block_num=159   size=1390514   hash=1152740a6a5cd651d11219bbbdf9170f312a96652ed385346eb784c1c14dd8dc
+block_num=179   size=1393044   hash=51e5bdd1e0b3f07b064c184dd0e0174f678910079e9fc1463d98977a2f73b191
+block_num=199   size=1395575   hash=7a49e2d67522b5204574d33e4b4f479e7c23c5358d8567d87aaf727d819ecd05
+</code></pre></div></div>
+
+<p>Used by plugin: <code class="highlighter-rouge">block_log_info</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1893">#1893</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">block-log-info-print-interval-seconds</span> <span class="p">=</span> <span class="s">86400</span>
+</code></pre></div></div>
+
+<h3 id="block-log-info-print-irreversible"><code class="highlighter-rouge">block-log-info-print-irreversible</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Whether to defer printing out <code class="highlighter-rouge">block_log_info</code> until block is irreversible.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">block_log_info</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1893">#1893</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">block-log-info-print-irreversible</span> <span class="p">=</span> <span class="s">1</span>
+</code></pre></div></div>
+
+<h3 id="block-log-info-print-file"><code class="highlighter-rouge">block-log-info-print-file</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Where to print out <code class="highlighter-rouge">block_log_info</code> (filename or special sink <code class="highlighter-rouge">ILOG</code>, <code class="highlighter-rouge">STDOUT</code>, <code class="highlighter-rouge">STDERR</code>).</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">block_log_info</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1893">#1893</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">block-log-info-print-file</span> <span class="p">=</span> <span class="s">ILOG</span>
+</code></pre></div></div>
+
+<h3 id="sps-remove-threshold"><code class="highlighter-rouge">sps-remove-threshold</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Maximum numbers of proposals/votes which can be removed in the same cycle.</p>
+
+<p>See: <a href="https://github.com/blocktradesdevs/steem/issues/76">blocktradesdevs#76</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">sps-remove-threshold</span> <span class="p">=</span> <span class="s">200</span>
+</code></pre></div></div>
+
+<h3 id="shared-file-dir"><code class="highlighter-rouge">shared-file-dir</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>The location of the chain shared memory files (absolute path or relative to application data dir)</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">shared-file-dir</span> <span class="p">=</span> <span class="s">"blockchain"</span>
+</code></pre></div></div>
+
+<h3 id="shared-file-size"><code class="highlighter-rouge">shared-file-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Size of the shared memory file.  Default: 54G.  If running a full node, increase this value to 200G or greater.  Always make sure that you have enough resources available.  Set it to at least 25% more than current size.</p>
+
+<p><em>Provided values are expected to grow significantly over time.</em></p>
+
+<ul>
+  <li><strong>Full Node</strong> - Shared memory file for full node uses over 300GB</li>
+  <li><strong>Exchange Node</strong> - Shared memory file for exchange node users over 65GB (tracked history for single account)</li>
+  <li><strong>Seed Node</strong> - Shared memory file for seed node uses over 5.5GB</li>
+  <li><strong>Other Use Cases</strong> - Shared memory file size varies, depends on your specific configuration but it is expected to be somewhere between “seed node” and “full node” usage.</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1891">#1891</a>, <a href="https://github.com/steemit/steem/issues/2478">#2478</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">shared-file-size</span> <span class="p">=</span> <span class="s">54G</span>
+</code></pre></div></div>
+
+<h3 id="shared-file-full-threshold"><code class="highlighter-rouge">shared-file-full-threshold</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>A 2 precision percentage (0-10000) that defines the threshold for when to autoscale the shared memory file.  Setting this to 0 disables autoscaling.  Recommended value for consensus node is 9500 (95%).  Full node is 9900 (99%)</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1891">#1891</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">shared-file-full-threshold</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="shared-file-scale-rate"><code class="highlighter-rouge">shared-file-scale-rate</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>A 2 precision percentage (0-10000) that defines how quickly to scale the shared memory file.  When autoscaling occurs the file’s size will be increased by this percent.  Setting this to 0 disables autoscaling.  Recommended value is between 1000-2000 (10-20%)</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1891">#1891</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">shared-file-scale-rate</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="checkpoint"><code class="highlighter-rouge">checkpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Pairs of <code class="highlighter-rouge">[BLOCK_NUM,BLOCK_ID]</code> that should be enforced as checkpoints.  Multiple allowed.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># examples
+</span><span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439757, "00bdd0cd8b0009c9c6d1141e8c8d416e390d594f"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439657, "00bdd0696ff40d273108bb2b3b7bb6b2dfdd896a"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439557, "00bdd0054f59ca947f7b2951f62d69bc035571d4"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439457, "00bdcfa1a54e14a143524d4b0607cbeae440dac8"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439357, "00bdcf3d0aeffa03400ffe5ac8e27c856cedf1d2"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439257, "00bdced9cefcd952b840ad3b3a79ae2a503c96e4"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439157, "00bdce75995276b84fbcaa3a287dd3dbef7a2c25"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12439057, "00bdce1146bd85b5ec4c138bdffb69efb314d5e0"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438957, "00bdcdade9993f796749e860f2c63c9b5e67a2a5"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438857, "00bdcd49e0291cf3f68e8ee9a61cad5b69bf5313"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438757, "00bdcce50f5c26c8b6e863aa13ce07db9e9c0300"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438657, "00bdcc819a899a18c0b76e62ff3d107e306d4ae8"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438557, "00bdcc1d5498ca51b2cdf4d588cfd664a2f8f2e9"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438457, "00bdcbb9b92e87106b3eb4986ff4fe2186bd9f01"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438357, "00bdcb550cf00311e5098800179b9bc885183b5f"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438257, "00bdcaf1df703bae09f0929917d04b1e174d3979"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438157, "00bdca8d98d1b9376212c8b01362468d6f6b3f22"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12438057, "00bdca29957ec15ac5a0dd0fcbd956d65dbda842"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437957, "00bdc9c5c4309e5a6922eace238e84ff85439264"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437857, "00bdc96100272690f75862fee1457653c4697ff0"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437757, "00bdc8fd8e030c1f7f89633455ad36b52ff4fd01"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437657, "00bdc8999eb864e9d324173cd000cba4a69f2aea"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437557, "00bdc835304577900c29a66c777eab07b68f0be3"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437457, "00bdc7d1ab93d17f248d2b58dade646d6f6dbd67"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437357, "00bdc76dde43f8c8c239bd07ccac5b9606f959a0"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437257, "00bdc7094ab0a86720ef7daaaf57b71d617f5f19"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437157, "00bdc6a5cf4ec87a0d3b41e0593c6a62c28baa81"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12437057, "00bdc6416cf37d9d57f3ae753f00de1ddccc9144"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436957, "00bdc5dd9805658513a02da5f8d17745398dbb6c"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436857, "00bdc57979995a2d317d7fea63e734637f684dd7"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436757, "00bdc515aa33e5d069afeb305d96a64144a1e208"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436657, "00bdc4b1e935b9a20e7bdc9153c97872015c3a9a"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436557, "00bdc44d0a4ad08b85a76b1ca18f9f272920abd2"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436457, "00bdc3e929ebdd7f77ee6ad1147e24a064cd2ded"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436357, "00bdc385f57a7caea58b3b2c2b60a6df59b3741f"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436257, "00bdc321dab7a45cfd7fc01f50415b4fbd75e7e2"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436157, "00bdc2bd3117958481ce6deff5c8e06e43685aae"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12436057, "00bdc25904da6f31102f70fbbd27bd1663ccac5b"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435957, "00bdc1f5129bb9725634e6b25d4e3fa0a68d8369"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435857, "00bdc1916c86cd1f490c72451101ab8515c56f6f"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435757, "00bdc12dacf2f86cac1b09d123930a2ca36b75ce"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435657, "00bdc0c97099678a6fb5f31fb2e23ef8d421ec94"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435557, "00bdc065ef8bfe29cfb1709244d66b4508efbe0a"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435457, "00bdc001891acee8628f18330e23c6277368e408"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435357, "00bdbf9d56ead7639338ee2b1a78f1fa04bf1dde"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435257, "00bdbf394a869f133e06cac8b63605fd6115ee30"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435157, "00bdbed5e00a6bc245420895a2e3ed86786bf338"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12435057, "00bdbe71d759ca79870a7b069a15913da3fbe9ae"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434957, "00bdbe0dd64ad3450fddcd3300d3412676053a6b"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434857, "00bdbda93de3b7ea1748004f4ad2f5b667baef0b"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434757, "00bdbd45290e2651201b69af95c254dd8c70edce"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434657, "00bdbce15ff203f407c861023d806ca3e17aac02"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434557, "00bdbc7dcdc716e9292f59fe8a4652219469b478"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434457, "00bdbc1913cf29d76ffa5bedf279a52f62acf3e1"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434357, "00bdbbb53880ee3275fd860aace205d1fa0367f1"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434257, "00bdbb5165958fb8e2c6be56c2e92cbbdd52eb57"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434157, "00bdbaed48d017f36690b0d4e80f8325ff66c9ad"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12434057, "00bdba89872a25ce767beb94ee211d1d34621282"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433957, "00bdba254f3ce47ec619f026822787ea0c6f4dd7"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433857, "00bdb9c1ff1be1682d34afe8db6a3d267f62a84d"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433757, "00bdb95d19ab1e979ae172b1bbf83fa9db7b3cb9"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433657, "00bdb8f9bf68973dde5b6c9a0a9ab3489a9c0464"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433557, "00bdb895b842b18d8afe6fc00357f5bc3c51cda2"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433457, "00bdb831a45551f6297ddf939a170c2d8091f13d"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433357, "00bdb7cd710d8b4a59acbf6b50cd5d6b612cca49"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433257, "00bdb76975ca115d67df7e06f51a034b2f2daad2"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433157, "00bdb70539df1619d5fca9694d59f1a1071eccde"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12433057, "00bdb6a1a8148f64a319fc81470506ea10dd79f1"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432957, "00bdb63d66db2284cb39de37314c7a8f6dbe715e"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432857, "00bdb5d9bab4d8846c6d3dc278e90fc1ecd247eb"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432757, "00bdb575fd832b4515fe53b00575c1aa9508f4d4"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432657, "00bdb511545d76db85e1c82f80ce4d74d2a4dbab"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432557, "00bdb4ad10fe0feef6c55d1a7001142535c2ea8d"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432457, "00bdb449621cd686afea35e18d7fdef2310ea90b"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432357, "00bdb3e592363774414322b5aa141b8f0f7ebfbf"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432257, "00bdb3818e2c19f06d4ffd781d922b39a9519717"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432157, "00bdb31dbde094951313d6a73089655b11561df3"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12432057, "00bdb2b94f71a3a08048cfe95b2f39950f77530e"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431957, "00bdb255b31681189ad7749f0f35a25ee33143b0"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431857, "00bdb1f17b41fefeaf7c4855a8064a54862981dd"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431757, "00bdb18d9f66ec21ba074421bf97327890d428a1"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431657, "00bdb12953b909cb6f448b1bbf84d81923b48a2f"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431557, "00bdb0c561d35d3fd1a6d7a420151224dd3aff80"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431457, "00bdb061d9f94e7f57750b7fa0870531a0f33ce6"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431357, "00bdaffdd5252711a494b2bb03a59aa5ac723860"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431257, "00bdaf994b1cd8ab92fea9262161226c6f3fddf3"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431157, "00bdaf35718ee199a4c07c2553c11afcfbbeaa3c"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12431057, "00bdaed12ebbb375f8181d483535a8966251dd32"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430957, "00bdae6d53fe8abb9a78d160a255c728e25e0ede"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430857, "00bdae091399110a237fd04fd1d495a14828194c"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430757, "00bdada51163cbad6c9599a6b95af2267750dfb7"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430657, "00bdad41bb2205fa620434c4e7c8731c3dd6b976"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430557, "00bdacdd9d9685650a2cf1607b77978c091f70df"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430457, "00bdac795263ac1866f922ec63ffb81e3d4ea9b4"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430357, "00bdac157f2d826461aaac195276217fc40cdad6"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430257, "00bdabb17a43fc18f2c42c2800a99231b3e669fa"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430157, "00bdab4d2b0baef1b25760c09a8261f93e2016b3"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12430057, "00bdaae9bee41d4133a37c137b4fabe1ee9c04f8"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12429957, "00bdaa85201d63ce8fe0ac5582e2bed1d2eb1dcf"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12429857, "00bdaa21f50e0b51906a8a844d5a54b4e187da4a"]</span>
+<span class="py">checkpoint</span> <span class="p">=</span> <span class="s">[12429757, "00bda9bd6da9751f41948e20011242e841372916"]</span>
+</code></pre></div></div>
+
+<h3 id="flush-state-interval"><code class="highlighter-rouge">flush-state-interval</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Flush shared memory changes to disk every <em>n</em> blocks.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">flush-state-interval</span> <span class="p">=</span> <span class="s">10000</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># disabled
+</span><span class="py">flush-state-interval</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="debug-node-edit-script"><code class="highlighter-rouge">debug-node-edit-script</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Database edits to apply on startup (may specify multiple times).</p>
+
+<p>See: <a href="https://github.com/steemit/steem/blob/master/doc/devs/debug_node_plugin.md"><code class="highlighter-rouge">debug_node_plugin.md</code></a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">debug-node-edit-script</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="edit-script"><code class="highlighter-rouge">edit-script</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Database edits to apply on startup (may specify multiple times).</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">debug-node-edit-script</code>, see: <a href="https://github.com/steemit/steem/issues/1297">#1297</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">edit-script</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="follow-max-feed-size"><code class="highlighter-rouge">follow-max-feed-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Set the maximum size of cached feed for an account.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#follow_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/192">#192</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">follow-max-feed-size</span> <span class="p">=</span> <span class="s">500</span>
+</code></pre></div></div>
+
+<h3 id="follow-start-feeds"><code class="highlighter-rouge">follow-start-feeds</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Block time (in epoch seconds) when to start calculating feeds.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#follow_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/1162">#1162</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">follow-start-feeds</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="log-json-rpc"><code class="highlighter-rouge">log-json-rpc</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>json-rpc log directory name.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">jsonrpc</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1986">#1986</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default (no dump)
+</span><span class="py">log-json-rpc</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="market-history-bucket-size"><code class="highlighter-rouge">market-history-bucket-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Track market history by grouping orders into buckets of equal size measured in seconds specified as a JSON array of numbers.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">market-history-bucket-size</span> <span class="p">=</span> <span class="s">[15,60,300,3600,86400]</span>
+</code></pre></div></div>
+
+<h3 id="market-history-buckets-per-size"><code class="highlighter-rouge">market-history-buckets-per-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>How far back in time to track history for each bucket size, measured in the number of buckets.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">market-history-buckets-per-size</span> <span class="p">=</span> <span class="s">5760</span>
+</code></pre></div></div>
+
+<h3 id="p2p-endpoint"><code class="highlighter-rouge">p2p-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>The local IP address and port to listen for incoming connections.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">p2p-endpoint</span> <span class="p">=</span> <span class="s">127.0.0.1:9876</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable only local requests on port 2001
+</span><span class="py">p2p-endpoint</span> <span class="p">=</span> <span class="s">127.0.0.1:2001</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable all requests from anyone on port 2001
+</span><span class="py">p2p-endpoint</span> <span class="p">=</span> <span class="s">0.0.0.0:2001</span>
+</code></pre></div></div>
+
+<h3 id="p2p-max-connections"><code class="highlighter-rouge">p2p-max-connections</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Maxmimum number of incoming connections on P2P endpoint.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">p2p-max-connections</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="seed-node"><code class="highlighter-rouge">seed-node</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>The IP address and port of a remote peer to sync with.</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">p2p-seed-node</code>, see: <a href="https://github.com/steemit/steem/issues/1314">#1314</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">seed-node</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="p2p-seed-node"><code class="highlighter-rouge">p2p-seed-node</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>The IP address and port of a remote peer to sync with.  Multiple allowed.</p>
+
+<ul>
+  <li>If no seeds are specified, the compiled in seeds are used.</li>
+  <li>If any other seeds are specified, only those seeds are used.</li>
+  <li>If a blank seed is specified (i.e <code class="highlighter-rouge">p2p-seed-node = </code>) then no seeds are used.</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/blob/master/doc/seednodes.txt">seednodes.txt</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, override compiled seeds
+</span><span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">seed-east.steemit.com:2001 seed-central.steemit.com:2001 seed-west.steemit.com:2001 steem-seed1.abit-more.com:2001 52.74.152.79:2001 seed.steemd.com:34191 anyx.co:2001 seed.xeldal.com:12150 seed.steemnodes.com:2001 seed.liondani.com:2016 gtg.steem.house:2001 seed.jesta.us:2001 steemd.pharesim.me:2001 5.9.18.213:2001 lafonasteem.com:2001 seed.rossco99.com:2001 steem-seed.altcap.io:40696 seed.roelandp.nl:2001 steem.global:2001 seed.esteem.ws:2001 94.23.33.61:2001 104.199.118.92:2001 192.99.4.226:2001 seed.bhuz.info:2001 seed.steemviz.com:2001 steem-seed.lukestokes.info:2001 seed.blackrift.net:2001 seed.followbtcnews.com:2001 node.mahdiyari.info:2001 seed.jerrybanfield.com:2001 seed.windforce.farm:2001 seed.curiesteem.com:2001 seed.riversteem.com:2001 steem-seed.furion.me:2001 148.251.237.104:2001 seed1.blockbrothers.io:2001 </span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, multiple override compiled seeds
+</span><span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">46.252.27.1:1337</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">52.62.24.225:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">192.99.4.226:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">45.55.217.111:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">81.89.101.133:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">52.4.250.181:39705</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">104.199.157.70:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">104.236.82.250:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">212.47.249.84:40696</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">162.213.199.171:34191</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">steem.kushed.com:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">steemd.pharesim.me:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">seed.steemed.net:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">steem.clawmap.com:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">seed.steemnodes.com:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">seed.steemwitness.com:2001</span>
+<span class="py">p2p-seed-node</span> <span class="p">=</span> <span class="s">steem-seed1.abit-more.com:2001</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, no seeds used
+</span><span class="py">p2p-seed-node</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="p2p-parameters"><code class="highlighter-rouge">p2p-parameters</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>P2P network parameters.  Default:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"listen_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0.0:0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accept_incoming_connections"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"wait_if_endpoint_is_busy"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"desired_number_of_connections"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maximum_number_of_connections"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"peer_connection_retry_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"peer_inactivity_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"peer_advertising_disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maximum_number_of_blocks_to_handle_at_one_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maximum_number_of_sync_blocks_to_prefetch"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maximum_blocks_per_peer_during_syncing"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_ignored_request_timeout_microseconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1713">#1713</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">p2p-parameters</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="p2p-user-agent"><code class="highlighter-rouge">p2p-user-agent</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>User agent to advertise to peers.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example
+</span><span class="py">p2p-user-agent</span> <span class="p">=</span> <span class="s">Graphene Reference Implementation</span>
+</code></pre></div></div>
+
+<h3 id="rc-skip-reject-not-enough-rc"><code class="highlighter-rouge">rc-skip-reject-not-enough-rc</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Skip rejecting transactions when account has insufficient RCs. This is not recommended.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#rc_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/3168">#3168</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">rc-skip-reject-not-enough-rc</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="rc-compute-historical-rc"><code class="highlighter-rouge">rc-compute-historical-rc</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Generate historical resource credits.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#rc_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/3168">#3168</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">rc-compute-historical-rc</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="rc-start-at-block"><code class="highlighter-rouge">rc-start-at-block</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Start calculating RCs at a specific block.  <strong>Testnet only.</strong></p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#rc_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/3168">#3168</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">rc-start-at-block</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="rc-account-whitelist"><code class="highlighter-rouge">rc-account-whitelist</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Ignore RC calculations for the whitelist.  <strong>Testnet only.</strong></p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#rc_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/3168">#3168</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">rc-account-whitelist</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="statsd-endpoint"><code class="highlighter-rouge">statsd-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Endpoint to send statsd messages to when <code class="highlighter-rouge">statsd_plugin</code> is enabled.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">statsd</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/3168">#3168</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+# statsd-endpoint =
+</span></code></pre></div></div>
+
+<h3 id="statsd-batchsize"><code class="highlighter-rouge">statsd-batchsize</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Size to batch statsd messages when <code class="highlighter-rouge">statsd_plugin</code> is enabled.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">statsd</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2276">#2276</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">statsd-batchsize</span> <span class="p">=</span> <span class="s">1</span>
+</code></pre></div></div>
+
+<h3 id="statsd-whitelist"><code class="highlighter-rouge">statsd-whitelist</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Whitelist of statistics to capture when <code class="highlighter-rouge">statsd_plugin</code> is enabled.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">statsd</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2276">#2276</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">statsd-whitelist</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="statsd-blacklist"><code class="highlighter-rouge">statsd-blacklist</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Blacklist of statistics to capture when <code class="highlighter-rouge">statsd_plugin</code> is enabled.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">statsd</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2276">#2276</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">statsd-blacklist</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="tags-start-promoted"><code class="highlighter-rouge">tags-start-promoted</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Block time (in epoch seconds) when to start calculating promoted content. Should be 1 week prior to current time.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#tags_api">Plugin &amp; API List</a>, See: <a href="https://github.com/steemit/steem/issues/1612">#1612</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">tags-start-promoted</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="tags-skip-startup-update"><code class="highlighter-rouge">tags-skip-startup-update</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Skip updating tags on startup. Can safely be skipped when starting a previously running node. Should not be skipped when reindexing.</p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#tags_api">Plugin &amp; API List</a>, See: <a href="https://github.com/steemit/steem/issues/1612">#1612</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">tags-skip-startup-update</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="transaction-status-block-depth"><code class="highlighter-rouge">transaction-status-block-depth</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines the number of blocks from the head block that transaction statuses will be tracked.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ *                             window of uncertainty              trackable
+ *                          .-------------------------. .---------------------------.
+ *                         |                           |                             |
+ *   &lt;- - - - - - - - - - [*] - - - - - - - - - - - - [*] - - - - - - - - - - - - - [*]
+ *                        /                            |                              \
+ *               actual block depth            nominal block depth                head block
+ *
+ * - Within the window of uncertainy, if the transaction is found we will return the status
+ *      If the transaction is not found and an expiration is provided, we will return `too_old`
+ *
+ * - Within the trackable range, if the transaction is found we will return the status
+ *      If the transaction is not found and an expiration is provided we will return the expiration status
+ *
+ * - Nominal values are values provided by the user
+ *
+ * - Actual values are calculated and used to determine when tracking needs to begin
+ *      see `plugin_initialize`
+ */</span>
+</code></pre></div></div>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#transaction_status_api">Plugin &amp; API List</a>, <a href="https://github.com/steemit/steem/issues/2458">#2458</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">transaction-status-block-depth</span> <span class="p">=</span> <span class="s">64000</span>
+</code></pre></div></div>
+
+<h3 id="transaction-status-track-after-block"><code class="highlighter-rouge">transaction-status-track-after-block</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines the block number the transaction status plugin will begin tracking.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">transaction_status</code></p>
+
+<p>See: <a href="/tutorials-recipes/plugin-and-api-list#transaction_status_api">Plugin &amp; API List</a>, See: <a href="https://github.com/steemit/steem/issues/2458">#2458</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">transaction-status-track-after-block</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="webserver-http-endpoint"><code class="highlighter-rouge">webserver-http-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Local http endpoint for webserver requests.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1347">#1347</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable only local requests on port 8751
+</span><span class="py">webserver-http-endpoint</span> <span class="p">=</span> <span class="s">127.0.0.1:8751</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable all requests from anyone on port 8751
+</span><span class="py">webserver-http-endpoint</span> <span class="p">=</span> <span class="s">0.0.0.0:8751</span>
+</code></pre></div></div>
+
+<h3 id="webserver-ws-endpoint"><code class="highlighter-rouge">webserver-ws-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Local websocket endpoint for webserver requests.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1347">#1347</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable only local requests on port 8752
+</span><span class="py">webserver-ws-endpoint</span> <span class="p">=</span> <span class="s">127.0.0.1:8752</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example, enable all requests from anyone on port 8752
+</span><span class="py">webserver-ws-endpoint</span> <span class="p">=</span> <span class="s">0.0.0.0:8752</span>
+</code></pre></div></div>
+
+<h3 id="webserver-unix-endpoint"><code class="highlighter-rouge">webserver-unix-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Unix http endpoint for webserver requests (in addition to http and ws).</p>
+
+<p>Intended for node operators who use nginx or jussi on their front ends and <code class="highlighter-rouge">steemd</code> running on the same box.  Since TCP over localhost is inefficient, the ability to use unix-sockets was added.</p>
+
+<p>Example usage (assuming option set to <code class="highlighter-rouge">/tmp/steemd.sock</code>):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_account_count",
+  "params": [],
+  "id": 1
+}'</span> <span class="nt">--unix-socket</span> /tmp/steemd.sock http:
+</code></pre></div></div>
+
+<p>See: <a href="https://github.com/steemit/steem/pull/3205">#3205</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># example
+</span><span class="py">webserver-unix-endpoint</span> <span class="p">=</span> <span class="s">/tmp/steemd.sock</span>
+</code></pre></div></div>
+
+<h3 id="rpc-endpoint"><code class="highlighter-rouge">rpc-endpoint</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Local http and websocket endpoint for webserver requests.</p>
+
+<p><strong>Deprecated in favor of:</strong> <code class="highlighter-rouge">webserver-http-endpoint</code> and <code class="highlighter-rouge">webserver-ws-endpoint</code>, see: <a href="https://github.com/steemit/steem/issues/1297">#1297</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">rpc-endpoint</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="webserver-thread-pool-size"><code class="highlighter-rouge">webserver-thread-pool-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Number of threads used to handle queries.  Default: 32.</p>
+
+<ul>
+  <li>must be greater than 0</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1347">#1347</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">webserver-thread-pool-size</span> <span class="p">=</span> <span class="s">32</span>
+</code></pre></div></div>
+
+<h3 id="enable-stale-production"><code class="highlighter-rouge">enable-stale-production</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Enable block production, even if the chain is stale.  Leaving this <code class="highlighter-rouge">false</code> will keep <code class="highlighter-rouge">steemd</code> from producing blocks until we receive a recent block.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">enable-stale-production</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="required-participation"><code class="highlighter-rouge">required-participation</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Percent of witnesses (0-99) that must be participating in order to produce blocks.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">required-participation</span> <span class="p">=</span> <span class="s">33</span>
+</code></pre></div></div>
+
+<p>Often, when starting a custom testnet that has a single block signer, it is acceptable to set <code class="highlighter-rouge">required-participation</code> to zero.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># initial custom testnet with low witness count
+</span><span class="py">required-participation</span> <span class="p">=</span> <span class="s">0</span>
+</code></pre></div></div>
+
+<h3 id="witness"><code class="highlighter-rouge">witness</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Name of witness controlled by this node (e.g. <code class="highlighter-rouge">initwitness</code>).</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">witness</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="private-key"><code class="highlighter-rouge">private-key</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>WIF PRIVATE KEY to be used by one or more witnesses or miners.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">private-key</span> <span class="p">=</span> 
+</code></pre></div></div>
+
+<h3 id="witness-skip-enforce-bandwidth"><code class="highlighter-rouge">witness-skip-enforce-bandwidth</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Skip enforcing bandwidth restrictions. Default is <code class="highlighter-rouge">true</code> in favor of <code class="highlighter-rouge">rc_plugin</code>.</p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2648">#2648</a>, <a href="https://github.com/steemit/steem/issues/2703">#2703</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">witness-skip-enforce-bandwidth</span> <span class="p">=</span> <span class="s">1</span>
+</code></pre></div></div>
+
+<h3 id="account-stats-bucket-size"><code class="highlighter-rouge">account-stats-bucket-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Track account statistics by grouping orders into buckets of equal size measured in seconds specified as a JSON array of numbers.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">account_statistics</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/79">#79</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-stats-bucket-size</span> <span class="p">=</span> <span class="s">[60,3600,21600,86400,604800,2592000]</span>
+</code></pre></div></div>
+
+<h3 id="account-stats-history-per-bucket"><code class="highlighter-rouge">account-stats-history-per-bucket</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>How far back in time to track history for each bucker size, measured in the number of buckets.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">account_statistics</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/79">#79</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-stats-history-per-bucket</span> <span class="p">=</span> <span class="s">100</span>
+</code></pre></div></div>
+
+<h3 id="account-stats-tracked-accounts"><code class="highlighter-rouge">account-stats-tracked-accounts</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Which accounts to track the statistics of.  Empty list tracks all accounts.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">account_statistics</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/79">#79</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">account-stats-tracked-accounts</span> <span class="p">=</span> <span class="s">[]</span>
+</code></pre></div></div>
+
+<h3 id="trusted-node"><code class="highlighter-rouge">trusted-node</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>RPC endpoint of a trusted validating node (required if <code class="highlighter-rouge">delayed_node</code> plugin enabled).</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">delayed_node</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">trusted-node</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="pm-account-range"><code class="highlighter-rouge">pm-account-range</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Defines a range of accounts to private messages to/from as a JSON pair <code class="highlighter-rouge">["from","to"]</code>.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">private_message</code></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">pm-account-range</span> <span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="chain-stats-bucket-size"><code class="highlighter-rouge">chain-stats-bucket-size</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Track blockchain statistics by grouping orders into buckets of equal size measured in seconds specified as a JSON array of numbers.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">blockchain_statistics</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/79">#79</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">chain-stats-bucket-size</span> <span class="p">=</span> <span class="s">[60,3600,21600,86400,604800,2592000]</span>
+</code></pre></div></div>
+
+<h3 id="chain-stats-history-per-bucket"><code class="highlighter-rouge">chain-stats-history-per-bucket</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>How far back in time to track history for each bucket size, measured in the number of buckets.</p>
+
+<p>Used by plugin: <code class="highlighter-rouge">blockchain_statistics</code></p>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/79">#79</a></p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># default
+</span><span class="py">chain-stats-history-per-bucket</span> <span class="p">=</span> <span class="s">100</span>
+</code></pre></div></div>
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
