@@ -819,14 +819,16 @@
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_name` - order by accont name
-        * `by_proxy` - order by proxy **(WIP)**
-        * `by_next_vesting_withdrawal` - order by next next vesting withdrawal **(WIP)**
+        * `by_proxy` - order by proxy
+        * `by_next_vesting_withdrawal` - order by next next vesting withdrawal
 
       | `start` (object) | `limit` (int) | `order` (string) |
       |-------------------|-|
       | `""` | `10` | `"by_name"` Queries for up to 10 accounts starting at the beginning, sorted by name. |
-      | `[""]` | `10` | `"by_proxy"` Queries for up to 10 accounts starting at the beginning, sorted by proxy. |
-      | `["1960-01-01T00:00:00"]` | `10` | `"by_next_vesting_withdrawal"` Queries for up to 10 accounts starting at the beginning, sorted by next vesting withdrawl. |
+      | `["", ""]` | `10` | `"by_proxy"` Queries for up to 10 accounts starting at the beginning, sorted by proxy. |
+      | `["1960-01-01T00:00:00", ""]` | `10` | `"by_next_vesting_withdrawal"` Queries for up to 10 accounts starting at the beginning, sorted by next vesting withdrawl. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_accounts' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -973,14 +975,41 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":"", "limit":10, "order":"by_name"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":[""], "limit":10, "order":"by_proxy"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":["1960-01-01T00:00:00"], "limit":10, "order":"by_next_vesting_withdrawal"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":["", ""], "limit":10, "order":"by_proxy"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_accounts", "params": {"start":["1960-01-01T00:00:00", ""], "limit":10, "order":"by_next_vesting_withdrawal"}, "id":1}'
   - api_method: database_api.list_change_recovery_account_requests
     since: HF11
-    purpose: Returns a list of recovery account change requests.
+    purpose: |
+      Returns a list of recovery account change requests.  Parameters: `start:object`, `limit:int`, `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_account` - order by account
+          * `start` is string of: `account`
+        * `by_effective_date` - order by effective date
+          * `start` is an array of two values: `timestamp`, `account`
+
+      | `start` (object) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `""` | 10 | `"by_account"` | Queries first 10 requests, sort by account |
+      | `["1960-01-01T00:00:00", ""]` | 10 | `"by_effective_date"` | Queries first 10 requests, sort by effective date |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_change_recovery_account_requests' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
-    expected_response_json: '{"requests":[]}'
+    expected_response_json: |
+      {
+        "requests": [
+          {
+            "id": 99,
+            "account_to_recover": "alice",
+            "recovery_account": "bob",
+            "effective_on": "1960-01-01T00:00:00"
+          }
+        ]
+      }
     curl_examples:
+    - '{"jsonrpc":"2.0", "method":"database_api.list_change_recovery_account_requests", "params": {"start":"alice", "limit":10, "order":"by_account"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.list_change_recovery_account_requests", "params": {"start":["1960-01-01T00:00:00",""], "limit":10, "order":"by_effective_date"}, "id":1}'
   - api_method: database_api.list_comments
     purpose: |
@@ -1002,8 +1031,10 @@
       |----------------------------|---------------|-|
       | `["1970-01-01T00:00:00", "", ""]` | 10 | `"by_cashout_time"` | Queries first 10 comments, sort by cashout time |
       | `["", ""]` | 10 | `"by_permlink"` | Queries first 10 comments, sort by permlink |
-      | `["steemit","firstpost","",""]` | 10 | `"by_root"` | Queries next 10 comments starting at @steemit/firstpost, sort by root |
-      | `["steemit","firstpost","",""]` | 10 | `"by_parent"` | Queries next 10 comments starting at @steemit/firstpost, sort by parent |
+      | `["steemit","firstpost", "", ""]` | 10 | `"by_root"` | Queries next 10 comments starting at @steemit/firstpost, sort by root |
+      | `["steemit","firstpost", "", ""]` | 10 | `"by_parent"` | Queries next 10 comments starting at @steemit/firstpost, sort by parent |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_comments' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1066,14 +1097,47 @@
     - '{"jsonrpc":"2.0", "method":"database_api.list_comments", "params": {"start":["steemit","firstpost","",""], "limit":10, "order":"by_parent"}, "id":1}'
   - api_method: database_api.list_decline_voting_rights_requests
     since: HF14
-    purpose: Returns a list of decline voting rights requests.
+    purpose: |
+      Returns a list of decline voting rights requests.  Parameters: `start:object`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_account` - order by account
+          * `start` is a string: `account`
+        * `by_effective_date` - order by effective date
+          * `start` is an array of two values: `timestamp`, `account`
+
+      | `start` (object) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `""` | 10 | `"by_account"` | Queries first 10 requests, sort by account |
+      | `["1960-01-01T00:00:00", ""]` | 10 | `"by_effective_date"` | Queries first 10 requests, sort by effective date |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_decline_voting_rights_requests' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: '{"requests":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_decline_voting_rights_requests", "params": {"start":"", "limit":10, "order":"by_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_decline_voting_rights_requests", "params": {"start":["1970-01-01T00:00:00","",""], "limit":10, "order":"by_effective_date"}, "id":1}'
   - api_method: database_api.list_escrows
     since: HF14
-    purpose: Returns a list of escrows.
+    purpose: |
+      Returns a list of escrows.  Parameters: `start:array`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_from_id` - order by id
+          * `start` is an array of two values: `account`, `escrow_id`
+        * `by_ratification_deadline` - order by ratification deadline
+          * `start` is an array of three values: `is_approved`, `timestamp`, `escrow_id`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `["alice", 99]` | 10 | `"by_from_id"` | Queries first 10 requests, sort by id |
+      | `[true, "1960-01-01T00:00:00", 99]` | 10 | `"by_ratification_deadline"` | Queries first 10 requests, sort by ratification deadline |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_escrows' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1109,8 +1173,25 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_escrows", "params": {"start":["",0], "limit":10, "order":"by_from_id"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_escrows", "params": {"start":[true, "1970-01-01T00:00:00", 0], "limit":10, "order":"by_ratification_deadline"}, "id":1}'
   - api_method: database_api.list_limit_orders
-    purpose: Returns a list of limit orders.
+    purpose: |
+      Returns a list of limit orders.  Parameters: `start:array`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_price` - order by price
+          * `start` is an array of two values: `price`, `order_type`
+        * `by_account` - order by account
+          * `start` is an array of two values: `account`, `order_id`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `[{"base": {"amount": "85405", "precision": 3, "nai": "@@000000021"}, "quote": {"amount": "17192", "precision": 3, "nai": "@@000000013"}}, 0]` | 10 | `"by_price"` | Queries first 10 requests, sort by price |
+      | `["alice", 0]` | 10 | `"by_effective_date"` | Queries first 10 requests, sort by account |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_limit_orders' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1139,6 +1220,7 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":[{"base":{"amount":"1000","precision":3,"nai":"@@000000021"},"quote":{"amount":"1","precision":3,"nai":"@@000000013"}},0], "limit":10, "order":"by_price"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_limit_orders", "params": {"start":["alice",0], "limit":10, "order":"by_account"}, "id":1}'
   - api_method: database_api.list_owner_histories
     purpose: |
       Returns a list of owner authority histories.  Parameters: `start:array`, `limit:int`
@@ -1147,6 +1229,8 @@
       |--------------------|-|-|
       | `["steemit", "1970-01-01T00:00:00"]` | 10 | Queries the owner history starting from account named "steemit" on "1970-01-01T00:00:00", limit 10 results. |
       | `["alice", "1970-01-01T00:00:00"]` | 10 | Queries the owner history starting from account named "alice", limit 10 results. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_owner_histories' | relative_url }})
     parameter_json: '{"start":null,"limit":0}'
     expected_response_json: |
       {
@@ -1179,12 +1263,19 @@
       * `limit` is up to 1000.
       * `order` can be one of:
         * `by_from_id` - order by id
+          * `start` is an array of two values: `account`, `request_id`
         * `by_complete_from_id` - order by id (complete)
+          * `start` is an array of three values: `timestamp`, `account`, `request_id`
+        * `by_to_complete` - order by complete
+          * `start` is an array of three values: `account`, `timestamp`, `order_id`
 
       | `start` (object) | `limit` (int) | `order` (string) | |
       |--------------------|-|-|-|
       | `[0]` | `10` | `"by_from_id"` | Queries the savings withdraw for id. |
       | `["2018-12-07T16:54:03", "steemit", 0]` | `10` | `"by_complete_from_id"` | Queries the savings withdraw for id (completed). |
+      | `["", "1970-01-01T00:00:00", 0]` | `10` | `"by_to_complete"` | Queries the savings withdraw completed. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_savings_withdrawals' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1207,19 +1298,24 @@
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":[0], "limit":10, "order":"by_from_id"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":["2018-12-07T16:54:03", "steemit", 0], "limit":10, "order":"by_complete_from_id"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_savings_withdrawals", "params": {"start":["", "1970-01-01T00:00:00", 0], "limit":10, "order":"by_to_complete"}, "id":1}'
   - api_method: database_api.list_sbd_conversion_requests
     purpose: |
       Returns the list of SBD conversion requests for an account.  Parameters: `start:array`, `limit:int`, `order:string`
 
       * `limit` is up to 1000.
       * `order` can be one of:
-        * `by_conversion_date` - order by conversion date
         * `by_account` - order by accont name
+          * `start` is an array of two values: `account`, `request_id`
+        * `by_conversion_date` - order by conversion date
+          * `start` is an array of two values: `timestamp`, `request_id`
 
       | `start` (array) | `limit` (int) | `order` (string) | |
       |-------------------|-|-|-|
-      | `["steemit"]` | 10 | `by_account` | Queries a conversion request for steemit, limit to 10 results, order by account name. |
-      | `["2018-12-07T16:54:03"]` | 10 | `by_conversion_date`| Queries a conversion request from this date, limit to 10 results, order by conversion date. |
+      | `["steemit", 0]` | 10 | `by_account` | Queries a conversion request for steemit, limit to 10 results, order by account name. |
+      | `["2018-12-07T16:54:03", 0]` | 10 | `by_conversion_date`| Queries a conversion request from this date, limit to 10 results, order by conversion date. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_sbd_conversion_requests' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1238,11 +1334,26 @@
         ]
       }
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["steemit"], "limit":10, "order":"by_account"}, "id":1}'
-    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["2018-12-07T16:54:03"], "limit":10, "order":"by_conversion_date"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["steemit", 0], "limit":10, "order":"by_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_sbd_conversion_requests", "params": {"start":["2018-12-07T16:54:03", 0], "limit":10, "order":"by_conversion_date"}, "id":1}'
   - api_method: database_api.list_vesting_delegation_expirations
     since: HF17
-    purpose: Returns a list of vesting delegation expirations.
+    purpose: |
+      Returns a list of vesting delegation expirations.  Parameters: `start:array`, `limit:int`, `order:string`
+
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_expiration` - order by expiration
+          * `start` is an array of two values: `timestamp`, `expiration_id`
+        * `by_account_expiration` - order by account expiration
+          * `start` is an array of two values: `account`, `timestamp`, `expiration_id`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |-------------------|-|-|-|
+      | `["1970-01-01T00:00:00", 0]` | 10 | `by_expiration` | Queries delegations, limit to 10 results, order by expiration. |
+      | `["alice", "1970-01-01T00:00:00", 0]` | 10 | `by_account_expiration`| Queries delegation from this date, limit to 10 results, order by account expiration. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_vesting_delegation_expirations' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1261,9 +1372,22 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_vesting_delegation_expirations", "params": {"start":["1970-01-01T00:00:00",0], "limit":10, "order":"by_expiration"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_vesting_delegation_expirations", "params": {"start":["alice", "1970-01-01T00:00:00",0], "limit":10, "order":"by_account_expiration"}, "id":1}'
   - api_method: database_api.list_vesting_delegations
     since: HF17
-    purpose: Returns a list of vesting delegations.
+    purpose: |
+      Returns a list of vesting delegations.  Parameters: `start:array`, `limit:int`, `order:string`
+
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_delegation` - order by delegations
+          * `start` is an array of two values: `delegator`, `delegatee`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |-------------------|-|-|-|
+      | `["", ""]` | 10 | `by_delegation` | Queries delegations, limit to 10 results, order by delegations. |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_vesting_delegations' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1303,6 +1427,8 @@
       | `["", "", ""]` | 10 | `"by_voter_comment"` | Queries first 10 votes, sort by voter comment |
       | `["xeroc", "vanteem-config", ""]` | 10 | `"by_comment_voter"` | Queries next 10 votes starting on the post `@xeroc/vanteem-config`, sort by comment voter |
       | `["alice", "xeroc", "vanteem-config"]` | 10 | `"by_voter_comment"` | Queries next 10 votes starting at alice on the post `@xeroc/vanteem-config`, sort by voter comment |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_votes' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_comment_voter"}'
     expected_response_json: |
       {
@@ -1326,7 +1452,23 @@
     - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["", "", "steemit"], "limit":10, "order":"by_comment_voter"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.list_votes", "params": {"start":["alice", "xeroc", "vanteem-config"], "limit":10, "order":"by_voter_comment"}, "id":1}'
   - api_method: database_api.list_withdraw_vesting_routes
-    purpose: Returns a list of vesting withdraw routes.
+    purpose: |
+      Returns a list of vesting withdraw routes.  Parameters: `start:array`; `limit:int`; `order:string`
+
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_withdraw_route` - order by withdraw route
+          * `start` is an array of two values: `from_account`, `to_account`
+        * `by_destination` - order by destination
+          * `start` is an array of two values: `to_account`, `route_id`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `["temp", ""]` | 10 | `"by_withdraw_route"` | Queries first 10 routes, sort by withdraw route |
+      | `["", 0]` | 10 | `"by_destination"` | Queries first 10 routes, sort by destination |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_withdraw_vesting_routes' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1342,8 +1484,25 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_withdraw_vesting_routes", "params": {"start":["temp",""], "limit":10, "order":"by_withdraw_route"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_withdraw_vesting_routes", "params": {"start":["",0], "limit":10, "order":"by_destination"}, "id":1}'
   - api_method: database_api.list_witness_votes
-    purpose: Returns a list of witness votes.
+    purpose: |
+      Returns a list of witness votes.  Parameters: `start:array`; `limit:int`; `order:string`
+
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_account_witness` - order by account witness
+          * `start` is an array of two values: `account`, `witness`
+        * `by_witness_account` - order by witness account
+          * `start` is an array of two values: `witness`, `account`
+
+      | `start` (array) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `["", ""]` | 10 | `"by_withdraw_route"` | Queries first 10 votes, sort by account witness |
+      | `["", ""]` | 10 | `"by_destination"` | Queries first 10 votes, sort by witness account |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_witness_votes' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1357,8 +1516,28 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_witness_votes", "params": {"start":["",""], "limit":10, "order":"by_account_witness"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_witness_votes", "params": {"start":["",""], "limit":10, "order":"by_witness_account"}, "id":1}'
   - api_method: database_api.list_witnesses
-    purpose: Returns the list of witnesses.
+    purpose: |
+      Returns the list of witnesses.  Parameters: `start:object`; `limit:int`; `order:string`
+
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_name` - order by name
+          * `start` is string value: `account`
+        * `by_vote_name` - order by vote, name
+          * `start` is an array of two values: `votes`, `account`
+        * `by_schedule_time` - order by schedule time
+          * `start` is an array of two values: `virtual_scheduled_time`, `account`
+
+      | `start` (object) | `limit` (int) | `order` (string) | |
+      |----------------------------|---------------|-|
+      | `""` | 10 | `"by_name"` | Queries first 10 witnesses, sort by account name |
+      | `[0, ""]` | 10 | `"by_vote_name"` | Queries first 10 witnesses, sort by votes |
+      | `["473718186844702107410533306", "alice"]` | 10 | `"by_schedule_time"` | Queries first 10 witnesses, sort by schedule |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_witnesses' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
     expected_response_json: |
       {
@@ -1411,13 +1590,16 @@
       }
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_witnesses", "params": {"start":"", "limit":10, "order":"by_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_witnesses", "params": {"start":[0,""], "limit":10, "order":"by_vote_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_witnesses", "params": {"start":["473718186844702107410533306","alice"], "limit":10, "order":"by_schedule_time"}, "id":1}'
   - api_method: database_api.verify_account_authority
     disabled: true
-    purpose: "**Not Implemented**\n"
+    purpose: |
+      **Not Implemented**
     parameter_json: '{"account":"","signers":[]}'
     expected_response_json: '{"valid":false}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.verify_account_authority", "params":{"account":"steemit","signers":["STM7u1BsoqLaoCu9XHi1wjWctLWSFCuvyagFjYMfga4QNWEjP7d3U","STM5VkLha96X5EQu3HSkJdD8SEuwazWtZrzLjUT6Sc5sopgghBYrz"]}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.verify_account_authority", "params":{"account":"temp","signers":["STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX"]}, "id":1}'
     expected_curl_responses:
     - Missing Active Authority steemit
   - api_method: database_api.verify_authority
@@ -1485,6 +1667,8 @@
       |-------------------|-|-|-|-|-|
       | `["alice"]` | 10 | `by_voter_proposal` | `ascending` | `active` | list 10 proposals with active status, ordered by voter, ascending |
       | `[10]` | 1000 | `by_proposal_voter` | `ascending` | `votable` | list 1000 votes on proposal 10, ordered by `proposal.id`, ascending |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_proposal_votes' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name","order_direction":"ascending","status":"all"}'
     expected_response_json: |
       {"proposal_votes":[{
@@ -1544,6 +1728,8 @@
       | `["alice"]` | 10 | `by_creator` | `ascending` | `all` | list 10 proposals with any status, ordered by creator, ascending, by alice |
       | `[""]` | 1000 | `by_creator` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending |
       | `[10]` | 1000 | `by_total_votes` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending, having at least 10 votes |
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_proposals' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_name","order_direction":"ascending","status":"all"}'
     expected_response_json: |
       {"proposals":[

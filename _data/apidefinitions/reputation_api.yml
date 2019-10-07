@@ -9,7 +9,7 @@
   - api_method: reputation_api.get_account_reputations
     since: HF20
     purpose: |
-      Returns the reputation of accounts.  Parameters: `accounts:string array`; `limit:int`
+      Returns the reputation of accounts.  Parameters: `account:string`; `limit:int`
 
       * `limit` is up to 1000.
 
@@ -18,6 +18,8 @@
       | `"steemit"` | 10 | Queries the reputation for account named "steemit". |
 
       See [#1425](https://github.com/steemit/steem/issues/1425)
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#reputation_apiget_account_reputations' | relative_url }})
     parameter_json: '{"account_lower_bound":"","limit":1000}'
     expected_response_json: |
       {
