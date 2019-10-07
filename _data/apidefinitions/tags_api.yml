@@ -55,7 +55,10 @@
     - '{"jsonrpc":"2.0", "method":"tags_api.get_discussions_by_active", "params":{"tag":"photography","limit":10,"truncate_body":0},
       "id":1}'
   - api_method: tags_api.get_discussions_by_author_before_date
-    purpose: Returns a list of discussions based on author before date.
+    purpose: |
+      Returns a list of discussions based on author before date.
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#tags_apiget_discussions_by_author_before_date' | relative_url }})
     parameter_json: '{"author":"","start_permlink":"","before_date":"1970-01-01T00:00:00","limit":100}'
     expected_response_json: '{"discussions":[]}'
     curl_examples:
@@ -168,7 +171,10 @@
     - '{"jsonrpc":"2.0", "method":"tags_api.get_post_discussions_by_payout", "params":{"tag":"photography","limit":10,"truncate_body":0},
       "id":1}'
   - api_method: tags_api.get_replies_by_last_update
-    purpose: Returns a list of replies by last update.
+    purpose: |
+      Returns a list of replies by last update.
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#tags_apiget_replies_by_last_update' | relative_url }})
     parameter_json: '{"start_parent_author":"","start_permlink":"","limit":100}'
     expected_response_json: '{"discussions":[]}'
     curl_examples:
@@ -182,7 +188,10 @@
     - '{"jsonrpc":"2.0", "method":"tags_api.get_tags_used_by_author", "params":{"author":"steemit"},
       "id":1}'
   - api_method: tags_api.get_trending_tags
-    purpose: Returns the list of trending tags.
+    purpose: |
+      Returns the list of trending tags.
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#tags_apiget_trending_tags' | relative_url }})
     parameter_json: '{"start_tag":"","limit":100}'
     expected_response_json: '{"tags":[]}'
     curl_examples:
