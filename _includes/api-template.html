@@ -12,26 +12,6 @@
 <li class="warning"><strong><small>Disabled</small></strong></li>
 {% endif %}
 
-{% if method.mainnet %}
-	{% if method.mainnet.working == true || method.mainnet.working == blank %}
-	<li class="success"><strong><small>Working on mainnet</small></strong></li>
-	{% else %}
-	<li class="error"><strong><small>Not working on mainnet</small></strong></li>
-	{% endif %}
-{% else %}
-<li class="success"><strong><small>Working on mainnet</small></strong></li>
-{% endif %}
-
-{% if method.testnet %}
-	{% if method.testnet.working == true || method.testnet.working == blank %}
-	<li class="success"><strong><small>Working on testnet</small></strong></li>
-	{% else %}
-	<li class="error"><strong><small>Not working on testnet</small></strong></li>
-	{% endif %}
-{% else %}
-<li class="success"><strong><small>Working on testnet</small></strong></li>
-{% endif %}
-
 </ul>
 <h4 id="{{ method.api_method | slug }}">{{method.api_method}} <a href="#{{ method.api_method | slug}}"><i class="fas fa-link fa-xs"></i></a></h4>
 {{ method.purpose | liquify | markdownify }}
