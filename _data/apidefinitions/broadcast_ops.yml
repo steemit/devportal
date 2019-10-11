@@ -1060,6 +1060,112 @@
           approve
       json_examples:
         - '["update_proposal_votes",{"voter":"alice","proposal_ids":[0],"approve":true}]'
+    - name: claim_reward_balance2
+      since: HF23
+      virtual: false
+      purpose: |
+        Differs with original operation with extensions field and a container of tokens that will be rewarded to an account.
+        
+        Note: The reward tokens are required to be unique and sorted (both by asset symbol) in ascending order.  Otherwise operation validation will fail.
+       
+        See: [#1859](https://github.com/steemit/steem/issues/1859)
+      roles:
+        - posting
+          active
+          owner
+    - name: vote2
+      since: HF23
+      virtual: false
+      purpose: |
+      
+        See: [#2748](https://github.com/steemit/steem/issues/2748)
+      roles:
+        - posting
+          active
+          owner
+    - name: smt_setup
+      since: HF23
+      virtual: false
+      purpose: |
+        
+        See [#3455](https://github.com/steemit/steem/issues/3455)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L67-L90)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_setup",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_begin_time":"2019-08-26T11:22:39","contribution_end_time":"2019-08-26T11:22:39","launch_time":"2019-09-26T11:22:39","max_supply":1000000000000000,"steem_units_hard_cap":10000,"steem_units_soft_cap":1000,"steem_units_min":0,"initial_generation_policy":{},"extensions":[]}]'
+    - name: smt_setup_emissions
+      since: HF23
+      virtual: false
+      purpose: |
+        
+        See: [#2738](https://github.com/steemit/steem/issues/2738)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L100-L129)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_setup_emissions",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"emissions_unit":{},"schedule_time":"2019-08-26T11:22:39"}, "interval_seconds":21600,"interval_count":1,"lep_abs_amount":{"nai": "@@000000000", "decimals": 0},"rep_abs_amount":{"nai": "@@000000000", "decimals": 0},"lep_rel_amount_numerator":1,"rep_rel_amount_numerator":0,"rel_amount_denom_bits":0,"remove":false,"floor_emissions":0,"extensions":[]}]'
+    - name: smt_set_setup_parameters
+      since: HF23
+      virtual: false
+      purpose: |
+        
+        Allowed reward curves:
+          * `quadratic`
+          * `bounded_curation`
+          * `linear`
+          * `square_root`
+          * `convergent_linear`
+          * `convergent_square_root`
+        
+        See: [#2727](https://github.com/steemit/steem/issues/2727)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L172-L183)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_set_setup_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"setup_parameters":{"smt_param_windows_v1":{"cashout_window_seconds":0,"reverse_auction_window_seconds":0},"smt_param_vote_regeneration_period_seconds_v1":{"vote_regeneration_period_seconds":0,"votes_per_regeneration_period":0},"smt_param_rewards_v1":{"content_constant":0,"percent_curation_rewards":0,"author_reward_curve":"quadratic","curation_reward_curve":"quadratic"},"smt_param_allow_downvotes":true},"extensions":[]}]'
+    - name: smt_set_runtime_parameters
+      since: HF23
+      virtual: false
+      purpose: |
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L185-L196)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_set_runtime_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"runtime_parameters":{"smt_param_allow_voting":true},"extensions":[]}]'
+    - name: smt_create
+      since: HF23
+      virtual: false
+      purpose: |
+        This operation introduces new SMT into blockchain as identified by Numerical Asset Identifier (NAI). Also the SMT precision (decimal points) is explicitly provided.
+        
+        Parameters:
+          `smt_creation_fee` - The amount to be transfered from @account to null account as elevation fee.
+          `precision` - Separately provided precision for clarity and redundancy.
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L16-L37)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_create",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"smt_creation_fee":{"amount":"3000","precision":3,"nai":"@@000000013"},"precision":0,"extensions":[]}]'
+    - name: smt_contribute
+      since: HF23
+      virtual: false
+      purpose: |
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L198-L209)</sup>
+      roles:
+        - active
+          owner
+      json_examples:
+        - '["smt_contribute",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_id":0,"contribution":{"amount":"3000","precision":3,"nai":"@@000000013"},"extensions":[]}]'
     - name: clear_null_account_balance
       since: HF20
       virtual: true
