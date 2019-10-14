@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Transaction Status Api | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Transaction Status Api" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This API is intended to evaluate a transaction status after calling condenser_api.broadcast_transaction. To enable this API for steemd, the following is required in config.ini by specifying: plugin = transaction_status_api See: #3060 Since: The Mysterious Future Not working on mainnet Not working on testnet transaction_status_api.find_transaction Returns the status of a given transaction id. Parameters: trx_id:string; expiration:timestamp (optional) The result will contain one of the following status values: Status Meaning unknown Expiration time in future, transaction not included in block or mempool within_mempool Transaction in mempool within_reversible_block Transaction has been included in block, block not irreversible within_irreversible_block Transaction has been included in block, block is irreversible expired_reversible Transaction has expired, transaction is not irreversible (transaction could be in a fork) expired_irreversible Transaction has expired, transaction is irreversible (transaction cannot be in a fork) too_old Transaction is too old, I don’t know about it Query Parameters JSON { &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;: &quot;2016-03-24T18:00:21&quot; } Expected Response JSON {&quot;status&quot;: &quot;unknown&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta property="og:description" content="This API is intended to evaluate a transaction status after calling condenser_api.broadcast_transaction. To enable this API for steemd, the following is required in config.ini by specifying: plugin = transaction_status_api See: #3060 Since: The Mysterious Future Not working on mainnet Not working on testnet transaction_status_api.find_transaction Returns the status of a given transaction id. Parameters: trx_id:string; expiration:timestamp (optional) The result will contain one of the following status values: Status Meaning unknown Expiration time in future, transaction not included in block or mempool within_mempool Transaction in mempool within_reversible_block Transaction has been included in block, block not irreversible within_irreversible_block Transaction has been included in block, block is irreversible expired_reversible Transaction has expired, transaction is not irreversible (transaction could be in a fork) expired_irreversible Transaction has expired, transaction is irreversible (transaction cannot be in a fork) too_old Transaction is too old, I don’t know about it Query Parameters JSON { &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;: &quot;2016-03-24T18:00:21&quot; } Expected Response JSON {&quot;status&quot;: &quot;unknown&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/transaction-status-api" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/transaction-status-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"This API is intended to evaluate a transaction status after calling condenser_api.broadcast_transaction. To enable this API for steemd, the following is required in config.ini by specifying: plugin = transaction_status_api See: #3060 Since: The Mysterious Future Not working on mainnet Not working on testnet transaction_status_api.find_transaction Returns the status of a given transaction id. Parameters: trx_id:string; expiration:timestamp (optional) The result will contain one of the following status values: Status Meaning unknown Expiration time in future, transaction not included in block or mempool within_mempool Transaction in mempool within_reversible_block Transaction has been included in block, block not irreversible within_irreversible_block Transaction has been included in block, block is irreversible expired_reversible Transaction has expired, transaction is not irreversible (transaction could be in a fork) expired_irreversible Transaction has expired, transaction is irreversible (transaction cannot be in a fork) too_old Transaction is too old, I don’t know about it Query Parameters JSON { &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;: &quot;2016-03-24T18:00:21&quot; } Expected Response JSON {&quot;status&quot;: &quot;unknown&quot;} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;transaction_status_api.find_transaction&quot;, &quot;params&quot;: {&quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com","headline":"Transaction Status Api","@type":"WebPage","url":"https://developers.steem.io/apidefinitions/transaction-status-api","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	
+<p>This API is intended to evaluate a transaction status after calling <a href="/apidefinitions/#condenser_api.broadcast_transaction"><code class="highlighter-rouge">condenser_api.broadcast_transaction</code></a>.</p>
+
+<p>To enable this API for <code class="highlighter-rouge">steemd</code>, the following is required in <code class="highlighter-rouge">config.ini</code> by specifying:</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">plugin</span> <span class="p">=</span> <span class="s">transaction_status_api</span>
+</code></pre></div></div>
+
+<p>See: <a href="https://github.com/steemit/steem/pull/3060">#3060</a></p>
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: The Mysterious Future</small></strong></li>
+
+
+
+
+
+	
+	<li class="error"><strong><small>Not working on mainnet</small></strong></li>
+	
+
+
+
+	
+	<li class="error"><strong><small>Not working on testnet</small></strong></li>
+	
+
+
+</ul>
+<h4 id="transaction_status_api.find_transaction">transaction_status_api.find_transaction <a href="#transaction_status_api.find_transaction"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the status of a given transaction id.  Parameters: <code class="highlighter-rouge">trx_id:string</code>; <code class="highlighter-rouge">expiration:timestamp</code> (optional)</p>
+
+<p>The result will contain one of the following <code class="highlighter-rouge">status</code> values:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">unknown</code></td>
+      <td>Expiration time in future, transaction not included in block or mempool</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">within_mempool</code></td>
+      <td>Transaction in mempool</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">within_reversible_block</code></td>
+      <td>Transaction has been included in block, block not irreversible</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">within_irreversible_block</code></td>
+      <td>Transaction has been included in block, block is irreversible</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">expired_reversible</code></td>
+      <td>Transaction has expired, transaction is not irreversible (transaction could be in a fork)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">expired_irreversible</code></td>
+      <td>Transaction has expired, transaction is irreversible (transaction cannot be in a fork)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">too_old</code></td>
+      <td>Transaction is too old, I don’t know about it</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="transaction_status_api.find_transaction-parameter_json">Query Parameters JSON <a href="#transaction_status_api.find_transaction-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-24T18:00:21"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="transaction_status_api.find_transaction-expected_response_json">Expected Response JSON <a href="#transaction_status_api.find_transaction-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="transaction_status_api.find_transaction-curl-examples">Example <code>curl</code> <a href="#transaction_status_api.find_transaction-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"transaction_status_api.find_transaction", "params": {"transaction_id": "0000000000000000000000000000000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"transaction_status_api.find_transaction", "params": {"transaction_id": "0000000000000000000000000000000000000000", "expiration":"2016-03-24T18:00:21"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

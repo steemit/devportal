@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Get Post Comments | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Get Post Comments" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="By the end of this tutorial you would know how to get comments made by others on any post." />
+<meta property="og:description" content="By the end of this tutorial you would know how to get comments made by others on any post." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/get_post_comments" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/get_post_comments" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-14T10:46:22-05:00" />
+<script type="application/ld+json">
+{"description":"By the end of this tutorial you would know how to get comments made by others on any post.","headline":"JS: Get Post Comments","dateModified":"2019-10-14T10:46:22-05:00","datePublished":"2019-10-14T10:46:22-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/get_post_comments"},"url":"https://developers.steem.io/tutorials-javascript/get_post_comments","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-get-post-comments" class="row tutorials-javascript-get-post-comments">
+	<h3>
+		<a id="tutorials-javascript-get-post-comments">
+			JS: Get Post Comments
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>By the end of this tutorial you would know how to get comments made by others on any post.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/07_get_post_comments">Get Post Comments</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>The purpose of this tutorial is to <strong>a)</strong> demonstrate how to get a list of articles from the trending list on the blockchain, and <strong>b)</strong> fetch the contents of the selected post to display its title and body and <strong>c)</strong> fetch comments of the post and display them with author, body, created time and number of votes.</p>
+
+<p>We will also explain the most commonly used fields from the response object as well as parse body of each comment.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Each post might have comments/replies that is interesting and contributes to the topic and discussion. Steem offers out of box API for pulling replies for particular post with <code class="highlighter-rouge">get_content_replies</code>. We will fetch replies and list them in simple user interface.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#fetching-posts"><strong>Fetching posts</strong></a> Getting trending posts</li>
+  <li><a href="#post-comments"><strong>Post comments</strong></a> Open post and fetch comments</li>
+  <li><a href="#query-result"><strong>Query result</strong></a> Result of the query</li>
+</ol>
+
+<h4 id="1-fetching-post">1. Fetching post<a name="fetching-posts"></a></h4>
+
+<p>As mentioned in our previous tutorials we can fetch various lists of posts with different filters. Here, we are reusing some parts of that tutorial to list the top 5 trending posts. And we parse content of selected post to display few fields in a meaningful way.</p>
+
+<h4 id="2-post-comments">2. Post comments<a name="post-comments"></a></h4>
+
+<p>On selection of a particular post from the list, <code class="highlighter-rouge">openPost</code> function is fired as it is explained in <a href=""><strong>Get Post Details</strong></a> tutorial. This function will call the <code class="highlighter-rouge">get_content</code> function to fetch content of the post. Right after root post is displayed properly, we use <code class="highlighter-rouge">get_content_replies</code> function to fetch comments made on that post, function requires author and permlink of the root post to fetch its comments.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">client</span><span class="p">.</span><span class="nx">database</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_content_replies'</span><span class="p">,</span> <span class="p">[</span><span class="nx">author</span><span class="p">,</span> <span class="nx">permlink</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">comments</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">comments</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+            <span class="s2">`&lt;div class="list-group-item list-group-item-action flex-column align-items-start"&gt;\
+            &lt;div class="d-flex w-100 justify-content-between"&gt;\
+              &lt;h5 class="mb-1"&gt;@</span><span class="p">${</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">author</span><span class="p">}</span><span class="s2">&lt;/h5&gt;\
+              &lt;small class="text-muted"&gt;</span><span class="p">${</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span>
+                  <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">created</span>
+              <span class="p">).</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">&lt;/small&gt;\
+            &lt;/div&gt;\
+            &lt;p class="mb-1"&gt;</span><span class="p">${</span><span class="nx">md</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">body</span><span class="p">)}</span><span class="s2">&lt;/p&gt;\
+            &lt;small class="text-muted"&gt;&amp;#9650; </span><span class="p">${</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">net_votes</span><span class="p">}</span><span class="s2">&lt;/small&gt;\
+          &lt;/div&gt;`</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postComments'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'block'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postComments'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">comments</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>We iterate each comment and format them properly in <code class="highlighter-rouge">comments</code> array. As mentioned in <strong>Get Post Details</strong> tutorial, we use <code class="highlighter-rouge">remarkable</code> library to parse the body of each comment into a readable format. Author, comment body, created time and number of votes on that comment is displayed with simple user interface.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postList'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'block'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postBody'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'none'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postComments'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'none'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The “go back” function simply hides and shows the post list.</p>
+
+<h4 id="3-query-result">3. Query result<a name="query-result"></a></h4>
+
+<p>The result is returned from the post content as a <code class="highlighter-rouge">JSON</code> object with the following properties:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338948</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"re-join-team-steemit-at-tokenfest-20180500t181413163z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parent_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parent_permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"join-team-steemit-at-tokenfest"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for sharing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"json_metadata"</span><span class="p">:</span><span class="w">
+            </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">tags</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">steemit</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">app</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">steemit/0.1</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">format</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">markdown</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-07T23:22:54"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-00T20:56:36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-06T01:40:21"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"depth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"net_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11453442114933"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11454054795840"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vote_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11454054795840"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"children_abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13568695606090"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-07T20:56:36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1969-12-31T23:59:59"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_vote_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">3462435</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reward_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"curator_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author_rewards"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"net_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"root_comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338948</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_accepted_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"percent_steem_dollars"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_replies"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_votes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_curation_rewards"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"beneficiaries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w">
+            </span><span class="s2">"/steemit/@steemitblog/join-team-steemit-at-tokenfest#@demo/re-join-team-steemit-at-tokenfest-20180500t181413163z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"root_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Join Team Steemit at TokenFest!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.436 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemitblog"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1870813909383"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128210130644387"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-07T20:56:36"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kevinwong"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">526653</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2208942520687"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"374133832002581"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-08T04:27:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"author_reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128210130644387"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"promoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"body_length"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reblogged_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338987</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"etc."</span><span class="p">:</span><span class="w"> </span><span class="s2">"etc"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>From this result, you have access to comments made on selected post.</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/07_get_post_comments</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

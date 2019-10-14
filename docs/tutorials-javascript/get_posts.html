@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Get Posts | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Get Posts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Query for the most recent posts having a specific tag, using a Steem filter" />
+<meta property="og:description" content="Query for the most recent posts having a specific tag, using a Steem filter" />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/get_posts" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/get_posts" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-14T10:46:22-05:00" />
+<script type="application/ld+json">
+{"description":"Query for the most recent posts having a specific tag, using a Steem filter","headline":"JS: Get Posts","dateModified":"2019-10-14T10:46:22-05:00","datePublished":"2019-10-14T10:46:22-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/get_posts"},"url":"https://developers.steem.io/tutorials-javascript/get_posts","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-get-posts" class="row tutorials-javascript-get-posts">
+	<h3>
+		<a id="tutorials-javascript-get-posts">
+			JS: Get Posts
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>Query for the most recent posts having a specific tag, using a Steem filter</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/04_get_posts">Get Posts</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial pulls a list of the posts from different tags or filters and displays them.
+Tags and filters are different. It’s important to understand them.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Tags &amp; Filters are two different.</p>
+
+<p>A <code class="highlighter-rouge">tag</code> in Steem is much like a tag in Gmail, or Twitter. It’s a way to describe a
+post as being relevant to a particular topic. Posts may have up to five tags on them, but there are limits when
+querying (more on this later).</p>
+
+<p>A <code class="highlighter-rouge">filter</code> in Steem is a kind of built-in ‘view’ or ordering of posts. You can use the following filters:
+<code class="highlighter-rouge">trending</code>, <code class="highlighter-rouge">hot</code>, <code class="highlighter-rouge">new</code>, <code class="highlighter-rouge">active</code>, and <code class="highlighter-rouge">promoted</code>. You’ll get a feel for the subtleties of each as you create your
+application.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#UI"><strong>UI</strong></a> - A brief description of the UI and inputting our query values</li>
+  <li><a href="#Construct-query"><strong>Construct query</strong></a> - Assemble the information from the UI into our <code class="highlighter-rouge">filter</code> &amp; <code class="highlighter-rouge">query</code></li>
+  <li><a href="#API-call"><strong>API call</strong></a> - Make the call to Steem</li>
+  <li><a href="#Handle-response"><strong>Handle response</strong></a> - Accept the response in a promise callback, then render the results</li>
+  <li><a href="#Example-post-object"><strong>Example post object</strong></a> - An example post object from the response list</li>
+</ol>
+
+<h4 id="1-ui-">1. UI <a name="UI"></a></h4>
+
+<p>The source HTML for our UI can be found in <a href="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/04_get_posts/public/index.html">public/index.html</a></p>
+
+<p>There are three input components to the UI.</p>
+
+<ul>
+  <li>
+    <p>Filters: where we select one of the five built in filter types.</p>
+
+    <p><code class="highlighter-rouge">&lt;select id="filters" class="form-control" &gt;...</code></p>
+  </li>
+  <li>
+    <p>Tag: where we type in a <em>single</em>, arbitrary tag. (The Steem blockchain does not support searching on multiple tags)</p>
+
+    <p><code class="highlighter-rouge">&lt;input id="tag" class="form-control"/&gt;</code></p>
+  </li>
+  <li>
+    <p>Get Posts: It’s a button. You click it, and we move on to assembling our post.
+<code class="highlighter-rouge">&lt;button class="btn btn-primary" onclick="getPosts()"&gt;Get Posts&lt;/button&gt;</code></p>
+  </li>
+</ul>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/04_get_posts/images/Step-01-UI.png?raw=true" alt="Step-01-UI.png" /></p>
+
+<h4 id="2-construct-query-">2. Construct query <a name="Construct-query"></a></h4>
+
+<p>The filter and query are constructed within the async, globally available function <code class="highlighter-rouge">getPosts</code></p>
+
+<p>The <code class="highlighter-rouge">limit</code> property you see below limits the total number of posts we’ll get back to something
+managable. In this case, five.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">filter</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'filters'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">tag</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'tag'</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span>
+    <span class="na">limit</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="3-api-call-">3. API call <a name="API-call"></a></h4>
+
+<p>The api call itself is fairly simple. We use <code class="highlighter-rouge">getDiscussions</code>.
+The first argument, filter, is a simple string.
+The second argument is our query object.
+Like most of dsteem’s api functions, <code class="highlighter-rouge">getDiscussions</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">client</span><span class="p">.</span><span class="nx">database</span>
+    <span class="p">.</span><span class="nx">getDiscussions</span><span class="p">(</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">query</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">th</span><span class="p">..</span>
+</code></pre></div></div>
+
+<h4 id="4-handle-response-">4. Handle response <a name="Handle-response"></a></h4>
+
+<p>When the promise returned by <code class="highlighter-rouge">getDiscussions</code> completes successfully, the function we pass to <code class="highlighter-rouge">.then()</code>
+iterates over the entries response, and constructs html from it.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span><span class="nx">ery</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Response received:"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">posts</span> <span class="o">=</span> <span class="p">[];</span>
+                <span class="nx">result</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">post</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="kd">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">post</span><span class="p">.</span><span class="nx">json_metadata</span><span class="p">);</span>
+                    <span class="kd">const</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">image</span> <span class="p">?</span> <span class="nx">json</span><span class="p">.</span><span class="nx">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="s1">''</span><span class="p">;</span>
+                    <span class="kd">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
+                    <span class="kd">const</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">post</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span>
+                    <span class="kd">const</span> <span class="nx">created</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">post</span><span class="p">.</span><span class="nx">created</span><span class="p">).</span><span class="nx">toDateString</span><span class="p">();</span>
+                    <span class="nx">posts</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+                        <span class="s2">`&lt;div class="list-group-item"&gt;&lt;h4 class="list-group-item-heading"&gt;</span><span class="p">${</span><span class="nx">title</span><span class="p">}</span><span class="s2">&lt;/h4&gt;&lt;p&gt;by </span><span class="p">${</span><span class="nx">author</span><span class="p">}</span><span class="s2">&lt;/p&gt;&lt;center&gt;&lt;img src="</span><span class="p">${</span><span class="nx">image</span><span class="p">}</span><span class="s2">" class="img-responsive center-block" style="max-width: 450px"/&gt;&lt;/center&gt;&lt;p class="list-group-item-text text-right text-nowrap"&gt;</span><span class="p">${</span><span class="nx">created</span><span class="p">}</span><span class="s2">&lt;/p&gt;&lt;/div&gt;`</span>
+                    <span class="p">);</span>
+                <span class="p">});</span>
+
+                <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postList'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postList'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"No result."</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+</code></pre></div></div>
+
+<h4 id="5-example-post-object-">5. Example post object <a name="Example-post-object"></a></h4>
+
+<p>The result returned from the service is a <code class="highlighter-rouge">JSON</code> list. This is an example list with one entry.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338948</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemitblog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"join-team-steemit-at-tokenfest"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parent_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parent_permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Join Team Steemit at TokenFest!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"body"</span><span class="p">:</span><span class="w">
+            </span><span class="s2">"&lt;a href=</span><span class="se">\"</span><span class="s2">https://tokenfest.adria.digital</span><span class="se">\"</span><span class="s2">&gt;&lt;img src=</span><span class="se">\"</span><span class="s2">https://i.imgur.com/fOScDIW.png</span><span class="se">\"</span><span class="s2">/&gt;&lt;/a&gt;</span><span class="se">\n\n</span><span class="s2">Hello Steemians! If you’d like to meet Team Steemit live-in-person, or are just interested in attending what promises to be a great blockchain conference, join us at &lt;a href=</span><span class="se">\"</span><span class="s2">https://tokenfest.adria.digital/</span><span class="se">\"</span><span class="s2">&gt;TokenFest&lt;/a&gt; in San Francisco from March 15th to 16th. </span><span class="se">\n\n</span><span class="s2">Steemit CEO, Ned Scott, will be participating in a fireside chat alongside Steemit’s CTO, Harry Schmidt, as well as the creator of Utopian.io, Diego Pucci. Steemit will also be hosting the opening party on Thursday night and we’d certainly love to meet as many of you as possible IRL, so head on over to https://tokenfest.adria.digital/ and get your tickets while you can. </span><span class="se">\n\n</span><span class="s2">*Team Steemit*"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"json_metadata"</span><span class="p">:</span><span class="w">
+            </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">tags</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">steemit</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">tokenfest</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">conference</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">image</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">https://i.imgur.com/fOScDIW.png</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">links</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">https://tokenfest.adria.digital</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">https://tokenfest.adria.digital/</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">app</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">steemit/0.1</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">format</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">markdown</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-07T23:22:54"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-07T20:56:36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-13T01:40:21"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"depth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"net_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11453442114933"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11454054795840"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vote_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11454054795840"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"children_abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13568695606090"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-14T20:56:36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_cashout_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1969-12-31T23:59:59"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_vote_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">3462435</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reward_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"curator_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author_rewards"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"net_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"root_comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338948</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"max_accepted_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"percent_steem_dollars"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_replies"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_votes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"allow_curation_rewards"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"beneficiaries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/steemit/@steemitblog/join-team-steemit-at-tokenfest"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"root_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Join Team Steemit at TokenFest!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.436 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemitblog"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1870813909383"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128210130644387"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-07T20:56:36"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kevinwong"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">526653</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2208942520687"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"374133832002581"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-08T04:27:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"author_reputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128210130644387"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"promoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"body_length"</span><span class="p">:</span><span class="w"> </span><span class="mi">754</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reblogged_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>And that’s all there is to getting top-level posts.</strong> <em>See <a href="get_post_comments">Get post comments</a> for getting comments</em></p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/04_get_posts</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

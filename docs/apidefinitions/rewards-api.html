@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Rewards Api | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Rewards Api" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Returns the simulated curve for payouts. Parameters: curve:string; var1:string Note: The rewards_api plugin is for testing purposes only, do not run in production. curve (string) var1 (string)   &quot;quadratic&quot; “2000000000000”   &quot;bounded_curation&quot; “2000000000000”   &quot;linear&quot; “2000000000000”   &quot;square_root&quot; “2000000000000”   &quot;convergent_linear&quot; “2000000000000”   &quot;convergent_square_root&quot; “2000000000000”   See: #3325 Working on mainnet Working on testnet rewards_api.simulate_curve_payouts Query Parameters JSON {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;} Expected Response JSON {&quot;recent_claims&quot;: &quot;&quot;, &quot;payouts&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;bounded_curation&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta property="og:description" content="Returns the simulated curve for payouts. Parameters: curve:string; var1:string Note: The rewards_api plugin is for testing purposes only, do not run in production. curve (string) var1 (string)   &quot;quadratic&quot; “2000000000000”   &quot;bounded_curation&quot; “2000000000000”   &quot;linear&quot; “2000000000000”   &quot;square_root&quot; “2000000000000”   &quot;convergent_linear&quot; “2000000000000”   &quot;convergent_square_root&quot; “2000000000000”   See: #3325 Working on mainnet Working on testnet rewards_api.simulate_curve_payouts Query Parameters JSON {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;} Expected Response JSON {&quot;recent_claims&quot;: &quot;&quot;, &quot;payouts&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;bounded_curation&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/rewards-api" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/rewards-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"Returns the simulated curve for payouts. Parameters: curve:string; var1:string Note: The rewards_api plugin is for testing purposes only, do not run in production. curve (string) var1 (string)   &quot;quadratic&quot; “2000000000000”   &quot;bounded_curation&quot; “2000000000000”   &quot;linear&quot; “2000000000000”   &quot;square_root&quot; “2000000000000”   &quot;convergent_linear&quot; “2000000000000”   &quot;convergent_square_root&quot; “2000000000000”   See: #3325 Working on mainnet Working on testnet rewards_api.simulate_curve_payouts Query Parameters JSON {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;} Expected Response JSON {&quot;recent_claims&quot;: &quot;&quot;, &quot;payouts&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;quadratic&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;bounded_curation&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_linear&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;rewards_api.simulate_curve_payouts&quot;, &quot;params&quot;: {&quot;curve&quot;: &quot;convergent_square_root&quot;, &quot;var1&quot;: &quot;2000000000000&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com","headline":"Rewards Api","@type":"WebPage","url":"https://developers.steem.io/apidefinitions/rewards-api","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	
+<p>Returns the simulated curve for payouts.  Parameters: <code class="highlighter-rouge">curve:string</code>; <code class="highlighter-rouge">var1:string</code></p>
+
+<p>Note: <strong>The <code class="highlighter-rouge">rewards_api</code> plugin is for testing purposes only, do not run in production.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="highlighter-rouge">curve</code> (string)</th>
+      <th><code class="highlighter-rouge">var1</code> (string)</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">"quadratic"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"bounded_curation"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"linear"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"square_root"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"convergent_linear"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">"convergent_square_root"</code></td>
+      <td>“2000000000000”</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/3325">#3325</a></p>
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="success"><strong><small>Working on mainnet</small></strong></li>
+
+
+
+<li class="success"><strong><small>Working on testnet</small></strong></li>
+
+
+</ul>
+<h4 id="rewards_api.simulate_curve_payouts">rewards_api.simulate_curve_payouts <a href="#rewards_api.simulate_curve_payouts"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="rewards_api.simulate_curve_payouts-parameter_json">Query Parameters JSON <a href="#rewards_api.simulate_curve_payouts-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"curve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quadratic"</span><span class="p">,</span><span class="w"> </span><span class="s2">"var1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000000000000"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="rewards_api.simulate_curve_payouts-expected_response_json">Expected Response JSON <a href="#rewards_api.simulate_curve_payouts-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"recent_claims"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"payouts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="rewards_api.simulate_curve_payouts-curl-examples">Example <code>curl</code> <a href="#rewards_api.simulate_curve_payouts-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "quadratic", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "bounded_curation", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "linear", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "square_root", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "convergent_linear", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"rewards_api.simulate_curve_payouts", "params": {"curve": "convergent_square_root", "var1": "2000000000000"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
