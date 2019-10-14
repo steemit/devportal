@@ -20,7 +20,10 @@
     Because the method has no arguments, the params field can be omitted when not using `condenser_api`. However, it can optionally be included as the void type (e.g. `"params":{}`) but it is not required.
   methods:
   - api_method: condenser_api.broadcast_block
-    purpose: Used to broadcast a block.
+    purpose: |
+      Used to broadcast a block.
+      
+      Also see: [network_broadcast_api.broadcast_block]({{ '/apidefinitions/#network_broadcast_api.broadcast_block' | relative_url }})
     parameter_json:
     - previous: '0000000000000000000000000000000000000000'
       timestamp: '1970-01-01T00:00:00'
@@ -36,7 +39,10 @@
     expected_curl_responses:
     - attempting to push a block that is too old
   - api_method: condenser_api.broadcast_transaction
-    purpose: Used to broadcast a transaction.
+    purpose: |
+      Used to broadcast a transaction.
+      
+      Also see: [network_broadcast_api.broadcast_transaction]({{ '/apidefinitions/#network_broadcast_api.broadcast_transaction' | relative_url }})
     parameter_json:
     - ref_block_num: 0
       ref_block_prefix: 0
@@ -125,6 +131,8 @@
       |--------------------|---------------|---------------|-|
       | `"steemit"` | `1000` | `1000` | Queries the account named `steemit` starting on the latest item in history, up to 1,000 results. |
       | `"alice"` | `-1` | `10000` | Queries the account named `alice` starting on the oldest item in history, up to 10,000 results. |
+      
+      Also see: [account_history_api.get_account_history]({{ '/apidefinitions/#account_history_api.get_account_history' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_account_history' | relative_url }})
     parameter_json:
     - ''
     - 0
@@ -144,6 +152,8 @@
       |----------------------------|---------------|-|
       | `"steemit"` | `1` | Queries for accounts that start with "steemit", only one result. |
       | `"a"` | `10` | Queries for accounts that start with "a", up to 10 results. |
+      
+      Also see: [follow_api.get_account_reputations]({{ '/apidefinitions/#follow_api.get_account_reputations' | relative_url }})
     parameter_json:
     - ''
     - 1000
@@ -182,6 +192,8 @@
       |-------------------|-|
       | `["steemit"]` | Queries for account named "steemit". |
       | `["steemit", "alice"]` | Queries for accounts named "steemit" and "alice". |
+      
+      Also see: [database_api.find_accounts]({{ '/apidefinitions/#database_api.find_accounts' | relative_url }})
     parameter_json:
     - - ''
     expected_response_json:
@@ -287,6 +299,8 @@
       |----------------------------|---------------|-|
       | `"steemit"` | `"firstpost"` | Queries votes for content with a slug `@steemit/firstpost` |
       | `"alice"` | `"a-post-by-alice"` | Queries votes for content with a slug `@alice/a-post-by-alice` |
+      
+      Also see: [tags_api.get_active_votes]({{ '/apidefinitions/#tags_api.get_active_votes' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -306,7 +320,10 @@
     - 
     - unknown key:unknown key
   - api_method: condenser_api.get_active_witnesses
-    purpose: Returns the list of active witnesses.
+    purpose: |
+      Returns the list of active witnesses.
+      
+      Also see: [database_api.get_active_witnesses]({{ '/apidefinitions/#database_api.get_active_witnesses' | relative_url }})
     parameter_json: []
     expected_response_json: []
     curl_examples:
@@ -321,6 +338,8 @@
       | `1` | Queries the very first block. |
       | `8675309` | Queries block number 8,675,309. |
       | `62396745` | Queries block number 62,396,745. |
+      
+      Also see: [block_api.get_block]({{ '/apidefinitions/#block_api.get_block' | relative_url }})
     parameter_json:
     - 1
     expected_response_json:
@@ -348,6 +367,8 @@
       | `1` | Queries the block headers for the very first block. |
       | `8675309` | Queries block headers for block number 8,675,309. |
       | `62396745` | Queries block headers for block number 62,396,745. |
+      
+      Also see: [block_api.get_block_header]({{ '/apidefinitions/#block_api.get_block_header' | relative_url }})
     parameter_json:
     - 1
     expected_response_json:
@@ -371,6 +392,8 @@
       |-------------------|------------------------|---------------|-|
       | "steemit" | `0` | `1` | Queries the blog for the account named "steemit", up to one result. |
       | "alice" | `0` | `50` | Queries the blog for the account named "alice", up to 50 results. |
+      
+      Also see: [follow_api.get_blog]({{ '/apidefinitions/#follow_api.get_blog' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_blog' | relative_url }})
     parameter_json:
     - steemit
     - 0
@@ -439,6 +462,8 @@
       |-------------------|-|
       | `"steemit"` | Queries for account named "steemit". |
       | `"alice"` | Queries for accounts named alice". |
+      
+      Also see: [follow_api.get_blog_authors]({{ '/apidefinitions/#follow_api.get_blog_authors' | relative_url }})
     parameter_json:
     - ''
     expected_response_json:
@@ -457,6 +482,8 @@
       |-------------------|------------------------|---------------|-|
       | "steemit" | `0` | `1` | Queries the blog entries for the account named "steemit", up to one result. |
       | "alice" | `0` | `50` | Queries the blog entries for the account named "alice", up to 50 results. |
+      
+      Also see: [follow_api.get_blog_entries]({{ '/apidefinitions/#follow_api.get_blog_entries' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_blog_entries' | relative_url }})
     parameter_json:
     - steemit
     - 0
@@ -485,7 +512,10 @@
       "id":1}'
   - api_method: condenser_api.get_comment_discussions_by_payout
     since: HF17
-    purpose: Returns a list of discussions based on payout.
+    purpose: |
+      Returns a list of discussions based on payout.
+      
+      Also see: [tags_api.get_comment_discussions_by_payout]({{ '/apidefinitions/#tags_api.get_comment_discussions_by_payout' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -503,6 +533,8 @@
     purpose: |
       Returns information about compile-time constants.  See: [Understanding
       Configuration Values]({{ '/tutorials-recipes/understanding-configuration-values' | relative_url }})
+      
+      Also see: [database_api.get_config]({{ '/apidefinitions/#database_api.get_config' | relative_url }})
     parameter_json: []
     expected_response_json: {}
     curl_examples:
@@ -578,6 +610,8 @@
       |----------------------------|---------------|-|
       | `"steemit"` | `"firstpost"` | Queries replies for a slug `@steemit/firstpost` |
       | `"alice"` | `"a-post-by-alice"` | Queries replies for a slug `@alice/a-post-by-alice` |
+      
+      Also see: [tags_api.get_content_replies]({{ '/apidefinitions/#tags_api.get_content_replies' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -639,6 +673,8 @@
       | `id` (int) | |
       |-------------------|-|
       | `1234` | Queries a conversion request with the id of 1234. |
+      
+      Also see: [database_api.list_sbd_conversion_requests]({{ '/apidefinitions/#database_api.list_sbd_conversion_requests' | relative_url }})
     parameter_json:
     - 0
     expected_response_json: []
@@ -655,7 +691,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_current_median_history_price",
       "params":[], "id":1}'
   - api_method: condenser_api.get_discussions_by_active
-    purpose: Returns a list of discussions based on active.
+    purpose: |
+      Returns a list of discussions based on active.
+      
+      Also see: [tags_api.get_discussions_by_active]({{ '/apidefinitions/#tags_api.get_discussions_by_active' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -670,7 +709,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_active", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_author_before_date
-    purpose: Returns a list of discussions based on author before date.
+    purpose: |
+      Returns a list of discussions based on author before date.
+      
+      Also see: [tags_api.get_discussions_by_author_before_date]({{ '/apidefinitions/#tags_api.get_discussions_by_author_before_date' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_discussions_by_author_before_date' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -681,7 +723,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_author_before_date",
       "params":["steemit","firstpost","2016-04-19T22:49:43",1], "id":1}'
   - api_method: condenser_api.get_discussions_by_blog
-    purpose: Returns a list of discussions by blog.
+    purpose: |
+      Returns a list of discussions by blog.
+      
+      Also see: [tags_api.get_discussions_by_blog]({{ '/apidefinitions/#tags_api.get_discussions_by_blog' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -696,7 +741,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_blog", "params":[{"tag":"alice","limit":10}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_cashout
-    purpose: Returns a list of discussions by cashout.
+    purpose: |
+      Returns a list of discussions by cashout.
+      
+      Also see: [tags_api.get_discussions_by_cashout]({{ '/apidefinitions/#tags_api.get_discussions_by_cashout' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -711,7 +759,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_cashout", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_children
-    purpose: Returns a list of discussions by children.
+    purpose: |
+      Returns a list of discussions by children.
+      
+      Also see: [tags_api.get_discussions_by_children]({{ '/apidefinitions/#tags_api.get_discussions_by_children' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -726,7 +777,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_children", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_comments
-    purpose: Returns a list of discussions by comments.
+    purpose: |
+      Returns a list of discussions by comments.
+      
+      Also see: [tags_api.get_discussions_by_comments]({{ '/apidefinitions/#tags_api.get_discussions_by_comments' | relative_url }})
     parameter_json:
     - start_author: ''
       start_permlink: ''
@@ -741,7 +795,10 @@
     - 
     - Comment is not in account's comments
   - api_method: condenser_api.get_discussions_by_created
-    purpose: Returns a list of discussions by created.
+    purpose: |
+      Returns a list of discussions by created.
+      
+      Also see: [tags_api.get_discussions_by_created]({{ '/apidefinitions/#tags_api.get_discussions_by_created' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -757,7 +814,10 @@
       "id":1}'
   - api_method: condenser_api.get_discussions_by_feed
     since: HF14
-    purpose: Returns a list of discussions by feed.
+    purpose: |
+      Returns a list of discussions by feed.
+      
+      Also see: [tags_api.get_discussions_by_feed]({{ '/apidefinitions/#tags_api.get_discussions_by_feed' | relative_url }})
     parameter_json:
     - tag: ''
       start_author: ''
@@ -770,7 +830,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_feed", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_hot
-    purpose: Returns a list of discussions by hot.
+    purpose: |
+      Returns a list of discussions by hot.
+      
+      Also see: [tags_api.get_discussions_by_hot]({{ '/apidefinitions/#tags_api.get_discussions_by_hot' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -786,7 +849,10 @@
       "id":1}'
   - api_method: condenser_api.get_discussions_by_promoted
     since: HF13
-    purpose: Returns a list of discussions by promoted.
+    purpose: |
+      Returns a list of discussions by promoted.
+      
+      Also see: [tags_api.get_discussions_by_promoted]({{ '/apidefinitions/#tags_api.get_discussions_by_promoted' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -801,7 +867,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_promoted", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_trending
-    purpose: Returns a list of discussions by trending.
+    purpose: |
+      Returns a list of discussions by trending.
+      
+      Also see: [tags_api.get_discussions_by_trending]({{ '/apidefinitions/#tags_api.get_discussions_by_trending' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -816,7 +885,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_discussions_by_trending", "params":[{"tag":"photography","limit":10,"truncate_body":0}],
       "id":1}'
   - api_method: condenser_api.get_discussions_by_votes
-    purpose: Returns a list of discussions by votes.
+    purpose: |
+      Returns a list of discussions by votes.
+      
+      Also see: [tags_api.get_discussions_by_votes]({{ '/apidefinitions/#tags_api.get_discussions_by_votes' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -834,6 +906,8 @@
     purpose: |
       Returns the current dynamic global properties.  See: [Understanding
       Dynamic Global Properties]({{ '/tutorials-recipes/understanding-dynamic-global-properties' | relative_url }})
+      
+      Also see: [database_api.get_dynamic_global_properties]({{ '/apidefinitions/#database_api.get_dynamic_global_properties' | relative_url }})
     parameter_json: []
     expected_response_json:
       head_block_number: 0
@@ -866,7 +940,10 @@
       "id":1}'
   - api_method: condenser_api.get_escrow
     since: HF14
-    purpose: Returns the escrow for a certain account by id.
+    purpose: |
+      Returns the escrow for a certain account by id.
+      
+      Also see: [database_api.list_escrows]({{ '/apidefinitions/#database_api.list_escrows' | relative_url }})
     parameter_json:
     - ''
     - 0
@@ -905,6 +982,8 @@
       |-------------------|---------------|---------------|-|
       | `"steemit"` | `0` | `1` | Queries the account named `steemit` starting on the first item, up to 1 result. |
       | `"alice"` | `1` | `10` | Queries the account named `alice` starting on the second item, up to 10 results. |
+      
+      Also see: [follow_api.get_feed]({{ '/apidefinitions/#follow_api.get_feed' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_feed' | relative_url }})
     parameter_json:
     - ''
     - 0
@@ -924,6 +1003,8 @@
       |-------------------|---------------|---------------|-|
       | `"steemit"` | `0` | `1` | Queries the account named `steemit` starting on the first item, up to 1 result. |
       | `"alice"` | `1` | `10` | Queries the account named `alice` starting on the second item, up to 10 results. |
+      
+      Also see: [follow_api.get_feed_entries]({{ '/apidefinitions/#follow_api.get_feed_entries' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_feed_entries' | relative_url }})
     parameter_json:
     - ''
     - 0
@@ -935,7 +1016,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_feed_entries", "params":["alice",1,10],
       "id":1}'
   - api_method: condenser_api.get_feed_history
-    purpose: Returns the history of price feed values.
+    purpose: |
+      Returns the history of price feed values.
+      
+      Also see: [database_api.get_feed_history]({{ '/apidefinitions/#database_api.get_feed_history' | relative_url }})
     parameter_json: []
     expected_response_json:
       id: 0
@@ -954,6 +1038,8 @@
       |-------------------|-|
       | `"steemit"` | Queries the account named `steemit`. |
       | `"alice"` | Queries the account named `alice`. |
+      
+      Also see: [follow_api.get_follow_count]({{ '/apidefinitions/#follow_api.get_follow_count' | relative_url }})
     parameter_json:
     - ''
     expected_response_json:
@@ -974,6 +1060,8 @@
       |--------------------|------------------|-----------------|---------------|-|
       | `"steemit"` | `null` | `"blog"` | `10` | Queries for follows of the account named `steemit`, up to 10 results. |
       | `"alice"` | `null` | `"ignore"` | `100` | Queries for mutes of the account named `alice`, up to 100 results. |
+      
+      Also see: [follow_api.get_followers]({{ '/apidefinitions/#follow_api.get_followers' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_followers' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1000,6 +1088,8 @@
       |--------------------|------------------|-----------------|---------------|-|
       | `"steemit"` | `null` | `"blog"` | `10` | Queries for follows of the account named `steemit`, up to 10 results. |
       | `"alice"` | `null` | `"ignore"` | `100` | Queries for mutes of the account named `alice`, up to 100 results. |
+      
+      Also see: [follow_api.get_following]({{ '/apidefinitions/#follow_api.get_following' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_following' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1012,7 +1102,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_following", "params":["alice",null,"ignore",100],
       "id":1}'
   - api_method: condenser_api.get_hardfork_version
-    purpose: 
+    purpose: |
+      Returns the current hardfork version.
+      
+      Also see: [database_api.get_hardfork_properties]({{ '/apidefinitions/#database_api.get_hardfork_properties' | relative_url }})
     parameter_json: []
     expected_response_json: 0.0.0
     curl_examples:
@@ -1020,8 +1113,10 @@
       "id":1}'
   - api_method: condenser_api.get_key_references
     since: HF16
-    purpose: Returns all accounts that have the key associated with their owner or
-      active authorities.
+    purpose: |
+      Returns all accounts that have the key associated with their owner or active authorities.
+      
+      Also see: [account_by_key_api.get_key_references]({{ '/apidefinitions/#account_by_key_api.get_key_references' | relative_url }})
     parameter_json:
     - - STM5jZtLoV8YbxCxr4imnbWn61zMB24wwonpnVhfXRmv7j6fk3dTH
     expected_response_json:
@@ -1040,6 +1135,8 @@
       | `300` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by five minutes. |
       | `3600` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by one hour. |
       | `86400` | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | Queries for market history between January 1st, 2018 and January 2nd, 2018, segmented by one day. |
+      
+      Also see: [market_history_api.get_market_history]({{ '/apidefinitions/#market_history_api.get_market_history' | relative_url }})
     parameter_json:
     - 0
     - '1970-01-01T00:00:00'
@@ -1072,7 +1169,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_market_history", "params":[86400,"2018-01-01T00:00:00","2018-01-02T00:00:00"],
       "id":1}'
   - api_method: condenser_api.get_market_history_buckets
-    purpose: Returns the bucket seconds being tracked by the plugin.
+    purpose: |
+      Returns the bucket seconds being tracked by the plugin.
+      
+      Also see: [market_history_api.get_market_history_buckets]({{ '/apidefinitions/#market_history_api.get_market_history_buckets' | relative_url }})
     parameter_json: []
     expected_response_json:
     - 15
@@ -1084,7 +1184,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_market_history_buckets", "params":[],
       "id":1}'
   - api_method: condenser_api.get_next_scheduled_hardfork
-    purpose: Returns the next scheduled hardfork.
+    purpose: |
+      Returns the next scheduled hardfork.
+            
+      Also see: [database_api.get_hardfork_properties]({{ '/apidefinitions/#database_api.get_hardfork_properties' | relative_url }})
     parameter_json: []
     expected_response_json:
       hf_version: 0.0.0
@@ -1093,7 +1196,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_next_scheduled_hardfork", "params":[],
       "id":1}'
   - api_method: condenser_api.get_open_orders
-    purpose: Returns the open orders for an account.  `account:string`
+    purpose: |
+      Returns the open orders for an account.  `account:string`
+      
+      Also see: [database_api.list_limit_orders]({{ '/apidefinitions/#database_api.list_limit_orders' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: []
@@ -1110,6 +1216,8 @@
       |-------------------|--------------------------|-|
       | `1` | `false` | Queries the operations in block #1. |
       | `5443322` | `true` | Queries only the virtual operations in block #5,443,322. |
+      
+      Also see: [account_history_api.get_ops_in_block]({{ '/apidefinitions/#account_history_api.get_ops_in_block' | relative_url }})
     parameter_json:
     - 0
     - false
@@ -1137,6 +1245,8 @@
       |--------------------|-|
       | `10` | Queries up to 10 items in the order book. |
       | `500` | Queries up to 500 items in the order book. |
+      
+      Also see: [database_api.get_order_book]({{ '/apidefinitions/#database_api.get_order_book' | relative_url }}), [market_history_api.get_order_book]({{ '/apidefinitions/#market_history_api.get_order_book' | relative_url }})
     parameter_json:
     - 0
     expected_response_json:
@@ -1152,6 +1262,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries the owner history for account named "steemit". |
+      
+      Also see: [database_api.list_owner_histories]({{ '/apidefinitions/#database_api.list_owner_histories' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: []
@@ -1160,7 +1272,10 @@
       "id":1}'
   - api_method: condenser_api.get_post_discussions_by_payout
     since: HF17
-    purpose: Returns a list of post discussions by payout.
+    purpose: |
+      Returns a list of post discussions by payout.
+      
+      Also see: [tags_api.get_post_discussions_by_payout]({{ '/apidefinitions/#tags_api.get_post_discussions_by_payout' | relative_url }})
     parameter_json:
     - tag: ''
       limit: 0
@@ -1175,8 +1290,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_post_discussions_by_payout",
       "params":[{"tag":"photography","limit":10,"truncate_body":0}], "id":1}'
   - api_method: condenser_api.get_potential_signatures
-    purpose: This method will return the set of all public keys that could possibly
-      sign for a given transaction.
+    purpose: |
+      This method will return the set of all public keys that could possibly sign for a given transaction.
+      
+      Also see: [database_api.get_potential_signatures]({{ '/apidefinitions/#database_api.get_potential_signatures' | relative_url }})
     parameter_json:
     - ref_block_num: 0
       ref_block_prefix: 0
@@ -1197,6 +1314,8 @@
       |----------------------------|---------------|-|
       | `"steemit"` | `"firstpost"` | Queries reblogs for content with a slug `@steemit/firstpost` |
       | `"alice"` | `"a-post-by-alice"` | Queries reblogs for content with a slug `@alice/a-post-by-alice` |
+      
+      Also see: [follow_api.get_reblogged_by]({{ '/apidefinitions/#follow_api.get_reblogged_by' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1217,6 +1336,8 @@
       |--------------------|-|
       | `10` | Queries up to 10 latest trades. |
       | `500` | Queries up to 500 latest trades. |
+      
+      Also see: [market_history_api.get_recent_trades]({{ '/apidefinitions/#market_history_api.get_recent_trades' | relative_url }})
     parameter_json:
     - 1
     expected_response_json:
@@ -1236,6 +1357,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries the recovery requests for account named "steemit". |
+      
+      Also see: [database_api.list_account_recovery_requests]({{ '/apidefinitions/#database_api.list_account_recovery_requests' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: 
@@ -1243,8 +1366,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_recovery_request", "params":["steemit"],
       "id":1}'
   - api_method: condenser_api.get_replies_by_last_update
-    purpose: Returns a list of replies by last update.  `start_parent_author:string`,
-      `start_permlink:string`, `limit:int` up to 100
+    purpose: |
+      Returns a list of replies by last update.  `start_parent_author:string`, `start_permlink:string`, `limit:int` up to 100
+      
+      Also see: [tags_api.get_replies_by_last_update]({{ '/apidefinitions/#tags_api.get_replies_by_last_update' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_replies_by_last_update' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1254,12 +1379,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_replies_by_last_update", "params":["steemit","firstpost",1],
       "id":1}'
   - api_method: condenser_api.get_required_signatures
-    purpose: 'This API will take a partially signed transaction and a set of public
-      keys that the owner has the ability to sign for and return the minimal subset
-      of public keys that should add signatures to the transaction. Parameters: `trx:object`;
-      `available_keys:[string]`
-
-'
+    purpose: |
+      This API will take a partially signed transaction and a set of public keys that the owner has the ability to sign for and return the minimal subset of public keys that should add signatures to the transaction. Parameters: `trx:object`; `available_keys:[string]`
+      
+      Also see: [database_api.get_required_signatures]({{ '/apidefinitions/#database_api.get_required_signatures' | relative_url }})
     parameter_json:
     - ref_block_num: 0
       ref_block_prefix: 0
@@ -1274,7 +1397,10 @@
       "id":1}'
   - api_method: condenser_api.get_reward_fund
     since: HF17
-    purpose: Returns information about the current reward funds.
+    purpose: |
+      Returns information about the current reward funds.
+      
+      Also see: [database_api.get_reward_funds]({{ '/apidefinitions/#database_api.get_reward_funds' | relative_url }})
     parameter_json:
     - post
     expected_response_json:
@@ -1299,6 +1425,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries the savings withdraw for account named "steemit". |
+      
+      Also see: [database_api.list_savings_withdrawals]({{ '/apidefinitions/#database_api.list_savings_withdrawals' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: []
@@ -1313,6 +1441,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries the savings withdraw for account named "steemit". |
+      
+      Also see: [database_api.list_savings_withdrawals]({{ '/apidefinitions/#database_api.list_savings_withdrawals' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: []
@@ -1397,6 +1527,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries the tags used by the account named "steemit". |
+      
+      Also see: [tags_api.get_tags_used_by_author]({{ '/apidefinitions/#tags_api.get_tags_used_by_author' | relative_url }})
     parameter_json:
     - ''
     expected_response_json: []
@@ -1404,7 +1536,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_tags_used_by_author", "params":["steemit"],
       "id":1}'
   - api_method: condenser_api.get_ticker
-    purpose: Returns the market ticker for the internal SBD:STEEM market.
+    purpose: |
+      Returns the market ticker for the internal SBD:STEEM market.
+      
+      Also see: [market_history_api.get_ticker]({{ '/apidefinitions/#market_history_api.get_ticker' | relative_url }})
     parameter_json: []
     expected_response_json:
       latest: '0.00000000000000000'
@@ -1422,6 +1557,8 @@
       | `start` (timestamp) | `end` (timestamp) | `limit` (int) | |
       |---------------------|-------------------|---------------|-|
       | `"2018-01-01T00:00:00"` | `"2018-01-02T00:00:00"` | 10 | Queries up to 10 trades between January 1st, 2018 and January 2nd, 2018. |
+      
+      Also see: [market_history_api.get_trade_history]({{ '/apidefinitions/#market_history_api.get_trade_history' | relative_url }})
     parameter_json:
     - '1970-01-01T00:00:00'
     - '1970-01-01T00:00:00'
@@ -1440,6 +1577,8 @@
       | `trx_id` (string) | |
       |-------------------|-|
       | `"6fde0190a97835ea6d9e651293e90c89911f933c"` | Queries for this exact transaction id. |
+      
+      Also see: [account_history_api.get_transaction]({{ '/apidefinitions/#account_history_api.get_transaction' | relative_url }})
     parameter_json:
     - ''
     expected_response_json:
@@ -1458,7 +1597,10 @@
     expected_curl_responses:
     - account_history_api_plugin not enabled
   - api_method: condenser_api.get_transaction_hex
-    purpose: Returns a hexdump of the serialized binary form of a transaction.
+    purpose: |
+      Returns a hexdump of the serialized binary form of a transaction.
+      
+      Also see: [database_api.get_transaction_hex]({{ '/apidefinitions/#database_api.get_transaction_hex' | relative_url }})
     parameter_json:
     - ref_block_num: 0
       ref_block_prefix: 0
@@ -1478,6 +1620,8 @@
       |----------------|---------------|-|
       | `null` | 100 | Queries the top 100 trending tags. |
       | `"steem"` | 10 | Queries the tags after "steem", up to 10 tags. |
+      
+      Also see: [tags_api.get_trending_tags]({{ '/apidefinitions/#tags_api.get_trending_tags' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_trending_tags' | relative_url }})
     parameter_json:
     - ''
     - 1
@@ -1494,7 +1638,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_trending_tags", "params":["steem",10],
       "id":1}'
   - api_method: condenser_api.get_version
-    purpose: Returns the versions of blockchain, steem, and FC.
+    purpose: |
+      Returns the versions of blockchain, steem, and FC.
+      
+      Also see: [database_api.get_version]({{ '/apidefinitions/#database_api.get_version' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_trending_tags' | relative_url }})
     parameter_json: []
     expected_response_json:
       blockchain_version: ''
@@ -1510,6 +1657,8 @@
       | `delegator_account` (string) | `start_account` (string) | `limit` (int) | |
       |------------------------------|--------------------------|---------------|-|
       | `"steemit"` | `null` | `10` | Queries up to 10 vesting delegations by "steemit". |
+      
+      Also see: [database_api.list_vesting_delegations]({{ '/apidefinitions/#database_api.list_vesting_delegations' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_trending_tags' | relative_url }}), [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#condenser_apiget_vesting_delegations' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1524,7 +1673,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_vesting_delegations", "params":["steemit",null,10],
       "id":1}'
   - api_method: condenser_api.get_volume
-    purpose: Returns the market volume for the past 24 hours.
+    purpose: |
+      Returns the market volume for the past 24 hours.
+      
+      Also see: [market_history_api.get_volume]({{ '/apidefinitions/#market_history_api.get_volume' | relative_url }})
     parameter_json: []
     expected_response_json:
       steem_volume: 0.000 STEEM
@@ -1540,6 +1692,8 @@
       | `"steemit"` | `"outgoing"` | Queries outgoing withdraw routes by "steemit". |
       | `"steemit"` | `"incoming"` | Queries incoming withdraw routes by "steemit". |
       | `"steemit"` | `"all"` | Queries all withdraw routes by "steemit". |
+      
+      Also see: [database_api.list_withdraw_vesting_routes]({{ '/apidefinitions/#database_api.list_withdraw_vesting_routes' | relative_url }})
     parameter_json:
     - ''
     - ''
@@ -1563,6 +1717,8 @@
       | `account` (string) | |
       |--------------------|-|
       | `"steemit"` | Queries witness account of "steemit" (of `null` if none exists). |
+      
+      Also see: [database_api.list_witnesses]({{ '/apidefinitions/#database_api.list_witnesses' | relative_url }})
     parameter_json:
     - ''
     expected_response_json:
@@ -1602,7 +1758,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_witness_count", "params":[],
       "id":1}'
   - api_method: condenser_api.get_witness_schedule
-    purpose: Returns the current witness schedule.
+    purpose: |
+      Returns the current witness schedule.
+      
+      Also see: [database_api.get_witness_schedule]({{ '/apidefinitions/#database_api.get_witness_schedule' | relative_url }})
     parameter_json: []
     expected_response_json:
       id: 0
@@ -1627,7 +1786,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_witness_schedule", "params":[],
       "id":1}'
   - api_method: condenser_api.get_witnesses
-    purpose: Returns current witnesses.
+    purpose: |
+      Returns current witnesses.
+      
+      Also see: [database_api.list_witnesses]({{ '/apidefinitions/#database_api.list_witnesses' | relative_url }})
     parameter_json:
     - - 0
     expected_response_json: []
@@ -1642,6 +1804,8 @@
       |--------------------|---------------|-|
       | `null` | `21` | Queries top 21 witness votes. |
       | `"a"` | `1` | Queries top 10 witness votes starting with "a". |
+      
+      Also see: [database_api.list_witnesses]({{ '/apidefinitions/#database_api.list_witnesses' | relative_url }})
     parameter_json:
     - ''
     - 1000
@@ -1652,7 +1816,10 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.get_witnesses_by_vote", "params":["a",
       1], "id":1}'
   - api_method: condenser_api.lookup_account_names
-    purpose: Looks up account names.  `accounts:[string]`
+    purpose: |
+      Looks up account names.  `accounts:[string]`
+      
+      Also see: [database_api.find_accounts]({{ '/apidefinitions/#database_api.find_accounts' | relative_url }})
     parameter_json:
     - - steemit
     expected_response_json:
@@ -1745,6 +1912,8 @@
       | `lower_bound_name` (string) | `limit` (int) | |
       |--------------------|---------------|-|
       | `"a"` | 10 | Queries up to 10 accounts that start with "a".
+      
+      Also see: [database_api.list_accounts]({{ '/apidefinitions/#database_api.list_accounts' | relative_url }})
     parameter_json:
     - ''
     - 1
@@ -1759,6 +1928,8 @@
       | `lower_bound_name` (string) | `limit` (int) | |
       |--------------------|---------------|-|
       | `"a"` | 10 | Queries up to 10 witnesses that start with "a".
+      
+      Also see: [database_api.list_witnesses]({{ '/apidefinitions/#database_api.list_witnesses' | relative_url }})
     parameter_json:
     - ''
     - 1
@@ -1768,18 +1939,24 @@
       "id":1}'
   - api_method: condenser_api.verify_account_authority
     disabled: true
-    purpose: "**Not Implemented**\n"
+    purpose: |
+      **Not Implemented**
+      
+      Also see: [database_api.verify_account_authority]({{ '/apidefinitions/#database_api.verify_account_authority' | relative_url }})
     parameter_json:
     - ''
     - - ''
     expected_response_json: false
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"condenser_api.verify_account_authority", "params":["steemit",["STM7Q2rLBqzPzFeteQZewv9Lu3NLE69fZoLeL6YK59t7UmssCBNTU"]],
+    - '{"jsonrpc":"2.0", "method":"condenser_api.verify_account_authority", "params":["temp",["STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX"]],
       "id":1}'
     expected_curl_responses:
     - Missing Active Authority steemit
   - api_method: condenser_api.verify_authority
-    purpose: Returns true if the transaction has all of the required signatures.
+    purpose: |
+      Returns true if the transaction has all of the required signatures.
+      
+      Also see: [database_api.verify_authority]({{ '/apidefinitions/#database_api.verify_authority' | relative_url }})
     parameter_json:
     - ref_block_num: 0
       ref_block_prefix: 0
@@ -1792,12 +1969,16 @@
     - '{"jsonrpc":"2.0", "method":"condenser_api.verify_authority", "params":[{"ref_block_num":1097,"ref_block_prefix":2181793527,"expiration":"2016-03-24T18:00:21","operations":[["pow",{"worker_account":"cloop3","block_id":"00000449f7860b82b4fbe2f317c670e9f01d6d9a","nonce":3899,"work":{"worker":"STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F","input":"ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0","signature":"1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a","work":"000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3"},"props":{"account_creation_fee":{"amount":"100000","precision":3,"nai":"@@000000021"},"maximum_block_size":131072,"sbd_interest_rate":1000}}]],"extensions":[],"signatures":[]}],
       "id":1}'
   - api_method: condenser_api.get_account_references
-    purpose: 
+    disabled: true
+    purpose: |
+      **Not Implemented**
     parameter_json: "[]"
     expected_response_json: "[]"
   - api_method: condenser_api.find_proposals
     purpose: |
       Finds proposals by `proposal.id` (not `proposal.proposal_id`).
+      
+      Also see: [database_api.find_proposals]({{ '/apidefinitions/#database_api.find_proposals' | relative_url }})
     parameter_json: "[0]"
     expected_response_json: |
       [
@@ -1842,6 +2023,8 @@
       |-------------------|-|-|-|-|-|
       | `["alice"]` | 10 | `by_voter_proposal` | `ascending` | `active` | list 10 proposals with active status, ordered by voter, ascending |
       | `[10]` | 1000 | `by_proposal_voter` | `ascending` | `votable` | list 1000 votes on proposal 10, ordered by `proposal.id`, ascending |
+      
+      Also see: [datbase_api.list_proposals]({{ '/apidefinitions/#database_api.list_proposal_votes' | relative_url }})
     parameter_json: '[[],0,"by_name","ascending","all"]'
     expected_response_json: |
       [{
@@ -1901,6 +2084,8 @@
       | `["alice"]` | 10 | `by_creator` | `ascending` | `all` | list 10 proposals with any status, ordered by creator, ascending, by alice |
       | `[""]` | 1000 | `by_creator` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending |
       | `[10]` | 1000 | `by_total_votes` | `ascending` | `votable` | list 1000 votable proposals, ordered by creator, ascending, having at least 10 votes |
+      
+      Also see: [datbase_api.list_proposals]({{ '/apidefinitions/#database_api.list_proposals' | relative_url }})
     parameter_json: '[[],0,"by_name","ascending","all"]'
     expected_response_json: |
       [

@@ -949,7 +949,7 @@ Also see: [API Definition]({{ '/apidefinitions/#database_api.list_vesting_delega
 
 * `by_delegation` - `start` requires 2 values: `delegator`, `delegatee`
 
-To list the first 10 delegations ordered by `account`, `expiration`:
+To list the first 10 delegations ordered by `delegations`:
 
 ```bash
 curl -s --data '{
@@ -1996,6 +1996,12 @@ Also see: [API Definition]({{ '/apidefinitions/#condenser_api.get_blog_entries' 
 See: [`tags_api.get_discussions_by_author_before_date`](#tags_apiget_discussions_by_author_before_date)
 
 Also see: [API Definition]({{ '/apidefinitions/#condenser_api.get_discussions_by_author_before_date' | relative_url }})
+
+### `condenser_api.get_feed`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+See: [`follow_api.get_feed`](#follow_apiget_feed)
+
+Also see: [API Definition]({{ '/apidefinitions/#condenser_api.get_feed' | relative_url }})
 
 ### `condenser_api.get_feed_entries`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 

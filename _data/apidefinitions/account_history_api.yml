@@ -2,7 +2,10 @@
   description: Used to lookup account history information. **These AppBase API methods are still under development and subject to change.**
   methods:
     - api_method: account_history_api.get_account_history
-      purpose: Returns a history of all operations for a given account.
+      purpose: |
+        Returns a history of all operations for a given account.
+        
+        Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#account_history_apiget_account_history' | relative_url }})
       parameter_json: {"account":"","start":"18446744073709551615","limit":1000}
       expected_response_json: {"history":[]}
       curl_examples:
