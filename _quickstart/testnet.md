@@ -27,7 +27,7 @@ At the time of this writing, the connection information for Steemit's testnet is
 
 First, let's build `steemd` specifically for testnet.  Recommended specs:
 
-* `Ubuntu Server 16.04 LTS`
+* `Ubuntu Server 18.04 LTS`
 * `100GB HDD`
 * `16GB RAM` (mostly needed for `steemd` build)
 
@@ -43,14 +43,13 @@ mkdir -p src
 cd src
 git clone https://github.com/steemit/steem
 cd steem
-git checkout <20180824-testnet OR develop OR a more current branch>
+git checkout master # or a specific testnet branch
 git submodule update --init --recursive
 mkdir -p build
 cd build
 cmake \
    -DCMAKE_BUILD_TYPE=Release \
    -DBUILD_STEEM_TESTNET=ON \
-   -DENABLE_SMT_SUPPORT=ON \
    -DLOW_MEMORY_NODE=ON \
    -DCHAINBASE_CHECK_LOCKING=ON \
    -DCLEAR_VOTES=ON \

@@ -44,7 +44,7 @@ Otherwise, let's do the complete Quick Start:
 
 ### Minimum Requirements<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
-This tutorial assumes Ubuntu Server 16.04 LTS 2GB RAM and 200GB SSD/HDD.
+This tutorial assumes Ubuntu Server 18.04 LTS 2GB RAM and 200GB SSD/HDD.
 
 Running a testnet can be done on minimal hardware, but in order to build a snapshot of accounts, you should already be running your own local Steem node because getting the snapshot is time consuming and if this process is interrupted, you'll have to start over.
 
@@ -91,7 +91,6 @@ cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_STEEM_TESTNET=ON \
   -DLOW_MEMORY_NODE=OFF \
-  -DENABLE_SMT_SUPPORT=ON \
   -DCLEAR_VOTES=ON \
   -DSKIP_BY_TX_ID=ON \
   -DSTEEM_LINT_LEVEL=OFF \
@@ -357,6 +356,10 @@ tinman submit --realtime -t http://127.0.0.1:8751 \
 **Problem:** Got an error while trying to compile `steemd`:
 
 `c++: internal compiler error: Killed (program cc1plus)`
+
+-or-
+
+`virtual memory exhausted: Cannot allocate memory`
 
 **Solution:** Add more memory or enable swap.
 
