@@ -1144,11 +1144,29 @@
       since: HF23
       virtual: false
       purpose: |
+        Create a Smart Media Token.
+        
         This operation introduces new SMT into blockchain as identified by Numerical Asset Identifier (NAI). Also the SMT precision (decimal points) is explicitly provided.
         
-        Parameters:
-          `smt_creation_fee` - The amount to be transfered from @account to null account as elevation fee.
-          `precision` - Separately provided precision for clarity and redundancy.
+        #### Initial Case
+        
+        The first operation to be executed is an `smt_create` operation.  This operation creates an SMT object in the blockchain state.  After executing this operation, the newly created SMT object is not yet fully configured.
+        
+        Most of the configuration occurs in subsequent operations (`smt_set_setup_parameters`, `smt_setup_inflation`, and `smt_setup`). These later operations may occur in the same transaction, but they may also occur at any later point in time.
+        
+        #### Reset Case
+        
+        Re-issuing `smt_create` with zero `smt_creation_fee` and the NAI of a token in the initial setup will reset emmisions and setup state.  This is useful for token creators who have put their token in an unlaunchable state.
+        
+        This will allow deleting of emission schedules with and changing of precision if there are no emission objects already created.
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `smt_creation_fee` - The amount to be transfered from @account to null account as elevation fee.  The amount required is set by the `smt_creation_fee` field of the `dynamic_global_properties` object.  This field may contain a value in STEEM or SBD.
+        * `precision` - Separately provided precision for clarity and redundancy.
+        
+        See: [SMT Object Creation](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-object-creation)
         
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L16-L37)</sup>
       roles:
