@@ -1087,15 +1087,57 @@
       since: HF23
       virtual: false
       purpose: |
+        Setup a Smart Media Token.  Each SMT has an associated descriptor object which has *permanent* configuration data. This data cannot be changed after launch.
         
-        See [#3455](https://github.com/steemit/steem/issues/3455)
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `max_supply` - The maximum supply of a smart media token.
+        * `contribution_begin_time` - The start time of the ICO contribution process.
+        * `contribution_end_time` - The end time of the ICO contribution process.
+        * `launch_time` - The time in which a token should launch.
+        * `steem_units_min` - The minimum steem units required for a successful ICO.
+        * `steem_units_soft_cap` - The steem unit cap in which the pre_soft_cap_unit generation policy applies.
+        * `steem_units_hard_cap` - The steem unit cap in which the post_soft_cap_unit generation policy applies.
+        * `initial_generation_policy` - A JSON string of the STEEM and token destination routes of the ICO process.
+       
+        **Example Initial Generation Policy JSON:**
+        
+        ```json
+        {"type": "smt_capped_generation_policy", "value": {
+          "pre_soft_cap_unit": {
+            "steem_unit": [["alice", 100]],
+            "token_unit": [["$from", 5], ["alice", 1]]
+          },
+          "post_soft_cap_unit": {
+            "steem_unit": [["alice", 100]],
+            "token_unit": [["$from", 5], ["alice", 1]]
+          },
+          "min_steem_units_commitment": {
+            "lower_bound": 1,
+            "upper_bound": 1,
+            "hash": "32edb6022c0921d99aa347e9cda5dc2db413f5574eebaaa8592234308ffebd2b"
+          },
+          "hard_cap_steem_units_commitment": {
+            "lower_bound": "166666666666",
+            "upper_bound": "166666666666",
+            "hash": "93c5a6b892de788c5b54b63b91c4b692e36099b05d3af0d16d01c854723dda21"
+          },
+          "soft_cap_percent": 10000,
+          "min_unit_ratio": 1000,
+          "max_unit_ratio": 1000,
+          "extensions": []
+        }}
+        ```
+       
+        See [#3455](https://github.com/steemit/steem/issues/3455), [SMT Setup](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-setup)
         
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L67-L90)</sup>
       roles:
         - active
           owner
       json_examples:
-        - '["smt_setup",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_begin_time":"2019-08-26T11:22:39","contribution_end_time":"2019-08-26T11:22:39","launch_time":"2019-09-26T11:22:39","max_supply":1000000000000000,"steem_units_hard_cap":10000,"steem_units_soft_cap":1000,"steem_units_min":0,"initial_generation_policy":{},"extensions":[]}]'
+        - '["smt_setup",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_begin_time":"2019-08-26T11:22:39","contribution_end_time":"2019-08-26T11:22:39","launch_time":"2019-09-26T11:22:39","max_supply":1000000000000000,"steem_units_hard_cap":10000,"steem_units_soft_cap":1000,"steem_units_min":0,"initial_generation_policy":"{\"type\":\"smt_capped_generation_policy\",\"value\":{\"pre_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"post_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"min_steem_units_commitment\":{\"lower_bound\":1,\"upper_bound\":1,\"hash\":\"32edb6022c0921d99aa347e9cda5dc2db413f5574eebaaa8592234308ffebd2b\"},\"hard_cap_steem_units_commitment\":{\"lower_bound\":\"166666666666\",\"upper_bound\":\"166666666666\",\"hash\":\"93c5a6b892de788c5b54b63b91c4b692e36099b05d3af0d16d01c854723dda21\"},\"soft_cap_percent\":10000,\"min_unit_ratio\":1000,\"max_unit_ratio\":1000,\"extensions\":[]}}","extensions":[]}]'
     - name: smt_setup_emissions
       since: HF23
       virtual: false
