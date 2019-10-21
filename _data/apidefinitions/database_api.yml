@@ -1760,50 +1760,164 @@
     - '{"jsonrpc":"2.0", "method":"database_api.list_proposals", "params":{"start": [10], "limit": 1000, "order": "by_total_votes", "order_direction": "ascending", "status": "votable"}, "id":1}'
   - api_method: database_api.find_smt_contributions
     since: HF23
-    purpose: 
+    purpose: |
+      Find SMT contributions.  Contributions are needed to track individual contributions on an SMT during the ICO phase.
+      
+      See: [Token Units](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#token-units), [Vesting Contributions](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#vesting-contributions)
     parameter_json: '{"symbol_contributors":[]}'
     expected_response_json: '{"contributions":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_smt_contributions", "params":{"symbol_contributors": []}, "id":1}'
   - api_method: database_api.find_smt_token_emissions
     since: HF23
-    purpose: 
-    parameter_json: '{"asset_symbol":{"nai":"@@000000000","decimals":0}}'
+    purpose: |
+      Find SMT emissions.
+      
+      See: [Content Rewards](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#content-rewards), [Qualitative Discussion](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#qualitative-discussion)
+    parameter_json: '{"asset_symbol":{"nai":"@@422838704","decimals":0}}'
     expected_response_json: '{"token_emissions":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.find_smt_token_emissions", "params":{"asset_symbol":{"nai":"@@000000000","decimals":0}}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.find_smt_token_emissions", "params":{"asset_symbol":{"nai":"@@422838704","decimals":0}}, "id":1}'
   - api_method: database_api.find_smt_tokens
     since: HF23
-    purpose: 
+    purpose: |
+      Find SMT.
+      
+      See: [Smart Media Tokens (SMTs)](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smart-media-tokens-smts)
     parameter_json: '{"symbols":[],"ignore_precision":false}'
     expected_response_json: '{"tokens":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_smt_tokens", "params":{"symbols":[],"ignore_precision":false}, "id":1}'
   - api_method: database_api.get_nai_pool
     since: HF23
-    purpose: 
+    purpose: |
+      Return an array of Numeric Asset Identifier (NAI) available to be used for new SMT to be created.
+      
+      See: [Numerical Asset Identifiers](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#numerical-asset-identifiers)
     parameter_json: "{}"
     expected_response_json: '{"nai_pool":[]}'
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.get_nai_pool", "params":{}, "id":1}'
   - api_method: database_api.list_smt_contributions
     since: HF23
-    purpose: 
-    parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
+    purpose: |
+      List SMT contributions.  Contributions are needed to track individual contributions on an SMT during the ICO phase.  Parameters: `start:array`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_symbol_id` - order by symbol
+        * `by_symbol_contributor` - order by `symbol`, `contributor`, and `contribution_id`
+      
+      | `start` (array) | `limit` (int) | `order` (string) |
+      |-------------------|-|-|-|-|-|
+      | `[{"nai": "@@422838704", "decimals": 0}, 0]` | 10 | `by_symbol_id` | list 10 contributions, ordered by symbol, id |
+      | `[{"nai": "@@422838704", "decimals": 0}, "alice", 0]` | 10 | `by_symbol_contributor` | list 10 contributions, ordered by symbol, contributor, id |
+      
+      See: [Token Units](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#token-units), [Vesting Contributions](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#vesting-contributions)
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_smt_contributions' | relative_url }})
+    parameter_json: '{"start":null,"limit":0,"order":"by_symbol_id"}'
     expected_response_json: '{"contributions":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_contributions", "params":{"start":null,"limit":10,"order":"by_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_contributions", "params":{"start":[{"nai": "@@422838704", "decimals": 0}, 0],"limit":10,"order":"by_symbol_id"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_contributions", "params":{"start":[{"nai": "@@422838704", "decimals": 0}, "alice", 0],"limit":10,"order":"by_symbol_contributor"}, "id":1}'
   - api_method: database_api.list_smt_token_emissions
     since: HF23
-    purpose: 
-    parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
+    purpose: |
+      List SMT emissions.  Parameters: `start:array`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_symbol_time` - order by symbol and time
+      
+      | `start` (array) | `limit` (int) | `order` (string) |
+      |-------------------|-|-|-|-|-|
+      | `[{"nai": "@@422838704", "decimals": 0}, "2019-08-07T16:54:03"]` | 10 | `by_symbol_time` | list 10 emissions, ordered by symbol, timestamp |
+      
+      See: [Content Rewards](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#content-rewards), [Qualitative Discussion](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#qualitative-discussion)
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_smt_token_emissions' | relative_url }})
+    parameter_json: '{"start":null,"limit":0,"order":"by_symbol_time"}'
     expected_response_json: '{"token_emissions":[]}'
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_token_emissions", "params":{"start":null,"limit":10,"order":"by_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_token_emissions", "params":{"start":[{"nai": "@@422838704", "decimals": 0}, "2019-08-07T16:54:03"],"limit":10,"order":"by_symbol_time"}, "id":1}'
   - api_method: database_api.list_smt_tokens
     since: HF23
-    purpose: 
-    parameter_json: '{"start":null,"limit":0,"order":"by_name"}'
-    expected_response_json: '{"tokens":[]}'
+    purpose: |
+      List SMTs.  Parameters: `start:object`; `limit:int`; `order:string`
+      
+      * `start` depends on `order` (see below)
+      * `limit` is up to 1000.
+      * `order` can be one of:
+        * `by_symbol` - order by symbol
+        * `by_control_account` - order by control account
+      
+      | `start` (object) | `limit` (int) | `order` (string) |
+      |-------------------|-|-|-|-|-|
+      | `{"nai": "@@422838704", "decimals": 0}` | 10 | `by_symbol` | list 10 tokens, ordered by symbol |
+      | `""` | 10 | `by_control_account` | list 10 tokens, ordered by control account |
+      | `["", {"nai": "@@422838704", "decimals": 0}]` | 10 | `by_control_account` | list 10 tokens, ordered by control account, symbol |
+      
+      See: [Smart Media Tokens (SMTs)](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smart-media-tokens-smts)
+      
+      Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_smt_tokens' | relative_url }})
+    parameter_json: '{"start":null,"limit":0,"order":"by_symbol"}'
+    expected_response_json: |
+      {"tokens": [
+        {
+          "token": {
+            "id": 0,
+            "liquid_symbol": {
+              "nai": "@@422838704",
+              "decimals": 0
+            },
+            "control_account": "inertia",
+            "phase": "setup",
+            "current_supply": 0,
+            "total_vesting_fund_smt": 0,
+            "total_vesting_shares": 0,
+            "total_vesting_fund_ballast": 0,
+            "total_vesting_shares_ballast": 0,
+            "pending_rewarded_vesting_shares": 0,
+            "pending_rewarded_vesting_smt": 0,
+            "reward_balance": {
+              "amount": "0",
+              "precision": 3,
+              "nai": "@@000000021"
+            },
+            "recent_claims": "0",
+            "last_reward_update": "1970-01-01T00:00:00",
+            "last_virtual_emission_time": "1970-01-01T00:00:00",
+            "allow_downvotes": true,
+            "market_maker": {
+              "steem_balance": {
+                "amount": "0",
+                "precision": 3,
+                "nai": "@@000000021"
+              },
+              "token_balance": {
+                "amount": "0",
+                "precision": 0,
+                "nai": "@@422838704"
+              },
+              "reserve_ratio": 0
+            },
+            "allow_voting": true,
+            "cashout_window_seconds": 3600,
+            "reverse_auction_window_seconds": 900,
+            "vote_regeneration_period_seconds": 432000,
+            "votes_per_regeneration_period": 50,
+            "content_constant": "2000000000000",
+            "percent_curation_rewards": 2500,
+            "author_reward_curve": "linear",
+            "curation_reward_curve": "square_root",
+            "max_supply": 0
+          }
+        }
+      ]}
     curl_examples:
-    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_tokens", "params":{"start":null,"limit":10,"order":"by_name"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_tokens", "params":{"start":{"nai": "@@422838704", "decimals": 0},"limit":10,"order":"by_symbol"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_tokens", "params":{"start":"","limit":10,"order":"by_control_account"}, "id":1}'
+    - '{"jsonrpc":"2.0", "method":"database_api.list_smt_tokens", "params":{"start":["", {"nai": "@@422838704", "decimals": 0}],"limit":10,"order":"by_control_account"}, "id":1}'
