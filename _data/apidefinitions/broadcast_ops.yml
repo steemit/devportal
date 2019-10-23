@@ -1073,6 +1073,12 @@
         - posting
           active
           owner
+      params:
+        - account
+          reward_tokens
+          extensions
+      json_examples:
+        - '["claim_reward_balance2",{"account":"alice","reward_tokens":[{"amount":"1","precision":0,"nai":"@@904705667"}],"extensions":[]}]'
     - name: vote2
       since: HF23
       virtual: false
@@ -1145,6 +1151,18 @@
       roles:
         - active
           owner
+      params:
+        - control_account
+          symbol
+          contribution_begin_time
+          contribution_end_time
+          launch_time
+          max_supply
+          steem_units_hard_cap
+          steem_units_soft_cap
+          steem_units_min
+          initial_generation_policy
+          extensions
       json_examples:
         - '["smt_setup",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_begin_time":"2019-08-26T11:22:39","contribution_end_time":"2019-08-26T11:22:39","launch_time":"2019-09-26T11:22:39","max_supply":1000000000000000,"steem_units_hard_cap":10000,"steem_units_soft_cap":1000,"steem_units_min":0,"initial_generation_policy":"{\"type\":\"smt_capped_generation_policy\",\"value\":{\"pre_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"post_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"min_steem_units_commitment\":{\"lower_bound\":1,\"upper_bound\":1,\"hash\":\"32edb6022c0921d99aa347e9cda5dc2db413f5574eebaaa8592234308ffebd2b\"},\"hard_cap_steem_units_commitment\":{\"lower_bound\":\"166666666666\",\"upper_bound\":\"166666666666\",\"hash\":\"93c5a6b892de788c5b54b63b91c4b692e36099b05d3af0d16d01c854723dda21\"},\"soft_cap_percent\":10000,\"min_unit_ratio\":1000,\"max_unit_ratio\":1000,\"extensions\":[]}}","extensions":[]}]'
     - name: smt_setup_emissions
@@ -1278,6 +1296,11 @@
       roles:
         - active
           owner
+      params:
+        - control_account
+          symbol
+          smt_creation_fee
+          precision
       json_examples:
         - '["smt_create",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"smt_creation_fee":{"amount":"3000","precision":3,"nai":"@@000000013"},"precision":0,"extensions":[]}]'
     - name: smt_contribute
