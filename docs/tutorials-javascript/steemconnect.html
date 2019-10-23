@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Steemconnect | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Steemconnect" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Understand the basics of using Steemconnect with your Steem application." />
+<meta property="og:description" content="Understand the basics of using Steemconnect with your Steem application." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/steemconnect" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/steemconnect" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-23T18:21:05-05:00" />
+<script type="application/ld+json">
+{"description":"Understand the basics of using Steemconnect with your Steem application.","headline":"JS: Steemconnect","dateModified":"2019-10-23T18:21:05-05:00","datePublished":"2019-10-23T18:21:05-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/steemconnect"},"url":"https://developers.steem.io/tutorials-javascript/steemconnect","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-javascript-steemconnect" class="row tutorials-javascript-steemconnect">
+	<h3>
+		<a id="tutorials-javascript-steemconnect">
+			JS: Steemconnect
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>Understand the basics of using Steemconnect with your Steem application.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect">Steemconnect</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>In this tutorial we will setup Steemconnect for demo application and step by step show the process of setting up dedicated account for your app to use Steemconnect Dashboard and setup backend of your application to use Steemconnect authorization properly.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>The application in this tutorial asks the user to grant an access to <code class="highlighter-rouge">demo-app</code> and get token from Steemconnect. Once permission is granted, <code class="highlighter-rouge">demo-app</code> can get details of user via an api call that requires access token.
+Purpose is to allow any application request permission from user and perform action via access token.</p>
+
+<p>Some other calls that require an access token (or login) are:</p>
+
+<ul>
+  <li>Vote</li>
+  <li>Comment</li>
+  <li>Post</li>
+  <li>Follow</li>
+  <li>Reblog</li>
+</ul>
+
+<p>Learn more about <a href="https://github.com/steemit/steemconnect-sdk">Steemconnect operations here</a></p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#sc-dashboard"><strong>Steemconnect Dashboard</strong></a> Create account for application and set up dashboard</li>
+  <li><a href="#init-sc"><strong>Initialize Steemconnect</strong></a> Initialize SDK in your application code</li>
+  <li><a href="#login-url"><strong>Login URL</strong></a> Form login url for user</li>
+  <li><a href="#request-token"><strong>Request token</strong></a> Request token with login url</li>
+  <li><a href="#set-token"><strong>Set token</strong></a> Set or save token for future requests</li>
+  <li><a href="#get-user"><strong>Get user data</strong></a> Get user details with token</li>
+  <li><a href="#logout"><strong>Logout</strong></a> Logout user and clear token</li>
+</ol>
+
+<h4 id="1-steemconnect-dashboard">1. Steemconnect Dashboard<a name="sc-dashboard"></a></h4>
+
+<p>Steemconnect is unified authentification system built on top of Steem built in collaboration of Busy.org and Steemit Inc.
+Layer to ensure easy access and setup for all application developers as well as secure way for users to interact with Steem apps.</p>
+
+<p>Setting up Steemconnect in your app is straight-forward process and never been this easy.</p>
+
+<p>Here are the steps that helps you to setup new app:</p>
+
+<p>1a. Visit <a href="https://steemconnect.com/dashboard">Steemconnect Dashboard</a> and login with your Steem credentials</p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_login.png?raw=true" alt="steemconnect_login" /></p>
+
+<p>1b. You will see Applications and Developers section, in Developers section click on <code class="highlighter-rouge">My Apps</code></p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_dashboard.png?raw=true" alt="steemconnect_dashboard" /></p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_new_app.png?raw=true" alt="steemconnect_new_app" /></p>
+
+<p>1c. Create New App using Steemconnect, which will help you create new Steem account for your application. Let’s call it <code class="highlighter-rouge">demo-app</code> for this tutorial purpose.</p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_account_create.png?raw=true" alt="steemconnect_account_create" /></p>
+
+<p>Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation.</p>
+
+<p>Next step is to login with account which has enough balance to pay for account creation fee.</p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true" alt="steemconnect_signin" /></p>
+
+<p>1d. Give your app name, description, icon image link, website (if available) and Redirect URI(s)</p>
+
+<p><img src="https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true" alt="steemconnect_myapps" /></p>
+
+<p>Application name and description should give users clear understanding what permissions it requires and what is the purpose of the app.</p>
+
+<p>App Icon field should be publicly accessible and available link to your logo or icon.</p>
+
+<p>Website field is homepage for the application if exist.</p>
+
+<p>Redirect URI(s) will be used within your application to forward user after authentification is successful. You can specify multiple callback URLs with each new line. Callback in Steemconnect SDK should match exactly one of URI(s) specified on this page. Due to security reasons if redirect URI(s) used in SDK is other than you specified, it will not work.
+This is typical backend web development, we hope you know how to set up your backend/app to handle callback URLs.</p>
+
+<ul>
+  <li>Disclaimer: All images/screenshots of user interface may change as Steemconnect evolves</li>
+</ul>
+
+<h4 id="2-initialize-steemconnect">2. Initialize Steemconnect<a name="init-sc"></a></h4>
+
+<p>Once you have setup account for new application, you can setup application with Steemconnect authentification and API processes.
+To do that, you will need to install <code class="highlighter-rouge">sc2-sdk</code> nodejs package with <code class="highlighter-rouge">npm i sc2-sdk</code>.
+Within application you can initialize Steemconnect</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">app</code> - is account name for application that we have created in Step I.3, <code class="highlighter-rouge">callbackURL</code> - is Redirect URI that we have defined in Step I.4, <code class="highlighter-rouge">scope</code> - permissions application is requiring/asking from users</p>
+</blockquote>
+
+<p>Now that <code class="highlighter-rouge">sc2-sdk</code> is initialized we can start authentication and perform simple operations with Steemconnect.</p>
+
+<h4 id="3-login-url">3. Login URL<a name="login-url"></a></h4>
+
+<blockquote>
+  <p><code class="highlighter-rouge">getLoginURL</code> function you see on the right side, returns login URL which will redirect user to sign in with Steem connect screen. Successfull login will redirect user to Redirect URI or <code class="highlighter-rouge">callbackURL</code>. Result of successful login will return <code class="highlighter-rouge">access_token</code>, <code class="highlighter-rouge">expires_in</code> and <code class="highlighter-rouge">username</code> information, which application will start utilizing.</p>
+</blockquote>
+
+<h4 id="4-request-token">4. Request token<a name="request-token"></a></h4>
+
+<blockquote>
+  <p>Application can request returned link into popup screen or relevant screen you have developed. Popup screen will ask user to identify themselves with their username and password. Once login is successful, you will have Results</p>
+</blockquote>
+
+<h4 id="5-set-token">5. Set token<a name="set-token"></a></h4>
+
+<blockquote>
+  <p>Returned data has <code class="highlighter-rouge">access_token</code> - which will be used in future api calls, <code class="highlighter-rouge">expires_in</code> - how long access token is valid in seconds and <code class="highlighter-rouge">username</code> of logged in user.</p>
+</blockquote>
+
+<blockquote>
+  <p>After getting <code class="highlighter-rouge">access_token</code>, we can set token for future Steemconnect API requests.</p>
+</blockquote>
+
+<h4 id="6-get-user-data">6. Get user data<a name="get-user"></a></h4>
+
+<blockquote>
+  <p>Users info can be checked with <code class="highlighter-rouge">me</code> which will return object
+<code class="highlighter-rouge">account</code> - current state of account and its details on Steem blockchain, <code class="highlighter-rouge">name</code> - username, <code class="highlighter-rouge">scope</code> - permissions allowed with current login, <code class="highlighter-rouge">user</code> - username, <code class="highlighter-rouge">user_metadata</code> - additional information user has setup.</p>
+</blockquote>
+
+<h4 id="7-logout">7. Logout<a name="logout"></a></h4>
+
+<blockquote>
+  <p>In order to logout, you can use <code class="highlighter-rouge">revokeToken</code> function from sc2-sdk.</p>
+</blockquote>
+
+<p><strong>That’s all there is to it.</strong></p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/02_steemconnect</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
