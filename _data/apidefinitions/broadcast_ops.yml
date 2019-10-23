@@ -1220,12 +1220,27 @@
       since: HF23
       virtual: false
       purpose: |
+        Contribute to a token ICO.
+        
+        **Parameters:**
+        * `contributor` The name of the contributor
+        * `symbol` The asset symbol of the SMT
+        * `contribution_id` A unique contribution ID number
+        * `contribution` The contribution (in STEEM)
+        
+        See: [#2730](https://github.com/steemit/steem/issues/2730), [Token Units](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#token-units)
+        
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L198-L209)</sup>
       roles:
         - active
           owner
+      params:
+        - contributor
+          symbol
+          contribution_id
+          contribution
       json_examples:
-        - '["smt_contribute",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_id":0,"contribution":{"amount":"3000","precision":3,"nai":"@@000000013"},"extensions":[]}]'
+        - '["smt_contribute",{"contributor":"alice","symbol":{"nai":"@@422838704","decimals":0},"contribution_id":0,"contribution":{"amount":"1000","precision":3,"nai":"@@000000021"},"extensions":[]}]'
     - name: clear_null_account_balance
       since: HF20
       virtual: true
