@@ -112,6 +112,9 @@ The following methods have various forms of pagination:
   * [`list_witnesses`](#database_apilist_witnesses)
   * [`list_proposal_votes`](#database_apilist_proposal_votes)
   * [`list_proposals`](#database_apilist_proposals)
+  * [`list_smt_contributions`](#database_apilist_smt_contributions)
+  * [`list_smt_token_emissions`](#database_apilist_smt_token_emissions)
+  * [`list_smt_tokens`](#database_apilist_smt_tokens)
 * `follow_api`
   * [`get_account_reputations`](#follow_apiget_account_reputations)
   * [`get_blog`](#follow_apiget_blog)
@@ -1595,6 +1598,176 @@ curl -s --data '{
 ```
 
 Also see: [API Definition]({{ '/apidefinitions/#database_api.list_proposals' | relative_url }})
+
+### `database_api.list_smt_contributions`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+* `by_symbol_id` - `start` must be an empty array or consist of `symbol` and `id`
+* `by_symbol_contributor` - `start` must be an empty array or consist of `contributor`, `symbol` and `contribution_id`
+
+To list the first 10 contributions ordered by symbol, id:
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_contributions",
+  "params": {
+    "start": [],
+    "limit": 10,
+    "order": "by_symbol_id"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the next page of contributions (assuming `{"nai": "@@422838704", "decimals": 0}`, `99` is the last entry in the previous page):
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_contributions",
+  "params": {
+    "start": [{"nai": "@@422838704", "decimals": 0}, 0],
+    "limit": 10,
+    "order": "by_symbol_id"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the first 10 contributions ordered by symbol, id:
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_contributions",
+  "params": {
+    "start": [],
+    "limit": 10,
+    "order": "by_symbol_contributor"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the next page of contributions (assuming `{"nai": "@@422838704", "decimals": 0}`, `alice`, `99` is the last entry in the previous page):
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_contributions",
+  "params": {
+    "start": [{"nai": "@@422838704", "decimals": 0}, "alice", 99],
+    "limit": 10,
+    "order": "by_symbol_contributor"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+Also see: [API Definition]({{ '/apidefinitions/#database_api.list_smt_contributions' | relative_url }})
+
+### `database_api.list_smt_token_emissions`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+* `by_symbol_time` - `start` must be an empty array or consist of `symbol` and `timestamp`
+
+To list the first 10 emissions ordered by symbol, timestamp:
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_token_emissions",
+  "params": {
+    "start": [],
+    "limit": 10,
+    "order": "by_symbol_time"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the next page of emissions (assuming `{"nai": "@@422838704", "decimals": 0}`, `"2019-08-07T16:54:03"` is the last entry in the previous page):
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_token_emissions",
+  "params": {
+    "start": [{"nai": "@@422838704", "decimals": 0}, "2019-08-07T16:54:03"],
+    "limit": 10,
+    "order": "by_symbol_time"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+Also see: [API Definition]({{ '/apidefinitions/#database_api.list_smt_token_emissions' | relative_url }})
+
+### `database_api.list_smt_tokens`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
+
+* `by_symbol` - `start` must be a `symbol`
+* `by_control_account` - `start` must be an `account` or an array containing an `account` and `symbol`
+
+To list the first 10 tokens ordered by symbol:
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_tokens",
+  "params": {
+    "start": {},
+    "limit": 10,
+    "order": "by_symbol"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the next page of tokens (assuming `{"nai": "@@422838704", "decimals": 0}` is the last entry in the previous page):
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_tokens",
+  "params": {
+    "start": {"nai": "@@422838704", "decimals": 0},
+    "limit": 10,
+    "order": "by_symbol"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the first 10 tokens ordered by control account:
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_tokens",
+  "params": {
+    "start": "",
+    "limit": 10,
+    "order": "by_control_account"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+To list the next page of tokens (assuming `alice`, `{"nai": "@@422838704", "decimals": 0}` is the last entry in the previous page):
+
+```bash
+curl -s --data '{
+  "jsonrpc": "2.0",
+  "method": "database_api.list_smt_tokens",
+  "params": {
+    "start": ["alice", {"nai": "@@422838704", "decimals": 0}],
+    "limit": 10,
+    "order": "by_control_account"
+  },
+  "id": 1
+}' https://api.steemit.com | jq
+```
+
+Also see: [API Definition]({{ '/apidefinitions/#database_api.list_smt_tokens' | relative_url }})
 
 ### `follow_api.get_account_reputations`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
