@@ -1142,15 +1142,48 @@
       since: HF23
       virtual: false
       purpose: |
+        Create Smart Media Token emissions (inflation).
         
-        See: [#2738](https://github.com/steemit/steem/issues/2738)
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `schedule_time` - The time the token is applicable.
+        * `emissions_unit` - The emissions unit.
+        * `interval_seconds` - The seconds between intervals.
+        * `interval_count` - The number of intervals.
+        * `lep_time` - The time of the left endpoint.
+        * `rep_time` - The time of the right endpoint.
+        * `lep_abs_amount` - The absolute emission amount of the left endpoint.
+        * `rep_abs_amount` - The absolute emission amount of the right endpoint.
+        * `lep_rel_amount_numerator` - The relative emission numerator of the left endpoint.
+        * `rep_rel_amount_numerator` - The relative emission numerator of the right endpoint.
+        * `rel_amount_denom_bits` - The about of bits to shift for the relative denominator.
+        * `remove` - Indicates whether an emission should be added or removed.
+        * `floor_emissions` - Indicates whether we should consider the lowest or highest value with regards to relative and absolute emissions.
+
+        See: [#1513](https://github.com/steemit/steem/issues/1513), [#2738](https://github.com/steemit/steem/issues/2738), [SMT Pre-Setup](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-pre-setup), [Inflation Operations](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#inflation-operations), [Full JSON Examples](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#full-json-examples), [Inflation FAQ](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#inflation-faq)
         
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L100-L129)</sup>
       roles:
         - active
           owner
+      params:
+        - control_account
+          symbol
+          emissions_unit
+          interval_seconds
+          interval_count
+          lep_time
+          rep_time
+          lep_abs_amount
+          rep_abs_amount
+          lep_rel_amount_numerator
+          rep_rel_amount_numerator
+          rel_amount_denom_bits
+          remove
+          floor_emissions
       json_examples:
-        - '["smt_setup_emissions",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"emissions_unit":{},"schedule_time":"2019-08-26T11:22:39"}, "interval_seconds":21600,"interval_count":1,"lep_abs_amount":{"nai": "@@000000000", "decimals": 0},"rep_abs_amount":{"nai": "@@000000000", "decimals": 0},"lep_rel_amount_numerator":1,"rep_rel_amount_numerator":0,"rel_amount_denom_bits":0,"remove":false,"floor_emissions":0,"extensions":[]}]'
+        - '["smt_setup_emissions",{"control_account":"alice","symbol":{"nai":"@@904705667","decimals":0},"schedule_time":"2019-08-26T11:22:39","emissions_unit":{"token_unit":[["alice",1]]},"interval_seconds":21600,"interval_count":1,"lep_time":"2019-08-26T11:22:39","rep_time":"2019-08-26T11:22:39","lep_abs_amount":{"amount":"1","precision":0,"nai":"@@904705667"},"rep_abs_amount":{"amount":"1","precision":0,"nai":"@@904705667"},"lep_rel_amount_numerator":0,"rep_rel_amount_numerator":0,"rel_amount_denom_bits":0,"remove":false,"floor_emissions":false,"extensions":[]}]'
     - name: smt_set_setup_parameters
       since: HF23
       virtual: false
