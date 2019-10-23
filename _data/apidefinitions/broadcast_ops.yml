@@ -1084,7 +1084,7 @@
       virtual: false
       purpose: |
         This operation is used to cast a vote on a post/comment using multiple votable assets.
-      
+        
         See: [#2748](https://github.com/steemit/steem/issues/2748), [SMT Voting Mana Deep Dive](https://steemit.com/smt/@vandeberg/smt-voting-mana-deep-dive)
       roles:
         - posting
@@ -1215,23 +1215,26 @@
       since: HF23
       virtual: false
       purpose: |
+        Creates Smart Media Token setup parameters.
+       
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `setup_parameters` - The SMT setup parameters
         
-        Allowed reward curves:
-          * `quadratic`
-          * `bounded_curation`
-          * `linear`
-          * `square_root`
-          * `convergent_linear`
-          * `convergent_square_root`
-        
-        See: [#2727](https://github.com/steemit/steem/issues/2727)
+        See: [#2727](https://github.com/steemit/steem/issues/2727), [Named Token Parameters](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#named-token-parameters)
+
         
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L172-L183)</sup>
       roles:
         - active
           owner
+      params:
+        - control_account
+          symbol
+          setup_parameters
       json_examples:
-        - '["smt_set_setup_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"setup_parameters":{"smt_param_windows_v1":{"cashout_window_seconds":0,"reverse_auction_window_seconds":0},"smt_param_vote_regeneration_period_seconds_v1":{"vote_regeneration_period_seconds":0,"votes_per_regeneration_period":0},"smt_param_rewards_v1":{"content_constant":0,"percent_curation_rewards":0,"author_reward_curve":"quadratic","curation_reward_curve":"quadratic"},"smt_param_allow_downvotes":true},"extensions":[]}]'
+        - '["smt_set_setup_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"setup_parameters":[{"type":"smt_param_allow_voting","value":{"value":true}}],"extensions":[]}]'
     - name: smt_set_runtime_parameters
       since: HF23
       virtual: false
