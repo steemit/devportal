@@ -1209,12 +1209,34 @@
       since: HF23
       virtual: false
       purpose: |
+        Creates Smart Media Token runtime parameters.
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `runtime_parameters` - The SMT runtime parameters.
+       
+        **Allowed Author Reward Curves:**
+        * `linear`
+        * `quadratic`
+        
+        **Allowed Curation Reward Curves:**
+        * `linear`
+        * `square_root`
+        * `bounded_curation`
+        
+        See: [Named Token Parameters](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#named-token-parameters)
+        
         <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L185-L196)</sup>
       roles:
         - active
           owner
+      params:
+        - control_account
+          symbol
+          runtime_parameters
       json_examples:
-        - '["smt_set_runtime_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"runtime_parameters":{"smt_param_allow_voting":true},"extensions":[]}]'
+        - '["smt_set_runtime_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"runtime_parameters":[{"type":"smt_param_windows_v1","value":{"cashout_window_seconds":90001,"reverse_auction_window_seconds":110}},{"type":"smt_param_vote_regeneration_period_seconds_v1","value":{"vote_regeneration_period_seconds":7000,"votes_per_regeneration_period":1}},{"type":"smt_param_rewards_v1","value":{"content_constant":9005,"percent_curation_rewards":9006,"author_reward_curve":"quadratic","curation_reward_curve":"bounded_curation"}},{"type":"smt_param_allow_downvotes","value":{"value":true}}],"extensions":[]}]'
     - name: smt_create
       since: HF23
       virtual: false
