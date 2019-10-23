@@ -1765,7 +1765,23 @@
       
       See: [Token Units](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#token-units), [Vesting Contributions](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#vesting-contributions)
     parameter_json: '{"symbol_contributors":[]}'
-    expected_response_json: '{"contributions":[]}'
+    expected_response_json: |
+      {"contributions": [
+        {
+          "id": 0,
+          "symbol": {
+            "nai": "@@422838704",
+            "decimals": 0
+          },
+          "contributor": "alice",
+          "contribution_id": 0,
+          "contribution": {
+            "amount": "1000",
+            "precision": 3,
+            "nai": "@@000000021"
+          }
+        }
+      ]}
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.find_smt_contributions", "params":{"symbol_contributors": []}, "id":1}'
   - api_method: database_api.find_smt_token_emissions
@@ -1818,7 +1834,23 @@
       
       Also see: [Paginated API Methods]({{ '/tutorials-recipes/paginated-api-methods#database_apilist_smt_contributions' | relative_url }})
     parameter_json: '{"start":null,"limit":0,"order":"by_symbol_id"}'
-    expected_response_json: '{"contributions":[]}'
+    expected_response_json: |
+      {"contributions": [
+        {
+          "id": 0,
+          "symbol": {
+            "nai": "@@422838704",
+            "decimals": 0
+          },
+          "contributor": "alice",
+          "contribution_id": 0,
+          "contribution": {
+            "amount": "1000",
+            "precision": 3,
+            "nai": "@@000000021"
+          }
+        }
+      ]}
     curl_examples:
     - '{"jsonrpc":"2.0", "method":"database_api.list_smt_contributions", "params":{"start":[{"nai": "@@422838704", "decimals": 0}, 0],"limit":10,"order":"by_symbol_id"}, "id":1}'
     - '{"jsonrpc":"2.0", "method":"database_api.list_smt_contributions", "params":{"start":[{"nai": "@@422838704", "decimals": 0}, "alice", 0],"limit":10,"order":"by_symbol_contributor"}, "id":1}'
@@ -1873,7 +1905,7 @@
               "nai": "@@422838704",
               "decimals": 0
             },
-            "control_account": "inertia",
+            "control_account": "alice",
             "phase": "setup",
             "current_supply": 0,
             "total_vesting_fund_smt": 0,
