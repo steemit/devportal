@@ -1060,6 +1060,277 @@
           approve
       json_examples:
         - '["update_proposal_votes",{"voter":"alice","proposal_ids":[0],"approve":true}]'
+    - name: claim_reward_balance2
+      since: HF23
+      virtual: false
+      purpose: |
+        Differs with original operation with extensions field and a container of tokens that will be rewarded to an account.
+        
+        Note: The reward tokens are required to be unique and sorted (both by asset symbol) in ascending order.  Otherwise operation validation will fail.
+       
+        See: [#1859](https://github.com/steemit/steem/issues/1859)
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - account
+          reward_tokens
+          extensions
+      json_examples:
+        - '["claim_reward_balance2",{"account":"alice","reward_tokens":[{"amount":"1","precision":0,"nai":"@@904705667"}],"extensions":[]}]'
+    - name: vote2
+      since: HF23
+      virtual: false
+      purpose: |
+        This operation is used to cast a vote on a post/comment using multiple votable assets.
+        
+        See: [#2748](https://github.com/steemit/steem/issues/2748), [SMT Voting Mana Deep Dive](https://steemit.com/smt/@vandeberg/smt-voting-mana-deep-dive)
+      roles:
+        - posting
+          active
+          owner
+      params:
+        - voter
+          author
+          permlink
+          weight
+          extensions
+      json_examples:
+        - '["vote2",{"voter":"steemit","author":"alice","permlink":"a-post-by-alice","rshares":[[{"nai":"@@904705667","decimals":0},0]],"extensions":[]}]'
+    - name: smt_setup
+      since: HF23
+      virtual: false
+      purpose: |
+        Setup a Smart Media Token.  Each SMT has an associated descriptor object which has *permanent* configuration data. This data cannot be changed after launch.
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `max_supply` - The maximum supply of a smart media token.
+        * `contribution_begin_time` - The start time of the ICO contribution process.
+        * `contribution_end_time` - The end time of the ICO contribution process.
+        * `launch_time` - The time in which a token should launch.
+        * `steem_units_min` - The minimum steem units required for a successful ICO.
+        * `steem_units_soft_cap` - The steem unit cap in which the pre_soft_cap_unit generation policy applies.
+        * `steem_units_hard_cap` - The steem unit cap in which the post_soft_cap_unit generation policy applies.
+        * `initial_generation_policy` - A JSON string of the STEEM and token destination routes of the ICO process.
+       
+        **Example Initial Generation Policy JSON:**
+        
+        ```json
+        {"type": "smt_capped_generation_policy", "value": {
+          "pre_soft_cap_unit": {
+            "steem_unit": [["alice", 100]],
+            "token_unit": [["$from", 5], ["alice", 1]]
+          },
+          "post_soft_cap_unit": {
+            "steem_unit": [["alice", 100]],
+            "token_unit": [["$from", 5], ["alice", 1]]
+          },
+          "min_steem_units_commitment": {
+            "lower_bound": 1,
+            "upper_bound": 1,
+            "hash": "32edb6022c0921d99aa347e9cda5dc2db413f5574eebaaa8592234308ffebd2b"
+          },
+          "hard_cap_steem_units_commitment": {
+            "lower_bound": "166666666666",
+            "upper_bound": "166666666666",
+            "hash": "93c5a6b892de788c5b54b63b91c4b692e36099b05d3af0d16d01c854723dda21"
+          },
+          "soft_cap_percent": 10000,
+          "min_unit_ratio": 1000,
+          "max_unit_ratio": 1000,
+          "extensions": []
+        }}
+        ```
+       
+        See [#3455](https://github.com/steemit/steem/issues/3455), [SMT Setup](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-setup)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L67-L90)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - control_account
+          symbol
+          contribution_begin_time
+          contribution_end_time
+          launch_time
+          max_supply
+          steem_units_hard_cap
+          steem_units_soft_cap
+          steem_units_min
+          initial_generation_policy
+          extensions
+      json_examples:
+        - '["smt_setup",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"contribution_begin_time":"2019-08-26T11:22:39","contribution_end_time":"2019-08-26T11:22:39","launch_time":"2019-09-26T11:22:39","max_supply":1000000000000000,"steem_units_hard_cap":10000,"steem_units_soft_cap":1000,"steem_units_min":0,"initial_generation_policy":"{\"type\":\"smt_capped_generation_policy\",\"value\":{\"pre_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"post_soft_cap_unit\":{\"steem_unit\":[[\"alice\",100]],\"token_unit\":[[\"$from\",5],[\"alice\",1]]},\"min_steem_units_commitment\":{\"lower_bound\":1,\"upper_bound\":1,\"hash\":\"32edb6022c0921d99aa347e9cda5dc2db413f5574eebaaa8592234308ffebd2b\"},\"hard_cap_steem_units_commitment\":{\"lower_bound\":\"166666666666\",\"upper_bound\":\"166666666666\",\"hash\":\"93c5a6b892de788c5b54b63b91c4b692e36099b05d3af0d16d01c854723dda21\"},\"soft_cap_percent\":10000,\"min_unit_ratio\":1000,\"max_unit_ratio\":1000,\"extensions\":[]}}","extensions":[]}]'
+    - name: smt_setup_emissions
+      since: HF23
+      virtual: false
+      purpose: |
+        Create Smart Media Token emissions (inflation).
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `schedule_time` - The time the token is applicable.
+        * `emissions_unit` - The emissions unit.
+        * `interval_seconds` - The seconds between intervals.
+        * `interval_count` - The number of intervals.
+        * `lep_time` - The time of the left endpoint.
+        * `rep_time` - The time of the right endpoint.
+        * `lep_abs_amount` - The absolute emission amount of the left endpoint.
+        * `rep_abs_amount` - The absolute emission amount of the right endpoint.
+        * `lep_rel_amount_numerator` - The relative emission numerator of the left endpoint.
+        * `rep_rel_amount_numerator` - The relative emission numerator of the right endpoint.
+        * `rel_amount_denom_bits` - The about of bits to shift for the relative denominator.
+        * `remove` - Indicates whether an emission should be added or removed.
+        * `floor_emissions` - Indicates whether we should consider the lowest or highest value with regards to relative and absolute emissions.
+
+        See: [#1513](https://github.com/steemit/steem/issues/1513), [#2738](https://github.com/steemit/steem/issues/2738), [SMT Pre-Setup](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-pre-setup), [Inflation Operations](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#inflation-operations), [Full JSON Examples](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#full-json-examples), [Inflation FAQ](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#inflation-faq)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L100-L129)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - control_account
+          symbol
+          emissions_unit
+          interval_seconds
+          interval_count
+          lep_time
+          rep_time
+          lep_abs_amount
+          rep_abs_amount
+          lep_rel_amount_numerator
+          rep_rel_amount_numerator
+          rel_amount_denom_bits
+          remove
+          floor_emissions
+      json_examples:
+        - '["smt_setup_emissions",{"control_account":"alice","symbol":{"nai":"@@904705667","decimals":0},"schedule_time":"2019-08-26T11:22:39","emissions_unit":{"token_unit":[["alice",1]]},"interval_seconds":21600,"interval_count":1,"lep_time":"2019-08-26T11:22:39","rep_time":"2019-08-26T11:22:39","lep_abs_amount":{"amount":"1","precision":0,"nai":"@@904705667"},"rep_abs_amount":{"amount":"1","precision":0,"nai":"@@904705667"},"lep_rel_amount_numerator":0,"rep_rel_amount_numerator":0,"rel_amount_denom_bits":0,"remove":false,"floor_emissions":false,"extensions":[]}]'
+    - name: smt_set_setup_parameters
+      since: HF23
+      virtual: false
+      purpose: |
+        Creates Smart Media Token setup parameters.
+       
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `setup_parameters` - The SMT setup parameters
+        
+        See: [#2727](https://github.com/steemit/steem/issues/2727), [Named Token Parameters](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#named-token-parameters)
+
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L172-L183)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - control_account
+          symbol
+          setup_parameters
+      json_examples:
+        - '["smt_set_setup_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"setup_parameters":[{"type":"smt_param_allow_voting","value":{"value":true}}],"extensions":[]}]'
+    - name: smt_set_runtime_parameters
+      since: HF23
+      virtual: false
+      purpose: |
+        Creates Smart Media Token runtime parameters.
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `runtime_parameters` - The SMT runtime parameters.
+       
+        **Allowed Author Reward Curves:**
+        * `linear`
+        * `quadratic`
+        
+        **Allowed Curation Reward Curves:**
+        * `linear`
+        * `square_root`
+        * `bounded_curation`
+        
+        See: [Named Token Parameters](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#named-token-parameters)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L185-L196)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - control_account
+          symbol
+          runtime_parameters
+      json_examples:
+        - '["smt_set_runtime_parameters",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"runtime_parameters":[{"type":"smt_param_windows_v1","value":{"cashout_window_seconds":90001,"reverse_auction_window_seconds":110}},{"type":"smt_param_vote_regeneration_period_seconds_v1","value":{"vote_regeneration_period_seconds":7000,"votes_per_regeneration_period":1}},{"type":"smt_param_rewards_v1","value":{"content_constant":9005,"percent_curation_rewards":9006,"author_reward_curve":"quadratic","curation_reward_curve":"bounded_curation"}},{"type":"smt_param_allow_downvotes","value":{"value":true}}],"extensions":[]}]'
+    - name: smt_create
+      since: HF23
+      virtual: false
+      purpose: |
+        Create a Smart Media Token.
+        
+        This operation introduces new SMT into blockchain as identified by Numerical Asset Identifier (NAI). Also the SMT precision (decimal points) is explicitly provided.
+        
+        #### Initial Case
+        
+        The first operation to be executed is an `smt_create` operation.  This operation creates an SMT object in the blockchain state.  After executing this operation, the newly created SMT object is not yet fully configured.
+        
+        Most of the configuration occurs in subsequent operations (`smt_set_setup_parameters`, `smt_setup_inflation`, and `smt_setup`). These later operations may occur in the same transaction, but they may also occur at any later point in time.
+        
+        #### Reset Case
+        
+        Re-issuing `smt_create` with zero `smt_creation_fee` and the NAI of a token in the initial setup will reset emmisions and setup state.  This is useful for token creators who have put their token in an unlaunchable state.
+        
+        This will allow deleting of emission schedules with and changing of precision if there are no emission objects already created.
+        
+        **Parameters:**
+        * `control_account` - The name of the controlling account.
+        * `symbol` - The asset symbol of the created token.
+        * `smt_creation_fee` - The amount to be transfered from @account to null account as elevation fee.  The amount required is set by the `smt_creation_fee` field of the `dynamic_global_properties` object.  This field may contain a value in STEEM or SBD.
+        * `precision` - Separately provided precision for clarity and redundancy.
+        
+        See: [SMT Object Creation](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#smt-object-creation)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L16-L37)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - control_account
+          symbol
+          smt_creation_fee
+          precision
+      json_examples:
+        - '["smt_create",{"control_account":"alice","symbol":{"nai": "@@000000000", "decimals": 0},"smt_creation_fee":{"amount":"3000","precision":3,"nai":"@@000000013"},"precision":0,"extensions":[]}]'
+    - name: smt_contribute
+      since: HF23
+      virtual: false
+      purpose: |
+        Contribute to a token ICO.
+        
+        **Parameters:**
+        * `contributor` The name of the contributor
+        * `symbol` The asset symbol of the SMT
+        * `contribution_id` A unique contribution ID number
+        * `contribution` The contribution (in STEEM)
+        
+        See: [#2730](https://github.com/steemit/steem/issues/2730), [Token Units](https://github.com/steemit/smt-whitepaper/blob/master/smt-manual/manual.md#token-units)
+        
+        <sup>[Structure](https://github.com/steemit/steem/blob/e134c404b67fae7dba439162344332e369a4c269/libraries/protocol/include/steem/protocol/smt_operations.hpp#L198-L209)</sup>
+      roles:
+        - active
+          owner
+      params:
+        - contributor
+          symbol
+          contribution_id
+          contribution
+      json_examples:
+        - '["smt_contribute",{"contributor":"alice","symbol":{"nai":"@@422838704","decimals":0},"contribution_id":0,"contribution":{"amount":"1000","precision":3,"nai":"@@000000021"},"extensions":[]}]'
     - name: clear_null_account_balance
       since: HF20
       virtual: true
