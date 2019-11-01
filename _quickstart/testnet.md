@@ -19,7 +19,7 @@ The combination of `snapshot` and `gatling` means that this testnet approaches a
 
 At the time of this writing, the connection information for Steemit's testnet is as follows: 
  
-* ChainID: `46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32`
+* ChainID: `0feb08c380aeb483b61a34cccb7271a3a99c47052bea529c4a891622f2c50d75`
 * Address prefix: `TST`
 * API node: `https://testnet.steemitdev.com`
 
@@ -87,7 +87,7 @@ p2p-seed-node = testnet.steemitdev.com:2001
 Then execute:
 
 ```bash
-steemd --data-dir=. --chain-id=46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32
+steemd --data-dir=. --chain-id=0feb08c380aeb483b61a34cccb7271a3a99c47052bea529c4a891622f2c50d75
 ```
 
 Now let it sync, and you'll have a shiny new testnet seed node to play with.
