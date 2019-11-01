@@ -29,7 +29,7 @@ Otherwise, let's do the complete Quick Start:
 
 ### Sections
 
-* [Minium Requirements](#minimum-requirements)
+* [Minimum Requirements](#minimum-requirements)
 * [Installing Tinman](#installing-tinman)
 * [Building `steemd`](#building-steemd)
 * [Snapshot](#snapshot)
