@@ -3,6 +3,30 @@ position: 99
 exclude: true
 ---
 
+Ops:
+<ul>
+{% for sections in site.data.apidefinitions.broadcast_ops %}
+{% assign sorted_ops = sections.ops | sort: 'name' %}
+{% for op in sorted_ops %}
+{% unless op.virtual %}
+<li class="button"><a href="#broadcast_ops_{{ op.name | slug}}">{{op.name | split: '.' | last}}</a></li> 
+{% endunless %}
+{% endfor %}
+{% endfor %}
+</ul>
+
+Virtual Ops:
+<ul>
+{% for sections in site.data.apidefinitions.broadcast_ops %}
+{% assign sorted_ops = sections.ops | sort: 'name' %}
+{% for op in sorted_ops %}
+{% if op.virtual %}
+<li class="button"><a href="#broadcast_ops_{{ op.name | slug}}">{{op.name | split: '.' | last}}</a></li>
+{% endif %}
+{% endfor %}
+{% endfor %}
+</ul>
+
 {% for sections in site.data.apidefinitions.broadcast_ops %}
 {{ sections.description | liquify | markdownify }}
 {% for op in sections.ops %}
