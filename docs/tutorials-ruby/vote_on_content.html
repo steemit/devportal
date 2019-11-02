@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>RB: Vote On Content | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="RB: Vote On Content" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="To vote for a post (or reply), we can use a vote operation and provide the voting weight (the percentage of one vote being cast)." />
+<meta property="og:description" content="To vote for a post (or reply), we can use a vote operation and provide the voting weight (the percentage of one vote being cast)." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-ruby/vote_on_content" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-ruby/vote_on_content" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-02T04:22:42-05:00" />
+<script type="application/ld+json">
+{"description":"To vote for a post (or reply), we can use a vote operation and provide the voting weight (the percentage of one vote being cast).","headline":"RB: Vote On Content","dateModified":"2019-11-02T04:22:42-05:00","datePublished":"2019-11-02T04:22:42-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-ruby/vote_on_content"},"url":"https://developers.steem.io/tutorials-ruby/vote_on_content","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-ruby-vote-on-content" class="row tutorials-ruby-vote-on-content">
+	<h3>
+		<a id="tutorials-ruby-vote-on-content">
+			RB: Vote On Content
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>To vote for a post (or reply), we can use a vote operation and provide the voting weight (the percentage of one vote being cast).</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/17_vote_on_content">Vote On Content</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-rb">RB tutorials repository</a>.</span>
+<br /></p>
+
+<h3 id="sections">Sections</h3>
+
+<ol>
+  <li><a href="#making-the-api-call">Making the api call</a> - broadcasting the operation
+    <ol>
+      <li><a href="#example-api-call">Example api call</a> - make the call in code</li>
+      <li><a href="#example-api-call-using-script">Example api call using script</a> - using our tutorial script</li>
+      <li><a href="#example-output">Example Output</a> - output from a successful call</li>
+      <li><a href="#example-error">Example Error</a> - error output from a unsuccessful call</li>
+    </ol>
+  </li>
+  <li><a href="#vote-fields">Vote Fields</a> - understanding the result</li>
+  <li><a href="#to-run">To Run</a> - Running the example.</li>
+</ol>
+
+<h3 id="making-the-api-call">Making the api call</h3>
+
+<p>To broadcast the operation, we can use a <code class="highlighter-rouge">Radiator::Transaction</code> instance:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tx</span> <span class="o">=</span> <span class="no">Radiator</span><span class="o">::</span><span class="no">Transaction</span><span class="p">.</span><span class="nf">new</span>
+
+
+<span class="n">tx</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Passing <code class="highlighter-rouge">true</code> to <code class="highlighter-rouge">Radiator::Transaction#process</code> will broadcast the operations queued in the <code class="highlighter-rouge">operations</code> array of the transaction.</p>
+
+<h4 id="example-api-call">Example api call</h4>
+
+<p>If we want to vote, for example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tx</span><span class="p">.</span><span class="nf">operations</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">type: :vote</span><span class="p">,</span>
+  <span class="ss">voter: </span><span class="n">voter</span><span class="p">,</span>
+  <span class="ss">author: </span><span class="n">author</span><span class="p">,</span>
+  <span class="ss">permlink: </span><span class="n">permlink</span><span class="p">,</span>
+  <span class="ss">weight: </span><span class="n">weight</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="example-api-call-using-script">Example api call using script</h4>
+
+<p>And to do the same with our tutorial script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby vote_on_content.rb https://steemit.com/@inertia/kinda-spooky
+</code></pre></div></div>
+
+<h4 id="example-output">Example Output</h4>
+
+<p>From the example we get the following output from our script:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"244a67bf1e64f05fb2ab52a0652a8edd30c5d273"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">27035223</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trx_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The response we get after broadcasting the transaction gives us the transaction id (<a href="https://steemd.com/tx/244a67bf1e64f05fb2ab52a0652a8edd30c5d273"><code class="highlighter-rouge">244a67b...</code></a>), block number (<a href="https://steemd.com/b/27035223"><code class="highlighter-rouge">27035223</code></a>), and the transaction number of that block (<code class="highlighter-rouge">15</code>).</p>
+
+<p>Note, this script accepts accepts an optional percentage (defaulting <code class="highlighter-rouge">100.0 %</code>).  To set the vote to <code class="highlighter-rouge">50.0 %</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby vote_on_content.rb https://steemit.com/@inertia/kinda-spooky 50
+</code></pre></div></div>
+
+<h3 id="example-error">Example Error</h3>
+
+<p>If an invalid vote weight is given (e.g.: <code class="highlighter-rouge">101 %</code>), we will get back an error:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-32000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Assert Exception:abs(weight) &lt;= STEEM_100_PERCENT: Weight is not a STEEMIT percentage"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"assert_exception"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Assert Exception"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"stack"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steem_operations.cpp"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">179</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"validate"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-22T16:09:50"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abs(weight) &lt;= STEEM_100_PERCENT: Weight is not a STEEMIT percentage"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warn"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"database.cpp"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">3491</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_apply_transaction"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-22T16:09:50"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">34171</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1240848906</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-22T16:19:48"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vote_operation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"social"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inertia"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kinda-spooky"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">10100</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="s2">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+              </span><span class="p">],</span><span class="w">
+              </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"1c50556b312dd71446621fc3b509da3f5596ab20e8846edd7e55ce5fb13f51742c77d1ab021afa43e039ed2655f28beb1859924ddc6db1087742f3e63e4bc2502b"</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warn"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"database.cpp"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">817</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"push_transaction"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-22T16:09:50"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">34171</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1240848906</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-22T16:19:48"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vote_operation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"social"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inertia"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kinda-spooky"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">10100</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="s2">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+              </span><span class="p">],</span><span class="w">
+              </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"1c50556b312dd71446621fc3b509da3f5596ab20e8846edd7e55ce5fb13f51742c77d1ab021afa43e039ed2655f28beb1859924ddc6db1087742f3e63e4bc2502b"</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This indicates that the operation was not included in the blockchain because it was given an invalid weight argument.</p>
+
+<h3 id="vote-fields">Vote Fields</h3>
+
+<p>Broadcasting a <code class="highlighter-rouge">vote</code> operation will require the following fields:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">voter</code> - account that is doing the vote op</li>
+  <li><code class="highlighter-rouge">author</code> - author of the post being voted for</li>
+  <li><code class="highlighter-rouge">permlink</code> - permlink of the post being voted for</li>
+  <li><code class="highlighter-rouge">weight</code> - percentage of one vote being cast, expressed as an integer (e.g.: <code class="highlighter-rouge">100.0 %</code> = <code class="highlighter-rouge">10000</code>)</li>
+</ul>
+
+<h3 id="to-run">To Run</h3>
+
+<p>First, set up your workstation using the steps provided in <a href="https://developers.steem.io/tutorials-ruby/getting_started">Getting Started</a>.  Then you can create and execute the script (or clone from this repository) with the following arguments:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;url&gt;</code> - the URL to vote on</li>
+  <li><code class="highlighter-rouge">[weight]</code> - the weight of the vote as percentage, optional (default <code class="highlighter-rouge">100.0 %</code>)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:steemit/devportal-tutorials-rb.git
+<span class="nb">cd </span>devportal-tutorials-rb/tutorials/17_vote_on_content
+bundle <span class="nb">install
+</span>ruby vote_on_content.rb &lt;url&gt; <span class="o">[</span>weight]
+</code></pre></div></div>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
