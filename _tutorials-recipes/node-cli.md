@@ -198,7 +198,7 @@ Chain ID to connect to.  **Testnet only.**
 See: [PR#1631](https://github.com/steemit/steem/pull/1631), [#2827](https://github.com/steemit/steem/issues/2827)
 
 ```bash
---chain-id=46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32
+--chain-id=0feb08c380aeb483b61a34cccb7271a3a99c47052bea529c4a891622f2c50d75
 ```
 
 ### `account-history-rocksdb-immediate-import`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
