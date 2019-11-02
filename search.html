@@ -19,13 +19,13 @@ permalink: /search/
 					{% unless item.excluded_in_search %}
 						{% if added %},{% endif %}
 						{% assign added = false %}
-						"{{ item.id | slugify }}": {
-							"id": "{{ item.id | slugify }}",
-							"title": "{{ item.title | xml_escape }}",
-							"category": "{{ collection.label | xml_escape }}",
-							"description": "{{item.description | xml_escape }}",
-		  				"type": "{{item.type | xml_escape}}",
-							"url": "{{ item.url }}",
+						"{{ item.id | strip | slugify }}": {
+							"id": "{{ item.id | strip | slugify }}",
+							"title": "{{ item.title | strip | xml_escape }}",
+							"category": "{{ collection.label | strip | xml_escape }}",
+							"description": "{{ item.description | strip | xml_escape }}",
+			 				"type": "{{ item.type | strip | xml_escape }}",
+							"url": "{{ item.url | strip }}",
 							"content": {{ item.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
 						}
 						{% assign added = true %}
