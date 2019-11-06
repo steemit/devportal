@@ -2,6 +2,9 @@
 title: Search
 sitemap: false
 permalink: /search/
+data_defined:
+  - apidefinitions
+  - broadcastops
 ---
 
 <div class="search-page">
@@ -14,25 +17,81 @@ permalink: /search/
 <script>
 	window.data = {
 		{% for collection in site.collections %}
-			{% for item in collection.docs %}
-				{% if item.title %}
-					{% unless item.excluded_in_search %}
-						{% if added %},{% endif %}
-						{% assign added = false %}
-						"{{ item.id | strip | slugify }}": {
-							"id": "{{ item.id | strip | slugify }}",
-							"title": "{{ item.title | strip | xml_escape }}",
-							"category": "{{ collection.label | strip | xml_escape }}",
-							"description": "{{ item.description | strip | xml_escape }}",
-			 				"type": "{{ item.type | strip | xml_escape }}",
-							"url": "{{ item.url | strip }}",
-							"content": {{ item.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
-						}
-						{% assign added = true %}
-					{% endunless %}
-				{% endif %}
-			{% endfor %}
+      {% unless page.data_defined contains collection.label %}
+  			{% for item in collection.docs %}
+  				{% if item.title %}
+  					{% unless item.excluded_in_search %}
+  						{% if added %},{% endif %}
+  						{% assign added = false %}
+  						"{{ item.id | strip | slugify }}": {
+  							"id": "{{ item.id | strip | slugify }}",
+  							"title": "{{ item.title | strip | xml_escape }}",
+  							"category": "{{ collection.label | strip | xml_escape }}",
+  							"description": "{{ item.description | strip | xml_escape }}",
+  			 				"type": "{{ item.type | strip | xml_escape }}",
+  							"url": "{{ item.url | strip }}",
+  							"content": {{ item.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
+  						}
+  						{% assign added = true %}
+  					{% endunless %}
+  				{% endif %}
+  			{% endfor %}
+      {% endunless %}
 		{% endfor %}
+    
+    // # data_defined is as follows
+    
+    {% for api_defs in site.data.apidefinitions %}
+      {% for sections in api_defs[1] %}
+        {% for method in sections.methods %}
+          {% if added %},{% endif %}
+          {% assign added = false %}
+          {% assign api_defs_url = '/apidefinitions#' | append: method.api_method %}
+          {% assign keywords = method.api_method | split: '.' %}
+          {% assign keywords = keywords | append: method.since %}
+          {% assign keywords = keywords | append: method.parameter_json %}
+          {% assign keywords = keywords | append: method.expected_response_json %}
+          {% assign keywords = keywords | append: method.curl_examples %}
+          
+          "{{ method.api_method | strip | slugify }}": {
+            "id": "{{ method.api_method | strip | slugify }}",
+            "title": "{{ method.api_method | strip | xml_escape }}",
+            "category": "apidefinitions",
+            "description": "{{ method.api_method | strip | xml_escape }}",
+            "type": "method",
+            "url": "{{ api_defs_url | relative_url }}",
+            "content": {{ method.purpose | liquify | markdownify | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }},
+            "keywords": {{ keywords | jsonify }}
+          }
+          {% assign added = true %}
+        {% endfor %}
+  		{% endfor %}
+  	{% endfor %}
+    
+    {% for sections in site.data.apidefinitions.broadcast_ops %}
+      {% for op in sections.ops %}
+        {% if added %},{% endif %}
+        {% assign added = false %}
+        {% assign api_defs_url = '/apidefinitions#broadcast_ops_' | append: op.name %}
+        {% assign keywords = op.name %}
+        {% assign keywords = keywords | append: op.since %}
+        {% assign keywords = keywords | append: op.roles %}
+        {% assign keywords = keywords | append: op.params %}
+        {% assign keywords = keywords | append: op.json_examples %}
+        
+        "broadcast_ops_{{ op.name | strip | slugify }}": {
+          "id": "broadcast_ops_{{ op.name | strip | slugify }}",
+          "title": "{{ op.name | strip | xml_escape }}",
+          "category": "broadcastops",
+          "description": "{{ op.name | strip | xml_escape }}",
+          "type": "op",
+          "url": "{{ api_defs_url | relative_url }}",
+          "content": {{ op.purpose | liquify | markdownify | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }},
+          "keywords": {{ keywords | jsonify }}
+        }
+        {% assign added = true %}
+  		{% endfor %}
+  	{% endfor %}
 	};
 </script>
 {% if jekyll.environment == 'production' %}
