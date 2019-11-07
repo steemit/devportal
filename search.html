@@ -46,7 +46,7 @@ data_defined:
         {% for method in sections.methods %}
           {% if added %},{% endif %}
           {% assign added = false %}
-          {% assign api_defs_url = '/apidefinitions#' | append: method.api_method %}
+          {% assign api_defs_url = '../apidefinitions#' | append: method.api_method %}
           
           "{{ method.api_method | strip | slugify }}": {
             "id": "{{ method.api_method | strip | slugify }}",
@@ -67,7 +67,7 @@ data_defined:
       {% for op in sections.ops %}
         {% if added %},{% endif %}
         {% assign added = false %}
-        {% assign api_defs_url = '/apidefinitions#broadcast_ops_' | append: op.name %}
+        {% assign api_defs_url = '../apidefinitions#broadcast_ops_' | append: op.name %}
         
         "broadcast_ops_{{ op.name | strip | slugify }}": {
           "id": "broadcast_ops_{{ op.name | strip | slugify }}",
