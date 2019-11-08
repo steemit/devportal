@@ -9,6 +9,8 @@ layout: full
 
 ### Intro
 
+By defining a range of accounts to track as a JSON pair `["from", "to"]`, we can instruct `steemd` to only track the exact accounts that involve the exchange.
+
 These instructions are similar to setting up a [Get Transaction Node]({{ '/tutorials-recipes/get_transaction_node' | relative_url }}), but requires far less time to sync because it is configured to focus on only the exchange account(s).
 
 If you prefer a docker version of these instructions, please refer to:
