@@ -1,6 +1,6 @@
 module Jekyll
   module KeywordifyFilter
-    SEP = /[^a-z0-9]+/i
+    SEP = /[^a-z0-9_]+/i
     STOP_WORDS = %w(i me my myself we our ours ourselves you your yours yourself
       yourselves he him his himself she her hers herself it its itself they them
       their theirs themselves what which who whom this that these those am is
