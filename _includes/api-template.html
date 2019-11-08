@@ -11,6 +11,9 @@
 {% if method.disabled %}
 <li class="warning"><strong><small>Disabled</small></strong></li>
 {% endif %}
+{% assign keywords = method.api_method | split: '.' | split: '_' | join: ' ' | last | keywordify | escape %}
+{% assign search_url = '/search/?q=' | append: keywords %}
+<li class="info"><strong><small><a href="{{ search_url | relative_url }}">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 
 </ul>
 <h4 id="{{ method.api_method | slug }}">{{method.api_method}} <a href="#{{ method.api_method | slug}}"><i class="fas fa-link fa-xs"></i></a></h4>

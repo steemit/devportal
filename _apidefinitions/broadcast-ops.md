@@ -19,6 +19,9 @@ exclude: true
 {% if op.disabled %}
 <li class="warning"><strong><small>Disabled</small></strong></li>
 {% endif %}
+{% assign keywords = op.name | keywordify | escape %}
+{% assign search_url = '/search/?q=' | append: keywords | split: '_' | join: ' ' %}
+<li class="info"><strong><small><a href="{{ search_url | relative_url }}">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 </ul>
 <h4 id="broadcast_ops_{{ op.name | slug }}">
 <code>{{op.name}}</code>
