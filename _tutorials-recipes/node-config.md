@@ -197,7 +197,7 @@ plugin = witness account_by_key account_by_key_api condenser_api
 
 Defines a range of accounts to track as a JSON pair `["from","to"]`.  Can be specified multiple times.
 
-See: [`exchangequickstart.md`](https://github.com/steemit/steem/blob/970f599655465b65bbe939b78db348a21af982e0/doc/exchangequickstart.md#configuration-files-when-not-using-a-docker-image), [#862](https://github.com/steemit/steem/issues/862#issuecomment-285432626)
+See: [Exchange Node]({{ '/tutorials-recipes/exchange_node' | relative_url }}), [`exchangequickstart.md`](https://github.com/steemit/steem/blob/970f599655465b65bbe939b78db348a21af982e0/doc/exchangequickstart.md#configuration-files-when-not-using-a-docker-image), [#862](https://github.com/steemit/steem/issues/862#issuecomment-285432626)
 
 ```ini
 # examples
