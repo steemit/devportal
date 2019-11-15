@@ -160,6 +160,19 @@ dl dd:after {
 	height: 0;
 }
 
+.button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
 .sidebar h6 {
 	text-transform: uppercase;
 	line-height: 1em;

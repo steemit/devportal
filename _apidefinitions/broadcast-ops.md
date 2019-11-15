@@ -3,6 +3,30 @@ position: 99
 exclude: true
 ---
 
+Ops:
+<ul>
+{% for sections in site.data.apidefinitions.broadcast_ops %}
+{% assign sorted_ops = sections.ops | sort: 'name' %}
+{% for op in sorted_ops %}
+{% unless op.virtual %}
+<li class="button"><a href="#broadcast_ops_{{ op.name | slug}}">{{op.name | split: '.' | last}}</a></li> 
+{% endunless %}
+{% endfor %}
+{% endfor %}
+</ul>
+
+Virtual Ops:
+<ul>
+{% for sections in site.data.apidefinitions.broadcast_ops %}
+{% assign sorted_ops = sections.ops | sort: 'name' %}
+{% for op in sorted_ops %}
+{% if op.virtual %}
+<li class="button"><a href="#broadcast_ops_{{ op.name | slug}}">{{op.name | split: '.' | last}}</a></li>
+{% endif %}
+{% endfor %}
+{% endfor %}
+</ul>
+
 {% for sections in site.data.apidefinitions.broadcast_ops %}
 {{ sections.description | liquify | markdownify }}
 {% for op in sections.ops %}
@@ -19,6 +43,9 @@ exclude: true
 {% if op.disabled %}
 <li class="warning"><strong><small>Disabled</small></strong></li>
 {% endif %}
+{% assign keywords = op.name | keywordify | escape %}
+{% assign search_url = '/search/?q=' | append: keywords | split: '_' | join: ' ' %}
+<li class="info"><strong><small><a href="{{ search_url | relative_url }}">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 </ul>
 <h4 id="broadcast_ops_{{ op.name | slug }}">
 <code>{{op.name}}</code>

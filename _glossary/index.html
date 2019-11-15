@@ -11,18 +11,23 @@ exclude_nav: true
 <p>More terms and information can be found on the steemit.com <a href="https://steemit.com/faq.html">FAQ</a>.</p>
 
 <section class="row">
-	<section class="row">
-		<dl class="dl-horizontal glossary">
-			{% for sections in site.data.glossary.index %}
-			   	<h3 id="{{ sections.id }}">{{sections.name}}</h3>
-			   	{% for entry in sections.items %}
-			   		<section id="{{entry.term | slugify}}">
-					   	<dt>{{entry.term}}</dt>
-					    <dd>{{entry.def}}</dd>
-				    </section>
-			    {% endfor %}
-				<hr/>
-			{% endfor %}
-		</dl>
-	</section>
+  <section class="row">
+    <dl class="dl-horizontal glossary">
+      {% for sections in site.data.glossary.index %}
+        <h3 id="{{ sections.id }}">{{sections.name}}</h3>
+        {% for entry in sections.items %}
+          <section id="{{entry.term | slugify}}">
+            <dt>
+              {% assign keywords = entry.term | keywordify | escape %}
+              {% assign search_url = '/search/?q=' | append: keywords %}
+              <a href="{{ search_url | relative_url }}"><i class="fas fa-search fa-xs"></i></a>
+              {{entry.term}}
+            </dt>
+            <dd>{{entry.def}}</dd>
+          </section>
+        {% endfor %}
+        <hr/>
+      {% endfor %}
+    </dl>
+  </section>
 </section>

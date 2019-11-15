@@ -1,3 +1,13 @@
+Methods:
+<ul>
+{% for sections in include.api_data %}
+{% assign sorted_methods = sections.methods | sort: 'api_method' %}
+{% for method in sorted_methods %}
+<li class="button"><a href="#{{ method.api_method | slug}}">{{method.api_method | split: '.' | last}}</a></li>
+{% endfor %}
+{% endfor %}
+</ul>
+
 {% for sections in include.api_data %}
 {{ sections.description | liquify | markdownify }}
 {% for method in sections.methods %}
@@ -11,6 +21,9 @@
 {% if method.disabled %}
 <li class="warning"><strong><small>Disabled</small></strong></li>
 {% endif %}
+{% assign keywords = method.api_method | split: '.' | last | split: '_' | join: ' ' | keywordify | escape %}
+{% assign search_url = '/search/?q=' | append: keywords %}
+<li class="info"><strong><small><a href="{{ search_url | relative_url }}">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 
 </ul>
 <h4 id="{{ method.api_method | slug }}">{{method.api_method}} <a href="#{{ method.api_method | slug}}"><i class="fas fa-link fa-xs"></i></a></h4>
