@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+	<script src="/js/main.js"></script>
+	
+
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Using Multisignature Accounts | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Using Multisignature Accounts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to set up and use multisignature accounts on Steem Blockchain." />
+<meta property="og:description" content="How to set up and use multisignature accounts on Steem Blockchain." />
+<link rel="canonical" href="https://steemit.com/utopian-io/@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324" />
+<meta property="og:url" content="https://steemit.com/utopian-io/@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-15T10:14:04-06:00" />
+<script type="application/ld+json">
+{"description":"How to set up and use multisignature accounts on Steem Blockchain.","@type":"BlogPosting","headline":"Using Multisignature Accounts","dateModified":"2019-11-15T10:14:04-06:00","datePublished":"2019-11-15T10:14:04-06:00","url":"https://steemit.com/utopian-io/@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324","mainEntityOfPage":{"@type":"WebPage","@id":"https://steemit.com/utopian-io/@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+	
+</head>
+<body>
+<header>
+	<h1>
+		<button type="button" class="open-nav" id="open-nav"></button>
+		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+	</h1>
+
+	
+	<form action="/search/" method="get">
+		<input type="text" name="q" id="search-input" placeholder="Search">
+		<input type="submit" value="Search" style="display: none;">
+	</form>
+	
+
+	<div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+	<!--<p class="copyright">-->
+	<!--<a href="https://steemit.com.com/">-->
+	<!--steemit-->
+	<!--</a>-->
+	<!--</p>-->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+	<div class="hero">
+		<h1 class="hero__h1">Steem Developer Portal </h1>
+		
+		<img class="hero__img" src="/images/hero.png">
+		
+	</div>
+	<section id="tutorials-recipes-using-multisignatire-accounts" class="row tutorials-recipes-using-multisignatire-accounts">
+  <h3>
+    <a id="tutorials-recipes-using-multisignatire-accounts">
+      Using Multisignature Accounts
+      
+    </a>
+  </h3>
+  
+    <span class="description"><p>How to set up and use multisignature accounts on Steem Blockchain.</p>
+</span>
+  
+
+  <div class="steem-content">
+    <center><p><img src="https://cdn.steemitimages.com/DQme59Hypf9j6W186aPhDKoeaRSKRMe4yLvNFemZXeuy9q8/image.png" alt="" /><br />	<sup>Image: Skitterphoto, CC0</sup></p><br /></center>
+
+<h4 id="repository">Repository</h4>
+<p>https://github.com/holgern/beem</p>
+
+<p>This post is a contribution to the <a href="https://steemit.com/steem/@timcliff/steem-developer-bounty-1500-steem-multisignature-transaction-guide-details-inside">Multisignature Transaction Guide</a> request by @timcliff.</p>
+
+<hr />
+<p><em>Edit: In the meantime, beem/beempy was adjusted to support the full procedure out-of-the-box. For a ready-to-use CLI interface for multi-sig coming with beem, please refer to:
+<a href="https://steemit.com/steem/@holger80/multisignature-transaction-guide-for-beempy">Multisignature Transaction Guide for beempy</a></em></p>
+
+<hr />
+
+<h4 id="what-will-i-learn">What Will I Learn?</h4>
+
+<ul>
+  <li>You will learn how to set-up a multi-signature authority for Steem accounts</li>
+  <li>You will learn how to prepare a transaction to be signed by multiple keys</li>
+  <li>You will learn how to sign transactions with multiple keys and broadcast it to the chain</li>
+</ul>
+
+<h4 id="requirements">Requirements</h4>
+
+<p>The user must have a basic understanding of the Steem key and account authority system as well as the corresponding weights and thresholds. The user should be familiar with Python and using Python scripts on the command line. Some knowledge about <a href="https://github.com/holgern/beem">beem</a> is required to go beyond the provided example.</p>
+
+<h4 id="difficulty">Difficulty</h4>
+<p>Advanced</p>
+
+<hr />
+
+<h4 id="setting-up-a-multi-signature-authority-steem-account">Setting up a multi-signature authority Steem account</h4>
+
+<p>The @steemit account is an example of an account that has multiple key authorities for each role:
+<img src="https://ipfs.busy.org/ipfs/Qmey6EuUPcscSPoCJTNMx6x2R1nNnKMZ6P4tCmV3dR8LoN" alt="Screenshot_steemit.png" />
+Blockchain transactions sent in the name of the @steemit account can be signed by any of the two keys per role (owner/active/posting). While this account has multiple authorities, it is not a multi-signature account since the threshold parameter on each role is set to 1 - this means that a signature with weight 1 is sufficient to authorize the transaction.
+An account becomes a multi-signature account as soon as the weight of a single signature is not sufficient to reach the threshold. Here is an example of a multi-sig account where this condition is fulfilled:</p>
+
+<p><img src="https://ipfs.busy.org/ipfs/QmTbTCagz39yLo8u9jhT6M276sQarAuQ8inPCVTcCn9wwH" alt="Screenshot_test.auth.png" /></p>
+
+<p>This account has an active threshold of 40 while each of the authorized keys can provide a weight of at most 25 or 10. This means that transactions requiring the active authority need to be signed by multiple of the authorized keys.</p>
+
+<hr />
+
+<h5 id="how-to-set-an-account-into-this-state-with-beem">How to set an account into this state with beem</h5>
+
+<p>In order to set owner, active or posting authorities, weights and thresholds, the <code class="highlighter-rouge">Account_update</code> function from <code class="highlighter-rouge">beembase.operations</code> is needed. The operation can be prepared in the following way:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">beem.account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="kn">from</span> <span class="nn">beembase</span> <span class="kn">import</span> <span class="n">operations</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">Account</span><span class="p">(</span><span class="s">"accountname"</span><span class="p">)</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">operations</span><span class="o">.</span><span class="n">Account_update</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s">"account"</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="s">"name"</span><span class="p">],</span>
+    <span class="s">'active'</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="s">"active"</span><span class="p">],</span>
+    <span class="s">'posting'</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="s">"posting"</span><span class="p">],</span>
+    <span class="s">'memo_key'</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="s">'memo_key'</span><span class="p">],</span>
+    <span class="s">"json_metadata"</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="s">'json_metadata'</span><span class="p">],</span>
+    <span class="s">"prefix"</span><span class="p">:</span> <span class="n">acc</span><span class="o">.</span><span class="n">steem</span><span class="o">.</span><span class="n">prefix</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">acc["posting"]</code> and <code class="highlighter-rouge">acc["active"]</code> are dictionaries in the style of:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>authority = {
+  'account_auths': [], 
+  'key_auths': [
+    ['STMKEY1...', 25], 
+    ['STMKEY2...', 10]],
+  'address_auths': [], 
+  'weight_threshold': 100, 
+  'prefix': acc.steem.prefix}
+</code></pre></div></div>
+
+<p>(adjust the keys, the weights and the threshold accordingly). Make sure that the sum of the individual weights reaches or exceeds the threshold, otherwise no combination of multiple signatures will be able to work with the active authority.</p>
+
+<p>This operation can then be submitted with a <code class="highlighter-rouge">TransactionBuilder</code> instance:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">beem.transactionbuilder</span> <span class="kn">import</span> <span class="n">TransactionBuilder</span>
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TransactionBuilder</span><span class="p">(</span><span class="n">steem_instance</span><span class="o">=</span><span class="n">acc</span><span class="o">.</span><span class="n">steem</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendOps</span><span class="p">([</span><span class="n">op</span><span class="p">])</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendWif</span><span class="p">(</span><span class="n">owner_wif</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+<span class="n">tx</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">broadcast</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Since this is modifying the active authority of the account, this operation has to be signed with the owner key. The same concept also applies to the posting authorities, but changing those only required the corresponding active key.</p>
+
+<p>The result is what is shown in the screenshot above and was carried out with the @test.auth account.</p>
+
+<p><strong>A basic, but ready-to-use script to set arbitrary active and posting authorities is provided here</strong>:
+https://gist.github.com/crokkon/17e5be82d9ef073bcee80a461a11dea9#file-set_authorities-py</p>
+
+<p>This script can be used like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python set_authorities.py <span class="se">\</span>
+  <span class="nt">--account</span> test.auth <span class="se">\</span>
+  <span class="nt">--role</span> active <span class="se">\</span>
+  <span class="nt">--threshold</span> 40 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM7JNWU2b2DBMp9WZRGHKqE7hQA9MKn2URLBCMfU95p29vzAQn8F 25 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM5iLWNocQk8UDUVpuGytJkmLiEuK9XYvyMH3yYRdXhW6qGqbWA4 25 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM6qpVTxhWBuKUFgUHgymuQrtRwZ16bWmyZVf7ba4QzoYypEXS5X 10 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM8Hp2EPPgddvQRGYUFomX5v8ixh1LeoFKk3FCTxMwkSvzieGrDg 10 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM75MGQ6WLhSqNoUYsm6oXeGp3R5KPpaKgtoLUHTtcS5vhrWmrtJ 10 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM6Ukq4htXhnkKDdR45XgCLJY8a8eJV9ndUmLBT32ktPzYdvqPJy 10 <span class="se">\</span>
+  <span class="nt">--key-weight</span> STM6AFxvirq6P1XTeiYEwfTCMXivJsg9wmZDBrWxG5fQkvgzRZwHX 10
+</code></pre></div></div>
+<p>Supported <code class="highlighter-rouge">--role</code> parameters are <code class="highlighter-rouge">active</code> and <code class="highlighter-rouge">posting</code>. The <code class="highlighter-rouge">--key-weight</code> parameter takes a space-separated pair of a pubkey and a weight. There is also an <code class="highlighter-rouge">--account-weight</code> parameter taking an account name plus weight. Note that there is an upper limit of 40 authorities (keys and accounts combined) per role.</p>
+
+<p>This is the resulting transaction from this script:
+<img src="https://ipfs.busy.org/ipfs/QmNeiJmtrtRWXnr8yv3KY5MQig4ysE5vP6ua7wvpeHdo5b" alt="Screenshot_account_setup.png" /></p>
+
+<p>Edit: the same state can be achieved via multiple<code class="highlighter-rouge">beempy</code> commands as suggested by @tcpolymath in the comments, e.g.:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ beempy allow -a "test.auth" --permission active --weight 25 --threshold 40 STM7JNWU2b2DBMp9WZRGHKqE7hQA9MKn2URLBCMfU95p29vzAQn8F
+</code></pre></div></div>
+
+<hr />
+
+<h5 id="how-to-prepare-a-transaction-to-be-signed-by-multiple-keys">How to prepare a transaction to be signed by multiple keys?</h5>
+
+<p>Transaction that are sent to the blockchain have the following format:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"expiration": "2019-01-04T21:05:55", "ref_block_num": 6032, "ref_block_prefix": 1020164711, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": []}
+</code></pre></div></div>
+<p><code class="highlighter-rouge">expiration</code> defines how long the transaction is going to be valid. Typical numbers are 1 minute (beem default), the maximum allowed by the blockchain is 1 hour. Since not all signatures are added instantly, choosing a longer period is reasonable in this case. <code class="highlighter-rouge">ref_block_num</code> and <code class="highlighter-rouge">ref_block_prefix</code> are values that the blockchain provides on request. The <code class="highlighter-rouge">operations</code> parameter contains the desired user operation (in this case transferring 0.001 STEEM to self). <code class="highlighter-rouge">extensions</code> is typically empty. <code class="highlighter-rouge">signatures</code> is a list of strings that is filled by signing this operation. In case of a “normal” transaction, the final signature filed would contain a lengthy string of characters and numbers. Multiple signatures can be achieved by signing the same operation with multiple keys independently, and list all resulting signatures in the <code class="highlighter-rouge">signatures</code> field.</p>
+
+<p>In order to create such a base transaction, we can again use the <code class="highlighter-rouge">TransactionBuilder</code> class:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">op</span> <span class="o">=</span> <span class="n">operations</span><span class="o">.</span><span class="n">Transfer</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">account</span><span class="p">,</span>
+    <span class="s">'to'</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">to</span><span class="p">,</span>
+    <span class="s">'amount'</span><span class="p">:</span> <span class="n">Amount</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">asset</span><span class="p">),</span>
+    <span class="s">'memo'</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">memo</span>
+<span class="p">})</span>
+<span class="n">stm</span> <span class="o">=</span> <span class="n">Steem</span><span class="p">(</span><span class="n">expiration</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TransactionBuilder</span><span class="p">(</span><span class="n">steem_instance</span><span class="o">=</span><span class="n">stm</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendOps</span><span class="p">([</span><span class="n">op</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"'</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">json</span><span class="p">())))</span>
+</code></pre></div></div>
+<p>(note the override of the expiration period to 1h = 3600s). The resulting output was the transaction string shown above.</p>
+
+<p><strong>A basic, but ready-to-use script to create an arbitrary transfer transaction is provided here</strong>:
+https://gist.github.com/crokkon/17e5be82d9ef073bcee80a461a11dea9#file-get_transaction-py</p>
+
+<p>This script can be used like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python get_transaction.py \
+  --account test.auth \
+	--to test.auth \
+	--amount 0.001 \
+	--asset STEEM
+</code></pre></div></div>
+<p>an optional <code class="highlighter-rouge">--memo</code> parameter allows you to set a transfer memo as well.</p>
+
+<p>Edit: also this stage can be done directly via <code class="highlighter-rouge">beempy</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ beempy -e 3600 --no-broadcast --unsigned transfer --account "test.auth" "test.auth" 0.001 STEEM
+</code></pre></div></div>
+
+<hr />
+
+<h5 id="how-to-sign-this-transaction-now-with-multiple-keys-and-broadcast-it-to-the-chain">How to sign this transaction now with multiple keys and broadcast it to the chain?</h5>
+
+<p>Signing this transaction means appending an entry to the <code class="highlighter-rouge">signatures</code> list of the transaction. This signature can be obtained by loading the above transaction with the <code class="highlighter-rouge">TransactionBuilder</code> class, append a private key and use the <code class="highlighter-rouge">sign()</code> method. Each time this step is done, another signature is appended to the list:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tb</span> <span class="o">=</span> <span class="n">TransactionBuilder</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">op</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">appendWif</span><span class="p">(</span><span class="n">wif</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">reconstruct_tx</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Important here is that the transaction has to be passed to the <code class="highlighter-rouge">TransactionBuilder</code> constructor and the <code class="highlighter-rouge">sign</code> method has to be instructed <strong>not to</strong> reconstruct the transaction but take it as it is. If this parameter is not set, the class will strip off existing signatures and update <code class="highlighter-rouge">expiration</code>, <code class="highlighter-rouge">ref_block_num</code> and <code class="highlighter-rouge">ref_block_prefix</code> to the current values.</p>
+
+<p>Once the required number of signatures is appended to meet or exceed the threshold, the transaction can be broadcasted:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tx</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">broadcast</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><strong>A basic, but ready-to-use script to sign transaction with multiple keys and broadcast it to the chain is provided here:</strong>
+https://gist.github.com/crokkon/17e5be82d9ef073bcee80a461a11dea9#file-sign_and_broadcast-py</p>
+
+<p>This script can be used like shown below. The same script is fed multiple times with the output of the previous step each. This ensures, that the same transaction can be signed successively by independent people and broadcasted as soon as the weight threshold is reached:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># first signature: run with the trx created above:</span>
+<span class="nv">$ </span>python sign_and_broadcast.py <span class="nt">--append-sig</span> <span class="nt">--trx</span> <span class="s1">'{"expiration": "2019-01-04T22:13:41", "ref_block_num": 7386, "ref_block_prefix": 3706177428, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": []}'</span>
+Enter private key:
+<span class="s1">'{"expiration": "2019-01-04T22:13:41", "ref_block_num": 7386, "ref_block_prefix": 3706177428, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": ["1f65df7e3fb5f3ad49c433054127d71918c10865d67367efa380edee2e9943540d1e6f97317a1cdfe547f49d89048a44bd2f9a9a7278e51b9fef98dfddaee576da"]}'</span>
+
+<span class="c"># second signature - run the same script with the output of step 1 - note the two sigs in the output:</span>
+<span class="nv">$ </span>python sign_and_broadcast.py <span class="nt">--append-sig</span> <span class="nt">--trx</span> <span class="s1">'{"expiration": "2019-01-04T22:13:41", "ref_block_num": 7386, "ref_block_prefix": 3706177428, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": ["1f65df7e3fb5f3ad49c433054127d71918c10865d67367efa380edee2e9943540d1e6f97317a1cdfe547f49d89048a44bd2f9a9a7278e51b9fef98dfddaee576da"]}'</span>
+Enter private key:
+<span class="s1">'{"expiration": "2019-01-04T22:13:41", "ref_block_num": 7386, "ref_block_prefix": 3706177428, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": ["1f65df7e3fb5f3ad49c433054127d71918c10865d67367efa380edee2e9943540d1e6f97317a1cdfe547f49d89048a44bd2f9a9a7278e51b9fef98dfddaee576da", "205d6e432fa276f0ef7c5da90703811d01b1358348ec5c1de5bd1504b7990d4f42121542d5d555a8fbb974db316d84714f7da2c43a5160bc00548fda6b15c33687"]}'</span>
+
+<span class="c"># third signature: run the same script with the output of step 2, add the --broadcast parameter and note the three sigs in the output:</span>
+<span class="nv">$ </span>python sign_and_broadcast.py <span class="nt">--append-sig</span> <span class="nt">--trx</span> <span class="s1">'{"expiration": "2019-01-04T22:13:41", "ref_block_num": 7386, "ref_block_prefix": 3706177428, "operations": [["transfer", {"from": "test.auth", "to": "test.auth", "amount": "0.001 STEEM", "memo": ""}]], "extensions": [], "signatures": ["1f65df7e3fb5f3ad49c433054127d71918c10865d67367efa380edee2e9943540d1e6f97317a1cdfe547f49d89048a44bd2f9a9a7278e51b9fef98dfddaee576da", "205d6e432fa276f0ef7c5da90703811d01b1358348ec5c1de5bd1504b7990d4f42121542d5d555a8fbb974db316d84714f7da2c43a5160bc00548fda6b15c33687"]}'</span> <span class="nt">--broadcast</span>
+Enter private key:
+SUCCESS: broadcasted <span class="s1">'{
+  "expiration": "2019-01-04T22:13:41",
+  "ref_block_num": 7386,
+  "ref_block_prefix": 3706177428,
+  "operations": [
+    [
+      "transfer",
+      {
+        "from": "test.auth",
+        "to": "test.auth",
+        "amount": "0.001 STEEM",
+        "memo": ""
+      }
+    ]
+  ],
+  "extensions": [],
+  "signatures": [
+    "1f65df7e3fb5f3ad49c433054127d71918c10865d67367efa380edee2e9943540d1e6f97317a1cdfe547f49d89048a44bd2f9a9a7278e51b9fef98dfddaee576da",
+    "205d6e432fa276f0ef7c5da90703811d01b1358348ec5c1de5bd1504b7990d4f42121542d5d555a8fbb974db316d84714f7da2c43a5160bc00548fda6b15c33687",
+    "20049d276c86a99d472d4962dc1adbf26a6cf2bdf56a87eae74a19d19394081a9a4b0f89f89dd1c632dcee13b2f688303cbf3f2f2e85ea587c88e9ff9dd66b7c8f"
+  ]
+}'</span>
+</code></pre></div></div>
+
+<p>here’s the resulting transaction on steemd:
+https://steemd.com/tx/5d1124e30b20c47f31517848500636cf7ec2e886
+<img src="https://ipfs.busy.org/ipfs/QmdSjjL4TtCqMwrdfJhXL2HfyRgxnFTfgeWPVHNfjaq6Vq" alt="Screenshot_trx.png" /></p>
+
+<p>And an example transferring 0.001 STEEM to my account with 4 signatures as required when using only the keys with weight=10:
+https://steemd.com/tx/ae16ba50728536b6a3a10ace03cb82512a51f6b4
+<img src="https://cdn.steemitimages.com/DQmbSHNXy7Ue7dqBxZwoLmQkSDqUii3jshputHrgpQMctqG/Screenshot_trx4.png" alt="Screenshot_trx4.png" /></p>
+
+<p>(this step is currently not yet possible with <code class="highlighter-rouge">beempy</code>, but there is work in progress to fully integrate all steps)</p>
+
+<hr />
+
+<h4 id="further-thoughts">Further thoughts:</h4>
+<ul>
+  <li>A big limitation for mass adoption of multi-sig is the fact that the maximum transaction expiration time can only be 1h at most. This can be a at least annoying or even a problem if multiple people that live in different time zones or have a life outside of Steem have to work together to reach the signature threshold.</li>
+  <li>Even with a multi-sig active authority, transfers can still be done with the owner authority (currently requiring only one sig with the example account).</li>
+  <li>However, the exact same concept can be applied to the owner authority as well. This has to be done carefully, since a mistake there could render the account unusable and the funds locked. With access to the recovery partner’s active key, it could still be recovered, though.</li>
+  <li>For the signing and broadcasting part, there is currently no automated check if the required number of signatures to meet or exceed the threshold is reached, but this could be implemented by reconstructing the signers of the existing signatures and checking their weight against the required threshold.</li>
+</ul>
+
+<h4 id="proof-of-work-done">Proof of Work Done</h4>
+<p>All code shown here is available as a GitHub Gist:
+https://gist.github.com/crokkon/17e5be82d9ef073bcee80a461a11dea9</p>
+<hr />
+
+<p>
+  See: <a href="https://steemit.com/@crokkon/steem-multi-signature-transaction-guide-for-beem-python-1546636997324">Steem Multi-Signature Transaction Guide for Beem/Python</a>
+  by
+  <a href="https://steemit.com/@crokkon">@crokkon</a>
+</p>
+
+
+  </div>
+</section>
+
+</div>
+<div class="footer">
+	<a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
