@@ -1,0 +1,271 @@
+- name: Dynamic Global Properties
+  id: dynamic-global-properties
+  fields:
+    - name: head_block_number
+      purpose: Block height at the head of the blockchain.  This represents the latest block produced by witnesses.
+      examples:
+        - "`24155032`"
+    - name: head_block_id
+      purpose: |
+        Used to implement TaPoS (Transaction as Proof of Stake).  The first 4 bytes (8 hex digits) of the block ID represents the block number.  E.g., `01709398` in hex is `24155032` in decimal.
+      examples:
+        - "`0170939865fa4e3aa7fca8f8df35d23333fe0bee`"
+      links:
+        - <a href="https://en.wikipedia.org/wiki/RIPEMD#RIPEMD-160_hashes">RIPEMD-160 hashes</a>
+    - name: time
+      purpose: |
+        Point in time (UTC) that the block was included in the chain.
+        
+        Used to synchronize events like Hard Fork activation.
+        
+        When attempting to calculate the validity of a transaction we need to lookup a past block and check its block hash and the time it occurred so we can calculate whether the current transaction is valid and at what time it should expire.
+        
+        For new transactions, expirations originate from this time.
+      examples:
+        - "`2018-07-14T01:19:51`"
+    - name: current_witness
+      purpose: Account name of the current witness.
+      examples:
+        - "`blocktrades`"
+    - name: total_pow
+      deprecated: true
+      purpose: The total POW accumulated, aka the sum of `num_pow_witness` at the time new POW is added.
+      examples:
+        - "`514415`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/770">#770</a>
+    - name: num_pow_witnesses
+      deprecated: true
+      purpose: The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.
+      examples:
+        - "`172`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/770">#770</a>
+    - name: virtual_supply
+      purpose: The virtual supply is the supply of all STEEM + all SBD if all SBD were converted to STEEM at the current median price.
+      examples:
+        - "`283290592.652 STEEM`"
+    - name: current_supply
+      purpose: STEEM currently in existence.
+      examples:
+        - "`271546371.129 STEEM`"
+    - name: confidential_supply
+      purpose: Total asset held in confidential balances.
+      examples:
+        - "`0.000 STEEM`"
+    - name: current_sbd_supply
+      purpose: SBD currently in existence.
+      examples:
+        - "`15478883.968 SBD`"
+    - name: confidential_sbd_supply
+      purpose: Total asset held in confidential balances.
+      examples:
+        - "`0.000 SBD`"
+    - name: total_vesting_fund_steem
+      deprecated: true
+      purpose: |
+        *Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).*
+        
+        Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
+      examples:
+        - "`192713261.007 STEEM`"
+    - name: total_vesting_shares
+      purpose: VESTS that are invested in STEEM POWER (powered up).
+      examples:
+        - "`390950506702.452773 VESTS`"
+    - name: total_reward_fund_steem
+      purpose: STEEM available in the reward pool.
+      examples:
+        - "`0.000 STEEM`"
+    - name: total_reward_shares2
+      deprecated: true
+      purpose: |
+        *Now deprecated way to get the number of shares in the pool.*
+        
+        Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
+      examples:
+        - "`0`"
+    - name: sbd_interest_rate
+      purpose: This property defines the interest rate that SBD deposits receive.
+      examples:
+        - "`0`"
+    - name: maximum_block_size
+      purpose: |
+        Maximum block size is decided by the set of active witnesses which change every round.  Each witness posts what they think the maximum size should be as part of their witness properties, the median size is chosen to be the maximum block size for the round.
+        
+        **Note:** the minimum value for `maximum_block_size` is defined by the protocol to prevent the network from getting stuck by witnesses attempting to set this too low.
+      examples:
+        - "`65536`"
+    - name: current_aslot
+      purpose: The current absolute slot number.  Equal to the total number of slots since genesis.  Also equal to the total number of missed slots plus `head_block_number`.
+      examples:
+        - "`24231997`"
+    - name: recent_slots_filled
+      purpose: Used to compute witness participation.
+      examples:
+        - "`340282366920938463463374607431768211455`"
+    - name: last_irreversible_block_num
+      purpose: The latest block number that has been confirmed by two thirds of all block producers and is thus irreversible.
+      examples:
+        - "`24155017`"
+    - name: vote_power_reserve_rate
+      purpose: The number of votes regenerated per day.  Any user voting slower than this rate will be "wasting" voting power through spillover; any user voting faster than this rate will have their votes reduced.
+      examples:
+        - "`10`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/1252">#1252</a>
+        - <a href="https://github.com/steemit/steem/issues/1411">#1411</a>
+    - name: average_block_size
+      removed: true
+      purpose: |
+        **Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
+
+        Average block size is updated every block to be: `average_block_size = (99 * average_block_size + new_block_size) / 100`.  This property is used to update the `current_reserve_ratio` to maintain approximately *  50% or less utilization of network capacity.
+      examples:
+        - "`9309`"
+    - name: current_reserve_ratio
+      removed: true
+      purpose: |
+        **Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
+        
+        Any time `average_block_size <= 50% maximum_block_size` this value grows by 1 until it reaches `STEEM_MAX_RESERVE_RATIO`.  Any time `average_block_size` is greater than 50% it falls by 1%.  Upward adjustments happen once per round, downward adjustments happen every block.
+      examples:
+        - "`200000000`"
+    - name: max_virtual_bandwidth
+      removed: true
+      purpose: |
+        **Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
+        
+        The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_block_size * STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEM_BLOCK_INTERVAL`; The maximum virtual bandwidth is: `max_bandwidth * current_reserve_ratio`
+      examples:
+        - "`264241152000000000000`"
+    - name: init_sbd_supply
+      since: HF19
+      # purpose: Originally called `virtual_sbd_supply`, ... TODO
+      examples:
+        - "`0.000 SBD`"
+    - name: required_actions_partition_percent
+      since: HF21
+      purpose: |
+        The size of the block that is partitioned for actions. Required actions can only be delayed if they take up more than this amount. More can be included, but are not required. Block generation should only include transactions up to `maximum_block_size - required_actions_parition_size` to ensure required actions are not delayed when they should not be.
+      examples:
+        - "`0`"
+    - name: delegation_return_period
+      since: HF20
+      examples:
+        - "`432000`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/2428">#2428</a>
+    - name: reverse_auction_seconds
+      since: HF21
+      purpose: Curation reverse auction duration.
+      examples:
+        - "`300`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/1874">#1874</a>
+    - name: available_account_subsidies
+      since: HF20
+      examples:
+        - "`23985882`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/1770">#1770</a>
+    - name: sbd_stop_percent
+      since: HF20
+      purpose: Stop printing SBD at *n*% marketcap.
+      examples:
+        - "`1000`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/2140">#2140</a>
+    - name: sbd_start_percent
+      since: HF20
+      purpose: Start reducing printing of SBD at *n*% marketcap.
+      examples:
+        - "`900`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/2140">#2140</a>
+    - name: next_maintenance_time
+      since: HF21
+      purpose: Used to compute payments for every proposal.
+      examples:
+        - "`2019-11-14T21:26:57`"
+      links:
+        - <a href="https://github.com/blocktradesdevs/steem/issues/7">blocktradesdevs/steem#7</a>
+        - <a href="{{ '/apidefinitions/#broadcast_ops_sps_fund' | relative_url }}"><code>sps_fund</code></a>
+    - name: last_budget_time
+      since: HF21
+      purpose: Used to compute payments for every proposal.
+      examples:
+        - "`2019-11-14T20:26:57`"
+      links:
+        - <a href="https://github.com/blocktradesdevs/steem/issues/7">blocktradesdevs/steem#7</a>
+        - <a href="{{ '/apidefinitions/#broadcast_ops_sps_fund' | relative_url }}"><code>sps_fund</code></a>
+    - name: content_reward_percent
+      since: HF21
+      examples:
+        - "`6500`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3328">#3328</a>
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: vesting_reward_percent
+      since: HF21
+      examples:
+        - "`1500`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3328">#3328</a>
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: sps_fund_percent
+      since: HF21
+      examples:
+        - "`1000`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: sps_interval_ledger
+      since: HF21
+      examples:
+        - "`63.684 SBD`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: downvote_pool_percent
+      since: HF21
+      purpose: |
+        Used by a separate downvote pool that is a percentage of the max size of the voting mana. Downvotes will be taken from the downvote pool first, and then the upvote pool once the downvote pool has been consumed. The downvote pool will follow the same rules as the upvote pool, regenerating over five days and filling instantly and proportionally to new Steem Power and delegations.
+      examples:
+        - "`2500`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3336">#3336</a>
+        - <a href="https://github.com/steemit/steem/issues/3344">#3344</a>
+    - name: pending_rewarded_vesting_shares
+      since: HF17
+      examples:
+        - "`379159224.860656 VESTS`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/3328">#3328</a>
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: pending_rewarded_vesting_steem
+      since: HF17
+      examples:
+        - "`185294.019 STEEM`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/659">#659</a>
+        - <a href="https://github.com/steemit/steem/issues/3328">#3328</a>
+        - <a href="https://github.com/steemit/steem/issues/3346">#3346</a>
+    - name: sbd_print_rate
+      since: HF14
+      examples:
+        - "`2933`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/230">#230</a>
+    - name: participation_count
+      since: HF9
+      purpose: Used to compute witness participation.
+      examples:
+        - "`128`"
+    - name: target_votes_per_period
+      since: HF23
+      purpose: |
+        The number of votes regenerated per day (over [STEEM_VOTING_MANA_REGENERATION_SECONDS]({{ '/tutorials-recipes/understanding-configuration-values#STEEM_VOTING_MANA_REGENERATION_SECONDS' | relative_url }})).  Any user voting slower than this rate will be "wasting" voting power through spillover; any user voting faster than this rate will have their votes reduced.
+      examples:
+        - "`50`"
+      links:
+        - <a href="https://github.com/steemit/steem/issues/1252">#1252</a>
+        - <a href="https://github.com/steemit/steem/issues/1411">#1411</a>
