@@ -430,7 +430,7 @@
       virtual: false
       purpose: |
         All accounts with a VFS (Vesting Fund Shares) can vote for or against
-        any witness.  See: [`STEEM_MAX_ACCOUNT_WITNESS_VOTES`]({{ '/tutorials-recipes/understanding-configuration-values#steem_max_account_witness_votes' | relative_url }})
+        any witness.  See: [`STEEM_MAX_ACCOUNT_WITNESS_VOTES`]({{ '/tutorials-recipes/understanding-configuration-values#STEEM_MAX_ACCOUNT_WITNESS_VOTES' | relative_url }})
         
         If a proxy is specified then all existing votes are removed.
       roles:
