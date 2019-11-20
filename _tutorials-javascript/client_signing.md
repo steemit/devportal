@@ -36,7 +36,7 @@ Testnet and Production networks only differ with few settings which helps develo
 ```javascript
 opts.addressPrefix = 'TST';
 opts.chainId =
-    '0feb08c380aeb483b61a34cccb7271a3a99c47052bea529c4a891622f2c50d75';
+    'd043ab83d223f25f37e1876fe48a240d49d8e4b1daa2342064990a8036a8bb5b';
 //connect to server which is connected to the network/testnet
 const client = new dsteem.Client('https://testnet.steemitdev.com', opts);
 ```
