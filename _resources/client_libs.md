@@ -15,6 +15,12 @@ Pure JavaScript Steem crypto library for node.js and browsers. Can be used to co
 
 ---
 
+**Steem-TX-JS** - [https://github.com/mahdiyari/steem-tx-js](https://github.com/mahdiyari/steem-tx-js)
+
+Lightweight JavaScript library for creating and signing transactions.  Works with frameworks like Nativescript.  This library is a solution to such cases when other libraries are not working.  And also an alternative for *only* creating, signing, and broadcasting transactions.
+
+---
+
 **DSteem** - [https://github.com/jnordberg/dsteem](https://github.com/jnordberg/dsteem) 
 
 A Typescript Steem crypto library for node.js and browsers. Steemit Inc [also maintains a version of this library](https://github.com/steemit/dsteem)
@@ -48,4 +54,3 @@ Golang RPC client library for Steem
 **SteemClientRS** - [https://github.com/cyberpunk-ventures/steem-client-rs](https://github.com/cyberpunk-ventures/steem-client-rs)
 
 Client library for Steem blockchain built with Rust
-
