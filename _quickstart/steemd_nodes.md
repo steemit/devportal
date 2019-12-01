@@ -15,10 +15,7 @@ Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes 
 | anyx.io                         | @anyx          |
 | api.steemit.com                 | @steemit       |
 | api.steem.house                 | @gtg           |
-| appbasetest.timcliff.com        | @timcliff      |
-| gtg.steem.house:8090            | @gtg           |
-| hive.anyx.io                    | @anyx          |
-| rpc.steemviz.com                | @ausbitbank    |
+| api.timcliff.com                | @timcliff      |
 | rpc.usesteem.com                | @themarkymark  |
 | steemd.minnowsupportproject.org | @followbtcnews |
 | steemd.privex.io                | @privex        |
