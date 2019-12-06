@@ -1,0 +1,72 @@
+- name: broadcast_ops_communities
+  group: communities
+  description: |
+    To interact with the communities framework, use `custom_json` operations with the an `id` of `community`.  Communities also intepret other ids like `follow` and `reblog`.
+    
+    See: [communities.md](https://github.com/steemit/hivemind/blob/master/docs/communities.md)
+    
+    Also see: [Bridge]({{ '/apidefinitions/#apidefinitions-bridge' | relative_url }}), [Broadcast Transaction]({{ '/apidefinitions/#condenser_api.broadcast_transaction' | relative_url }}), [`custom_json`]({{ '/apidefinitions/#broadcast_ops_custom_json' | relative_url }})
+  ops:
+    - name: setRole
+      purpose: |
+        Sets a role for a given account in a community.
+        
+        * *Owner* can set any role.
+        * *Admins* can set the role of any account to any level below `admin`, except for other *Admins*.
+        * *Mods* can set the role of any account to any level below `mod`, except for other *Mods*.
+      roles:
+        - posting
+      params:
+        - community
+          account
+          role
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"setRole\", {\"community\": \"hive-123456\", \"account\": \"bob\", \"role\": \"admin\"}]"}]'
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"setRole\", {\"community\": \"hive-123456\", \"account\": \"charlie\", \"role\": \"mod\"}]"}]'
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"setRole\", {\"community\": \"hive-123456\", \"account\": \"dave\", \"role\": \"guest\"}]"}]'
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"setRole\", {\"community\": \"hive-123456\", \"account\": \"edward\", \"role\": \"member\"}]"}]'
+    - name: setUserTitle
+      purpose: |
+        Sets a title (badge) for a given account in a community (*Mods* or higher).
+      roles:
+        - posting
+      params:
+        - community
+          account
+          title
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"setUserTitle\", {\"community\": \"hive-123456\", \"account\": \"alice\", \"title\": \"Founder\"}]"}]'
+    - name: mutePost
+      purpose: |
+        Mute a post (*Mods* or higher).  Can be a topic or a comment.
+        
+        **Note:** Any posts muted for spam should contain simply the string spam in the notes field. This standardized label will help train automated spam detection.
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"mutePost\",{\"community\":\"hive-123456\",\"account\":\"eve\",\"permlink\":\"re-eve-comment-1564339652z\",\"notes\":\"Off Topic\"}]"}]'
+    - name: unmutePost
+      purpose: Unmute a post (*Mods* or higher).
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"unmutePost\",{\"community\":\"hive-123456\",\"account\":\"eve\",\"permlink\":\"re-eve-comment-1564339652z\",\"notes\":\"On Topic (on second thought)\"}]"}]'
+    - name: updateProps
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"updateProps\",{\"community\":\"hive-123456\",\"props\":{\"title\":\"Anti-Knitting\",\"about\":\"A community against knitting.\",\"is_nsfw\":false,\"description\":\"If you like to knitting, go away.\",\"flag_text\":\"Must hate knitting or else you will be muted.\"}}]"}]'
+    - name: subscribe
+      purpose: Allows a user to signify they want this community shown on their personal trending feed and to be shown in their navigation menu.
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"subscribe\",{\"community\":\"hive-123456\"}]"}]'
+    - name: pinPost
+      purpose: Stickies a post to the top of the community homepage (*Mods* or higher). If multiple posts are stickied, the newest ones are shown first.
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"pinPost\",{\"community\":\"hive-123456\",\"account\":\"alice\",\"permlink\":\"a-post-by-alice\"}]"}]'
+    - name: unsubscribe
+      purpose: Allows a user to signify they no longer want this community shown on their personal trending feed or to be shown in their navigation menu.
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"unsubscribe\",{\"community\":\"hive-123456\"}]"}]'
+    - name: unpinPost
+      purpose: Removes a post to the top of the community homepage (*Mods* or higher).
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"unpinPost\",{\"community\":\"hive-123456\",\"account\":\"alice\",\"permlink\":\"a-post-by-alice\"}]"}]'
+    - name: flagPost
+      purpose: Used by guests to suggest a post for the review queue.  It's up to the community to define what constitutes flagging.
+      json_examples:
+        - '["custom_json",{"required_auths":[],"required_posting_auths":["alice"],"id":"community","json":"[\"flagPost\",{\"community\":\"hive-123456\",\"account\":\"eve\",\"permlink\":\"a-post-by-eve\",\"notes\":\"Warning\"}]"}]'
