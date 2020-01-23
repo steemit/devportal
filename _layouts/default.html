@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
 
-	{% if jekyll.environment == 'production' %}
-	<link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-	<link rel="stylesheet" href="{{ '/css/css/fontawesome-all.min.css' | relative_url }}">
-	<script src="{{ '/js/main.js' | relative_url }}"></script>
-	{% else %}
-	<link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-	<link rel="stylesheet" href="{{ '/css/css/fontawesome-all.min.css' | relative_url }}">
-	<script src="{{ '/js/main.js' | relative_url }}"></script>
-	{% endif %}
+  {% if jekyll.environment == 'production' %}
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/css/css/fontawesome-all.min.css' | relative_url }}">
+  <script src="{{ '/js/main.js' | relative_url }}"></script>
+  {% else %}
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/css/css/fontawesome-all.min.css' | relative_url }}">
+  <script src="{{ '/js/main.js' | relative_url }}"></script>
+  {% endif %}
 
-	{% seo %}
+  {% seo %}
 
-	{% if jekyll.environment == 'production' %}
+  {% if jekyll.environment == 'production' %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_key }}"></script>
 <script>
@@ -30,50 +31,50 @@
   gtag('js', new Date());
 
   gtag('config', '{{ site.google_analytics_key }}');
-</script>	
-	{% endif %}
+</script>  
+  {% endif %}
 </head>
 <body>
 <header>
-	<h1>
-		<button type="button" class="open-nav" id="open-nav"></button>
-		<a href="{{ '/' | relative_url }}"  class="logo-link"><img src="{{ '/images/logotype_white.svg' | relative_url }}" height="40" alt="{{ site.title }} logo"></a>
-	</h1>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="{{ '/' | relative_url }}"  class="logo-link"><img src="{{ '/images/logotype_white.svg' | relative_url }}" height="40" alt="{{ site.title }} logo"></a>
+  </h1>
 
-	{% if jekyll.environment == 'production' %}
-	<form action="{{ '/search/' | relative_url }}" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	{% else %}
-	<form action="{{ '/search/' | relative_url }}" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	{% endif %}
+  {% if jekyll.environment == 'production' %}
+  <form action="{{ '/search/' | relative_url }}" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  {% else %}
+  <form action="{{ '/search/' | relative_url }}" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  {% endif %}
 
-	{% include sidebar.html %}
+  {% include sidebar.html %}
 
-	<!--<p class="copyright">-->
-	<!--<a href="https://steemit.com.com/">-->
-	<!--steemit-->
-	<!--</a>-->
-	<!--</p>-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 </header>
 <div class="main" id="top">
-	<div class="hero">
-		<h1 class="hero__h1">Steem Developer Portal {% if page.section %} - {{ page.section }}{% endif %}</h1>
-		{% if jekyll.environment == 'production' %}
-		<img class="hero__img" src="{{ '/images/hero.png' | relative_url }}">
-		{% else %}
-		<img class="hero__img" src="{{ '/images/hero.png' | relative_url }}">
-		{% endif %}
-	</div>
-	{{ content }}
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal {% if page.section %} - {{ page.section }}{% endif %}</h1>
+    {% if jekyll.environment == 'production' %}
+    <img class="hero__img" src="{{ '/images/hero.png' | relative_url }}">
+    {% else %}
+    <img class="hero__img" src="{{ '/images/hero.png' | relative_url }}">
+    {% endif %}
+  </div>
+  {{ content }}
 </div>
 <div class="footer">
-	<a href="#">Back to top</a>
+  <a href="#">Back to top</a>
 </div>
 <script>
     document.getElementById("open-nav").addEventListener("click", function () {
