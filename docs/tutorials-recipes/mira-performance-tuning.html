@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>MIRA: Performance Tuning | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="MIRA: Performance Tuning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Provides a way to get the most performance on specific hardware." />
+<meta property="og:description" content="Provides a way to get the most performance on specific hardware." />
+<link rel="canonical" href="https://steemit.com/steemit/@gerbino/mira-performance-tuning" />
+<meta property="og:url" content="https://steemit.com/steemit/@gerbino/mira-performance-tuning" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:45:05-06:00" />
+<script type="application/ld+json">
+{"description":"Provides a way to get the most performance on specific hardware.","@type":"BlogPosting","headline":"MIRA: Performance Tuning","dateModified":"2020-01-23T10:45:05-06:00","datePublished":"2020-01-23T10:45:05-06:00","url":"https://steemit.com/steemit/@gerbino/mira-performance-tuning","mainEntityOfPage":{"@type":"WebPage","@id":"https://steemit.com/steemit/@gerbino/mira-performance-tuning"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-recipes-mira-performance-tuning" class="row tutorials-recipes-mira-performance-tuning">
+  <h3>
+    <a id="tutorials-recipes-mira-performance-tuning">
+      MIRA: Performance Tuning
+      
+    </a>
+  </h3>
+  
+    <span class="description"><p>Provides a way to get the most performance on specific hardware.</p>
+</span>
+  
+
+  <div class="steem-content">
+    <center>
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/JCnbFxunhVM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</center>
+
+<hr />
+
+<p>Without MIRA, the requirement of RAM to run a <code class="highlighter-rouge">steemd</code> node will grow indefinitely which is clearly unsustainable. To extend our runway into the distant future, MIRA-enabled nodes will primarily be used. MIRA is based on RocksDB technology which is highly configurable and somewhat complex. MIRA will behave differently on different pieces of hardware so it is virtually impossible to create a “one-size fits all” configuration; therefore it is important to provide a way for users to get the most performance from their particular hardware. This guide aims to do just that. This guide should be kept up-to-date and improved within the <code class="highlighter-rouge">steemd</code> repository for documentation purposes. Improvements should be made in to a pull request against <a href="https://github.com/steemit/steem/blob/master/doc/mira-tuning.md">MIRA Tuning Guide</a>.</p>
+
+<p><img src="https://cdn.steemitimages.com/DQmXCB8ugRARNt34igZEzjiEKWuiCEkZHZCHw5KPj836hfm/MIRA%20perf%20tuning.jpg" alt="MIRA perf tuning.jpg" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>After MIRAs initial development efforts we released the <a href="https://github.com/steemit/steem/blob/master/doc/mira.md">Basic MIRA Configuration Guide</a> to help bootstrap users attempting to use MIRA enabled <code class="highlighter-rouge">steemd</code>. There is actually much more fine tuning that can be done to improve MIRA’s performance and I’d like to take the time now to share it with the community. We will break up this process into three phases:</p>
+
+<ul>
+  <li>Phase 1: Gathering statistics</li>
+  <li>Phase 2: Analyzing statistics</li>
+  <li>Phase 3: Applying performance recommendations</li>
+</ul>
+
+<h1 id="phase-1-gathering-statistics">Phase 1: Gathering statistics</h1>
+
+<p>As you may have noticed, within the <code class="highlighter-rouge">database.cfg</code> file, there is a global option called <code class="highlighter-rouge">statistics</code>. By default this is set to <code class="highlighter-rouge">false</code>. This must be set to <code class="highlighter-rouge">true</code> before proceeding! Here is an example of a <code class="highlighter-rouge">database.cfg</code> with statistics enabled:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat ~/.steemd/database.cfg 
+{
+  "global": {
+    "shared_cache": {
+      "capacity": "5368709120"
+    },
+    "write_buffer_manager": {
+      "write_buffer_size": "1073741824"
+    },
+    "object_count": 62500,
+    "statistics": true
+  },
+  "base": {
+    "optimize_level_style_compaction": true,
+    "increase_parallelism": true,
+    "block_based_table_options": {
+      "block_size": 8192,
+      "cache_index_and_filter_blocks": true,
+      "bloom_filter_policy": {
+        "bits_per_key": 10,
+        "use_block_based_builder": false
+      }
+    }
+  }
+}
+
+</code></pre></div></div>
+
+<p>Once statistics has been enabled, simply perform the action you’d like to optimize. In my example, I will be syncing up the testnet. Start <code class="highlighter-rouge">steemd</code> like you otherwise normally would. Please be aware that enabling statistics causes a drastic performance impact - you won’t want to run this in production. By default, statistics are dumped every 10 minutes so you will want to run for a while. The more data you gather, the more accurate the performance tuning suggestions will potentially be.</p>
+
+<h1 id="phase-2-analyzing-statistics">Phase 2: Analyzing statistics</h1>
+
+<p>Luckily, you won’t need intimate knowledge of RocksDB in order to analyze the statistics data. The developers working on RocksDB have provided us with a tool that can read the gathered statistics and make performance tuning recommendations. This tool can be found within the <code class="highlighter-rouge">steemd</code> repository at <code class="highlighter-rouge">programs/util/rocksdb_advisor.sh</code>. From the <code class="highlighter-rouge">program/util</code> directory run the tool:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sh rocksdb_advisor.sh
+
+</code></pre></div></div>
+
+<p>If all goes well, you should get output for each object specified in the <code class="highlighter-rouge">rocksdb_advisor.sh</code> file. Here is an example of the possible output:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Advisor for account_authority...
+WARNING(TimeSeriesData) check_and_trigger: float division by zero
+
+Rule: bloom-not-enabled
+TimeSeriesCondition: bloom-not-enabled statistics: ['[]rocksdb.bloom.filter.useful.count', '[]rocksdb.bloom.filter.full.positive.count', '[]rocksdb.bloom.filter.full.true.positive.count'] behavior: evaluate_expression expression: keys[0]+keys[1]+keys[2]==0 aggregation_op: avg trigger: {'ENTITY_PLACEHOLDER': [0.0, 0.0, 0.0]}
+Suggestion: inc-bloom-bits-per-key option : bloom_bits action : increase suggested_values : ['2']
+scope: entities:
+{'ENTITY_PLACEHOLDER'}
+scope: col_fam:
+{'boost\\:\\:mpl\\:\\:v_item&lt;steem\\:\\:chain\\:\\:by_id, boost\\:\\:mpl\\:\\:vector0&lt;mpl_\\:\\:na&gt;, 0&gt;', 'boost\\:\\:mpl\\:\\:v_item&lt;steem\\:\\:chain\\:\\:by_last_owner_update, boost\\:\\:mpl\\:\\:vector0&lt;mpl_\\:\\:na&gt;, 0&gt;', 'boost\\:\\:mpl\\:\\:v_item&lt;steem\\:\\:chain\\:\\:by_account, boost\\:\\:mpl\\:\\:vector0&lt;mpl_\\:\\:na&gt;, 0&gt;', 'default'}
+</code></pre></div></div>
+
+<p>In reality you will get significantly more output than above. For the sake of simplicity, we will work with one performance suggestion. We can see here the <code class="highlighter-rouge">rocksdb_advisor.sh</code> provided a suggestion for the <code class="highlighter-rouge">account_authority_object</code> database.</p>
+
+<blockquote>
+  <p>Suggestion: inc-bloom-bits-per-key option : bloom_bits action : increase suggested_values : [‘2’]</p>
+</blockquote>
+
+<p>Let’s move on to applying the advisor’s suggestions.</p>
+
+<h1 id="phase-3-applying-performance-recommendations">Phase 3: Applying performance recommendations</h1>
+
+<p>If you want to apply the same options to all databases, you would just change the <code class="highlighter-rouge">base</code> setting as this is applied to every database within a MIRA enabled <code class="highlighter-rouge">steemd</code> node.</p>
+
+<p>You may notice that you will get different recommendations for different objects. In MIRA’s implementation, each object is its own RocksDB database. How do we implement different options for different databases?</p>
+
+<h2 id="configuration-overlays">Configuration overlays</h2>
+
+<p>A configuration overlay is a set of options overriding the base configuration to be applied to a specified database. In our default configuration, you may notice that one of the objects is called <code class="highlighter-rouge">base</code>. These settings are applied to every database unless a <em>configuration overlay</em> overrides them. A configuration overlay takes the same options as <code class="highlighter-rouge">base</code>. As an example, we will override <code class="highlighter-rouge">bits_per_key</code> for the <code class="highlighter-rouge">account_authority_object</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "global": {
+    "shared_cache": {
+      "capacity": "5368709120"
+    },
+    "write_buffer_manager": {
+      "write_buffer_size": "1073741824"
+    },
+    "object_count": 62500,
+    "statistics": true
+  },
+  "base": {
+    "optimize_level_style_compaction": true,
+    "increase_parallelism": true,
+    "block_based_table_options": {
+      "block_size": 8192,
+      "cache_index_and_filter_blocks": true,
+      "bloom_filter_policy": {
+        "bits_per_key": 10,
+        "use_block_based_builder": false
+      }
+    }
+  },
+  "account_authority_object": {
+    "block_based_table_options": {
+      "block_size": 8192,
+      "cache_index_and_filter_blocks": true,
+      "bloom_filter_policy": {
+        "bits_per_key": 12,
+        "use_block_based_builder": false
+      }
+    }
+  }
+}
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> When overriding a configuration value, you must override the complete first level option (such as <code class="highlighter-rouge">block_based_table_options</code> in the above example).</p>
+</blockquote>
+
+<p>Even though we did not specify <code class="highlighter-rouge">optimize_level_style_compaction</code> and <code class="highlighter-rouge">increase_parallelism</code> to the <code class="highlighter-rouge">account_authority_object</code> configuration, they are inherited from <code class="highlighter-rouge">base</code>.</p>
+
+<h2 id="available-options">Available options</h2>
+
+<p>Not every RocksDB option is made available to MIRA configurations. It is very possible that the RocksDB tool can recommend changing an option that is unavailable through MIRA. Feel free to add it and create a pull request, especially if it is improving your nodes performance. You can see a complete list of available options in the codebase in <a href="https://github.com/steemit/steem/blob/master/libraries/mira/src/configuration.cpp">libraries/mira/src/configuration.cpp</a>. View the recommended options and check the list; I tried to preserve the naming conventions during implementation to make this process easier.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>You may need to repeat this process to achieve optimal results. There is no guarantee that you will see performance improvements as this is experimental in nature. When you are benchmarking your configuration or you have completed your performance tuning, remember to set <code class="highlighter-rouge">statistics</code> to <code class="highlighter-rouge">false</code>.</p>
+
+<p>Happy performance tuning and good luck!</p>
+<hr />
+
+<p>
+  See: <a href="https://steemit.com/@gerbino/mira-performance-tuning">MIRA: Performance Tuning</a>
+  by
+  <a href="https://steemit.com/@gerbino">@gerbino</a>
+</p>
+
+
+  </div>
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

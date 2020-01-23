@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Bridge | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Bridge" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Methods: account_notifications get_community get_ranked_posts list_all_subscriptions list_community_roles Presents data interpreted by the hivemind database as JSON-RPC. Also see: Communities Broadcast Ops Related bridge.get_ranked_posts Get ranked posts. Supported values for sort: trending hot created promoted payout payout_comments muted The value for tag can be any valid tag. The value for observer can be any valid account or empty string. Query Parameters JSON {&quot;sort&quot;: &quot;&quot;, &quot;tag&quot;: &quot;&quot;, &quot;observer&quot;: &quot;&quot;} Expected Response JSON [ { &quot;post_id&quot;: 12345678, &quot;author&quot;: &quot;alice&quot;, &quot;permlink&quot;: &quot;that-march-hare&quot;, &quot;category&quot;: &quot;wonderland&quot;, &quot;title&quot;: &quot;That March Hare&quot;, &quot;body&quot;: &quot;I think he went mad.&quot;, &quot;json_metadata&quot;: {&quot;tags&quot;: [&quot;wonderland&quot;], &quot;app&quot;: &quot;steemit/0.2&quot;}, &quot;created&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;updated&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;depth&quot;: 0, &quot;children&quot;: 0, &quot;net_rshares&quot;: 1539574839484, &quot;is_paidout&quot;: false, &quot;payout_at&quot;: &quot;2019-12-12T16:29:12&quot;, &quot;payout&quot;: 0.286, &quot;pending_payout_value&quot;: &quot;0.286 SBD&quot;, &quot;author_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;curator_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;promoted&quot;: &quot;0.000 SBD&quot;, &quot;replies&quot;: [], &quot;active_votes&quot;: [{&quot;voter&quot;: &quot;bob&quot;, &quot;rshares&quot;: &quot;67759296290&quot;}], &quot;author_reputation&quot;: 47.15, &quot;stats&quot;: { &quot;hide&quot;: false, &quot;gray&quot;: false, &quot;total_votes&quot;: 12, &quot;flag_weight&quot;: 0 }, &quot;beneficiaries&quot;: [], &quot;max_accepted_payout&quot;: &quot;1000000.000 SBD&quot;, &quot;percent_steem_dollars&quot;: 10000, &quot;url&quot;: &quot;/wonderland/@alice/that-march-hare&quot;, &quot;blacklists&quot;: [] } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_ranked_posts&quot;, &quot;params&quot;:{&quot;sort&quot;:&quot;trending&quot;,&quot;tag&quot;:&quot;&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.account_notifications Account notifications. Supported values for type: new_community - a new community was created set_role - mod/admin adds a role to an account set_props - properties set for a community set_label - a title/badge/label has been set for an account mute_post - a post has been muted, with a reason unmute_post - a post has been unmuted, with a reason pin_post - a post has been pinned unpin_post - a post has been unpinned flag_post - a post has been flagged by a member, with a reason error - provides feedback to developers for ops that cannot be interpreted subscribe - an account has subscribed to a community reply - a post has been replied to reblog - a post has been reblogged/resteemed follow - an account has followed another account mention - author mentions an account vote - voter votes for an author The score value is based on the originating account’s rank. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;, &quot;limit&quot;: 100} Expected Response JSON [ { &quot;id&quot;: 3629306, &quot;type&quot;: &quot;vote&quot;, &quot;score&quot;: 25, &quot;date&quot;: &quot;2019-11-20T07:48:06&quot;, &quot;msg&quot;: &quot;@bob voted on your post ($0.013)&quot;, &quot;url&quot;: &quot;@alice/a-post-by-alice&quot; } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.account_notifications&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;,&quot;limit&quot;:100}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_community_roles List community roles and labels for each account in the community. Query Parameters JSON {&quot;community&quot;: &quot;hive-123456&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_community_roles&quot;, &quot;params&quot;:{&quot;community&quot;:&quot;hive-123456&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_all_subscriptions List all subscriptions to a community for an account. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;Wonderland&quot;], [&quot;hive-654321&quot;, &quot;Tulgey Wood&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_all_subscriptions&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.get_community Get community details. Query Parameters JSON {&quot;name&quot;: &quot;hive-123456&quot;, &quot;observer&quot;: &quot;alice&quot;} Expected Response JSON { &quot;id&quot;: 1332149, &quot;name&quot;: &quot;hive-123456&quot;, &quot;title&quot;: &quot;@hive-123456&quot;, &quot;about&quot;: &quot;Wonderland&quot;, &quot;lang&quot;: &quot;en&quot;, &quot;type_id&quot;: 1, &quot;is_nsfw&quot;: false, &quot;subscribers&quot;: 0, &quot;sum_pending&quot;: 0, &quot;num_pending&quot;: 0, &quot;created_at&quot;: &quot;2019-10-27 08:28:54&quot;, &quot;context&quot;: { &quot;role&quot;: &quot;admin&quot;, &quot;title&quot;: &quot;Miss&quot;, &quot;subscribed&quot;: true }, &quot;description&quot;: &quot;&quot;, &quot;flag_text&quot;: &quot;&quot;, &quot;settings&quot;: {}, &quot;team&quot;: [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_community&quot;, &quot;params&quot;:{&quot;name&quot;:&quot;hive-123456&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta property="og:description" content="Methods: account_notifications get_community get_ranked_posts list_all_subscriptions list_community_roles Presents data interpreted by the hivemind database as JSON-RPC. Also see: Communities Broadcast Ops Related bridge.get_ranked_posts Get ranked posts. Supported values for sort: trending hot created promoted payout payout_comments muted The value for tag can be any valid tag. The value for observer can be any valid account or empty string. Query Parameters JSON {&quot;sort&quot;: &quot;&quot;, &quot;tag&quot;: &quot;&quot;, &quot;observer&quot;: &quot;&quot;} Expected Response JSON [ { &quot;post_id&quot;: 12345678, &quot;author&quot;: &quot;alice&quot;, &quot;permlink&quot;: &quot;that-march-hare&quot;, &quot;category&quot;: &quot;wonderland&quot;, &quot;title&quot;: &quot;That March Hare&quot;, &quot;body&quot;: &quot;I think he went mad.&quot;, &quot;json_metadata&quot;: {&quot;tags&quot;: [&quot;wonderland&quot;], &quot;app&quot;: &quot;steemit/0.2&quot;}, &quot;created&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;updated&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;depth&quot;: 0, &quot;children&quot;: 0, &quot;net_rshares&quot;: 1539574839484, &quot;is_paidout&quot;: false, &quot;payout_at&quot;: &quot;2019-12-12T16:29:12&quot;, &quot;payout&quot;: 0.286, &quot;pending_payout_value&quot;: &quot;0.286 SBD&quot;, &quot;author_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;curator_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;promoted&quot;: &quot;0.000 SBD&quot;, &quot;replies&quot;: [], &quot;active_votes&quot;: [{&quot;voter&quot;: &quot;bob&quot;, &quot;rshares&quot;: &quot;67759296290&quot;}], &quot;author_reputation&quot;: 47.15, &quot;stats&quot;: { &quot;hide&quot;: false, &quot;gray&quot;: false, &quot;total_votes&quot;: 12, &quot;flag_weight&quot;: 0 }, &quot;beneficiaries&quot;: [], &quot;max_accepted_payout&quot;: &quot;1000000.000 SBD&quot;, &quot;percent_steem_dollars&quot;: 10000, &quot;url&quot;: &quot;/wonderland/@alice/that-march-hare&quot;, &quot;blacklists&quot;: [] } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_ranked_posts&quot;, &quot;params&quot;:{&quot;sort&quot;:&quot;trending&quot;,&quot;tag&quot;:&quot;&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.account_notifications Account notifications. Supported values for type: new_community - a new community was created set_role - mod/admin adds a role to an account set_props - properties set for a community set_label - a title/badge/label has been set for an account mute_post - a post has been muted, with a reason unmute_post - a post has been unmuted, with a reason pin_post - a post has been pinned unpin_post - a post has been unpinned flag_post - a post has been flagged by a member, with a reason error - provides feedback to developers for ops that cannot be interpreted subscribe - an account has subscribed to a community reply - a post has been replied to reblog - a post has been reblogged/resteemed follow - an account has followed another account mention - author mentions an account vote - voter votes for an author The score value is based on the originating account’s rank. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;, &quot;limit&quot;: 100} Expected Response JSON [ { &quot;id&quot;: 3629306, &quot;type&quot;: &quot;vote&quot;, &quot;score&quot;: 25, &quot;date&quot;: &quot;2019-11-20T07:48:06&quot;, &quot;msg&quot;: &quot;@bob voted on your post ($0.013)&quot;, &quot;url&quot;: &quot;@alice/a-post-by-alice&quot; } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.account_notifications&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;,&quot;limit&quot;:100}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_community_roles List community roles and labels for each account in the community. Query Parameters JSON {&quot;community&quot;: &quot;hive-123456&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_community_roles&quot;, &quot;params&quot;:{&quot;community&quot;:&quot;hive-123456&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_all_subscriptions List all subscriptions to a community for an account. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;Wonderland&quot;], [&quot;hive-654321&quot;, &quot;Tulgey Wood&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_all_subscriptions&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.get_community Get community details. Query Parameters JSON {&quot;name&quot;: &quot;hive-123456&quot;, &quot;observer&quot;: &quot;alice&quot;} Expected Response JSON { &quot;id&quot;: 1332149, &quot;name&quot;: &quot;hive-123456&quot;, &quot;title&quot;: &quot;@hive-123456&quot;, &quot;about&quot;: &quot;Wonderland&quot;, &quot;lang&quot;: &quot;en&quot;, &quot;type_id&quot;: 1, &quot;is_nsfw&quot;: false, &quot;subscribers&quot;: 0, &quot;sum_pending&quot;: 0, &quot;num_pending&quot;: 0, &quot;created_at&quot;: &quot;2019-10-27 08:28:54&quot;, &quot;context&quot;: { &quot;role&quot;: &quot;admin&quot;, &quot;title&quot;: &quot;Miss&quot;, &quot;subscribed&quot;: true }, &quot;description&quot;: &quot;&quot;, &quot;flag_text&quot;: &quot;&quot;, &quot;settings&quot;: {}, &quot;team&quot;: [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_community&quot;, &quot;params&quot;:{&quot;name&quot;:&quot;hive-123456&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/bridge" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/bridge" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"Methods: account_notifications get_community get_ranked_posts list_all_subscriptions list_community_roles Presents data interpreted by the hivemind database as JSON-RPC. Also see: Communities Broadcast Ops Related bridge.get_ranked_posts Get ranked posts. Supported values for sort: trending hot created promoted payout payout_comments muted The value for tag can be any valid tag. The value for observer can be any valid account or empty string. Query Parameters JSON {&quot;sort&quot;: &quot;&quot;, &quot;tag&quot;: &quot;&quot;, &quot;observer&quot;: &quot;&quot;} Expected Response JSON [ { &quot;post_id&quot;: 12345678, &quot;author&quot;: &quot;alice&quot;, &quot;permlink&quot;: &quot;that-march-hare&quot;, &quot;category&quot;: &quot;wonderland&quot;, &quot;title&quot;: &quot;That March Hare&quot;, &quot;body&quot;: &quot;I think he went mad.&quot;, &quot;json_metadata&quot;: {&quot;tags&quot;: [&quot;wonderland&quot;], &quot;app&quot;: &quot;steemit/0.2&quot;}, &quot;created&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;updated&quot;: &quot;2019-12-05T16:29:12&quot;, &quot;depth&quot;: 0, &quot;children&quot;: 0, &quot;net_rshares&quot;: 1539574839484, &quot;is_paidout&quot;: false, &quot;payout_at&quot;: &quot;2019-12-12T16:29:12&quot;, &quot;payout&quot;: 0.286, &quot;pending_payout_value&quot;: &quot;0.286 SBD&quot;, &quot;author_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;curator_payout_value&quot;: &quot;0.000 SBD&quot;, &quot;promoted&quot;: &quot;0.000 SBD&quot;, &quot;replies&quot;: [], &quot;active_votes&quot;: [{&quot;voter&quot;: &quot;bob&quot;, &quot;rshares&quot;: &quot;67759296290&quot;}], &quot;author_reputation&quot;: 47.15, &quot;stats&quot;: { &quot;hide&quot;: false, &quot;gray&quot;: false, &quot;total_votes&quot;: 12, &quot;flag_weight&quot;: 0 }, &quot;beneficiaries&quot;: [], &quot;max_accepted_payout&quot;: &quot;1000000.000 SBD&quot;, &quot;percent_steem_dollars&quot;: 10000, &quot;url&quot;: &quot;/wonderland/@alice/that-march-hare&quot;, &quot;blacklists&quot;: [] } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_ranked_posts&quot;, &quot;params&quot;:{&quot;sort&quot;:&quot;trending&quot;,&quot;tag&quot;:&quot;&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.account_notifications Account notifications. Supported values for type: new_community - a new community was created set_role - mod/admin adds a role to an account set_props - properties set for a community set_label - a title/badge/label has been set for an account mute_post - a post has been muted, with a reason unmute_post - a post has been unmuted, with a reason pin_post - a post has been pinned unpin_post - a post has been unpinned flag_post - a post has been flagged by a member, with a reason error - provides feedback to developers for ops that cannot be interpreted subscribe - an account has subscribed to a community reply - a post has been replied to reblog - a post has been reblogged/resteemed follow - an account has followed another account mention - author mentions an account vote - voter votes for an author The score value is based on the originating account’s rank. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;, &quot;limit&quot;: 100} Expected Response JSON [ { &quot;id&quot;: 3629306, &quot;type&quot;: &quot;vote&quot;, &quot;score&quot;: 25, &quot;date&quot;: &quot;2019-11-20T07:48:06&quot;, &quot;msg&quot;: &quot;@bob voted on your post ($0.013)&quot;, &quot;url&quot;: &quot;@alice/a-post-by-alice&quot; } ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.account_notifications&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;,&quot;limit&quot;:100}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_community_roles List community roles and labels for each account in the community. Query Parameters JSON {&quot;community&quot;: &quot;hive-123456&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_community_roles&quot;, &quot;params&quot;:{&quot;community&quot;:&quot;hive-123456&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.list_all_subscriptions List all subscriptions to a community for an account. Query Parameters JSON {&quot;account&quot;: &quot;alice&quot;} Expected Response JSON [ [&quot;hive-123456&quot;, &quot;Wonderland&quot;], [&quot;hive-654321&quot;, &quot;Tulgey Wood&quot;] ] Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.list_all_subscriptions&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Related bridge.get_community Get community details. Query Parameters JSON {&quot;name&quot;: &quot;hive-123456&quot;, &quot;observer&quot;: &quot;alice&quot;} Expected Response JSON { &quot;id&quot;: 1332149, &quot;name&quot;: &quot;hive-123456&quot;, &quot;title&quot;: &quot;@hive-123456&quot;, &quot;about&quot;: &quot;Wonderland&quot;, &quot;lang&quot;: &quot;en&quot;, &quot;type_id&quot;: 1, &quot;is_nsfw&quot;: false, &quot;subscribers&quot;: 0, &quot;sum_pending&quot;: 0, &quot;num_pending&quot;: 0, &quot;created_at&quot;: &quot;2019-10-27 08:28:54&quot;, &quot;context&quot;: { &quot;role&quot;: &quot;admin&quot;, &quot;title&quot;: &quot;Miss&quot;, &quot;subscribed&quot;: true }, &quot;description&quot;: &quot;&quot;, &quot;flag_text&quot;: &quot;&quot;, &quot;settings&quot;: {}, &quot;team&quot;: [ [&quot;hive-123456&quot;, &quot;owner&quot;, &quot;&quot;], [&quot;alice&quot;, &quot;admin&quot;, &quot;Miss&quot;] ] } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;bridge.get_community&quot;, &quot;params&quot;:{&quot;name&quot;:&quot;hive-123456&quot;,&quot;observer&quot;:&quot;alice&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com","@type":"WebPage","headline":"Bridge","url":"https://developers.steem.io/apidefinitions/bridge","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <p>Methods:</p>
+<ul>
+
+
+
+<li class="button"><a href="#bridge.account_notifications">account_notifications</a></li>
+
+<li class="button"><a href="#bridge.get_community">get_community</a></li>
+
+<li class="button"><a href="#bridge.get_ranked_posts">get_ranked_posts</a></li>
+
+<li class="button"><a href="#bridge.list_all_subscriptions">list_all_subscriptions</a></li>
+
+<li class="button"><a href="#bridge.list_community_roles">list_community_roles</a></li>
+
+
+</ul>
+
+<p>Presents data interpreted by the hivemind database as JSON-RPC.</p>
+
+<p>Also see: <a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Communities Broadcast Ops</a></p>
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=get%20ranked%20posts">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="bridge.get_ranked_posts">bridge.get_ranked_posts <a href="#bridge.get_ranked_posts"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Get ranked posts.</p>
+
+<p>Supported values for <code class="highlighter-rouge">sort</code>:</p>
+<ul>
+  <li><code class="highlighter-rouge">trending</code></li>
+  <li><code class="highlighter-rouge">hot</code></li>
+  <li><code class="highlighter-rouge">created</code></li>
+  <li><code class="highlighter-rouge">promoted</code></li>
+  <li><code class="highlighter-rouge">payout</code></li>
+  <li><code class="highlighter-rouge">payout_comments</code></li>
+  <li><code class="highlighter-rouge">muted</code></li>
+</ul>
+
+<p>The value for <code class="highlighter-rouge">tag</code> can be any valid tag.</p>
+
+<p>The value for <code class="highlighter-rouge">observer</code> can be any valid account or empty string.</p>
+
+<h5 id="bridge.get_ranked_posts-parameter_json">Query Parameters JSON <a href="#bridge.get_ranked_posts-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"observer"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="bridge.get_ranked_posts-expected_response_json">Expected Response JSON <a href="#bridge.get_ranked_posts-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"post_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"that-march-hare"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wonderland"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"That March Hare"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I think he went mad."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"json_metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"wonderland"</span><span class="p">],</span><span class="w"> </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemit/0.2"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T16:29:12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T16:29:12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"depth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"net_rshares"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539574839484</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_paidout"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payout_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-12T16:29:12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.286</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.286 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"author_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"curator_payout_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"active_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"voter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67759296290"</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"author_reputation"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hide"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gray"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"flag_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"beneficiaries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"max_accepted_payout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000.000 SBD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"percent_steem_dollars"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/wonderland/@alice/that-march-hare"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"blacklists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="bridge.get_ranked_posts-curl-examples">Example <code>curl</code> <a href="#bridge.get_ranked_posts-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"bridge.get_ranked_posts", "params":{"sort":"trending","tag":"","observer":"alice"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=account%20notifications">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="bridge.account_notifications">bridge.account_notifications <a href="#bridge.account_notifications"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Account notifications.</p>
+
+<p>Supported values for <code class="highlighter-rouge">type</code>:</p>
+<ul>
+  <li><code class="highlighter-rouge">new_community</code> - a new community was created</li>
+  <li><code class="highlighter-rouge">set_role</code> - mod/admin adds a role to an account</li>
+  <li><code class="highlighter-rouge">set_props</code> - properties set for a community</li>
+  <li><code class="highlighter-rouge">set_label</code> - a title/badge/label has been set for an account</li>
+  <li><code class="highlighter-rouge">mute_post</code> - a post has been muted, with a reason</li>
+  <li><code class="highlighter-rouge">unmute_post</code> - a post has been unmuted, with a reason</li>
+  <li><code class="highlighter-rouge">pin_post</code> - a post has been pinned</li>
+  <li><code class="highlighter-rouge">unpin_post</code> - a post has been unpinned</li>
+  <li><code class="highlighter-rouge">flag_post</code> - a post has been flagged by a member, with a reason</li>
+  <li><code class="highlighter-rouge">error</code> - provides feedback to developers for ops that cannot be interpreted</li>
+  <li><code class="highlighter-rouge">subscribe</code> - an account has subscribed to a community</li>
+  <li><code class="highlighter-rouge">reply</code> - a post has been replied to</li>
+  <li><code class="highlighter-rouge">reblog</code> - a post has been reblogged/resteemed</li>
+  <li><code class="highlighter-rouge">follow</code> - an account has followed another account</li>
+  <li><code class="highlighter-rouge">mention</code> - author mentions an account</li>
+  <li><code class="highlighter-rouge">vote</code> - voter votes for an author</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">score</code> value is based on the originating account’s rank.</p>
+
+<h5 id="bridge.account_notifications-parameter_json">Query Parameters JSON <a href="#bridge.account_notifications-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="bridge.account_notifications-expected_response_json">Expected Response JSON <a href="#bridge.account_notifications-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3629306</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vote"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-20T07:48:06"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@bob voted on your post ($0.013)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@alice/a-post-by-alice"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="bridge.account_notifications-curl-examples">Example <code>curl</code> <a href="#bridge.account_notifications-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"bridge.account_notifications", "params":{"account":"alice","limit":100}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=list%20community%20roles">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="bridge.list_community_roles">bridge.list_community_roles <a href="#bridge.list_community_roles"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>List community roles and labels for each account in the community.</p>
+
+<h5 id="bridge.list_community_roles-parameter_json">Query Parameters JSON <a href="#bridge.list_community_roles-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"community"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-123456"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="bridge.list_community_roles-expected_response_json">Expected Response JSON <a href="#bridge.list_community_roles-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">[</span><span class="s2">"hive-123456"</span><span class="p">,</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">],</span><span class="w">
+  </span><span class="p">[</span><span class="s2">"alice"</span><span class="p">,</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Miss"</span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="bridge.list_community_roles-curl-examples">Example <code>curl</code> <a href="#bridge.list_community_roles-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"bridge.list_community_roles", "params":{"community":"hive-123456"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=list%20subscriptions">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="bridge.list_all_subscriptions">bridge.list_all_subscriptions <a href="#bridge.list_all_subscriptions"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>List all subscriptions to a community for an account.</p>
+
+<h5 id="bridge.list_all_subscriptions-parameter_json">Query Parameters JSON <a href="#bridge.list_all_subscriptions-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="bridge.list_all_subscriptions-expected_response_json">Expected Response JSON <a href="#bridge.list_all_subscriptions-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">[</span><span class="s2">"hive-123456"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Wonderland"</span><span class="p">],</span><span class="w">
+  </span><span class="p">[</span><span class="s2">"hive-654321"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Tulgey Wood"</span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="bridge.list_all_subscriptions-curl-examples">Example <code>curl</code> <a href="#bridge.list_all_subscriptions-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"bridge.list_all_subscriptions", "params":{"account":"alice"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=get%20community">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="bridge.get_community">bridge.get_community <a href="#bridge.get_community"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Get community details.</p>
+
+<h5 id="bridge.get_community-parameter_json">Query Parameters JSON <a href="#bridge.get_community-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-123456"</span><span class="p">,</span><span class="w"> </span><span class="s2">"observer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="bridge.get_community-expected_response_json">Expected Response JSON <a href="#bridge.get_community-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1332149</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@hive-123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"about"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wonderland"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_nsfw"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sum_pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"num_pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-27 08:28:54"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Miss"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subscribed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"flag_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"team"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="s2">"hive-123456"</span><span class="p">,</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="s2">"alice"</span><span class="p">,</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Miss"</span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="bridge.get_community-curl-examples">Example <code>curl</code> <a href="#bridge.get_community-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"bridge.get_community", "params":{"name":"hive-123456","observer":"alice"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

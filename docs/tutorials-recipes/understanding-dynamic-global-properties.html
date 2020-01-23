@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Understanding Dynamic Global Properties | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Understanding Dynamic Global Properties" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Maintains global state information" />
+<meta property="og:description" content="Maintains global state information" />
+<link rel="canonical" href="https://developers.steem.io/tutorials-recipes/understanding-dynamic-global-properties" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-recipes/understanding-dynamic-global-properties" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:45:05-06:00" />
+<script type="application/ld+json">
+{"description":"Maintains global state information","@type":"BlogPosting","headline":"Understanding Dynamic Global Properties","dateModified":"2020-01-23T10:45:05-06:00","datePublished":"2020-01-23T10:45:05-06:00","url":"https://developers.steem.io/tutorials-recipes/understanding-dynamic-global-properties","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-recipes/understanding-dynamic-global-properties"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-recipes-understanding-dynamic-global-properties" class="row tutorials-recipes-understanding-dynamic-global-properties">
+	<h3>
+		<a id="tutorials-recipes-understanding-dynamic-global-properties">
+			Understanding Dynamic Global Properties
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>Maintains global state information</p>
+</span>
+	
+
+	<h3 id="intro">Intro</h3>
+
+<p>Dynamic Global Properties represents a set of values that are calculated during normal chain operations and reflect the current values of global blockchain properties.</p>
+
+<p><a href="#example-method-call">The API</a> returns an object containing information that changes every block interval such as the head block number, the total vesting fund, etc.</p>
+
+<h3 id="sections">Sections</h3>
+
+<ul>
+<li>Fields</li>
+<ul>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="#confidential_sbd_supply"><code>confidential_sbd_supply</code></a></li>
+
+
+
+
+
+<li><a href="#confidential_supply"><code>confidential_supply</code></a></li>
+
+
+
+
+
+
+
+<li><a href="#current_aslot"><code>current_aslot</code></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="#current_sbd_supply"><code>current_sbd_supply</code></a></li>
+
+
+
+
+
+<li><a href="#current_supply"><code>current_supply</code></a></li>
+
+
+
+
+
+<li><a href="#current_witness"><code>current_witness</code></a></li>
+
+
+
+
+
+
+
+<li><a href="#downvote_pool_percent"><code>downvote_pool_percent</code></a></li>
+
+
+
+
+
+<li><a href="#head_block_id"><code>head_block_id</code></a></li>
+
+
+
+
+
+<li><a href="#head_block_number"><code>head_block_number</code></a></li>
+
+
+
+
+
+
+
+<li><a href="#last_budget_time"><code>last_budget_time</code></a></li>
+
+
+
+
+
+<li><a href="#last_irreversible_block_num"><code>last_irreversible_block_num</code></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="#maximum_block_size"><code>maximum_block_size</code></a></li>
+
+
+
+
+
+<li><a href="#next_maintenance_time"><code>next_maintenance_time</code></a></li>
+
+
+
+
+
+<li><a href="#num_pow_witnesses"><code>num_pow_witnesses</code></a></li>
+
+
+
+
+
+<li><a href="#participation_count"><code>participation_count</code></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="#recent_slots_filled"><code>recent_slots_filled</code></a></li>
+
+
+
+
+
+<li><a href="#required_actions_partition_percent"><code>required_actions_partition_percent</code></a></li>
+
+
+
+
+
+<li><a href="#reverse_auction_seconds"><code>reverse_auction_seconds</code></a></li>
+
+
+
+
+
+<li><a href="#sbd_interest_rate"><code>sbd_interest_rate</code></a></li>
+
+
+
+
+
+
+
+<li><a href="#sbd_start_percent"><code>sbd_start_percent</code></a></li>
+
+
+
+
+
+<li><a href="#sbd_stop_percent"><code>sbd_stop_percent</code></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="#target_votes_per_period"><code>target_votes_per_period</code></a></li>
+
+
+
+
+
+<li><a href="#time"><code>time</code></a></li>
+
+
+
+
+
+<li><a href="#total_pow"><code>total_pow</code></a></li>
+
+
+
+
+
+<li><a href="#total_reward_fund_steem"><code>total_reward_fund_steem</code></a></li>
+
+
+
+
+
+<li><a href="#total_reward_shares2"><code>total_reward_shares2</code></a></li>
+
+
+
+
+
+<li><a href="#total_vesting_fund_steem"><code>total_vesting_fund_steem</code></a></li>
+
+
+
+
+
+<li><a href="#total_vesting_shares"><code>total_vesting_shares</code></a></li>
+
+
+
+
+
+
+
+<li><a href="#virtual_supply"><code>virtual_supply</code></a></li>
+
+
+
+
+
+<li><a href="#vote_power_reserve_rate"><code>vote_power_reserve_rate</code></a></li>
+
+
+
+
+
+
+
+
+<li><del><a href="#average_block_size"><code>average_block_size</code></a></del></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><del><a href="#current_reserve_ratio"><code>current_reserve_ratio</code></a></del></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><del><a href="#max_virtual_bandwidth"><code>max_virtual_bandwidth</code></a></del></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<li><a href="#not-covered">Not Covered</a></li>
+<li><a href="#example-method-call">Example Method Call</a></li>
+<li><a href="#example-output">Example Output</a></li>
+</ul>
+
+<h3 id="average_block_size">
+<code>average_block_size</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="danger"><strong><small>Removed</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=average%20block%20size">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p><strong>Removed in 0.20.6, see: <a href="https://github.com/steemit/steem/issues/3029#issuecomment-428404844">#3029</a></strong></p>
+
+<p>Average block size is updated every block to be: <code class="highlighter-rouge">average_block_size = (99 * average_block_size + new_block_size) / 100</code>.  This property is used to update the <code class="highlighter-rouge">current_reserve_ratio</code> to maintain approximately *  50% or less utilization of network capacity.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">9309</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="confidential_sbd_supply">
+<code>confidential_sbd_supply</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=confidential%20sbd%20supply">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Total asset held in confidential balances.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0.000 SBD</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="confidential_supply">
+<code>confidential_supply</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=confidential%20supply">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Total asset held in confidential balances.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0.000 STEEM</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="current_aslot">
+<code>current_aslot</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=current%20aslot">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The current absolute slot number.  Equal to the total number of slots since genesis.  Also equal to the total number of missed slots plus <code class="highlighter-rouge">head_block_number</code>.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">24231997</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="current_reserve_ratio">
+<code>current_reserve_ratio</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="danger"><strong><small>Removed</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=current%20reserve%20ratio">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p><strong>Removed in 0.20.6, see: <a href="https://github.com/steemit/steem/issues/3029#issuecomment-428404844">#3029</a></strong></p>
+
+<p>Any time <code class="highlighter-rouge">average_block_size &lt;= 50% maximum_block_size</code> this value grows by 1 until it reaches <code class="highlighter-rouge">STEEM_MAX_RESERVE_RATIO</code>.  Any time <code class="highlighter-rouge">average_block_size</code> is greater than 50% it falls by 1%.  Upward adjustments happen once per round, downward adjustments happen every block.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">200000000</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="current_sbd_supply">
+<code>current_sbd_supply</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=current%20sbd%20supply">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>SBD currently in existence.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">15478883.968 SBD</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="current_supply">
+<code>current_supply</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=current%20supply">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>STEEM currently in existence.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">271546371.129 STEEM</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="current_witness">
+<code>current_witness</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=current%20witness">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Account name of the current witness.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">blocktrades</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="downvote_pool_percent">
+<code>downvote_pool_percent</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF21</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=downvote%20pool%20percent">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used by a separate downvote pool that is a percentage of the max size of the voting mana. Downvotes will be taken from the downvote pool first, and then the upvote pool once the downvote pool has been consumed. The downvote pool will follow the same rules as the upvote pool, regenerating over five days and filling instantly and proportionally to new Steem Power and delegations.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">2500</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/3336">#3336</a>, <a href="https://github.com/steemit/steem/issues/3344">#3344</a></p>
+
+<hr />
+
+<h3 id="head_block_id">
+<code>head_block_id</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=head%20block%20id">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used to implement TaPoS (Transaction as Proof of Stake).  The first 4 bytes (8 hex digits) of the block ID represents the block number.  E.g., <code class="highlighter-rouge">01709398</code> in hex is <code class="highlighter-rouge">24155032</code> in decimal.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0170939865fa4e3aa7fca8f8df35d23333fe0bee</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://en.wikipedia.org/wiki/RIPEMD#RIPEMD-160_hashes">RIPEMD-160 hashes</a></p>
+
+<hr />
+
+<h3 id="head_block_number">
+<code>head_block_number</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=head%20block%20number">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Block height at the head of the blockchain.  This represents the latest block produced by witnesses.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">24155032</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="last_budget_time">
+<code>last_budget_time</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF21</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=last%20budget%20time">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used to compute payments for every proposal.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">2019-11-14T20:26:57</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/blocktradesdevs/steem/issues/7">blocktradesdevs/steem#7</a>, <a href="/apidefinitions/#broadcast_ops_sps_fund"><code>sps_fund</code></a></p>
+
+<hr />
+
+<h3 id="last_irreversible_block_num">
+<code>last_irreversible_block_num</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=last%20irreversible%20block%20num">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The latest block number that has been confirmed by two thirds of all block producers and is thus irreversible.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">24155017</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="max_virtual_bandwidth">
+<code>max_virtual_bandwidth</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="danger"><strong><small>Removed</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=max%20virtual%20bandwidth">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p><strong>Removed in 0.20.6, see: <a href="https://github.com/steemit/steem/issues/3029#issuecomment-428404844">#3029</a></strong></p>
+
+<p>The maximum bandwidth the blockchain can support is <code class="highlighter-rouge">max_bandwidth = maximum_block_size * STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEM_BLOCK_INTERVAL</code>; The maximum virtual bandwidth is: <code class="highlighter-rouge">max_bandwidth * current_reserve_ratio</code></p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">264241152000000000000</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="maximum_block_size">
+<code>maximum_block_size</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=maximum%20block%20size">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Maximum block size is decided by the set of active witnesses which change every round.  Each witness posts what they think the maximum size should be as part of their witness properties, the median size is chosen to be the maximum block size for the round.</p>
+
+<p><strong>Note:</strong> the minimum value for <code class="highlighter-rouge">maximum_block_size</code> is defined by the protocol to prevent the network from getting stuck by witnesses attempting to set this too low.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">65536</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="next_maintenance_time">
+<code>next_maintenance_time</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF21</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=next%20maintenance%20time">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used to compute payments for every proposal.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">2019-11-14T21:26:57</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/blocktradesdevs/steem/issues/7">blocktradesdevs/steem#7</a>, <a href="/apidefinitions/#broadcast_ops_sps_fund"><code>sps_fund</code></a></p>
+
+<hr />
+
+<h3 id="num_pow_witnesses">
+<code>num_pow_witnesses</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=num%20pow%20witnesses">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">172</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/770">#770</a></p>
+
+<hr />
+
+<h3 id="participation_count">
+<code>participation_count</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF9</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=participation%20count">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used to compute witness participation.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">128</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="recent_slots_filled">
+<code>recent_slots_filled</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=recent%20slots%20filled">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Used to compute witness participation.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">340282366920938463463374607431768211455</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="required_actions_partition_percent">
+<code>required_actions_partition_percent</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF21</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=required%20actions%20partition%20percent">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The size of the block that is partitioned for actions. Required actions can only be delayed if they take up more than this amount. More can be included, but are not required. Block generation should only include transactions up to <code class="highlighter-rouge">maximum_block_size - required_actions_parition_size</code> to ensure required actions are not delayed when they should not be.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="reverse_auction_seconds">
+<code>reverse_auction_seconds</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF21</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=reverse%20auction%20seconds">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Curation reverse auction duration.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">300</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1874">#1874</a></p>
+
+<hr />
+
+<h3 id="sbd_interest_rate">
+<code>sbd_interest_rate</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=sbd%20interest%20rate">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>This property defines the interest rate that SBD deposits receive.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="sbd_start_percent">
+<code>sbd_start_percent</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=sbd%20start%20percent">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Start reducing printing of SBD at <em>n</em>% marketcap.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">900</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2140">#2140</a></p>
+
+<hr />
+
+<h3 id="sbd_stop_percent">
+<code>sbd_stop_percent</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF20</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=sbd%20stop%20percent">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Stop printing SBD at <em>n</em>% marketcap.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">1000</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/2140">#2140</a></p>
+
+<hr />
+
+<h3 id="target_votes_per_period">
+<code>target_votes_per_period</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+<li class="success"><strong><small>Since: HF23</small></strong></li>
+
+
+
+<li class="info"><strong><small><a href="/search/?q=target%20votes%20per%20period">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The number of votes regenerated per day (over <a href="/tutorials-recipes/understanding-configuration-values#STEEM_VOTING_MANA_REGENERATION_SECONDS">STEEM_VOTING_MANA_REGENERATION_SECONDS</a>).  Any user voting slower than this rate will be “wasting” voting power through spillover; any user voting faster than this rate will have their votes reduced.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">50</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1252">#1252</a>, <a href="https://github.com/steemit/steem/issues/1411">#1411</a></p>
+
+<hr />
+
+<h3 id="time">
+<code>time</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=time">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>Point in time (UTC) that the block was included in the chain.</p>
+
+<p>Used to synchronize events like Hard Fork activation.</p>
+
+<p>When attempting to calculate the validity of a transaction we need to lookup a past block and check its block hash and the time it occurred so we can calculate whether the current transaction is valid and at what time it should expire.</p>
+
+<p>For new transactions, expirations originate from this time.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">2018-07-14T01:19:51</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="total_pow">
+<code>total_pow</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=total%20pow">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The total POW accumulated, aka the sum of <code class="highlighter-rouge">num_pow_witness</code> at the time new POW is added.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">514415</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/770">#770</a></p>
+
+<hr />
+
+<h3 id="total_reward_fund_steem">
+<code>total_reward_fund_steem</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=total%20reward%20fund%20steem">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>STEEM available in the reward pool.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0.000 STEEM</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="total_reward_shares2">
+<code>total_reward_shares2</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=total%20reward%20shares2">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p><em>Now deprecated way to get the number of shares in the pool.</em></p>
+
+<p>Use <a href="/apidefinitions/#condenser_api.get_reward_fund"><code class="highlighter-rouge">condenser_api.get_reward_fund</code></a> instead.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">0</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="total_vesting_fund_steem">
+<code>total_vesting_fund_steem</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=total%20vesting%20fund%20steem">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p><em>Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).</em></p>
+
+<p>Use <a href="/apidefinitions/#condenser_api.get_reward_fund"><code class="highlighter-rouge">condenser_api.get_reward_fund</code></a> instead.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">192713261.007 STEEM</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="total_vesting_shares">
+<code>total_vesting_shares</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=total%20vesting%20shares">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>VESTS that are invested in STEEM POWER (powered up).</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">390950506702.452773 VESTS</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="virtual_supply">
+<code>virtual_supply</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=virtual%20supply">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The virtual supply is the supply of all STEEM + all SBD if all SBD were converted to STEEM at the current median price.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">283290592.652 STEEM</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="vote_power_reserve_rate">
+<code>vote_power_reserve_rate</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=vote%20power%20reserve%20rate">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+<p>The number of votes regenerated per day.  Any user voting slower than this rate will be “wasting” voting power through spillover; any user voting faster than this rate will have their votes reduced.</p>
+
+<ul>
+<li>Examples:
+<ul>
+
+<li><p><code class="highlighter-rouge">10</code></p>
+</li>
+
+</ul>
+</li>
+</ul>
+
+<p>See: <a href="https://github.com/steemit/steem/issues/1252">#1252</a>, <a href="https://github.com/steemit/steem/issues/1411">#1411</a></p>
+
+<hr />
+
+<h3 id="not-covered"><code class="highlighter-rouge">Not Covered</code><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>Fields not covered in this recipe are:</p>
+
+<ul>
+
+
+
+
+<li><code>available_account_subsidies</code></li>
+
+
+
+
+
+
+
+
+
+<li><code>content_reward_percent</code></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><code>delegation_return_period</code></li>
+
+
+
+
+
+
+
+
+
+<li><code>init_sbd_supply</code></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><code>pending_rewarded_vesting_shares</code></li>
+
+
+
+<li><code>pending_rewarded_vesting_steem</code></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><code>sbd_print_rate</code></li>
+
+
+
+
+
+
+
+<li><code>sps_fund_percent</code></li>
+
+
+
+<li><code>sps_interval_ledger</code></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><code>vesting_reward_percent</code></li>
+
+
+
+
+
+
+
+</ul>
+
+<h3 id="example-method-call">Example Method Call<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<p>To retrieve the current results for <a href="https://developers.steem.io/apidefinitions/#condenser_api.get_dynamic_global_properties"><code class="highlighter-rouge">condenser_api.get_dynamic_global_properties</code></a>, we can retrieve the current state information using <code class="highlighter-rouge">curl</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<h3 id="example-output">Example Output<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a></h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"head_block_number"</span><span class="p">:</span><span class="mi">24238248</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"head_block_id"</span><span class="p">:</span><span class="s2">"0171d8a833dc369abd034b0c67d8725f96df9e5b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"time"</span><span class="p">:</span><span class="s2">"2018-07-16T22:41:24"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_witness"</span><span class="p">:</span><span class="s2">"xeldal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_pow"</span><span class="p">:</span><span class="mi">514415</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"num_pow_witnesses"</span><span class="p">:</span><span class="mi">172</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"virtual_supply"</span><span class="p">:</span><span class="s2">"283434761.199 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_supply"</span><span class="p">:</span><span class="s2">"271729171.190 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confidential_supply"</span><span class="p">:</span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_sbd_supply"</span><span class="p">:</span><span class="s2">"15498201.173 SBD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confidential_sbd_supply"</span><span class="p">:</span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_vesting_fund_steem"</span><span class="p">:</span><span class="s2">"192913644.627 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_vesting_shares"</span><span class="p">:</span><span class="s2">"391296886352.617261 VESTS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_reward_fund_steem"</span><span class="p">:</span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"init_sbd_supply"</span><span class="p">:</span><span class="s2">"7000000.000 TBD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_reward_shares2"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pending_rewarded_vesting_shares"</span><span class="p">:</span><span class="s2">"379159224.860656 VESTS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pending_rewarded_vesting_steem"</span><span class="p">:</span><span class="s2">"185294.019 STEEM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sbd_interest_rate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sbd_print_rate"</span><span class="p">:</span><span class="mi">2933</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_block_size"</span><span class="p">:</span><span class="mi">65536</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_aslot"</span><span class="p">:</span><span class="mi">24315228</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recent_slots_filled"</span><span class="p">:</span><span class="s2">"340282366920938463463374607431768211400"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"participation_count"</span><span class="p">:</span><span class="mi">128</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_irreversible_block_num"</span><span class="p">:</span><span class="mi">24238230</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vote_power_reserve_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+      </span><span class="s2">"required_actions_partition_percent"</span><span class="p">:</span><span class="mi">2500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"target_votes_per_period"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vote_power_reserve_rate"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delegation_return_period"</span><span class="p">:</span><span class="mi">432000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"reverse_auction_seconds"</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available_account_subsidies"</span><span class="p">:</span><span class="mi">137414104</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sbd_stop_percent"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sbd_start_percent"</span><span class="p">:</span><span class="mi">900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_maintenance_time"</span><span class="p">:</span><span class="s2">"2019-11-15T01:44:39"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_budget_time"</span><span class="p">:</span><span class="s2">"2019-11-15T00:44:39"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content_reward_percent"</span><span class="p">:</span><span class="mi">6500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vesting_reward_percent"</span><span class="p">:</span><span class="mi">1500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sps_fund_percent"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sps_interval_ledger"</span><span class="p">:</span><span class="s2">"15.162 TBD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"downvote_pool_percent"</span><span class="p">:</span><span class="mi">2500</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

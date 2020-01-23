@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>RB: Getting Started | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="RB: Getting Started" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="To access the Steem blockchain using Ruby, install the Radiator gem: https://github.com/inertia186/radiator. Full documentation on Radiator api methods are hosted on rubydoc.info." />
+<meta property="og:description" content="To access the Steem blockchain using Ruby, install the Radiator gem: https://github.com/inertia186/radiator. Full documentation on Radiator api methods are hosted on rubydoc.info." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-ruby/getting_started" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-ruby/getting_started" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:45:05-06:00" />
+<script type="application/ld+json">
+{"description":"To access the Steem blockchain using Ruby, install the Radiator gem: https://github.com/inertia186/radiator. Full documentation on Radiator api methods are hosted on rubydoc.info.","@type":"BlogPosting","headline":"RB: Getting Started","dateModified":"2020-01-23T10:45:05-06:00","datePublished":"2020-01-23T10:45:05-06:00","url":"https://developers.steem.io/tutorials-ruby/getting_started","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-ruby/getting_started"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-ruby-getting-started" class="row tutorials-ruby-getting-started">
+	<h3>
+		<a id="tutorials-ruby-getting-started">
+			RB: Getting Started
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>To access the Steem blockchain using Ruby, install the Radiator gem: <a href="https://github.com/inertia186/radiator">https://github.com/inertia186/radiator</a>.  Full documentation on Radiator api methods are hosted on <a href="http://www.rubydoc.info/gems/radiator">rubydoc.info</a>.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/00_getting_started">Getting Started</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-rb">RB tutorials repository</a>.</span>
+<br /></p>
+
+<h3 id="setup">Setup</h3>
+
+<p>The following is a minimal <code class="highlighter-rouge">Gemfile</code> for running <code class="highlighter-rouge">.rb</code> files in these examples.</p>
+
+<p>Add <code class="highlighter-rouge">gem 'radiator'</code> to your <code class="highlighter-rouge">Gemfile</code>.  Then install the gem:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>It is also possible to install <code class="highlighter-rouge">radiator</code> directly with <code class="highlighter-rouge">gem</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>radiator
+</code></pre></div></div>
+
+<p>Then, to execute a script without a <code class="highlighter-rouge">Gemfile</code>, add to the top of your <code class="highlighter-rouge">.rb</code> files:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'radiator'</span>
+</code></pre></div></div>
+
+<p>Then, use the <code class="highlighter-rouge">ruby</code> command with <code class="highlighter-rouge">radiator</code> specified:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-r</span> radiator myscript.rb
+</code></pre></div></div>
+
+<h3 id="examples">Examples</h3>
+
+<p>The tutorials on this site are available within this site’s repository.  To get a copy, clone this repository, change directory to <code class="highlighter-rouge">devportal/_includes/tutorials-ruby</code> and do a <code class="highlighter-rouge">bundle install</code> to install the required local gems.</p>
+
+<p>From there, you can see all of the <code class="highlighter-rouge">.rb</code> files referenced on this site.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/steemit/devportal.git
+<span class="nb">cd </span>devportal/_includes/tutorials-ruby/
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="typical-usage">Typical-Usage</h3>
+
+<p>Most methods can be accessed by creating an instance of <code class="highlighter-rouge">Radiator::Api</code>.  It is also possible to specify a different node by passing a <code class="highlighter-rouge">url</code> option.</p>
+
+<p>Radiator also internally supports failover by specifying the <code class="highlighter-rouge">failover_urls</code> option.</p>
+
+<p>To use the defaults:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span> <span class="o">=</span> <span class="no">Radiator</span><span class="o">::</span><span class="no">Api</span><span class="p">.</span><span class="nf">new</span>
+</code></pre></div></div>
+
+<p>To override the <code class="highlighter-rouge">url</code> option:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span> <span class="o">=</span> <span class="no">Radiator</span><span class="o">::</span><span class="no">Api</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s1">'https://rpc.steemliberator.com'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To override both <code class="highlighter-rouge">url</code> and <code class="highlighter-rouge">failover_urls</code> options:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">url: </span><span class="s1">'https://rpc.steemliberator.com'</span><span class="p">,</span>
+  <span class="ss">failover_urls: </span><span class="p">[</span>
+    <span class="s1">'https://gtg.steem.house:8090'</span><span class="p">,</span>
+    <span class="s1">'https://steemd.minnowsupportproject.org'</span><span class="p">,</span>
+    <span class="s1">'https://steemd.privex.io'</span><span class="p">,</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Radiator</span><span class="o">::</span><span class="no">Api</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="next-step">Next Step</h3>
+
+<p>If you’d like to dive right into the first tutorial, have a look at: <a href="https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/01_blog_feed">Blog Feed</a></p>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>RB: Search Tags | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="RB: Search Tags" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Performing a search for tags." />
+<meta property="og:description" content="Performing a search for tags." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-ruby/search_tags" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-ruby/search_tags" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:45:05-06:00" />
+<script type="application/ld+json">
+{"description":"Performing a search for tags.","@type":"BlogPosting","headline":"RB: Search Tags","dateModified":"2020-01-23T10:45:05-06:00","datePublished":"2020-01-23T10:45:05-06:00","url":"https://developers.steem.io/tutorials-ruby/search_tags","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-ruby/search_tags"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-ruby-search-tags" class="row tutorials-ruby-search-tags">
+	<h3>
+		<a id="tutorials-ruby-search-tags">
+			RB: Search Tags
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>Performing a search for tags.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-rb/tree/master/tutorials/16_search_tags">Search Tags</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-rb">RB tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial will return tags sorted by trending, up to a specified limit.</p>
+
+<h3 id="sections">Sections</h3>
+
+<ol>
+  <li><a href="#making-the-api-call">Making the api call</a> - performing the lookup
+    <ol>
+      <li><a href="#example-api-call">Example api call</a> - make the call in code</li>
+      <li><a href="#example-api-call-using-script">Example api call using script</a> - using our tutorial script</li>
+      <li><a href="#example-output">Example Output</a> - output from a successful call</li>
+      <li><a href="#tag-fields">Tag Fields</a> - details of fields returned</li>
+    </ol>
+  </li>
+  <li><a href="#to-run">To Run</a> - Running the example.</li>
+</ol>
+
+<h3 id="making-the-api-call">Making the api call</h3>
+
+<p>To request the a list of tags, we can use the <code class="highlighter-rouge">get_trending_tags</code> method:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span> <span class="o">=</span> <span class="no">Radiator</span><span class="o">::</span><span class="no">Api</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">api</span><span class="p">.</span><span class="nf">get_trending_tags</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tags</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">tags</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Notice, the above example can request up to 100 tags as an array.</p>
+
+<h4 id="example-api-call">Example api call</h4>
+
+<p>If we want to get 10 tags starting from the tag named “music” …</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span><span class="p">.</span><span class="nf">get_trending_tags</span><span class="p">(</span><span class="s2">"music"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">content</span><span class="o">|</span> <span class="o">...</span>
+</code></pre></div></div>
+
+<h4 id="example-api-call-using-script">Example api call using script</h4>
+
+<p>And to do the same with our tutorial script, which has its own default limit of 10.  Internally, the api method only allows at most 100 results, so this tutorial will paginate the results to go beyond 100:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby search_tags.rb
+</code></pre></div></div>
+
+<h4 id="example-output">Example Output</h4>
+
+<p>From the example we get the following output from our script:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tag: &lt;empty&gt;, total_payouts: 57513246.041 SBD, net_votes: 47471936, top_posts: 4523493, comments: 27287924, trending: 100430269400
+tag: life, total_payouts: 12563434.550 SBD, net_votes: 10898489, top_posts: 1193059, comments: 1164873, trending: 7440962326
+tag: photography, total_payouts: 7529111.644 SBD, net_votes: 8578110, top_posts: 819008, comments: 1498469, trending: 7311205387
+tag: kr, total_payouts: 2953387.067 SBD, net_votes: 749380, top_posts: 79842, comments: 2138776, trending: 7009078414
+tag: steemit, total_payouts: 8531217.920 SBD, net_votes: 5393375, top_posts: 580400, comments: 1156174, trending: 5471456871
+tag: art, total_payouts: 4017591.434 SBD, net_votes: 3577651, top_posts: 330597, comments: 716566, trending: 3302526197
+tag: bitcoin, total_payouts: 3556944.650 SBD, net_votes: 2885034, top_posts: 416088, comments: 625529, trending: 3284115413
+tag: introduceyourself, total_payouts: 1863437.063 SBD, net_votes: 725570, top_posts: 24891, comments: 986875, trending: 3185017448
+tag: spanish, total_payouts: 1221282.258 SBD, net_votes: 2683931, top_posts: 154983, comments: 827033, trending: 3103643123
+tag: travel, total_payouts: 3976626.578 SBD, net_votes: 2505962, top_posts: 229401, comments: 622754, trending: 2687292306
+</code></pre></div></div>
+
+<h3 id="tag-fields">Tag fields</h3>
+
+<p>Tags in the results of <code class="highlighter-rouge">get_trending_tags</code> returns the following fields:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">name</code> - Name of the tag or empty.</li>
+  <li><code class="highlighter-rouge">total_payouts</code> - Rewards paid in this tag.</li>
+  <li><code class="highlighter-rouge">net_votes</code> - Net votes in this tag.</li>
+  <li><code class="highlighter-rouge">top_posts</code> - Top votes in this tag.</li>
+  <li><code class="highlighter-rouge">comments</code> - Number of comments in this tag.</li>
+  <li><code class="highlighter-rouge">trending</code> - Total trending.</li>
+</ul>
+
+<h3 id="to-run">To Run</h3>
+
+<p>First, set up your workstation using the steps provided in <a href="https://developers.steem.io/tutorials-ruby/getting_started">Getting Started</a>.  Then you can create and execute the script (or clone from this repository):</p>
+
+<ul>
+  <li><code class="highlighter-rouge">[limit]</code> (optional)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:steemit/devportal-tutorials-rb.git
+<span class="nb">cd </span>devportal-tutorials-rb/tutorials/16_search_tags
+bundle <span class="nb">install
+</span>ruby search_tags.rb <span class="o">[</span>limit]
+</code></pre></div></div>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
