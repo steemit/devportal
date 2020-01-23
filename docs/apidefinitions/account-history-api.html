@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Account History Api | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Account History Api" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Methods: enum_virtual_ops get_account_history get_ops_in_block get_transaction Used to lookup account history information. These AppBase API methods are still under development and subject to change. Related account_history_api.get_account_history Returns a history of all operations for a given account. Also see: Paginated API Methods Query Parameters JSON { &quot;account&quot;: &quot;&quot;, &quot;start&quot;: &quot;18446744073709551615&quot;, &quot;limit&quot;: 1000 } Expected Response JSON {&quot;history&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:1000, &quot;limit&quot;:1000}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:-1, &quot;limit&quot;:10000}, &quot;id&quot;:1}&#39; https://api.steemit.com Related account_history_api.get_ops_in_block Returns all operations contained in a block. Query Parameters JSON {&quot;block_num&quot;: 0, &quot;only_virtual&quot;: false} Expected Response JSON {&quot;ops&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:1,&quot;only_virtual&quot;:false}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:5443322,&quot;only_virtual&quot;:true}, &quot;id&quot;:1}&#39; https://api.steemit.com Deprecated Related account_history_api.get_transaction Returns the details of a transaction based on a transaction id. Query Parameters JSON {&quot;id&quot;: &quot;0000000000000000000000000000000000000000&quot;} Expected Response JSON { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [], &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;block_num&quot;: 0, &quot;transaction_num&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_transaction&quot;, &quot;params&quot;:{&quot;id&quot;:&quot;6fde0190a97835ea6d9e651293e90c89911f933c&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF23 Related account_history_api.enum_virtual_ops Query Parameters JSON {&quot;block_range_begin&quot;: 1, &quot;block_range_end&quot;: 2} Expected Response JSON {&quot;ops&quot;: [], &quot;next_block_range_begin&quot;: 0}" />
+<meta property="og:description" content="Methods: enum_virtual_ops get_account_history get_ops_in_block get_transaction Used to lookup account history information. These AppBase API methods are still under development and subject to change. Related account_history_api.get_account_history Returns a history of all operations for a given account. Also see: Paginated API Methods Query Parameters JSON { &quot;account&quot;: &quot;&quot;, &quot;start&quot;: &quot;18446744073709551615&quot;, &quot;limit&quot;: 1000 } Expected Response JSON {&quot;history&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:1000, &quot;limit&quot;:1000}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:-1, &quot;limit&quot;:10000}, &quot;id&quot;:1}&#39; https://api.steemit.com Related account_history_api.get_ops_in_block Returns all operations contained in a block. Query Parameters JSON {&quot;block_num&quot;: 0, &quot;only_virtual&quot;: false} Expected Response JSON {&quot;ops&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:1,&quot;only_virtual&quot;:false}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:5443322,&quot;only_virtual&quot;:true}, &quot;id&quot;:1}&#39; https://api.steemit.com Deprecated Related account_history_api.get_transaction Returns the details of a transaction based on a transaction id. Query Parameters JSON {&quot;id&quot;: &quot;0000000000000000000000000000000000000000&quot;} Expected Response JSON { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [], &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;block_num&quot;: 0, &quot;transaction_num&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_transaction&quot;, &quot;params&quot;:{&quot;id&quot;:&quot;6fde0190a97835ea6d9e651293e90c89911f933c&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF23 Related account_history_api.enum_virtual_ops Query Parameters JSON {&quot;block_range_begin&quot;: 1, &quot;block_range_end&quot;: 2} Expected Response JSON {&quot;ops&quot;: [], &quot;next_block_range_begin&quot;: 0}" />
+<link rel="canonical" href="https://developers.steem.io/apidefinitions/account-history-api" />
+<meta property="og:url" content="https://developers.steem.io/apidefinitions/account-history-api" />
+<meta property="og:site_name" content="Steem Developer" />
+<script type="application/ld+json">
+{"description":"Methods: enum_virtual_ops get_account_history get_ops_in_block get_transaction Used to lookup account history information. These AppBase API methods are still under development and subject to change. Related account_history_api.get_account_history Returns a history of all operations for a given account. Also see: Paginated API Methods Query Parameters JSON { &quot;account&quot;: &quot;&quot;, &quot;start&quot;: &quot;18446744073709551615&quot;, &quot;limit&quot;: 1000 } Expected Response JSON {&quot;history&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:1000, &quot;limit&quot;:1000}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_account_history&quot;, &quot;params&quot;:{&quot;account&quot;:&quot;steemit&quot;, &quot;start&quot;:-1, &quot;limit&quot;:10000}, &quot;id&quot;:1}&#39; https://api.steemit.com Related account_history_api.get_ops_in_block Returns all operations contained in a block. Query Parameters JSON {&quot;block_num&quot;: 0, &quot;only_virtual&quot;: false} Expected Response JSON {&quot;ops&quot;: []} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:1,&quot;only_virtual&quot;:false}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_ops_in_block&quot;, &quot;params&quot;:{&quot;block_num&quot;:5443322,&quot;only_virtual&quot;:true}, &quot;id&quot;:1}&#39; https://api.steemit.com Deprecated Related account_history_api.get_transaction Returns the details of a transaction based on a transaction id. Query Parameters JSON {&quot;id&quot;: &quot;0000000000000000000000000000000000000000&quot;} Expected Response JSON { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [], &quot;transaction_id&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;block_num&quot;: 0, &quot;transaction_num&quot;: 0 } Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;account_history_api.get_transaction&quot;, &quot;params&quot;:{&quot;id&quot;:&quot;6fde0190a97835ea6d9e651293e90c89911f933c&quot;}, &quot;id&quot;:1}&#39; https://api.steemit.com Since: HF23 Related account_history_api.enum_virtual_ops Query Parameters JSON {&quot;block_range_begin&quot;: 1, &quot;block_range_end&quot;: 2} Expected Response JSON {&quot;ops&quot;: [], &quot;next_block_range_begin&quot;: 0}","@type":"WebPage","headline":"Account History Api","url":"https://developers.steem.io/apidefinitions/account-history-api","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <p>Methods:</p>
+<ul>
+
+
+
+<li class="button"><a href="#account_history_api.enum_virtual_ops">enum_virtual_ops</a></li>
+
+<li class="button"><a href="#account_history_api.get_account_history">get_account_history</a></li>
+
+<li class="button"><a href="#account_history_api.get_ops_in_block">get_ops_in_block</a></li>
+
+<li class="button"><a href="#account_history_api.get_transaction">get_transaction</a></li>
+
+
+</ul>
+
+<p>Used to lookup account history information. <strong>These AppBase API methods are still under development and subject to change.</strong></p>
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=get%20account%20history">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="account_history_api.get_account_history">account_history_api.get_account_history <a href="#account_history_api.get_account_history"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns a history of all operations for a given account.</p>
+
+<p>Also see: <a href="/tutorials-recipes/paginated-api-methods#account_history_apiget_account_history">Paginated API Methods</a></p>
+
+<h5 id="account_history_api.get_account_history-parameter_json">Query Parameters JSON <a href="#account_history_api.get_account_history-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18446744073709551615"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="account_history_api.get_account_history-expected_response_json">Expected Response JSON <a href="#account_history_api.get_account_history-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="account_history_api.get_account_history-curl-examples">Example <code>curl</code> <a href="#account_history_api.get_account_history-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"account_history_api.get_account_history", "params":{"account":"steemit", "start":1000, "limit":1000}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"account_history_api.get_account_history", "params":{"account":"steemit", "start":-1, "limit":10000}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=get%20ops%20block">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="account_history_api.get_ops_in_block">account_history_api.get_ops_in_block <a href="#account_history_api.get_ops_in_block"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns all operations contained in a block.</p>
+
+<h5 id="account_history_api.get_ops_in_block-parameter_json">Query Parameters JSON <a href="#account_history_api.get_ops_in_block-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"only_virtual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="account_history_api.get_ops_in_block-expected_response_json">Expected Response JSON <a href="#account_history_api.get_ops_in_block-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"ops"</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="account_history_api.get_ops_in_block-curl-examples">Example <code>curl</code> <a href="#account_history_api.get_ops_in_block-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"account_history_api.get_ops_in_block", "params":{"block_num":1,"only_virtual":false}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"account_history_api.get_ops_in_block", "params":{"block_num":5443322,"only_virtual":true}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=get%20transaction">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="account_history_api.get_transaction">account_history_api.get_transaction <a href="#account_history_api.get_transaction"><i class="fas fa-link fa-xs"></i></a></h4>
+<p>Returns the details of a transaction based on a transaction id.</p>
+
+<h5 id="account_history_api.get_transaction-parameter_json">Query Parameters JSON <a href="#account_history_api.get_transaction-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="account_history_api.get_transaction-expected_response_json">Expected Response JSON <a href="#account_history_api.get_transaction-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ref_block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ref_block_prefix"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"block_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transaction_num"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="account_history_api.get_transaction-curl-examples">Example <code>curl</code> <a href="#account_history_api.get_transaction-curl-examples"><i class="fas fa-link fa-sm"></i></a></h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"account_history_api.get_transaction", "params":{"id":"6fde0190a97835ea6d9e651293e90c89911f933c"}, "id":1}'</span> https://api.steemit.com
+</code></pre></div></div>
+
+<hr />
+
+<ul style="float: right; list-style: none;">
+
+<li class="success"><strong><small>Since: HF23</small></strong></li>
+
+
+
+
+
+<li class="info"><strong><small><a href="/search/?q=enum%20virtual%20ops">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+
+</ul>
+<h4 id="account_history_api.enum_virtual_ops">account_history_api.enum_virtual_ops <a href="#account_history_api.enum_virtual_ops"><i class="fas fa-link fa-xs"></i></a></h4>
+
+<h5 id="account_history_api.enum_virtual_ops-parameter_json">Query Parameters JSON <a href="#account_history_api.enum_virtual_ops-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"block_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"block_range_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h5 id="account_history_api.enum_virtual_ops-expected_response_json">Expected Response JSON <a href="#account_history_api.enum_virtual_ops-expected_response_json"><i class="fas fa-link fa-sm"></i></a></h5>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s2">"ops"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="s2">"next_block_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

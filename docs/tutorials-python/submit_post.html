@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>PY: Submit Post | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="PY: Submit Post" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to submit post on Steem blockchain using Python." />
+<meta property="og:description" content="How to submit post on Steem blockchain using Python." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-python/submit_post" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-python/submit_post" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:39:46-06:00" />
+<script type="application/ld+json">
+{"description":"How to submit post on Steem blockchain using Python.","@type":"BlogPosting","headline":"PY: Submit Post","dateModified":"2020-01-23T10:39:46-06:00","datePublished":"2020-01-23T10:39:46-06:00","url":"https://developers.steem.io/tutorials-python/submit_post","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-python/submit_post"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-python-submit-post" class="row tutorials-python-submit-post">
+	<h3>
+		<a id="tutorials-python-submit-post">
+			PY: Submit Post
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p>How to submit post on Steem blockchain using Python.</p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-py/tree/master/tutorials/10_submit_post">Submit Post</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-py">PY tutorials repository</a>.</span>
+<br /></p>
+
+<p>In this tutorial will explain and show you how to submit a new post to the <code class="highlighter-rouge">Steem</code> blockchain using the <code class="highlighter-rouge">commit</code> class found within the <a href="https://github.com/steemit/steem-python">steem-python</a> library.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>The Steem python library has a built-in function to transmit transactions to the blockchain. We are using the <code class="highlighter-rouge">post</code> method found within the <code class="highlighter-rouge">commit</code> class in the the library. It should be noted that comments and new post are both treated as <code class="highlighter-rouge">commit.post</code> operation with the only difference being that a comment/reply has got an additional parameter containing the <code class="highlighter-rouge">parent post/comment</code>. There are 11 parameters within the <code class="highlighter-rouge">post</code> method:</p>
+
+<ol>
+  <li><em>title</em> - The title of the post</li>
+  <li><em>body</em> - The body of the post</li>
+  <li><em>author</em> - The account that you are posting from</li>
+  <li><em>permlink</em> - A unique adentifier for the</li>
+  <li><em>tags</em> - Between 1 and 5 key words that defines the post</li>
+  <li><em>reply_idendifier</em> - Identifier of the parent post(used for comments)</li>
+  <li><em>json_metadata</em> - JSON meta objec that can be attached to the post</li>
+  <li><em>comment_options</em> - JSON options object that can be attached to the post to specify additional options like ‘max_payouts’, ‘allow_votes’, etc.</li>
+  <li><em>community</em> - Name of the community you are posting into</li>
+  <li><em>beneficiaries</em> - A list of beneficiaries for posting reward distribution.</li>
+  <li><em>self_vote</em> - Upvote the post as author right after posting</li>
+</ol>
+
+<p>We will only be using the first 5 parameters as these are the only ones required to create a basic post. If you want to explore the other parameters further you can find more information <a href="http://steem.readthedocs.io/en/latest/core.html">HERE</a>.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#setup"><strong>App setup</strong></a> - Library install and import. Connection to Steem node</li>
+  <li><a href="#input"><strong>Variable input and format</strong></a> - Input and creation of varialbes</li>
+  <li><a href="#submit"><strong>Post submission and result</strong></a> - Committing of transaction to the blockchain</li>
+</ol>
+
+<h4 id="1-app-setup-">1. App setup <a name="setup"></a></h4>
+
+<p>In this tutorial we use 4 packages:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">random</code> and <code class="highlighter-rouge">string</code> - used to create a random string used for the <code class="highlighter-rouge">permlink</code></li>
+  <li><code class="highlighter-rouge">steem</code> - steem-python library and interaction with Blockchain</li>
+  <li><code class="highlighter-rouge">steembase</code> - used to connect to the testnet</li>
+</ul>
+
+<p>We import the libraries, connect to the <code class="highlighter-rouge">testnet</code> and initialize the Steem class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">steembase</span>
+<span class="kn">import</span> <span class="nn">steem</span>
+
+<span class="n">steembase</span><span class="o">.</span><span class="n">chains</span><span class="o">.</span><span class="n">known_chains</span><span class="p">[</span><span class="s">'STEEM'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'chain_id'</span><span class="p">:</span> <span class="s">'79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'</span><span class="p">,</span>
+    <span class="s">'prefix'</span><span class="p">:</span> <span class="s">'STX'</span><span class="p">,</span> <span class="s">'steem_symbol'</span><span class="p">:</span> <span class="s">'STEEM'</span><span class="p">,</span> <span class="s">'sbd_symbol'</span><span class="p">:</span> <span class="s">'SBD'</span><span class="p">,</span> <span class="s">'vests_symbol'</span><span class="p">:</span> <span class="s">'VESTS'</span>
+<span class="p">}</span>
+
+<span class="c1">#connect node and private posting key
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">steem</span><span class="o">.</span><span class="n">Steem</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="s">'https://testnet.steem.vc'</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s">'5JEZ1EiUjFKfsKP32b15Y7jybjvHQPhnvCYZ9BW62H1LDUnMvHz'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Because this tutorial alters the blockchain we have to connect to the testnet. We also require the <code class="highlighter-rouge">private posting key</code> of the contributing author in order to commit the post which is why it is specified along with the <code class="highlighter-rouge">testnet</code> node. We have supplied a test account, <code class="highlighter-rouge">cdemo</code> to use with this tutorial.</p>
+
+<h4 id="2-variable-input-and-format">2. Variable input and format<a name="input"></a></h4>
+
+<p>The first three variables are captured via a simple string input while the <code class="highlighter-rouge">tags</code> variable is captured in the form of an array.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#capture variables
+</span><span class="n">author</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Username: '</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Post Title: '</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'Post Body: '</span><span class="p">)</span>
+
+<span class="c1">#capture list of tags and separate by " "
+</span><span class="n">taglimit</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#number of tags 1 - 5
+</span><span class="n">taglist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">taglimit</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">tag</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">' Tag : '</span><span class="p">)</span>
+	<span class="n">taglist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">tags</code> parameter needs to be in the form of a single string with the words split by an empty space, so we add a line to prepare that variable. We also use a random generator to create a new <code class="highlighter-rouge">permlink</code> for the post being created</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">taglist</span><span class="p">)</span> <span class="c1">#create string joined with empty spaces
+</span>
+<span class="c1">#random generator to create post permlink
+</span><span class="n">permlink</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The random generator is limited to 10 characters in this case but the permlink can be up to 256 bytes. If the permlink value is left empty then it auto creates a permlink based on the title of the post. The permlink is unique to the author only which means that multiple authors can have the same title for the thier post.</p>
+
+<h4 id="3-post-submission-and-result">3. Post submission and result<a name="submit"></a></h4>
+
+<p>The last step is to transmit the post through to the blockchain. This is done <code class="highlighter-rouge">post</code> method within the <code class="highlighter-rouge">commit</code> class. All the defined parameters are submitted with the function. As stated earlier in the tutorial, there are quite a few parameters for this function but for a basic post these 5 are the most important.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">client</span><span class="o">.</span><span class="n">commit</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">taglist</span><span class="p">,</span> <span class="n">permlink</span><span class="o">=</span><span class="n">permlink</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Post created successfully"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A simple confirmation is printed on the screen if the post is committed successfully.</p>
+
+<p>You can also check on the <a href="http://condenser.steem.vc/blog/@cdemo">testportal</a> for the post.</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li><a href="getting_started">review dev requirements</a></li>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/10_submit_post</code></li>
+  <li><code class="highlighter-rouge">pip install -r requirements.txt</code></li>
+  <li><code class="highlighter-rouge">python index.py</code></li>
+  <li>After a few moments, you should see a prompt for input in terminal screen.</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+

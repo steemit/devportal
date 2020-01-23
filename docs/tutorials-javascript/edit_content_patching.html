@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JS: Edit Content Patching | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JS: Edit Content Patching" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="By the end of this tutorial you should know how to patch post edits to Steem." />
+<meta property="og:description" content="By the end of this tutorial you should know how to patch post edits to Steem." />
+<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/edit_content_patching" />
+<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/edit_content_patching" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:39:46-06:00" />
+<script type="application/ld+json">
+{"description":"By the end of this tutorial you should know how to patch post edits to Steem.","@type":"BlogPosting","headline":"JS: Edit Content Patching","dateModified":"2020-01-23T10:39:46-06:00","datePublished":"2020-01-23T10:39:46-06:00","url":"https://developers.steem.io/tutorials-javascript/edit_content_patching","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/edit_content_patching"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-javascript-edit-content-patching" class="row tutorials-javascript-edit-content-patching">
+	<h3>
+		<a id="tutorials-javascript-edit-content-patching">
+			JS: Edit Content Patching
+			
+		</a>
+	</h3>
+	
+		<span class="description"><p><em>By the end of this tutorial you should know how to patch post edits to Steem.</em></p>
+</span>
+	
+
+	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/12_edit_content_patching">Edit Content Patching</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+<br /></p>
+
+<p>This tutorial will take you through the process of preparing and patching post using the <code class="highlighter-rouge">broadcast.comment</code> operation. Being able to patch a post is critical to save resources on Steem.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Tutorial is demonstrating the typical process of editing content that has been previously posted on the blockchain. Instead of replacing the entire body of the post, the Steem blockchain offers an alternative strategy. In this tutorial, we will focus on properly patching existing content and then broadcasting the patch with a <code class="highlighter-rouge">demo</code> account on a testnet.</p>
+
+<p><em><strong>Note for long time community members:</strong> Since HF20 even archived content (older than 7 days) can be changed/updated. Editing content will also use less RC (resource credits) than creating new posts entirely.</em></p>
+
+<p>We are using the <code class="highlighter-rouge">broadcast.comment</code> function provided by <code class="highlighter-rouge">dsteem</code> which generates, signs, and broadcast the transaction to the network. On the Steem platform, posts and comments are all internally stored as a <code class="highlighter-rouge">comment</code> object, differentiated by whether or not a <code class="highlighter-rouge">parent_author</code> exists. When there is no <code class="highlighter-rouge">parent_author</code>, it’s a post, when there is, it’s a comment. When editing a post, we need to make sure that we don’t resubmit the same post over and over again, which will spam the network and adds additional cost to operate the platform. Instead we will use a package called <code class="highlighter-rouge">diff-match-patch</code>, which allows us to only apply changes and save resources on the Steem platform.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li><a href="#configure-app"><strong>Configure testnet</strong></a> Testnet connection should be established with proper configurations</li>
+  <li><a href="#get-post"><strong>Get latest post</strong></a> Get @demo’s latest post for editing</li>
+  <li><a href="#create-patch"><strong>Creating patch</strong></a> Creating patch with new edited text</li>
+  <li><a href="#submit-patch"><strong>Submit a patch</strong></a> Submit newly formatted post</li>
+</ol>
+
+<h4 id="1-configure-testnet">1. Configure testnet<a name="configure-app"></a></h4>
+
+<p>As usual, we have a file called <code class="highlighter-rouge">public/app.js</code>, which holds the Javascript segment of the tutorial. In the first few lines, we have defined the configured library and packages:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dsteem</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'dsteem'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="c1">//connect to community testnet</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">addressPrefix</span> <span class="o">=</span> <span class="s1">'STX'</span><span class="p">;</span>
+<span class="nx">opts</span><span class="p">.</span><span class="nx">chainId</span> <span class="o">=</span>
+    <span class="s1">'79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'</span><span class="p">;</span>
+<span class="c1">//connect to server which is connected to the network/testnet</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="s1">'https://testnet.steem.vc'</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Above, we have <code class="highlighter-rouge">dsteem</code> pointing to the test network with the proper chainId, addressPrefix, and endpoint. Because this tutorial is interactive, we will not publish test content to the main network. Instead, we’re using testnet and a predefined account to demonstrate post patching.</p>
+
+<h4 id="2-get-latest-post">2. Get latest post<a name="get-post"></a></h4>
+
+<p>Next, we have a <code class="highlighter-rouge">main</code> function which fires at on-load and fetches latest blog post of <code class="highlighter-rouge">@demo</code> account and fills in the form with relevant information.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span> <span class="na">tag</span><span class="p">:</span> <span class="s1">'demo'</span><span class="p">,</span> <span class="na">limit</span><span class="p">:</span> <span class="s1">'1'</span> <span class="p">};</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">database</span>
+    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_discussions_by_blog'</span><span class="p">,</span> <span class="p">[</span><span class="nx">query</span><span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">title</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">body</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span>
+            <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">json_metadata</span>
+        <span class="p">).</span><span class="nx">tags</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
+        <span class="nx">o_body</span> <span class="o">=</span> <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">body</span><span class="p">;</span>
+        <span class="nx">o_permlink</span> <span class="o">=</span> <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">permlink</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">'Error occured, please reload the page'</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Notice, we are only fetching a single blog post by specifying a <code class="highlighter-rouge">limit</code> and we have filled all necessary fields/variables with the old content.</p>
+
+<h4 id="3-creating-patch">3. Creating patch<a name="create-patch"></a></h4>
+
+<p>We have created a small function called <code class="highlighter-rouge">createPatch</code> to patch edits to the old content.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createPatch</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">out</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">text</span> <span class="o">&amp;&amp;</span> <span class="nx">text</span> <span class="o">===</span> <span class="s1">''</span><span class="p">)</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="c1">//get list of patches to turn text to out</span>
+    <span class="kd">const</span> <span class="nx">patch_make</span> <span class="o">=</span> <span class="nx">dmp</span><span class="p">.</span><span class="nx">patch_make</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">out</span><span class="p">);</span>
+    <span class="c1">//turns patch to text</span>
+    <span class="kd">const</span> <span class="nx">patch</span> <span class="o">=</span> <span class="nx">dmp</span><span class="p">.</span><span class="nx">patch_toText</span><span class="p">(</span><span class="nx">patch_make</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">patch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">createPatch</code> function computes a list of patches to turn old content to edited content.</p>
+
+<h4 id="4-submit-a-patch">4. Submit a patch<a name="submit-patch"></a></h4>
+
+<p>Next, we have the <code class="highlighter-rouge">submitPost</code> function, which executes when the Submit button is clicked.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//get private key</span>
+<span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">dsteem</span><span class="p">.</span><span class="nx">PrivateKey</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postingKey'</span><span class="p">).</span><span class="nx">value</span>
+<span class="p">);</span>
+<span class="c1">//get account name</span>
+<span class="kd">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="c1">//get title</span>
+<span class="kd">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="c1">//get body</span>
+<span class="kd">const</span> <span class="nx">edited_body</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+<span class="c1">//computes a list of patches to turn o_body to edited_body</span>
+<span class="kd">const</span> <span class="nx">patch</span> <span class="o">=</span> <span class="nx">createPatch</span><span class="p">(</span><span class="nx">o_body</span><span class="p">,</span> <span class="nx">edited_body</span><span class="p">);</span>
+
+<span class="c1">//check if patch size is smaller than original content</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">patch</span> <span class="o">&amp;&amp;</span> <span class="nx">patch</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">o_body</span><span class="p">,</span> <span class="s1">'utf-8'</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">body</span> <span class="o">=</span> <span class="nx">patch</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">body</span> <span class="o">=</span> <span class="nx">o_body</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//get tags and convert to array list</span>
+<span class="kd">const</span> <span class="nx">tags</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">taglist</span> <span class="o">=</span> <span class="nx">tags</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
+<span class="c1">//make simple json metadata including only tags</span>
+<span class="kd">const</span> <span class="nx">json_metadata</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="nx">taglist</span> <span class="p">});</span>
+<span class="c1">//generate random permanent link for post</span>
+<span class="kd">const</span> <span class="nx">permlink</span> <span class="o">=</span> <span class="nx">o_permlink</span><span class="p">;</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nx">broadcast</span>
+    <span class="p">.</span><span class="nx">comment</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="na">author</span><span class="p">:</span> <span class="nx">account</span><span class="p">,</span>
+            <span class="na">body</span><span class="p">:</span> <span class="nx">body</span><span class="p">,</span>
+            <span class="na">json_metadata</span><span class="p">:</span> <span class="nx">json_metadata</span><span class="p">,</span>
+            <span class="na">parent_author</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+            <span class="na">parent_permlink</span><span class="p">:</span> <span class="nx">taglist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="na">permlink</span><span class="p">:</span> <span class="nx">permlink</span><span class="p">,</span>
+            <span class="na">title</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="nx">privateKey</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'postLink'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">'block'</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span>
+                <span class="s1">'postLink'</span>
+            <span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">`&lt;br/&gt;&lt;p&gt;Included in block: </span><span class="p">${</span>
+                <span class="nx">result</span><span class="p">.</span><span class="nx">block_num</span>
+            <span class="p">}</span><span class="s2">&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://condenser.steem.vc/</span><span class="p">${</span>
+                <span class="nx">taglist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">}</span><span class="s2">/@</span><span class="p">${</span><span class="nx">account</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">permlink</span><span class="p">}</span><span class="s2">"&gt;Check post here&lt;/a&gt;`</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>As you can see from the above function, we get the relevant values from the defined fields. Tags are separated by spaces in this example, but the structure of how to enter tags totally depends on your needs. We have separated tags with whitespaces and stored them in an array list called <code class="highlighter-rouge">taglist</code>, for later use. Posts on the blockchain can hold additional information in the <code class="highlighter-rouge">json_metadata</code> field, such as the <code class="highlighter-rouge">tags</code> list which we have assigned. Posts must also have a unique permanent link scoped to each account. In this case we are just creating a random character string.</p>
+
+<p>In the follow code, we patch the old content with new (or edited) content and make sure that the patch size is smaller than edited content, otherwise patching is unnecessary.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//computes a list of patches to turn o_body to edited_body</span>
+<span class="kd">const</span> <span class="nx">patch</span> <span class="o">=</span> <span class="nx">createPatch</span><span class="p">(</span><span class="nx">o_body</span><span class="p">,</span> <span class="nx">edited_body</span><span class="p">);</span>
+
+<span class="c1">//check if patch size is smaller than edited content itself</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">patch</span> <span class="o">&amp;&amp;</span> <span class="nx">patch</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">edited_body</span><span class="p">,</span> <span class="s1">'utf-8'</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">body</span> <span class="o">=</span> <span class="nx">patch</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">body</span> <span class="o">=</span> <span class="nx">edited_body</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The next step is to pass all of these parameters to the <code class="highlighter-rouge">client.broadcast.comment</code> function. Note that in parameters you can see the <code class="highlighter-rouge">parent_author</code> and <code class="highlighter-rouge">parent_permlink</code> fields, which are used for replies (also known as comments). In our example, since we are publishing a post instead of a comment/reply, we will have to leave <code class="highlighter-rouge">parent_author</code> as an empty string and assign <code class="highlighter-rouge">parent_permlink</code> from the first tag.</p>
+
+<p>After the post has been broadcasted to the network, we can simply set all the fields to empty strings and show the post link to check it from a condenser instance running on the selected testnet. That’s it!</p>
+
+<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+
+<ol>
+  <li>clone this repo</li>
+  <li><code class="highlighter-rouge">cd tutorials/12_edit_content_patching</code></li>
+  <li><code class="highlighter-rouge">npm i</code></li>
+  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+  <li>After a few moments, the server should be running at http://localhost:3000/</li>
+</ol>
+
+<hr />
+
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
