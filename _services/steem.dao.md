@@ -5,7 +5,7 @@ position: 5
 
 #### Intro
 
-Steem.DAO is an account on the Steem blockchain ([@steem.dao](https://steemd.com/@steem.dao)) that receives 10% of the [annual new supply]({{ '/tutorials-recipes/understanding-configuration-values#steem_inflation_narrowing_period' | relative_url }}).  These funds are dedicated to the Steem Proposal System (SPS) for platform improvements.
+Steem.DAO is an account on the Steem blockchain ([@steem.dao](https://steemd.com/@steem.dao)) that receives 10% of the [annual new supply]({{ '/tutorials-recipes/understanding-configuration-values#STEEM_INFLATION_NARROWING_PERIOD' | relative_url }}).  These funds are dedicated to the Steem Proposal System (SPS) for platform improvements.
 
 Every day a portion of the SBD fund managed by the Steem.DAO is distributed to various proposals, depending on **a)** how much the proposal is asking for and **b)** how much approval the proposal has.
 

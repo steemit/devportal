@@ -14,207 +14,88 @@ Dynamic Global Properties represents a set of values that are calculated during 
     
 ### Sections
 
-* Fields
-  * [head_block_number](#head_block_number)
-  * [head_block_id](#head_block_id)
-  * [time](#time)
-  * [current_witness](#current_witness)
-  * [total_pow](#total_pow-deprecated)
-  * [num_pow_witnesses](#num_pow_witnesses-deprecated)
-  * [virtual_supply](#virtual_supply)
-  * [current_supply](#current_supply)
-  * [current_sbd_supply](#current_sbd_supply)
-  * [total_vesting_fund_steem](#total_vesting_fund_steem-deprecated)
-  * [total_vesting_shares](#total_vesting_shares)
-  * [total_reward_fund_steem](#total_reward_fund_steem-deprecated)
-  * [total_reward_shares2](#total_reward_shares2-deprecated)
-  * [sbd_interest_rate](#sbd_interest_rate)
-  * [maximum_block_size](#maximum_block_size)
-  * [current_aslot](#current_aslot)
-  * [recent_slots_filled](#recent_slots_filled)
-  * [last_irreversible_block_num](#last_irreversible_block_num)
-  * [vote_power_reserve_rate](#vote_power_reserve_rate)
-  * <del>[average_block_size](#average_block_size-removed)</del>
-  * <del>[current_reserve_ratio](#current_reserve_ratio-removed)</del>
-  * <del>[max_virtual_bandwidth](#max_virtual_bandwidth-removed)</del>
-* [Not Covered](#not-covered)
-* [Example Method Call](#example-method-call)
-* [Example Output](#example-output)
-
-### `head_block_number`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Block height at the head of the blockchain.  This represents the latest block produced by witnesses.
-
-* example: `24155032`
-
-### `head_block_id`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Used to implement TaPoS (Transaction as Proof of Stake).  The first 4 bytes (8 hex digits) of the block ID represents the block number.  E.g., `01709398` in hex is `24155032` in decimal.
-
-* example: `0170939865fa4e3aa7fca8f8df35d23333fe0bee`
-* see: [RIPEMD-160 hashes](https://en.wikipedia.org/wiki/RIPEMD#RIPEMD-160_hashes)
-
-### `time`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Point in time (UTC) that the block was included in the chain.
-
-Used to synchronize events like Hard Fork activation.
-
-When attempting to calculate the validity of a transaction we need to lookup a past block and check its block hash and the time it occurred so we can calculate whether the current transaction is valid and at what time it should expire.
-
-For new transactions, expirations originate from this time.
-
-* example: `2018-07-14T01:19:51`
-
-### `current_witness`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Account name of the current witness.
-
-* example: `blocktrades`
-
-### `total_pow`<span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-The total POW accumulated, aka the sum of `num_pow_witness` at the time new POW is added.
-
-* example: `514415`
-
-### `num_pow_witnesses`<span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-
-The current count of how many pending POW witnesses there are, determines the difficulty of doing pow.
-
-* example: `172`
-
-### `virtual_supply`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-The virtual supply is the supply of all STEEM + all SBD if all SBD were converted to STEEM at the current median price.
-
-* example: `283290592.652 STEEM`
-
-### `current_supply`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-STEEM currently in existence.
-
-* example: `271546371.129 STEEM`
-
-### `confidential_supply`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Total asset held in confidential balances.
-
-* example: `0.000 STEEM`
-
-### `current_sbd_supply`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-SBD currently in existence.
-
-* example: `15478883.968 SBD`
-
-### `confidential_sbd_supply`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Total asset held in confidential balances.
-
-* example: `0.000 SBD`
-
-### `total_vesting_fund_steem` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-*Now deprecated way to get STEEM that is invested in STEEM POWER (powered up).*
-
-Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
-
-* example: `192713261.007 STEEM`
-
-### `total_vesting_shares`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-VESTS that are invested in STEEM POWER (powered up).
-
-* example: `390950506702.452773 VESTS`
-
-### `total_reward_fund_steem` <a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-STEEM available in the reward pool.
-
-* example: `0.000 STEEM`
-
-### `total_reward_shares2` <span class="warn deprecated">Deprecated</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-*Now deprecated way to get the number of shares in the pool.*
-
-Use [`condenser_api.get_reward_fund`]({{ '/apidefinitions/#condenser_api.get_reward_fund' | relative_url }}) instead.
-
-* example: `0`
-
-### `sbd_interest_rate`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-This property defines the interest rate that SBD deposits receive.
-
-* example: `0`
-
-### `maximum_block_size`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Maximum block size is decided by the set of active witnesses which change every round.  Each witness posts what they think the maximum size should be as part of their witness properties, the median size is chosen to be the maximum block size for the round.
-  
-**Note:** the minimum value for `maximum_block_size` is defined by the protocol to prevent the network from getting stuck by witnesses attempting to set this too low.
-
-* example: `65536`
-
-### `current_aslot`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-The current absolute slot number.  Equal to the total number of slots since genesis.  Also equal to the total number of missed slots plus `head_block_number`.
-
-* example: `24231997`
-
-### `recent_slots_filled`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-Used to compute witness participation.
-
-* example: `340282366920938463463374607431768211455`
-
-### `last_irreversible_block_num`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-The latest block number that has been confirmed by two thirds of all block producers and is thus irreversible.
-
-* example: `24155017`
-
-### `vote_power_reserve_rate`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-The number of votes regenerated per day.  Any user voting slower than this rate will be "wasting" voting power through spillover; any user voting faster than this rate will have their votes reduced.
-
-* example: `10`
-
-### `average_block_size` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
- 
-**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
-
-Average block size is updated every block to be: `average_block_size = (99 * average_block_size + new_block_size) / 100`.  This property is used to update the `current_reserve_ratio` to maintain approximately *  50% or less utilization of network capacity.
-
-* example: `9309`
-
-### `current_reserve_ratio` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
-
-Any time `average_block_size <= 50% maximum_block_size` this value grows by 1 until it reaches `STEEM_MAX_RESERVE_RATIO`.  Any time `average_block_size` is greater than 50% it falls by 1%.  Upward adjustments happen once per round, downward adjustments happen every block.
-
-* example: `200000000`
-
-### `max_virtual_bandwidth` <span class="danger removed">Removed</span><a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
-
-**Removed in 0.20.6, see: [#3029](https://github.com/steemit/steem/issues/3029#issuecomment-428404844)**
-
-The maximum bandwidth the blockchain can support is `max_bandwidth = maximum_block_size * STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEM_BLOCK_INTERVAL`; The maximum virtual bandwidth is: `max_bandwidth * current_reserve_ratio`
-
-* example: `264241152000000000000`
+<ul>
+<li>Fields</li>
+<ul>
+{% for sections in site.data.objects.dgpo %}
+{% assign sorted_fields = sections.fields | sort: 'name' %}
+{% for field in sorted_fields %}
+{% if field.purpose %}
+{% unless field.removed %}
+<li><a href="#{{ field.name | slug}}"><code>{{field.name}}</code></a></li>
+{% endunless %}
+{% endif %}
+{% endfor %}
+{% for field in sorted_fields %}
+{% if field.purpose %}
+{% if field.removed %}
+<li><del><a href="#{{ field.name | slug}}"><code>{{field.name}}</code></a></del></li>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+</ul>
+<li><a href="#not-covered">Not Covered</a></li>
+<li><a href="#example-method-call">Example Method Call</a></li>
+<li><a href="#example-output">Example Output</a></li>
+</ul>
+
+{% for sections in site.data.objects.dgpo %}
+{% assign sorted_fields = sections.fields | sort: 'name' %}
+{% for field in sorted_fields %}
+{% if field.purpose %}
+<h3 id="{{field.name | slug}}">
+<code>{{field.name}}</code>
+<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm"></i></a>
+</h3>
+<ul style="float: right; list-style: none;">
+{% if field.deprecated %}
+<li class="warning"><strong><small>Deprecated</small></strong></li>
+{% elsif field.removed %}
+<li class="danger"><strong><small>Removed</small></strong></li>
+{% endif %}
+{% if field.since %}
+<li class="success"><strong><small>Since: {{field.since}}</small></strong></li>
+{% endif %}
+{% assign keywords = field.name | keywordify | escape %}
+{% assign search_url = '/search/?q=' | append: keywords | split: '_' | join: ' ' %}
+<li class="info"><strong><small><a href="{{ search_url | relative_url }}">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
+</ul>
+{{ field.purpose | liquify | markdownify }}
+{% if field.examples.size > 0 %}
+<ul>
+<li>Examples:
+<ul>
+{% for example in field.examples %}
+<li>{{example | liquify | markdownify }}</li>
+{% endfor %}
+</ul>
+</li>
+</ul>
+{% endif %}
+{% if field.links.size > 0 %}
+{% assign links = field.links | join: ', ' | liquify %}
+See: {{ links }}
+{% endif %}
+<hr />
+{% endif %}
+{% endfor %}
+{% endfor %}
 
 ### `Not Covered`<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
 Fields not covered in this recipe are:
 
-* `confidential_supply`
-* `confidential_sbd_supply`
-* `pending_rewarded_vesting_shares`
-* `pending_rewarded_vesting_steem`
-* `sbd_print_rate`
-* `participation_count`
+<ul>
+{% for sections in site.data.objects.dgpo %}
+{% assign sorted_fields = sections.fields | sort: 'name' %}
+{% for field in sorted_fields %}
+{% unless field.purpose %}
+<li><code>{{field.name}}</code></li>
+{% endunless %}
+{% endfor %}
+{% endfor %}
+</ul>
 
 ### Example Method Call<a style="float: right" href="#sections"><i class="fas fa-chevron-up fa-sm" /></a>
 
@@ -245,6 +126,7 @@ curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_pro
       "total_vesting_fund_steem":"192913644.627 STEEM",
       "total_vesting_shares":"391296886352.617261 VESTS",
       "total_reward_fund_steem":"0.000 STEEM",
+      "init_sbd_supply":"7000000.000 TBD",
       "total_reward_shares2":"0",
       "pending_rewarded_vesting_shares":"379159224.860656 VESTS",
       "pending_rewarded_vesting_steem":"185294.019 STEEM",
@@ -256,6 +138,21 @@ curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_pro
       "participation_count":128,
       "last_irreversible_block_num":24238230,
       "vote_power_reserve_rate":10
+      "required_actions_partition_percent":2500,
+      "target_votes_per_period":50,
+      "vote_power_reserve_rate":50,
+      "delegation_return_period":432000,
+      "reverse_auction_seconds":300,
+      "available_account_subsidies":137414104,
+      "sbd_stop_percent":1000,
+      "sbd_start_percent":900,
+      "next_maintenance_time":"2019-11-15T01:44:39",
+      "last_budget_time":"2019-11-15T00:44:39",
+      "content_reward_percent":6500,
+      "vesting_reward_percent":1500,
+      "sps_fund_percent":1000,
+      "sps_interval_ledger":"15.162 TBD",
+      "downvote_pool_percent":2500
    }
 }
 ```

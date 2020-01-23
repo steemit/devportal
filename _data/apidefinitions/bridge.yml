@@ -1,0 +1,155 @@
+- name: Bridge
+  group: communities
+  description: |
+    Presents data interpreted by the hivemind database as JSON-RPC.
+    
+    Also see: [Communities Broadcast Ops]({{ '/apidefinitions/#apidefinitions-broadcast-ops-communities' | relative_url }})
+  methods:
+  - api_method: bridge.get_ranked_posts
+    purpose: |
+      Get ranked posts.
+      
+      Supported values for `sort`:
+        * `trending`
+        * `hot`
+        * `created`
+        * `promoted`
+        * `payout`
+        * `payout_comments`
+        * `muted`
+        
+      The value for `tag` can be any valid tag.
+      
+      The value for `observer` can be any valid account or empty string.
+    parameter_json: '{"sort":"","tag":"","observer":""}'
+    expected_response_json: |
+      [
+        {
+           "post_id":12345678,
+           "author":"alice",
+           "permlink":"that-march-hare",
+           "category":"wonderland",
+           "title":"That March Hare",
+           "body":"I think he went mad.",
+           "json_metadata":{"tags":["wonderland"], "app":"steemit/0.2"},
+           "created":"2019-12-05T16:29:12",
+           "updated":"2019-12-05T16:29:12",
+           "depth":0,
+           "children":0,
+           "net_rshares":1539574839484,
+           "is_paidout":false,
+           "payout_at":"2019-12-12T16:29:12",
+           "payout":0.286,
+           "pending_payout_value":"0.286 SBD",
+           "author_payout_value":"0.000 SBD",
+           "curator_payout_value":"0.000 SBD",
+           "promoted":"0.000 SBD",
+           "replies":[],
+           "active_votes":[
+              {"voter":"bob", "rshares":"67759296290"}
+           ],
+           "author_reputation":47.15,
+           "stats":{
+              "hide":false,
+              "gray":false,
+              "total_votes":12,
+              "flag_weight":0
+           },
+           "beneficiaries":[],
+           "max_accepted_payout":"1000000.000 SBD",
+           "percent_steem_dollars":10000,
+           "url":"/wonderland/@alice/that-march-hare",
+           "blacklists":[]
+        }
+      ]
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"bridge.get_ranked_posts", "params":{"sort":"trending","tag":"","observer":"alice"}, "id":1}'
+  - api_method: bridge.account_notifications
+    purpose: |
+      Account notifications.
+      
+      Supported values for `type`:
+        * `new_community` - a new community was created
+        * `set_role` - mod/admin adds a role to an account
+        * `set_props` - properties set for a community
+        * `set_label` - a title/badge/label has been set for an account
+        * `mute_post` - a post has been muted, with a reason
+        * `unmute_post` - a post has been unmuted, with a reason
+        * `pin_post` - a post has been pinned
+        * `unpin_post` - a post has been unpinned
+        * `flag_post` - a post has been flagged by a member, with a reason
+        * `error` - provides feedback to developers for ops that cannot be interpreted
+        * `subscribe` - an account has subscribed to a community
+        * `reply` - a post has been replied to
+        * `reblog` - a post has been reblogged/resteemed
+        * `follow` - an account has followed another account
+        * `mention` - author mentions an account
+        * `vote` - voter votes for an author
+      
+      The `score` value is based on the originating account's rank.
+    parameter_json: '{"account":"alice","limit":100}'
+    expected_response_json: |
+      [{
+        "id": 3629306,
+        "type": "vote",
+        "score": 25,
+        "date": "2019-11-20T07:48:06",
+        "msg": "@bob voted on your post ($0.013)",
+        "url": "@alice/a-post-by-alice"
+      }]
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"bridge.account_notifications", "params":{"account":"alice","limit":100}, "id":1}'
+  - api_method: bridge.list_community_roles
+    purpose: |
+      List community roles and labels for each account in the community.
+    parameter_json: '{"community":"hive-123456"}'
+    expected_response_json: |
+      [
+        ["hive-123456", "owner", ""],
+        ["alice", "admin", "Miss"]
+      ]
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"bridge.list_community_roles", "params":{"community":"hive-123456"}, "id":1}'
+  - api_method: bridge.list_all_subscriptions
+    purpose: |
+      List all subscriptions to a community for an account.
+    parameter_json: '{"account":"alice"}'
+    expected_response_json: |
+      [
+        ["hive-123456", "Wonderland"],
+        ["hive-654321", "Tulgey Wood"]
+      ]
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"bridge.list_all_subscriptions", "params":{"account":"alice"}, "id":1}'
+  - api_method: bridge.get_community
+    purpose: |
+      Get community details.
+    parameter_json: '{"name":"hive-123456","observer":"alice"}'
+    expected_response_json: 
+      {
+        "id": 1332149,
+        "name": "hive-123456",
+        "title": "@hive-123456",
+        "about": "Wonderland",
+        "lang": "en",
+        "type_id": 1,
+        "is_nsfw": false,
+        "subscribers": 0,
+        "sum_pending": 0,
+        "num_pending": 0,
+        "created_at": "2019-10-27 08:28:54",
+        "context": {
+          "role": "admin",
+          "title": "Miss",
+          "subscribed": true
+        },
+        "description": "",
+        "flag_text": "",
+        "settings": {},
+        "team": [
+          ["hive-123456", "owner", ""],
+          ["alice", "admin", "Miss"]
+        ]
+    }
+    curl_examples:
+    - '{"jsonrpc":"2.0", "method":"bridge.get_community", "params":{"name":"hive-123456","observer":"alice"}, "id":1}'

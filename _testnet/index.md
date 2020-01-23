@@ -29,7 +29,7 @@ There are a number of other subtle changes that we don't need to focus on right 
 
 #### Live testnet
 
-* ChainID: `0feb08c380aeb483b61a34cccb7271a3a99c47052bea529c4a891622f2c50d75`
+* ChainID: `d043ab83d223f25f37e1876fe48a240d49d8e4b1daa2342064990a8036a8bb5b`
 * Address prefix: `TST`
 * API node: `https://testnet.steemitdev.com`
 
