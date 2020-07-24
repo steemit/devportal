@@ -142,6 +142,18 @@ dl dd:after {
   clear: both;
   height: 0; }
 
+.button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 8px; }
+
 .sidebar h6 {
   text-transform: uppercase;
   line-height: 1em;
@@ -392,7 +404,7 @@ header {
       height: 36px;
       margin: 0 18px; }
   header .open-nav {
-    background-image: url(/images/menu.svg);
+    background-image: url(../images/menu.svg);
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 50%;
@@ -471,6 +483,18 @@ header {
 blockquote {
   background: #EEEEEE;
   padding: 5px; }
+
+.steem-content {
+  width: 60%;
+  padding: 0 12px; }
+
+.steem-content img {
+  max-width: 100%;
+  max-height: 100%; }
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: #4BA2F2; }
 
 code .hll {
   background-color: #ffffcc; }

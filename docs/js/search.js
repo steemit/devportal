@@ -66,7 +66,7 @@
 					contentPreview = getPreview(query, item.content, 170),
 					titlePreview = getPreview(query, item.title);
 
-				resultsHTML += "<li><h4><a href='" + item.url + "'>" + titlePreview + "</a></h4><p><small>" + contentPreview + "</small></p></li>";
+				resultsHTML += "<li><h4><a href='.." + item.url + "'>" + titlePreview + "</a></h4><p><small>" + contentPreview + "</small></p></li>";
 			});
 
 			searchResultsEl.innerHTML = resultsHTML;
@@ -83,6 +83,7 @@
 		this.field("category");
 		this.field("url");
 		this.field("content");
+		this.field("keywords");
 	});
 
 	var query = decodeURIComponent((getQueryVariable("q") || "").replace(/\+/g, "%20")),

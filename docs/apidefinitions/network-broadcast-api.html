@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
 
-	
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
-	<script src="/js/main.js"></script>
-	
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
 
-	<!-- Begin Jekyll SEO tag v2.5.0 -->
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Network Broadcast Api | Steem Developer</title>
-<meta name="generator" content="Jekyll v3.8.4" />
+<meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="Network Broadcast Api" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Working on mainnet Working on testnet network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Working on mainnet Working on testnet network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
-<meta property="og:description" content="Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Working on mainnet Working on testnet network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Working on mainnet Working on testnet network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta name="description" content="Methods: broadcast_block broadcast_transaction Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Related network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Related network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
+<meta property="og:description" content="Methods: broadcast_block broadcast_transaction Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Related network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Related network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com" />
 <link rel="canonical" href="https://developers.steem.io/apidefinitions/network-broadcast-api" />
 <meta property="og:url" content="https://developers.steem.io/apidefinitions/network-broadcast-api" />
 <meta property="og:site_name" content="Steem Developer" />
 <script type="application/ld+json">
-{"description":"Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Working on mainnet Working on testnet network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Working on mainnet Working on testnet network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com","@type":"WebPage","url":"https://developers.steem.io/apidefinitions/network-broadcast-api","headline":"Network Broadcast Api","@context":"http://schema.org"}</script>
+{"description":"Methods: broadcast_block broadcast_transaction Used to broadcast transactions and blocks. These AppBase API methods are still under development and subject to change. Also see: Blockchain Ops Related network_broadcast_api.broadcast_block Used to broadcast a block. Query Parameters JSON { &quot;block&quot;: { &quot;previous&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;timestamp&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;witness&quot;: &quot;&quot;, &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000000&quot;, &quot;extensions&quot;: [], &quot;witness_signature&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;, &quot;transactions&quot;: [] } } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_block&quot;, &quot;params&quot;:{&quot;block&quot;:{&quot;previous&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;1970-01-01T00:00:00&quot;,&quot;witness&quot;:&quot;&quot;,&quot;transaction_merkle_root&quot;:&quot;0000000000000000000000000000000000000000&quot;,&quot;extensions&quot;:[],&quot;witness_signature&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;transactions&quot;:[]}}, &quot;id&quot;:1}&#39; https://api.steemit.com Related network_broadcast_api.broadcast_transaction Used to broadcast a transaction. Query Parameters JSON { &quot;trx&quot;: { &quot;ref_block_num&quot;: 0, &quot;ref_block_prefix&quot;: 0, &quot;expiration&quot;: &quot;1970-01-01T00:00:00&quot;, &quot;operations&quot;: [], &quot;extensions&quot;: [], &quot;signatures&quot;: [] }, &quot;max_block_age&quot;: -1 } Expected Response JSON {} Example curl curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;vote_operation&quot;,&quot;value&quot;:{&quot;voter&quot;:&quot;steemit&quot;,&quot;author&quot;:&quot;alice&quot;,&quot;permlink&quot;:&quot;a-post-by-alice&quot;,&quot;weight&quot;:10000}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com curl -s --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;:&quot;network_broadcast_api.broadcast_transaction&quot;, &quot;params&quot;:{&quot;trx&quot;:{&quot;ref_block_num&quot;:1097,&quot;ref_block_prefix&quot;:2181793527,&quot;expiration&quot;:&quot;2016-03-24T18:00:21&quot;,&quot;operations&quot;:[{&quot;type&quot;:&quot;pow_operation&quot;,&quot;value&quot;:{&quot;worker_account&quot;:&quot;cloop3&quot;,&quot;block_id&quot;:&quot;00000449f7860b82b4fbe2f317c670e9f01d6d9a&quot;,&quot;nonce&quot;:3899,&quot;work&quot;:{&quot;worker&quot;:&quot;STM7P5TDnA87Pj9T4mf6YHrhzjC1KbPZpNxLWCcVcHxNYXakpoT4F&quot;,&quot;input&quot;:&quot;ae8e7c677119d22385f8c48026fee7aad7bba693bf788d7f27047f40b47738c0&quot;,&quot;signature&quot;:&quot;1f38fe9a3f9989f84bd94aa5bbc88beaf09b67f825aa4450cf5105d111149ba6db560b582c7dbb026c7fc9c2eb5051815a72b17f6896ed59d3851d9a0f9883ca7a&quot;,&quot;work&quot;:&quot;000e7b209d58f2e64b36e9bf12b999c6c7af168cc3fc41eb7f8a4bf796c174c3&quot;},&quot;props&quot;:{&quot;account_creation_fee&quot;:{&quot;amount&quot;:&quot;100000&quot;,&quot;precision&quot;:3,&quot;nai&quot;:&quot;@@000000021&quot;},&quot;maximum_block_size&quot;:131072,&quot;sbd_interest_rate&quot;:1000}}}],&quot;extensions&quot;:[],&quot;signatures&quot;:[]},&quot;max_block_age&quot;:50}, &quot;id&quot;:1}&#39; https://api.steemit.com","@type":"WebPage","headline":"Network Broadcast Api","url":"https://developers.steem.io/apidefinitions/network-broadcast-api","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-	
+  
 </head>
 <body>
 <header>
-	<h1>
-		<button type="button" class="open-nav" id="open-nav"></button>
-		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
-	</h1>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
 
-	
-	<form action="/search/" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
 
-	<div id="sidebar" class="sidebar">
+  <div id="sidebar" class="sidebar">
 	
 	
 	
@@ -143,7 +144,7 @@
 						
 					
 						
-						<li><a href="/services/#services-sbds">SBDS</a></li>
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
 						
 					
 				
@@ -164,7 +165,7 @@
 						
 					
 						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
 						
 					
 						
@@ -176,7 +177,15 @@
 						
 					
 						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
 						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
 						
 					
 						
@@ -200,7 +209,19 @@
 						
 					
 						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
 						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
 						
 					
 						
@@ -208,15 +229,11 @@
 						
 					
 						
-						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
-						
-					
-						
 						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
 						
 					
 				
@@ -241,11 +258,23 @@
 						
 					
 						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
 						<li><a href="/resources/#resources-tools">Tools</a></li>
 						
 					
 						
 						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
 						
 					
 						
@@ -295,21 +324,32 @@
 </div>
 
 
-	<!--<p class="copyright">-->
-	<!--<a href="https://steemit.com.com/">-->
-	<!--steemit-->
-	<!--</a>-->
-	<!--</p>-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 </header>
 <div class="main" id="top">
-	<div class="hero">
-		<h1 class="hero__h1">Steem Developer Portal </h1>
-		
-		<img class="hero__img" src="/images/hero.png">
-		
-	</div>
-	
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <p>Methods:</p>
+<ul>
+
+
+
+<li class="button"><a href="#network_broadcast_api.broadcast_block">broadcast_block</a></li>
+
+<li class="button"><a href="#network_broadcast_api.broadcast_transaction">broadcast_transaction</a></li>
+
+
+</ul>
+
 <p>Used to broadcast transactions and blocks. <strong>These AppBase API methods are
 still under development and subject to change.</strong></p>
 
@@ -321,16 +361,12 @@ still under development and subject to change.</strong></p>
 
 
 
-<li class="success"><strong><small>Working on mainnet</small></strong></li>
-
-
-
-<li class="success"><strong><small>Working on testnet</small></strong></li>
-
+<li class="info"><strong><small><a href="/search/?q=broadcast%20block">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 
 </ul>
 <h4 id="network_broadcast_api.broadcast_block">network_broadcast_api.broadcast_block <a href="#network_broadcast_api.broadcast_block"><i class="fas fa-link fa-xs"></i></a></h4>
 <p>Used to broadcast a block.</p>
+
 <h5 id="network_broadcast_api.broadcast_block-parameter_json">Query Parameters JSON <a href="#network_broadcast_api.broadcast_block-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"block"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -361,16 +397,12 @@ still under development and subject to change.</strong></p>
 
 
 
-<li class="success"><strong><small>Working on mainnet</small></strong></li>
-
-
-
-<li class="success"><strong><small>Working on testnet</small></strong></li>
-
+<li class="info"><strong><small><a href="/search/?q=broadcast%20transaction">Related <i class="fas fa-search fa-xs"></i></a></small></strong></li>
 
 </ul>
 <h4 id="network_broadcast_api.broadcast_transaction">network_broadcast_api.broadcast_transaction <a href="#network_broadcast_api.broadcast_transaction"><i class="fas fa-link fa-xs"></i></a></h4>
 <p>Used to broadcast a transaction.</p>
+
 <h5 id="network_broadcast_api.broadcast_transaction-parameter_json">Query Parameters JSON <a href="#network_broadcast_api.broadcast_transaction-parameter_json"><i class="fas fa-link fa-sm"></i></a></h5>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"trx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -401,7 +433,7 @@ still under development and subject to change.</strong></p>
 
 </div>
 <div class="footer">
-	<a href="#">Back to top</a>
+  <a href="#">Back to top</a>
 </div>
 <script>
     document.getElementById("open-nav").addEventListener("click", function () {

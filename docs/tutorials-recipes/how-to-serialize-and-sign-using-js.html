@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+  <script src="/js/main.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>How to serialize and sign Steem transactions using Javascript | Steem Developer</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="How to serialize and sign Steem transactions using Javascript" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Serialization and signing without additional Steem Javascript libraries." />
+<meta property="og:description" content="Serialization and signing without additional Steem Javascript libraries." />
+<link rel="canonical" href="https://steemit.com/steem/@mahdiyari/how-to-serialize-and-sign-steem-transactions-using-javascript-without-steem-javascript-libraries" />
+<meta property="og:url" content="https://steemit.com/steem/@mahdiyari/how-to-serialize-and-sign-steem-transactions-using-javascript-without-steem-javascript-libraries" />
+<meta property="og:site_name" content="Steem Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T10:45:05-06:00" />
+<script type="application/ld+json">
+{"description":"Serialization and signing without additional Steem Javascript libraries.","@type":"BlogPosting","headline":"How to serialize and sign Steem transactions using Javascript","dateModified":"2020-01-23T10:45:05-06:00","datePublished":"2020-01-23T10:45:05-06:00","url":"https://steemit.com/steem/@mahdiyari/how-to-serialize-and-sign-steem-transactions-using-javascript-without-steem-javascript-libraries","mainEntityOfPage":{"@type":"WebPage","@id":"https://steemit.com/steem/@mahdiyari/how-to-serialize-and-sign-steem-transactions-using-javascript-without-steem-javascript-libraries"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+</head>
+<body>
+<header>
+  <h1>
+    <button type="button" class="open-nav" id="open-nav"></button>
+    <a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+  </h1>
+
+  
+  <form action="/search/" method="get">
+    <input type="text" name="q" id="search-input" placeholder="Search">
+    <input type="submit" value="Search" style="display: none;">
+  </form>
+  
+
+  <div id="sidebar" class="sidebar">
+	
+	
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/">
+		<h6 class="ctrl-nav-section title">Introduction</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+		<h6 class="ctrl-nav-section title">Quickstart</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+						
+					
+						
+						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+		<h6 class="ctrl-nav-section title">Tutorials</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-python">Python</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+					
+				
+					
+						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/services/">
+		<h6 class="ctrl-nav-section title">Services</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/services/#services-steemit">Steemit.com</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
+						
+					
+						
+						<li><a href="/services/#services-jussi">Jussi</a></li>
+						
+					
+						
+						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+						
+					
+						
+						<li><a href="/services/#services-steem-dao">Steem.DAO</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+		<h6 class="ctrl-nav-section title">Appbase API</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-bridge">Bridge</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-reputation-api">Reputation Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-rewards-api">Rewards Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-transaction-status-api">Transaction Status Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+						
+					
+						
+						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-communities">Broadcast Ops Communities</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+		<h6 class="ctrl-nav-section title">Resources</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/resources/#resources-overview">Overview</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-bluepaper">Bluepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-whitepaper">Whitepaper</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-tools">Tools</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-steem-keychain">Steem Keychain</a></li>
+						
+					
+						
+						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+		
+    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+		<h6 class="ctrl-nav-section title">Glossary</h6>
+		<ul class="cont-nav-section content">
+			
+				
+					
+					
+						
+						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+						
+					
+						
+					
+						
+						<li><a href="/glossary/#glossary-governance">Governance</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-api">API</a></li>
+						
+					
+						
+						<li><a href="/glossary/#glossary-market">Market</a></li>
+						
+					
+				
+			
+		</ul>
+	</section>
+	
+</div>
+
+
+  <!--<p class="copyright">-->
+  <!--<a href="https://steemit.com.com/">-->
+  <!--steemit-->
+  <!--</a>-->
+  <!--</p>-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</header>
+<div class="main" id="top">
+  <div class="hero">
+    <h1 class="hero__h1">Steem Developer Portal </h1>
+    
+    <img class="hero__img" src="/images/hero.png">
+    
+  </div>
+  <section id="tutorials-recipes-how-to-serialize-and-sign-using-js" class="row tutorials-recipes-how-to-serialize-and-sign-using-js">
+  <h3>
+    <a id="tutorials-recipes-how-to-serialize-and-sign-using-js">
+      How to serialize and sign Steem transactions using Javascript
+      
+    </a>
+  </h3>
+  
+    <span class="description"><p>Serialization and signing without additional Steem Javascript libraries.</p>
+</span>
+  
+
+  <div class="steem-content">
+    <center><p><img src="https://cdn.steemitimages.com/DQmdV8sZiyYpz8qq1WJErHKfgZgPyuZsBgtuzwkhoP8DED2/document-428334_640.jpg" alt="document-428334_640.jpg" /></p><br /></center>
+
+<p>When you are sending STEEM or SBD to another account, when you are writing a post or a comment, or when you are voting or downvoting a post, you are broadcasting transactions into the Steem blockchain. In other words, any action you take on Steem blockchain is a transaction.</p>
+
+<h4 id="what-makes-transactions-so-special">What makes transactions so special?</h4>
+<p>A transaction needs to be signed by the account owner and verified by the blockchain before including in the blocks. Without a signature, the transaction will be rejected by the blockchain.</p>
+
+<p>You may ask “why signing? isn’t there another way?”
+Without using signatures, blockchain needs a way to authenticate users before broadcasting transactions. And for authenticating users, there must be a key included in the request that sent to the blockchain.</p>
+
+<p>As you know, sending keys over to a server that claims to be a blockchain node is risky. Since anyone can run a blockchain node and capture keys. Of course, we can’t trust the blockchain that lacks security.</p>
+
+<p>With the help of encryption, we can sign transactions on our own hardware and send signed transactions securely to any server. A signed transaction doesn’t include any key. Just a signature that proves the transaction is coming from the account owner.</p>
+
+<h4 id="how-to-broadcast-transactions">How to broadcast transactions?</h4>
+<p>Broadcasting a transaction is pretty easy.
+But before broadcasting, the transaction must be signed.
+And for signing a transaction, the transaction must be serialized.</p>
+
+<h4 id="available-documents">Available documents:</h4>
+<ul>
+  <li><a href="https://steemit.com/steem/@xeroc/steem-transaction-signing-in-a-nutshell">Steem transaction signing in a nutshell</a> by @xeroc (3 years ago - Python)</li>
+</ul>
+
+<p>I couldn’t find anything else.</p>
+
+<h4 id="available-librariesjs">Available libraries(JS):</h4>
+<ul>
+  <li>steem-js</li>
+  <li>dsteem</li>
+  <li><a href="https://github.com/mahdiyari/steem-tx-js">steem-tx</a></li>
+</ul>
+
+<p>steem-js and dsteem both are working in most cases.
+But I couldn’t use steem-js nor dsteem on the Nativescript environment (framework for Android and IOS applications). So I created Steem-TX. A complete but light library. Steem-TX should work in almost every situation.</p>
+
+<p>I will explain things that are not available directly anywhere else. If you don’t understand any part, just comment below. (or maybe google it 🤷)</p>
+
+<hr />
+<h1 id="step-1">Step 1</h1>
+<h4 id="creating-transaction">Creating Transaction:</h4>
+<p>As you know, a transaction consists of 6 variables inside an object:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const transaction = {
+  ref_block_num: Number,
+  ref_block_prefix: Number,
+  expiration: Date,
+  operations: Array,
+  extensions: Array,
+  signatures: Array
+}
+</code></pre></div></div>
+
+<p>We will fill this object by the end of the post.</p>
+
+<p>@xeroc explained most of the properties. Check <a href="https://steemit.com/steem/@xeroc/steem-transaction-signing-in-a-nutshell">this post</a> for explanation of variables.</p>
+
+<p>Defining 4 of 6 needed variables:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const props = getDynamicGlobalProperties()
+const refBlockNum = props.head_block_number &amp; 0xffff
+const refBlockPrefix = Buffer.from(props.head_block_id, 'hex').readUInt32LE(4)
+const expireTime = 1000 * 60
+const expiration = new Date(Date.now() + expireTime)
+    .toISOString()
+    .slice(0, -5)
+const extensions = []
+</code></pre></div></div>
+
+<p>Without operations, there is no transaction!
+You can include one or more operations in this array. Check <a href="https://developers.steem.io/apidefinitions/#apidefinitions-broadcast-ops">Devportal</a> for list of all available operations.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const operations = [
+  [
+    'vote',
+    {
+      voter: 'guest123',
+      author: 'guest123',
+      permlink: '20191107t125713486z-post',
+      weight: 9900
+    }
+  ]
+]
+</code></pre></div></div>
+<h4 id="transaction-is-created">Transaction is created:</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const transaction = {
+  ref_block_num: refBlockNum,
+  ref_block_prefix: refBlockPrefix,
+  expiration,
+  operations,
+  extensions
+}
+</code></pre></div></div>
+<p>The only missing part is <code class="highlighter-rouge">signatures</code></p>
+
+<hr />
+<h1 id="step-2">Step 2</h1>
+<h4 id="serializing-transaction">Serializing transaction:</h4>
+
+<p>Create a new ByteBuffer:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const ByteBuffer = require('bytebuffer')
+const buffer = new ByteBuffer(
+    ByteBuffer.DEFAULT_CAPACITY,
+    ByteBuffer.LITTLE_ENDIAN
+  )
+</code></pre></div></div>
+<p>Every variable should be serialized according to the data type of its value.</p>
+
+<p>We will use the following serialization for transaction object:</p>
+
+<ul>
+  <li>ref_block_num =&gt; UInt16 (16bit unsigned integer)</li>
+  <li>ref_block_prefix &amp; expiration =&gt; UInt32 (32bit unsigned integer)</li>
+  <li>operations: 
+voter &amp; author &amp; permlink =&gt; VString (varint32 prefixed UTF8 encoded string)
+weight =&gt; Int16 (16bit signed integer)</li>
+  <li>extensions =&gt; VString</li>
+</ul>
+
+<p>Also, you need operation_id of operation. operation_id is the position of the operation defined in the Steem blockchain. <a href="https://github.com/steemit/steem/blob/master/libraries/protocol/include/steem/protocol/operations.hpp">Here</a> is the list of operations on the Steem blockchain.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vote_operation: 0
+comment_operation: 1
+transfer_operation: 2
+...
+</code></pre></div></div>
+
+<p>The code:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>buffer.writeUInt16(refBlockNum)
+buffer.writeUInt32(refBlockPrefix)
+buffer.writeUInt32(expiration)
+buffer.writeVarint32(operations.length) // number of operations
+buffer.writeVarint32(0) // operation id
+buffer.writeVString(voter)
+buffer.writeVString(author)
+buffer.writeVString(permlink)
+buffer.writeInt16(weight)
+buffer.writeVarint32(extensions.length) // number of extensions
+// in case of any extensions
+// buffer.writeVString(extensions[0])
+</code></pre></div></div>
+
+<p>The serialized transaction is ready.</p>
+
+<hr />
+<h1 id="step-3">Step 3</h1>
+<h4 id="create-digest-from-transaction">Create Digest from Transaction:</h4>
+
+<p>First, convert byte buffer to the actual buffer:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>buffer.flip() // set offset = 0
+const transactionData = Buffer.from(buffer.toBuffer())
+</code></pre></div></div>
+<p>Create SHA256 hash of transactionData and chain id (digest):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const chainId = '0000000000000000000000000000000000000000000000000000000000000000'
+const CHAIN_ID = Buffer.from(chainId, 'hex')
+
+const input = Buffer.concat([CHAIN_ID, transactionData])
+</code></pre></div></div>
+<p>You have 2 options here:</p>
+<ul>
+  <li>crypto-js
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const CryptoJS = require('crypto-js')
+const wa = CryptoJS.lib.WordArray.create(input)
+const digest = Buffer.from(
+  CryptoJS.SHA256(wa).toString(CryptoJS.enc.Hex),
+  'hex'
+)
+</code></pre></div>    </div>
+  </li>
+  <li>crypto
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const crypto = require('crypto')
+const digest = crypto.createHash('sha256').update(input).digest()
+</code></pre></div>    </div>
+    <p><b>USE ONLY ONE OF ABOVE (<code class="highlighter-rouge">crypto-js</code> or <code class="highlighter-rouge">crypto</code>)</b></p>
+  </li>
+</ul>
+
+<p>I used crypto-js in Steem-TX but you can use whichever that works for you. The code for <code class="highlighter-rouge">crypto</code> is also commented out in Steem-TX which can be easily replaced with <code class="highlighter-rouge">crypto-js</code>.</p>
+
+<p>Now prepare private key:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const bs58 = require('bs58')
+const key = '5JRaypasxMx1L97ZUX7YuC5Psb5EAbF821kkAGtBj7xCJFQcbLg'
+const keyBuffer = bs58.decode(key)
+const privateKey = keyBuffer.slice(0, -4).slice(1)
+</code></pre></div></div>
+
+<p>With digest and private key, we can finally sign the transaction.</p>
+
+<hr />
+<h1 id="step-4">Step 4</h1>
+<h4 id="sign-the-transaction">Sign the Transaction:</h4>
+
+<p>We will use this function in the signing process to verify the signature:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const isCanonicalSignature = signature =&gt; {
+  return (
+    !(signature[0] &amp; 0x80) &amp;&amp;
+    !(signature[0] === 0 &amp;&amp; !(signature[1] &amp; 0x80)) &amp;&amp;
+    !(signature[32] &amp; 0x80) &amp;&amp;
+    !(signature[32] === 0 &amp;&amp; !(signature[33] &amp; 0x80))
+  )
+}
+</code></pre></div></div>
+
+<p>We can sign the transaction with more than one key in the case of multi-signature accounts. Just repeat the process of signing for the signedTransaction.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const signedTransaction = { ...transaction } // copy transaction object
+if (!signedTransaction.signatures) {
+  signedTransaction.signatures = []
+}
+
+// repeat for multi-signature accounts
+const secp256k1 = require('secp256k1')
+let rv = {}
+let attempts = 0
+do {
+  const input = Buffer.concat([digest, Buffer.alloc(1, ++attempts)])
+  const wa = CryptoJS.lib.WordArray.create(input)
+  const options = {
+    data: Buffer.from(
+      CryptoJS.SHA256(wa).toString(CryptoJS.enc.Hex),
+      'hex'
+    )
+  }
+  rv = secp256k1.sign(digest, privateKey, options)
+} while (!isCanonicalSignature(rv.signature))
+const signature = {signature: rv.signature, recovery: rv.recovery}
+
+</code></pre></div></div>
+<p>Finally, the transaction is signed!
+But, we must convert the signature into the string and include in the transaction object:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const sigBuffer = Buffer.alloc(65)
+sigBuffer.writeUInt8(signature.recovery + 31, 0)
+signature.signature.copy(buffer, 1)
+const stringSignature = sigBuffer.toString('hex')
+signedTransaction.signatures.push(stringSignature)
+</code></pre></div></div>
+<p>The end.</p>
+
+<h1 id="step-5">Step 5</h1>
+<h4 id="broadcast-the-transaction">Broadcast the Transaction:</h4>
+<p><code class="highlighter-rouge">signedTransaction</code> is ready to be broadcasted into the blockchain using <code class="highlighter-rouge">Condenser Api</code> and <code class="highlighter-rouge">broadcast_transaction_synchronous</code> method.</p>
+
+<p>If you understand all the steps from 1 to 4, I think you should know how to make a post-call to a Steem node and broadcast the transaction. In case you don’t, check <a href="https://developers.steem.io/apidefinitions/#condenser_api.broadcast_transaction_synchronous">Devportal</a></p>
+
+<p>You can use any library. I used <code class="highlighter-rouge">axios</code> to broadcast transaction:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const axios = require('axios')
+const node = 'https://api.steemit.com'
+const call = async (method, params = []) =&gt; {
+  const res = await axios.post(
+    node,
+    JSON.stringify({
+      jsonrpc: '2.0',
+      method,
+      params,
+      id: 1
+    })
+  )
+  if (res &amp;&amp; res.statusText === 'OK') {
+    return res.data
+  }
+}
+
+const result = await call('condenser_api.broadcast_transaction_synchronous', [
+  signedTransaction
+])
+console.log(result)
+</code></pre></div></div>
+
+<hr />
+<h2 id="conclusion">Conclusion:</h2>
+
+<p>After reading or writing this code you will appreciate the software that is doing all this process behind the scene when you are clicking on the upvote button.</p>
+
+<p>You don’t have to write this code from scratch. <a href="https://github.com/mahdiyari/steem-tx-js">Steem-TX</a> is already coded in the same way. See the <a href="https://steemit.com/steem/@mahdiyari/steem-tx-or-lightweight-javascript-library-for-creating-and-signing-transactions-on-the-steem-blockchain">announcement post</a>.</p>
+
+<p>Feel free to test, use, and share. With the hope for better Steem!</p>
+
+<p>Your witness, @mahdiyari</p>
+
+<hr />
+
+<p>Image source: pixabay.com</p>
+<hr />
+
+<p>
+  See: <a href="https://steemit.com/@mahdiyari/how-to-serialize-and-sign-steem-transactions-using-javascript-without-steem-javascript-libraries">How to serialize and sign Steem transactions using Javascript (without Steem Javascript libraries)</a>
+  by
+  <a href="https://steemit.com/@mahdiyari">@mahdiyari</a>
+</p>
+
+
+  </div>
+</section>
+
+</div>
+<div class="footer">
+  <a href="#">Back to top</a>
+</div>
+<script>
+    document.getElementById("open-nav").addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+    });
+</script>
+</body>
+</html>
+
+
+<script src="/js/adjust.js"></script>
+
