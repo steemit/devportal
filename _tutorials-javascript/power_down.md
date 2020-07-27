@@ -1,7 +1,7 @@
 ---
 title: 'JS: Power Down'
 position: 25
-description: "_Perform a power down on all or part of an account's VESTS using either Steemconnect or client-side signing._"
+description: "_Perform a power down on all or part of an account's VESTS using either Steemlogin or client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Down](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/25_power_down) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -20,7 +20,7 @@ This tutorial will demonstrate a few functions such as querying account by name 
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Search account**](#search-account) Get account details after input has account name
 3.  [**Calculate and Fill form**](#fill-form) Calculate available vesting shares and fill the form with details
-4.  [**Power down**](#power-down) Power down VESTS with Steemconnect or client-side signing.
+4.  [**Power down**](#power-down) Power down VESTS with Steemlogin or client-side signing.
 
 #### 1. App setup <a name="app-setup"></a>
 
@@ -76,7 +76,7 @@ Once form is filled with the maximum available VESTS balance, we can choose the 
 
 #### 4. Power down <a name="power-down"></a>
 
-We have two options on how to Power down: Steemconnect and client-side signing. By default we generate a Steemconnect link to Power down (withdraw vesting), but we can also choose the client signing option to Power down right inside tutorial. **Note:** client-side signing will require Active Private key to perform the operation.
+We have two options on how to Power down: Steemlogin and client-side signing. By default we generate a Steemlogin link to Power down (withdraw vesting), but we can also choose the client signing option to Power down right inside tutorial. **Note:** client-side signing will require Active Private key to perform the operation.
 
 In order to enable client signing, we will generate the operation and also show Active Private key (wif) field to sign transaction right there, client side.
 

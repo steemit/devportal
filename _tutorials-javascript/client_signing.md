@@ -17,7 +17,7 @@ We have predefined accounts to select for you to quickly use and few transaction
 
 ## Intro
 
-Client side signing of transaction is yet another way of interacting with Steem blockchain. Compare to [Steemconnect](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemconnect) method, client signing doesn't rely on other servers to generate and verify transaction, except when transaction is broadcasted to the network, it should be routed through one of the servers connected to that network or blockchain. It can be your own local machine running Steem blockchain or it could be any other publicly accessible servers.
+Client side signing of transaction is yet another way of interacting with Steem blockchain. Compare to [Steemlogin](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/02_steemlogin) method, client signing doesn't rely on other servers to generate and verify transaction, except when transaction is broadcasted to the network, it should be routed through one of the servers connected to that network or blockchain. It can be your own local machine running Steem blockchain or it could be any other publicly accessible servers.
 
 ## Steps
 

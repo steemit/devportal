@@ -162,9 +162,9 @@ client.broadcast.updateAccount(accObj, privateKey).then(
 
 The results of the operation is displayed on the UI along with a block number in the console to confirm a successful operation. If you add permission to an account that already has permission will display an error of "Missing Active Authority".
 
-Steemconnect offers an alternative to revoking posting permission with a "simple link" solution. Instead of running through a list of opetions on your account, you can simply use a link similar to the one below. You will be prompted to enter your usename and password and the specified user will have their posting permission removed instantly.
-https://v2.steemconnect.com/revoke/@username
-This is similar to the steemconnect links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://v2.steemconnect.com/sign
+Steemlogin offers an alternative to revoking posting permission with a "simple link" solution. Instead of running through a list of opetions on your account, you can simply use a link similar to the one below. You will be prompted to enter your usename and password and the specified user will have their posting permission removed instantly.
+https://steemlogin.com/revoke/@username
+This is similar to the steemlogin links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://steemlogin.com/sign
 
 ### To run this tutorial
 

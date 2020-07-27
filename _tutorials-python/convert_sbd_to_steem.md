@@ -15,10 +15,10 @@ It should be noted that the converted STEEM will not be available instantly as i
 
 There is a marketplace on Steemit that allows you to "sell" your SBD instantly. With this process you can get your STEEM immediately and at the exact price that you expect. The market place is the better way to convert your SBD. [This article](https://steemit.com/steem/@epico/convert-sbd-to-steem-and-steem-power-guide-2017625t103821622z) provides more information on using the market to exchange your SBD to STEEM
 
-Steemconnect offers an alternative to converting SBD with a "simple link" solution. Instead of running through a list of operations on your account, you can simply use a link similar to the one below substituting the three parameters for your own details. You will be prompted to enter your username and password before the transaction will be executed.
-https://steemconnect.com/sign/convert?owner=username&requestid=1234567&amount=0.000%20SBD
-This is similar to the steemconnect links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://v2.steemconnect.com/sign
-[This article](https://steemit.com/sbd/@timcliff/how-to-convert-sbd-into-steem-using-steemconnect) has more information on using steemconnect
+Steemlogin offers an alternative to converting SBD with a "simple link" solution. Instead of running through a list of operations on your account, you can simply use a link similar to the one below substituting the three parameters for your own details. You will be prompted to enter your username and password before the transaction will be executed.
+https://steemlogin.com/sign/convert?owner=username&requestid=1234567&amount=0.000%20SBD
+This is similar to the steemlogin links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://steemlogin.com/sign
+[This article](https://steemit.com/sbd/@timcliff/how-to-convert-sbd-into-steem-using-steemlogin) has more information on using steemlogin
 
 ## Intro
 

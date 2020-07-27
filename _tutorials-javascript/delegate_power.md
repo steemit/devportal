@@ -1,7 +1,7 @@
 ---
 title: 'JS: Delegate Power'
 position: 27
-description: "_Delegate power to other users using Steemconnect or Client-side signing._"
+description: "_Delegate power to other users using Steemlogin or Client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Delegate Power](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/27_delegate_power) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -20,7 +20,7 @@ This tutorial will show few functions such as querying account by name and getti
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Search account**](#search-account) Get account details after input has account name
 3.  [**Calculate and Fill form**](#fill-form) Calculate available vesting shares and Fill form with details
-4.  [**Delegate power**](#delegate-power) Delegate VESTS with Steemconnect or Client-side signing.
+4.  [**Delegate power**](#delegate-power) Delegate VESTS with Steemlogin or Client-side signing.
 
 #### 1. App setup <a name="app-setup"></a>
 
@@ -68,7 +68,7 @@ Once form is filled with maximum available VESTS balance, you can choose portion
 
 #### 4. Delegate power <a name="delegate-power"></a>
 
-We have 2 options on how to delegate others. Steemconnect and Client-side signing options. By default we generate Steemconnect link to delegate power (delegate vesting shares), but you can choose client signing option to delegate right inside tutorial, note client-side signing will require Active Private key to perform the operation.
+We have 2 options on how to delegate others. Steemlogin and Client-side signing options. By default we generate Steemlogin link to delegate power (delegate vesting shares), but you can choose client signing option to delegate right inside tutorial, note client-side signing will require Active Private key to perform the operation.
 
 In order to enable client signing, we will generate operation and also show Active Private key (wif) field to sign transaction client side.
 Below you can see example of operation and signing transaction, after successful operation broadcast result will be shown in user interface. It will be block number that transaction was included.

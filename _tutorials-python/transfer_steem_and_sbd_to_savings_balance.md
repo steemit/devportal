@@ -13,9 +13,9 @@ In this tutorial we show you how to check the STEEM and SBD balance of an accoun
 
 It should be noted that when funds are being withdrawn from the savings account it takes 3 days for those funds to reflect in the available STEEM/SBD balance. The withdrawal can be cancelled at any point during this waiting period. This measure was put in place to reduce the risk of funds being stolen when accounts are hacked as it gives sufficient time to recover your account before your funds are transferred out. Storing your funds in your savings account is thus more secure than having them as available balances.
 
-Steemconnect offers an alternative to transferring STEEM and SBD with a "simple link" solution. Instead of running through a list of operations on your account, you can simply use a link similar to the one below substituting the four parameters with your own details. You will be prompted to enter your username and password before the transaction will be executed.
-https://steemconnect.com/sign/transfer-to-savings?from=username&to=username&amount=0.000%20STEEM&memo=text
-This is similar to the steemconnect links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://v2.steemconnect.com/sign. There is also a steemconnect link for withdrawing funds.
+Steemlogin offers an alternative to transferring STEEM and SBD with a "simple link" solution. Instead of running through a list of operations on your account, you can simply use a link similar to the one below substituting the four parameters with your own details. You will be prompted to enter your username and password before the transaction will be executed.
+https://steemlogin.com/sign/transfer-to-savings?from=username&to=username&amount=0.000%20STEEM&memo=text
+This is similar to the steemlogin links that have been covered in previous tutorials. For a list of signing operations that work in this manner you can go to https://steemlogin.com/sign. There is also a steemlogin link for withdrawing funds.
 
 ## Intro
 

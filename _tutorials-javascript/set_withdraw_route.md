@@ -9,7 +9,7 @@ layout: full
 
 
 
-We will learn how to allocate a percentage for withdrawal to other accounts using Steemconnect as well as with the client-side signing method. This tutorial runs on the main Steem blockchain. Therefore, any accounts used here will affect real funds on the live network. **Use with caution.**
+We will learn how to allocate a percentage for withdrawal to other accounts using Steemlogin as well as with the client-side signing method. This tutorial runs on the main Steem blockchain. Therefore, any accounts used here will affect real funds on the live network. **Use with caution.**
 
 ## Intro
 
@@ -20,7 +20,7 @@ This tutorial will demonstrate a few functions such as querying account by name 
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Get account routes**](#search-account) Get account's current routes
 3.  [**Fill form**](#fill-form) Fill form with appropriate data
-4.  [**Set withdraw route**](#withdraw-route) Set route with Steemconnect or client-side signing
+4.  [**Set withdraw route**](#withdraw-route) Set route with Steemlogin or client-side signing
 
 #### 1. App setup <a name="app-setup"></a>
 
@@ -69,11 +69,11 @@ document.getElementById('accInfo').innerHTML = info;
 
 Previous routes can be overwritten by changing and submitting a new transaction to the same account.
 
-We also generate a Steemconnect signing link.
+We also generate a Steemlogin signing link.
 
 ```javascript
 window.openSC = async () => {
-    const link = `https://steemconnect.com/sign/set-withdraw-vesting-route?from_account=${
+    const link = `https://steemlogin.com/sign/set-withdraw-vesting-route?from_account=${
         document.getElementById('username').value
     }&percent=${document.getElementById('steem').value * 100}&to_account=${
         document.getElementById('account').value
@@ -84,7 +84,7 @@ window.openSC = async () => {
 
 #### 4. Set withdraw route <a name="withdraw-route"></a>
 
-We have two options on how to Power down: Steemconnect and client-side signing. Since this action requires Active authority, both client-side and Stemconnect signing will require the Active Private key to sign the transaction. The transaction submission function appears as follows:
+We have two options on how to Power down: Steemlogin and client-side signing. Since this action requires Active authority, both client-side and Stemconnect signing will require the Active Private key to sign the transaction. The transaction submission function appears as follows:
 
 ```javascript
 window.submitTx = async () => {

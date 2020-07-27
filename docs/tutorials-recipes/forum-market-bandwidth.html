@@ -1,359 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
-
-	
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
-	<script src="/js/main.js"></script>
-	
-
-	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Forum/Market Bandwidth | Steem Developer</title>
-<meta name="generator" content="Jekyll v3.8.4" />
-<meta property="og:title" content="Forum/Market Bandwidth" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="How to interpret raw bandwidth data." />
-<meta property="og:description" content="How to interpret raw bandwidth data." />
-<link rel="canonical" href="https://developers.steem.io/tutorials-recipes/forum-market-bandwidth" />
-<meta property="og:url" content="https://developers.steem.io/tutorials-recipes/forum-market-bandwidth" />
-<meta property="og:site_name" content="Steem Developer" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
-<script type="application/ld+json">
-{"description":"How to interpret raw bandwidth data.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-recipes/forum-market-bandwidth","headline":"Forum/Market Bandwidth","dateModified":"2018-11-15T17:18:46-06:00","datePublished":"2018-11-15T17:18:46-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-recipes/forum-market-bandwidth"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
 
 
-	
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+    <script src="/js/main.js"></script>
+
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+    <title>Forum/Market Bandwidth | Steem Developer</title>
+    <meta name="generator" content="Jekyll v3.8.4" />
+    <meta property="og:title" content="Forum/Market Bandwidth" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="How to interpret raw bandwidth data." />
+    <meta property="og:description" content="How to interpret raw bandwidth data." />
+    <link rel="canonical" href="https://developers.steem.io/tutorials-recipes/forum-market-bandwidth" />
+    <meta property="og:url" content="https://developers.steem.io/tutorials-recipes/forum-market-bandwidth" />
+    <meta property="og:site_name" content="Steem Developer" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
+    <script type="application/ld+json">
+        {
+            "description": "How to interpret raw bandwidth data.",
+            "@type": "BlogPosting",
+            "url": "https://developers.steem.io/tutorials-recipes/forum-market-bandwidth",
+            "headline": "Forum/Market Bandwidth",
+            "dateModified": "2018-11-15T17:18:46-06:00",
+            "datePublished": "2018-11-15T17:18:46-06:00",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://developers.steem.io/tutorials-recipes/forum-market-bandwidth"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+
+
 </head>
+
 <body>
-<header>
-	<h1>
-		<button type="button" class="open-nav" id="open-nav"></button>
-		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
-	</h1>
-
-	
-	<form action="/search/" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	
-
-	<div id="sidebar" class="sidebar">
-	
-	
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/">
-		<h6 class="ctrl-nav-section title">Introduction</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
-		<h6 class="ctrl-nav-section title">Quickstart</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
-		<h6 class="ctrl-nav-section title">Tutorials</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-python">Python</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/services/">
-		<h6 class="ctrl-nav-section title">Services</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/services/#services-steemit">Steemit.com</a></li>
-						
-					
-						
-						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
-						
-					
-						
-						<li><a href="/services/#services-jussi">Jussi</a></li>
-						
-					
-						
-						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
-						
-					
-						
-						<li><a href="/services/#services-sbds">SBDS</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
-		<h6 class="ctrl-nav-section title">Appbase API</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
-		<h6 class="ctrl-nav-section title">Resources</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/resources/#resources-overview">Overview</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-tools">Tools</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
-		<h6 class="ctrl-nav-section title">Glossary</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
-						
-					
-						
-					
-						
-						<li><a href="/glossary/#glossary-governance">Governance</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-api">API</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-market">Market</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-</div>
+    <header>
+        <h1>
+            <button type="button" class="open-nav" id="open-nav"></button>
+            <a href="/" class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+        </h1>
 
 
-	<!--<p class="copyright">-->
-	<!--<a href="https://steemit.com.com/">-->
-	<!--steemit-->
-	<!--</a>-->
-	<!--</p>-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-</header>
-<div class="main" id="top">
-	<div class="hero">
-		<h1 class="hero__h1">Steem Developer Portal </h1>
-		
-		<img class="hero__img" src="/images/hero.png">
-		
-	</div>
-	<section id="tutorials-recipes-forum-market-bandwidth" class="row tutorials-recipes-forum-market-bandwidth">
-	<h3>
-		<a id="tutorials-recipes-forum-market-bandwidth">
+        <form action="/search/" method="get">
+            <input type="text" name="q" id="search-input" placeholder="Search">
+            <input type="submit" value="Search" style="display: none;">
+        </form>
+
+
+        <div id="sidebar" class="sidebar">
+
+
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/">
+                <h6 class="ctrl-nav-section title">Introduction</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+                <h6 class="ctrl-nav-section title">Quickstart</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+                <h6 class="ctrl-nav-section title">Tutorials</h6>
+                <ul class="cont-nav-section content">
+
+
+
+                    <li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-python">Python</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/services/">
+                <h6 class="ctrl-nav-section title">Services</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/services/#services-steemit">Steemit.com</a></li>
+
+
+
+                    <li><a href="/services/#services-steemlogin">SteemLogin</a></li>
+
+
+
+                    <li><a href="/services/#services-jussi">Jussi</a></li>
+
+
+
+                    <li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+
+
+
+                    <li><a href="/services/#services-sbds">SBDS</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+                <h6 class="ctrl-nav-section title">Appbase API</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+                <h6 class="ctrl-nav-section title">Resources</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/resources/#resources-overview">Overview</a></li>
+
+
+
+                    <li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+
+
+
+                    <li><a href="/resources/#resources-tools">Tools</a></li>
+
+
+
+                    <li><a href="/resources/#resources-steem-login-libs">SteemLogin Libs</a></li>
+
+
+
+                    <li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+                <h6 class="ctrl-nav-section title">Glossary</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-governance">Governance</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-api">API</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-market">Market</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+        </div>
+
+
+        <!--<p class="copyright">-->
+        <!--<a href="https://steemit.com.com/">-->
+        <!--steemit-->
+        <!--</a>-->
+        <!--</p>-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    </header>
+    <div class="main" id="top">
+        <div class="hero">
+            <h1 class="hero__h1">Steem Developer Portal </h1>
+
+            <img class="hero__img" src="/images/hero.png">
+
+        </div>
+        <section id="tutorials-recipes-forum-market-bandwidth" class="row tutorials-recipes-forum-market-bandwidth">
+            <h3>
+                <a id="tutorials-recipes-forum-market-bandwidth">
 			Forum/Market Bandwidth
 			
 		</a>
-	</h3>
-	
-		<span class="description"><p>How to interpret raw bandwidth data.</p>
+            </h3>
+
+            <span class="description"><p>How to interpret raw bandwidth data.</p>
 </span>
-	
 
-	<h3 id="intro">Intro</h3>
 
-<h4 class="danger">
-  Please note, Bandwidth has been replaced by <a href="/search/?q=resource+credits">Resource Credits</a>.  This document is outdated and will remain in place to give historical context prior to HF20.  Also see: <a href="https://github.com/steemit/steem/wiki/RC-Bandwidth-System">RC Bandwidth System</a>, <a href="https://github.com/steemit/steem/releases/tag/v0.20.2">0.20.2 Release Notes</a>, <a href="https://steemit.com/steem/@steemitdev/developer-guide-resource-credit-system">Developer Guide: Resource Credit System</a>
-</h4>
+            <h3 id="intro">Intro</h3>
 
-<p>We’re going over the various API calls needed to determine the remaining bandwidth available to a particular account.  As mentioned in the <a href="https://steem.io/steem-whitepaper.pdf">STEEM Whitepaper</a>:</p>
+            <h4 class="danger">
+                Please note, Bandwidth has been replaced by <a href="/search/?q=resource+credits">Resource Credits</a>. This document is outdated and will remain in place to give historical context prior to HF20. Also see: <a href="https://github.com/steemit/steem/wiki/RC-Bandwidth-System">RC Bandwidth System</a>,
+                <a href="https://github.com/steemit/steem/releases/tag/v0.20.2">0.20.2 Release Notes</a>, <a href="https://steemit.com/steem/@steemitdev/developer-guide-resource-credit-system">Developer Guide: Resource Credit System</a>
+            </h4>
 
-<blockquote>
-  <p>Bandwidth used by an individual user should be measured over a suitably long period of time to allow that
-user to time-shift their usage. Users tend to login, do many things at once, then logout. This means that
-their bandwidth over a short period of time may appear much higher than if viewed over a longer period of
-time. If the time window is stretched too far, then the reserve ratio will not adjust fast enough to respond
-to short-term surges; conversely, if the window is too short then clustering usage will have too big of an
-impact on normal users.</p>
-</blockquote>
+            <p>We’re going over the various API calls needed to determine the remaining bandwidth available to a particular account. As mentioned in the <a href="https://steem.io/steem-whitepaper.pdf">STEEM Whitepaper</a>:</p>
 
-<p>Bandwidth is specific to each account and depends on account activity.</p>
+            <blockquote>
+                <p>Bandwidth used by an individual user should be measured over a suitably long period of time to allow that user to time-shift their usage. Users tend to login, do many things at once, then logout. This means that their bandwidth over a
+                    short period of time may appear much higher than if viewed over a longer period of time. If the time window is stretched too far, then the reserve ratio will not adjust fast enough to respond to short-term surges; conversely, if the
+                    window is too short then clustering usage will have too big of an impact on normal users.</p>
+            </blockquote>
 
-<h3 id="sections">Sections</h3>
+            <p>Bandwidth is specific to each account and depends on account activity.</p>
 
-<ol>
-  <li><a href="#getting-account-bandwidth">Getting Account Bandwidth</a></li>
-  <li><a href="#dynamic-global-properties">Dynamic Global Properties</a></li>
-  <li><a href="#account-steem-power">Account STEEM Power</a></li>
-  <li><a href="#calculate">Calculate</a></li>
-</ol>
+            <h3 id="sections">Sections</h3>
 
-<h3 id="getting-account-bandwidth">Getting Account Bandwidth</h3>
+            <ol>
+                <li><a href="#getting-account-bandwidth">Getting Account Bandwidth</a></li>
+                <li><a href="#dynamic-global-properties">Dynamic Global Properties</a></li>
+                <li><a href="#account-steem-power">Account STEEM Power</a></li>
+                <li><a href="#calculate">Calculate</a></li>
+            </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{
+            <h3 id="getting-account-bandwidth">Getting Account Bandwidth</h3>
+
+            <div class="language-bash highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{
    "jsonrpc":"2.0",
    "method":"condenser_api.get_account_bandwidth",
    "params":[
@@ -362,9 +376,11 @@ impact on normal users.</p>
    ],
    "id":1
 }'</span> https://api.steemit.com
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20846</span><span class="p">,</span><span class="w">
@@ -376,20 +392,24 @@ impact on normal users.</p>
    </span><span class="p">},</span><span class="w">
    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<p>In this example, we got forum (blogging) average bandwidth of 7,525,646,416,619 with a lifetime bandwidth of 386,010,589,000,000.</p>
+            <p>In this example, we got forum (blogging) average bandwidth of 7,525,646,416,619 with a lifetime bandwidth of 386,010,589,000,000.</p>
 
-<p>Note, <code class="highlighter-rouge">average_bandwidth</code> is expressed as an integer with six decimal places represented.  Divide by 1,000,000 in order to get the actual bytes of bandwidth, in this case: 7,525,646 bytes.</p>
+            <p>Note, <code class="highlighter-rouge">average_bandwidth</code> is expressed as an integer with six decimal places represented. Divide by 1,000,000 in order to get the actual bytes of bandwidth, in this case: 7,525,646 bytes.</p>
 
-<h3 id="dynamic-global-properties">Dynamic Global Properties</h3>
+            <h3 id="dynamic-global-properties">Dynamic Global Properties</h3>
 
-<p>To do the calculation, we need <code class="highlighter-rouge">max_virtual_bandwidth</code> and <code class="highlighter-rouge">total_vesting_shares</code> from the global properties, e.g.:</p>
+            <p>To do the calculation, we need <code class="highlighter-rouge">max_virtual_bandwidth</code> and <code class="highlighter-rouge">total_vesting_shares</code> from the global properties, e.g.:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}'</span> https://api.steemit.com
-</code></pre></div></div>
+            <div class="language-bash highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"condenser_api.get_dynamic_global_properties", "params":[], "id":1}'</span> https://api.steemit.com
+</code></pre></div>
+            </div>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"result"</span><span class="p">:{</span><span class="w">
@@ -423,16 +443,20 @@ impact on normal users.</p>
       </span><span class="s2">"max_virtual_bandwidth"</span><span class="p">:</span><span class="s2">"264241152000000000000"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h3 id="account-steem-power">Account STEEM Power</h3>
+            <h3 id="account-steem-power">Account STEEM Power</h3>
 
-<p>We also need to know how much the account has in STEEM Power from <code class="highlighter-rouge">vesting_shares</code> and <code class="highlighter-rouge">received_vesting_shares</code>:</p>
+            <p>We also need to know how much the account has in STEEM Power from <code class="highlighter-rouge">vesting_shares</code> and <code class="highlighter-rouge">received_vesting_shares</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"condenser_api.get_accounts", "params":[["cheetah"]], "id":1}'</span> https://api.steemit.com
-</code></pre></div></div>
+            <div class="language-bash highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">--data</span> <span class="s1">'{"jsonrpc":"2.0", "method":"condenser_api.get_accounts", "params":[["cheetah"]], "id":1}'</span> https://api.steemit.com
+</code></pre></div>
+            </div>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"result"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -542,46 +566,47 @@ impact on normal users.</p>
    </span><span class="p">],</span><span class="w">
    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h3 id="calculate">Calculate</h3>
+            <h3 id="calculate">Calculate</h3>
 
-<p>Now, we can derive <code class="highlighter-rouge">bandwidth_allocated</code>:</p>
+            <p>Now, we can derive <code class="highlighter-rouge">bandwidth_allocated</code>:</p>
 
-<p><code class="highlighter-rouge">bandwidth_allocated = max_virtual_bandwidth * (vesting_shares + received_vesting_shares) / total_vesting_shares</code></p>
+            <p><code class="highlighter-rouge">bandwidth_allocated = max_virtual_bandwidth * (vesting_shares + received_vesting_shares) / total_vesting_shares</code></p>
 
-<p><code class="highlighter-rouge">bandwidth_allocated = bandwidth_allocated / 1000000</code></p>
+            <p><code class="highlighter-rouge">bandwidth_allocated = bandwidth_allocated / 1000000</code></p>
 
-<p>In our example, <code class="highlighter-rouge">bandwidth_allocated = 14034118993</code>.</p>
+            <p>In our example, <code class="highlighter-rouge">bandwidth_allocated = 14034118993</code>.</p>
 
-<p>Now that we have both <code class="highlighter-rouge">bandwidth_allocated</code> and <code class="highlighter-rouge">average_bandwidth</code>, we can determine the percentages.</p>
+            <p>Now that we have both <code class="highlighter-rouge">bandwidth_allocated</code> and <code class="highlighter-rouge">average_bandwidth</code>, we can determine the percentages.</p>
 
-<p>First, we need <code class="highlighter-rouge">average_bandwidth</code> on the same scale as <code class="highlighter-rouge">bandwidth_allocated</code>:</p>
+            <p>First, we need <code class="highlighter-rouge">average_bandwidth</code> on the same scale as <code class="highlighter-rouge">bandwidth_allocated</code>:</p>
 
-<p><code class="highlighter-rouge">average_bandwidth = average_bandwidth / 1000000</code></p>
+            <p><code class="highlighter-rouge">average_bandwidth = average_bandwidth / 1000000</code></p>
 
-<p>Then we can get the percentages:</p>
+            <p>Then we can get the percentages:</p>
 
-<p><code class="highlighter-rouge">bandwidth_used = 100 * average_bandwidth / bandwidth_allocated</code></p>
+            <p><code class="highlighter-rouge">bandwidth_used = 100 * average_bandwidth / bandwidth_allocated</code></p>
 
-<p><code class="highlighter-rouge">bandwidth_remaining = 100 - (100 * average_bandwidth / bandwidth_allocated)</code></p>
+            <p><code class="highlighter-rouge">bandwidth_remaining = 100 - (100 * average_bandwidth / bandwidth_allocated)</code></p>
 
-<p>We can see that <code class="highlighter-rouge">cheetah</code> has used <code class="highlighter-rouge">0.053 %</code> bandwidth and has <code class="highlighter-rouge">99.946 %</code> remaining as of <code class="highlighter-rouge">last_bandwidth_update</code>.</p>
+            <p>We can see that <code class="highlighter-rouge">cheetah</code> has used <code class="highlighter-rouge">0.053 %</code> bandwidth and has <code class="highlighter-rouge">99.946 %</code> remaining as of <code class="highlighter-rouge">last_bandwidth_update</code>.</p>
 
-</section>
+        </section>
 
-</div>
-<div class="footer">
-	<a href="#">Back to top</a>
-</div>
-<script>
-    document.getElementById("open-nav").addEventListener("click", function () {
-        document.body.classList.toggle("nav-open");
-    });
-</script>
+    </div>
+    <div class="footer">
+        <a href="#">Back to top</a>
+    </div>
+    <script>
+        document.getElementById("open-nav").addEventListener("click", function() {
+            document.body.classList.toggle("nav-open");
+        });
+    </script>
 </body>
+
 </html>
 
 
 <script src="/js/adjust.js"></script>
-
