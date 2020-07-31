@@ -5,7 +5,7 @@ position: 2
 
 **What is SteemLogin?**
 
-The goal of SteemLogin is to provide a safe way of connecting to the blockchain via 3rd party apps without compromising the security of your private keys and passwords. It's a simple identity layer built on top of the blockchain allowing users safe access and developers the freedom of not having to handle the authentication system, i.e. managing users' private keys and encryption. This means that devs won't have to opensource their projects in order to gain user trust. When connecting to apps in this manner, neither SteemLogin nor the authorised app store the private keys as the posting key is incrypted on your cookie.
+The goal of SteemLogin (olderly known as SteemConnect) is to provide a safe way of connecting to the blockchain via 3rd party apps without compromising the security of your private keys and passwords. It's a simple identity layer built on top of the blockchain allowing users safe access and developers the freedom of not having to handle the authentication system, i.e. managing users' private keys and encryption. This means that devs won't have to opensource their projects in order to gain user trust. When connecting to apps in this manner, neither SteemLogin nor the authorised app store the private keys as the posting key is incrypted on your cookie.
 
 
 **How SteemLogin is implemented**
@@ -27,8 +27,8 @@ A full breakdown of OAuth2 and how it applies to SteemIt and SteemLogin can be f
 
 **Useful Links**
 
-*   [SteemLogin Repo](https://github.com/steemit/steemlogin)
+*   [SteemLogin Repo](https://github.com/futureshockco/steemlogin.js)
 *   [Community Resources]({{ '/resources/#community-steem-login-libs' | relative_url }})
 
 
-For additional material you can refer to the original steemit [blog](https://steemit.com/steemlogin/@busy.org/introducing-steemlogin-by-busy-identity-authentication-authorization-for-steem-blockchain-s-apps) post by [busy.org](https://busy.org/)
+For additional material you can refer to the original steemit [blog](https://steemit.com/steemconnect/@busy.org/introducing-steemconnect-by-busy-identity-authentication-authorization-for-steem-blockchain-s-apps) post by [busy.org](https://steemit.com/@busy.org)

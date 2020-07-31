@@ -24,7 +24,7 @@ Some other calls that require an access token (or login) are:
 *   Follow
 *   Reblog
 
-Learn more about [Steemlogin operations here](https://github.com/steemit/steemlogin-sdk)
+Learn more about [Steemlogin operations here](https://github.com/futureshockco/steemlogin.js)
 
 ## Steps
 
@@ -38,36 +38,36 @@ Learn more about [Steemlogin operations here](https://github.com/steemit/steemlo
 
 #### 1. Steemlogin Dashboard<a name="sc-dashboard"></a>
 
-Steemlogin is unified authentification system built on top of Steem built in collaboration of Busy.org and Steemit Inc.
+Steemlogin is unified authentification system built on top of Steem.
 Layer to ensure easy access and setup for all application developers as well as secure way for users to interact with Steem apps.
 
 Setting up Steemlogin in your app is straight-forward process and never been this easy.
 
 Here are the steps that helps you to setup new app:
 
-1a. Visit [Steemlogin Dashboard](https://steemlogin.com/dashboard) and login with your Steem credentials
+1a. Visit [Steemlogin Developers](https://steemlogin.com/developers) 
 
-![steemlogin_login](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_login.png?raw=true)
+![steemlogin_login](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_login.png?raw=true)
 
-1b. You will see Applications and Developers section, in Developers section click on `My Apps`
+1b. In Developers section click on `My Apps`
 
-![steemlogin_dashboard](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_dashboard.png?raw=true)
+![steemlogin_dashboard](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_dashboard.png?raw=true)
 
-![steemlogin_new_app](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_new_app.png?raw=true)
+![steemlogin_new_app](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_new_app.png?raw=true)
 
 1c. Create New App using Steemlogin, which will help you create new Steem account for your application. Let's call it `demo-app` for this tutorial purpose.
 
-![steemlogin_account_create](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_account_create.png?raw=true)
+![steemlogin_account_create](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_account_create.png?raw=true)
 
 Account creation fee will be deducted from your balance, make sure you have enough funds to complete account creation.
 
 Next step is to login with account which has enough balance to pay for account creation fee.
 
-![steemlogin_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_signin.png?raw=true)
+![steemlogin_signin](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_signin.png?raw=true)
 
 1d. Give your app name, description, icon image link, website (if available) and Redirect URI(s)
 
-![steemlogin_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemlogin/images/steemlogin_myapps.png?raw=true)
+![steemlogin_myapps](https://github.com/steemit/devportal-tutorials-js/blob/master/tutorials/02_steemconnect/images/steemconnect_myapps.png?raw=true)
 
 Application name and description should give users clear understanding what permissions it requires and what is the purpose of the app.
 
@@ -83,12 +83,12 @@ This is typical backend web development, we hope you know how to set up your bac
 #### 2. Initialize Steemlogin<a name="init-sc"></a>
 
 Once you have setup account for new application, you can setup application with Steemlogin authentification and API processes.
-To do that, you will need to install `sc2-sdk` nodejs package with `npm i sc2-sdk`.
+To do that, you will need to install `steemlogin` nodejs package with `npm i steemlogin`.
 Within application you can initialize Steemlogin
 
 > `app` - is account name for application that we have created in Step I.3, `callbackURL` - is Redirect URI that we have defined in Step I.4, `scope` - permissions application is requiring/asking from users
 
-Now that `sc2-sdk` is initialized we can start authentication and perform simple operations with Steemlogin.
+Now that `steemlogin` is initialized we can start authentication and perform simple operations with Steemlogin.
 
 #### 3. Login URL<a name="login-url"></a>
 
@@ -111,7 +111,7 @@ Now that `sc2-sdk` is initialized we can start authentication and perform simple
 
 #### 7. Logout<a name="logout"></a>
 
-> In order to logout, you can use `revokeToken` function from sc2-sdk.
+> In order to logout, you can use `revokeToken` function from steemlogin.
 
 **That's all there is to it.**
 

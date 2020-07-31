@@ -7,9 +7,9 @@
   purpose: For anyone who wants to start testing their node and applications.
 - name: testnet.steem.vc
   testnet_id: 79276ae
-  url: https://steemprojects.com/projects/p/steem-testnet/
+  url: https://steemscan.com/projects/p/steem-testnet/
   purpose: General bootstrapping to `testnet.steem.vc` maintained maintained by `@almost-digital`.
 - name: TestNET Condenser
   testnet_id: 79276ae
-  url: https://steemprojects.com/projects/p/testnet-condenser/
+  url: https://steemscan.com/projects/p/testnet-condenser/
   purpose: A condenser instance for `testnet.steem.vc`.

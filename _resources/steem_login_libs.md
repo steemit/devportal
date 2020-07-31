@@ -9,9 +9,9 @@ If you're wondering what SteemLogin is, go [here]({{ '/services/#services-steeml
 
 ---
 
-**SteemLogin SDK** - [https://github.com/steemit/steemlogin-sdk](https://github.com/steemit/steemlogin-sdk)
+**SteemLogin SDK** - [https://github.com/futureshockco/steemlogin.js](https://github.com/futureshockco/steemlogin.js)
 
-An official javascript library for utilizing SteemLogin.
+An javascript library for utilizing SteemLogin.
 
 ---
 
