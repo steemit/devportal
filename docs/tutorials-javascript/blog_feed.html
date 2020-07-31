@@ -1,376 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
-
-	
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
-	<script src="/js/main.js"></script>
-	
-
-	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>JS: Blog Feed | Steem Developer</title>
-<meta name="generator" content="Jekyll v3.8.4" />
-<meta property="og:title" content="JS: Blog Feed" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem." />
-<meta property="og:description" content="By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem." />
-<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/blog_feed" />
-<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/blog_feed" />
-<meta property="og:site_name" content="Steem Developer" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
-<script type="application/ld+json">
-{"description":"By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-javascript/blog_feed","headline":"JS: Blog Feed","dateModified":"2018-11-15T17:18:46-06:00","datePublished":"2018-11-15T17:18:46-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/blog_feed"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
 
 
-	
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+    <script src="/js/main.js"></script>
+
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+    <title>JS: Blog Feed | Steem Developer</title>
+    <meta name="generator" content="Jekyll v3.8.4" />
+    <meta property="og:title" content="JS: Blog Feed" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem." />
+    <meta property="og:description" content="By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem." />
+    <link rel="canonical" href="https://developers.steem.io/tutorials-javascript/blog_feed" />
+    <meta property="og:url" content="https://developers.steem.io/tutorials-javascript/blog_feed" />
+    <meta property="og:site_name" content="Steem Developer" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
+    <script type="application/ld+json">
+        {
+            "description": "By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem.",
+            "@type": "BlogPosting",
+            "url": "https://developers.steem.io/tutorials-javascript/blog_feed",
+            "headline": "JS: Blog Feed",
+            "dateModified": "2018-11-15T17:18:46-06:00",
+            "datePublished": "2018-11-15T17:18:46-06:00",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://developers.steem.io/tutorials-javascript/blog_feed"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+
+
 </head>
+
 <body>
-<header>
-	<h1>
-		<button type="button" class="open-nav" id="open-nav"></button>
-		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
-	</h1>
-
-	
-	<form action="/search/" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	
-
-	<div id="sidebar" class="sidebar">
-	
-	
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/">
-		<h6 class="ctrl-nav-section title">Introduction</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
-		<h6 class="ctrl-nav-section title">Quickstart</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
-		<h6 class="ctrl-nav-section title">Tutorials</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-python">Python</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/services/">
-		<h6 class="ctrl-nav-section title">Services</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/services/#services-steemit">Steemit.com</a></li>
-						
-					
-						
-						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
-						
-					
-						
-						<li><a href="/services/#services-jussi">Jussi</a></li>
-						
-					
-						
-						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
-						
-					
-						
-						<li><a href="/services/#services-sbds">SBDS</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
-		<h6 class="ctrl-nav-section title">Appbase API</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
-		<h6 class="ctrl-nav-section title">Resources</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/resources/#resources-overview">Overview</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-tools">Tools</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
-		<h6 class="ctrl-nav-section title">Glossary</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
-						
-					
-						
-					
-						
-						<li><a href="/glossary/#glossary-governance">Governance</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-api">API</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-market">Market</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-</div>
+    <header>
+        <h1>
+            <button type="button" class="open-nav" id="open-nav"></button>
+            <a href="/" class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+        </h1>
 
 
-	<!--<p class="copyright">-->
-	<!--<a href="https://steemit.com.com/">-->
-	<!--steemit-->
-	<!--</a>-->
-	<!--</p>-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-</header>
-<div class="main" id="top">
-	<div class="hero">
-		<h1 class="hero__h1">Steem Developer Portal </h1>
-		
-		<img class="hero__img" src="/images/hero.png">
-		
-	</div>
-	<section id="tutorials-javascript-blog-feed" class="row tutorials-javascript-blog-feed">
-	<h3>
-		<a id="tutorials-javascript-blog-feed">
+        <form action="/search/" method="get">
+            <input type="text" name="q" id="search-input" placeholder="Search">
+            <input type="submit" value="Search" style="display: none;">
+        </form>
+
+
+        <div id="sidebar" class="sidebar">
+
+
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/">
+                <h6 class="ctrl-nav-section title">Introduction</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+                <h6 class="ctrl-nav-section title">Quickstart</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+                <h6 class="ctrl-nav-section title">Tutorials</h6>
+                <ul class="cont-nav-section content">
+
+
+
+                    <li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-python">Python</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/services/">
+                <h6 class="ctrl-nav-section title">Services</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/services/#services-steemit">Steemit.com</a></li>
+
+
+
+                    <li><a href="/services/#services-steemlogin">SteemLogin</a></li>
+
+
+
+                    <li><a href="/services/#services-jussi">Jussi</a></li>
+
+
+
+                    <li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+
+
+
+                    <li><a href="/services/#services-sbds">SBDS</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+                <h6 class="ctrl-nav-section title">Appbase API</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+                <h6 class="ctrl-nav-section title">Resources</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/resources/#resources-overview">Overview</a></li>
+
+
+
+                    <li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+
+
+
+                    <li><a href="/resources/#resources-tools">Tools</a></li>
+
+
+
+                    <li><a href="/resources/#resources-steem-login-libs">SteemLogin Libs</a></li>
+
+
+
+                    <li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+                <h6 class="ctrl-nav-section title">Glossary</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-governance">Governance</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-api">API</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-market">Market</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+        </div>
+
+
+        <!--<p class="copyright">-->
+        <!--<a href="https://steemit.com.com/">-->
+        <!--steemit-->
+        <!--</a>-->
+        <!--</p>-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    </header>
+    <div class="main" id="top">
+        <div class="hero">
+            <h1 class="hero__h1">Steem Developer Portal </h1>
+
+            <img class="hero__img" src="/images/hero.png">
+
+        </div>
+        <section id="tutorials-javascript-blog-feed" class="row tutorials-javascript-blog-feed">
+            <h3>
+                <a id="tutorials-javascript-blog-feed">
 			JS: Blog Feed
 			
 		</a>
-	</h3>
-	
-		<span class="description"><p><em>By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem.</em></p>
+            </h3>
+
+            <span class="description"><p><em>By the end of this tutorial you should know how to fetch most recent five posts from particular user on Steem.</em></p>
 </span>
-	
 
-	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed">Blog Feed</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
-<br /></p>
 
-<p>This tutorial pulls a list of the most recent five user’s posts from the blockchain and displays them in simple list. Also some notes about usage of <code class="highlighter-rouge">client.database.getDiscussions</code> API.</p>
+            <p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/01_blog_feed">Blog Feed</a> can be downloaded as part
+                of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+                <br /></p>
 
-<h2 id="intro">Intro</h2>
+            <p>This tutorial pulls a list of the most recent five user’s posts from the blockchain and displays them in simple list. Also some notes about usage of <code class="highlighter-rouge">client.database.getDiscussions</code> API.</p>
 
-<p>Tutorial is demonstrates the typical process of fetching account blog posts. It is quite useful if you want to embedd your blog posts on your website these tutorial will help you achieve that goal as well. This tutorial will explain and show you how to access the <strong>Steem</strong> blockchain using the <a href="https://github.com/jnordberg/dsteem">dsteem</a> library to build a basic blog list of posts filtered by a <em>tag</em></p>
+            <h2 id="intro">Intro</h2>
 
-<h2 id="steps">Steps</h2>
+            <p>Tutorial is demonstrates the typical process of fetching account blog posts. It is quite useful if you want to embedd your blog posts on your website these tutorial will help you achieve that goal as well. This tutorial will explain and show
+                you how to access the <strong>Steem</strong> blockchain using the <a href="https://github.com/jnordberg/dsteem">dsteem</a> library to build a basic blog list of posts filtered by a <em>tag</em></p>
 
-<ol>
-  <li><a href="#Configure-connection"><strong>Configure connection</strong></a> Configuration of dsteem to use proper connection and network</li>
-  <li><a href="#Query-format"><strong>Query format</strong></a> Simple query format to help use fetch data</li>
-  <li><a href="#Fetch-data-and-format"><strong>Fetch data and format</strong></a> Fetch data and display in proper interface</li>
-</ol>
+            <h2 id="steps">Steps</h2>
 
-<hr />
+            <ol>
+                <li><a href="#Configure-connection"><strong>Configure connection</strong></a> Configuration of dsteem to use proper connection and network</li>
+                <li><a href="#Query-format"><strong>Query format</strong></a> Simple query format to help use fetch data</li>
+                <li><a href="#Fetch-data-and-format"><strong>Fetch data and format</strong></a> Fetch data and display in proper interface</li>
+            </ol>
 
-<h4 id="1-configure-connection">1. Configure connection<a name="Configure-connection"></a></h4>
+            <hr />
 
-<p>In order to connect to the live Steem network, all we have to do is provide connection url to a server that runs on the network. <code class="highlighter-rouge">dsteem</code> by default set up to use live network but it has flexibility to adjust connection to any other testnet or custom networks, more on that in future tutorials.</p>
+            <h4 id="1-configure-connection">1. Configure connection
+                <a name="Configure-connection"></a>
+            </h4>
 
-<p>In first couple lines we require package and define connection server:</p>
+            <p>In order to connect to the live Steem network, all we have to do is provide connection url to a server that runs on the network. <code class="highlighter-rouge">dsteem</code> by default set up to use live network but it has flexibility to
+                adjust connection to any other testnet or custom networks, more on that in future tutorials.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const { Client } = require('dsteem');
+            <p>In first couple lines we require package and define connection server:</p>
+
+            <div class="highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code>const { Client } = require('dsteem');
 
 const client = new Client('https://api.steemit.com');
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<h4 id="2-query-format">2. Query format<a name="Query-format"></a></h4>
+            <h4 id="2-query-format">2. Query format
+                <a name="Query-format"></a>
+            </h4>
 
-<ul>
-  <li>You can add a tag to filter the blog posts that you receive from the server, since we are aiming to fetch blog posts of particular user, we will define username as tag.</li>
-  <li>You can also limit the number of results you would like to receive from the query</li>
-</ul>
+            <ul>
+                <li>You can add a tag to filter the blog posts that you receive from the server, since we are aiming to fetch blog posts of particular user, we will define username as tag.</li>
+                <li>You can also limit the number of results you would like to receive from the query</li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">tag</span><span class="p">:</span> <span class="s1">'steemitblog'</span><span class="p">,</span> <span class="c1">// This tag is used to filter the results by a specific post tag</span>
     <span class="na">limit</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">// This limit allows us to limit the overall results returned to 5</span>
 <span class="p">};</span>
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<h4 id="3-fetch-data-and-format">3. Fetch data and format<a name="Fetch-data-and-format"></a></h4>
+            <h4 id="3-fetch-data-and-format">3. Fetch data and format
+                <a name="Fetch-data-and-format"></a>
+            </h4>
 
-<p><code class="highlighter-rouge">client.database.getDiscussions</code> function is used for fetching discussions or posts. The first argument to this function determines which equivalent of the appbase <code class="highlighter-rouge">condenser_api.get_discussions_by_*</code> api calls it’s going to use.  Below is example of query and keyword <strong>‘blog’</strong> indicates <code class="highlighter-rouge">condenser_api.get_discussions_by_blog</code> and somewhat counter-intuitively <em>query.tag</em> indicates the account from which we want to get posts.</p>
+            <p><code class="highlighter-rouge">client.database.getDiscussions</code> function is used for fetching discussions or posts. The first argument to this function determines which equivalent of the appbase <code class="highlighter-rouge">condenser_api.get_discussions_by_*</code>                api calls it’s going to use. Below is example of query and keyword <strong>‘blog’</strong> indicates <code class="highlighter-rouge">condenser_api.get_discussions_by_blog</code> and somewhat counter-intuitively <em>query.tag</em> indicates
+                the account from which we want to get posts.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    client.database
+            <div class="highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code>    client.database
         .getDiscussions('blog', query)
         .then(result =&gt; {
             var posts = [];
@@ -390,11 +420,13 @@ const client = new Client('https://api.steemit.com');
         .catch(err =&gt; {
             alert('Error occured' + err);
         });
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<p>The result returned form the service is a <code class="highlighter-rouge">JSON</code> object with the following properties:</p>
+            <p>The result returned form the service is a <code class="highlighter-rouge">JSON</code> object with the following properties:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37338948</span><span class="p">,</span><span class="w">
         </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steemitblog"</span><span class="p">,</span><span class="w">
@@ -461,38 +493,39 @@ const client = new Client('https://api.steemit.com');
         </span><span class="s2">"reblogged_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<p>From this result we have access to everything associated to the post including additional metadata which is a <code class="highlighter-rouge">JSON</code> string that must be decoded to use. This <code class="highlighter-rouge">JSON</code> object has additional information and properties for the post including a reference to the image uploaded. And we are displaying this data in meaningful user interface. <em>Note: it is truncated to one element, but you would get five posts in array</em></p>
+            <p>From this result we have access to everything associated to the post including additional metadata which is a <code class="highlighter-rouge">JSON</code> string that must be decoded to use. This <code class="highlighter-rouge">JSON</code>                object has additional information and properties for the post including a reference to the image uploaded. And we are displaying this data in meaningful user interface. <em>Note: it is truncated to one element, but you would get five posts in array</em></p>
 
-<p>That’s all there is to it.</p>
+            <p>That’s all there is to it.</p>
 
-<h3 id="to-run-the-tutorial">To Run the tutorial</h3>
+            <h3 id="to-run-the-tutorial">To Run the tutorial</h3>
 
-<ol>
-  <li>clone this repo</li>
-  <li><code class="highlighter-rouge">cd tutorials/01_blog_feed</code></li>
-  <li><code class="highlighter-rouge">npm i</code></li>
-  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
-  <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
-</ol>
+            <ol>
+                <li>clone this repo</li>
+                <li><code class="highlighter-rouge">cd tutorials/01_blog_feed</code></li>
+                <li><code class="highlighter-rouge">npm i</code></li>
+                <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+                <li>After a few moments, the server should be running at <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+            </ol>
 
-<hr />
+            <hr />
 
-</section>
+        </section>
 
-</div>
-<div class="footer">
-	<a href="#">Back to top</a>
-</div>
-<script>
-    document.getElementById("open-nav").addEventListener("click", function () {
-        document.body.classList.toggle("nav-open");
-    });
-</script>
+    </div>
+    <div class="footer">
+        <a href="#">Back to top</a>
+    </div>
+    <script>
+        document.getElementById("open-nav").addEventListener("click", function() {
+            document.body.classList.toggle("nav-open");
+        });
+    </script>
 </body>
+
 </html>
 
 
 <script src="/js/adjust.js"></script>
-

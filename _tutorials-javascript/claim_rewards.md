@@ -1,7 +1,7 @@
 ---
 title: 'JS: Claim Rewards'
 position: 23
-description: "_Learn how to claim rewards from unclaimed reward balance using Steemconnect as well as client signing method._"
+description: "_Learn how to claim rewards from unclaimed reward balance using Steemlogin as well as client signing method._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Claim Rewards](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/23_claim_rewards) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -20,7 +20,7 @@ This tutorial will show few functions such as querying account by name and getti
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Search account**](#search-account) Get account details after input has account name
 3.  [**Fill form**](#fill-form) Fill form with account reward balances
-4.  [**Claim reward**](#claim-reward) Claim reward with Steemconnect or Client signing options
+4.  [**Claim reward**](#claim-reward) Claim reward with Steemlogin or Client signing options
 
 #### 1. App setup <a name="app-setup"></a>
 
@@ -66,7 +66,7 @@ document.getElementById('sp').value = reward_vests;
 
 #### 4. Claim reward <a name="claim-reward"></a>
 
-We have 2 options on how to claim rewards. Steemconnect and Client signing options. We generate Steemconnect link to claim rewards, but you can also choose client signing option to claim rewards right inside tutorial.
+We have 2 options on how to claim rewards. Steemlogin and Client signing options. We generate Steemlogin link to claim rewards, but you can also choose client signing option to claim rewards right inside tutorial.
 
 In order to enable client signing, we will generate operation and also show Posting Private key (wif) field to sign transaction right there client side.
 Below you can see example of operation and signing transaction, after successful operation broadcast result will be shown in user interface. It will be block number that transaction was included.

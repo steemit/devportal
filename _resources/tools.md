@@ -15,12 +15,6 @@ Interactive Steem API swagger, [open-source](https://github.com/eSteemApp/steema
 
 ---
 
-**SteemSQL** - [http://www.steemsql.com/](http://www.steemsql.com/)
-
-A private Microsoft SQL server database with Steem blockchain data, subscription based, allows you to do flexible queries and analyze blockchain data.
-
----
-
 **eSync** - [https://github.com/eSteemApp/esync](https://github.com/eSteemApp/esync)
 
 eSync extracts Steem blockchain data and saves into Mongodb, written in Nodejs.
@@ -33,6 +27,6 @@ SteemPress is a WordPress plugin to allow you to automatically publish your arti
 
 ---
 
-_**Many more projects and tools can be found at [https://steemprojects.com](https://steemprojects.com)**_
+_**Many more projects and tools can be found at [https://steemscan.com](https://steemscan.com)**_
 
 ---

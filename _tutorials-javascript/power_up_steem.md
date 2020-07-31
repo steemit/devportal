@@ -1,7 +1,7 @@
 ---
 title: 'JS: Power Up Steem'
 position: 24
-description: "_Power up an account's Steem using either Steemconnect or a client-side signing._"
+description: "_Power up an account's Steem using either Steemlogin or a client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Power Up Steem](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/24_power_up_steem) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -20,7 +20,7 @@ This tutorial will show few functions such as querying account by name and getti
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Search account**](#search-account) Get account details after input has account name
 3.  [**Fill form**](#fill-form) Fill form with account reward balances
-4.  [**Power up**](#power-up) Power up STEEM with Steemconnect or Client-side signing.
+4.  [**Power up**](#power-up) Power up STEEM with Steemlogin or Client-side signing.
 
 #### 1. App setup <a name="app-setup"></a>
 
@@ -62,7 +62,7 @@ const receiver = document.getElementById('receiver').value;
 
 #### 4. Power up <a name="power-up"></a>
 
-We have 2 options on how to Power up. Steemconnect and Client-side signing options. By default we generate Steemconnect link to Power up (transfer to vesting), but you can use client signing option to Power up right inside tutorial, note client-side signing will require Active private key to perform operation.
+We have 2 options on how to Power up. Steemlogin and Client-side signing options. By default we generate Steemlogin link to Power up (transfer to vesting), but you can use client signing option to Power up right inside tutorial, note client-side signing will require Active private key to perform operation.
 
 In order to enable client signing, we will generate operation and also show Active Private key (wif) field to sign transaction right there client side.
 Below you can see example of operation and signing transaction, after successful operation broadcast result will be shown in user interface. It will be block number that transaction was included.

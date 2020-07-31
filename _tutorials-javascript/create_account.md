@@ -1,7 +1,7 @@
 ---
 title: 'JS: Create Account'
 position: 26
-description: "_Create Steem account using Steemconnect as well as with client-side signing._"
+description: "_Create Steem account using Steemlogin as well as with client-side signing._"
 layout: full
 ---              
 <span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of [Create Account](https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/26_create_account) can be downloaded as part of the [JS tutorials repository](https://github.com/steemit/devportal-tutorials-js).</span>
@@ -20,7 +20,7 @@ This tutorial will show few functions such as querying account by name and check
 1.  [**App setup**](#app-setup) Setup `dsteem` to use the proper connection and network.
 2.  [**Search account**](#search-account) Get account details after input has account name
 3.  [**Generate private keys**](#generate-keys) Generate proper keys for new account
-4.  [**Create account**](#create-account) Create account via Client-side or Steemconnect
+4.  [**Create account**](#create-account) Create account via Client-side or Steemlogin
 
 #### 1. App setup <a name="app-setup"></a>
 

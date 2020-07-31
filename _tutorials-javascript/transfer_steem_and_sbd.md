@@ -11,7 +11,7 @@ layout: full
 
 This tutorial will take you through the process of preparing and submitting a `transfer` using the `broadcast` operation. Two demo accounts are provided to use on the `testnet` but all variables can be easily changed and applied to the `production server`.
 
-There is also an alternative method to transfer from one account to another using a `hot signing` link that can be generated via [Steemconnect](https://steemconnect.com/sign/). You create a link using the `to` account, the amount, and a `memo` (optional comments). This [link](https://steemconnect.com/sign/transfer?to=steemitblog&amount=1.000%20STEEM) then allows you to do a transfer simply by adding the login details of the `from` account. This is a very simple way to send a payment request to any other user with the correct details already provided by the link.
+There is also an alternative method to transfer from one account to another using a `hot signing` link that can be generated via [Steemlogin](https://steemlogin.com/sign/). You create a link using the `to` account, the amount, and a `memo` (optional comments). This [link](https://steemlogin.com/sign/transfer?to=steemitblog&amount=1.000%20STEEM) then allows you to do a transfer simply by adding the login details of the `from` account. This is a very simple way to send a payment request to any other user with the correct details already provided by the link.
 
 ## Intro
 

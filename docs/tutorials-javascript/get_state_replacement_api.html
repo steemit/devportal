@@ -1,353 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
-
-	
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
-	<script src="/js/main.js"></script>
-	
-
-	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>JS: Get State Replacement Api | Steem Developer</title>
-<meta name="generator" content="Jekyll v3.8.4" />
-<meta property="og:title" content="JS: Get State Replacement Api" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="This is a list of replacement API calls for each of the different routes available from the getState function." />
-<meta property="og:description" content="This is a list of replacement API calls for each of the different routes available from the getState function." />
-<link rel="canonical" href="https://developers.steem.io/tutorials-javascript/get_state_replacement_api" />
-<meta property="og:url" content="https://developers.steem.io/tutorials-javascript/get_state_replacement_api" />
-<meta property="og:site_name" content="Steem Developer" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
-<script type="application/ld+json">
-{"description":"This is a list of replacement API calls for each of the different routes available from the getState function.","@type":"BlogPosting","url":"https://developers.steem.io/tutorials-javascript/get_state_replacement_api","headline":"JS: Get State Replacement Api","dateModified":"2018-11-15T17:18:46-06:00","datePublished":"2018-11-15T17:18:46-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://developers.steem.io/tutorials-javascript/get_state_replacement_api"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cousine|Inconsolata" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
 
 
-	
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/css/fontawesome-all.min.css">
+    <script src="/js/main.js"></script>
+
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+    <title>JS: Get State Replacement Api | Steem Developer</title>
+    <meta name="generator" content="Jekyll v3.8.4" />
+    <meta property="og:title" content="JS: Get State Replacement Api" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="This is a list of replacement API calls for each of the different routes available from the getState function." />
+    <meta property="og:description" content="This is a list of replacement API calls for each of the different routes available from the getState function." />
+    <link rel="canonical" href="https://developers.steem.io/tutorials-javascript/get_state_replacement_api" />
+    <meta property="og:url" content="https://developers.steem.io/tutorials-javascript/get_state_replacement_api" />
+    <meta property="og:site_name" content="Steem Developer" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-11-15T17:18:46-06:00" />
+    <script type="application/ld+json">
+        {
+            "description": "This is a list of replacement API calls for each of the different routes available from the getState function.",
+            "@type": "BlogPosting",
+            "url": "https://developers.steem.io/tutorials-javascript/get_state_replacement_api",
+            "headline": "JS: Get State Replacement Api",
+            "dateModified": "2018-11-15T17:18:46-06:00",
+            "datePublished": "2018-11-15T17:18:46-06:00",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://developers.steem.io/tutorials-javascript/get_state_replacement_api"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+
+
 </head>
+
 <body>
-<header>
-	<h1>
-		<button type="button" class="open-nav" id="open-nav"></button>
-		<a href="/"  class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
-	</h1>
-
-	
-	<form action="/search/" method="get">
-		<input type="text" name="q" id="search-input" placeholder="Search">
-		<input type="submit" value="Search" style="display: none;">
-	</form>
-	
-
-	<div id="sidebar" class="sidebar">
-	
-	
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/">
-		<h6 class="ctrl-nav-section title">Introduction</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/#introduction-welcome">Welcome to Steem</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
-		<h6 class="ctrl-nav-section title">Quickstart</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
-						
-					
-						
-						<li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
-		<h6 class="ctrl-nav-section title">Tutorials</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-						<li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-python">Python</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
-					
-				
-					
-						<li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/services/">
-		<h6 class="ctrl-nav-section title">Services</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/services/#services-steemit">Steemit.com</a></li>
-						
-					
-						
-						<li><a href="/services/#services-steemconnect">SteemConnect</a></li>
-						
-					
-						
-						<li><a href="/services/#services-jussi">Jussi</a></li>
-						
-					
-						
-						<li><a href="/services/#services-imagehoster">ImageHoster</a></li>
-						
-					
-						
-						<li><a href="/services/#services-sbds">SBDS</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
-		<h6 class="ctrl-nav-section title">Appbase API</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
-						
-					
-						
-						<li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/resources/">
-		<h6 class="ctrl-nav-section title">Resources</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/resources/#resources-overview">Overview</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-tools">Tools</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-steem-connect-libs">SteemConnect Libs</a></li>
-						
-					
-						
-						<li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-		
-    <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
-		<h6 class="ctrl-nav-section title">Glossary</h6>
-		<ul class="cont-nav-section content">
-			
-				
-					
-					
-						
-						<li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
-						
-					
-						
-					
-						
-						<li><a href="/glossary/#glossary-governance">Governance</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-transactions">Transactions</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-api">API</a></li>
-						
-					
-						
-						<li><a href="/glossary/#glossary-market">Market</a></li>
-						
-					
-				
-			
-		</ul>
-	</section>
-	
-</div>
+    <header>
+        <h1>
+            <button type="button" class="open-nav" id="open-nav"></button>
+            <a href="/" class="logo-link"><img src="/images/logotype_white.svg" height="40" alt="Steem Developer logo"></a>
+        </h1>
 
 
-	<!--<p class="copyright">-->
-	<!--<a href="https://steemit.com.com/">-->
-	<!--steemit-->
-	<!--</a>-->
-	<!--</p>-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-</header>
-<div class="main" id="top">
-	<div class="hero">
-		<h1 class="hero__h1">Steem Developer Portal </h1>
-		
-		<img class="hero__img" src="/images/hero.png">
-		
-	</div>
-	<section id="tutorials-javascript-get-state-replacement-api" class="row tutorials-javascript-get-state-replacement-api">
-	<h3>
-		<a id="tutorials-javascript-get-state-replacement-api">
+        <form action="/search/" method="get">
+            <input type="text" name="q" id="search-input" placeholder="Search">
+            <input type="submit" value="Search" style="display: none;">
+        </form>
+
+
+        <div id="sidebar" class="sidebar">
+
+
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/">
+                <h6 class="ctrl-nav-section title">Introduction</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/#introduction-welcome">Welcome to Steem</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/quickstart/">
+                <h6 class="ctrl-nav-section title">Quickstart</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/quickstart/#quickstart-choose-library">Choose Library</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-steemd-nodes">steemd Nodes</a></li>
+
+
+
+                    <li><a href="/quickstart/#quickstart-testnet">Steem Testnet</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/tutorials/">
+                <h6 class="ctrl-nav-section title">Tutorials</h6>
+                <ul class="cont-nav-section content">
+
+
+
+                    <li><a href="/tutorials/#tutorials-javascript">Javascript</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-python">Python</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-ruby">Ruby</a></li>
+
+
+
+                    <li><a href="/tutorials/#tutorials-recipes">Recipes</a></li>
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/services/">
+                <h6 class="ctrl-nav-section title">Services</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/services/#services-steemit">Steemit.com</a></li>
+
+
+
+                    <li><a href="/services/#services-steemlogin">SteemLogin</a></li>
+
+
+
+                    <li><a href="/services/#services-jussi">Jussi</a></li>
+
+
+
+                    <li><a href="/services/#services-imagehoster">ImageHoster</a></li>
+
+
+
+                    <li><a href="/services/#services-sbds">SBDS</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/apidefinitions/">
+                <h6 class="ctrl-nav-section title">Appbase API</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-condenser-api">Condenser Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops-comment">Broadcast Ops Comment</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-by-key-api">Account By Key Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-account-history-api">Account History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-database-api">Database Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-follow-api">Follow Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-jsonrpc">Jsonrpc</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-market-history-api">Market History Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-network-broadcast-api">Network Broadcast Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-rc-api">Rc Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-tags-api">Tags Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-witness-api">Witness Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-block-api">Block Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-debug-node-api">Debug Node Api</a></li>
+
+
+
+                    <li><a href="/apidefinitions/#apidefinitions-broadcast-ops">Broadcast Ops</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/resources/">
+                <h6 class="ctrl-nav-section title">Resources</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/resources/#resources-overview">Overview</a></li>
+
+
+
+                    <li><a href="/resources/#resources-client-libs">Client Libraries</a></li>
+
+
+
+                    <li><a href="/resources/#resources-tools">Tools</a></li>
+
+
+
+                    <li><a href="/resources/#resources-steem-login-libs">SteemLogin Libs</a></li>
+
+
+
+                    <li><a href="/resources/#resources-developeradvocate">Community & Help</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+
+            <section class="pnl-main-nav-section main-nav-section" url="/glossary/">
+                <h6 class="ctrl-nav-section title">Glossary</h6>
+                <ul class="cont-nav-section content">
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-chain-basics">Chain Basics</a></li>
+
+
+
+
+
+                    <li><a href="/glossary/#glossary-governance">Governance</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-transactions">Transactions</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-api">API</a></li>
+
+
+
+                    <li><a href="/glossary/#glossary-market">Market</a></li>
+
+
+
+
+                </ul>
+            </section>
+
+        </div>
+
+
+        <!--<p class="copyright">-->
+        <!--<a href="https://steemit.com.com/">-->
+        <!--steemit-->
+        <!--</a>-->
+        <!--</p>-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    </header>
+    <div class="main" id="top">
+        <div class="hero">
+            <h1 class="hero__h1">Steem Developer Portal </h1>
+
+            <img class="hero__img" src="/images/hero.png">
+
+        </div>
+        <section id="tutorials-javascript-get-state-replacement-api" class="row tutorials-javascript-get-state-replacement-api">
+            <h3>
+                <a id="tutorials-javascript-get-state-replacement-api">
 			JS: Get State Replacement Api
 			
 		</a>
-	</h3>
-	
-		<span class="description"><p>This is a list of replacement API calls for each of the different <em>routes</em> available from the <code class="highlighter-rouge">getState</code> function.</p>
+            </h3>
+
+            <span class="description"><p>This is a list of replacement API calls for each of the different <em>routes</em> available from the <code class="highlighter-rouge">getState</code> function.</p>
 </span>
-	
 
-	<p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/34_get_state_replacement_api">Get State Replacement Api</a> can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
-<br /></p>
 
-<h2 id="intro">Intro</h2>
+            <p><span class="fa-pull-left top-of-tutorial-repo-link"><span class="first-word">Full</span>, runnable src of <a href="https://github.com/steemit/devportal-tutorials-js/tree/master/tutorials/34_get_state_replacement_api">Get State Replacement Api</a>                can be downloaded as part of the <a href="https://github.com/steemit/devportal-tutorials-js">JS tutorials repository</a>.</span>
+                <br /></p>
 
-<p>With the <code class="highlighter-rouge">getState</code> API call retrieving ALL block information and now being deprecated, a more efficient process is required to call only the dataset that you require for a your specific application. There are a couple different <code class="highlighter-rouge">routes</code> (data groupings) that can be found within the <code class="highlighter-rouge">getState</code> function. Each of these will be described and a replacement API call will be discussed.</p>
+            <h2 id="intro">Intro</h2>
 
-<p>Included in this single <code class="highlighter-rouge">getState</code> call is the list of content being requested, the latest Dynamic Global Properties, the latest Account Data for the authors included in the results, and the current feed price. The <code class="highlighter-rouge">getState</code> function is great in order to get the first 20 posts (and account information based on the post authors) based on the selected tag. If the query field is left empty <code class="highlighter-rouge">getState</code> automatically calls info based on the <code class="highlighter-rouge">trending</code> tag. <code class="highlighter-rouge">getState</code> can also be used to call information for a specific account.</p>
+            <p>With the <code class="highlighter-rouge">getState</code> API call retrieving ALL block information and now being deprecated, a more efficient process is required to call only the dataset that you require for a your specific application. There
+                are a couple different <code class="highlighter-rouge">routes</code> (data groupings) that can be found within the <code class="highlighter-rouge">getState</code> function. Each of these will be described and a replacement API call will
+                be discussed.</p>
 
-<p>The call <code class="highlighter-rouge">routes</code> that will be covered are for:</p>
+            <p>Included in this single <code class="highlighter-rouge">getState</code> call is the list of content being requested, the latest Dynamic Global Properties, the latest Account Data for the authors included in the results, and the current feed
+                price. The <code class="highlighter-rouge">getState</code> function is great in order to get the first 20 posts (and account information based on the post authors) based on the selected tag. If the query field is left empty <code class="highlighter-rouge">getState</code>                automatically calls info based on the <code class="highlighter-rouge">trending</code> tag. <code class="highlighter-rouge">getState</code> can also be used to call information for a specific account.</p>
 
-<ol>
-  <li><a href="#accounts"><strong>accounts</strong></a></li>
-  <li><a href="#content"><strong>content</strong></a></li>
-  <li><a href="#price"><strong>feed_price</strong></a></li>
-  <li><a href="#props"><strong>props</strong></a></li>
-  <li><a href="#tags"><strong>tags</strong></a></li>
-  <li><a href="#tagidx"><strong>tag_idx</strong></a></li>
-  <li><a href="#schedule"><strong>witness_schedule</strong></a></li>
-  <li><a href="#witness"><strong>witnesses</strong></a></li>
-</ol>
+            <p>The call <code class="highlighter-rouge">routes</code> that will be covered are for:</p>
 
-<h4 id="current-getstate-result">Current getState() result:</h4>
+            <ol>
+                <li><a href="#accounts"><strong>accounts</strong></a></li>
+                <li><a href="#content"><strong>content</strong></a></li>
+                <li><a href="#price"><strong>feed_price</strong></a></li>
+                <li><a href="#props"><strong>props</strong></a></li>
+                <li><a href="#tags"><strong>tags</strong></a></li>
+                <li><a href="#tagidx"><strong>tag_idx</strong></a></li>
+                <li><a href="#schedule"><strong>witness_schedule</strong></a></li>
+                <li><a href="#witness"><strong>witnesses</strong></a></li>
+            </ol>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <h4 id="current-getstate-result">Current getState() result:</h4>
+
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"current_route"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"props"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"head_block_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -409,31 +428,39 @@
   </span><span class="s2">"feed_price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000 STEEM"</span><span class="p">},</span><span class="w">
   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h2 id="use-cases-and-data-sets">Use cases and data sets</h2>
+            <h2 id="use-cases-and-data-sets">Use cases and data sets</h2>
 
-<h4 id="route-getstateaccounts">Route: getState(‘accounts’)<a name="accounts"></a></h4>
+            <h4 id="route-getstateaccounts">Route: getState(‘accounts’)
+                <a name="accounts"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Returns a list of account objects for the top 20 trending post authors or a single account if specified.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Returns a list of account objects for the top 20 trending post authors or a single account if specified.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">([</span><span class="s1">'username'</span><span class="p">])</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">([</span><span class="s1">'username'</span><span class="p">])</span>
+</code></pre></div>
+            </div>
 
-<p>In order to get the full compliment of account information for a specified account, <code class="highlighter-rouge">getAccounts</code> can be used as in the example above. If you require this information for the top 20 trending authors, you can use the function as per <code class="highlighter-rouge">getState('content')</code> to retrieve the author names and then get the information per individual. The account information can be used to track balances, vesting, followers, witness votes and pending rewards among others.</p>
+            <p>In order to get the full compliment of account information for a specified account, <code class="highlighter-rouge">getAccounts</code> can be used as in the example above. If you require this information for the top 20 trending authors, you
+                can use the function as per <code class="highlighter-rouge">getState('content')</code> to retrieve the author names and then get the information per individual. The account information can be used to track balances, vesting, followers,
+                witness votes and pending rewards among others.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"account_auths"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -516,29 +543,38 @@
   </span><span class="s2">"witness_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"witnesses_voted_for"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatecontent">Route: getState(‘content’)<a name="content"></a></h4>
+            <h4 id="route-getstatecontent">Route: getState(‘content’)
+                <a name="content"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: The <code class="highlighter-rouge">content</code> in getState calls the top 20 trending posts</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: The <code class="highlighter-rouge">content</code> in getState calls the top 20 trending posts</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_discussions_by_trending'</span><span class="p">,[{</span><span class="na">limit</span><span class="p">:</span><span class="mi">20</span><span class="p">}])</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_discussions_by_trending'</span><span class="p">,[{</span><span class="na">limit</span><span class="p">:</span><span class="mi">20</span><span class="p">}])</span>
+</code></pre></div>
+            </div>
 
-<p>While <code class="highlighter-rouge">getState()</code> truncates the post body at 1024 characters, <code class="highlighter-rouge">getDiscussionsBy</code> will not truncate the body unless you provide a truncate_body value in the query structure. <code class="highlighter-rouge">getDiscussionsBy</code> can be executed by trending, created, active, cashout, payout, votes, children, hot, feed, blog or comments. This provides a wide range by which the posts can be called depending on the specific needs. Within the <code class="highlighter-rouge">query</code> parameter specific tags, filters, authors and permlinks can be provided. The limit can also be increased to a maximum of 100 posts where <code class="highlighter-rouge">getState</code> is limited to the first 20. You can also refer to the <a href="https://developers.steem.io/tutorials-javascript/get_posts">get post</a> tutorial for a simplified database call for posts. The detail provided by this statement can be used to track pending payouts, curator rewards and votes for the trending, or specified posts.</p>
+            <p>While <code class="highlighter-rouge">getState()</code> truncates the post body at 1024 characters, <code class="highlighter-rouge">getDiscussionsBy</code> will not truncate the body unless you provide a truncate_body value in the query structure.
+                <code class="highlighter-rouge">getDiscussionsBy</code> can be executed by trending, created, active, cashout, payout, votes, children, hot, feed, blog or comments. This provides a wide range by which the posts can be called depending
+                on the specific needs. Within the <code class="highlighter-rouge">query</code> parameter specific tags, filters, authors and permlinks can be provided. The limit can also be increased to a maximum of 100 posts where <code class="highlighter-rouge">getState</code>                is limited to the first 20. You can also refer to the <a href="https://developers.steem.io/tutorials-javascript/get_posts">get post</a> tutorial for a simplified database call for posts. The detail provided by this statement can be used
+                to track pending payouts, curator rewards and votes for the trending, or specified posts.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"abs_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60411661082705"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T19:47:15"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"active_votes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -585,60 +621,74 @@
   </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/witness-update/@therealwolf/witness-essentials-hf20-ready"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"vote_rshares"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60411661082705"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatefeed_price">Route: getState(‘feed_price’)<a name="price"></a></h4>
+            <h4 id="route-getstatefeed_price">Route: getState(‘feed_price’)
+                <a name="price"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: The price feed is used by the Steem blockchain when it calculates how many SBD it owes for its author rewards. It is also used to calculate the worth in $US displayed in the wallet. The price feed is the median price feed of the last 3.5 days of all the top 20 witnesses’ price feed.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: The price feed is used by the Steem blockchain when it calculates how many SBD it owes for its author rewards. It is also used to calculate the worth in $US displayed in the wallet. The price feed is the median price feed
+                        of the last 3.5 days of all the top 20 witnesses’ price feed.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getCurrentMedianHistoryPrice</span><span class="p">()</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getCurrentMedianHistoryPrice</span><span class="p">()</span>
+</code></pre></div>
+            </div>
 
-<p>This provides the same data as <code class="highlighter-rouge">getState</code> but is executed much faster due to the limited amount of information provided by this function.</p>
+            <p>This provides the same data as <code class="highlighter-rouge">getState</code> but is executed much faster due to the limited amount of information provided by this function.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"amount"</span><span class="p">:</span><span class="err"> </span><span class="mf">0.887</span><span class="p">,</span><span class="err"> </span><span class="s2">"symbol"</span><span class="p">:</span><span class="err"> </span><span class="s2">"SBD"</span><span class="p">},</span><span class="w">
   </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"amount"</span><span class="p">:</span><span class="err"> </span><span class="mi">1</span><span class="p">,</span><span class="err"> </span><span class="s2">"symbol"</span><span class="p">:</span><span class="err"> </span><span class="s2">"STEEM"</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstateprops">Route: getState(‘props’)<a name="props"></a></h4>
+            <h4 id="route-getstateprops">Route: getState(‘props’)
+                <a name="props"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Provides detailed information of the block properties. Block number, witness, current STEEM and SBD supply, pending rewards and total vesting fund and shares among others.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Provides detailed information of the block properties. Block number, witness, current STEEM and SBD supply, pending rewards and total vesting fund and shares among others.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//all block info</span>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="c1">//all block info</span>
 <span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getDynamicGlobalProperties</span><span class="p">()</span>
 <span class="c1">//head block number only</span>
 <span class="nx">blockchainAPI</span><span class="p">.</span><span class="nx">getCurrentBlockNum</span><span class="p">()</span>
 <span class="c1">//simple head block info</span>
 <span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getBlock</span><span class="p">(</span><span class="nx">HeadBlockNum</span><span class="p">)</span>
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<p><code class="highlighter-rouge">getDynamicGlobalProperties()</code> provides the same level of information and tracks the same values for each created block. You can also call a simplified version of block info containing only the block_id, previous block_id, signing_key, timestamp, witness and witness signature by using the current head block number with the <code class="highlighter-rouge">getBlock</code> database call.</p>
+            <p><code class="highlighter-rouge">getDynamicGlobalProperties()</code> provides the same level of information and tracks the same values for each created block. You can also call a simplified version of block info containing only the block_id,
+                previous block_id, signing_key, timestamp, witness and witness signature by using the current head block number with the <code class="highlighter-rouge">getBlock</code> database call.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"average_block_size"</span><span class="p">:</span><span class="mi">122</span><span class="p">,</span><span class="w">
   </span><span class="s2">"confidential_sbd_supply"</span><span class="p">:</span><span class="s2">"0.000 SBD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"confidential_supply"</span><span class="p">:</span><span class="s2">"0.000 STEEM"</span><span class="p">,</span><span class="w">
@@ -672,29 +722,36 @@
   </span><span class="s2">"virtual_supply"</span><span class="p">:</span><span class="s2">"294324509.379 STEEM"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"vote_power_reserve_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatetags">Route: getState(‘tags’)<a name="tags"></a></h4>
+            <h4 id="route-getstatetags">Route: getState(‘tags’)
+                <a name="tags"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Calls a list of trending tags with detailed information on each tag. The list is displayed alphabetically.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Calls a list of trending tags with detailed information on each tag. The list is displayed alphabetically.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_trending_tags'</span><span class="p">,[</span><span class="nx">startingValue</span><span class="p">,</span> <span class="nx">limit</span><span class="p">])</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_trending_tags'</span><span class="p">,[</span><span class="nx">startingValue</span><span class="p">,</span> <span class="nx">limit</span><span class="p">])</span>
+</code></pre></div>
+            </div>
 
-<p>The <code class="highlighter-rouge">getTrendingTags</code> function calls the same information as with <code class="highlighter-rouge">getState</code> but can be limited in the number of results. The data on each tag includes the number of votes and comments made with that tag as well as the total payouts for that tag. This is useful to determine which tags are most popular to assist in effective post creation.</p>
+            <p>The <code class="highlighter-rouge">getTrendingTags</code> function calls the same information as with <code class="highlighter-rouge">getState</code> but can be limited in the number of results. The data on each tag includes the number of
+                votes and comments made with that tag as well as the total payouts for that tag. This is useful to determine which tags are most popular to assist in effective post creation.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">31203776</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"life"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"net_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">54671586</span><span class="p">,</span><span class="w">
@@ -702,61 +759,75 @@
   </span><span class="s2">"total_payouts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61584243.124 SBD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trending"</span><span class="p">:</span><span class="w"> </span><span class="s2">"114450355665"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatetag_idx">Route: getState(‘tag_idx’)<a name="tagidx"></a></h4>
+            <h4 id="route-getstatetag_idx">Route: getState(‘tag_idx’)
+                <a name="tagidx"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Provides a list of names (index) of the current tags (according to trending) available on the blockchain with no additional information.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Provides a list of names (index) of the current tags (according to trending) available on the blockchain with no additional information.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_trending_tags'</span><span class="p">,[</span><span class="nx">startingValue</span><span class="p">,</span> <span class="nx">limit</span><span class="p">])</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_trending_tags'</span><span class="p">,[</span><span class="nx">startingValue</span><span class="p">,</span> <span class="nx">limit</span><span class="p">])</span>
+</code></pre></div>
+            </div>
 
-<p>This information can be gained by the using the same method as for <code class="highlighter-rouge">getState('tags')</code> and then only displaying the <code class="highlighter-rouge">name</code> object of the array of tags provided. You can refer to the tutorial <a href="https://developers.steem.io/tutorials-javascript/search_tags">search tags</a> for a detailed example of this.</p>
+            <p>This information can be gained by the using the same method as for <code class="highlighter-rouge">getState('tags')</code> and then only displaying the <code class="highlighter-rouge">name</code> object of the array of tags provided. You can
+                refer to the tutorial <a href="https://developers.steem.io/tutorials-javascript/search_tags">search tags</a> for a detailed example of this.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"life"</span><span class="w">
   </span><span class="s2">"photography"</span><span class="w">
   </span><span class="s2">"kr"</span><span class="w">
   </span><span class="s2">"steemit"</span><span class="w">
   </span><span class="s2">"bitcoin"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatewitness_schedule">Route: getState(‘witness_schedule’)<a name="schedule"></a></h4>
+            <h4 id="route-getstatewitness_schedule">Route: getState(‘witness_schedule’)
+                <a name="schedule"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Calls the current round’s schedule. Every round consists of 21 3-second blocks. This includes the top 19 witnesses, a miner witness, and a backup witness. The <code class="highlighter-rouge">current_virtual_time</code> is used to aid in choosing the next witness. <code class="highlighter-rouge">next_shuffle_block_num</code> indicates when the current list will be shuffled.</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Calls the current round’s schedule. Every round consists of 21 3-second blocks. This includes the top 19 witnesses, a miner witness, and a backup witness. The <code class="highlighter-rouge">current_virtual_time</code> is
+                        used to aid in choosing the next witness. <code class="highlighter-rouge">next_shuffle_block_num</code> indicates when the current list will be shuffled.</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//full info</span>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="c1">//full info</span>
 <span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_witness_schedule'</span><span class="p">,[])</span>
 <span class="c1">//median props only</span>
 <span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">getChainProperties</span><span class="p">()</span>
-</code></pre></div></div>
+</code></pre></div>
+            </div>
 
-<p>If required you can also call the <code class="highlighter-rouge">median_props</code> values as standalone via the second function listed above.</p>
+            <p>If required you can also call the <code class="highlighter-rouge">median_props</code> values as standalone via the second function listed above.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"account_subsidy_rd"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"resource_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"budget_per_time_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">797</span><span class="p">,</span><span class="w">
@@ -794,29 +865,36 @@
   </span><span class="s2">"timeshare_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="s2">"witness_pay_normalization_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h4 id="route-getstatewitnesses">Route: getState(‘witnesses’)<a name="witness"></a></h4>
+            <h4 id="route-getstatewitnesses">Route: getState(‘witnesses’)
+                <a name="witness"></a>
+            </h4>
 
-<ul>
-  <li>
-    <p>Purpose: Calls a list of active witnesses with extended details, listed alphabetically</p>
-  </li>
-  <li>
-    <p>Replacement API call:</p>
-  </li>
-</ul>
+            <ul>
+                <li>
+                    <p>Purpose: Calls a list of active witnesses with extended details, listed alphabetically</p>
+                </li>
+                <li>
+                    <p>Replacement API call:</p>
+                </li>
+            </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_witnesses_by_vote'</span><span class="p">,[</span><span class="s1">''</span><span class="p">,</span><span class="nx">limit</span><span class="p">])</span>
-</code></pre></div></div>
+            <div class="language-javascript highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="nx">databaseAPI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'get_witnesses_by_vote'</span><span class="p">,[</span><span class="s1">''</span><span class="p">,</span><span class="nx">limit</span><span class="p">])</span>
+</code></pre></div>
+            </div>
 
-<p>This detailed information can be used to track the performance of a specific witness when deciding for who to vote or for your own witness statistics. The detail includes the amount of votes, blocks missed and also the SBD exchange rate (feed price) that this witness is reporting. This function calls the info listed according to total votes.</p>
+            <p>This detailed information can be used to track the performance of a specific witness when deciding for who to vote or for your own witness statistics. The detail includes the amount of votes, blocks missed and also the SBD exchange rate (feed
+                price) that this witness is reporting. This function calls the info listed according to total votes.</p>
 
-<ul>
-  <li>Expected result:</li>
-</ul>
+            <ul>
+                <li>Expected result:</li>
+            </ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+            <div class="language-json highlighter-rouge">
+                <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"available_witness_account_subsidies"</span><span class="p">:</span><span class="w"> </span><span class="mi">9138354</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hardfork_time_vote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-25T15:00:00"</span><span class="p">,</span><span class="w">
@@ -845,34 +923,35 @@
   </span><span class="s2">"virtual_scheduled_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"376718433464807443533288610"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77454495589313361"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span></code></pre></div>
+            </div>
 
-<h3 id="to-run-this-tutorial">To run this tutorial</h3>
+            <h3 id="to-run-this-tutorial">To run this tutorial</h3>
 
-<ol>
-  <li>clone this repo</li>
-  <li><code class="highlighter-rouge">cd tutorials/34_get_state_replacement_api</code></li>
-  <li><code class="highlighter-rouge">npm i</code></li>
-  <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
-  <li>After a few moments, the server should be running at http://localhost:3000/</li>
-</ol>
+            <ol>
+                <li>clone this repo</li>
+                <li><code class="highlighter-rouge">cd tutorials/34_get_state_replacement_api</code></li>
+                <li><code class="highlighter-rouge">npm i</code></li>
+                <li><code class="highlighter-rouge">npm run dev-server</code> or <code class="highlighter-rouge">npm run start</code></li>
+                <li>After a few moments, the server should be running at http://localhost:3000/</li>
+            </ol>
 
-<hr />
+            <hr />
 
-</section>
+        </section>
 
-</div>
-<div class="footer">
-	<a href="#">Back to top</a>
-</div>
-<script>
-    document.getElementById("open-nav").addEventListener("click", function () {
-        document.body.classList.toggle("nav-open");
-    });
-</script>
+    </div>
+    <div class="footer">
+        <a href="#">Back to top</a>
+    </div>
+    <script>
+        document.getElementById("open-nav").addEventListener("click", function() {
+            document.body.classList.toggle("nav-open");
+        });
+    </script>
 </body>
+
 </html>
 
 
 <script src="/js/adjust.js"></script>
-

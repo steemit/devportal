@@ -1,5 +1,5 @@
 ---
-title: steemd Nodes
+title: Steemd Nodes
 position: 2
 exclude: true
 ---
