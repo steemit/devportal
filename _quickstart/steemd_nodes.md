@@ -19,7 +19,6 @@ Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes 
 | api.justyy.com                  | @justyy        |
 | api.steemitdev.com              | @steemit       |
 | api.steemit.com                 | @steemit       |
-https://steemyy.com/node-status.php
 
 ### Private Nodes
 
