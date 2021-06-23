@@ -9,7 +9,7 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     base58 (0.2.3)
-    bindata (2.4.4)
+    bindata (2.4.10)
     bitcoin-ruby (0.0.18)
     colorator (1.1.0)
     colorize (0.8.1)
