@@ -8,15 +8,17 @@ Applications that interface directly with the Steem blockchain will need to conn
 
 ### Public Nodes
 
-Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes typically do not.  All nodes listed use HTTPS (`https://`).  If you require WebSockets for your solutions, please consider setting up your own `steemd` node or proxy WebSockets to HTTPS using [lineman](https://github.com/steemit/lineman).
+Although `steemd` fully supports WebSockets (`wss://` and `ws://`) public nodes typically do not.  All nodes listed use HTTPS (`https://`). If you require WebSockets for your solutions, please consider setting up your own `steemd` node or proxy WebSockets to HTTPS using [lineman](https://github.com/steemit/lineman).
 
 | URL                             | Owner          |
 | ------------------------------- | -------------- |
 | api.steem.fans                  | @ety001        |
 | steem.61bts.com                 | @ety001        |
 | api.steemyy.com                 | @justyy        |
-| steem.justyy.workers.dev        | @justyy        |
+| steem.justyy.com                | @justyy        |
+| steem.senior.workers.dev        | @justyy        |
 | api.justyy.com                  | @justyy        |
+| api2.justyy.com                 | @justyy        |
 | api.steemitdev.com              | @steemit       |
 | api.steemit.com                 | @steemit       |
 
