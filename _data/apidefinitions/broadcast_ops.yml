@@ -1077,7 +1077,6 @@
       purpose: |
         Creates a new proposal.
       roles:
-        - posting
         - active
           owner
       params:
